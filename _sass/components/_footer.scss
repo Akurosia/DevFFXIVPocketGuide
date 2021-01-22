@@ -6,7 +6,7 @@
 
 footer,
 section.footer {
-    background: $palette--white;
+    background: $palette-aku-verydarkBG;
     border-top: 1px solid $palette--border;
     padding: calc(#{$unit} * 3) 0 calc(#{$unit} * 7.5);
     text-align: center;
@@ -14,17 +14,12 @@ section.footer {
     @media #{$navigation} {
         padding: calc(#{$unit} * 3) 0;
     }
-
-    @media screen and (orientation: landscape) and (min-width: 70em) {
-        padding: calc(#{$unit} * 5) 0;
-    }
-
 }
 
 .footer__copy {
-    color: $font-black;
+    color: $font-white;
     font-family: $font-aktiv;
-    font-size: $font-scale--small;
+    font-size: $font-scale--medium;
     font-weight: 500;
     line-height: 1.5;
     margin: 0;
@@ -32,5 +27,4 @@ section.footer {
     a {
         color: $palette--red;
     }
-
 }

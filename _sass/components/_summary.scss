@@ -91,6 +91,10 @@
             color: $palette--yellow;
         }
 
+        &.unreal {
+            color: $palette--blue;
+        }
+
         &.savage,
         &.extreme {
             color: $palette--red;
@@ -99,9 +103,16 @@
         &.ultimate {
             color: $palette--purple;
         }
-
     }
+}
 
+[class*="index-item__title_en"] {
+    color: $palette--grey;
+    font-family: $font-aktiv;
+    font-weight: 400;
+    margin: 0;
+    position: relative;
+    z-index: 10;
 }
 
 .index-item__difficulty {

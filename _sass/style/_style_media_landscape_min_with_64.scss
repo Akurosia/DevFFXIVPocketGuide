@@ -1,0 +1,78 @@
+@media screen and (orientation: landscape) and (min-width: 64em) {
+  .site-grid {
+    overflow-x: hidden;
+  }
+
+  .site-grid__sidebar {
+    box-shadow: none !important;
+    max-height: 100vh;
+    max-width: none;
+    position: fixed !important;
+    transform: translate(0) !important;
+    width: 23vw;
+  }
+
+  .site-grid__content-wrapper {
+    margin-left: 23vw;
+    max-width: 77%;
+    width: 77vw;
+  }
+
+  .guide-layout {
+    padding: 3rem;
+  }
+
+  [class*=guide__accordion-trigger--] {
+    &[class*="01"] {
+      padding: 2rem 2rem 2rem 3rem;
+
+      i {
+        left: 1rem;
+      }
+    }
+
+    &[class*="02"] {
+      padding: 1.5rem 2rem 1.5rem 5rem;
+
+      i {
+        left: 2rem;
+      }
+
+      &[class*=combo] {
+        padding: 1rem 2rem 1rem 5rem;
+      }
+
+      &[class*=variation], &[class*=attack], &[class*=dutyAction] {
+        padding: 1rem 2rem 1rem 8rem;
+      }
+    }
+
+    &[class*="03"] {
+      padding: 1rem 2rem 1rem 8rem;
+
+      i {
+        left: 4rem;
+      }
+    }
+  }
+
+  [class*=guide__accordion-content--] {
+    &[class*="01"] .guide__accordion-copy-wrapper {
+      padding: 2.5rem 2.5rem 2.5rem 5rem;
+    }
+
+    &[class*="02"] {
+      .guide__accordion-copy-wrapper {
+        padding: 2.5rem 2.5rem 2.5rem 8rem;
+      }
+
+      &[class*=combo] .guide__accordion-copy-wrapper, &[class*=variation] .guide__accordion-copy-wrapper, &[class*=attack] .guide__accordion-copy-wrapper, &[class*=dutyAction] .guide__accordion-copy-wrapper {
+        padding: 1rem 1rem 1rem 8rem;
+      }
+    }
+
+    &[class*="03"] .guide__accordion-copy-wrapper {
+      padding: 2rem 2rem 2rem 8rem;
+    }
+  }
+}

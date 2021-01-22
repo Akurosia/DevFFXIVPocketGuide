@@ -5,13 +5,24 @@
 // =============================================================================
 .guide-metadata {
 
+    background: $palette-aku-verydarkBG;
+
     .guide-metadata__menu {
         display: none;
 
         @media #{$desktop} {
             display: block;
         }
+    }
 
+    .guide-metadata__menu-link {
+        color: rgb(255, 0, 0);
+        text-shadow: 0 0 5px black;
+    }
+
+    .guide-metadata__subtitle span {
+        color: rgb(255, 0, 0);
+        text-shadow: 0 0 5px black;
     }
 
     .guide-metadata__wrapper {
@@ -29,9 +40,16 @@
             &:first-child {
                 margin-top: 0;
             }
-
         }
-
     }
+}
 
+#guideFilter {
+    background-color: darken($palette--white, 70%);
+    color: white;
+}
+
+#guideFilter::placeholder {
+  color: rgb(211, 211, 211);
+  opacity: 1;
 }

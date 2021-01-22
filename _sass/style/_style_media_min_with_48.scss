@@ -1,0 +1,543 @@
+@media screen and (min-width: 48em) {
+    .page-container {
+        padding: 0 4rem;
+    }
+    .content-container {
+        padding: 0 4rem;
+    }
+    .box.med-1of1,
+    .box.med-full {
+        flex: 0 0 100%;
+    }
+    .box.med-1of2 {
+        flex: 0 0 50%;
+    }
+    .box.med-1of3 {
+        flex: 0 0 33.33333%;
+    }
+    .box.med-2of3 {
+        flex: 0 0 66.66667%;
+    }
+    .box.med-1of4 {
+        flex: 0 0 25%;
+    }
+    .box.med-2of4 {
+        flex: 0 0 50%;
+    }
+    .box.med-3of4 {
+        flex: 0 0 75%;
+    }
+    .box.med-1of5 {
+        flex: 0 0 20%;
+    }
+    .box.med-2of5 {
+        flex: 0 0 40%;
+    }
+    .box.med-3of5 {
+        flex: 0 0 60%;
+    }
+    .box.med-4of5 {
+        flex: 0 0 80%;
+    }
+    .box.med-1of6 {
+        flex: 0 0 16.66667%;
+    }
+    .box.med-2of6 {
+        flex: 0 0 33.33333%;
+    }
+    .box.med-3of6 {
+        flex: 0 0 50%;
+    }
+    .box.med-4of6 {
+        flex: 0 0 66.66667%;
+    }
+    .box.med-5of6 {
+        flex: 0 0 83.33333%;
+    }
+    .box.med-1of7 {
+        flex: 0 0 14.28571%;
+    }
+    .box.med-2of7 {
+        flex: 0 0 28.57143%;
+    }
+    .box.med-3of7 {
+        flex: 0 0 42.85714%;
+    }
+    .box.med-4of7 {
+        flex: 0 0 57.14286%;
+    }
+    .box.med-5of7 {
+        flex: 0 0 71.42857%;
+    }
+    .box.med-6of7 {
+        flex: 0 0 85.71429%;
+    }
+    .box.med-1of8 {
+        flex: 0 0 12.5%;
+    }
+    .box.med-2of8 {
+        flex: 0 0 25%;
+    }
+    .box.med-3of8 {
+        flex: 0 0 37.5%;
+    }
+    .box.med-4of8 {
+        flex: 0 0 50%;
+    }
+    .box.med-5of8 {
+        flex: 0 0 62.5%;
+    }
+    .box.med-6of8 {
+        flex: 0 0 75%;
+    }
+    .box.med-7of8 {
+        flex: 0 0 87.5%;
+    }
+    .box.med-1of9 {
+        flex: 0 0 11.11111%;
+    }
+    .box.med-2of9 {
+        flex: 0 0 22.22222%;
+    }
+    .box.med-3of9 {
+        flex: 0 0 33.33333%;
+    }
+    .box.med-4of9 {
+        flex: 0 0 44.44444%;
+    }
+    .box.med-5of9 {
+        flex: 0 0 55.55556%;
+    }
+    .box.med-6of9 {
+        flex: 0 0 66.66667%;
+    }
+    .box.med-7of9 {
+        flex: 0 0 77.77778%;
+    }
+    .box.med-8of9 {
+        flex: 0 0 88.88889%;
+    }
+    .box.med-1of10 {
+        flex: 0 0 10%;
+    }
+    .box.med-2of10 {
+        flex: 0 0 20%;
+    }
+    .box.med-3of10 {
+        flex: 0 0 30%;
+    }
+    .box.med-4of10 {
+        flex: 0 0 40%;
+    }
+    .box.med-5of10 {
+        flex: 0 0 50%;
+    }
+    .box.med-6of10 {
+        flex: 0 0 60%;
+    }
+    .box.med-7of10 {
+        flex: 0 0 70%;
+    }
+    .box.med-8of10 {
+        flex: 0 0 80%;
+    }
+    .box.med-9of10 {
+        flex: 0 0 90%;
+    }
+    .box.med-1of11 {
+        flex: 0 0 9.09091%;
+    }
+    .box.med-2of11 {
+        flex: 0 0 18.18182%;
+    }
+    .box.med-3of11 {
+        flex: 0 0 27.27273%;
+    }
+    .box.med-4of11 {
+        flex: 0 0 36.36364%;
+    }
+    .box.med-5of11 {
+        flex: 0 0 45.45455%;
+    }
+    .box.med-6of11 {
+        flex: 0 0 54.54545%;
+    }
+    .box.med-7of11 {
+        flex: 0 0 63.63636%;
+    }
+    .box.med-8of11 {
+        flex: 0 0 72.72727%;
+    }
+    .box.med-9of11 {
+        flex: 0 0 81.81818%;
+    }
+    .box.med-10of11 {
+        flex: 0 0 90.90909%;
+    }
+    .box.med-1of12 {
+        flex: 0 0 8.33333%;
+    }
+    .box.med-2of12 {
+        flex: 0 0 16.66667%;
+    }
+    .box.med-3of12 {
+        flex: 0 0 25%;
+    }
+    .box.med-4of12 {
+        flex: 0 0 33.33333%;
+    }
+    .box.med-5of12 {
+        flex: 0 0 41.66667%;
+    }
+    .box.med-6of12 {
+        flex: 0 0 50%;
+    }
+    .box.med-7of12 {
+        flex: 0 0 58.33333%;
+    }
+    .box.med-8of12 {
+        flex: 0 0 66.66667%;
+    }
+    .box.med-9of12 {
+        flex: 0 0 75%;
+    }
+    .box.med-10of12 {
+        flex: 0 0 83.33333%;
+    }
+    .box.med-11of12 {
+        flex: 0 0 91.66667%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of1,
+    body[id*="Trident/7.0"] .box.med-full {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of2 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of3 {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+    body[id*="Trident/7.0"] .box.med-2of3 {
+        flex: 0 0 66.66667%;
+        max-width: 66.66667%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of4 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    body[id*="Trident/7.0"] .box.med-2of4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    body[id*="Trident/7.0"] .box.med-3of4 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of5 {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    body[id*="Trident/7.0"] .box.med-2of5 {
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+    body[id*="Trident/7.0"] .box.med-3of5 {
+        flex: 0 0 60%;
+        max-width: 60%;
+    }
+    body[id*="Trident/7.0"] .box.med-4of5 {
+        flex: 0 0 80%;
+        max-width: 80%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of6 {
+        flex: 0 0 16.66667%;
+        max-width: 16.66667%;
+    }
+    body[id*="Trident/7.0"] .box.med-2of6 {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+    body[id*="Trident/7.0"] .box.med-3of6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    body[id*="Trident/7.0"] .box.med-4of6 {
+        flex: 0 0 66.66667%;
+        max-width: 66.66667%;
+    }
+    body[id*="Trident/7.0"] .box.med-5of6 {
+        flex: 0 0 83.33333%;
+        max-width: 83.33333%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of7 {
+        flex: 0 0 14.28571%;
+        max-width: 14.28571%;
+    }
+    body[id*="Trident/7.0"] .box.med-2of7 {
+        flex: 0 0 28.57143%;
+        max-width: 28.57143%;
+    }
+    body[id*="Trident/7.0"] .box.med-3of7 {
+        flex: 0 0 42.85714%;
+        max-width: 42.85714%;
+    }
+    body[id*="Trident/7.0"] .box.med-4of7 {
+        flex: 0 0 57.14286%;
+        max-width: 57.14286%;
+    }
+    body[id*="Trident/7.0"] .box.med-5of7 {
+        flex: 0 0 71.42857%;
+        max-width: 71.42857%;
+    }
+    body[id*="Trident/7.0"] .box.med-6of7 {
+        flex: 0 0 85.71429%;
+        max-width: 85.71429%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of8 {
+        flex: 0 0 12.5%;
+        max-width: 12.5%;
+    }
+    body[id*="Trident/7.0"] .box.med-2of8 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    body[id*="Trident/7.0"] .box.med-3of8 {
+        flex: 0 0 37.5%;
+        max-width: 37.5%;
+    }
+    body[id*="Trident/7.0"] .box.med-4of8 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    body[id*="Trident/7.0"] .box.med-5of8 {
+        flex: 0 0 62.5%;
+        max-width: 62.5%;
+    }
+    body[id*="Trident/7.0"] .box.med-6of8 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+    body[id*="Trident/7.0"] .box.med-7of8 {
+        flex: 0 0 87.5%;
+        max-width: 87.5%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of9 {
+        flex: 0 0 11.11111%;
+        max-width: 11.11111%;
+    }
+    body[id*="Trident/7.0"] .box.med-2of9 {
+        flex: 0 0 22.22222%;
+        max-width: 22.22222%;
+    }
+    body[id*="Trident/7.0"] .box.med-3of9 {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+    body[id*="Trident/7.0"] .box.med-4of9 {
+        flex: 0 0 44.44444%;
+        max-width: 44.44444%;
+    }
+    body[id*="Trident/7.0"] .box.med-5of9 {
+        flex: 0 0 55.55556%;
+        max-width: 55.55556%;
+    }
+    body[id*="Trident/7.0"] .box.med-6of9 {
+        flex: 0 0 66.66667%;
+        max-width: 66.66667%;
+    }
+    body[id*="Trident/7.0"] .box.med-7of9 {
+        flex: 0 0 77.77778%;
+        max-width: 77.77778%;
+    }
+    body[id*="Trident/7.0"] .box.med-8of9 {
+        flex: 0 0 88.88889%;
+        max-width: 88.88889%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of10 {
+        flex: 0 0 10%;
+        max-width: 10%;
+    }
+    body[id*="Trident/7.0"] .box.med-2of10 {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+    body[id*="Trident/7.0"] .box.med-3of10 {
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+    body[id*="Trident/7.0"] .box.med-4of10 {
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+    body[id*="Trident/7.0"] .box.med-5of10 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    body[id*="Trident/7.0"] .box.med-6of10 {
+        flex: 0 0 60%;
+        max-width: 60%;
+    }
+    body[id*="Trident/7.0"] .box.med-7of10 {
+        flex: 0 0 70%;
+        max-width: 70%;
+    }
+    body[id*="Trident/7.0"] .box.med-8of10 {
+        flex: 0 0 80%;
+        max-width: 80%;
+    }
+    body[id*="Trident/7.0"] .box.med-9of10 {
+        flex: 0 0 90%;
+        max-width: 90%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of11 {
+        flex: 0 0 9.09091%;
+        max-width: 9.09091%;
+    }
+    body[id*="Trident/7.0"] .box.med-2of11 {
+        flex: 0 0 18.18182%;
+        max-width: 18.18182%;
+    }
+    body[id*="Trident/7.0"] .box.med-3of11 {
+        flex: 0 0 27.27273%;
+        max-width: 27.27273%;
+    }
+    body[id*="Trident/7.0"] .box.med-4of11 {
+        flex: 0 0 36.36364%;
+        max-width: 36.36364%;
+    }
+    body[id*="Trident/7.0"] .box.med-5of11 {
+        flex: 0 0 45.45455%;
+        max-width: 45.45455%;
+    }
+    body[id*="Trident/7.0"] .box.med-6of11 {
+        flex: 0 0 54.54545%;
+        max-width: 54.54545%;
+    }
+    body[id*="Trident/7.0"] .box.med-7of11 {
+        flex: 0 0 63.63636%;
+        max-width: 63.63636%;
+    }
+    body[id*="Trident/7.0"] .box.med-8of11 {
+        flex: 0 0 72.72727%;
+        max-width: 72.72727%;
+    }
+    body[id*="Trident/7.0"] .box.med-9of11 {
+        flex: 0 0 81.81818%;
+        max-width: 81.81818%;
+    }
+    body[id*="Trident/7.0"] .box.med-10of11 {
+        flex: 0 0 90.90909%;
+        max-width: 90.90909%;
+    }
+    body[id*="Trident/7.0"] .box.med-1of12 {
+        flex: 0 0 8.33333%;
+        max-width: 8.33333%;
+    }
+    body[id*="Trident/7.0"] .box.med-2of12 {
+        flex: 0 0 16.66667%;
+        max-width: 16.66667%;
+    }
+    body[id*="Trident/7.0"] .box.med-3of12 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+    body[id*="Trident/7.0"] .box.med-4of12 {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+    body[id*="Trident/7.0"] .box.med-5of12 {
+        flex: 0 0 41.66667%;
+        max-width: 41.66667%;
+    }
+    body[id*="Trident/7.0"] .box.med-6of12 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    body[id*="Trident/7.0"] .box.med-7of12 {
+        flex: 0 0 58.33333%;
+        max-width: 58.33333%;
+    }
+    body[id*="Trident/7.0"] .box.med-8of12 {
+        flex: 0 0 66.66667%;
+        max-width: 66.66667%;
+    }
+    body[id*="Trident/7.0"] .box.med-9of12 {
+        flex: 0 0 75%;
+        max-width: 75%;
+    }
+    body[id*="Trident/7.0"] .box.med-10of12 {
+        flex: 0 0 83.33333%;
+        max-width: 83.33333%;
+    }
+    body[id*="Trident/7.0"] .box.med-11of12 {
+        flex: 0 0 91.66667%;
+        max-width: 91.66667%;
+    }
+    body,
+    html {
+        font-size: 100%;
+    }
+    .guide-layout {
+        padding: 2rem;
+    }
+    .guide-metadata__grid {
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
+    .guide-metadata__wrapper .guide-metadata__subtitle:first-child {
+        margin-top: 0;
+    }
+    [class*=guide-metadata__difficulty] {
+        margin: 0;
+    }
+    .guide-metadata__menu {
+        border-right: 1px solid #95989a;
+        display: block;
+    }
+    .guide__attack-image-list {
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .guide__attack-image-item.active {
+        -ms-grid-column: 1;
+        grid-column-start: 1;
+        -ms-grid-column-span: 9;
+        grid-column-end: 10;
+    }
+    body[id*=Edge] .index-grid,
+    body[id*=Trident] .index-grid {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -0.75rem -1.5rem;
+    }
+    body[id*=Edge] .index-item,
+    body[id*=Trident] .index-item {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 0.75rem;
+    }
+    body[id*=Edge] .index-item>a,
+    body[id*=Trident] .index-item>a {
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    body[id*=Edge] .guide__attack-image-item:first-child,
+    body[id*=Trident] .guide__attack-image-item:first-child {
+        -ms-grid-column: 1;
+    }
+    body[id*=Edge] .guide__attack-image-item:nth-child(2),
+    body[id*=Trident] .guide__attack-image-item:nth-child(2) {
+        -ms-grid-column: 2;
+    }
+    body[id*=Edge] .guide__attack-image-item:nth-child(3),
+    body[id*=Trident] .guide__attack-image-item:nth-child(3) {
+        -ms-grid-column: 3;
+    }
+}

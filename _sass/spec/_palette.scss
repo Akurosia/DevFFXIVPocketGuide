@@ -23,12 +23,21 @@
     $palette--yellow: #FEC34E;
     $palette--blue: #36B8EA;
     $palette--purple: #9B40BF;
+    $palette--grey: #95989A;
 
 // Component Colours
 
     $palette--shadow: rgba($palette--night, .5);
-    $palette--overlay: rgba($palette--night, .8);
+    $palette--overlay: rgba($palette--night, .7);
     $palette--border: #95989A;
     $palette--accordion-1: $palette--black;
     $palette--accordion-2: #282828;
     $palette--accordion-3: #323232;
+
+// Custom Pallets
+    $palette-aku-greyText: rgba(202, 199, 195, 0.85);
+    $palette-aku-verydarkBG: rgb(23, 25, 25);
+    $palette-aku-notsoverydarkBG: #212121;
+    $palette-aku-notsodarkBG: #282828;
+    $palette-aku-slightdarkBG: rgb(30, 32, 33);
+    $palette-aku-normaldarkBG: darken($palette--white, 80%);

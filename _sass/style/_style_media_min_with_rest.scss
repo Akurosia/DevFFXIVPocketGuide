@@ -1,0 +1,41 @@
+@media screen and (max-width: 79.9em) {
+  body {
+    &[id*=Edge] .guide-content, &[id*=Trident] .guide-content {
+      -ms-grid-row: 2;
+    }
+  }
+}
+
+@media screen and (min-width: 48em) and (max-width: 79.9em) {
+  body {
+    &[id*=Edge] .guide-metadata__menu, &[id*=Trident] .guide-metadata__menu {
+      -ms-grid-column: 2;
+    }
+  }
+}
+
+@media screen and (orientation: portait) {
+  div.guide__accordion-trigger-id {
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 412px) {
+  body, html {
+    font-size: 90%;
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  .page-container {
+    max-width: 50rem;
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 55rem) {
+  .content-container {
+    max-width: 45rem;
+    padding: 0;
+  }
+}

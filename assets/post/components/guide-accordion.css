@@ -7,7 +7,6 @@
 
 ============================================================================= */
 .guide__accordion {
-
     &:last-child {
         margin-bottom: -2px;
     }
@@ -298,7 +297,8 @@
 
 .guide__accordion-trigger-title {
     color: $palette-white;
-    display: inline-block;
+    display: flex;
+    flex-flow: wrap;
     font-family: $font-aktiv;
     font-weight: 700;
     margin: 0;
@@ -323,7 +323,18 @@ h5.guide__accordion-trigger-title {
     font-size: $font-scale-regular;
 }
 
+.guide__accordion-trigger-ids,
+.guide__accordion-trigger-subtitle{
+    color: rgb(128, 128, 128);
+    font-size: smaller;
+}
+
+.guide__accordion-trigger-ids{
+    margin-left: auto;
+}
+
 .guide__accordion-tag-wrapper {
+    width: inherit;
     /*float: right;
     line-height: 1;
     vertical-align: middle;*/
@@ -470,7 +481,8 @@ h5.guide__accordion-trigger-title {
 }
 
 .guide__accordion-copy-wrapper {
-    background: $palette-white;
+    background: rgb(56,56,56);
+    background-color: rgb(56,56,56);
     border-bottom: 1px solid $palette-borders;
 }
 

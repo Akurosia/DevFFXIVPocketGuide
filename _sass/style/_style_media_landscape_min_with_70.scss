@@ -1,0 +1,15 @@
+@media screen and (orientation: landscape) and (min-width: 70em) {
+  .site-grid__sidebar {
+    width: 20vw;
+  }
+
+  .site-grid__content-wrapper {
+    margin-left: 20vw;
+    max-width: 80%;
+    width: 80vw;
+  }
+
+  .guide-layout {
+    padding: 2rem;
+  }
+}

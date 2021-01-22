@@ -8,13 +8,8 @@ header {
     padding: 0;
 
     @media #{$navigation} {
-        padding: 0 calc(#{$unit} * 3);
+        padding: 0 calc(#{$unit} * 2);
     }
-
-    @media screen and (orientation: landscape) and (min-width: 70em) {
-        padding: 0 calc(#{$unit} * 5);
-    }
-
 }
 
 .site-header__alert {
@@ -129,10 +124,14 @@ header {
     padding: calc(#{$unit} * 4) calc(#{$unit} * 2) calc(#{$unit} * 2) calc(#{$unit} * 2);
 
     span {
-        font-weight: 400; 
+        font-weight: 400;
 
         &.hard {
             color: $palette--yellow;
+        }
+
+        &.unreal {
+            color: $palette--blue;
         }
 
         &.savage,
@@ -158,8 +157,8 @@ header {
     padding: calc(#{$unit} * 4) calc(#{$unit} * 2);
 
     span {
-        font-weight: 400; 
-        
+        font-weight: 400;
+
         &.hard {
             color: $palette--yellow;
         }
@@ -175,6 +174,16 @@ header {
 
     }
 
+}
+
+.site-header__guide-title_en {
+    color: $palette--grey;
+    display: block;
+    font-family: $font-aktiv;
+    font-size: $font-scale--h2;
+    font-weight: 800;
+    margin-top: -20px;
+    padding: calc(#{$unit} * 0) calc(#{$unit} * 2);
 }
 
 .site-header__links {

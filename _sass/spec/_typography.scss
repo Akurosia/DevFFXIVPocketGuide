@@ -40,6 +40,7 @@
     $font-scale--h4: calc(#{$unit}*(#{$font-scale}));
     $font-scale--h5: $unit;
     $font-scale--small: calc(#{$unit}*(#{$font-scale}/2));
+    $font-scale--medium: calc(#{$unit}*(#{$font-scale}/1.5));
 
 // Sitewide Typography
 

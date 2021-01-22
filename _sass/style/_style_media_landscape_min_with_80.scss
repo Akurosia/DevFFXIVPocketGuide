@@ -1,0 +1,33 @@
+@media screen and (orientation: landscape) and (min-width: 80em) {
+  .guide-layout {
+    -ms-grid-columns: 25% 75%;
+    grid-template-columns: 25% 75%;
+  }
+
+  .guide-metadata {
+    border-radius: 5px 0 0 5px;
+  }
+
+  .guide-metadata__grid {
+    display: block;
+  }
+
+  .guide-metadata__menu {
+    border-right: none;
+    border-bottom: 1px solid #95989a;
+  }
+
+  .guide-content {
+    border-top: 1px solid #95989a;
+    border-right: 1px solid #95989a;
+    border-bottom: 1px solid #95989a;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+  }
+
+  body {
+    &[id*=Edge] .guide-content, &[id*=Trident] .guide-content {
+      -ms-grid-column: 2;
+    }
+  }
+}

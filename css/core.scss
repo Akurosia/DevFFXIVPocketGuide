@@ -9,24 +9,30 @@
 
 // Spec Imports ================================================================
 
+    $unit: 1rem;
+
+    @import "spec/palette";
+    @import "spec/typography";
+
     * {
         box-sizing: border-box;
     }
 
     html,
     body {
+        background: $palette-aku-verydarkBG;
         width: 100%;
     }
 
-    $unit: 1rem;
-
-    @import "spec/palette";
-    @import "spec/typography";
 
 // Core CSS ====================================================================
 
     @import "components/layout";
     @import "components/sidebar";
+
+// Style CSS ====================================================================
+
+    @import "style/style.scss";
 
 // Component Imports ===========================================================
 

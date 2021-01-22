@@ -28,7 +28,8 @@
 }
 
 .index-divider__title {
-    background: darken($palette--white, 5%);
+    background: darken($palette--white, 60%);
+    border-radius: 25px;
     color: $font-black;
     display: inline-block;
     font-family: $font-cinzel;

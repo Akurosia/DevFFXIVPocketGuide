@@ -1,0 +1,12 @@
+@media screen and (min-width: 64.01em) {
+  .page-container {
+    max-width: 60rem;
+  }
+
+  body {
+    &[id*=Edge] .index-item, &[id*=Trident] .index-item {
+      flex: 0 0 33.33333%;
+      max-width: 33.33333%;
+    }
+  }
+}
