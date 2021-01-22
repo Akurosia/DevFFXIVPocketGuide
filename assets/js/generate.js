@@ -1048,7 +1048,9 @@ function generate(button) {
         order: metaOrder,
         orchestrion: metaOrchestrion,
         instanceType: metaInstanceType,
-        mtqvid: metaMTQ
+        mtq_vid1: metaMTQ,
+        mtq_vid2: metaMTQ,
+        mrh_vid: metaMTQ
     }
 
     if ($(".duty-mechanics__mechanic:not(.repeater__template)").length > 0) {

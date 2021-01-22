@@ -1,10 +1,12 @@
+tmp/
 .DS_Store
 _site
-.sass-cache
-.jekyll-metadata
+.sass-cache/
+.jekyll-metadata/
 bower_components
 node_modules
 desktop.ini
 vendor
-.vscode
-.jekyll-cache
+.vscode/
+.jekyll-cache/
+.jekyll-cache/*

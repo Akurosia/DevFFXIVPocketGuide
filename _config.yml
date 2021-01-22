@@ -14,37 +14,38 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: FFXIV Pocket Guide
-email: imjoshdrink@gmail.com
+email: akurosia@akurosia.de
 description: > # this means to ignore newlines until "baseurl:"
   A collection of mobile friendly guides to help players navigate group content in Final Fantasy XIV. Guide content has been compiled from video guides produced by MTQCapture.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://ffxiv.joshdrink.com" # the base hostname & protocol for your site, e.g. http://example.com
-
-repository: joshdrink/joshdrink.github.io
+url: "https://ffxivguide.akurosia.de" # the base hostname & protocol for your site, e.g. http://example.com
+encoding: utf-8
+repository: akurosia/DevFFXIVPocketGuide
 
 twitter_username: ff14pocketguide
-github_username:  joshdrink
+github_username:  akurosia
 
 # Build settings
 markdown: kramdown
 plugins:
-  - jekyll-feed
   - jekyll-sitemap
 include:
   - _pages
-permalink: /:categories/:slug
+permalink: /:categories/:slug.html
 exclude:
+  - .git
+  - .sass-cache
+  - .jekyll-cache
+  - _site
   - Gemfile
   - Gemfile.lock
-  - assets/node_modules
-  - assets/bower_components
-  - assets_old/node_modules
-  - assets_old/bower_components
-  - templates
   - vendor
-  - _data
-  - assets/post
   - forestry
-  - .sass-cache
+  - guide_ffxiv.xlsx
+  - ~$guide_ffxiv.xlsx
+  - ffxiv_guide_xlsx_to_file.py
 sass:
+    sass_dir: _sass
+    load_paths:
+        - _sass
     style: compressed
