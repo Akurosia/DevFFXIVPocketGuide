@@ -1,37 +1,27 @@
 <div class="guide__combo-tag-wrapper">
-
     {% if attack.combo %}
-
         <h5 class="guide__attack-notes-title">{{ combo.title }}</h5>
-
         {% for role in combo.roles %}
             <span class="guide__combo-tag--role">{{ role.role }}</span>
         {% endfor %}
-
         {% for action in combo.dutyActions %}
             <span class="guide__combo-tag--duty-action">Duty Action</span>
         {% endfor %}
-
         {% for tag in combo.tags %}
             <span class="guide__combo-tag--attack">{{ tag.tag }}</span>
         {% endfor %}
-
     {% elsif attack.variation %}
-
-        <h5 class="guide__attack-notes-title">{{ variation.title }}</h5>
-
+        <h5 class="guide__attack-notes-title {% if variation.damage_type == 'Magical' %}attack-is-magic
+                     {% elsif variation.damage_type && variation.damage_type != 'None' %}attack-is-physical
+                     {% endif %}">{{ variation.title }} - (Skill-ID: {{ variation.title_id }})</h5>
         {% for role in variation.roles %}
             <span class="guide__combo-tag--role">{{ role.role }}</span>
         {% endfor %}
-
         {% for action in variation.dutyActions %}
             <span class="guide__combo-tag--duty-action">Duty Action</span>
         {% endfor %}
-
         {% for tag in variation.tags %}
             <span class="guide__combo-tag--attack">{{ tag.tag }}</span>
         {% endfor %}
-
     {% endif %}
-
 </div>

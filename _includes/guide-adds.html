@@ -1,48 +1,48 @@
-<!-- Guide Bosses ========================================================== -->
+<!-- Guide Adds ========================================================== -->
 <div class="guide__accordion">
-    <div class="guide__accordion-trigger--01 active" id="guideBosses">
+    <div class="guide__accordion-trigger--01 active" id="guideAdds">
         <i class="material-icons">expand_more</i>
         <h2 class="guide__accordion-trigger-title">
-            {% if page.bosses.size > 1 %}
-                {% if page.instanceType == "allianzraid" %}Allianzraid Bosse{% endif %}
-                {% if page.instanceType == "bluemage" %}Bluemage Bosse{% endif %}
-                {% if page.instanceType == "dungeon" %}Dungeon Bosse{% endif %}
-                {% if page.instanceType == "feldexkursion" %}Feldexkursion Bosse{% endif %}
-                {% if page.instanceType == "guildhest" %}Gildengeheiß Bosse{% endif %}
-                {% if page.instanceType == "potd" %}Deep Dungeon Bosse{% endif %}
-                {% if page.instanceType == "pvp" %}PvP Bosse{% endif %}
-                {% if page.instanceType == "raid" %}Raid Bosse{% endif %}
-                {% if page.instanceType == "treasure" %}Schatzdungeon Bosse{% endif %}
-                {% if page.instanceType == "trial" %}Prüfung Bosse{% endif %}
+            {% if page.adds.size > 1 %}
+                {% if page.instanceType == "allianzraid" %}Allianzraid Adds{% endif %}
+                {% if page.instanceType == "bluemage" %}Bluemage Adds{% endif %}
+                {% if page.instanceType == "dungeon" %}Dungeon Adds{% endif %}
+                {% if page.instanceType == "feldexkursion" %}Feldexkursion Adds{% endif %}
+                {% if page.instanceType == "guildhest" %}Gildengeheiß Adds{% endif %}
+                {% if page.instanceType == "potd" %}Deep Dungeon Adds{% endif %}
+                {% if page.instanceType == "pvp" %}PvP Adds{% endif %}
+                {% if page.instanceType == "raid" %}Raid Adds{% endif %}
+                {% if page.instanceType == "treasure" %}Schatzdungeon Adds{% endif %}
+                {% if page.instanceType == "trial" %}Prüfung Adds{% endif %}
             {% else %}
-                {{ page.bosses[0].title }}
+                {{ page.adds[0].title }}
             {% endif %}
         </h2>
-        {% if page.bosses.size == 1 %}
+        {% if page.adds.size == 1 %}
          <h3 class="guide__accordion-trigger-title_en">
-            {{ page.bosses[0].title_en }}
+             {{ page.adds[0].title_en }}
          </h3>
         {% endif %}
     </div>
     <!-- Guide Event Accordion Content -->
     <div class="guide__accordion-content--01 active">
-        <!-- Opens the Boss Loop -->
-        {% for boss in page.bosses %}
-            {% if page.bosses.size > 1 %}
-                <!-- <div class="guide__accordion-trigger--02" id="{{ boss.id }}"> -->
-                <div class="guide__accordion-trigger--02" id="{{ boss.title | slugify }}">
+        <!-- Opens the Adds Loop -->
+        {% for add in page.adds %}
+            {% if page.adds.size > 1 %}
+                <!-- <div class="guide__accordion-trigger--02" id="{{ add.id }}"> -->
+                <div class="guide__accordion-trigger--02" id="{{ add.title | slugify }}">
                     <i class="material-icons">expand_more</i>
                     <h3 class="guide__accordion-trigger-title">
-                        {{ boss.title }}
+                        {{ add.title }}
                     </h3>
                     <h4 class="guide__accordion-trigger-title_en">
-                        {{ boss.title_en }}
+                        {{ add.title_en }}
                     </h4>
                 </div>
                 <div class="guide__accordion-content--02">
             {% endif %}
                 <!-- Opens the Sequence Loop -->
-                {% for phase in boss.sequence %}
+                {% for phase in add.sequence %}
                     <div class="guide__accordion-copy-wrapper" id="phase{{ phase.phase }}">
                         <!-- Opens the Alerts Loop -->
                         {% if phase.alerts %}
@@ -74,8 +74,8 @@
                     </div>
                     <!-- Determines the current phase. -->
                     {% assign currentPhase = phase.phase %}
-                    <!-- Enters the boss attack loop. -->
-                    {% for attack in boss.attacks %}
+                    <!-- Enters the add attack loop. -->
+                    {% for attack in add.attacks %}
                         <!-- Enters the attack's phases. -->
                         {% for attackPhase in attack.phases %}
                             <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
@@ -86,7 +86,7 @@
                         {% endfor %}
                     {% endfor %}
                 {% endfor %}
-            {% if page.bosses.size > 1 %}</div>{% endif %}
+            {% if page.adds.size > 1 %}</div>{% endif %}
         {% endfor %}
     </div>
 </div>

@@ -1,18 +1,33 @@
-
 <!-- Attack Template ======================================================= -->
-
-<div class="guide__accordion-trigger--{% if page.sequence %}02{% else %}03{% endif %}{% if attack.dutyActions %}--dutyAction{% elsif attack.combo %}--combo{% elsif attack.variation %}--variation{% else %}--attack{% endif %}">
+<div class="guide__accordion-trigger--{% if page.sequence %}02{% else %}03{% endif %}
+            {% if attack.attack_in_use == 'false' %}--ignore
+            {% elsif attack.dutyActions %}--dutyAction
+            {% elsif attack.combo %}--combo
+            {% elsif attack.variation %}--variation
+            {% else %}--attack
+            {% endif %}">
     <i class="material-icons">expand_more</i>
     <h4 class="guide__accordion-trigger-title">
-        {{ attack.title }}
+        <span class="{% if attack.damage_type == 'Magical' %}attack-is-magic
+                     {% elsif attack.damage_type && attack.damage_type != 'None' %}attack-is-physical
+                     {% endif %}">{{ attack.title }}</span>
+        {% if attack.title_en %}
+            <div class="guide__accordion-trigger-subtitle"> | {{ attack.title_en }}</div>
+        {% endif %}
+        {% if attack.title_id %}
+            <div class="guide__accordion-trigger-id">Skill-ID: {{ attack.title_id }}</div>
+        {% endif %}
         {% include _components/guide-attack-types.html %}
     </h4>
 </div>
-
-<div class="guide__accordion-content--{% if page.sequence %}02{% else %}03{% endif %}{% if attack.dutyActions %}--dutyAction{% elsif attack.combo %}--combo{% elsif attack.variation %}--variation{% else %}--attack{% endif %}">
-
+<div class="guide__accordion-content--{% if page.sequence %}02{% else %}03{% endif %}
+            {% if attack.attack_in_use == 'false' %}--ignore
+            {% elsif attack.dutyActions %}--dutyAction
+            {% elsif attack.combo %}--combo
+            {% elsif attack.variation %}--variation
+            {% else %}--attack
+            {% endif %}" style="{% if attack.disable == 'true' %}display: none;{% endif %}">
     <div class="guide__accordion-copy-wrapper">
-
         <!-- Standard Attacks -->
         {% if attack.combo %}
             {% if attack.notes %}
@@ -35,7 +50,6 @@
         {% else %}
             {% include _components/guide-attack-notes.html %}
         {% endif %}
-
         <!-- Combo Attacks -->
         {% for combo in attack.combo %}
             {% include _components/guide-combo-tags.html %}
@@ -44,14 +58,19 @@
             {% if combo.images %}
                 <div class="guide__attack-image-list">
                     {% for image in combo.images %}
-                        <div class="guide__attack-image-item">
-                            <img src="{{ image.url }}" alt="{{ image.alt }}">
-                        </div>
+                        {% include _components/guide-images.html %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <!-- Combo Videos -->
+            {% if combo.videos %}
+                <div class="guide__attack-video-list">
+                    {% for video in combo.videos %}
+                        {% include _components/guide-videos.html %}
                     {% endfor %}
                 </div>
             {% endif %}
         {% endfor %}
-
         <!-- Variation Attacks -->
         {% for variation in attack.variation %}
             {% include _components/guide-combo-tags.html %}
@@ -60,27 +79,34 @@
             {% if variation.images %}
                 <div class="guide__attack-image-list">
                     {% for image in variation.images %}
-                        <div class="guide__attack-image-item">
-                            <img src="{{ image.url }}" alt="{{ image.alt }}">
-                        </div>
+                        {% include _components/guide-images.html %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <!-- Variation Videos -->
+            {% if variation.videos %}
+                <div class="guide__attack-video-list">
+                    {% for video in variation.videos %}
+                        {% include _components/guide-videos.html %}
                     {% endfor %}
                 </div>
             {% endif %}
         {% endfor %}
-
         <!-- Attack Images -->
         {% if attack.images %}
             <div class="guide__attack-image-list">
-
                 {% for image in attack.images %}
-                    <div class="guide__attack-image-item">
-                        <img src="{{ image.url }}" alt="{{ image.alt }}">
-                    </div>
+                    {% include _components/guide-images.html %}
                 {% endfor %}
-
             </div>
         {% endif %}
-
+        <!-- Attack Videos -->
+        {% if attack.videos %}
+            <div class="guide__attack-video-list">
+                {% for video in attack.videos %}
+                    {% include _components/guide-videos.html %}
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
-
 </div>

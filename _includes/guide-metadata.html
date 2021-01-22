@@ -1,100 +1,99 @@
-
 <!-- Guide Metadata ======================================================== -->
-
 <div class="guide-metadata">
-
-    <a href="{{ page.mtqvid }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">
-        MTQcapture's Video Guide
-        <!-- <div class="guide-metadata__new">New!</div> -->
-    </a>
-
+    {% if page.mtq_vid1 %}
+        <a href="{{ page.mtq_vid1 }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide</a>
+    {% endif %}
+    {% if page.mtq_vid2 %}
+        <a href="{{ page.mtq_vid2 }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide #2</a>
+    {% endif %}
+    {% if page.mrh_vid1 %}
+        <a href="{{ page.mrh_vid1 }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide</a>
+    {% endif %}
+    {% if page.mrh_vid2 %}
+        <a href="{{ page.mrh_vid2 }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide #2</a>
+    {% endif %}
     <ul class="guide-metadata__menu">
-
-            <h5 class="guide-metadata__subtitle">In This Guide:</h5>
-
-            {% if page.mechanics %}
-
-                <li>
-                    <a href="#" data-id="guideNotes" title="Go to the Guide Notes" class="guide-metadata__menu-link">
-                        {% if page.instanceType == "dungeon" %}Dungeon Notes{% endif %}
-                        {% if page.instanceType == "raid" %}Raid Notes{% endif %}
-                    </a>
-                </li>
-
-            {% endif %}
-
-            {% if page.bosses.size > 1 %}
-
-                <li>
-
-                    <a href="#" data-id="guideBosses" title="Go to the Guide Bosses" class="guide-metadata__menu-link">
-                        {% if page.instanceType == "dungeon" %}Dungeon Bosses{% endif %}
-                        {% if page.instanceType == "raid" %}Raid Bosses{% endif %}
-                    </a>
-
-                    <ul class="guide-metadata__submenu">
-
-                        {% for boss in page.bosses %}
-
-                            <li>
-                                <a href="#" data-id="{{ boss.title | slugify }}" title="Go to {{ boss.title }}" class="guide-metadata__menu-link">{{ boss.title }}</a>
-                            </li>
-
-                        {% endfor %}
-
-                    </ul>
-
-                </li>
-
-            {% else %}
-                {% if page.sequence %}
-                    {% assign phases = page.sequence %}
-                {% elsif page.bosses[0].sequence %}
-                    {% assign phases = page.bosses[0].sequence %}
-                {% endif %}
-
-                {% if phases %}
-                    
-                    <li>
-
-                        <a href="#" data-id="guideSummary" title="Go to the Guide Summary" class="guide-metadata__menu-link">Fight Summary</a>
-
-                        <ul class="guide-metadata__submenu">
-
-                            {% for phase in phases %}
-
-                                <li>
-                                    <a href="#" data-id="phase{{ phase.phase }}" title="Go to Phase {{ phase.phase }}" class="guide-metadata__menu-link">Phase: {{ phase.phase }}</a>
-                                </li>
-
-                            {% endfor %}
-
-                        </ul>
-
-                    </li>
-
-                {% endif %}
-                
-
-            {% endif %}
-
+        <h5 class="guide-metadata__subtitle">In This Guide:</h5>
+        {% if page.mechanics %}
+            <li>
+                <a href="#" data-id="guideNotes" title="Go to the Guide Notes" class="guide-metadata__menu-link">
+                    {% if page.instanceType == "allianzraid" %}Allianzraid Notizen{% endif %}
+                    {% if page.instanceType == "bluemage" %}Bluemage Notizen{% endif %}
+                    {% if page.instanceType == "dungeon" %}Dungeon Notizen{% endif %}
+                    {% if page.instanceType == "feldexkursion" %}Feldexkursion Notizen{% endif %}
+                    {% if page.instanceType == "guildhest" %}Gildengeheiß Notizen{% endif %}
+                    {% if page.instanceType == "potd" %}Deep Dungeon Notizen{% endif %}
+                    {% if page.instanceType == "pvp" %}PvP Notizen{% endif %}
+                    {% if page.instanceType == "raid" %}Raid Notizen{% endif %}
+                    {% if page.instanceType == "treasure" %}Schatzdungeon Notizen{% endif %}
+                    {% if page.instanceType == "trial" %}Prüfung Notizen{% endif %}
+                </a>
+            </li>
+        {% endif %}
+        {% if page.bosses.size > 1 %}
+            <li>
+                <a href="#" data-id="guideBosses" title="Go to the Guide Bosse" class="guide-metadata__menu-link">
+                    {% if page.instanceType == "allianzraid" %}Allianzraid Adds{% endif %}
+                    {% if page.instanceType == "bluemage" %}Bluemage Adds{% endif %}
+                    {% if page.instanceType == "dungeon" %}Dungeon Adds{% endif %}
+                    {% if page.instanceType == "feldexkursion" %}Feldexkursion Adds{% endif %}
+                    {% if page.instanceType == "guildhest" %}Gildengeheiß Adds{% endif %}
+                    {% if page.instanceType == "potd" %}Deep Dungeon Adds{% endif %}
+                    {% if page.instanceType == "pvp" %}PvP Adds{% endif %}
+                    {% if page.instanceType == "raid" %}Raid Adds{% endif %}
+                    {% if page.instanceType == "treasure" %}Schatzdungeon Adds{% endif %}
+                    {% if page.instanceType == "trial" %}Prüfung Adds{% endif %}
+                </a>
+                <ul class="guide-metadata__submenu">
+                    {% for boss in page.bosses %}
+                        <li>
+                            <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title }}" class="guide-metadata__menu-link">{{ boss.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endif %}
+        {% if page.sequence %}
+            <li>
+                <a href="#" data-id="guideSummary" title="Go to the Guide Summary" class="guide-metadata__menu-link">Fight Summary</a>
+                <ul class="guide-metadata__submenu">
+                    {% for phase in page.sequence %}
+                        <li>
+                            <a href="#" data-id="phase{{ phase.phase }}" title="Go to {{ phase.phase }}" class="guide-metadata__menu-link">Phase: {{ phase.phase }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endif %}
     </ul>
-
-    <div
-        class="guide-metadata__wrapper">
-
+    <div class="guide-metadata__wrapper">
         <h5 class="guide-metadata__subtitle box small-1of2 med-full">Player Level: <span>{{ page.plvl }}</span></h5>
-
+        {% if page.plvl_sync > 0 %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Player Level Sync: <span>{{ page.plvl_sync }}</span></h5>
+        {% endif %}
         {% if page.ilvl > 0 %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Item Level: <span>{{ page.ilvl }}</span></h5>
         {% else %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Item Level: <span>N/A</span></h5>
         {% endif %}
-
+        {% if page.ilvl_sync > 0 %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Item Level Sync: <span>{{ page.ilvl_sync }}</span></h5>
+        {% endif %}
         {% if page.patchNumber %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Patch {{ page.patchNumber }}:<span>{{ page.patchName }}</span></h5>
         {% endif %}
-
+        {% if page.contentname %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentname: <span>{{ page.contentname }}</span></h5>
+        {% endif %}
+        {% if page.quest %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest: <span>{{ page.quest }}</span></h5>
+            {% if page.quest_location %}
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest Location: <span>{{ page.quest_location }}</span></h5>
+            {% endif %}
+            {% if page.quest_npc %}
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest NPC: <span>{{ page.quest_npc }}</span></h5>
+            {% endif %}
+        {% endif %}
         {% if page.partners %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Partners:
             {% for partner in page.partners %}
@@ -102,11 +101,89 @@
             {% endfor %}
             </h5>
         {% endif %}
-
-        {% if page.orchestrion %}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Orchestrion Roll:<span>{{ page.orchestrion }}</span></h5>
+        {% if page.mount %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Mount(s):
+                {% for mount in page.mount %}
+                    <span>- {{ mount.name }}</span>
+                {% endfor %}
+            </h5>
         {% endif %}
-
+        {% if page.minion %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Minion(s):
+                {% for minion in page.minion %}
+                    <span>- {{ minion.name }}</span>
+                {% endfor %}
+            </h5>
+        {% endif %}
+        {% if page.gearset_loot %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Gearset(s):
+                {% for gearset in page.gearset_loot %}
+                    <span>- {{ gearset.gsetname }}</span>
+                {% endfor %}
+            </h5>
+        {% endif %}
+        {% if page.tt_card %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">TT_Karte(n):
+                {% for tt_card in page.tt_card %}
+                    <span>- {{ tt_card.name }}</span>
+                {% endfor %}
+            </h5>
+        {% endif %}
+        {% if page.orchestrion %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Orchestrion Roll:
+                {% for orchestrion in page.orchestrion %}
+                    <span>- {{ orchestrion.name }}</span>
+                {% endfor %}
+            </h5>
+        {% endif %}
+        {% if page.orchestrion_material %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Orchestrion Roll Material:
+                {% for orchestrion_material in page.orchestrion_material %}
+                    <span>- {{ orchestrion_material.name }}</span>
+                {% endfor %}
+            </h5>
+        {% endif %}
+        {% if page.rouletts %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Rouletts:
+                {% for roulette in page.rouletts %}
+                    {% if roulette.allianceraid %}
+                        <span>- Allianz Raid</span>
+                    {% elsif roulette.frontier %}
+                        <span>- PvP</span>
+                    {% elsif roulette.expert %}
+                        <span>- Experte</span>
+                    {% elsif roulette.guildhest %}
+                        <span>- Gildengeheiß</span>
+                    {% elsif roulette.level50_60 or roulette.level70 %}
+                        <span>- Level 50/60/70</span>
+                    {% elsif roulette.leveling %}
+                        <span>- Leveling</span>
+                    {% elsif roulette.main %}
+                        <span>- Hauptszenario</span>
+                    {% elsif roulette.mentor %}
+                        <span>- Mentor</span>
+                    {% elsif roulette.normalraid %}
+                        <span>- Normal Raid</span>
+                    {% elsif roulette.trial %}
+                        <span>- Prüfung</span>
+                    {% endif %}
+                {% endfor %}
+            </h5>
+        {% endif %}
+        {% if page.links %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Links:
+                {% for link in page.links %}
+                    {% if link.teamcraftlink %}
+                        <span><a target="_blank" href="https://ffxivteamcraft.com/db/de/instance/{{ link.teamcraftlink }}">Teamcraft</a></span>
+                    {% endif %}
+                    {% if link.garlandtoolslink %}
+                        <span><a target="_blank" href="https://garlandtools.org/db/#instance/{{ link.garlandtoolslink }}">Garlandtools</a></span>
+                    {% endif %}
+                    {% if link.gamerescapelink %}
+                        <span><a target="_blank" href="https://ffxiv.gamerescape.com/wiki/{{ link.gamerescapelink }}">Gamerscape</a></span>
+                    {% endif %}
+                {% endfor %}
+            </h5>
+        {% endif %}
     </div>
-
 </div>
