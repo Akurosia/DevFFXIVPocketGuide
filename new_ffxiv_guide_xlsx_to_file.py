@@ -229,6 +229,8 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
         name = f"{name} (fatal)"
     elif difficulty == "Episch" and instanceType == "raid" and "episch" not in name.lower():
         name = f"{name} (episch)"
+    elif difficulty == "Episch" and instanceType == "feldexkursion" and "episch" not in name.lower():
+        name = f"{name} (episch)"
     elif difficulty == "Schwer" and instanceType == "dungeon" and "schwer" not in name.lower():
         name = f"{name} (schwer)"
     # handle stupid edge cases for primals
