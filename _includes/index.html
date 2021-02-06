@@ -2,6 +2,21 @@
     // Index
 =============================================================== {% endcomment %}
 <div class="index">
+    <!-- Endwalker Guide Index ============================================ -->
+    {% assign counter = 0 %}
+    {% for guide in site.categories.ew %}
+        {% include _components/index-counter.html %}
+    {% endfor %}
+    {% if counter > 0 %}
+        <a id="endwalker"></a>
+        <div class="index-divider" data-expansion="ew">
+            <h2 class="index-divider__title">6.x - Endwalker</h2>
+        </div>
+        <div class="index__list" data-expansion="ew">
+            {% assign sorted = site.categories.ew | sort:"order" %}
+            {% include _components/index-list.html %}
+        </div>
+    {% endif %}
     <!-- Shadowbringers Guide Index ============================================ -->
     {% assign counter = 0 %}
     {% for guide in site.categories.shb %}
