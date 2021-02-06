@@ -75,7 +75,7 @@ def loadDataTheQuickestWay(_filename):
             with open(base + _filename, encoding="utf8") as fi:
                 return json.load(fi)
         except:
-            base = "https://ffxiv.akurosia.de/py/translate/exd-all/latest/"
+            base = "https://ffxiv.akurosia.de/extras/json/translate/exd-all/latest/"
             with urllib.request.urlopen(base + _filename) as f:
                 return json.load(f)
 
