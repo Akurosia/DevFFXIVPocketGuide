@@ -3,17 +3,25 @@
 import os
 from operator import itemgetter
 import traceback
-import sys
 import re
 import errno
 import json
 import urllib.request
 import openpyxl
 import yaml
+
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'python_module'))
+from ffxiv_aku import *
+
 try:
     from yaml import CLoader as Loader
 except ImportError:
     from yaml import Loader
+
+disable_green_print = True
+disable_yellow_print = True
+disable_blue_print = True
 
 enemy = {
     "title": "",
@@ -72,89 +80,19 @@ example_add_sequence = {
     }]
 }
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-
-def print_color_green(text, end="\n"):
-    #print(f"{bcolors.OKGREEN}{text}{bcolors.ENDC}", end=end)
-    pass
-def print_color_yellow(text, end="\n"):
-    #print(f"{bcolors.WARNING}{text}{bcolors.ENDC}", end=end)
-    pass
-def print_color_red(text, end="\n"):
-    print(f"{bcolors.FAIL}{text}{bcolors.ENDC}", end=end)
-def print_color_blue(text, end="\n"):
-    #print(f"{bcolors.OKBLUE}{text}{bcolors.ENDC}", end=end)
-    pass
-
-
-def get_Logdata(_filename, _type, data):
-    if not data == {}:
-        return data
-    try:
-        if _type == "local":
-            with open(_filename, encoding="utf8") as fi:
-                _logdata = json.load(fi)
-                return _logdata
-        elif _type == "web":
-            with urllib.request.urlopen(_filename) as fi:
-                _logdata = json.load(fi)
-                return _logdata
-    except Exception as e:
-        print(e)
-        return {}
-    return {}
-
-
-def get_any_Logdata():
-    data = {}
-    if os.name == 'nt':
-        data = get_Logdata(r"\\192.168.2.4\Root\var\www\ffxiv\extras\FFlogs\logdata_de.json", "local", data)
-        data = get_Logdata(r"V:\ffxiv\extras\FFlogs\logdata_de.json", "local", data)
-    else:
-        data = get_Logdata("/var/www/ffxiv/extras/FFlogs/logdata_de.json", "local", data)
-    data = get_Logdata("https://ffxiv.akurosia.de/extras/FFlogs/logdata_de.json", "web", data)
-    if data == {}:
-        raise Exception("No Data found")
-    return data
-
-
-def loadDataTheQuickestWay(_filename):
-    try:
-        base = "\\\\192.168.2.4\\Root\\var\\www\\ffxiv\\extras\\json\\exd-all\\latest\\"
-        with open(base + _filename, encoding="utf8") as fi:
-            return json.load(fi)
-    except:
-        try:
-            base = "V:\\ffxiv\\extras\\json\\exd-all\\latest"
-            with open(base + _filename, encoding="utf8") as fi:
-                return json.load(fi)
-        except:
-            base = "https://ffxiv.akurosia.de/py/translate/exd-all/latest/"
-            with urllib.request.urlopen(base + _filename) as f:
-                return json.load(f)
-
 
 # specify elements you are looking for
 elements = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest", "quest_npc", "quest_location", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "allianceraid", "frontier", "expert", "guildhest", "level50_60", "level70", "leveling", "main", "mentor", "normalraid", "trial", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
 
 logdata = get_any_Logdata()
 logdata_lower = dict((k.lower(),v) for k,v in logdata.items())
-action = loadDataTheQuickestWay("action_all.json")
-territorytype = loadDataTheQuickestWay("territorytype_all.json")
-contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json")
-placename = loadDataTheQuickestWay("placename_all.json")
-bnpcname = loadDataTheQuickestWay("bnpcname_all.json")
-eobjname = loadDataTheQuickestWay("eobjname_all.json")
-enpcresident = loadDataTheQuickestWay("enpcresident_all.json")
+action = loadDataTheQuickestWay("action_all.json", translate=True)
+territorytype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
+contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
+placename = loadDataTheQuickestWay("placename_all.json", translate=True)
+bnpcname = loadDataTheQuickestWay("bnpcname_all.json", translate=True)
+eobjname = loadDataTheQuickestWay("eobjname_all.json", translate=True)
+enpcresident = loadDataTheQuickestWay("enpcresident_all.json", translate=True)
 
 
 def checkVariable(element, name):
@@ -220,7 +158,7 @@ def getBnpcName(name, lang="en"):
         if m:
             return eobj[f"Singular_{lang}"]
     # return anything, just in case
-    print_color_yellow(f"Missing {name} examples where ({aname}) and ({nname})")
+    print_color_yellow(f"Missing {name} examples where ({aname}) and ({nname})", disable_yellow_print)
     return ""
 
 
@@ -430,7 +368,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
         if existing_attacks.get(attack['name'], None):
             # convert regular attk to variation
             if existing_attacks[attack['name']] == "regular":
-                print_color_blue(f"\t\tNeed to convert: {attack['name']} ({attack_id})")
+                print_color_blue(f"\t\tNeed to convert: {attack['name']} ({attack_id})", disable_blue_print)
                 # find attack
                 attack_index = None
                 for i, old_attack in enumerate(old_enemy_data['attacks']):
@@ -484,7 +422,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 tmp_attack = delete_invalid_entries(tmp_attack)
                 existing_attacks[attack['name']] = 'variation'
             else:
-                print_color_blue("\t\tNeed to add to variation: " + attack['name'])
+                print_color_blue("\t\tNeed to add to variation: " + attack['name'], disable_blue_print)
                 # find attack
                 attack_index = None
                 for i, old_attack in enumerate(old_enemy_data['attacks']):
@@ -506,7 +444,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     tmp['notes'] = tmp_attack['variation'][0].get('notes', None) or tmp_attack.get('notes', None)
                 tmp_attack['variation'].append(tmp)
         else:
-            print_color_blue("\t\tAdded new entry for regular: " + attack['name'])
+            print_color_blue("\t\tAdded new entry for regular: " + attack['name'], disable_blue_print)
             # create new regular
             tmp = {
                 'title': attack['name'],
@@ -575,7 +513,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
     if _old_enemy:
         for old_enemy_data in _old_enemy:
             old_enemy_data['title'] = old_enemy_data['title'].replace("&#246;", "ö").replace("&#252;", "ü").replace("&#228;", "ä").replace("&#223;", "ß")
-            print_color_yellow(f"\tWork on '{old_enemy_data['title']}'")
+            print_color_yellow(f"\tWork on '{old_enemy_data['title']}'", disable_yellow_print)
             try:
                 new_enemy_data = logdata_instance_content[old_enemy_data['title']]
             except:
@@ -590,7 +528,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
         if logdata_instance_content is None:
             return guide_data
         for enemy in logdata_instance_content:
-            print_color_yellow(f"\tWork on '{enemy}'")
+            print_color_yellow(f"\tWork on '{enemy}'", disable_yellow_print)
             # for bosses, only write bosses, for adds skip bosse
             lower_enemy_list = [ x.lower() for x in _entry[enemy_type] ]
             lower_boss_list = [ x.lower() for x in _entry['bosse'] ]
@@ -630,7 +568,7 @@ def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
         except:
             logdata_instance_content = dict(logdata[title])
         logdata_instance_content = cleanup_logdata(logdata_instance_content)
-    print_color_green(f"Work on '{_entry['title_de']}'")
+    print_color_green(f"Work on '{_entry['title_de']}'", disable_green_print)
     guide_data = check_Enemy(_entry, guide_data, "bosse", "bosses", logdata_instance_content, _old_bosses)
     guide_data = check_Enemy(_entry, guide_data, "adds", "adds", logdata_instance_content, _old_adds)
     #guide_data = check_Enemy(_entry, guide_data, "adds", _old_adds)
@@ -643,7 +581,7 @@ def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechan
     seperate_data_into_array("tags", _entry)
     header_data = rewrite_content_even_if_exists(_entry, index)
     guide_data = addGuide(_entry, _old_bosses, _old_adds, _old_mechanics)
-    #print_color_blue(guide_data)
+    #print_color_blue(guide_data, disable_blue_print)
 
     with open(_filename, "w", encoding="utf8") as fi:
         fi.write('---\n')
@@ -1101,7 +1039,7 @@ if __name__ == "__main__":
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i != 301:
+            #if i != 328:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column)
             # if the done collumn is not prefilled
