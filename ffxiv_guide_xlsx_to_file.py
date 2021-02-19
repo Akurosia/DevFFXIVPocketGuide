@@ -307,8 +307,8 @@ def cleanup_logdata(logdata_instance_content):
     try: del logdata_instance_content["zone"]
     except: pass
     for enemy_name, enemy in logdata_instance_content.items():
-        try: del enemy["status"]
-        except: pass
+        #try: del enemy["status"]
+        #except: pass
         try: del enemy["tether"]
         except: pass
         try: del enemy["headmarker"]
@@ -333,10 +333,28 @@ def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_a
     return existing_attacks, remove_attack
 
 
+def compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_debuff):
+    for debuff_id in new_enemy_data.get('status', {}):
+        for debuff in old_enemy_data.get('debuffs', {}):
+            existing_debuffs[debuff['title']] = ""
+            if debuff_id == debuff.get('title_id', None):
+                remove_debuff.append(debuff_id)
+    return existing_debuffs, remove_debuff
+
+
 def remove_skills_from_list_if_found(remove_attack, new_enemy_data):
     for x in remove_attack:
         try:
             del new_enemy_data["skill"][x]
+        except:
+            pass
+    return new_enemy_data
+
+
+def remove_status_from_list_if_found(remove_debuff, new_enemy_data):
+    for x in remove_debuff:
+        try:
+            del new_enemy_data["status"][x]
         except:
             pass
     return new_enemy_data
@@ -478,6 +496,19 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
     return old_enemy_data
 
 
+def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type):
+    remove_attack = []
+    existing_attacks = {}
+    # comapre all skill ids
+    existing_attacks, remove_attack = compare_status_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack)
+    # remove skill ids if they were found before
+    new_enemy_data = remove_status_from_list_if_found(remove_attack, new_enemy_data)
+    if not new_enemy_data.get('status', None):
+        return old_enemy_data
+    # merge new keys
+    return old_enemy_data
+
+
 #####################################################################################################################################################
 
 def check_Mechanics(_entry, guide_data, _old_mechanics=None):
@@ -521,6 +552,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             except:
                 new_enemy_data = {}
             old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
+            old_enemy_data = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type)
             guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type)
             try: del logdata_instance_content[old_enemy_data['title']]
             except: pass
@@ -545,10 +577,14 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
                 "title": enemy,
                 "title_en": getBnpcName(enemy),
                 "id": f"{enemy_type[:-1]}{counter:02d}",
-                "attacks": []
+                "attacks": [],
+                "debuffs": []
             }
             enemy_data = merge_attacks(tmp, new_enemy_data, enemy_type)
             enemy_data['attacks'] = sorted(enemy_data['attacks'], key=itemgetter('title'))
+
+            enemy_data = merge_debuffs(tmp, new_enemy_data, enemy_type)
+            enemy_data['debuffs'] = sorted(enemy_data['debuffs'], key=itemgetter('title'))
             guide_data = add_Enemy(guide_data, enemy_data, enemy_type)
 
     return guide_data
@@ -827,6 +863,10 @@ def add_Enemy(guide_data, enemy_data, enemy_type):
                 guide_data = add_variation_Attack(guide_data, attack, enemy_type)
             elif attack["type"] == "combo":
                 guide_data = add_combo_Attack(guide_data, attack, enemy_type)
+    if enemy_data.get("debuffs", None):
+        guide_data += '    debuffs:\n'
+        for debuff in enemy_data["debuffs"]:
+            guide_data = add_Debuff(guide_data, debuff, enemy_type)
     if enemy_data.get("sequence", None):
         guide_data = add_Sequence(guide_data, enemy_data)
     else:
@@ -835,6 +875,47 @@ def add_Enemy(guide_data, enemy_data, enemy_type):
         else:
             guide_data = add_Sequence(guide_data, example_add_sequence)
 
+    return guide_data
+
+
+def add_Debuff(guide_data, attack, enemy_type):
+    guide_data += f'      - title: "{attack["title"]}"\n'
+    guide_data += f'        title_id: "{attack["title_id"]}"\n'
+    if attack.get("title_en", None):
+        guide_data += f'        title_en: "{attack["title_en"]}"\n'
+    guide_data += f'        icon: "{attack["icon"]}"\n'
+    guide_data += f'        description: "{attack["description"]}"\n'
+    guide_data += f'        debuff_in_use: "{attack["debuff_in_use"] or "false"}"\n'
+    guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
+    guide_data += f'        damage_type: "{attack["damage_type"] or "None"}"\n'
+
+    if attack.get('phases', None):
+        guide_data += f'        phases:\n'
+        for phase in attack.get('phases', {}):
+            guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
+
+    if attack["title"].startswith("Unknown_"):
+        return guide_data
+
+    if attack.get('roles', None):
+        guide_data += f'        roles:\n'
+        for role in attack.get('roles', {}):
+            guide_data += f'          - role: "{role["role"]}"\n'
+
+    if attack.get('tags', None):
+        guide_data += f'        tags:\n'
+        for tag in attack.get('tags', {}):
+            guide_data += f'          - tag: "{tag["tag"]}"\n'
+
+    if attack.get('notes', None):
+        guide_data += f'        notes:\n'
+        for note in attack.get('notes', {}):
+            guide_data += f'          - note: "{note["note"]}"\n'
+
+    if attack.get('videos', None):
+        guide_data += f'        videos:\n'
+        for video in attack.get('videos', {}):
+            guide_data += f'          - url: "{video["url"]}"\n'
     return guide_data
 
 
@@ -1041,7 +1122,7 @@ if __name__ == "__main__":
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i != 328:
+            #if i != 264:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column)
             # if the done collumn is not prefilled

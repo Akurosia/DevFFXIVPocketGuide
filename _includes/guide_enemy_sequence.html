@@ -48,4 +48,15 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
+    <!-- Enters the enemy debuff loop. -->
+    {% for debuff in enemy.debuffs %}
+        <!-- Enters the attack's phases. -->
+        {% for debuffPhase in debuff.phases %}
+            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+            {% if debuffPhase.phase == currentPhase %}
+                <!-- Include Attack Template -->
+                {% include _components/guide-debuff.html %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
 {% endfor %}

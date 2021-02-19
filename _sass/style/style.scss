@@ -1819,6 +1819,13 @@ body {
   color: orange;
 }
 
+.debuff_icon {
+  width: 24px !important;
+  height: 32px !important;
+  margin-top: -12px;
+  margin-right: 5px;
+}
+
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";

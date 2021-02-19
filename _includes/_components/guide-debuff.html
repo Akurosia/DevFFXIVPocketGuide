@@ -1,0 +1,49 @@
+<!-- Debuff Template ======================================================= -->
+<div class="guide__accordion-trigger--{% if page.sequence %}02{% else %}03{% endif %}
+            {% if debuff.debuff_in_use == 'false' %}--ignore
+            {% else %}--debuff
+            {% endif %}">
+    <i class="material-icons">expand_more</i>
+    <h4 class="guide__accordion-trigger-title">
+        <img class="debuff_icon" src="https://ffxiv.akurosia.de/extras/images/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
+        <span class="{% if debuff.damage_type == 'Magical' %}attack-is-magic
+                     {% elsif debuff.damage_type && debuff.damage_type != 'None' %}attack-is-physical
+                     {% endif %}">
+            {{ debuff.title }}</span>
+        {% if debuff.title_en %}
+            <div class="guide__accordion-trigger-subtitle"> | {{ debuff.title_en }}</div>
+        {% endif %}
+        {% if debuff.title_id %}
+            <div class="guide__accordion-trigger-id">Skill-ID: {{ debuff.title_id }}</div>
+        {% endif %}
+
+        {% assign attack = debuff %}
+        {% include _components/guide-attack-types.html %}
+    </h4>
+</div>
+<div class="guide__accordion-content--{% if page.sequence %}02{% else %}03{% endif %}
+            {% if debuff.attack_in_use == 'false' %}--ignore
+            {% else %}--debuff
+            {% endif %}" style="{% if debuff.disable == 'true' %}display: none;{% endif %}">
+    <div class="guide__accordion-copy-wrapper">
+        <!-- Standard Attacks -->
+        {% if debuff.description %}
+            <div class="guide__attack-notes-wrapper">
+                <h5 class="guide__attack-notes-title">Description:</h5>
+                <ul class="guide__attack-notes-list">
+                    <li class="guide__attack-notes-item">{{ debuff.description }}</li>
+                </ul>
+            </div>
+        {% endif %}
+
+        {% include _components/guide-attack-notes.html %}
+        <!-- Debuff Videos -->
+        {% if debuff.videos %}
+            <div class="guide__attack-video-list">
+                {% for video in debuff.videos %}
+                    {% include _components/guide-videos.html %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
