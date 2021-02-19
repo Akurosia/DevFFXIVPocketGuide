@@ -192,8 +192,13 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
     return name
 
 
-def translateAttack(skill_id):
-    return action[str(int(skill_id, 16)) + ".0"]["Name_en"].title().replace("Iii", "III").replace("Ii", "II").replace(" Iv", " IV")
+def translateAttack(skill_id, _type=action):
+    text = _type[str(int(skill_id, 16)) + ".0"]["Name_en"]
+    return fixCaptilaziationAndRomanNumerals(text)
+
+
+def fixCaptilaziationAndRomanNumerals(text):
+    return text.title().replace("Iii", "III").replace("Ii", "II").replace(" Iv", " IV")
 
 
 def replaceSlug(text):
@@ -361,6 +366,13 @@ def remove_status_from_list_if_found(remove_debuff, new_enemy_data):
     return new_enemy_data
 
 
+def get_fixed_status_description(_id):
+    description = status[str(int(_id, 16))+".0"]['Description_de']
+    description = re.sub('<UIForeground>[0-9A-F]{1,6}</UIForeground>', '', description)
+    description = re.sub('<UIGlow>[0-9A-F]{1,6}</UIGlow>', '', description)
+    return description
+
+
 def delete_invalid_entries(tmp_attack):
     try: del tmp_attack['title_id']
     except: pass
@@ -513,11 +525,11 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type):
 
     for status_id, status_data in new_enemy_data['status'].items():
         tmp_status = {
-            'title': status_data['name'],
+            'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
             'title_id': status_id,
-            'title_en': status[str(int(status_id, 16))+".0"]['Name_en'],
+            'title_en': translateAttack(status_id, _type=status),
             'icon': status_data['icon'],
-            'description': status[str(int(status_id, 16))+".0"]['Description_de'],
+            'description': get_fixed_status_description(status_id),
             'debuff_in_use': 'false',
             'disable': 'false',
             'damage_type': status_data['damage_type'],
@@ -527,7 +539,6 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type):
             'notes': [{'note': 'note'}]
         }
         old_enemy_data['debuffs'].append(tmp_status)
-        print(tmp_status)
     return old_enemy_data
 
 
@@ -1144,8 +1155,8 @@ if __name__ == "__main__":
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if i not in  [264, 263]:
-                continue
+            #if i not in  [264, 263]:
+            #    continue
             entry = get_data_from_xlsx(sheet, max_column)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":

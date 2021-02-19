@@ -1178,6 +1178,26 @@ html {
       }
     }
 
+    &[class*=debuff] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #476cff);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#476cff",GradientType=1);
+      padding: 1.5rem 1.5rem 1.5rem 4.5rem;
+
+      &:before {
+        background: #323232;
+        content: " ";
+        display: block;
+        height: 100%;
+        opacity: .7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+    }
+
     &[class*=dutyAction] {
       background: #000;
       background: linear-gradient(90deg, #000 5%, #9b40bf);
@@ -1269,6 +1289,25 @@ html {
       background: #000;
       background: linear-gradient(90deg, #000 5%, #ff575c);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#ff575c",GradientType=1);
+
+      &:before {
+        background: #323232;
+        content: " ";
+        display: block;
+        height: 100%;
+        opacity: .7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+    }
+
+    &[class*=debuff] {
+      background: #476cff;
+      background: linear-gradient(90deg, #476cff 5%, #000);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
 
       &:before {
         background: #323232;
@@ -1824,6 +1863,16 @@ body {
   height: 32px !important;
   margin-top: -12px;
   margin-right: 5px;
+}
+
+.guide__debuff_description {
+    display: block;
+    margin: 0.5rem 0 2rem;
+    padding: 0 0 0 1.2rem;
+    width: 100%;
+    color: white;
+    font-family: PT Serif,serif;
+    font-size: 1rem;
 }
 
 // Style CSS ====================================================================
