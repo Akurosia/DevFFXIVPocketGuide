@@ -94,6 +94,7 @@ contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json
 placename = loadDataTheQuickestWay("placename_all.json", translate=True)
 bnpcname = loadDataTheQuickestWay("bnpcname_all.json", translate=True)
 eobjname = loadDataTheQuickestWay("eobjname_all.json", translate=True)
+status = loadDataTheQuickestWay("status_all.json", translate=True)
 enpcresident = loadDataTheQuickestWay("enpcresident_all.json", translate=True)
 
 
@@ -503,9 +504,30 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type):
     existing_attacks, remove_attack = compare_status_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack)
     # remove skill ids if they were found before
     new_enemy_data = remove_status_from_list_if_found(remove_attack, new_enemy_data)
+
     if not new_enemy_data.get('status', None):
         return old_enemy_data
     # merge new keys
+    if not old_enemy_data.get('debuffs', None):
+        old_enemy_data['debuffs'] = []
+
+    for status_id, status_data in new_enemy_data['status'].items():
+        tmp_status = {
+            'title': status_data['name'],
+            'title_id': status_id,
+            'title_en': status[str(int(status_id, 16))+".0"]['Name_en'],
+            'icon': status_data['icon'],
+            'description': status[str(int(status_id, 16))+".0"]['Description_de'],
+            'debuff_in_use': 'false',
+            'disable': 'false',
+            'damage_type': status_data['damage_type'],
+            'phases': [{'phase': '09'}],
+            'roles': [{'role': 'role'}],
+            'tags': [{'tag': 'tag'}],
+            'notes': [{'note': 'note'}]
+        }
+        old_enemy_data['debuffs'].append(tmp_status)
+        print(tmp_status)
     return old_enemy_data
 
 
@@ -1122,8 +1144,8 @@ if __name__ == "__main__":
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i != 264:
-            #    continue
+            if i not in  [264, 263]:
+                continue
             entry = get_data_from_xlsx(sheet, max_column)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
