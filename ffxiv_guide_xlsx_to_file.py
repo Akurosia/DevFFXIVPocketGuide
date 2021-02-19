@@ -321,8 +321,8 @@ def cleanup_logdata(logdata_instance_content):
         except: pass
     new_lic = {}
     for k, v in logdata_instance_content.items():
-        if not k == "":
-            new_lic[k] = v
+        #if not k == "":
+        new_lic[k] = v
     return new_lic
 
 
@@ -509,7 +509,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
     return old_enemy_data
 
 
-def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type):
+def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last):
     remove_attack = []
     existing_attacks = {}
     # comapre all skill ids
@@ -517,28 +517,33 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type):
     # remove skill ids if they were found before
     new_enemy_data = remove_status_from_list_if_found(remove_attack, new_enemy_data)
 
-    if not new_enemy_data.get('status', None):
+    if not new_enemy_data.get('status', None) and not last.get('status', None):
         return old_enemy_data
     # merge new keys
     if not old_enemy_data.get('debuffs', None):
         old_enemy_data['debuffs'] = []
 
-    for status_id, status_data in new_enemy_data['status'].items():
-        tmp_status = {
-            'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
-            'title_id': status_id,
-            'title_en': translateAttack(status_id, _type=status),
-            'icon': status_data['icon'],
-            'description': get_fixed_status_description(status_id),
-            'debuff_in_use': 'false',
-            'disable': 'false',
-            'damage_type': status_data['damage_type'],
-            'phases': [{'phase': '09'}],
-            'roles': [{'role': 'role'}],
-            'tags': [{'tag': 'tag'}],
-            'notes': [{'note': 'note'}]
-        }
-        old_enemy_data['debuffs'].append(tmp_status)
+    for e in [new_enemy_data, last]:
+        if not e.get('status', None):
+            continue
+        for status_id, status_data in e['status'].items():
+            if status_data['name'] == "":
+                continue
+            tmp_status = {
+                'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
+                'title_id': status_id,
+                'title_en': translateAttack(status_id, _type=status),
+                'icon': status_data['icon'],
+                'description': get_fixed_status_description(status_id),
+                'debuff_in_use': 'false',
+                'disable': 'false',
+                'damage_type': status_data['damage_type'],
+                'phases': [{'phase': '09'}],
+                'roles': [{'role': 'role'}],
+                'tags': [{'tag': 'tag'}],
+                'notes': [{'note': 'note'}]
+            }
+            old_enemy_data['debuffs'].append(tmp_status)
     return old_enemy_data
 
 
@@ -577,15 +582,20 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
         guide_data += f"{enemy_text}:\n"
 
     if _old_enemy:
-        for old_enemy_data in _old_enemy:
+        for i, old_enemy_data in enumerate(_old_enemy):
+            if old_enemy_data['title'] == "":
+                continue
             old_enemy_data['title'] = old_enemy_data['title'].replace("&#246;", "ö").replace("&#252;", "ü").replace("&#228;", "ä").replace("&#223;", "ß")
             print_color_yellow(f"\tWork on '{old_enemy_data['title']}'", disable_yellow_print)
+            empty_enemy_data = {}
             try:
                 new_enemy_data = logdata_instance_content[old_enemy_data['title']]
+                if enemy_type == 'bosse' and len(_old_enemy) == i+1:
+                    empty_enemy_data = logdata_instance_content['']
             except:
                 new_enemy_data = {}
             old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
-            old_enemy_data = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type)
+            old_enemy_data = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, empty_enemy_data)
             guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type)
             try: del logdata_instance_content[old_enemy_data['title']]
             except: pass
@@ -595,6 +605,8 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
         if logdata_instance_content is None:
             return guide_data
         for enemy in logdata_instance_content:
+            if enemy == "":
+                continue
             print_color_yellow(f"\tWork on '{enemy}'", disable_yellow_print)
             # for bosses, only write bosses, for adds skip bosse
             lower_enemy_list = [ x.lower() for x in _entry[enemy_type] ]
@@ -616,7 +628,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             enemy_data = merge_attacks(tmp, new_enemy_data, enemy_type)
             enemy_data['attacks'] = sorted(enemy_data['attacks'], key=itemgetter('title'))
 
-            enemy_data = merge_debuffs(tmp, new_enemy_data, enemy_type)
+            enemy_data = merge_debuffs(tmp, new_enemy_data, enemy_type, {})
             enemy_data['debuffs'] = sorted(enemy_data['debuffs'], key=itemgetter('title'))
             guide_data = add_Enemy(guide_data, enemy_data, enemy_type)
 
@@ -1155,7 +1167,7 @@ if __name__ == "__main__":
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [264, 263]:
+            #if i not in  [264]:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column)
             # if the done collumn is not prefilled
