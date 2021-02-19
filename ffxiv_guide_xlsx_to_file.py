@@ -1,94 +1,99 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 import os
-import sys
+from operator import itemgetter
+import traceback
 import re
 import errno
 import json
 import urllib.request
 import openpyxl
 import yaml
+
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'python_module'))
+from ffxiv_aku import *
+
 try:
     from yaml import CLoader as Loader
 except ImportError:
     from yaml import Loader
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+disable_green_print = True
+disable_yellow_print = True
+disable_blue_print = True
 
-def print_color_green(text, end="\n"):
-    print(f"{bcolors.OKGREEN}{text}{bcolors.ENDC}", end=end)
-def print_color_yellow(text, end="\n"):
-    print(f"{bcolors.WARNING}{text}{bcolors.ENDC}", end=end)
-def print_color_red(text, end="\n"):
-    print(f"{bcolors.FAIL}{text}{bcolors.ENDC}", end=end)
-def print_color_blue(text, end="\n"):
-    print(f"{bcolors.OKBLUE}{text}{bcolors.ENDC}", end=end)
-
-def get_Logdata(_filename, _type, data):
-    if not data == {}:
-        return data
-    try:
-        if _type == "local":
-            with open(_filename, encoding="utf8") as fi:
-                _logdata = json.load(fi)
-                return _logdata
-        elif _type == "web":
-            with urllib.request.urlopen(_filename) as fi:
-                _logdata = json.load(fi)
-                return _logdata
-    except Exception as e:
-        print(e)
-        return {}
-    return {}
-
-
-def get_any_Logdata():
-    data = {}
-    if os.name == 'nt':
-        data = get_Logdata(r"\\192.168.2.4\Root\var\www\ffxiv\extras\FFlogs\logdata_de.json", "local", data)
-        data = get_Logdata(r"V:\ffxiv\extras\FFlogs\logdata_de.json", "local", data)
-    else:
-        data = get_Logdata("/var/www/ffxiv/extras/FFlogs/logdata_de.json", "local", data)
-    data = get_Logdata("https://ffxiv.akurosia.de/extras/FFlogs/logdata_de.json", "web", data)
-    if data == {}:
-        raise Exception("No Data found")
-    return data
-
-
-def loadDataTheQuickestWay(_filename):
-    try:
-        base = "\\\\192.168.2.4\\Root\\var\\www\\ffxiv\\extras\\json\\exd-all\\latest\\"
-        with open(base + _filename, encoding="utf8") as fi:
-            return json.load(fi)
-    except:
-        try:
-            base = "V:\\ffxiv\\extras\\json\\exd-all\\latest"
-            with open(base + _filename, encoding="utf8") as fi:
-                return json.load(fi)
-        except:
-            base = "https://ffxiv.akurosia.de/extras/json/translate/exd-all/latest/"
-            with urllib.request.urlopen(base + _filename) as f:
-                return json.load(f)
+enemy = {
+    "title": "",
+    "title_en": "",
+    "id": "",
+    "attacks": [{
+        "title": "",
+        "title_id": "",
+        "title_en": "",
+        "attack_in_use": "",
+        "disable": "",
+        "type": "",
+        "damage_type": "",
+        "phases": [{
+            "phase": "",
+        }],
+        "roles": [{
+            "role": "",
+        }],
+        "tags": [{
+            "tag": "",
+        }],
+        "notes": [{
+            "note": "",
+        }],
+    }],
+}
+example_sequence = {
+    "sequence": [{
+        "phase": "09",
+        "alerts": [{
+            "alert": "Die folgenden Angriffe haben sind entweder unbekannt oder haben keine klare Herkunft",
+        }],
+        "mechanics": [{
+            "title": "sequence-mechanic-01",
+            "notes": [{
+                "note": "sequence-mechanic-note-01",
+            }],
+        }],
+        "attacks": [{
+            "attack": "sequence-attack-01",
+        }],
+        "images": [{
+            "url": "/assets/img/test.jpg",
+            "alt": "/assets/img/test.jpg",
+            "height": "250px",
+        }],
+        "videos": [{
+            "url": "https&#58;//akurosia.de/upload/test.mp4",
+        }],
+    }]
+}
+example_add_sequence = {
+    "sequence": [{
+        "phase": "09",
+    }]
+}
 
 
+# specify elements you are looking for
+elements = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest", "quest_npc", "quest_location", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "allianceraid", "frontier", "expert", "guildhest", "level50_60", "level70", "leveling", "main", "mentor", "normalraid", "trial", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
+
+storeFilesInTmp(True)
 logdata = get_any_Logdata()
 logdata_lower = dict((k.lower(),v) for k,v in logdata.items())
-action = loadDataTheQuickestWay("action_all.json")
-territorytype = loadDataTheQuickestWay("territorytype_all.json")
-contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json")
-placename = loadDataTheQuickestWay("placename_all.json")
-bnpcname = loadDataTheQuickestWay("bnpcname_all.json")
-eobjname = loadDataTheQuickestWay("eobjname_all.json")
-enpcresident = loadDataTheQuickestWay("enpcresident_all.json")
+action = loadDataTheQuickestWay("action_all.json", translate=True)
+territorytype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
+contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
+placename = loadDataTheQuickestWay("placename_all.json", translate=True)
+bnpcname = loadDataTheQuickestWay("bnpcname_all.json", translate=True)
+eobjname = loadDataTheQuickestWay("eobjname_all.json", translate=True)
+enpcresident = loadDataTheQuickestWay("enpcresident_all.json", translate=True)
 
 
 def checkVariable(element, name):
@@ -154,7 +159,7 @@ def getBnpcName(name, lang="en"):
         if m:
             return eobj[f"Singular_{lang}"]
     # return anything, just in case
-    print_color_yellow(f"Missing {name} examples where ({aname}) and ({nname})")
+    print_color_yellow(f"Missing {name} examples where ({aname}) and ({nname})", disable_yellow_print)
     return ""
 
 
@@ -162,6 +167,8 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
     if difficulty == "Fatal" and instanceType == "raid" and "fatal" not in name.lower():
         name = f"{name} (fatal)"
     elif difficulty == "Episch" and instanceType == "raid" and "episch" not in name.lower():
+        name = f"{name} (episch)"
+    elif difficulty == "Episch" and instanceType == "feldexkursion" and "episch" not in name.lower():
         name = f"{name} (episch)"
     elif difficulty == "Schwer" and instanceType == "dungeon" and "schwer" not in name.lower():
         name = f"{name} (schwer)"
@@ -178,6 +185,8 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
     # placeholder
     elif name == "":
         return ""
+    # make sure brackets are always lowercase
+    name = name.replace("(Fatal)", "(fatal)").replace("(Episch)", "(episch)").replace("(Schwer)", "(schwer)")
     return name
 
 
@@ -194,508 +203,10 @@ def getImage(image):
     return image
 
 
-def writeTags(fi, _entry, tt_type_name):
-    # write tags per expansion
-    if _entry["categories"] == "arr":
-        fi.write("    - term: \"A Realm Reborn\"\n")
-        fi.write("    - term: \"ARR\"\n")
-    elif _entry["categories"] == "hw":
-        fi.write("    - term: \"Heavensward\"\n")
-        fi.write("    - term: \"HW\"\n")
-    elif _entry["categories"] == "sb":
-        fi.write("    - term: \"Stormblood\"\n")
-        fi.write("    - term: \"SB\"\n")
-    elif _entry["categories"] == "shb":
-        fi.write("    - term: \"Shadowbringers\"\n")
-        fi.write("    - term: \"ShB\"\n")
-    else:
-        pass
-
-    for lang in ["de", "en", "fr", "ja", "cn", "ko"]:
-        fi.write("    - term: \"" + tt_type_name["Name_" + lang] + "\"\n")
-
-    #fi.write("    - term: \"" + _entry["title"] + "\"\n")
-    for lang in ["de", "en", "fr", "ja", "cn", "ko"]:
-        fi.write("    - term: \"" + getContentName(_entry["title"], lang, _entry["difficulty"], _entry["instanceType"]) + "\"\n")
-
-    # write rest of the tags
-    fi.write("    - term: \"" + _entry["difficulty"] + "\"\n")
-    fi.write("    - term: \"" + _entry["patchNumber"] + "\"\n")
-    fi.write("    - term: \"" + _entry["patchName"] + "\"\n")
-    fi.write("    - term: \"" + _entry["quest"] + "\"\n")
-    if checkVariable(_entry,"mount1") or checkVariable(_entry,"mount2"):
-        fi.write("    - term: \"mounts\"\n")
-    if checkVariable(_entry,"minion1") or checkVariable(_entry,"minion2") or checkVariable(_entry,"minion3"):
-        fi.write("    - term: \"minions\"\n")
-    if checkVariable(_entry,"tt_card1") or checkVariable(_entry,"tt_card2"):
-        fi.write("    - term: \"tt_cards\"\n")
-    if checkVariable(_entry,"gearset_loot"):
-        for gset in _entry["gearset_loot"].split(","):
-            fi.write("    - term: \"" + gset + "\"\n")
-    if checkVariable(_entry,"orchestrion") or checkVariable(_entry,"orchestrion2") or checkVariable(_entry,"orchestrion3") or checkVariable(_entry,"orchestrion4") or checkVariable(_entry,"orchestrion5"):
-        fi.write("    - term: \"orchestrion\"\n")
-    if checkVariable(_entry,"orchestrion_material1") or checkVariable(_entry,"orchestrion_material2") or checkVariable(_entry,"orchestrion_material3"):
-        fi.write("    - term: \"orchestrion_material\"\n")
-    if _entry["instanceType"] == "trial":
-        fi.write("    - term: \"" + "Prüfung" + "\"\n")
-        fi.write("    - term: \"Trial\"\n")
-        fi.write("    - term: \"Primae\"\n")
-        fi.write("    - term: \"Primal\"\n")
-    fi.write("    - term: \"" + _entry["instanceType"] + "\"\n")
-
-    if not _entry["bosse"] == ['']:
-        for b in _entry["bosse"]:
-            if b != "Unknown_":
-                fi.write("    - term: \"" + b + "\"\n")
-    if not _entry["tags"] == ['']:
-        for t in _entry["tags"]:
-            if t != "Unknown_":
-                fi.write("    - term: \"" + t + "\"\n")
-
-
-#Gray box above attacks for each enemy entry
-def add_example_Sequence(spaces, fi, combatant):
-    fi.write(spaces + "sequence:\n")
-    fi.write(spaces + "  - phase: \"09\"\n")
-    if combatant == "add":
-        return
-    fi.write(spaces + "    alerts:\n")
-    fi.write(spaces + "      - alert: \"Die folgenden Angriffe haben sind entweder unbekannt oder haben keine klare Herkunft\"\n")
-    fi.write(spaces + "    mechanics:\n")
-    fi.write(spaces + "      - title: \"sequence-mechanic-01\"\n")
-    fi.write(spaces + "        notes:\n")
-    fi.write(spaces + "          - note: \"sequence-mechanic-note-01\"\n")
-    fi.write(spaces + "    attacks:\n")
-    fi.write(spaces + "      - attack: \"sequence-attack-01\"\n")
-    fi.write(spaces + "    images:\n")
-    fi.write(spaces + "      - url: \"/assets/img/test.jpg\"\n")
-    fi.write(spaces + "    videos:\n")
-    fi.write(spaces + "      - url: \"https&#58;//akurosia.de/upload/test.mp4\"\n")
-
-
-def regular_attack(spaces, fi, combatant, data=["Attack-titel", "Attack-titel", "false", "false", "regular", "None", "09", "Attack-role", "Attack-tag", "Attack-note"]):
-    fi.write(spaces + f"  - title: \"{data[0]}\"\n")
-    fi.write(spaces + f"    title_en: \"{data[1]}\"\n")
-    fi.write(spaces + f"    attack_in_use: \"{data[2]}\"\n")
-    fi.write(spaces + f"    disable: \"{data[3]}\"\n")
-    fi.write(spaces + f"    type: \"{data[4]}\"\n")
-    fi.write(spaces + f"    damage_type: \"{data[5]}\"\n")
-    fi.write(spaces + f"    phases:\n")
-    fi.write(spaces + f"      - phase: \"{data[6]}\"\n")
-    fi.write(spaces + f"    roles:\n")
-    fi.write(spaces + f"      - role: \"{data[7]}\"\n")
-    fi.write(spaces + f"    tags:\n")
-    fi.write(spaces + f"      - tag: \"{data[8]}\"\n")
-    if combatant == "add":
-        return
-    fi.write(spaces + "    notes:\n")
-    fi.write(spaces + f"      - note: \"{data[9]}\"\n")
-
-
-def combo_attack(spaces, fi, data=["Combo-titel", "Combo-titel", "false", "combo", "None", "09", "Combo-title 1", "Combo-role 1", "Combo-tag 1", "Combo-note 1", "Combo-title 2", "Combo-role 2", "Combo-tag 2", "Combo-note 2", "Combo-note BIG"]):
-    fi.write(spaces + f"  - title: \"{data[0]}\"\n")
-    fi.write(spaces + f"    title_en: \"{data[1]}\"\n")
-    fi.write(spaces + f"    attack_in_use: \"{data[2]}\"\n")
-    fi.write(spaces + f"    type: \"{data[3]}\"\n")
-    fi.write(spaces + f"    damage_type: \"{data[4]}\"\n")
-    fi.write(spaces + "    phases:\n")
-    fi.write(spaces + f"      - phase: \"{data[5]}\"\n")
-    fi.write(spaces + "    combo:\n")
-    fi.write(spaces + f"      - title: \"{data[6]}\"\n")
-    fi.write(spaces + "        roles:\n")
-    fi.write(spaces + f"          - role: \"{data[7]}\"\n")
-    fi.write(spaces + "        tags:\n")
-    fi.write(spaces + f"          - tag: \"{data[8]}\"\n")
-    fi.write(spaces + "        notes:\n")
-    fi.write(spaces + f"          - note: \"{data[9]}\"\n")
-    fi.write(spaces + f"      - title: \"{data[10]}\"\n")
-    fi.write(spaces + "        roles:\n")
-    fi.write(spaces + f"          - role: \"{data[11]}\"\n")
-    fi.write(spaces + "        tags:\n")
-    fi.write(spaces + f"          - tag: \"{data[12]}\"\n")
-    fi.write(spaces + "        notes:\n")
-    fi.write(spaces + f"          - note: \"{data[13]}\"\n")
-    fi.write(spaces + "    notes:\n")
-    fi.write(spaces + f"      - note: \"{data[14]}\"\n")
-
-
-def variation_attack(spaces, fi, data=["Variation-titel", "Variation-titel", "false", "variation", "09", "Variation-note BIG", "Variation-title 1", "Variation-title_id 1", "None", "Variation-role 1", "Variation-tag 1", "Variation-note 1", "Variation-title 2", "Variation-title_id 2", "None", "Variation-role 2", "Variation-tag 2", "Variation-note 2"]):
-    fi.write(spaces + f"  - title: \"{data[0]}\"\n")
-    fi.write(spaces + f"    title_en: \"{data[1]}\"\n")
-    fi.write(spaces + f"    attack_in_use: \"{data[2]}\"\n")
-    fi.write(spaces + f"    type: \"{data[3]}\"\n")
-    fi.write(spaces + "    phases:\n")
-    fi.write(spaces + f"      - phase: \"{data[4]}\"\n")
-    fi.write(spaces + "    notes:\n")
-    fi.write(spaces + f"      - note: \"{data[5]}\"\n")
-    fi.write(spaces + "    variation:\n")
-    fi.write(spaces + f"      - title: \"{data[6]}\"\n")
-    fi.write(spaces + f"        title_id: \"{data[7]}\"\n")
-    fi.write(spaces + f"        damage_type: \"{data[8]}\"\n")
-    fi.write(spaces + "        roles:\n")
-    fi.write(spaces + f"          - role: \"{data[9]}\"\n")
-    fi.write(spaces + "        tags:\n")
-    fi.write(spaces + f"          - tag: \"{data[10]}\"\n")
-    fi.write(spaces + "        notes:\n")
-    fi.write(spaces + f"          - note: \"{data[11]}\"\n")
-    fi.write(spaces + f"      - title: \"{data[12]}\"\n")
-    fi.write(spaces + f"        title_id: \"{data[13]}\"\n")
-    fi.write(spaces + f"        damage_type: \"{data[14]}\"\n")
-    fi.write(spaces + "        roles:\n")
-    fi.write(spaces + f"          - role: \"{data[15]}\"\n")
-    fi.write(spaces + "        tags:\n")
-    fi.write(spaces + f"          - tag: \"{data[16]}\"\n")
-    fi.write(spaces + "        notes:\n")
-    fi.write(spaces + f"          - note: \"{data[17]}\"\n")
-
-
-def addAttacks(spaces, fi, combatant, attack_json=None):
-    fi.write(spaces + "attacks:\n")
-    inProgress = False
-    currentSkill = ""
-    # if logdata with attack of the enemy is available
-    if attack_json != {} and attack_json is not None:
-        attack_json = sorted(attack_json.items(), key = lambda x: x[1]['name'])
-        # get skills with same name but different ID
-        variations = checkAttacksForVariations(attack_json)
-        for skill_id, skill in attack_json:
-            # check if it might be a variation
-            if skill['name'] in variations:
-                # if variation was already added
-                if not skill['name'] == currentSkill:
-                    inProgress = False
-                # add variation and add it also to the check array
-                inProgress, currentSkill = addVariation("    ", fi, [skill_id, skill], inProgress)
-                continue
-
-            # this if loop is to filter out empty names, it is dump because i am lazy to make it propper for the title_en
-            if skill["name"] == "":
-                skill_name = "Unknown_" + skill_id
-            else:
-                skill_name = skill["name"]
-            fi.write(spaces + f"  - title: \"{skill_name}\"\n")
-            fi.write(spaces + f"    title_id: \"{skill_id}\"\n")
-            if not skill["name"] == "":
-                fi.write(spaces + f"    title_en: \"{translateAttack(skill_id)}\"\n")
-            fi.write(spaces +  "    attack_in_use: \"false\"\n")
-            if skill_name.startswith("Unknown_") or skill_name == ("Attacke"):
-                fi.write(spaces + "    disable: \"true\"\n")
-            else:
-                fi.write(spaces + "    disable: \"false\"\n")
-            fi.write(spaces + "    type: \"regular\"\n")
-            fi.write(spaces + "    damage_type: \"" + skill["damage_type"] + "\"\n")
-            fi.write(spaces + "    phases:\n")
-            fi.write(spaces + "      - phase: \"09\"\n")
-            # dont add roles, tags and notes for unknown skills
-            if skill_name.startswith("Unknown_"):
-                continue
-            # add customized roles and tags attacke skills
-            if skill_name == ("Attacke"):
-                fi.write(spaces + "    roles:\n")
-                fi.write(spaces + "      - role: \"Tank\"\n")
-                fi.write(spaces + "    tags:\n")
-                fi.write(spaces + "      - tag: \"Auto-Angriff\"\n")
-                continue
-            fi.write(spaces + "    roles:\n")
-            fi.write(spaces + "      - role: \"role\"\n")
-            fi.write(spaces + "    tags:\n")
-            fi.write(spaces + "      - tag: \"tag\"\n")
-            # dont notes for adds
-            if combatant == "add":
-                continue
-            fi.write(spaces + "    notes:\n")
-            fi.write(spaces + "      - note: \"note\"\n")
-    else:
-        # add default attack
-        regular_attack(spaces, fi, combatant)
-
-
-def addVariation(spaces, fi, attack_json={}, inProgress=False):
-    if attack_json:
-        if not inProgress:
-            inProgress = True
-            fi.write(spaces + f"  - title: \"{attack_json[1]['name']}\"\n")
-            if not attack_json[1]['name'] == "":
-                fi.write(spaces + f"    title_en: \"{translateAttack(attack_json[0])}\"\n")
-            fi.write(spaces + "    attack_in_use: \"false\"\n")
-            fi.write(spaces + "    type: \"variation\"\n")
-            fi.write(spaces + "    phases:\n")
-            fi.write(spaces + "      - phase: \"09\"\n")
-            fi.write(spaces + "    notes:\n")
-            fi.write(spaces + "      - note: \"Variation-note BIG\"\n")
-            fi.write(spaces + "    variation:\n")
-        fi.write(spaces + f"      - title: \"{attack_json[1]['name']}\"\n")
-        fi.write(spaces + f"        title_id: \"{attack_json[0]}\"\n")
-        fi.write(spaces + f"        damage_type: \"{attack_json[1]['damage_type']}\"\n")
-        fi.write(spaces + "        roles:\n")
-        fi.write(spaces + "          - role: \"Variation-role 1\"\n")
-        fi.write(spaces + "        tags:\n")
-        fi.write(spaces + "          - tag: \"Variation-tag 1\"\n")
-        fi.write(spaces + "        notes:\n")
-        fi.write(spaces + "          - note: \"Variation-note 1\"\n")
-        return inProgress, attack_json[1]['name']
-    else:
-        variation_attack(spaces, fi)
-
-def checkAttacksForVariations(json):
-    douplicate_keys = {}
-    for item in json:
-        douplicate_keys[item[1]['name']] =  douplicate_keys.get(item[1]['name'], 0) + 1
-
-    remove_keys = ['']
-    for x in douplicate_keys:
-        if douplicate_keys[x] == 1:
-            remove_keys.append(x)
-
-    for x in remove_keys:
-        try:
-            del douplicate_keys[x]
-        except:
-            pass
-
-    return douplicate_keys
-
-
-def remove_skill_from_overview(_all, removed):
-    try:
-        del _all[removed]
-    except:
-        pass
-        #print("Error when removing: " + removed)
-    return _all
-
-def addOldEnemyData(fi, enemy, title):
-    all_enemy_attacks = dict(logdata.get(title, {}).get(str(enemy.get("title", None)), {}).get("skill", {}))
-    # add boss name and id
-    addTextIfFoundToEnemyData(fi, enemy, "title", "  - title: \"" + str(enemy.get("title", None)) + "\"\n")
-    addTextIfFoundToEnemyData(fi, enemy, "title_en", "    title_en: \"" + str(enemy.get("title_en", None)) + "\"\n")
-    addTextIfFoundToEnemyData(fi, enemy, "id", "    id: \"" + str(enemy.get("id", None)) + "\"\n")
-
-    # add attack section
-    if enemy.get("attacks", None):
-        fi.write("    attacks:\n")
-        for attack in enemy.get("attacks", None):
-            all_enemy_attacks = remove_skill_from_overview(all_enemy_attacks, str(attack.get("title_id", None)))
-            addTextIfFoundToEnemyData(fi, attack, "title", "      - title: \"" + str(attack.get("title", None)) + "\"\n")
-            if attack.get("type", "regular") in ["regular", "dutyActions"]:
-                addTextIfFoundToEnemyData(fi, attack, "title_id", "        title_id: \"" + str(attack.get("title_id", None)) + "\"\n")
-            if attack.get("title_en", None):
-                addTextIfFoundToEnemyData(fi, attack, "title_en", "        title_en: \"" + str(attack.get("title_en", None)) + "\"\n")
-            addTextIfFoundToEnemyData(fi, attack, "attack_in_use", "        attack_in_use: \"" + str(attack.get("attack_in_use", "false")) + "\"\n")
-            addTextIfFoundToEnemyData(fi, attack, "disable", "        disable: \"" + str(attack.get("disable", "false")) + "\"\n")
-            addTextIfFoundToEnemyData(fi, attack, "type", "        type: \"" + str(attack.get("type", "regular")) + "\"\n")
-            if attack.get("type", "regular") in ["regular", "dutyActions"]:
-                addTextIfFoundToEnemyData(fi, attack, "damage_type", "        damage_type: \"" + str(attack.get("damage_type", None)) + "\"\n", True, title, enemy.get("title", None), attack.get("title_id", None))
-            addElementForEnemyData(fi, attack, "dutyActions", "          - ", "action")
-            addElementForEnemyData(fi, attack, "phases", "          - ", "phase")
-            if str(attack.get("title", None)).startswith("Unknown_"):
-                continue
-            addElementForEnemyData(fi, attack, "roles", "          - ", "role")
-            addElementForEnemyData(fi, attack, "tags", "          - ", "tag")
-            addElementForEnemyData(fi, attack, "notes", "          - ", "note")
-            if attack.get("variation", None):
-                fi.write("        variation:\n")
-                for variation in attack.get("variation", None):
-                    all_enemy_attacks = remove_skill_from_overview(all_enemy_attacks, str(variation.get("title_id", None)))
-                    addTextIfFoundToEnemyData(fi, variation, "title", f"          - title: \"" + str(variation.get('title', None)) + "\"\n")
-                    addTextIfFoundToEnemyData(fi, variation, "title_id", f"            title_id: \"" + str(variation.get('title_id', None)) + "\"\n")
-                    addTextIfFoundToEnemyData(fi, variation, "damage_type", "            damage_type: \"" + str(variation.get("damage_type", None)) + "\"\n", True, title, enemy.get("title", None), variation.get("title_id", None))
-                    addElementForEnemyData(fi, variation, "phases", "              - ", "phase")
-                    addElementForEnemyData(fi, variation, "roles", "              - ", "role")
-                    addElementForEnemyData(fi, variation, "tags", "              - ", "tag")
-                    addElementForEnemyData(fi, variation, "notes", "              - ", "note")
-                    addElementForEnemyData(fi, variation, "images", "              - ", ["url", "alt", "height"])
-                    addElementForEnemyData(fi, variation, "videos", "              - ", "url")
-            if attack.get("combo", None):
-                fi.write("        combo:\n")
-                for combo in attack.get("combo", None):
-                    all_enemy_attacks = remove_skill_from_overview(all_enemy_attacks, str(combo.get("title_id", None)))
-                    if combo.get("title", None):
-                        fi.write(f"          - title: \"" + f"{combo.get('title', None)}" + "\"\n")
-                        fi.write(f"            title_id: \"" + f"{combo.get('title_id', None)}" + "\"\n")
-                        fi.write(f"            damage_type: \"" + f"{combo.get('damage_type', None)}" + "\"\n")
-                    addElementForEnemyData(fi, combo, "roles", "              - ", "role")
-                    addElementForEnemyData(fi, combo, "tags", "              - ", "tag")
-                    addElementForEnemyData(fi, combo, "notes", "              - ", "note")
-                    addElementForEnemyData(fi, combo, "images", "              - ", ["url", "alt", "height"])
-                    addElementForEnemyData(fi, combo, "videos", "              - ", "url")
-            addElementForEnemyData(fi, attack, "images", "          - ", ["url", "alt", "height"])
-            addElementForEnemyData(fi, attack, "videos", "          - ", "url")
-    # if any attack is not in the created file, print it out
-    if not all_enemy_attacks == {}:
-        print_color_blue(title, end=" -> ")
-        print_color_red(str(enemy.get("title", None)), end=" -> ")
-        print_color_yellow(f"Missing attacks: {all_enemy_attacks}\n")
-    #add sequence section
-    if enemy.get("sequence", None):
-        fi.write("    sequence:\n")
-        for sequence in enemy.get("sequence", None):
-            addTextIfFoundToEnemyData(fi, sequence, "phase", "      - phase: \"" + f"{int(sequence.get('phase', None)):02d}" + "\"\n")
-            addElementForEnemyData(fi, sequence, "alerts", "          - ", "alert")
-            if sequence.get("mechanics", None):
-                fi.write("        mechanics:\n")
-                for mechanic in sequence.get("mechanics", None):
-                    addTextIfFoundToEnemyData(fi, mechanic, "title", "          - title: \"" + str(mechanic.get("title", None)) + "\"\n")
-                    addElementForEnemyData(fi, mechanic, "notes", "              - ", "note")
-            addElementForEnemyData(fi, sequence, "attacks", "          - ", "attack")
-            addElementForEnemyData(fi, sequence, "images", "          - ", ["url", "alt", "height"])
-            addElementForEnemyData(fi, sequence, "videos", "          - ", "url")
-
-
-def debugPrint(title, text):
-    if title == "title":
-        print(text)
-
-
-def addTextIfFoundToEnemyData(fi, element_array, needed_elements, text, addTemplate=False, title=None, enemy=None, attack_id=None):
-    if addTemplate:
-        try:
-            if logdata_lower.get(title.lower(), None):
-                debugPrint(title, f"\nFound title {title}")
-                if logdata[title].get(enemy, None):
-                    debugPrint(title, f"Found enemy {enemy}")
-                    if logdata[title][enemy].get("skill", None):
-                        debugPrint(title, f"Found skills {logdata[title][enemy].get('skill', None)}")
-                        debugPrint(title, f"Try to get skill {attack_id}")
-                        if logdata[title][enemy]["skill"].get(attack_id, None):
-                            debugPrint(title, f"Write: {text.replace('None', logdata[title][enemy]['skill'][attack_id][needed_elements])}")
-                            fi.write(text.replace("None", logdata[title][enemy]["skill"][attack_id][needed_elements]))
-                            return
-        except:
-            fi.write(text)
-            return
-    fi.write(text)
-
-
-def addElementForEnemyData(fi, element_array, leftside_elements, before_tag, rightside_elements):
-    ori_before_tag = before_tag
-    # convert rightside_elements to array
-    if type(rightside_elements) == str:
-        rightside_elements = [rightside_elements]
-    if element_array.get(leftside_elements, None):
-        fi.write(f"{before_tag[:-4]}{leftside_elements}:\n")
-        for element in element_array.get(leftside_elements, None):
-            # cycle through all elements that were either converted in the beginning or not
-            for i, e in enumerate(rightside_elements):
-                # handle the "-" option before yamle list elements
-                if i > 0 and e != rightside_elements[0]:
-                    before_tag = before_tag[0:-2] + "  "
-                else:
-                    before_tag = ori_before_tag
-                if element.get(e, None):
-                    if type(element[e]) == int:
-                        value = str(f"{element[e]:02d}")
-                    else:
-                        value = "\"" + str(element[e]) + "\""
-                    fi.write(f"{before_tag}{e}: " + value + "\n")
-
-
-def addBosseOrAdds(_entry, fi, _old_bosses, all_combatants, combatant):
-    title = _entry["title"].title()
-    title = uglyContentNameFix(title, _entry['instanceType'], _entry['difficulty'])
-    if _old_bosses:
-        if all_combatants == "bosse":
-            fi.write("bosses:\n")
-        else:
-            fi.write(f"{all_combatants}:\n")
-        for enemy in _old_bosses:
-            addOldEnemyData(fi, enemy, title)
-    # if logdata is available
-    elif logdata_lower.get(title.lower(), None):
-        if all_combatants == "bosse":
-            fi.write("bosses:\n")
-        else:
-            fi.write(f"{all_combatants}:\n")
-        counter = 1
-        for enemy_name, enemy_attacks in logdata_lower.get(title.lower(), None).items():
-            if enemy_name == "" or enemy_name.lower() == "zone" or enemy_name.lower() == "combatants":
-                continue
-            # this sorts adds and bosses
-            if enemy_name.lower() in [x.lower() for x in _entry["bosse"]] and combatant == "add":
-                continue
-            if enemy_name.lower() not in [x.lower() for x in _entry["bosse"]] and combatant == "boss":
-                continue
-            fi.write("  - title: \"" + enemy_name + "\"\n")
-            fi.write("    title_en: \"" + getBnpcName(enemy_name) + "\"\n")
-            fi.write(f"    id: \"{combatant}" + str(f"{counter:02d}") + "\"\n")
-            addAttacks("    ", fi, combatant, enemy_attacks.get("skill", {}))
-            add_example_Sequence("    ", fi, combatant)
-            counter += 1
-    # if no logdata is available
-    elif _entry[all_combatants] != "":
-        if _entry["instanceType"] != "pvp":
-            print(f"Error on {title}, use {all_combatants} from XLSX")
-        if all_combatants == "bosse":
-            fi.write("bosses:\n")
-        else:
-            fi.write(f"{all_combatants}:\n")
-        counter = 1
-        for b in _entry[all_combatants]:
-            fi.write("  - title: \"" + b + "\"\n")
-            fi.write("    title_en: \"" + getBnpcName(b) + "\"\n")
-            fi.write(f"    id: \"{combatant}" + str(f"{counter:02d}") + "\"\n")
-            addAttacks("    ", fi, combatant)
-            combo_attack("    ", fi)
-            addVariation("    ", fi)
-            add_example_Sequence("    ", fi, combatant)
-            counter += 1
-
-
-# XYZ Notizen
-def addMechanics(_entry, fi, _old_mechanics=None):
-    if _old_mechanics:
-        fi.write("mechanics:\n")
-        for mechanic in _old_mechanics:
-            fi.write("  - title: \"" + mechanic['title'] + "\"\n")
-            if mechanic.get("steps", None):
-                fi.write("    steps:\n")
-                for step in mechanic["steps"]:
-                    fi.write(f"      - step: \"{int(step['step']):02d}\"\n")
-                    addElementForEnemyData(fi, step, "notes", "          - ", "note")
-                    addElementForEnemyData(fi, step, "images", "          - ", ["url", "alt", "height"])
-                    addElementForEnemyData(fi, step, "videos", "          - ", "url")
-    elif _entry["mechanics"] != "":
-        fi.write("mechanics:\n")
-        mechanics = _entry["mechanics"].strip("\"[").strip("]\"").split("\",\"")
-        counter = 1
-        for m in mechanics:
-            if mechanics == ['']:
-                fi.write(f"  - title: \"Mechanic-Title {counter}\"\n")
-            else:
-                fi.write("  - title: \"" + m + "\"\n")
-            fi.write("    steps:\n")
-            fi.write("      - step: 09\n")
-            fi.write("        notes:\n")
-            fi.write(f"          - note: \"Mechanics-note {counter}\"\n")
-            fi.write("        images:\n")
-            fi.write("          - url: \"/assets/img/test.jpg\"\n")
-            fi.write("            alt: \"/assets/img/test.jpg\"\n")
-            fi.write("            height: \"500px\"\n")
-            fi.write("        videos:\n")
-            fi.write("          - url: \"https&#58;//akurosia.de/upload/test.mp4\"\n")
-            counter += 1
-
-
-# Notizen, Bosse und Adds
-def addGuide(fi, _entry, _old_bosses, _old_adds, _old_mechanics):
-    addMechanics(_entry, fi, _old_mechanics)
-    addBosseOrAdds(_entry, fi, _old_bosses, "bosse", "boss")
-    addBosseOrAdds(_entry, fi, _old_adds, "adds", "add")
-
-
 def get_video_url(url):
     if url.startswith("https"):
         return url
     return "https://www.youtube.com/watch?v={}".format(url)
-
-
-def clean_entries(_entry):
-    for key, value in _entry.items():
-        if value.startswith("'"):
-            _entry[key] = value[1:]
-        if value.endswith("'"):
-            _entry[key] = value[:-1]
-    return _entry
 
 
 def get_order_id(_entry):
@@ -734,155 +245,28 @@ def get_territorytype_from_mapid(mapid):
     return "unknown Zone"
 
 
-def rewrite_content_even_if_exists(_entry, fi, index):
-    tt_type_name = get_territorytype_from_mapid(_entry["mapid"])
-    fi.write('title: "' + _entry["title"] + '"\n')
-    fi.write('title_de: "' + getContentName(_entry["title"], "de", _entry["difficulty"], _entry["instanceType"]) + '"\n')
-    fi.write('title_en: "' + getContentName(_entry["title"], "en", _entry["difficulty"], _entry["instanceType"]) + '"\n')
-    fi.write('layout: guide_post\n')
-    fi.write('page_type: guide\n')
-    fi.write(f'excel_line: \"{index}\"\n')
-    fi.write('categories: "' + _entry["categories"] + '"\n')
-    fi.write('patchNumber: "' + _entry["patchNumber"].replace("'", "") + '"\n')
-    fi.write('difficulty: "' + _entry["difficulty"] + '"\n')
-    fi.write('instanceType: "' + _entry["instanceType"] + '"\n')
-    fi.write('date: "' + _entry["date"] + '"\n')
-    fi.write('slug: "' + replaceSlug(_entry["slug"]) + '"\n')
-    if _entry["image"]:
-        fi.write('image:\n')
-        fi.write('    - urlSmall: \"https://ffxiv.akurosia.de/extras/images/' + getImage(_entry["image"]) + '\n')
-        fi.write('    - url: \"https://ffxiv.akurosia.de/extras/images/' + getImage(_entry["image"]) + '\n')
-    fi.write('terms:\n')
-    writeTags(fi, _entry, tt_type_name)
-    fi.write('patchName: "' + _entry["patchName"] + '"\n')
-    fi.write('mapid: "' + _entry["mapid"] + '"\n')
-    fi.write('contentname: "' + tt_type_name["Name_de"] + '"\n')
-    fi.write('sortid: ' + _entry["sortid"] + '\n')
-    fi.write('plvl: ' + _entry["plvl"] + '\n')
-    fi.write('plvl_sync: ' + _entry["plvl_sync"] + '\n')
-    fi.write('ilvl: ' + _entry["ilvl"] + '\n')
-    fi.write('ilvl_sync: ' + _entry["ilvl_sync"] + '\n')
-    if not _entry["quest"] == "":
-        fi.write('quest: "' + _entry["quest"] + '"\n')
-    if not _entry["quest_location"] == "":
-        fi.write('quest_location: "' + _entry["quest_location"] + '"\n')
-    if not _entry["quest_npc"] == "":
-        fi.write('quest_npc: "' + _entry["quest_npc"] + '"\n')
-    fi.write('order: ' + get_order_id(_entry) + '\n')
-    # mounts
-    if checkVariable(_entry,"mount1") or checkVariable(_entry,"mount2"):
-        fi.write('mount:\n')
-        if checkVariable(_entry,"mount1"):
-            fi.write('    - name: "' + _entry["mount1"] + '"\n')
-        if checkVariable(_entry,"mount2"):
-            fi.write('    - name: "' + _entry["mount2"] + '"\n')
-    # minions
-    if checkVariable(_entry,"minion1") or checkVariable(_entry,"minion2") or checkVariable(_entry,"minion3"):
-        fi.write('minion:\n')
-        if checkVariable(_entry,"minion1"):
-            fi.write('    - name: "' + _entry["minion1"] + '"\n')
-        if checkVariable(_entry,"minion2"):
-            fi.write('    - name: "' + _entry["minion2"] + '"\n')
-        if checkVariable(_entry,"minion3"):
-            fi.write('    - name: "' + _entry["minion3"] + '"\n')
-    # gearset_loot
-    if checkVariable(_entry,"gearset_loot"):
-        fi.write('gearset_loot:\n')
-        for gset in _entry["gearset_loot"] .split(","):
-            fi.write('    - gsetname: "' + gset + '"\n')
-    # tt_cards
-    if checkVariable(_entry,"tt_card1") or checkVariable(_entry,"tt_card2"):
-        fi.write('tt_card:\n')
-        if checkVariable(_entry,"tt_card1"):
-            fi.write('    - name: "' + _entry["tt_card1"] + '"\n')
-        if checkVariable(_entry,"tt_card2"):
-            fi.write('    - name: "' + _entry["tt_card2"] + '"\n')
-    # orchestrion
-    if checkVariable(_entry,"orchestrion") or checkVariable(_entry,"orchestrion2") or checkVariable(_entry,"orchestrion3") or checkVariable(_entry,"orchestrion4") or checkVariable(_entry,"orchestrion5"):
-        fi.write('orchestrion:\n')
-        if checkVariable(_entry,"orchestrion"):
-            fi.write('    - name: "' + _entry["orchestrion"] + '"\n')
-        if checkVariable(_entry,"orchestrion2"):
-            fi.write('    - name: "' + _entry["orchestrion2"] + '"\n')
-        if checkVariable(_entry,"orchestrion3"):
-            fi.write('    - name: "' + _entry["orchestrion3"] + '"\n')
-        if checkVariable(_entry,"orchestrion4"):
-            fi.write('    - name: "' + _entry["orchestrion4"] + '"\n')
-        if checkVariable(_entry,"orchestrion5"):
-            fi.write('    - name: "' + _entry["orchestrion5"] + '"\n')
-    # orchestrion material
-    if checkVariable(_entry,"orchestrion_material1") or checkVariable(_entry,"orchestrion_material2") or checkVariable(_entry,"orchestrion_material3"):
-        fi.write('orchestrion_material:\n')
-        if checkVariable(_entry,"orchestrion_material1"):
-            fi.write('    - name: "' + _entry["orchestrion_material1"] + '"\n')
-        if checkVariable(_entry,"orchestrion_material2"):
-            fi.write('    - name: "' + _entry["orchestrion_material2"] + '"\n')
-        if checkVariable(_entry,"orchestrion_material3"):
-            fi.write('    - name: "' + _entry["orchestrion_material3"] + '"\n')
-    # rouletts
-    if _entry["allianceraid"] == "True" or _entry["frontier"] == "True" or _entry["expert"] == "True" or _entry["guildhest"] == "True" or _entry["level50_60"] == "True" or _entry["level70"] == "True" or _entry["leveling"] == "True" or _entry["main"] == "True" or _entry["mentor"] == "True" or _entry["normalraid"] == "True"  or _entry["trial"] == "True":
-        fi.write('rouletts:\n')
-        if _entry["allianceraid"]:
-            fi.write('    - allianceraid: ' + _entry["allianceraid"] + "\n")
-        if _entry["frontier"]:
-            fi.write('      frontier: ' + _entry["frontier"] + "\n")
-        if _entry["expert"]:
-            fi.write('      expert: ' + _entry["expert"] + "\n")
-        if _entry["guildhest"]:
-            fi.write('      guildhest: ' + _entry["guildhest"] + "\n")
-        if _entry["level50_60"]:
-            fi.write('      level50_60: ' + _entry["level50_60"] + "\n")
-        if _entry["level70"]:
-            fi.write('      level70: ' + _entry["level70"] + "\n")
-        if _entry["leveling"]:
-            fi.write('      leveling: ' + _entry["leveling"] + "\n")
-        if _entry["main"]:
-            fi.write('      main: ' + _entry["main"] + "\n")
-        if _entry["mentor"]:
-            fi.write('      mentor: ' + _entry["mentor"] + "\n")
-        if _entry["normalraid"]:
-            fi.write('      normalraid: ' + _entry["normalraid"] + "\n")
-        if _entry["trial"]:
-            fi.write('      trial: ' + _entry["trial"] + "\n")
-    # links:
-    if checkVariable(_entry,"teamcraftlink") or checkVariable(_entry,"garlandtoolslink") or checkVariable(_entry,"gamerescapelink"):
-        fi.write('links:\n')
-        if checkVariable(_entry,"teamcraftlink"):
-            fi.write('    - teamcraftlink: "' + _entry["teamcraftlink"] + '"\n')
-        if checkVariable(_entry,"garlandtoolslink"):
-            fi.write('      garlandtoolslink: "' + _entry["garlandtoolslink"] + '"\n')
-        if checkVariable(_entry,"gamerescapelink"):
-            fi.write('      gamerescapelink: "' + _entry["gamerescapelink"] + '"\n')
-    # videos
-    if checkVariable(_entry,"mtqvid1"):
-        fi.write('mtq_vid1: "' + get_video_url(_entry["mtqvid1"]) + '"\n')
-    if checkVariable(_entry,"mtqvid2"):
-        fi.write('mtq_vid2: "' + get_video_url(_entry["mtqvid2"]) + '"\n')
-    if checkVariable(_entry,"mrhvid1"):
-        fi.write('mrh_vid1: "' + get_video_url(_entry["mrhvid1"]) + '"\n')
-    if checkVariable(_entry,"mrhvid2"):
-        fi.write('mrh_vid2: "' + get_video_url(_entry["mrhvid2"]) + '"\n')
+def clean_entries_from_single_quotes(_entry):
+    for key, value in _entry.items():
+        if value.startswith("'"):
+            _entry[key] = value[1:]
+        if value.endswith("'"):
+            _entry[key] = value[:-1]
+    return _entry
 
 
-def seperateToArray(tag, _entry):
+def seperate_data_into_array(tag, _entry):
     if _entry[tag]:
         _entry[tag] = _entry[tag].strip("'[").strip("]'").strip("\"[").strip("]\"").strip("[").strip("]").replace("\", \"", "', '").replace("\",\"", "', '").split("', '")
         _entry[tag] = [b for b in _entry[tag]]
 
 
-def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechanics, index):
-    _entry = clean_entries(_entry)
-    with open(_filename, "w", encoding="utf8") as fi:
-        seperateToArray("bosse", _entry)
-        seperateToArray("adds", _entry)
-        seperateToArray("tags", _entry)
-
-        fi.write('---\n')
-        rewrite_content_even_if_exists(_entry, fi, index)
-        # REST
-        addGuide(fi, _entry, _old_bosses, _old_adds, _old_mechanics)
-        fi.write('---')
-        fi.write('\n')
+def try_to_create_file(filename):
+    if not os.path.exists(os.path.dirname(filename)):
+        try:
+            os.makedirs(os.path.dirname(filename))
+        except OSError as exc:  # Guard against race condition
+            if exc.errno != errno.EEXIST:
+                raise
 
 
 #returns existing boss data if available
@@ -895,54 +279,790 @@ def get_old_content_if_file_is_found(_existing_filename):
     return None, None, None, False
 
 
-if __name__ == "__main__":
+def read_xlsx_file():
     # open file, get sheet, last row and last coulmn
     wb = openpyxl.load_workbook('./guide_ffxiv.xlsx')
     sheet = wb['Tabelle1']
     max_row = sheet.max_row
     max_column = sheet.max_column
-    # specify elements you are looking for
-    elements = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest", "quest_npc", "quest_location", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "allianceraid", "frontier", "expert", "guildhest", "level50_60", "level70", "leveling", "main", "mentor", "normalraid", "trial", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
-    # to avoid overlapping positions
-    order = []
+    return sheet, max_row, max_column
+
+
+def get_data_from_xlsx(sheet, max_column):
+    entry = {}
+    # for every column in row add all elements into a dict:
+    # max_column will ignore last column due to how range is working
+    for j in range(1, max_column+1):
+        entry[elements[j - 1]] = str(sheet.cell(row=int(i), column=int(j)).value).replace("None", "")
+    # fix fataler raid
+    if entry["instanceType"] == "fataler_raid":
+        entry["instanceType"] = "raid"
+    return entry
+
+
+def cleanup_logdata(logdata_instance_content):
+    try: del logdata_instance_content["combatants"]
+    except: pass
+    try: del logdata_instance_content["zone"]
+    except: pass
+    for enemy_name, enemy in logdata_instance_content.items():
+        try: del enemy["status"]
+        except: pass
+        try: del enemy["tether"]
+        except: pass
+        try: del enemy["headmarker"]
+        except: pass
+    new_lic = {}
+    for k, v in logdata_instance_content.items():
+        if not k == "":
+            new_lic[k] = v
+    return new_lic
+
+
+def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack):
+    for attack_id in new_enemy_data.get('skill', {}):
+        for attack in old_enemy_data['attacks']:
+            existing_attacks[attack['title']] = attack['type']
+            if attack_id == attack.get('title_id', None):
+                remove_attack.append(attack_id)
+            if attack.get("variation", None):
+                for vari in attack.get("variation", None):
+                    if attack_id == vari['title_id']:
+                        remove_attack.append(attack_id)
+    return existing_attacks, remove_attack
+
+
+def remove_skills_from_list_if_found(remove_attack, new_enemy_data):
+    for x in remove_attack:
+        try:
+            del new_enemy_data["skill"][x]
+        except:
+            pass
+    return new_enemy_data
+
+
+def delete_invalid_entries(tmp_attack):
+    try: del tmp_attack['title_id']
+    except: pass
+    try: del tmp_attack['damage_type']
+    except: pass
+    try: del tmp_attack['roles']
+    except: pass
+    try: del tmp_attack['tags']
+    except: pass
+    return tmp_attack
+
+
+def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
+    remove_attack = []
+    existing_attacks = {}
+    # comapre all skill ids
+    existing_attacks, remove_attack = compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack)
+    # remove skill ids if they were found before
+    new_enemy_data = remove_skills_from_list_if_found(remove_attack, new_enemy_data)
+    if not new_enemy_data.get('skill', None):
+        return old_enemy_data
+    # merge new keys
+    for attack_id, attack in new_enemy_data['skill'].items():
+        if attack["name"] == "":
+            attack["name"] = "Unknown_" + attack_id
+        if existing_attacks.get(attack['name'], None):
+            # convert regular attk to variation
+            if existing_attacks[attack['name']] == "regular":
+                print_color_blue(f"\t\tNeed to convert: {attack['name']} ({attack_id})", disable_blue_print)
+                # find attack
+                attack_index = None
+                for i, old_attack in enumerate(old_enemy_data['attacks']):
+                    if old_attack.get('title', None) == attack['name']:
+                        attack_index = i
+                        break
+                tmp_attack = old_enemy_data['attacks'][attack_index]
+                tmp_attack['type'] = "variation"
+                tmp_attack['notes'] = [{'note': 'Variation-note BIG'}]
+
+                tmp = {
+                    'title': tmp_attack['title'],
+                    'title_id': tmp_attack['title_id'],
+                    'damage_type': tmp_attack['damage_type']
+                }
+                if tmp_attack.get('roles', None):
+                    tmp['roles'] = list(tmp_attack.get('roles', None))
+                    if tmp['roles'][0]['role'] == "role":
+                        tmp['roles'][0]['role'] = "Variation-role 1"
+                if tmp_attack.get('tags', None):
+                    tmp['tags'] = list(tmp_attack.get('tags', None))
+                    if tmp['tags'][0]['tag'] == "tag":
+                        tmp['tags'][0]['tag'] = "Variation-tag 1"
+                if tmp_attack.get('notes', None):
+                    tmp['notes'] = [{'note': 'Variation-note BIG'}]
+                    if tmp_attack['notes'][0]['note'] == "Variation-note BIG":
+                        tmp['notes'][0]['note'] = "Variation-note 1"
+                tmp_attack['variation'] = [tmp]
+
+                # add new attack
+                tmp2 = {
+                    'title': attack['name'],
+                    'title_id': attack_id,
+                    'damage_type': attack['damage_type'],
+                }
+                if tmp_attack.get('roles', None):
+                    tmp2['roles'] = list(tmp_attack.get('roles', None))
+                    if tmp2['roles'][0]['role'] == "role":
+                        tmp2['roles'][0]['role'] = "Variation-role 1"
+                if tmp_attack.get('tags', None):
+                    tmp2['tags'] = list(tmp_attack.get('tags', None))
+                    if tmp2['tags'][0]['tag'] == "tag":
+                        tmp2['tags'][0]['tag'] = "Variation-tag 1"
+                if tmp_attack.get('notes', None):
+                    tmp2['notes'] = [{'note': 'Variation-note BIG'}]
+                    if tmp_attack['notes'][0]['note'] == "Variation-note BIG":
+                        tmp2['notes'][0]['note'] = "Variation-note 1"
+                tmp_attack['variation'].append(tmp2)
+
+                # delete old invalid entries
+                tmp_attack = delete_invalid_entries(tmp_attack)
+                existing_attacks[attack['name']] = 'variation'
+            else:
+                print_color_blue("\t\tNeed to add to variation: " + attack['name'], disable_blue_print)
+                # find attack
+                attack_index = None
+                for i, old_attack in enumerate(old_enemy_data['attacks']):
+                    if old_attack.get('title', None) == attack['name']:
+                        attack_index = i
+                        break
+                tmp_attack = old_enemy_data['attacks'][attack_index]
+                # add new attack
+                tmp = {
+                    'title': attack['name'],
+                    'title_id': attack_id,
+                    'damage_type': attack['damage_type']
+                }
+                if tmp_attack['variation'][0].get('roles', None) or tmp_attack.get('roles', None):
+                    tmp['roles'] = tmp_attack['variation'][0].get('roles', None) or tmp_attack.get('roles', None)
+                if tmp_attack['variation'][0].get('tags', None) or tmp_attack.get('tags', None):
+                    tmp['tags'] = tmp_attack['variation'][0].get('tags', None) or tmp_attack.get('tags', None)
+                if tmp_attack['variation'][0].get('notes', None) or tmp_attack.get('notes', None):
+                    tmp['notes'] = tmp_attack['variation'][0].get('notes', None) or tmp_attack.get('notes', None)
+                tmp_attack['variation'].append(tmp)
+        else:
+            print_color_blue("\t\tAdded new entry for regular: " + attack['name'], disable_blue_print)
+            # create new regular
+            tmp = {
+                'title': attack['name'],
+                'title_id': attack_id,
+                'title_en': translateAttack(attack_id),
+                'attack_in_use': 'false',
+                'disable': 'false',
+                'type': 'regular',
+                'damage_type': attack['damage_type'],
+                'phases': [{'phase': '09'}],
+                'roles': [{'role': 'role'}],
+                'tags': [{'tag': 'tag'}],
+                'notes': [{'note': 'note'}]
+            }
+            if tmp['title'] == "Attacke":
+                tmp['disable'] = 'true'
+                tmp['roles'][0]['role'] = 'Tank'
+                tmp['tags'][0]['tag'] = 'Auto-Angriff'
+                del tmp['notes']
+
+            if tmp['title'].startswith("Unknown_"):
+                tmp['disable'] = 'true'
+
+            if enemy_type == "adds" and tmp.get("notes", None):
+                del tmp['notes']
+            old_enemy_data['attacks'].append(tmp)
+
+            existing_attacks[attack['name']] = 'regular'
+    return old_enemy_data
+
+
+#####################################################################################################################################################
+
+def check_Mechanics(_entry, guide_data, _old_mechanics=None):
+    if _old_mechanics:
+        guide_data += "mechanics:\n"
+        for mechanic in _old_mechanics:
+            guide_data = add_Mechanic(guide_data, mechanic)
+    elif _entry["mechanics"] != "":
+        guide_data += "mechanics:\n"
+        mechanics = _entry["mechanics"].strip("\"[").strip("]\"").split("\",\"")
+        counter = 1
+        for m in mechanics:
+            mechanic = {
+                "steps": [{
+                    "step": "09",
+                    "notes": [{"note": f"Mechanics-note {counter}",}],
+                    "images": [{"url": "/assets/img/test.jpg","alt": "/assets/img/test.jpg","height": "250px",}],
+                    "videos": [{"url": "https&#58;//akurosia.de/upload/test.mp4",}],
+                }],
+            }
+            if mechanics == ['']:
+                mechanic['title'] = f"Mechanic-Title {counter}"
+            else:
+                mechanic['title'] = m
+
+            guide_data = add_Mechanic(guide_data, mechanic)
+            counter += 1
+    return guide_data
+
+
+def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_content,  _old_enemy=None):
+    if _old_enemy or logdata != {}:
+        guide_data += f"{enemy_text}:\n"
+
+    if _old_enemy:
+        for old_enemy_data in _old_enemy:
+            old_enemy_data['title'] = old_enemy_data['title'].replace("&#246;", "ö").replace("&#252;", "ü").replace("&#228;", "ä").replace("&#223;", "ß")
+            print_color_yellow(f"\tWork on '{old_enemy_data['title']}'", disable_yellow_print)
+            try:
+                new_enemy_data = logdata_instance_content[old_enemy_data['title']]
+            except:
+                new_enemy_data = {}
+            old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
+            guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type)
+            try: del logdata_instance_content[old_enemy_data['title']]
+            except: pass
+            #print_color_red(new_enemy_data)
+    if logdata_instance_content != {}:
+        counter = 0
+        if logdata_instance_content is None:
+            return guide_data
+        for enemy in logdata_instance_content:
+            print_color_yellow(f"\tWork on '{enemy}'", disable_yellow_print)
+            # for bosses, only write bosses, for adds skip bosse
+            lower_enemy_list = [ x.lower() for x in _entry[enemy_type] ]
+            lower_boss_list = [ x.lower() for x in _entry['bosse'] ]
+            if (enemy_type == 'bosse' and enemy.lower() not in lower_enemy_list) or (enemy_type == 'adds' and enemy.lower() in lower_boss_list):
+                continue
+            counter = counter + 1
+            new_enemy_data = logdata_instance_content.get(enemy, "Unknown_")
+            if new_enemy_data == {}:
+                new_enemy_data = {'skill': {}}
+            # create new template file to merge against
+            tmp = {
+                "title": enemy,
+                "title_en": getBnpcName(enemy),
+                "id": f"{enemy_type[:-1]}{counter:02d}",
+                "attacks": []
+            }
+            enemy_data = merge_attacks(tmp, new_enemy_data, enemy_type)
+            enemy_data['attacks'] = sorted(enemy_data['attacks'], key=itemgetter('title'))
+            guide_data = add_Enemy(guide_data, enemy_data, enemy_type)
+
+    return guide_data
+
+
+# Notizen, Bosse und Adds
+def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
+    guide_data = ""
+    logdata_instance_content = None
+    # add mechanics
+    guide_data = check_Mechanics(_entry, guide_data, _old_mechanics)
+
+    # get correct title capitalization to read data from logdata
+    title = uglyContentNameFix(_entry["title_de"].title(), _entry["instanceType"], _entry["difficulty"])
+    # get the latest data from logdata
+    if logdata_lower.get(_entry["title_de"].lower()):
+        try:
+            logdata_instance_content = dict(logdata[getContentName(title, lang="de")])
+        except:
+            logdata_instance_content = dict(logdata[title])
+        logdata_instance_content = cleanup_logdata(logdata_instance_content)
+    print_color_green(f"Work on '{_entry['title_de']}'", disable_green_print)
+    guide_data = check_Enemy(_entry, guide_data, "bosse", "bosses", logdata_instance_content, _old_bosses)
+    guide_data = check_Enemy(_entry, guide_data, "adds", "adds", logdata_instance_content, _old_adds)
+    #guide_data = check_Enemy(_entry, guide_data, "adds", _old_adds)
+    return guide_data
+
+
+def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechanics, index):
+    seperate_data_into_array("bosse", _entry)
+    seperate_data_into_array("adds", _entry)
+    seperate_data_into_array("tags", _entry)
+    header_data = rewrite_content_even_if_exists(_entry, index)
+    guide_data = addGuide(_entry, _old_bosses, _old_adds, _old_mechanics)
+    #print_color_blue(guide_data, disable_blue_print)
+
+    with open(_filename, "w", encoding="utf8") as fi:
+        fi.write('---\n')
+        fi.write(header_data)
+        fi.write(guide_data)
+        fi.write('---')
+        fi.write('\n')
+
+
+def rewrite_content_even_if_exists(_entry, index):
+    header_data = ""
+    tt_type_name = get_territorytype_from_mapid(_entry["mapid"])
+    _entry["title_de"] = getContentName(_entry["title"], "de", _entry["difficulty"], _entry["instanceType"])
+    _entry["title_en"] = getContentName(_entry["title"], "en", _entry["difficulty"], _entry["instanceType"])
+
+    header_data += 'title: "' + _entry["title"] + '"\n'
+    header_data += 'title_de: "' + _entry["title_de"] + '"\n'
+    header_data += 'title_en: "' + _entry["title_en"] + '"\n'
+    header_data += 'layout: guide_post\n'
+    header_data += 'page_type: guide\n'
+    header_data += f'excel_line: \"{index}\"\n'
+    header_data += 'categories: "' + _entry["categories"] + '"\n'
+    header_data += 'patchNumber: "' + _entry["patchNumber"].replace("'", "") + '"\n'
+    header_data += 'difficulty: "' + _entry["difficulty"] + '"\n'
+    header_data += 'instanceType: "' + _entry["instanceType"] + '"\n'
+    header_data += 'date: "' + _entry["date"] + '"\n'
+    header_data += 'slug: "' + replaceSlug(_entry["slug"]) + '"\n'
+    if _entry["image"]:
+        header_data += 'image:\n'
+        header_data += '    - urlSmall: \"https://ffxiv.akurosia.de/extras/images/' + getImage(_entry["image"]) + '\n'
+        header_data += '    - url: \"https://ffxiv.akurosia.de/extras/images/' + getImage(_entry["image"]) + '\n'
+    header_data += 'terms:\n'
+    header_data = writeTags(header_data, _entry, tt_type_name)
+    header_data += 'patchName: "' + _entry["patchName"] + '"\n'
+    header_data += 'mapid: "' + _entry["mapid"] + '"\n'
+    header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
+    header_data += 'sortid: ' + _entry["sortid"] + '\n'
+    header_data += 'plvl: ' + _entry["plvl"] + '\n'
+    header_data += 'plvl_sync: ' + _entry["plvl_sync"] + '\n'
+    header_data += 'ilvl: ' + _entry["ilvl"] + '\n'
+    header_data += 'ilvl_sync: ' + _entry["ilvl_sync"] + '\n'
+    if not _entry["quest"] == "":
+        header_data += 'quest: "' + _entry["quest"] + '"\n'
+    if not _entry["quest_location"] == "":
+        header_data += 'quest_location: "' + _entry["quest_location"] + '"\n'
+    if not _entry["quest_npc"] == "":
+        header_data += 'quest_npc: "' + _entry["quest_npc"] + '"\n'
+    header_data += 'order: ' + get_order_id(_entry) + '\n'
+    # mounts
+    if checkVariable(_entry,"mount1") or checkVariable(_entry,"mount2"):
+        header_data += 'mount:\n'
+        if checkVariable(_entry,"mount1"):
+            header_data += '    - name: "' + _entry["mount1"] + '"\n'
+        if checkVariable(_entry,"mount2"):
+            header_data += '    - name: "' + _entry["mount2"] + '"\n'
+    # minions
+    if checkVariable(_entry,"minion1") or checkVariable(_entry,"minion2") or checkVariable(_entry,"minion3"):
+        header_data += 'minion:\n'
+        if checkVariable(_entry,"minion1"):
+            header_data += '    - name: "' + _entry["minion1"] + '"\n'
+        if checkVariable(_entry,"minion2"):
+            header_data += '    - name: "' + _entry["minion2"] + '"\n'
+        if checkVariable(_entry,"minion3"):
+            header_data += '    - name: "' + _entry["minion3"] + '"\n'
+    # gearset_loot
+    if checkVariable(_entry,"gearset_loot"):
+        header_data += 'gearset_loot:\n'
+        for gset in _entry["gearset_loot"] .split(","):
+            header_data += '    - gsetname: "' + gset + '"\n'
+    # tt_cards
+    if checkVariable(_entry,"tt_card1") or checkVariable(_entry,"tt_card2"):
+        header_data += 'tt_card:\n'
+        if checkVariable(_entry,"tt_card1"):
+            header_data += '    - name: "' + _entry["tt_card1"] + '"\n'
+        if checkVariable(_entry,"tt_card2"):
+            header_data += '    - name: "' + _entry["tt_card2"] + '"\n'
+    # orchestrion
+    if checkVariable(_entry,"orchestrion") or checkVariable(_entry,"orchestrion2") or checkVariable(_entry,"orchestrion3") or checkVariable(_entry,"orchestrion4") or checkVariable(_entry,"orchestrion5"):
+        header_data += 'orchestrion:\n'
+        if checkVariable(_entry,"orchestrion"):
+            header_data += '    - name: "' + _entry["orchestrion"] + '"\n'
+        if checkVariable(_entry,"orchestrion2"):
+            header_data += '    - name: "' + _entry["orchestrion2"] + '"\n'
+        if checkVariable(_entry,"orchestrion3"):
+            header_data += '    - name: "' + _entry["orchestrion3"] + '"\n'
+        if checkVariable(_entry,"orchestrion4"):
+            header_data += '    - name: "' + _entry["orchestrion4"] + '"\n'
+        if checkVariable(_entry,"orchestrion5"):
+            header_data += '    - name: "' + _entry["orchestrion5"] + '"\n'
+    # orchestrion material
+    if checkVariable(_entry,"orchestrion_material1") or checkVariable(_entry,"orchestrion_material2") or checkVariable(_entry,"orchestrion_material3"):
+        header_data += 'orchestrion_material:\n'
+        if checkVariable(_entry,"orchestrion_material1"):
+            header_data += '    - name: "' + _entry["orchestrion_material1"] + '"\n'
+        if checkVariable(_entry,"orchestrion_material2"):
+            header_data += '    - name: "' + _entry["orchestrion_material2"] + '"\n'
+        if checkVariable(_entry,"orchestrion_material3"):
+            header_data += '    - name: "' + _entry["orchestrion_material3"] + '"\n'
+    # rouletts
+    if _entry["allianceraid"] == "True" or _entry["frontier"] == "True" or _entry["expert"] == "True" or _entry["guildhest"] == "True" or _entry["level50_60"] == "True" or _entry["level70"] == "True" or _entry["leveling"] == "True" or _entry["main"] == "True" or _entry["mentor"] == "True" or _entry["normalraid"] == "True"  or _entry["trial"] == "True":
+        header_data += 'rouletts:\n'
+        if _entry["allianceraid"]:
+            header_data += '    - allianceraid: ' + _entry["allianceraid"] + "\n"
+        if _entry["frontier"]:
+            header_data += '      frontier: ' + _entry["frontier"] + "\n"
+        if _entry["expert"]:
+            header_data += '      expert: ' + _entry["expert"] + "\n"
+        if _entry["guildhest"]:
+            header_data += '      guildhest: ' + _entry["guildhest"] + "\n"
+        if _entry["level50_60"]:
+            header_data += '      level50_60: ' + _entry["level50_60"] + "\n"
+        if _entry["level70"]:
+            header_data += '      level70: ' + _entry["level70"] + "\n"
+        if _entry["leveling"]:
+            header_data += '      leveling: ' + _entry["leveling"] + "\n"
+        if _entry["main"]:
+            header_data += '      main: ' + _entry["main"] + "\n"
+        if _entry["mentor"]:
+            header_data += '      mentor: ' + _entry["mentor"] + "\n"
+        if _entry["normalraid"]:
+            header_data += '      normalraid: ' + _entry["normalraid"] + "\n"
+        if _entry["trial"]:
+            header_data += '      trial: ' + _entry["trial"] + "\n"
+    # links:
+    if checkVariable(_entry,"teamcraftlink") or checkVariable(_entry,"garlandtoolslink") or checkVariable(_entry,"gamerescapelink"):
+        header_data += 'links:\n'
+        if checkVariable(_entry,"teamcraftlink"):
+            header_data += '    - teamcraftlink: "' + _entry["teamcraftlink"] + '"\n'
+        if checkVariable(_entry,"garlandtoolslink"):
+            header_data += '      garlandtoolslink: "' + _entry["garlandtoolslink"] + '"\n'
+        if checkVariable(_entry,"gamerescapelink"):
+            header_data += '      gamerescapelink: "' + _entry["gamerescapelink"] + '"\n'
+    # videos
+    if checkVariable(_entry,"mtqvid1"):
+        header_data += 'mtq_vid1: "' + get_video_url(_entry["mtqvid1"]) + '"\n'
+    if checkVariable(_entry,"mtqvid2"):
+        header_data += 'mtq_vid2: "' + get_video_url(_entry["mtqvid2"]) + '"\n'
+    if checkVariable(_entry,"mrhvid1"):
+        header_data += 'mrh_vid1: "' + get_video_url(_entry["mrhvid1"]) + '"\n'
+    if checkVariable(_entry,"mrhvid2"):
+        header_data += 'mrh_vid2: "' + get_video_url(_entry["mrhvid2"]) + '"\n'
+    return header_data
+
+
+def writeTags(header_data, _entry, tt_type_name):
+    # write tags per expansion
+    if _entry["categories"] == "arr":
+        header_data += "    - term: \"A Realm Reborn\"\n"
+        header_data += "    - term: \"ARR\"\n"
+    elif _entry["categories"] == "hw":
+        header_data += "    - term: \"Heavensward\"\n"
+        header_data += "    - term: \"HW\"\n"
+    elif _entry["categories"] == "sb":
+        header_data += "    - term: \"Stormblood\"\n"
+        header_data += "    - term: \"SB\"\n"
+    elif _entry["categories"] == "shb":
+        header_data += "    - term: \"Shadowbringers\"\n"
+        header_data += "    - term: \"ShB\"\n"
+    else:
+        pass
+
+    for lang in ["de", "en", "fr", "ja", "cn", "ko"]:
+        header_data += "    - term: \"" + tt_type_name["Name_" + lang] + "\"\n"
+
+    #header_data += "    - term: \"" + _entry["title"] + "\"\n"
+    for lang in ["de", "en", "fr", "ja", "cn", "ko"]:
+        header_data += "    - term: \"" + getContentName(_entry["title"], lang, _entry["difficulty"], _entry["instanceType"]) + "\"\n"
+
+    # write rest of the tags
+    header_data += "    - term: \"" + _entry["difficulty"] + "\"\n"
+    header_data += "    - term: \"" + _entry["patchNumber"] + "\"\n"
+    header_data += "    - term: \"" + _entry["patchName"] + "\"\n"
+    header_data += "    - term: \"" + _entry["quest"] + "\"\n"
+    if checkVariable(_entry,"mount1") or checkVariable(_entry,"mount2"):
+        header_data += "    - term: \"mounts\"\n"
+    if checkVariable(_entry,"minion1") or checkVariable(_entry,"minion2") or checkVariable(_entry,"minion3"):
+        header_data += "    - term: \"minions\"\n"
+    if checkVariable(_entry,"tt_card1") or checkVariable(_entry,"tt_card2"):
+        header_data += "    - term: \"tt_cards\"\n"
+    if checkVariable(_entry,"gearset_loot"):
+        for gset in _entry["gearset_loot"].split(","):
+            header_data += "    - term: \"" + gset + "\"\n"
+    if checkVariable(_entry,"orchestrion") or checkVariable(_entry,"orchestrion2") or checkVariable(_entry,"orchestrion3") or checkVariable(_entry,"orchestrion4") or checkVariable(_entry,"orchestrion5"):
+        header_data += "    - term: \"orchestrion\"\n"
+    if checkVariable(_entry,"orchestrion_material1") or checkVariable(_entry,"orchestrion_material2") or checkVariable(_entry,"orchestrion_material3"):
+        header_data += "    - term: \"orchestrion_material\"\n"
+    if _entry["instanceType"] == "trial":
+        header_data += "    - term: \"" + "Prüfung" + "\"\n"
+        header_data += "    - term: \"Trial\"\n"
+        header_data += "    - term: \"Primae\"\n"
+        header_data += "    - term: \"Primal\"\n"
+    header_data += "    - term: \"" + _entry["instanceType"] + "\"\n"
+
+    if not _entry["bosse"] == ['']:
+        for b in _entry["bosse"]:
+            if b != "Unknown_":
+                header_data += "    - term: \"" + b + "\"\n"
+    if not _entry["tags"] == ['']:
+        for t in _entry["tags"]:
+            if t != "Unknown_":
+                header_data += "    - term: \"" + t + "\"\n"
+    return header_data
+
+
+def add_Mechanic(guide_data, data):
+    guide_data += f"  - title: \"{data['title']}\"\n"
+    if data.get("steps", None):
+        guide_data += "    steps:\n"
+        for step in data["steps"]:
+            guide_data += f"      - step: \"{int(step['step']):02d}\"\n"
+
+            if step.get("notes", None):
+                guide_data += "        notes:\n"
+                for note in step["notes"]:
+                    guide_data += f"          - note: \"{note['note']}\"\n"
+
+            if step.get("images", None):
+                guide_data += "        images:\n"
+                for image in step["images"]:
+                    guide_data += f"          - url: \"{image['url']}\"\n"
+                    guide_data += f"            alt: \"{image.get('alt', image['url'])}\"\n"
+                    guide_data += f"            height: \"{image.get('height', '250px')}\"\n"
+
+            if step.get("videos", None):
+                guide_data += "        videos:\n"
+                for video in step["videos"]:
+                   guide_data += f"          - url: \"{video['url']}\"\n"
+    return guide_data
+
+
+def add_Enemy(guide_data, enemy_data, enemy_type):
+    guide_data += f'  - title: "{enemy_data["title"]}"\n'
+    guide_data += f'    title_en: "{enemy_data["title_en"]}"\n'
+    guide_data += f'    id: "{enemy_data["id"]}"\n'
+    if enemy_data.get("attacks", None):
+        guide_data += '    attacks:\n'
+        for attack in enemy_data["attacks"]:
+            if attack["type"] == "regular":
+                guide_data = add_regular_Attack(guide_data, attack, enemy_type)
+            elif attack["type"] == "variation":
+                guide_data = add_variation_Attack(guide_data, attack, enemy_type)
+            elif attack["type"] == "combo":
+                guide_data = add_combo_Attack(guide_data, attack, enemy_type)
+    if enemy_data.get("sequence", None):
+        guide_data = add_Sequence(guide_data, enemy_data)
+    else:
+        if enemy_type == "bosse":
+            guide_data = add_Sequence(guide_data, example_sequence)
+        else:
+            guide_data = add_Sequence(guide_data, example_add_sequence)
+
+    return guide_data
+
+
+def add_regular_Attack(guide_data, attack, enemy_type):
+    guide_data += f'      - title: "{attack["title"]}"\n'
+    guide_data += f'        title_id: "{attack["title_id"]}"\n'
+    if attack.get("title_en", None):
+        guide_data += f'        title_en: "{attack["title_en"]}"\n'
+    guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
+    guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
+    guide_data += f'        type: "{attack["type"] or "regular"}"\n'
+    guide_data += f'        damage_type: "{attack["damage_type"] or "None"}"\n'
+
+    if attack.get('phases', None):
+        guide_data += f'        phases:\n'
+        for phase in attack.get('phases', {}):
+            guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
+
+    if attack["title"].startswith("Unknown_"):
+        return guide_data
+
+    if attack.get('roles', None):
+        guide_data += f'        roles:\n'
+        for role in attack.get('roles', {}):
+            guide_data += f'          - role: "{role["role"]}"\n'
+
+    if attack.get('tags', None):
+        guide_data += f'        tags:\n'
+        for tag in attack.get('tags', {}):
+            guide_data += f'          - tag: "{tag["tag"]}"\n'
+
+    if attack.get('notes', None):
+        guide_data += f'        notes:\n'
+        for note in attack.get('notes', {}):
+            guide_data += f'          - note: "{note["note"]}"\n'
+
+    if attack.get('images', None):
+        guide_data += f'        images:\n'
+        for image in attack.get('images', {}):
+            guide_data += f'          - url: "{image["url"]}"\n'
+            guide_data += f'            alt: "{image.get("alt", None) or image["url"]}"\n'
+            guide_data += f'            height: "{image.get("height", None) or "350px"}"\n'
+
+    if attack.get('videos', None):
+        guide_data += f'        videos:\n'
+        for video in attack.get('videos', {}):
+            guide_data += f'          - url: "{video["url"]}"\n'
+    return guide_data
+
+
+def add_variation_Attack(guide_data, attack, enemy_type):
+    guide_data += f'      - title: "{attack["title"]}"\n'
+    if attack.get("title_en", None):
+        guide_data += f'        title_en: "{attack["title_en"]}"\n'
+    guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
+    guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
+    guide_data += f'        type: "{attack["type"] or "regular"}"\n'
+
+    if attack.get('phases', None):
+        guide_data += f'        phases:\n'
+        for phase in attack.get('phases', {}):
+            guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
+
+    if (attack.get('notes', None) and enemy_type != "adds") or (attack.get('notes', None) and enemy_type == "adds" and attack.get('notes', [{}])[0].get("note", None) != "Variation-note BIG" ):
+        guide_data += f'        notes:\n'
+        for note in attack.get('notes', {}):
+            guide_data += f'          - note: "{note["note"]}"\n'
+
+    if attack.get('variation', None):
+        guide_data += f'        variation:\n'
+        for variation in attack.get('variation', {}):
+            guide_data += f'          - title: "{variation["title"]}"\n'
+            guide_data += f'            title_id: "{variation["title_id"]}"\n'
+            guide_data += f'            damage_type: "{variation["damage_type"]}"\n'
+            if variation.get('roles', None):
+                guide_data += f'            roles:\n'
+                for role in variation.get('roles', {}):
+                    guide_data += f'              - role: "{role["role"]}"\n'
+
+            if variation.get('tags', None):
+                guide_data += f'            tags:\n'
+                for tag in variation.get('tags', {}):
+                    guide_data += f'              - tag: "{tag["tag"]}"\n'
+
+            if variation.get('notes', None) and enemy_type != "adds":
+                guide_data += f'            notes:\n'
+                for note in variation.get('notes', {}):
+                    guide_data += f'              - note: "{note["note"]}"\n'
+
+    if attack.get('images', None):
+        guide_data += f'        images:\n'
+        for image in attack.get('images', {}):
+            guide_data += f'          - url: "{image["url"]}"\n'
+            guide_data += f'            alt: "{image.get("alt", None) or image["url"]}"\n'
+            guide_data += f'            height: "{image.get("height", None) or "350px"}"\n'
+
+    if attack.get('videos', None):
+        guide_data += f'        videos:\n'
+        for video in attack.get('videos', {}):
+            guide_data += f'          - url: "{video["url"]}"\n'
+
+    return guide_data
+
+
+def add_combo_Attack(guide_data, attack, enemy_type):
+    guide_data += f'      - title: "{attack["title"]}"\n'
+    if attack.get("title_en", None):
+        guide_data += f'        title_en: "{attack["title_en"]}"\n'
+    guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
+    guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
+    guide_data += f'        type: "{attack["type"] or "regular"}"\n'
+
+    if attack.get('phases', None):
+        guide_data += f'        phases:\n'
+        for phase in attack.get('phases', {}):
+            guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
+
+    if (attack.get('notes', None) and enemy_type != "adds") or (attack.get('notes', None) and enemy_type == "adds" and attack.get('notes', [{}])[0].get("note", None) != "Variation-note BIG" ):
+        guide_data += f'        notes:\n'
+        for note in attack.get('notes', {}):
+            guide_data += f'          - note: "{note["note"]}"\n'
+
+    if attack.get('combo', None):
+        guide_data += f'        combo:\n'
+        for combo in attack.get('combo', {}):
+            guide_data += f'          - title: "{combo["title"]}"\n'
+            guide_data += f'            title_id: "{combo["title_id"]}"\n'
+            guide_data += f'            damage_type: "{combo["damage_type"]}"\n'
+            if combo.get('roles', None):
+                guide_data += f'            roles:\n'
+                for role in combo.get('roles', {}):
+                    guide_data += f'              - role: "{role["role"]}"\n'
+
+            if combo.get('tags', None):
+                guide_data += f'            tags:\n'
+                for tag in combo.get('tags', {}):
+                    guide_data += f'              - tag: "{tag["tag"]}"\n'
+
+            if combo.get('notes', None) and enemy_type != "adds":
+                guide_data += f'            notes:\n'
+                for note in combo.get('notes', {}):
+                    guide_data += f'              - note: "{note["note"]}"\n'
+
+    if attack.get('images', None):
+        guide_data += f'        images:\n'
+        for image in attack.get('images', {}):
+            guide_data += f'          - url: "{image["url"]}"\n'
+            guide_data += f'            alt: "{image.get("alt", None) or image["url"]}"\n'
+            guide_data += f'            height: "{image.get("height", None) or "350px"}"\n'
+
+    if attack.get('videos', None):
+        guide_data += f'        videos:\n'
+        for video in attack.get('videos', {}):
+            guide_data += f'          - url: "{video["url"]}"\n'
+
+    return guide_data
+
+
+def add_Sequence(guide_data, data):
+    guide_data +=  "    sequence:\n"
+    for phase in data['sequence']:
+        guide_data +=  f"      - phase: \"{phase['phase']}\"\n"
+        #if combatant == "add":
+        #    return guide_data
+
+        if phase.get('alerts', None):
+            guide_data +=  "        alerts:\n"
+            for alert in phase['alerts']:
+                guide_data +=  f"          - alert: \"{alert['alert']}\"\n"
+
+        if phase.get('mechanics', None):
+            guide_data +=  "        mechanics:\n"
+            for mechanic in phase['mechanics']:
+                guide_data +=  f"          - title: \"{mechanic['title']}\"\n"
+                if mechanic.get('notes', None):
+                    guide_data +=  f"            notes:\n"
+                    for note in mechanic['notes']:
+                        guide_data +=  f"              - note: \"{note['note']}\"\n"
+
+        if phase.get('attacks', None):
+            guide_data +=  "        attacks:\n"
+            for attack in phase['attacks']:
+                guide_data +=  f"          - attack: \"{attack['attack']}\"\n"
+
+        if phase.get('images', None):
+            guide_data +=  "        images:\n"
+            for image in phase['images']:
+                guide_data +=  f"          - url: \"{image['url']}\"\n"
+                guide_data +=  f"            alt: \"{image.get('alt', image['url'])}\"\n"
+                guide_data +=  f"            height: \"{image.get('height', '250px')}\"\n"
+
+        if phase.get('videos', None):
+            guide_data +=  "        videos:\n"
+            for video in phase['videos']:
+                guide_data +=  f"          - url: \"{video['url']}\"\n"
+    return guide_data
+
+
+if __name__ == "__main__":
+    sheet, max_row, max_column = read_xlsx_file()
     # change into _posts dir
     os.chdir("./_posts")
     # for every row do:
     for i in range(2, max_row):
-        # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-        #if i != 93:
-        #    continue
-        entry = {}
-        # for every column in row add all elements into a dict:
-        # max_column will ignore last column due to how range is working
-        for j in range(1, max_column+1):
-            entry[elements[j - 1]] = str(sheet.cell(row=int(i), column=int(j)).value).replace("None", "")
-        # if the done collumn is not prefilled
-        if entry["exclude"] == "end":
-            print("END FLAG WAS FOUND!")
-            sys.exit(0)
-        if not (entry["exclude"] or entry["done"]):
-            # remove time from excel datetime
-            entry["date"] = str(entry["date"]).replace(" 00:00:00", "").replace("-", ".")
-            # convert special chars for html usage
-            entry["title"] = entry["title"]
-            #print(entry["title"])
-            entry['patchNumber'] = entry['patchNumber'][1:] if entry['patchNumber'].startswith("'") else entry['patchNumber']
-            filename = f"{entry['categories']}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
-            existing_filename = f"{entry['categories']}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
-            old_bosses, old_adds, old_mechanics, replace_existing_file = get_old_content_if_file_is_found(existing_filename)
-            # if old file was found, replace filename to save
-            if replace_existing_file:
-                filename = existing_filename
-            # fix fataler raid
-            if entry["instanceType"] == "fataler_raid":
-                entry["instanceType"] = "raid"
+        try:
+            # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
+            #if i != 328:
+            #    continue
+            entry = get_data_from_xlsx(sheet, max_column)
+            # if the done collumn is not prefilled
+            if entry["exclude"] == "end":
+                print("END FLAG WAS FOUND!")
+                sys.exit(0)
+            if not (entry["exclude"] or entry["done"]):
+                entry = clean_entries_from_single_quotes(entry)
+                # remove time from excel datetime
+                entry["date"] = str(entry["date"]).replace(" 00:00:00", "").replace("-", ".")
+                # convert special chars for html usage
+                entry["title"] = entry["title"]
+                filename = f"{entry['categories']}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
+                existing_filename = f"{entry['categories']}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
+                old_bosses, old_adds, old_mechanics, replace_existing_file = get_old_content_if_file_is_found(existing_filename)
+                # if old file was found, replace filename to save
+                if replace_existing_file:
+                    filename = existing_filename
 
-            if not os.path.exists(os.path.dirname(filename)):
-                try:
-                    os.makedirs(os.path.dirname(filename))
-                except OSError as exc:  # Guard against race condition
-                    if exc.errno != errno.EEXIST:
-                        raise
-            write_content_to_file(entry, filename, old_bosses, old_adds, old_mechanics, i)
+                try_to_create_file(filename)
+                write_content_to_file(entry, filename, old_bosses, old_adds, old_mechanics, i)
+        except Exception as e:
+            print_color_red(f"Error when handeling '{filename}'")
+            traceback.print_exception(*sys.exc_info())
 
