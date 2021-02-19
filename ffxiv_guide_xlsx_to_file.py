@@ -511,19 +511,39 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
 
 def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last):
     remove_attack = []
-    existing_attacks = {}
+    existing_debuffs = {}
+
+    # filter duplicate debuffs
+    tmp_debuffs = []
+    tmp_debuff_ids = []
+    disable_yellow_print = False
+    for x in old_enemy_data.get("debuffs", []):
+        if x['title_id'] not in tmp_debuff_ids:
+           tmp_debuff_ids.append(x['title_id'])
+           tmp_debuffs.append(x)
+        else:
+            print_color_yellow(f"Ignore Duplicate Debuff {x['title']}")
+    disable_yellow_print = True
+    old_enemy_data["debuffs"] = tmp_debuffs
+
+    if not last == {}:
+        # comapre all skill ids
+        existing_debuffs, remove_attack = compare_status_ids(old_enemy_data, last, existing_debuffs, remove_attack)
+        # remove skill ids if they were found before
+        new_enemy_data = remove_status_from_list_if_found(remove_attack, last)
     # comapre all skill ids
-    existing_attacks, remove_attack = compare_status_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack)
+    existing_debuffs, remove_attack = compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_attack)
     # remove skill ids if they were found before
     new_enemy_data = remove_status_from_list_if_found(remove_attack, new_enemy_data)
 
-    if not new_enemy_data.get('status', None) and not last.get('status', None):
+    if not new_enemy_data.get('status', None):
         return old_enemy_data
+
     # merge new keys
     if not old_enemy_data.get('debuffs', None):
         old_enemy_data['debuffs'] = []
 
-    for e in [new_enemy_data, last]:
+    for e in [new_enemy_data]:
         if not e.get('status', None):
             continue
         for status_id, status_data in e['status'].items():
