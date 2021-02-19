@@ -52,6 +52,7 @@ enemy = {
 example_sequence = {
     "sequence": [{
         "phase": "09",
+        "name": "phase_name"
         "alerts": [{
             "alert": "Die folgenden Angriffe haben sind entweder unbekannt oder haben keine klare Herkunft",
         }],
@@ -996,8 +997,8 @@ def add_Sequence(guide_data, data):
     guide_data +=  "    sequence:\n"
     for phase in data['sequence']:
         guide_data +=  f"      - phase: \"{phase['phase']}\"\n"
-        #if combatant == "add":
-        #    return guide_data
+        if phase.get('name', None):
+            guide_data +=  f"        name: \"{phase['name']}\"\n"
 
         if phase.get('alerts', None):
             guide_data +=  "        alerts:\n"

@@ -6,10 +6,12 @@
     {% endif %}
     <!-- Duty Bosses ======================================================= -->
     {% if page.bosses %}
-        {% include guide-bosses.html %}
+        {% assign enemies = page.bosses %}
+        {% include guide_enemy.html %}
     {% endif %}
     <!-- Duty Adds ======================================================= -->
     {% if page.adds %}
-        {% include guide-adds.html %}
+        {% assign enemies = page.adds %}
+        {% include guide_enemy.html %}
     {% endif %}
 </div>
