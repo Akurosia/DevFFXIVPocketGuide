@@ -52,7 +52,7 @@ enemy = {
 example_sequence = {
     "sequence": [{
         "phase": "09",
-        "name": "phase_name"
+        "name": "phase_name",
         "alerts": [{
             "alert": "Die folgenden Angriffe haben sind entweder unbekannt oder haben keine klare Herkunft",
         }],
