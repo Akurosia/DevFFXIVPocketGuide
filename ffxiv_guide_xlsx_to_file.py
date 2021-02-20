@@ -10,6 +10,7 @@ import urllib.request
 import openpyxl
 import yaml
 import collections
+from operator import itemgetter
 
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'python_module'))
@@ -393,6 +394,8 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
     existing_attacks, remove_attack = compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack)
     # remove skill ids if they were found before
     new_enemy_data = remove_skills_from_list_if_found(remove_attack, new_enemy_data)
+
+    old_enemy_data['attacks'] = sorted(old_enemy_data['attacks'], key=itemgetter('title'))
     if not new_enemy_data.get('skill', None):
         return old_enemy_data
     # merge new keys
@@ -507,6 +510,8 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
             old_enemy_data['attacks'].append(tmp)
 
             existing_attacks[attack['name']] = 'regular'
+
+    old_enemy_data['attacks'] = sorted(old_enemy_data['attacks'], key=itemgetter('title'))
     return old_enemy_data
 
 
@@ -537,15 +542,21 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last):
     # remove skill ids if they were found before
     new_enemy_data = remove_status_from_list_if_found(remove_attack, new_enemy_data)
 
-    if not new_enemy_data.get('status', None):
-        return old_enemy_data
-
     # merge new keys
     if not old_enemy_data.get('debuffs', None):
         old_enemy_data['debuffs'] = []
+    else:
+        old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('title'))
+
+    if not new_enemy_data.get('status', None):
+        return old_enemy_data
 
     # get only status to make sorting easier
     new_enemy_data_status = new_enemy_data.get('status', {})
+    # try deleting obviouse debuffs
+    for i in ['82b', '82a', '82c', '9d4', '9d7', '95',]:
+        try: del new_enemy_data_status[i]
+        except: pass
     # sort after the name key in subdicts
     new_enemy_data_status = collections.OrderedDict(sorted(new_enemy_data_status.items(), key=lambda x: x[1]['name']))
 
@@ -567,6 +578,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last):
             'notes': [{'note': 'note'}]
         }
         old_enemy_data['debuffs'].append(tmp_status)
+    old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('title'))
     return old_enemy_data
 
 
