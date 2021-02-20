@@ -395,7 +395,8 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
     # remove skill ids if they were found before
     new_enemy_data = remove_skills_from_list_if_found(remove_attack, new_enemy_data)
 
-    old_enemy_data['attacks'] = sorted(old_enemy_data['attacks'], key=itemgetter('title'))
+    if old_enemy_data.get('attacks', None):
+        old_enemy_data['attacks'] = sorted(old_enemy_data['attacks'], key=itemgetter('title'))
     if not new_enemy_data.get('skill', None):
         return old_enemy_data
     # merge new keys
