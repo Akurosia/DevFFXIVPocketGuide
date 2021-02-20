@@ -387,6 +387,20 @@ def delete_invalid_entries(tmp_attack):
     return tmp_attack
 
 
+def sort_list_of_skills(data):
+    if data.get('attacks', None):
+        data['attacks'] = sorted(data['attacks'], key=itemgetter('title'))
+        unknown_attacks = []
+        known_attacks = []
+        for attack in data['attacks']:
+            if attack['title'].startswith("Unknown_"):
+                unknown_attacks.append(attack)
+            else:
+                known_attacks.append(attack)
+        data['attacks'] = unknown_attacks + known_attacks
+    return data
+
+
 def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
     remove_attack = []
     existing_attacks = {}
@@ -395,8 +409,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
     # remove skill ids if they were found before
     new_enemy_data = remove_skills_from_list_if_found(remove_attack, new_enemy_data)
 
-    if old_enemy_data.get('attacks', None):
-        old_enemy_data['attacks'] = sorted(old_enemy_data['attacks'], key=itemgetter('title'))
+    old_enemy_data = sort_list_of_skills(old_enemy_data)
     if not new_enemy_data.get('skill', None):
         return old_enemy_data
     # merge new keys
@@ -512,7 +525,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
 
             existing_attacks[attack['name']] = 'regular'
 
-    old_enemy_data['attacks'] = sorted(old_enemy_data['attacks'], key=itemgetter('title'))
+    old_enemy_data = sort_list_of_skills(old_enemy_data)
     return old_enemy_data
 
 
