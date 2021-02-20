@@ -9,6 +9,7 @@ import json
 import urllib.request
 import openpyxl
 import yaml
+import collections
 
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'python_module'))
@@ -543,27 +544,29 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last):
     if not old_enemy_data.get('debuffs', None):
         old_enemy_data['debuffs'] = []
 
-    for e in [new_enemy_data]:
-        if not e.get('status', None):
+    # get only status to make sorting easier
+    new_enemy_data_status = new_enemy_data.get('status', {})
+    # sort after the name key in subdicts
+    new_enemy_data_status = collections.OrderedDict(sorted(new_enemy_data_status.items(), key=lambda x: x[1]['name']))
+
+    for status_id, status_data in new_enemy_data_status.items():
+        if status_data['name'] == "":
             continue
-        for status_id, status_data in e['status'].items():
-            if status_data['name'] == "":
-                continue
-            tmp_status = {
-                'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
-                'title_id': status_id,
-                'title_en': translateAttack(status_id, _type=status),
-                'icon': status_data['icon'],
-                'description': get_fixed_status_description(status_id),
-                'debuff_in_use': 'false',
-                'disable': 'false',
-                'damage_type': status_data['damage_type'],
-                'phases': [{'phase': '09'}],
-                'roles': [{'role': 'role'}],
-                'tags': [{'tag': 'tag'}],
-                'notes': [{'note': 'note'}]
-            }
-            old_enemy_data['debuffs'].append(tmp_status)
+        tmp_status = {
+            'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
+            'title_id': status_id,
+            'title_en': translateAttack(status_id, _type=status),
+            'icon': status_data['icon'],
+            'description': get_fixed_status_description(status_id),
+            'debuff_in_use': 'false',
+            'disable': 'false',
+            'damage_type': status_data['damage_type'],
+            'phases': [{'phase': '09'}],
+            'roles': [{'role': 'role'}],
+            'tags': [{'tag': 'tag'}],
+            'notes': [{'note': 'note'}]
+        }
+        old_enemy_data['debuffs'].append(tmp_status)
     return old_enemy_data
 
 
