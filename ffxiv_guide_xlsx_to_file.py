@@ -529,7 +529,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
     return old_enemy_data
 
 
-def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last):
+def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last, saved_used_skills_to_ignore_in_last):
     remove_attack = []
     existing_debuffs = {}
 
@@ -539,6 +539,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last):
     disable_yellow_print = False
     for x in old_enemy_data.get("debuffs", []):
         if x['title_id'] not in tmp_debuff_ids:
+           saved_used_skills_to_ignore_in_last.append(x['title_id'])
            tmp_debuff_ids.append(x['title_id'])
            tmp_debuffs.append(x)
         else:
@@ -547,6 +548,10 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last):
     old_enemy_data["debuffs"] = tmp_debuffs
 
     if not last == {}:
+        # remove debuffs already manually adjusted
+        for debuff in saved_used_skills_to_ignore_in_last:
+            try: del last.get("status", {})[debuff]
+            except: pass
         # comapre all skill ids
         existing_debuffs, remove_attack = compare_status_ids(old_enemy_data, last, existing_debuffs, remove_attack)
         # remove skill ids if they were found before
@@ -563,7 +568,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last):
         old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('title'))
 
     if not new_enemy_data.get('status', None):
-        return old_enemy_data
+        return old_enemy_data, saved_used_skills_to_ignore_in_last
 
     # get only status to make sorting easier
     new_enemy_data_status = new_enemy_data.get('status', {})
@@ -593,7 +598,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last):
         }
         old_enemy_data['debuffs'].append(tmp_status)
     old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('title'))
-    return old_enemy_data
+    return old_enemy_data, saved_used_skills_to_ignore_in_last
 
 
 #####################################################################################################################################################
@@ -631,6 +636,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
         guide_data += f"{enemy_text}:\n"
 
     if _old_enemy:
+        saved_used_skills_to_ignore_in_last = []
         for i, old_enemy_data in enumerate(_old_enemy):
             if old_enemy_data['title'] == "":
                 continue
@@ -644,7 +650,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             except:
                 new_enemy_data = {}
             old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
-            old_enemy_data = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, empty_enemy_data)
+            old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, empty_enemy_data, saved_used_skills_to_ignore_in_last)
             guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type)
             try: del logdata_instance_content[old_enemy_data['title']]
             except: pass
@@ -677,7 +683,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             enemy_data = merge_attacks(tmp, new_enemy_data, enemy_type)
             enemy_data['attacks'] = sorted(enemy_data['attacks'], key=itemgetter('title'))
 
-            enemy_data = merge_debuffs(tmp, new_enemy_data, enemy_type, {})
+            enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(tmp, new_enemy_data, enemy_type, {}, [])
             enemy_data['debuffs'] = sorted(enemy_data['debuffs'], key=itemgetter('title'))
             guide_data = add_Enemy(guide_data, enemy_data, enemy_type)
 
