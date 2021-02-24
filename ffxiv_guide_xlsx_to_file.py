@@ -511,6 +511,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 'notes': [{'note': 'note'}]
             }
             if tmp['title'] == "Attacke":
+                tmp['attack_in_use'] = 'true'
                 tmp['disable'] = 'true'
                 tmp['roles'][0]['role'] = 'Tank'
                 tmp['tags'][0]['tag'] = 'Auto-Angriff'
@@ -529,16 +530,32 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
     return old_enemy_data
 
 
+def addknowndebuff(status_id, status_data):
+    tmp_status = {
+        'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
+        'title_id': status_id,
+        'title_en': translateAttack(status_id, _type=status),
+        'icon': status_data['icon'],
+        'description': get_fixed_status_description(status_id),
+        'debuff_in_use': 'true',
+        'disable': 'false',
+        'damage_type': status_data['damage_type'],
+        'phases': [{'phase': '09'}],
+        'roles': [{'role': 'Alle'}],
+        'tags': [{'tag': 'Common'}],
+    }
+    return tmp_status
+
 def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last, saved_used_skills_to_ignore_in_last):
     remove_attack = []
     existing_debuffs = {}
-    obviouse_debuffs = ['82b', '82a', '82c', '9d4', '9d7', '95',]
+    obviouse_debuffs = ['82b', '82a', '82c', '9d4', '9d7', '95', '130', '13d', '12', '38e', '828', '0e', '113', '06', '07', '01', '11', '282', 'ca', '11', '196', '1b6', '23c', '']
     # filter duplicate debuffs
     tmp_debuffs = []
     tmp_debuff_ids = []
     disable_yellow_print = False
     for x in old_enemy_data.get("debuffs", []):
-        if x['title_id'] not in tmp_debuff_ids and x['title_id'] not in obviouse_debuffs:
+        if x['title_id'] not in tmp_debuff_ids:
            saved_used_skills_to_ignore_in_last.append(x['title_id'])
            tmp_debuff_ids.append(x['title_id'])
            tmp_debuffs.append(x)
@@ -572,30 +589,30 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last, saved_used_s
 
     # get only status to make sorting easier
     new_enemy_data_status = new_enemy_data.get('status', {})
-    # try deleting obviouse debuffs
-    for i in obviouse_debuffs:
-        try: del new_enemy_data_status[i]
-        except: pass
+
     # sort after the name key in subdicts
     new_enemy_data_status = collections.OrderedDict(sorted(new_enemy_data_status.items(), key=lambda x: x[1]['name']))
 
     for status_id, status_data in new_enemy_data_status.items():
         if status_data['name'] == "":
             continue
-        tmp_status = {
-            'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
-            'title_id': status_id,
-            'title_en': translateAttack(status_id, _type=status),
-            'icon': status_data['icon'],
-            'description': get_fixed_status_description(status_id),
-            'debuff_in_use': 'false',
-            'disable': 'false',
-            'damage_type': status_data['damage_type'],
-            'phases': [{'phase': '09'}],
-            'roles': [{'role': 'role'}],
-            'tags': [{'tag': 'tag'}],
-            'notes': [{'note': 'note'}]
-        }
+        if status_id in obviouse_debuffs:
+            tmp_status = addknowndebuff(status_id, status_data)
+        else:
+            tmp_status = {
+                'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
+                'title_id': status_id,
+                'title_en': translateAttack(status_id, _type=status),
+                'icon': status_data['icon'],
+                'description': get_fixed_status_description(status_id),
+                'debuff_in_use': 'false',
+                'disable': 'false',
+                'damage_type': status_data['damage_type'],
+                'phases': [{'phase': '09'}],
+                'roles': [{'role': 'role'}],
+                'tags': [{'tag': 'tag'}],
+                'notes': [{'note': 'note'}]
+            }
         old_enemy_data['debuffs'].append(tmp_status)
     old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('title'))
     return old_enemy_data, saved_used_skills_to_ignore_in_last
