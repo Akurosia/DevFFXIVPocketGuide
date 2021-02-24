@@ -7,11 +7,13 @@
     <!-- Duty Bosses ======================================================= -->
     {% if page.bosses %}
         {% assign enemies = page.bosses %}
+        {% assign x = "Bosse" %}
         {% include guide_enemy.html %}
     {% endif %}
     <!-- Duty Adds ======================================================= -->
     {% if page.adds %}
         {% assign enemies = page.adds %}
+        {% assign x = "Adds" %}
         {% include guide_enemy.html %}
     {% endif %}
 </div>

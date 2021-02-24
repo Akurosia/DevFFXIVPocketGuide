@@ -1,19 +1,19 @@
 <!-- Guide Adds ========================================================== -->
 <div class="guide__accordion">
-    <div class="guide__accordion-trigger--01 active" id="guideAdds">
+    <div class="guide__accordion-trigger--01 active" id="guide{{ x }}">
         <i class="material-icons">expand_more</i>
         <h2 class="guide__accordion-trigger-title">
             {% if enemies.size > 1 %}
-                {% if page.instanceType == "allianzraid" %}Allianzraid Adds{% endif %}
-                {% if page.instanceType == "bluemage" %}Bluemage Adds{% endif %}
-                {% if page.instanceType == "dungeon" %}Dungeon Adds{% endif %}
-                {% if page.instanceType == "feldexkursion" %}Feldexkursion Adds{% endif %}
-                {% if page.instanceType == "guildhest" %}Gildengeheiß Adds{% endif %}
-                {% if page.instanceType == "potd" %}Deep Dungeon Adds{% endif %}
-                {% if page.instanceType == "pvp" %}PvP Adds{% endif %}
-                {% if page.instanceType == "raid" %}Raid Adds{% endif %}
-                {% if page.instanceType == "treasure" %}Schatzdungeon Adds{% endif %}
-                {% if page.instanceType == "trial" %}Prüfung Adds{% endif %}
+                {% if page.instanceType == "allianzraid" %}Allianzraid {{ x }} {% endif %}
+                {% if page.instanceType == "bluemage" %}Bluemage {{ x }} {% endif %}
+                {% if page.instanceType == "dungeon" %}Dungeon {{ x }} {% endif %}
+                {% if page.instanceType == "feldexkursion" %}Feldexkursion {{ x }} {% endif %}
+                {% if page.instanceType == "guildhest" %}Gildengeheiß {{ x }} {% endif %}
+                {% if page.instanceType == "potd" %}Deep Dungeon {{ x }} {% endif %}
+                {% if page.instanceType == "pvp" %}PvP {{ x }} {% endif %}
+                {% if page.instanceType == "raid" %}Raid {{ x }} {% endif %}
+                {% if page.instanceType == "treasure" %}Schatzdungeon {{ x }} {% endif %}
+                {% if page.instanceType == "trial" %}Prüfung {{ x }} {% endif %}
             {% else %}
                 {{ enemies[0].title }}
             {% endif %}
@@ -30,7 +30,7 @@
         {% for enemy in enemies %}
             {% if enemies.size > 1 %}
                 <!-- <div class="guide__accordion-trigger--02" id="{{ enemy.id }}"> -->
-                <div class="guide__accordion-trigger--02" id="{{ enemy.title | slugify }}">
+                <div class="guide__accordion-trigger--02" id="{{ enemy.id | slugify }}">
                     <i class="material-icons">expand_more</i>
                     <h3 class="guide__accordion-trigger-title">
                         {{ enemy.title }}

@@ -297,7 +297,7 @@ def read_xlsx_file():
     return sheet, max_row, max_column
 
 
-def get_data_from_xlsx(sheet, max_column):
+def get_data_from_xlsx(sheet, max_column, i):
     entry = {}
     # for every column in row add all elements into a dict:
     # max_column will ignore last column due to how range is working
@@ -636,6 +636,19 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
         guide_data += f"{enemy_text}:\n"
 
     if _old_enemy:
+        # sort old enemies
+        final_old_enemy = []
+
+        # do this only for bosses
+        if _entry.get(enemy_type, None) and enemy_type == "bosse":
+            for enemy in _entry[enemy_type]:
+                for old_enemy_data in _old_enemy:
+                    if old_enemy_data['title'].lower() == enemy.lower():
+                        final_old_enemy.append(old_enemy_data)
+        # if you created a new order, apply it
+        if not final_old_enemy == []:
+            _old_enemy = final_old_enemy
+
         saved_used_skills_to_ignore_in_last = []
         for i, old_enemy_data in enumerate(_old_enemy):
             if old_enemy_data['title'] == "":
@@ -655,10 +668,12 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             try: del logdata_instance_content[old_enemy_data['title']]
             except: pass
             #print_color_red(new_enemy_data)
+
     if logdata_instance_content != {}:
         counter = 0
         if logdata_instance_content is None:
             return guide_data
+
         for enemy in logdata_instance_content:
             if enemy == "":
                 continue
@@ -1214,17 +1229,14 @@ def add_Sequence(guide_data, data):
     return guide_data
 
 
-if __name__ == "__main__":
-    sheet, max_row, max_column = read_xlsx_file()
-    # change into _posts dir
-    os.chdir("./_posts")
+def run(sheet, max_row, max_column):
     # for every row do:
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             #if i not in  [328]:
             #    continue
-            entry = get_data_from_xlsx(sheet, max_column)
+            entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
                 print("END FLAG WAS FOUND!")
@@ -1248,3 +1260,12 @@ if __name__ == "__main__":
             print_color_red(f"Error when handeling '{filename}'")
             traceback.print_exception(*sys.exc_info())
 
+
+if __name__ == "__main__":
+    sheet, max_row, max_column = read_xlsx_file()
+    # change into _posts dir
+    os.chdir("./_posts")
+    # first run to create all files
+    run(sheet, max_row, max_column)
+    # second run to fix boss order
+    run(sheet, max_row, max_column)

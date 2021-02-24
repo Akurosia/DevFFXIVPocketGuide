@@ -32,7 +32,30 @@
         {% endif %}
         {% if page.bosses.size > 1 %}
             <li>
-                <a href="#" data-id="guideBosses" title="Go to the Guide Bosse" class="guide-metadata__menu-link">
+                <a href="#" data-id="guideBosse" title="Go to the Guide Bosse" class="guide-metadata__menu-link">
+                    {% if page.instanceType == "allianzraid" %}Allianzraid Bosse{% endif %}
+                    {% if page.instanceType == "bluemage" %}Bluemage Bosse{% endif %}
+                    {% if page.instanceType == "dungeon" %}Dungeon Bosse{% endif %}
+                    {% if page.instanceType == "feldexkursion" %}Feldexkursion Bosse{% endif %}
+                    {% if page.instanceType == "guildhest" %}Gildengeheiß Bosse{% endif %}
+                    {% if page.instanceType == "potd" %}Deep Dungeon Bosse{% endif %}
+                    {% if page.instanceType == "pvp" %}PvP Bosse{% endif %}
+                    {% if page.instanceType == "raid" %}Raid Bosse{% endif %}
+                    {% if page.instanceType == "treasure" %}Schatzdungeon Bosse{% endif %}
+                    {% if page.instanceType == "trial" %}Prüfung Bosse{% endif %}
+                </a>
+                <ul class="guide-metadata__submenu">
+                    {% for boss in page.bosses %}
+                        <li>
+                            <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title }}" class="guide-metadata__menu-link">{{ boss.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endif %}
+        {% if page.adds.size > 1 %}
+            <li>
+                <a href="#" data-id="guideAdds" title="Go to the Guide Adds" class="guide-metadata__menu-link">
                     {% if page.instanceType == "allianzraid" %}Allianzraid Adds{% endif %}
                     {% if page.instanceType == "bluemage" %}Bluemage Adds{% endif %}
                     {% if page.instanceType == "dungeon" %}Dungeon Adds{% endif %}
@@ -45,21 +68,9 @@
                     {% if page.instanceType == "trial" %}Prüfung Adds{% endif %}
                 </a>
                 <ul class="guide-metadata__submenu">
-                    {% for boss in page.bosses %}
+                    {% for add in page.adds %}
                         <li>
-                            <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title }}" class="guide-metadata__menu-link">{{ boss.title }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </li>
-        {% endif %}
-        {% if page.sequence %}
-            <li>
-                <a href="#" data-id="guideSummary" title="Go to the Guide Summary" class="guide-metadata__menu-link">Fight Summary</a>
-                <ul class="guide-metadata__submenu">
-                    {% for phase in page.sequence %}
-                        <li>
-                            <a href="#" data-id="phase{{ phase.phase }}" title="Go to {{ phase.phase }}" class="guide-metadata__menu-link">Phase: {{ phase.phase }}</a>
+                            <a href="#" data-id="{{ add.id }}" title="Go to {{ add.title }}" class="guide-metadata__menu-link">{{ add.title }}</a>
                         </li>
                     {% endfor %}
                 </ul>
