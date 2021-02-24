@@ -532,13 +532,13 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
 def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last, saved_used_skills_to_ignore_in_last):
     remove_attack = []
     existing_debuffs = {}
-
+    obviouse_debuffs = ['82b', '82a', '82c', '9d4', '9d7', '95',]
     # filter duplicate debuffs
     tmp_debuffs = []
     tmp_debuff_ids = []
     disable_yellow_print = False
     for x in old_enemy_data.get("debuffs", []):
-        if x['title_id'] not in tmp_debuff_ids:
+        if x['title_id'] not in tmp_debuff_ids and x['title_id'] not in obviouse_debuffs:
            saved_used_skills_to_ignore_in_last.append(x['title_id'])
            tmp_debuff_ids.append(x['title_id'])
            tmp_debuffs.append(x)
@@ -573,7 +573,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last, saved_used_s
     # get only status to make sorting easier
     new_enemy_data_status = new_enemy_data.get('status', {})
     # try deleting obviouse debuffs
-    for i in ['82b', '82a', '82c', '9d4', '9d7', '95',]:
+    for i in obviouse_debuffs:
         try: del new_enemy_data_status[i]
         except: pass
     # sort after the name key in subdicts
@@ -1222,7 +1222,7 @@ if __name__ == "__main__":
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [264]:
+            #if i not in  [328]:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column)
             # if the done collumn is not prefilled
