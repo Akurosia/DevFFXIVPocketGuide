@@ -549,13 +549,14 @@ def addknowndebuff(status_id, status_data):
 def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last, saved_used_skills_to_ignore_in_last):
     remove_attack = []
     existing_debuffs = {}
-    obviouse_debuffs = ['82b', '82a', '82c', '9d4', '9d7', '95', '130', '13d', '12', '38e', '828', '0e', '113', '06', '07', '01', '11', '282', 'ca', '11', '196', '1b6', '23c', '']
+    ignore_debuffs = ['130', '13d']
+    obviouse_debuffs = ['82b', '82a', '82c', '9d4', '9d7', '95', '12', '38e', '828', '0e', '113', '06', '07', '01', '11', '282', 'ca', '11', '196', '1b6', '23c', '']
     # filter duplicate debuffs
     tmp_debuffs = []
     tmp_debuff_ids = []
     disable_yellow_print = False
     for x in old_enemy_data.get("debuffs", []):
-        if x['title_id'] not in tmp_debuff_ids:
+        if x['title_id'] not in tmp_debuff_ids and x['title_id'] not in ignore_debuffs:
            saved_used_skills_to_ignore_in_last.append(x['title_id'])
            tmp_debuff_ids.append(x['title_id'])
            tmp_debuffs.append(x)
