@@ -330,7 +330,7 @@ def cleanup_logdata(logdata_instance_content):
 
 def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack):
     for attack_id in new_enemy_data.get('skill', {}):
-        for attack in old_enemy_data['attacks']:
+        for attack in old_enemy_data.get('attacks', []):
             existing_attacks[attack['title']] = attack['type']
             if attack_id == attack.get('title_id', None):
                 remove_attack.append(attack_id)
@@ -522,6 +522,8 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
 
             if enemy_type == "adds" and tmp.get("notes", None):
                 del tmp['notes']
+            if old_enemy_data.get('attacks', []) == []:
+                old_enemy_data['attacks'] = []
             old_enemy_data['attacks'].append(tmp)
 
             existing_attacks[attack['name']] = 'regular'
@@ -546,7 +548,8 @@ def addknowndebuff(status_id, status_data):
     }
     return tmp_status
 
-def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last, saved_used_skills_to_ignore_in_last):
+
+def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last):
     remove_attack = []
     existing_debuffs = {}
     ignore_debuffs = ['130', '13d']
@@ -565,15 +568,15 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, last, saved_used_s
     disable_yellow_print = True
     old_enemy_data["debuffs"] = tmp_debuffs
 
-    if not last == {}:
+    if not new_enemy_data.get('title', "") == 'Unbekannte Herkunft':
         # remove debuffs already manually adjusted
         for debuff in saved_used_skills_to_ignore_in_last:
-            try: del last.get("status", {})[debuff]
+            try: del new_enemy_data.get("status", {})[debuff]
             except: pass
         # comapre all skill ids
-        existing_debuffs, remove_attack = compare_status_ids(old_enemy_data, last, existing_debuffs, remove_attack)
+        existing_debuffs, remove_attack = compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_attack)
         # remove skill ids if they were found before
-        new_enemy_data = remove_status_from_list_if_found(remove_attack, last)
+        new_enemy_data = remove_status_from_list_if_found(remove_attack, new_enemy_data)
     # comapre all skill ids
     existing_debuffs, remove_attack = compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_attack)
     # remove skill ids if they were found before
@@ -680,12 +683,22 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
                     empty_enemy_data = logdata_instance_content['']
             except:
                 new_enemy_data = {}
+
             old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
-            old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, empty_enemy_data, saved_used_skills_to_ignore_in_last)
+            old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
             guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type)
             try: del logdata_instance_content[old_enemy_data['title']]
             except: pass
-            #print_color_red(new_enemy_data)
+
+            # handle enemy if name is ""
+            if not empty_enemy_data == {}:
+                base_data =      {'title': 'Unbekannte Herkunft','title_en': 'Unknown Source','id': f"boss0{i+1}","sequence": [{"phase": "09"}], 'debuffs': []}
+                old_enemy_data = {'title': 'Unbekannte Herkunft','title_en': 'Unknown Source','id': f"boss0{i+1}","sequence": [{"phase": "09"}], 'debuffs': []}
+                old_enemy_data = merge_attacks(old_enemy_data, empty_enemy_data, enemy_type)
+                old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, empty_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
+
+                if not old_enemy_data == base_data:
+                    guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type)
 
     if logdata_instance_content != {}:
         counter = 0
@@ -716,7 +729,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             enemy_data = merge_attacks(tmp, new_enemy_data, enemy_type)
             enemy_data['attacks'] = sorted(enemy_data['attacks'], key=itemgetter('title'))
 
-            enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(tmp, new_enemy_data, enemy_type, {}, [])
+            enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(tmp, new_enemy_data, enemy_type, [])
             enemy_data['debuffs'] = sorted(enemy_data['debuffs'], key=itemgetter('title'))
             guide_data = add_Enemy(guide_data, enemy_data, enemy_type)
 
@@ -1252,7 +1265,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [328]:
+            #if i not in  [264]:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
