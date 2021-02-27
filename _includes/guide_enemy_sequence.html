@@ -1,67 +1,72 @@
 <!-- Opens the Sequence Loop -->
 {% for phase in enemy.sequence %}
-    <div class="guide__accordion-copy-wrapper" id="phase{{ phase.phase }}">
-        <!-- Phase Title -->
+    <div class="guide__accordion-trigger--03" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
+        <i class="material-icons">expand_more</i>
         {% if phase.name %}
-            <h1 class="guide__accordion-title">{{ phase.name }} - Phase {{ phase.phase }}</h4>
+            <h3 class="guide__accordion-trigger-title">{{ phase.phase }}. {{ phase.name }}</h3>
         {% else %}
-            <h1 class="guide__accordion-title">Phase {{ phase.phase }}</h4>
-        {% endif %}
-        <!-- Opens the Alerts Loop -->
-        {% if phase.alerts %}
-            <!-- Event Title -->
-            <h4 class="guide__accordion-title">Alerts</h4>
-            <!-- Include Guide Alerts -->
-            {% include _components/guide-alerts.html %}
-        {% endif %}
-        <!-- Opens the toolbox Loops -->
-        {% if phase.toolbox %}
-            <!-- Include Guide toolbox -->
-            {% include _components/guide-toolbox.html %}
-        {% endif %}
-        <!-- Opens the Mechanics Loops -->
-        {% if phase.mechanics %}
-            <!-- Include Guide Mechanics -->
-            {% include _components/guide-mechanics.html %}
-        {% endif %}
-        <!-- Opens the Attack Loop -->
-        {% if phase.attacks %}
-            <!-- Include Guide Skill Script -->
-            {% include _components/guide-script.html %}
-        {% endif %}
-        <!-- Opens the Image Loop -->
-        {% if phase.images %}
-            <!-- Include Guide Image Script -->
-            {% include _components/guide-images-wrapper.html %}
-        {% endif %}
-        <!-- Opens the Video Loop -->
-        {% if phase.videos %}
-            <!-- Include Guide video Script -->
-            {% include _components/guide-videos-wrapper.html %}
+            <h3 class="guide__accordion-trigger-title">Phase {{ phase.phase }}</h3>
         {% endif %}
     </div>
-    <!-- Determines the current phase. -->
-    {% assign currentPhase = phase.phase %}
-    <!-- Enters the enemy attack loop. -->
-    {% for attack in enemy.attacks %}
-        <!-- Enters the attack's phases. -->
-        {% for attackPhase in attack.phases %}
-            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {% if attackPhase.phase == currentPhase %}
-                <!-- Include Attack Template -->
-                {% include _components/guide-attack.html %}
+    <div class="guide__accordion-content--03">
+        <div class="guide__accordion-copy-wrapper" id="phase{{ phase.phase }}">
+            <!-- Phase Title -->
+            <!-- Opens the Alerts Loop -->
+            {% if phase.alerts %}
+                <!-- Event Title -->
+                <h4 class="guide__accordion-title">Alerts</h4>
+                <!-- Include Guide Alerts -->
+                {% include _components/guide-alerts.html %}
             {% endif %}
-        {% endfor %}
-    {% endfor %}
-    <!-- Enters the enemy debuff loop. -->
-    {% for debuff in enemy.debuffs %}
-        <!-- Enters the attack's phases. -->
-        {% for debuffPhase in debuff.phases %}
-            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {% if debuffPhase.phase == currentPhase %}
-                <!-- Include Attack Template -->
-                {% include _components/guide-debuff.html %}
+            <!-- Opens the toolbox Loops -->
+            {% if phase.toolbox %}
+                <!-- Include Guide toolbox -->
+                {% include _components/guide-toolbox.html %}
             {% endif %}
+            <!-- Opens the Mechanics Loops -->
+            {% if phase.mechanics %}
+                <!-- Include Guide Mechanics -->
+                {% include _components/guide-mechanics.html %}
+            {% endif %}
+            <!-- Opens the Attack Loop -->
+            {% if phase.attacks %}
+                <!-- Include Guide Skill Script -->
+                {% include _components/guide-script.html %}
+            {% endif %}
+            <!-- Opens the Image Loop -->
+            {% if phase.images %}
+                <!-- Include Guide Image Script -->
+                {% include _components/guide-images-wrapper.html %}
+            {% endif %}
+            <!-- Opens the Video Loop -->
+            {% if phase.videos %}
+                <!-- Include Guide video Script -->
+                {% include _components/guide-videos-wrapper.html %}
+            {% endif %}
+        </div>
+        <!-- Determines the current phase. -->
+        {% assign currentPhase = phase.phase %}
+        <!-- Enters the enemy attack loop. -->
+        {% for attack in enemy.attacks %}
+            <!-- Enters the attack's phases. -->
+            {% for attackPhase in attack.phases %}
+                <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+                {% if attackPhase.phase == currentPhase %}
+                    <!-- Include Attack Template -->
+                    {% include _components/guide-attack.html %}
+                {% endif %}
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+        <!-- Enters the enemy debuff loop. -->
+        {% for debuff in enemy.debuffs %}
+            <!-- Enters the attack's phases. -->
+            {% for debuffPhase in debuff.phases %}
+                <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+                {% if debuffPhase.phase == currentPhase %}
+                    <!-- Include Attack Template -->
+                    {% include _components/guide-debuff.html %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
 {% endfor %}
