@@ -1,15 +1,26 @@
 <!-- Opens the Sequence Loop -->
 {% for phase in enemy.sequence %}
-    <div class="guide__accordion-trigger--03" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
-        <i class="material-icons">expand_more</i>
-        {% if phase.name %}
-            <h3 class="guide__accordion-trigger-title">{{ phase.phase }}. {{ phase.name }}</h3>
-        {% else %}
-            <h3 class="guide__accordion-trigger-title">Phase {{ phase.phase }}</h3>
-        {% endif %}
-    </div>
-    <div class="guide__accordion-content--03">
+
+    {% if phase.size > 1 %}
+        <div class="guide__accordion-trigger--03" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
+            <i class="material-icons">expand_more</i>
+            {% if phase.name %}
+                <h3 class="guide__accordion-trigger-title">{{ phase.phase }}. {{ phase.name }}</h3>
+            {% else %}
+                <h3 class="guide__accordion-trigger-title">Phase {{ phase.phase }}</h3>
+            {% endif %}
+        </div>
+        <div class="guide__accordion-content--03">
+    {% endif %}
+
         <div class="guide__accordion-copy-wrapper" id="phase{{ phase.phase }}">
+            {% if phase.size == 1 %}
+                {% if phase.name %}
+                    <h1 class="guide__accordion-title">{{ phase.name }} - Phase {{ phase.phase }}</h1>
+                {% else %}
+                    <h1 class="guide__accordion-title">Phase {{ phase.phase }}</h4>
+                {% endif %}
+            {% endif %}
             <!-- Phase Title -->
             <!-- Opens the Alerts Loop -->
             {% if phase.alerts %}
@@ -68,5 +79,8 @@
                 {% endif %}
             {% endfor %}
         {% endfor %}
-    </div>
+
+    {% if phase.size > 1 %}
+        </div>
+    {% endif %}
 {% endfor %}
