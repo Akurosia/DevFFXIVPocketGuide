@@ -1,7 +1,7 @@
 <!-- Opens the Sequence Loop -->
 {% for phase in enemy.sequence %}
 
-    {% if phase.size > 1 %}
+    {% if enemy.sequence.size > 1 %}
         <div class="guide__accordion-trigger--03" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
             <i class="material-icons">expand_more</i>
             {% if phase.name %}
@@ -12,9 +12,8 @@
         </div>
         <div class="guide__accordion-content--03">
     {% endif %}
-
         <div class="guide__accordion-copy-wrapper" id="phase{{ phase.phase }}">
-            {% if phase.size == 1 %}
+            {% if enemy.sequence.size == 1 %}
                 {% if phase.name %}
                     <h1 class="guide__accordion-title">{{ phase.name }} - Phase {{ phase.phase }}</h1>
                 {% else %}
@@ -80,7 +79,7 @@
             {% endfor %}
         {% endfor %}
 
-    {% if phase.size > 1 %}
+    {% if enemy.sequence.size > 1 %}
         </div>
     {% endif %}
 {% endfor %}
