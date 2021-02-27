@@ -14,6 +14,11 @@
             <!-- Include Guide Alerts -->
             {% include _components/guide-alerts.html %}
         {% endif %}
+        <!-- Opens the toolbox Loops -->
+        {% if phase.toolbox %}
+            <!-- Include Guide toolbox -->
+            {% include _components/guide-toolbox.html %}
+        {% endif %}
         <!-- Opens the Mechanics Loops -->
         {% if phase.mechanics %}
             <!-- Include Guide Mechanics -->

@@ -1232,6 +1232,12 @@ def add_Sequence(guide_data, data):
             for alert in phase['alerts']:
                 guide_data +=  f"          - alert: \"{alert['alert']}\"\n"
 
+        if phase.get('toolbox', None):
+            guide_data +=  "        toolbox:\n"
+            for toolbox in phase['toolbox']:
+                guide_data +=  f"          - link: \"{toolbox['link']}\"\n"
+                guide_data +=  f"            name: \"{toolbox['name']}\"\n"
+
         if phase.get('mechanics', None):
             guide_data +=  "        mechanics:\n"
             for mechanic in phase['mechanics']:

@@ -1,0 +1,6 @@
+<!-- Event Mechanics -->
+<div class="guide__mechanics-wrapper">
+    {% for toolbox in phase.toolbox %}
+        <a class="guide__mechanics-title" target="_blank" href="{{ toolbox.link }}" alt="{{ toolbox.name }}">Toolbox: {{ toolbox.name }}</a>
+    {% endfor %}
+</div>
