@@ -284,8 +284,8 @@ def get_old_content_if_file_is_found(_existing_filename):
         with open(_existing_filename, encoding="utf8") as f:
             docs = yaml.load_all(f, Loader=Loader)
             for doc in docs:
-                return doc.get("bosses", None), doc.get("adds", None), doc.get("mechanics", None), True
-    return None, None, None, False
+                return doc.get("bosses", None), doc.get("adds", None), doc.get("mechanics", None), doc.get("wip", None), True
+    return None, None, None, None, False
 
 
 def read_xlsx_file():
@@ -759,11 +759,11 @@ def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
     return guide_data
 
 
-def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechanics, index):
+def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechanics, old_wip, index):
     seperate_data_into_array("bosse", _entry)
     seperate_data_into_array("adds", _entry)
     seperate_data_into_array("tags", _entry)
-    header_data = rewrite_content_even_if_exists(_entry, index)
+    header_data = rewrite_content_even_if_exists(_entry, old_wip, index)
     guide_data = addGuide(_entry, _old_bosses, _old_adds, _old_mechanics)
     #print_color_blue(guide_data, disable_blue_print)
 
@@ -775,12 +775,16 @@ def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechan
         fi.write('\n')
 
 
-def rewrite_content_even_if_exists(_entry, index):
+def rewrite_content_even_if_exists(_entry, old_wip, index):
     header_data = ""
     tt_type_name = get_territorytype_from_mapid(_entry["mapid"])
     _entry["title_de"] = getContentName(_entry["title"], "de", _entry["difficulty"], _entry["instanceType"])
     _entry["title_en"] = getContentName(_entry["title"], "en", _entry["difficulty"], _entry["instanceType"])
 
+    if old_wip in ["True", "False"]:
+        header_data += 'wip: "' + str(old_wip).title() + '"\n'
+    else:
+        header_data += 'wip: "True"\n'
     header_data += 'title: "' + _entry["title"] + '"\n'
     header_data += 'title_de: "' + _entry["title_de"] + '"\n'
     header_data += 'title_en: "' + _entry["title_en"] + '"\n'
@@ -892,12 +896,15 @@ def rewrite_content_even_if_exists(_entry, index):
     # links:
     if checkVariable(_entry,"teamcraftlink") or checkVariable(_entry,"garlandtoolslink") or checkVariable(_entry,"gamerescapelink"):
         header_data += 'links:\n'
+        first = "-"
         if checkVariable(_entry,"teamcraftlink"):
-            header_data += '    - teamcraftlink: "' + _entry["teamcraftlink"] + '"\n'
+            header_data += f'    {first} teamcraftlink: "' + _entry["teamcraftlink"] + '"\n'
+            first = " "
         if checkVariable(_entry,"garlandtoolslink"):
-            header_data += '      garlandtoolslink: "' + _entry["garlandtoolslink"] + '"\n'
+            header_data += f'    {first} garlandtoolslink: "' + _entry["garlandtoolslink"] + '"\n'
+            first = " "
         if checkVariable(_entry,"gamerescapelink"):
-            header_data += '      gamerescapelink: "' + _entry["gamerescapelink"] + '"\n'
+            header_data += f'    {first} gamerescapelink: "' + _entry["gamerescapelink"] + '"\n'
     # videos
     if checkVariable(_entry,"mtqvid1"):
         header_data += 'mtq_vid1: "' + get_video_url(_entry["mtqvid1"]) + '"\n'
@@ -1286,13 +1293,13 @@ def run(sheet, max_row, max_column):
                 entry["title"] = entry["title"]
                 filename = f"{entry['categories']}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 existing_filename = f"{entry['categories']}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
-                old_bosses, old_adds, old_mechanics, replace_existing_file = get_old_content_if_file_is_found(existing_filename)
+                old_bosses, old_adds, old_mechanics, old_wip, replace_existing_file = get_old_content_if_file_is_found(existing_filename)
                 # if old file was found, replace filename to save
                 if replace_existing_file:
                     filename = existing_filename
 
                 try_to_create_file(filename)
-                write_content_to_file(entry, filename, old_bosses, old_adds, old_mechanics, i)
+                write_content_to_file(entry, filename, old_bosses, old_adds, old_mechanics, old_wip, i)
         except Exception as e:
             print_color_red(f"Error when handeling '{filename}'")
             traceback.print_exception(*sys.exc_info())
