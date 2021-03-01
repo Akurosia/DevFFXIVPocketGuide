@@ -1,5 +1,10 @@
 <!-- Guide Content ========================================================= -->
 <div class="guide-content">
+    {% if page.wip %}
+        <div class="guide__content__wip" id="wip">
+            <h2 class="guide__accordion-trigger-title guide__content__wip__title">WORK IN PROGRESS !!!</h2>
+        </div>
+    {% endif %}
     <!-- Duty Notes ======================================================== -->
     {% if page.mechanics %}
         {% include guide-notes.html %}

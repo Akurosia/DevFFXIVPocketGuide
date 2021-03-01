@@ -1879,6 +1879,14 @@ body {
     font-size: 1rem;
 }
 
+.guide__content__wip {
+    padding: 20px;
+    background-color: brown;
+}
+
+.guide__content__wip__title {
+    justify-content: center;
+}
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";
