@@ -1347,6 +1347,19 @@ html {
     }
   }
 
+  &[class*="04"] {
+    border-bottom: 1px solid red;
+    background: #323232;
+    padding: 0.5rem 0.5rem 0.5rem 4.5rem;
+    position: relative;
+    border-radius: 10px;
+    margin-bottom: -1rem;
+
+    i {
+      left: 1.5rem;
+    }
+  }
+
   &.active i {
     color: #ff575c;
     transform: translateY(-50%) rotate(180deg);
@@ -1478,6 +1491,14 @@ div {
   &[class*="03"] .guide__accordion-copy-wrapper {
     padding: 1.5rem;
   }
+
+  &[class*="04"] {
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    background: grey;
+    border-radius: 10px;
+    border-color: red;
+    border-style: groove;
+  }
 }
 
 .guide__accordion-copy-wrapper {
@@ -1536,7 +1557,6 @@ h5.guide__accordion-title {
 }
 
 .guide__mechanics-title {
-  color: $palette-aku-greyText;
   font-family: Open Sans,sans-serif;
   font-size: 1rem;
   font-weight: 800;
@@ -1593,7 +1613,7 @@ h5.guide__accordion-title {
 }
 
 .guide__script-attack {
-  color: red;
+  color: white;
   font-family: Open Sans,sans-serif;
   font-size: 1rem;
   font-weight: 700;
@@ -1877,6 +1897,13 @@ body {
     color: white;
     font-family: PT Serif,serif;
     font-size: 1rem;
+}
+
+.guide__toolbox-title {
+    color: blue;
+    font-family: Open Sans,sans-serif;
+    font-weight: 800;
+    margin: 0;
 }
 
 .guide__content__wip {

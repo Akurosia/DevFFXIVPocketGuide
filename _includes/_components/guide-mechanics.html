@@ -1,13 +1,20 @@
 <!-- Event Mechanics -->
 <div class="guide__mechanics-wrapper">
-    {% for mechanic in phase.mechanics %}
-        <!-- Mechanic Title -->
-        <h5 class="guide__mechanics-title">{{ mechanic.title }}</h5>
-        <!-- Mechanics List -->
-        <ul class="guide__mechanics-list">
-            {% for note in mechanic.notes %}
-                <li class="guide__mechanics-item">{{ note.note }}</li>
+        <div class="guide__accordion-trigger--04" id="{{ enemy.id | slugify }}-{{ phase.phase }}Mechanic">
+            <i class="material-icons">expand_more</i>
+            <h3 class="guide__accordion-trigger-title">Mechanics</h3>
+        </div>
+        <div class="guide__accordion-content--04">
+            {% for mechanic in phase.mechanics %}
+                <hr/>
+                <!-- Mechanic Title -->
+                <h5 class="guide__mechanics-title">{{ mechanic.title }}</h5>
+                <!-- Mechanics List -->
+                <ul class="guide__mechanics-list">
+                    {% for note in mechanic.notes %}
+                        <li class="guide__mechanics-item">{{ note.note }}</li>
+                    {% endfor %}
+                </ul>
             {% endfor %}
-        </ul>
-    {% endfor %}
+    </div>
 </div>

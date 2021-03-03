@@ -1,9 +1,16 @@
 <!-- Event Alerts -->
 <div class="guide__alerts-wrapper">
-    <!-- Alert List -->
-    <ul class="guide__alerts-list">
-        {% for alert in phase.alerts %}
-            <li class="guide__alerts-item">{{ alert.alert }}</li>
-        {% endfor %}
-    </ul>
+    <div class="guide__accordion-trigger--04" id="{{ enemy.id | slugify }}-{{ phase.phase }}Alerts">
+        <i class="material-icons">expand_more</i>
+        <h3 class="guide__accordion-trigger-title">Alerts</h3>
+    </div>
+    <div class="guide__accordion-content--04">
+        <hr/>
+        <!-- Alert List -->
+        <ul class="guide__alerts-list">
+            {% for alert in phase.alerts %}
+                <li class="guide__alerts-item">{{ alert.alert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
