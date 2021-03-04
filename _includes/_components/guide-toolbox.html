@@ -1,5 +1,5 @@
 <!-- Event Mechanics -->
-<div class="guide__mechanics-wrapper">
+<div class="guide__toolbox-wrapper">
     <div class="guide__accordion-trigger--04" id="{{ enemy.id | slugify }}-{{ phase.phase }}Toolbox">
         <i class="material-icons">expand_more</i>
         <h3 class="guide__accordion-trigger-title">Toolbox</h3>
@@ -8,6 +8,9 @@
         <hr/>
         {% for toolbox in phase.toolbox %}
             <a class="guide__toolbox-title" target="_blank" href="{{ toolbox.link }}" alt="{{ toolbox.name }}">{{ toolbox.name }}</a>
+            {% unless forloop.last %}
+                <br/>
+            {% endunless %}
         {% endfor %}
     </div>
 </div>
