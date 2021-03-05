@@ -612,12 +612,13 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
                 'debuff_in_use': 'false',
                 'disable': 'false',
                 'damage_type': status_data['damage_type'],
-                #'durations': status_data['duration'],
                 'phases': [{'phase': '09'}],
                 'roles': [{'role': 'role'}],
                 'tags': [{'tag': 'tag'}],
                 'notes': [{'note': 'note'}]
             }
+            if status_data.get('duration', None):
+                tmp_status["durations"] = status_data['duration']
         old_enemy_data['debuffs'].append(tmp_status)
     old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('title'))
     return old_enemy_data, saved_used_skills_to_ignore_in_last
@@ -685,6 +686,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             except:
                 new_enemy_data = {}
 
+            # get enemy attacks and debuffs for all enemies with a name
             old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
             old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
             guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type)
@@ -1032,43 +1034,45 @@ def add_Enemy(guide_data, enemy_data, enemy_type):
     return guide_data
 
 
-def add_Debuff(guide_data, attack, enemy_type):
-    guide_data += f'      - title: "{attack["title"]}"\n'
-    guide_data += f'        title_id: "{attack["title_id"]}"\n'
-    if attack.get("title_en", None):
-        guide_data += f'        title_en: "{attack["title_en"]}"\n'
-    guide_data += f'        icon: "{attack["icon"]}"\n'
-    guide_data += f'        description: "{attack["description"]}"\n'
-    guide_data += f'        debuff_in_use: "{attack["debuff_in_use"] or "false"}"\n'
-    guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
-    guide_data += f'        damage_type: "{attack["damage_type"] or "None"}"\n'
+def add_Debuff(guide_data, debuff, enemy_type):
+    guide_data += f'      - title: "{debuff["title"]}"\n'
+    guide_data += f'        title_id: "{debuff["title_id"]}"\n'
+    if debuff.get("title_en", None):
+        guide_data += f'        title_en: "{debuff["title_en"]}"\n'
+    guide_data += f'        icon: "{debuff["icon"]}"\n'
+    guide_data += f'        description: "{debuff["description"]}"\n'
+    if debuff.get("durations", None):
+        guide_data += f'        durations: {debuff["durations"]}\n'
+    guide_data += f'        debuff_in_use: "{debuff["debuff_in_use"] or "false"}"\n'
+    guide_data += f'        disable: "{debuff["disable"] or "false"}"\n'
+    guide_data += f'        damage_type: "{debuff["damage_type"] or "None"}"\n'
 
-    if attack.get('phases', None):
+    if debuff.get('phases', None):
         guide_data += f'        phases:\n'
-        for phase in attack.get('phases', {}):
+        for phase in debuff.get('phases', {}):
             guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
 
-    if attack["title"].startswith("Unknown_"):
+    if debuff["title"].startswith("Unknown_"):
         return guide_data
 
-    if attack.get('roles', None):
+    if debuff.get('roles', None):
         guide_data += f'        roles:\n'
-        for role in attack.get('roles', {}):
+        for role in debuff.get('roles', {}):
             guide_data += f'          - role: "{role["role"]}"\n'
 
-    if attack.get('tags', None):
+    if debuff.get('tags', None):
         guide_data += f'        tags:\n'
-        for tag in attack.get('tags', {}):
+        for tag in debuff.get('tags', {}):
             guide_data += f'          - tag: "{tag["tag"]}"\n'
 
-    if attack.get('notes', None):
+    if debuff.get('notes', None):
         guide_data += f'        notes:\n'
-        for note in attack.get('notes', {}):
+        for note in debuff.get('notes', {}):
             guide_data += f'          - note: "{note["note"]}"\n'
 
-    if attack.get('videos', None):
+    if debuff.get('videos', None):
         guide_data += f'        videos:\n'
-        for video in attack.get('videos', {}):
+        for video in debuff.get('videos', {}):
             guide_data += f'          - url: "{video["url"]}"\n'
     return guide_data
 
@@ -1279,8 +1283,8 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if i not in  [329]:
-                continue
+            #if i not in  [264]:
+            #    continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":

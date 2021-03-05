@@ -34,6 +34,21 @@
             </div>
         {% endif %}
 
+        <!-- Debuff durations -->
+        {% if debuff.durations %}
+            <div class="guide__attack-notes-wrapper">
+                <h5 class="guide__attack-notes-title">Folgende Zeiten wurden für diesen Debuff gefunden (kann Rundungsfehler enthalten):</h5>
+                <span class="guide__debuff_description">
+                {% for duration in debuff.durations %}
+                    {{ duration }} sek
+                    {% unless forloop.last %}
+                          -
+                    {% endunless %}
+                {% endfor %}
+                </span>
+            </div>
+        {% endif %}
+
         {% include _components/guide-attack-notes.html %}
         <!-- Debuff Videos -->
         {% if debuff.videos %}
