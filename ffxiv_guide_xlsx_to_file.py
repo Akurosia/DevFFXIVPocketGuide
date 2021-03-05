@@ -612,6 +612,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
                 'debuff_in_use': 'false',
                 'disable': 'false',
                 'damage_type': status_data['damage_type'],
+                #'durations': status_data['duration'],
                 'phases': [{'phase': '09'}],
                 'roles': [{'role': 'role'}],
                 'tags': [{'tag': 'tag'}],
@@ -1278,8 +1279,8 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [329]:
-            #    continue
+            if i not in  [329]:
+                continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":

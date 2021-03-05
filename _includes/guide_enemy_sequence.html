@@ -12,46 +12,48 @@
         </div>
         <div class="guide__accordion-content--03">
     {% endif %}
-        <div class="guide__accordion-copy-wrapper" id="phase{{ phase.phase }}">
-            {% if enemy.sequence.size == 1 %}
-                {% if phase.name %}
-                    <h1 class="guide__accordion-title">{{ phase.name }} - Phase {{ phase.phase }}</h1>
-                {% else %}
-                    <h1 class="guide__accordion-title">Phase {{ phase.phase }}</h4>
+        {% if phase.name or phase.alerts or phase.toolbox or phase.mechanics or phase.attacks or phase.images or phase.videos  %}
+            <div class="guide__accordion-copy-wrapper" id="phase{{ phase.phase }}">
+                {% if enemy.sequence.size == 1 %}
+                    {% if phase.name %}
+                        <h1 class="guide__accordion-title">{{ phase.name }} - Phase {{ phase.phase }}</h1>
+                    {% else %}
+                        <h1 class="guide__accordion-title">Phase {{ phase.phase }}</h4>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-            <!-- Phase Title -->
-            <!-- Opens the Alerts Loop -->
-            {% if phase.alerts %}
-                <!-- Include Guide Alerts -->
-                {% include _components/guide-alerts.html %}
-            {% endif %}
-            <!-- Opens the toolbox Loops -->
-            {% if phase.toolbox %}
-                <!-- Include Guide toolbox -->
-                {% include _components/guide-toolbox.html %}
-            {% endif %}
-            <!-- Opens the Mechanics Loops -->
-            {% if phase.mechanics %}
-                <!-- Include Guide Mechanics -->
-                {% include _components/guide-mechanics.html %}
-            {% endif %}
-            <!-- Opens the Attack Loop -->
-            {% if phase.attacks %}
-                <!-- Include Guide Skill Script -->
-                {% include _components/guide-script.html %}
-            {% endif %}
-            <!-- Opens the Image Loop -->
-            {% if phase.images %}
-                <!-- Include Guide Image Script -->
-                {% include _components/guide-images-wrapper.html %}
-            {% endif %}
-            <!-- Opens the Video Loop -->
-            {% if phase.videos %}
-                <!-- Include Guide video Script -->
-                {% include _components/guide-videos-wrapper.html %}
-            {% endif %}
-        </div>
+                <!-- Phase Title -->
+                <!-- Opens the Alerts Loop -->
+                {% if phase.alerts %}
+                    <!-- Include Guide Alerts -->
+                    {% include _components/guide-alerts.html %}
+                {% endif %}
+                <!-- Opens the toolbox Loops -->
+                {% if phase.toolbox %}
+                    <!-- Include Guide toolbox -->
+                    {% include _components/guide-toolbox.html %}
+                {% endif %}
+                <!-- Opens the Mechanics Loops -->
+                {% if phase.mechanics %}
+                    <!-- Include Guide Mechanics -->
+                    {% include _components/guide-mechanics.html %}
+                {% endif %}
+                <!-- Opens the Attack Loop -->
+                {% if phase.attacks %}
+                    <!-- Include Guide Skill Script -->
+                    {% include _components/guide-script.html %}
+                {% endif %}
+                <!-- Opens the Image Loop -->
+                {% if phase.images %}
+                    <!-- Include Guide Image Script -->
+                    {% include _components/guide-images-wrapper.html %}
+                {% endif %}
+                <!-- Opens the Video Loop -->
+                {% if phase.videos %}
+                    <!-- Include Guide video Script -->
+                    {% include _components/guide-videos-wrapper.html %}
+                {% endif %}
+            </div>
+        {% endif %}
         <!-- Determines the current phase. -->
         {% assign currentPhase = phase.phase %}
         <!-- Enters the enemy attack loop. -->
