@@ -285,7 +285,7 @@ def get_old_content_if_file_is_found(_existing_filename):
             docs = yaml.load_all(f, Loader=Loader)
             for doc in docs:
                 return doc.get("bosses", None), doc.get("adds", None), doc.get("mechanics", "N/A"), doc.get("wip", None), True
-    return None, None, None, None, False
+    return None, None, "N/A", None, False
 
 
 def read_xlsx_file():
@@ -1285,8 +1285,8 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if i not in  [318]:
-                continue
+            #if i not in  [160]:
+            #    continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
