@@ -284,7 +284,7 @@ def get_old_content_if_file_is_found(_existing_filename):
         with open(_existing_filename, encoding="utf8") as f:
             docs = yaml.load_all(f, Loader=Loader)
             for doc in docs:
-                return doc.get("bosses", None), doc.get("adds", None), doc.get("mechanics", None), doc.get("wip", None), True
+                return doc.get("bosses", None), doc.get("adds", None), doc.get("mechanics", "N/A"), doc.get("wip", None), True
     return None, None, None, None, False
 
 
@@ -626,11 +626,13 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
 
 #####################################################################################################################################################
 
-def check_Mechanics(_entry, guide_data, _old_mechanics=None):
-    if _old_mechanics:
+def check_Mechanics(_entry, guide_data, _old_mechanics="N/A"):
+    # this contruct looks ugly but it forbidds the recreation of empty mechanics
+    if not _old_mechanics == "N/A":
         guide_data += "mechanics:\n"
-        for mechanic in _old_mechanics:
-            guide_data = add_Mechanic(guide_data, mechanic)
+        if _old_mechanics:
+            for mechanic in _old_mechanics:
+                guide_data = add_Mechanic(guide_data, mechanic)
     elif _entry["mechanics"] != "":
         guide_data += "mechanics:\n"
         mechanics = _entry["mechanics"].strip("\"[").strip("]\"").split("\",\"")
@@ -1283,8 +1285,8 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [264]:
-            #    continue
+            if i not in  [318]:
+                continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
