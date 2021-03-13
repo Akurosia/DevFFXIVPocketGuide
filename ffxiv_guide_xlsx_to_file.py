@@ -179,7 +179,7 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
     # handle stupid edge cases for primals
     elif name in ["Königliche Konfrontation", "Jagd auf Rathalos"] and difficulty.lower() != "normal":
         name = f"{name} ({difficulty.lower()})"
-    elif name in ["Memoria Misera"] and difficulty.lower() != "normal":
+    elif name in ["Memoria Misera", "Krieger des Lichts"] and difficulty.lower() != "normal":
         name = f"{name} ({difficulty.lower()})"
     # handle edge cases PvP
     elif "(Flechtenhain)" in name:
@@ -190,7 +190,7 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
     elif name == "":
         return ""
     # make sure brackets are always lowercase
-    name = name.replace("(Fatal)", "(fatal)").replace("(Episch)", "(episch)").replace("(Schwer)", "(schwer)")
+    name = name.replace("(Fatal)", "(fatal)").replace("(Episch)", "(episch)").replace("(Schwer)", "(schwer)").replace("(Extrem)", "(extrem)")
     return name
 
 
@@ -1285,7 +1285,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [160]:
+            #if i not in  [154]:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
