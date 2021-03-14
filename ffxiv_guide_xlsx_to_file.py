@@ -179,7 +179,9 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
     # handle stupid edge cases for primals
     elif name in ["Königliche Konfrontation", "Jagd auf Rathalos"] and difficulty.lower() != "normal":
         name = f"{name} ({difficulty.lower()})"
-    elif name in ["Memoria Misera", "Krieger des Lichts"] and difficulty.lower() != "normal":
+    elif name in ["Memoria Misera"] and difficulty.lower() != "normal":
+        name = f"{name} ({difficulty.lower()})"
+    elif name in ["Krieger des Lichts"] and difficulty.lower() == "extrem":
         name = f"{name} ({difficulty.lower()})"
     # handle edge cases PvP
     elif "(Flechtenhain)" in name:
