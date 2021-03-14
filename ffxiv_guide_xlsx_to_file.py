@@ -73,7 +73,7 @@ example_sequence = {
             "height": "250px",
         }],
         "videos": [{
-            "url": "https&#58;//akurosia.de/upload/test.mp4",
+            "url": "https&#58;//ffxivguide.akurosia.de/upload/test.mp4",
         }],
     }]
 }
