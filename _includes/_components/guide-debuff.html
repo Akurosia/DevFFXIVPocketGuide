@@ -14,7 +14,7 @@
             <div class="guide__accordion-trigger-subtitle"> | {{ debuff.title_en }}</div>
         {% endif %}
         {% if debuff.title_id %}
-            <div class="guide__accordion-trigger-id">Skill-ID: {{ debuff.title_id }}</div>
+            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title }}', 'debuff')">Skill-ID: {{ debuff.title_id }}</div>
         {% endif %}
 
         {% assign attack = debuff %}

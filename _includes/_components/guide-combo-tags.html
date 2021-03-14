@@ -13,7 +13,7 @@
     {% elsif attack.variation %}
         <h5 class="guide__attack-notes-title {% if variation.damage_type == 'Magical' %}attack-is-magic
                      {% elsif variation.damage_type && variation.damage_type != 'None' %}attack-is-physical
-                     {% endif %}">{{ variation.title }} - (Skill-ID: {{ variation.title_id }})</h5>
+                     {% endif %}" onclick="buildAndCopyRegex('{{ variation.title_id }}', '{{ enemy.title }}', 'attack')">{{ variation.title }} - (Skill-ID: {{ variation.title_id }})</h5>
         {% for role in variation.roles %}
             <span class="guide__combo-tag--role">{{ role.role }}</span>
         {% endfor %}
