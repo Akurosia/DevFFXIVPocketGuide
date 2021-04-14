@@ -691,6 +691,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
                 new_enemy_data = {}
 
             # get enemy attacks and debuffs for all enemies with a name
+            old_enemy_data["enemy_id"] = new_enemy_data.get("id", "")
             old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
             old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
             guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type)
@@ -712,13 +713,15 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
         if logdata_instance_content is None:
             return guide_data
 
-        for enemy in logdata_instance_content:
-            if enemy == "":
+        empty_enemy = None
+        for i, enemy in enumerate(logdata_instance_content, 1):
+            if enemy == "" and enemy_type == 'adds':
                 continue
             print_color_yellow(f"\tWork on '{enemy}'", disable_yellow_print)
             # for bosses, only write bosses, for adds skip bosse
             lower_enemy_list = [ x.lower() for x in _entry[enemy_type] ]
             lower_boss_list = [ x.lower() for x in _entry['bosse'] ]
+            lower_enemy_list.append("")
             if (enemy_type == 'bosse' and enemy.lower() not in lower_enemy_list) or (enemy_type == 'adds' and enemy.lower() in lower_boss_list):
                 continue
             counter = counter + 1
@@ -727,8 +730,9 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
                 new_enemy_data = {'skill': {}}
             # create new template file to merge against
             tmp = {
-                "title": enemy,
+                "title": enemy if enemy != "" else "Unbekannte Herkunft",
                 "title_en": getBnpcName(enemy),
+                "enemy_id": new_enemy_data.get("id", ""),
                 "id": f"{enemy_type[:-1]}{counter:02d}",
                 "attacks": [],
                 "debuffs": []
@@ -738,8 +742,14 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
 
             enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(tmp, new_enemy_data, enemy_type, [])
             enemy_data['debuffs'] = sorted(enemy_data['debuffs'], key=itemgetter('title'))
-            guide_data = add_Enemy(guide_data, enemy_data, enemy_type)
+            if enemy == "":
+                empty_enemy = enemy_data
+            else:
+                guide_data = add_Enemy(guide_data, enemy_data, enemy_type)
 
+        if empty_enemy:
+            if empty_enemy.get("attacks", None) or empty_enemy.get("debuffs", None):
+                guide_data = add_Enemy(guide_data, empty_enemy, "bosse")
     return guide_data
 
 
@@ -1013,6 +1023,7 @@ def add_Mechanic(guide_data, data):
 def add_Enemy(guide_data, enemy_data, enemy_type):
     guide_data += f'  - title: "{enemy_data["title"]}"\n'
     guide_data += f'    title_en: "{enemy_data["title_en"]}"\n'
+    guide_data += f'    enemy_id: "{enemy_data.get("enemy_id", "")}"\n'
     guide_data += f'    id: "{enemy_data["id"]}"\n'
     if enemy_data.get("attacks", None):
         guide_data += '    attacks:\n'
@@ -1287,8 +1298,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [154]:
-            #    continue
+            #if i not in  [379]: continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
@@ -1321,4 +1331,4 @@ if __name__ == "__main__":
     # first run to create all files
     run(sheet, max_row, max_column)
     # second run to fix boss order
-    run(sheet, max_row, max_column)
+    #run(sheet, max_row, max_column)
