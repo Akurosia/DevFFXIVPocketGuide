@@ -19,9 +19,14 @@
             {% endif %}
         </h2>
         {% if enemies.size == 1 %}
-         <h3 class="guide__accordion-trigger-title_en">
-             {{ enemies[0].title_en }}
-         </h3>
+            {% if enemies[0].enemy_id != "" %}
+                <div style="text-align: right; margin-top: -1.5rem; font-size: initial; font-weight: bold;" class="guide__accordion-trigger-id">
+                    Enemy-ID: {{ enemies[0].enemy_id }}
+                </div>
+            {% endif %}
+            <h3 class="guide__accordion-trigger-title_en">
+                {{ enemies[0].title_en }}
+            </h3>
         {% endif %}
     </div>
     <!-- Guide Event Accordion Content -->
@@ -35,6 +40,11 @@
                     <h3 class="guide__accordion-trigger-title">
                         {{ enemy.title }}
                     </h3>
+                    {% if enemy.enemy_id != "" %}
+                        <div style="text-align: right; margin-top: -1.5rem; font-size: initial; font-weight: bold;" class="guide__accordion-trigger-id">
+                            Enemy-ID: {{ enemy.enemy_id }}
+                        </div>
+                    {% endif %}
                     <h4 class="guide__accordion-trigger-title_en">
                         {{ enemy.title_en }}
                     </h4>
