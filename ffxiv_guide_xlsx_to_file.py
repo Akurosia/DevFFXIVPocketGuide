@@ -662,6 +662,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
     if _old_enemy or logdata != {}:
         guide_data += f"{enemy_text}:\n"
 
+    empty_enemy_available = False
     if _old_enemy:
         # sort old enemies
         final_old_enemy = []
@@ -680,6 +681,9 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
         for i, old_enemy_data in enumerate(_old_enemy):
             if old_enemy_data['title'] == "":
                 continue
+            elif old_enemy_data['title'] == "Unbekannte Herkunft":
+                empty_enemy_available = True
+
             old_enemy_data['title'] = old_enemy_data['title'].replace("&#246;", "ö").replace("&#252;", "ü").replace("&#228;", "ä").replace("&#223;", "ß")
             print_color_yellow(f"\tWork on '{old_enemy_data['title']}'", disable_yellow_print)
             empty_enemy_data = {}
@@ -700,8 +704,9 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
 
             # handle enemy if name is ""
             if not empty_enemy_data == {}:
-                base_data =      {'title': 'Unbekannte Herkunft','title_en': 'Unknown Source','id': f"boss0{i+1}","sequence": [{"phase": "09"}], 'debuffs': []}
-                old_enemy_data = {'title': 'Unbekannte Herkunft','title_en': 'Unknown Source','id': f"boss0{i+1}","sequence": [{"phase": "09"}], 'debuffs': []}
+                empty_enemy_available = True
+                base_data =      {'title': 'Unbekannte Herkunft','title_en': 'Unknown Source','id': f"boss0{i+2}","sequence": [{"phase": "09"}], 'debuffs': []}
+                old_enemy_data = {'title': 'Unbekannte Herkunft','title_en': 'Unknown Source','id': f"boss0{i+2}","sequence": [{"phase": "09"}], 'debuffs': []}
                 old_enemy_data = merge_attacks(old_enemy_data, empty_enemy_data, enemy_type)
                 old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, empty_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
 
@@ -731,7 +736,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             # create new template file to merge against
             tmp = {
                 "title": enemy if enemy != "" else "Unbekannte Herkunft",
-                "title_en": getBnpcName(enemy),
+                "title_en": getBnpcName(enemy) if enemy != "" else "Unknown Source",
                 "enemy_id": new_enemy_data.get("id", ""),
                 "id": f"{enemy_type[:-1]}{counter:02d}",
                 "attacks": [],
@@ -747,7 +752,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             else:
                 guide_data = add_Enemy(guide_data, enemy_data, enemy_type)
 
-        if empty_enemy:
+        if empty_enemy and not empty_enemy_available:
             if empty_enemy.get("attacks", None) or empty_enemy.get("debuffs", None):
                 guide_data = add_Enemy(guide_data, empty_enemy, "bosse")
     return guide_data
@@ -1298,7 +1303,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [379]: continue
+            #if i not in  [373]: continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
