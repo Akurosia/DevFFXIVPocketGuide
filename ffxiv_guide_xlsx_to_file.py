@@ -210,7 +210,7 @@ def replaceSlug(text):
 
 
 def getImage(image):
-    image = image.replace(".tex", ".png\"")
+    image = image.replace(".tex", "_hr1.png\"")
     return image
 
 
