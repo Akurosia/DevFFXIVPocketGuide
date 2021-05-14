@@ -197,8 +197,11 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
 
 
 def translateAttack(skill_id, _type=action):
-    text = _type[str(int(skill_id, 16)) + ".0"]["Name_en"]
-    return fixCaptilaziationAndRomanNumerals(text)
+    try:
+        text = _type[str(int(skill_id, 16)) + ".0"]["Name_en"]
+        return fixCaptilaziationAndRomanNumerals(text)
+    except KeyError as e:
+        return f"Unknown_{skill_id}"
 
 
 def fixCaptilaziationAndRomanNumerals(text):
@@ -371,10 +374,13 @@ def remove_status_from_list_if_found(remove_debuff, new_enemy_data):
 
 
 def get_fixed_status_description(_id):
-    description = status[str(int(_id, 16))+".0"]['Description_de']
-    description = re.sub('<UIForeground>[0-9A-F]{1,6}</UIForeground>', '', description)
-    description = re.sub('<UIGlow>[0-9A-F]{1,6}</UIGlow>', '', description)
-    return description
+    try:
+        description = status[str(int(_id, 16))+".0"]['Description_de']
+        description = re.sub('<UIForeground>[0-9A-F]{1,6}</UIForeground>', '', description)
+        description = re.sub('<UIGlow>[0-9A-F]{1,6}</UIGlow>', '', description)
+        return description
+    except KeyError as e:
+        return f"Unknown_{_id}"
 
 
 def delete_invalid_entries(tmp_attack):
@@ -1303,7 +1309,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [373]: continue
+            if i not in  [378]: continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
