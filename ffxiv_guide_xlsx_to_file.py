@@ -205,7 +205,12 @@ def translateAttack(skill_id, _type=action):
 
 
 def fixCaptilaziationAndRomanNumerals(text):
-    return text.title().replace("Iii", "III").replace("Ii", "II").replace(" Iv", " IV")
+    text = text.title()
+    text = re.sub(r" (Ii|Iii|IIi|Vi|Vii|Viii|Iv|Ix|Xi|Xii|Xiii|Xliii|Iii-E|Xxiv|013Bl|Xii\.)\. ", lambda x :  x.group(0).upper(), text)
+    text = re.sub(r" (Ii|Iii|IIi|Vi|Vii|Viii|Iv|Ix|Xi|Xii|Xiii|Xliii|Iii-E|Xxiv|013Bl|Xii\.)$", lambda x :  x.group(0).upper(), text)
+    text = re.sub(r" (Ii) ", lambda x :  x.group(0).upper(), text)
+    text = re.sub(r"('[a-zA-Z])(?! )", lambda x :  x.group(0).upper(), text)
+    return text
 
 
 def replaceSlug(text):
@@ -1309,7 +1314,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if i not in  [378]: continue
+            #if i not in  [378]: continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
