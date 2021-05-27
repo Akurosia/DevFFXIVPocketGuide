@@ -123,7 +123,39 @@ def getContentName(name, lang="en", difficulty=None, instanceType=None):
     return ""
 
 
-def getBnpcName(name, lang="en"):
+def getBnpcNameFromID(_id, aname, nname):
+    bnew_name = ""
+    enew_name = ""
+    ennew_name = ""
+    try:
+        bnew_name = bnpcname[_id + ".0"]["Singular_de"]
+        m = re.search(nname, bnew_name, re.IGNORECASE)
+        n = re.search(aname, bnew_name, re.IGNORECASE)
+        if m or n:
+            return bnpcname[_id + ".0"]["Singular_en"]
+    except:
+        pass
+    try:
+        enew_name = eobjname[_id + ".0"]["Singular_de"]
+        m = re.search(nname, enew_name, re.IGNORECASE)
+        n = re.search(aname, enew_name, re.IGNORECASE)
+        if m or n:
+            return eobjname[_id + ".0"]["Singular_en"]
+    except:
+        pass
+    try:
+        ennew_name = enpcresident[_id + ".0"]["Singular_de"]
+        m = re.search(nname, ennew_name, re.IGNORECASE)
+        n = re.search(aname, ennew_name, re.IGNORECASE)
+        if m or n:
+            return enpcresident[_id + ".0"]["Singular_en"]
+    except:
+        pass
+    if not "α" in bnew_name and not "β" in bnew_name and not "（仮）鎖" in bnew_name:
+        print_color_red(f"'{bnew_name}', '{enew_name}', '{ennew_name}' not found {aname} ({nname}) - ({_id})")
+    return ""
+
+def getBnpcName(name, _id, lang="en"):
     name = name.lower()
     aname = ""
     # take care of all the article cases
@@ -145,6 +177,10 @@ def getBnpcName(name, lang="en"):
     elif nname.endswith("en") or nname.endswith("es") or nname.endswith("er"):
         nname = nname[:-2] + r"(\[a\]|(e|es|er|en))"
 
+    if not _id == "":
+        resultname = getBnpcNameFromID(_id, aname, nname)
+        if not resultname == "":
+            return resultname
     # check results agains bnpcname
     for key, bnpc in bnpcname.items():
         m = re.search(nname, bnpc["Singular_de"].lower())
@@ -745,10 +781,11 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             if new_enemy_data == {}:
                 new_enemy_data = {'skill': {}}
             # create new template file to merge against
+            enemy_id = new_enemy_data.get("id", "")
             tmp = {
                 "title": enemy if enemy != "" else "Unbekannte Herkunft",
-                "title_en": getBnpcName(enemy) if enemy != "" else "Unknown Source",
-                "enemy_id": new_enemy_data.get("id", ""),
+                "title_en": getBnpcName(enemy, enemy_id) if enemy != "" else "Unknown Source",
+                "enemy_id": enemy_id,
                 "id": f"{enemy_type[:-1]}{counter:02d}",
                 "attacks": [],
                 "debuffs": []
