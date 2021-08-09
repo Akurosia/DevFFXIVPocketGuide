@@ -816,7 +816,7 @@ def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
     # get correct title capitalization to read data from logdata
     title = uglyContentNameFix(_entry["title_de"].title(), _entry["instanceType"], _entry["difficulty"])
     # get the latest data from logdata
-    if logdata_lower.get(_entry["title_de"].lower()):
+    if not _entry["title_de"] == "" and logdata_lower.get(_entry["title_de"].lower()):
         try:
             logdata_instance_content = dict(logdata[getContentName(title, lang="de")])
         except:
@@ -1351,7 +1351,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [378]: continue
+            #if i not in  [2]: continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
