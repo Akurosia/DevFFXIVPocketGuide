@@ -7,26 +7,28 @@ backend:
   open_authoring: true
 
 publish_mode: editorial_workflow
+show_preview_links: false
 
 media_folder: "assets/img"
+locale: 'de'
 
 # COMMON ATTACK FIELDS
-field_attack_name: &field_attack_name
+attack_name: &attack_name
   label: "Attack Name"
   name: "title"
   widget: "string"
 
-field_attack_id: &field_attack_id
+attack_id: &attack_id
   label: "Attack ID"
   name: "title_id"
   widget: "string"
 
-field_attack_name_en: &field_attack_name_en
+attack_name_en: &attack_name_en
   label: "Attack EN Name"
   name: "title_en"
   widget: "string"
 
-field_attack_in_use: &field_attack_in_use
+attack_in_use: &attack_in_use
   label: "attack_in_use"
   name: "attack_in_use"
   widget: "select"
@@ -34,7 +36,7 @@ field_attack_in_use: &field_attack_in_use
   required: false
   allowMultiple: false
 
-field_attack_disable: &field_attack_disable
+attack_disable: &attack_disable
   label: "disable"
   name: "disable"
   widget: "select"
@@ -42,28 +44,73 @@ field_attack_disable: &field_attack_disable
   required: false
   allowMultiple: false
 
-field_roles: &field_roles
+attack_roles: &attack_roles
   label: "Roles"
   name: "roles"
   widget: "select"
   multiple: true
-  options: ["Verteidiger", "Heiler", "Nahkämpfer DPS", "Phys. Ranged DPS", "Mag. Ranged DPS", "DPS", "Alle"]
+  options:
+    - Verteidiger
+    - Heiler
+    - Nahkämpfer DPS
+    - Phys. Ranged DPS
+    - Mag. Ranged DPS
+    - DPS
+    - Alle
   required: false
 
-field_tags: &field_tags
+attack-tags: &attack-tags
   label: "Tags"
   name: "tags"
   widget: "select"
   multiple: true
-  options: ["Kegel AoE", "Kreis AoE", "Flächen AoE", "Donut AoE", "Column AoE", "Area AoE", "Point Blank AoE", "Raid Wide AoE", "Proximity AoE", "Cross AoE", "Figure 8 AoE", "Knockback", "Cleave", "Buff", "Debuff", "Tankbuster", "Stack", "Spread", "Tether", "Stun", "Mechanic", "Animation", "Spawn", "Ultimate", "Active Time Maneuver", "Marker"]
+  options:
+    - Active Time Maneuver
+    - Animation
+    - Flächen AoE
+    - Kegel AoE
+    - Kreis AoE
+    - AoE (Spalte)
+    - AoE (Kreuz)
+    - Donut AoE
+    - AoE (Unendlichkeitssymbol)
+    - AoE (Fläche unter dem Boss)
+    - AoE (Distanz)
+    - Buff
+    - Cleave
+    - Debuff
+    - Sturzflug
+    - Blick
+    - Rückstoß
+    - Line-of-sight
+    - Marker (Blau)
+    - Marker (Grün)
+    - Marker (Icon)
+    - Marker (Orange)
+    - Marker (Lila)
+    - Marker (Rot)
+    - Marker (Gelb)
+    - Minion
+    - Pull
+    - Fläche
+    - Raid weiter Schaden
+    - Verteilen
+    - Sammeln
+    - Unterbrechen
+    - Tankbuster
+    - Verbindung
+    - Finalangriff
+    - Unique Mechanic
   required: false
 
-field_dutyActions: &field_dutyActions
-  label: "Duty Actions"
-  name: "dutyActions"
+attack-duty-action: &attack-duty-action
+  label: "Duty Action"
+  name: "duty-action"
   widget: "list"
-  fields:
-    - {label: "Duty Action Name", name: "action", widget: "string", required: false}
+  field:
+    label: "Duty Action Name"
+    name: ""
+    widget: "string"
 
 field_notes: &field_notes
   label: "Notes"
@@ -71,6 +118,15 @@ field_notes: &field_notes
   widget: "list"
   fields:
     - {label: "Note Text", name: "note", widget: "text", required: false}
+
+field_image: &field_image
+  label: "Images"
+  name: "image"
+  widget: "list"
+  fields:
+    - {label: "urlSmall", name: "urlSmall", required: false, allowMultiple: false, widget: "string"}
+    - {label: "url", name: "url", required: false, allowMultiple: false, widget: "string"}
+    - {label: "height", name: "height", required: false, allowMultiple: false, widget: "string"}
 
 field_images: &field_images
   label: "Images"
@@ -89,7 +145,7 @@ field_videos: &field_videos
     - {label: "urlSmall", name: "urlSmall", required: false, allowMultiple: false, widget: "string"}
     - {label: "url", name: "url", required: false, allowMultiple: false, widget: "string"}
 
-field_attack_images: &field_attack_images
+attack_images: &attack_images
   label: "Attack Images"
   name: "images"
   widget: "list"
@@ -115,34 +171,109 @@ field_mechanics_steps: &field_mechanics_steps
     - *field_videos
 
 common_attack_fields: &common_attack_fields
-  - *field_attack_name
-  - *field_attack_id
-  - *field_roles
-  - *field_tags
-  - *field_dutyActions
+  - *attack_name
+  - *attack_id
+  - *attack_roles
+  - *attack-tags
+  - *attack-duty-action
   - *field_notes
-  - *field_attack_images
+  - *attack_images
   - *field_videos
 
-fields_template: &common_fields
+enemy_attack_fields: &enemy_attack_fields
+  label: "Attacks"
+  name: "attacks"
+  widget: "list"
+  types:
+    - label: "Regular Attack"
+      name: "regular"
+      widget: object
+      fields:
+        - *attack_name
+        - *attack_name_en
+        - *attack_in_use
+        - *attack_disable
+        - *attack_roles
+        - *attack-tags
+        - *attack-duty-action
+        - *field_notes
+        - *attack_images
+        - *field_related_phases
+    - label: "Combo Attack"
+      name: "combo"
+      widget: object
+      fields:
+        - *attack_name
+        - *attack_name_en
+        - *attack_in_use
+        - *attack_disable
+        - *field_related_phases
+        - label: "Sub-Attacks"
+          name: "combo"
+          widget: list
+          fields:
+            *common_attack_fields
+    - label: "Variation Attack"
+      name: "variation"
+      widget: object
+      fields:
+        - *attack_name
+        - *attack_name_en
+        - *attack_in_use
+        - *attack_disable
+        - *field_related_phases
+        - label: "Sub-Attacks"
+          name: "variation"
+          widget: list
+          fields:
+            *common_attack_fields
+
+
+enemy_phase_fields: &enemy_phase_fields
+  label: "Phases"
+  name: "sequence"
+  widget: "list"
+  fields:
+    - {label: "Phase Number", name: "phase", widget: "number", valueType: "int", hint: "Number of the phase. Dungeons usually only needs 01 on all. Ex. 01, 02, 03, etc."}
+    - label: "Alert"
+      name: "alerts"
+      widget: "list"
+      fields:
+        - {label: "Alert Text", name: "alert", widget: "text", required: false, hint: "Notes about the phase. Ex. The boss will occasionally target a random player and chase them around the arena while it vomits lava - this player should keep moving away from the boss."}
+    - label: "Mechanics"
+      name: "mechanics"
+      widget: "list"
+      fields:
+        - {label: "Mechanic Title", name: "title", widget: "string", hint: "Name of the mechanic. Ex. Volcanic Debris (Include Duty Gauges in relevant phase Ex. Vril)"}
+        - label: "Mechanic Notes"
+          name: "notes"
+          widget: "list"
+          fields:
+            - {label: "Mechanic Note", name: "note", widget: "text", required: false, hint: "Throughout the fight, circular AoEs will appear at random, dropping boulders from the ceiling - avoid as necessary."}
+    - label: "Attack Sequence"
+      name: "attacks"
+      widget: "list"
+      fields:
+        - {label: "Attack Name", name: "attack", widget: "string", required: false}
+        - {label: "Duty Action", name: "dutyActions", required: false, widget: "boolean"}
+        - *field_images
+        - *field_videos
+
+guide-fields: &guide-fields
+  - {label: "WIP", name: "wip", required: false, widget: "select", options: ["True", "False"]}
   - {label: "Name", name: "title", widget: "string"}
+  - {label: "DE Name", name: "title_de", widget: "string"}
   - {label: "EN Name", name: "title_en", widget: "string"}
   - {label: "Layout", name: "layout", widget: "string"}
   - {label: "page_type", name: "page_type", widget: "string"}
-  - {label: "Expansion", name: "categories", widget: "select", options: ["arr", "hw", "sb", "shb"]}
+  - {label: "Expansion", name: "categories", widget: "select", options: [{label: "Endwalker", value: "ew"},{label: "Shadowbringers", value: "shb"},{label: "Stormblood", value: "sb"},{label: "Heavensward", value: "hw"},{label: "A Realm Reborn", value: "arr"}]}
   - {label: "Patch", name: "patchNumber", valueType: "float", widget: "number"}
   - {label: "difficulty", name: "difficulty", widget: "string"}
   - {label: "Type", name: "instanceType", widget: "select", options: ["dungeon", "raid", "trial", "allianzraid", "treasure", "eureka", "pvp"]}
   - {label: "Date", name: "date", widget: "date"}
   - {label: "Slug", name: "slug", widget: "string"}
-  - {label: "Description", name: "description", required: false, widget: "string"}
-  - *field_images
-  - *field_videos
-  - label: "terms"
-    name: "terms"
-    widget: "list"
-    fields:
-      - {label: "term", name: "term", required: false, widget: "string"}
+  - *field_image
+  - {label: "terms", name: "terms", widget: "list", fields: [{label: "term", name: "term", required: false, widget: "string"}]}
   - {label: "patchName", name: "patchName", widget: "string"}
   - {label: "mapid", name: "mapid", widget: "string"}
   - {label: "contentname", name: "contentname", widget: "string"}
@@ -155,36 +286,12 @@ fields_template: &common_fields
   - {label: "quest_location", name: "quest_location", required: false, widget: "string"}
   - {label: "quest_npc", name: "quest_npc", required: false, widget: "string"}
   - {label: "order", name: "order", widget: "string"}
-  - label: "Mount"
-    name: "mount"
-    widget: "list"
-    fields:
-      - {label: "name", name: "name", required: false, widget: "string"}
-  - label: "Minion"
-    name: "minion"
-    widget: "list"
-    fields:
-      - {label: "name", name: "name", required: false, widget: "string"}
-  - label: "gearset_loot"
-    name: "gearset_loot"
-    widget: "list"
-    fields:
-      - {label: "gsetname", name: "gsetname", required: false, widget: "string"}
-  - label: "tt_card"
-    name: "tt_card"
-    widget: "list"
-    fields:
-      - {label: "name", name: "name", required: false, widget: "string"}
-  - label: "orchestrion"
-    name: "orchestrion"
-    widget: "list"
-    fields:
-      - {label: "name", name: "name", required: false, widget: "string"}
-  - label: "orchestrion_material"
-    name: "orchestrion_material"
-    widget: "list"
-    fields:
-      - {label: "name", name: "name", required: false, widget: "string"}
+  - {label: "Mount", name: "mount", widget: "list", fields: [{label: "name", name: "name", required: false, widget: "string"}]}
+  - {label: "Minion", name: "minion", widget: "list", fields: [{label: "name", name: "name", required: false, widget: "string"}]}
+  - {label: "gearset_loot", name: "gearset_loot", widget: "list", fields: [{label: "gsetname", name: "gsetname", required: false, widget: "string"}]}
+  - {label: "tt_card", name: "tt_card", widget: "list", fields: [{label: "name", name: "name", required: false, widget: "string"}]}
+  - {label: "orchestrion", name: "orchestrion", widget: "list", fields: [{label: "name", name: "name", required: false, widget: "string"}]}
+  - {label: "orchestrion_material", name: "orchestrion_material", widget: "list", fields: [{label: "name", name: "name", required: false, widget: "string"}]}
   - label: "rouletts"
     name: "rouletts"
     widget: "list"
@@ -211,12 +318,7 @@ fields_template: &common_fields
   - {label: "mtq_vid2", name: "mtq_vid2", required: false, widget: "string"}
   - {label: "mrh_vid1", name: "mrh_vid1", required: false, widget: "string"}
   - {label: "mrh_vid2", name: "mrh_vid2", required: false, widget: "string"}
-  - label: "mechanics"
-    name: "mechanics"
-    widget: "list"
-    fields:
-      - {label: "Title", name: "Title", required: false, allowMultiple: false, widget: "string"}
-      - *field_mechanics_steps
+  - {label: "mechanics", name: "mechanics", widget: "list", fields: [{label: "Title", name: "title", required: false, allowMultiple: false, widget: "string"}, *field_mechanics_steps]}
   - label: "Bosses"
     name: "bosses"
     widget: "list"
@@ -224,80 +326,8 @@ fields_template: &common_fields
       - {label: "Boss Name", name: "title", widget: "string", hint: "Name of Boss. Ex. Otake-maru"}
       - {label: "Boss EN Name", name: "title_en", widget: "string", hint: "Name of Boss. Ex. Otake-maru"}
       - {label: "Boss Id", name: "id", widget: "string", hint: "Boss ID (Used in Sidebar Menu Navigation) Ex. boss01, boss02, boss03, etc."}
-      - label: "Boss Attacks"
-        name: "attacks"
-        widget: "list"
-        types:
-          - label: "Regular Attack"
-            name: "regular"
-            widget: object
-            fields:
-              - *field_attack_name
-              - *field_attack_name_en
-              - *field_attack_in_use
-              - *field_attack_disable
-              - *field_roles
-              - *field_tags
-              - *field_dutyActions
-              - *field_notes
-              - *field_attack_images
-              - *field_related_phases
-          - label: "Combo Attack"
-            name: "combo"
-            widget: object
-            fields:
-              - *field_attack_name
-              - *field_attack_name_en
-              - *field_attack_in_use
-              - *field_attack_disable
-              - *field_related_phases
-              - label: "Sub-Attacks"
-                name: "combo"
-                widget: list
-                fields:
-                  *common_attack_fields
-          - label: "Variation Attack"
-            name: "variation"
-            widget: object
-            fields:
-              - *field_attack_name
-              - *field_attack_name_en
-              - *field_attack_in_use
-              - *field_attack_disable
-              - *field_related_phases
-              - label: "Sub-Attacks"
-                name: "variation"
-                widget: list
-                fields:
-                  *common_attack_fields
-      - label: "Phases"
-        name: "sequence"
-        widget: "list"
-        fields:
-          - {label: "Phase Number", name: "phase", widget: "number", valueType: "int", hint: "Number of the phase. Dungeons usually only needs 01 on all. Ex. 01, 02, 03, etc."}
-          - label: "Alert"
-            name: "alerts"
-            widget: "list"
-            fields:
-              - {label: "Alert Text", name: "alert", widget: "text", required: false, hint: "Notes about the phase. Ex. The boss will occasionally target a random player and chase them around the arena while it vomits lava - this player should keep moving away from the boss."}
-          - label: "Mechanics"
-            name: "mechanics"
-            widget: "list"
-            fields:
-              - {label: "Mechanic Title", name: "title", widget: "string", hint: "Name of the mechanic. Ex. Volcanic Debris (Include Duty Gauges in relevant phase Ex. Vril)"}
-              - label: "Mechanic Notes"
-                name: "notes"
-                widget: "list"
-                fields:
-                  - {label: "Mechanic Note", name: "note", widget: "text", required: false, hint: "Throughout the fight, circular AoEs will appear at random, dropping boulders from the ceiling - avoid as necessary."}
-          - label: "Attack Sequence"
-            name: "attacks"
-            widget: "list"
-            fields:
-              - {label: "Attack Name", name: "attack", widget: "string", required: false}
-              - {label: "Duty Action", name: "dutyActions", required: false, widget: "boolean"}
-              - *field_images
-              - *field_videos
+      - *enemy_attack_fields
+      - *enemy_phase_fields
   - label: "Adds"
     name: "adds"
     widget: "list"
@@ -305,447 +335,372 @@ fields_template: &common_fields
       - {label: "Add Name", name: "title", widget: "string", hint: "Name of Add. Ex. Otake-maru"}
       - {label: "Add EN Name", name: "title_en", widget: "string", hint: "Name of Add. Ex. Otake-maru"}
       - {label: "Add Id", name: "id", widget: "string", hint: "Add ID (Used in Sidebar Menu Navigation) Ex. boss01, boss02, boss03, etc."}
-      - label: "Add Attacks"
-        name: "attacks"
-        widget: "list"
-        types:
-          - label: "Regular Attack"
-            name: "regular"
-            widget: object
-            fields:
-              - *field_attack_name
-              - *field_attack_name_en
-              - *field_attack_in_use
-              - *field_attack_disable
-              - *field_roles
-              - *field_tags
-              - *field_dutyActions
-              - *field_notes
-              - *field_attack_images
-              - *field_related_phases
-          - label: "Combo Attack"
-            name: "combo"
-            widget: object
-            fields:
-              - *field_attack_name
-              - *field_attack_name_en
-              - *field_attack_in_use
-              - *field_attack_disable
-              - *field_related_phases
-              - label: "Sub-Attacks"
-                name: "combo"
-                widget: list
-                fields:
-                  *common_attack_fields
-          - label: "Variation Attack"
-            name: "variation"
-            widget: object
-            fields:
-              - *field_attack_name
-              - *field_attack_name_en
-              - *field_attack_in_use
-              - *field_attack_disable
-              - *field_related_phases
-              - label: "Sub-Attacks"
-                name: "variation"
-                widget: list
-                fields:
-                  *common_attack_fields
-      - label: "Phases"
-        name: "sequence"
-        widget: "list"
-        fields:
-          - {label: "Phase Number", name: "phase", widget: "number", valueType: "int", hint: "Number of the phase. Dungeons usually only needs 01 on all. Ex. 01, 02, 03, etc."}
-          - label: "Alert"
-            name: "alerts"
-            widget: "list"
-            fields:
-              - {label: "Alert Text", name: "alert", widget: "text", required: false, hint: "Notes about the phase. Ex. The boss will occasionally target a random player and chase them around the arena while it vomits lava - this player should keep moving away from the boss."}
-          - label: "Mechanics"
-            name: "mechanics"
-            widget: "list"
-            fields:
-              - {label: "Mechanic Title", name: "title", widget: "string", hint: "Name of the mechanic. Ex. Volcanic Debris (Include Duty Gauges in relevant phase Ex. Vril)"}
-              - label: "Mechanic Notes"
-                name: "notes"
-                widget: "list"
-                fields:
-                  - {label: "Mechanic Note", name: "note", widget: "text", required: false, hint: "Throughout the fight, circular AoEs will appear at random, dropping boulders from the ceiling - avoid as necessary."}
-          - label: "Attack Sequence"
-            name: "attacks"
-            widget: "list"
-            fields:
-              - {label: "Attack Name", name: "attack", widget: "string", required: false}
-              - {label: "Duty Action", name: "dutyActions", required: false, widget: "boolean"}
-              - *field_images
-              - *field_videos
+      - *enemy_attack_fields
+      - *enemy_phase_fields
   # Hidden fields
   - {label: "CMS Used", name: "cms", widget: "hidden", default: "netlify-cms"}
 
 collections:
-  - name: "shb"
-    label: "Shadowbringers"
-    delete: false
-    label_singular: "Shadowbringers Guide"
-    folder: "_posts/shb"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
-    filter: { field: "cms", value: "netlify-cms" }
-    fields:
-      *common_fields
-
   - name: "shb_new_dungeon"
-    label: "Shadowbringers (New/Dunegon)"
+    label: "Shadowbringers (Dunegon)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/shb_new/dungeon"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "shb_new_raid"
-    label: "Shadowbringers (New/Raid)"
+    label: "Shadowbringers (Raid)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/shb_new/raid"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "shb_new_trial"
-    label: "Shadowbringers (New/Trial)"
+    label: "Shadowbringers (Trial)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/shb_new/trial"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "shb_new_allianzraid"
-    label: "Shadowbringers (New/AllianzRaid)"
+    label: "Shadowbringers (AllianzRaid)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/shb_new/allianzraid"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "shb_new_treasure"
-    label: "Shadowbringers (New/Treasure)"
+    label: "Shadowbringers (Treasure)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/shb_new/treasure"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "shb_new_eureka"
-    label: "Shadowbringers (New/Eureka)"
+    label: "Shadowbringers (Eureka)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/shb_new/eureka"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "shb_new_pvp"
-    label: "Shadowbringers (New/PVP)"
+    label: "Shadowbringers (PVP)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/shb_new/pvp"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
-
-  - name: "sb"
-    label: "Stormblood"
-    delete: false
-    label_singular: "Stormblood Guide"
-    folder: "_posts/sb"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
-    filter: { field: "cms", value: "netlify-cms" }
-    fields:
-      *common_fields
+      *guide-fields
 
   - name: "sb_new_dungeon"
-    label: "Stormblood (New/Dunegon)"
+    label: "Stormblood (Dunegon)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/sb_new/dungeon"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "sb_new_raid"
-    label: "Stormblood (New/Raid)"
+    label: "Stormblood (Raid)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/sb_new/raid"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "sb_new_trial"
-    label: "Stormblood (New/Trial)"
+    label: "Stormblood (Trial)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/sb_new/trial"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "sb_new_allianzraid"
-    label: "Stormblood (New/AllianzRaid)"
+    label: "Stormblood (AllianzRaid)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/sb_new/allianzraid"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "sb_new_treasure"
-    label: "Stormblood (New/Treasure)"
+    label: "Stormblood (Treasure)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/sb_new/treasure"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "sb_new_eureka"
-    label: "Stormblood (New/Eureka)"
+    label: "Stormblood (Eureka)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/sb_new/eureka"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "sb_new_pvp"
-    label: "Stormblood (New/PVP)"
+    label: "Stormblood (PVP)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/sb_new/pvp"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
-
-  - name: "hw"
-    label: "Heavensward"
-    delete: false
-    label_singular: "Heavensward Guide"
-    folder: "_posts/hw"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
-    filter: { field: "cms", value: "netlify-cms" }
-    fields:
-      *common_fields
+      *guide-fields
 
   - name: "hw_new_dungeon"
-    label: "Heavensward (New/Dunegon)"
+    label: "Heavensward (Dunegon)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/hw_new/dungeon"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "hw_new_raid"
-    label: "Heavensward (New/Raid)"
+    label: "Heavensward (Raid)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/hw_new/raid"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "hw_new_trial"
-    label: "Heavensward (New/Trial)"
+    label: "Heavensward (Trial)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/hw_new/trial"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "hw_new_allianzraid"
-    label: "Heavensward (New/AllianzRaid)"
+    label: "Heavensward (AllianzRaid)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/hw_new/allianzraid"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "hw_new_treasure"
-    label: "Heavensward (New/Treasure)"
+    label: "Heavensward (Treasure)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/hw_new/treasure"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "hw_new_eureka"
-    label: "Heavensward (New/Eureka)"
+    label: "Heavensward (Eureka)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/hw_new/eureka"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "hw_new_pvp"
-    label: "Heavensward (New/PVP)"
+    label: "Heavensward (PVP)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/hw_new/pvp"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
-
-  - name: "arr"
-    label: "A Realm Reborn"
-    delete: false
-    label_singular: "A Realm Reborn Guide"
-    folder: "_posts/arr"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
-    filter: { field: "cms", value: "netlify-cms" }
-    fields:
-      *common_fields
+      *guide-fields
 
   - name: "arr_new_dungeon"
-    label: "A Realm Reborn (New/Dunegon)"
+    label: "A Realm Reborn (Dunegon)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/arr_new/dungeon"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
-
-  - name: "arr_old_dungeon"
-    label: "A Realm Reborn (old/Dunegon)"
-    delete: false
-    label_singular: "Guide"
-    folder: "_posts/arr/dungeon"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
-    fields:
-      *common_fields
+      *guide-fields
 
   - name: "arr_new_raid"
-    label: "A Realm Reborn (New/Raid)"
+    label: "A Realm Reborn (Raid)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/arr_new/raid"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "arr_new_trial"
-    label: "A Realm Reborn (New/Trial)"
+    label: "A Realm Reborn (Trial)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/arr_new/trial"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "arr_new_allianzraid"
-    label: "A Realm Reborn (New/AllianzRaid)"
+    label: "A Realm Reborn (AllianzRaid)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/arr_new/allianzraid"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "arr_new_treasure"
-    label: "A Realm Reborn (New/Treasure)"
+    label: "A Realm Reborn (Treasure)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/arr_new/treasure"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "arr_new_eureka"
-    label: "A Realm Reborn (New/Eureka)"
+    label: "A Realm Reborn (Eureka)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/arr_new/eureka"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
 
   - name: "arr_new_pvp"
-    label: "A Realm Reborn (New/PVP)"
+    label: "A Realm Reborn (PVP)"
     delete: false
     label_singular: "Guide"
     folder: "_posts/arr_new/pvp"
     create: true
+    editor:
+      preview: false
     slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
     summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
-      *common_fields
+      *guide-fields
