@@ -14,6 +14,10 @@ section.footer {
     @media #{$navigation} {
         padding: calc(#{$unit} * 3) 0;
     }
+
+    @media screen and (orientation: landscape) and (min-width: 70em) {
+        padding: calc(#{$unit} * 3) 0;
+    }
 }
 
 .footer__copy {

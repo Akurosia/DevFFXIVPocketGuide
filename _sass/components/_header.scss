@@ -134,9 +134,12 @@ header {
             color: $palette--blue;
         }
 
-        &.savage,
-        &.extreme {
+        &.savage{
             color: $palette--red;
+        }
+
+        &.extreme {
+            color: $palette--orange;
         }
 
         &.ultimate {
@@ -163,9 +166,12 @@ header {
             color: $palette--yellow;
         }
 
-        &.savage,
-        &.extreme {
+        &.savage{
             color: $palette--red;
+        }
+
+        &.extreme {
+            color: $palette--orange;
         }
 
         &.ultimate {
