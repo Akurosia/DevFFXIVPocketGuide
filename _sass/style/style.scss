@@ -1925,6 +1925,13 @@ body {
 .guide__content__wip__title {
     justify-content: center;
 }
+
+.guide__variation-attack-seperator {
+    margin-top: 10px;
+    border: 1px solid grey;
+    padding: 10px;
+    border-radius: 10px;
+}
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";

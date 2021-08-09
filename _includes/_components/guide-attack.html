@@ -73,24 +73,26 @@
         {% endfor %}
         <!-- Variation Attacks -->
         {% for variation in attack.variation %}
-            {% include _components/guide-combo-tags.html %}
-            {% include _components/guide-attack-notes.html %}
-            <!-- Variation Images -->
-            {% if variation.images %}
-                <div class="guide__attack-image-list">
-                    {% for image in variation.images %}
-                        {% include _components/guide-images.html %}
-                    {% endfor %}
-                </div>
-            {% endif %}
-            <!-- Variation Videos -->
-            {% if variation.videos %}
-                <div class="guide__attack-video-list">
-                    {% for video in variation.videos %}
-                        {% include _components/guide-videos.html %}
-                    {% endfor %}
-                </div>
-            {% endif %}
+            <div class="guide__variation-attack-seperator">
+                {% include _components/guide-combo-tags.html %}
+                {% include _components/guide-attack-notes.html %}
+                <!-- Variation Images -->
+                {% if variation.images %}
+                    <div class="guide__attack-image-list">
+                        {% for image in variation.images %}
+                            {% include _components/guide-images.html %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <!-- Variation Videos -->
+                {% if variation.videos %}
+                    <div class="guide__attack-video-list">
+                        {% for video in variation.videos %}
+                            {% include _components/guide-videos.html %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
         {% endfor %}
         <!-- Attack Images -->
         {% if attack.images %}
