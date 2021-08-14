@@ -105,9 +105,18 @@ def checkVariable(element, name):
         return True
     return False
 
-
+ba_name = {
+    "de": "Eureka Baldesions Arsenal",
+    "en": "The Baldesion Arsenal",
+    "fr": "Eurêka et son arsenal",
+    "ja": "バルデシオンアーセナル",
+    "cn": "兵武塔",
+    "ko": "발데시온 무기고"
+}
 def getContentName(name, lang="en", difficulty=None, instanceType=None):
     name = uglyContentNameFix(name, instanceType, difficulty)
+    if name == "Eureka Baldesions Arsenal":
+        return ba_name[lang]
     try:
         for key, content in contentfindercondition.items():
             if "memoria" in content["Name_de"].lower().strip() and "memoria" in name.lower().strip():
@@ -1351,7 +1360,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [2]: continue
+            #if i not in  [282]: continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
