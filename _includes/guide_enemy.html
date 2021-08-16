@@ -1,7 +1,7 @@
 <!-- Guide Adds ========================================================== -->
 <div class="guide__accordion">
     <div class="guide__accordion-trigger--01 active" id="guide{{ x }}">
-        <i class="material-icons">expand_more</i>
+        <i class="material-icons" style="{% if enemy.attacks or enemy.debuffs %}{% else %}display: none;{% endif %}">expand_more</i>
         <h2 class="guide__accordion-trigger-title">
             {% if enemies.size > 1 %}
                 {% if page.instanceType == "allianzraid" %}Allianzraid {{ x }} {% endif %}
@@ -19,7 +19,7 @@
             {% endif %}
         </h2>
         {% if enemies.size == 1 %}
-            {% if enemies[0].enemy_id != "" %}
+            {% if enemies[0].enemy_id and enemies[0].enemy_id != "" %}
                 <div style="text-align: right; margin-top: -1.5rem; font-size: initial; font-weight: bold;" class="guide__accordion-trigger-id">
                     Enemy-ID: {{ enemies[0].enemy_id }}
                 </div>
@@ -36,11 +36,11 @@
             {% if enemies.size > 1 %}
                 <!-- <div class="guide__accordion-trigger--02" id="{{ enemy.id }}"> -->
                 <div class="guide__accordion-trigger--02" id="{{ enemy.id | slugify }}">
-                    <i class="material-icons">expand_more</i>
+                    <i class="material-icons" style="{% if enemy.attacks or enemy.debuffs %}{% else %}display: none;{% endif %}">expand_more</i>
                     <h3 class="guide__accordion-trigger-title">
                         {{ enemy.title }}
                     </h3>
-                    {% if enemy.enemy_id != "" %}
+                    {% if enemy.enemy_id and enemy.enemy_id != "" %}
                         <div style="text-align: right; margin-top: -1.5rem; font-size: initial; font-weight: bold;" class="guide__accordion-trigger-id">
                             Enemy-ID: {{ enemy.enemy_id }}
                         </div>
