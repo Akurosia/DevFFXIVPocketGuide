@@ -1,6 +1,9 @@
 <div class="guide__combo-tag-wrapper">
     {% if attack.combo %}
         <h5 class="guide__attack-notes-title">{{ combo.title }}</h5>
+        {% if combo.title_id %}
+            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ combo.title_id }}', '{{ enemy.title }}', 'attack')">Skill-ID: {{ combo.title_id }}</div>
+        {% endif %}
         {% if page.cms == "netlify-cms" %}
           {% for role in combo.roles %}
             <span class="guide__combo-tag--role">{{ role }}</span>
@@ -24,6 +27,9 @@
         {% endif %}
     {% elsif attack.variation %}
         <h5 class="guide__attack-notes-title">{{ variation.title }}</h5>
+        {% if variation.title_id %}
+            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ variation.title_id }}', '{{ enemy.title }}', 'attack')">Skill-ID: {{ variation.title_id }}</div>
+        {% endif %}
         {% if page.cms == "netlify-cms" %}
           {% for role in variation.roles %}
             <span class="guide__combo-tag--role">{{ role }}</span>
