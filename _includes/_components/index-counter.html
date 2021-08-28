@@ -16,6 +16,10 @@
     {% if guide.instanceType == "raid" or guide.instance_type == "Raid" %}
         {% assign counter = counter | plus: 1 %}
     {% endif %}
+{% elsif page.page_category == "ultimates" %}
+    {% if guide.instanceType == "ultimate" or guide.instance_type == "Ultimate" %}
+        {% assign counter = counter | plus: 1 %}
+    {% endif %}
 {% elsif page.page_category == "potd" %}
     {% if guide.instanceType == "potd" or guide.instance_type == "potd" %}
         {% assign counter = counter | plus: 1 %}

@@ -62,6 +62,13 @@
                     </a>
                 </li>
                 <li>
+                    <a {% if page.page_category == "ultimates" %}class="active"{% endif %}
+                        {% if page.instanceType == "ultimate" or page.instance_type == "ultimate" %}class="active"{% endif %}
+                        href="/ultimates/" title="Ultimate - Guides anzeigen">
+                        Ultimate Raids
+                    </a>
+                </li>
+                <li>
                     <a {% if page.page_category == "allianzraid" %}class="active"{% endif %}
                         {% if page.instanceType == "allianzraid" or page.instance_type == "AllianzRaid" %}class="active"{% endif %}
                         href="/allianzraid/" title="Allianz Raid - Guides anzeigen">

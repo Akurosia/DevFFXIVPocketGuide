@@ -213,7 +213,7 @@ def getBnpcName(name, _id, lang="en"):
 
 
 def uglyContentNameFix(name, instanceType=None, difficulty=None):
-    if difficulty == "Fatal" and instanceType == "raid" and "fatal" not in name.lower():
+    if difficulty == "Fatal" and instanceType == "ultimate" and "fatal" not in name.lower():
         name = f"{name} (fatal)"
     elif difficulty == "Episch" and instanceType == "raid" and "episch" not in name.lower():
         name = f"{name} (episch)"
@@ -359,8 +359,8 @@ def get_data_from_xlsx(sheet, max_column, i):
     for j in range(1, max_column+1):
         entry[elements[j - 1]] = str(sheet.cell(row=int(i), column=int(j)).value).replace("None", "")
     # fix fataler raid
-    if entry["instanceType"] == "fataler_raid":
-        entry["instanceType"] = "raid"
+    # if entry["instanceType"] == "fataler_raid":
+    #     entry["instanceType"] = "raid"
     return entry
 
 
