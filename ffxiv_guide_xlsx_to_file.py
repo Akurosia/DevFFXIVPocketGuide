@@ -164,6 +164,7 @@ def getBnpcNameFromID(_id, aname, nname):
         print_color_red(f"'{bnew_name}', '{enew_name}', '{ennew_name}' not found {aname} ({nname}) - ({_id})")
     return ""
 
+
 def getBnpcName(name, _id, lang="en"):
     name = name.lower()
     aname = ""
