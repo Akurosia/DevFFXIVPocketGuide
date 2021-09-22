@@ -5,12 +5,9 @@ from operator import itemgetter
 import traceback
 import re
 import errno
-import json
-import urllib.request
 import openpyxl
 import yaml
 import collections
-from operator import itemgetter
 
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'python_module'))
@@ -89,7 +86,7 @@ elements = ["exclude", "date", "sortid", "title", "categories", "slug", "image",
 
 storeFilesInTmp(True)
 logdata = get_any_Logdata()
-logdata_lower = dict((k.lower(),v) for k,v in logdata.items())
+logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
 action = loadDataTheQuickestWay("action_all.json", translate=True)
 territorytype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
 contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
@@ -105,6 +102,7 @@ def checkVariable(element, name):
         return True
     return False
 
+
 ba_name = {
     "de": "Eureka Baldesions Arsenal",
     "en": "The Baldesion Arsenal",
@@ -113,6 +111,8 @@ ba_name = {
     "cn": "兵武塔",
     "ko": "발데시온 무기고"
 }
+
+
 def getContentName(name, lang="en", difficulty=None, instanceType=None):
     name = uglyContentNameFix(name, instanceType, difficulty)
     if name == "Eureka Baldesions Arsenal":
@@ -142,7 +142,7 @@ def getBnpcNameFromID(_id, aname, nname):
         n = re.search(aname, bnew_name, re.IGNORECASE)
         if m or n:
             return bnpcname[_id + ".0"]["Singular_en"]
-    except:
+    except Exception:
         pass
     try:
         enew_name = eobjname[_id + ".0"]["Singular_de"]
@@ -150,7 +150,7 @@ def getBnpcNameFromID(_id, aname, nname):
         n = re.search(aname, enew_name, re.IGNORECASE)
         if m or n:
             return eobjname[_id + ".0"]["Singular_en"]
-    except:
+    except Exception:
         pass
     try:
         ennew_name = enpcresident[_id + ".0"]["Singular_de"]
@@ -158,9 +158,9 @@ def getBnpcNameFromID(_id, aname, nname):
         n = re.search(aname, ennew_name, re.IGNORECASE)
         if m or n:
             return enpcresident[_id + ".0"]["Singular_en"]
-    except:
+    except Exception:
         pass
-    if not "α" in bnew_name and not "β" in bnew_name and not "（仮）鎖" in bnew_name:
+    if "α" not in bnew_name and "β" not in bnew_name and "（仮）鎖" not in bnew_name:
         print_color_red(f"'{bnew_name}', '{enew_name}', '{ennew_name}' not found {aname} ({nname}) - ({_id})")
     return ""
 
@@ -246,16 +246,16 @@ def translateAttack(skill_id, _type=action):
     try:
         text = _type[str(int(skill_id, 16)) + ".0"]["Name_en"]
         return fixCaptilaziationAndRomanNumerals(text)
-    except KeyError as e:
+    except KeyError:
         return f"Unknown_{skill_id}"
 
 
 def fixCaptilaziationAndRomanNumerals(text):
     text = text.title()
-    text = re.sub(r" (Ii|Iii|IIi|Vi|Vii|Viii|Iv|Ix|Xi|Xii|Xiii|Xliii|Iii-E|Xxiv|013Bl|Xii\.)\. ", lambda x :  x.group(0).upper(), text)
-    text = re.sub(r" (Ii|Iii|IIi|Vi|Vii|Viii|Iv|Ix|Xi|Xii|Xiii|Xliii|Iii-E|Xxiv|013Bl|Xii\.)$", lambda x :  x.group(0).upper(), text)
-    text = re.sub(r" (Ii) ", lambda x :  x.group(0).upper(), text)
-    text = re.sub(r"('[a-zA-Z])(?! )", lambda x :  x.group(0).upper(), text)
+    text = re.sub(r" (Ii|Iii|IIi|Vi|Vii|Viii|Iv|Ix|Xi|Xii|Xiii|Xliii|Iii-E|Xxiv|013Bl|Xii\.)\. ", lambda x:  x.group(0).upper(), text)
+    text = re.sub(r" (Ii|Iii|IIi|Vi|Vii|Viii|Iv|Ix|Xi|Xii|Xiii|Xliii|Iii-E|Xxiv|013Bl|Xii\.)$", lambda x:  x.group(0).upper(), text)
+    text = re.sub(r" (Ii) ", lambda x:  x.group(0).upper(), text)
+    text = re.sub(r"('[a-zA-Z])(?! )", lambda x:  x.group(0).upper(), text)
     return text
 
 
@@ -334,7 +334,7 @@ def try_to_create_file(filename):
                 raise
 
 
-#returns existing boss data if available
+# returns existing boss data if available
 def get_old_content_if_file_is_found(_existing_filename):
     if os.path.exists(_existing_filename):
         with open(_existing_filename, encoding="utf8") as f:
@@ -357,7 +357,7 @@ def get_data_from_xlsx(sheet, max_column, i):
     entry = {}
     # for every column in row add all elements into a dict:
     # max_column will ignore last column due to how range is working
-    for j in range(1, max_column+1):
+    for j in range(1, max_column + 1):
         entry[elements[j - 1]] = str(sheet.cell(row=int(i), column=int(j)).value).replace("None", "")
     # fix fataler raid
     # if entry["instanceType"] == "fataler_raid":
@@ -366,20 +366,28 @@ def get_data_from_xlsx(sheet, max_column, i):
 
 
 def cleanup_logdata(logdata_instance_content):
-    try: del logdata_instance_content["combatants"]
-    except: pass
-    try: del logdata_instance_content["zone"]
-    except: pass
+    try:
+        del logdata_instance_content["combatants"]
+    except Exception:
+        pass
+    try:
+        del logdata_instance_content["zone"]
+    except Exception:
+        pass
     for enemy_name, enemy in logdata_instance_content.items():
-        #try: del enemy["status"]
-        #except: pass
-        try: del enemy["tether"]
-        except: pass
-        try: del enemy["headmarker"]
-        except: pass
+        # try: del enemy["status"]
+        # except Exception: pass
+        try:
+            del enemy["tether"]
+        except Exception:
+            pass
+        try:
+            del enemy["headmarker"]
+        except Exception:
+            pass
     new_lic = {}
     for k, v in logdata_instance_content.items():
-        #if not k == "":
+        # if not k == "":
         new_lic[k] = v
     return new_lic
 
@@ -410,7 +418,7 @@ def remove_skills_from_list_if_found(remove_attack, new_enemy_data):
     for x in remove_attack:
         try:
             del new_enemy_data["skill"][x]
-        except:
+        except Exception:
             pass
     return new_enemy_data
 
@@ -419,30 +427,38 @@ def remove_status_from_list_if_found(remove_debuff, new_enemy_data):
     for x in remove_debuff:
         try:
             del new_enemy_data["status"][x]
-        except:
+        except Exception:
             pass
     return new_enemy_data
 
 
 def get_fixed_status_description(_id):
     try:
-        description = status[str(int(_id, 16))+".0"]['Description_de']
+        description = status[str(int(_id, 16)) + ".0"]['Description_de']
         description = re.sub('<UIForeground>[0-9A-F]{1,6}</UIForeground>', '', description)
         description = re.sub('<UIGlow>[0-9A-F]{1,6}</UIGlow>', '', description)
         return description
-    except KeyError as e:
+    except KeyError:
         return f"Unknown_{_id}"
 
 
 def delete_invalid_entries(tmp_attack):
-    try: del tmp_attack['title_id']
-    except: pass
-    try: del tmp_attack['damage_type']
-    except: pass
-    try: del tmp_attack['roles']
-    except: pass
-    try: del tmp_attack['tags']
-    except: pass
+    try:
+        del tmp_attack['title_id']
+    except Exception:
+        pass
+    try:
+        del tmp_attack['damage_type']
+    except Exception:
+        pass
+    try:
+        del tmp_attack['roles']
+    except Exception:
+        pass
+    try:
+        del tmp_attack['tags']
+    except Exception:
+        pass
     return tmp_attack
 
 
@@ -620,9 +636,9 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
     disable_yellow_print = False
     for x in old_enemy_data.get("debuffs", []):
         if x['title_id'] not in tmp_debuff_ids and x['title_id'] not in ignore_debuffs:
-           saved_used_skills_to_ignore_in_last.append(x['title_id'])
-           tmp_debuff_ids.append(x['title_id'])
-           tmp_debuffs.append(x)
+            saved_used_skills_to_ignore_in_last.append(x['title_id'])
+            tmp_debuff_ids.append(x['title_id'])
+            tmp_debuffs.append(x)
         else:
             print_color_yellow(f"Ignore Duplicate Debuff {x['title']}")
     disable_yellow_print = True
@@ -631,8 +647,10 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
     if not new_enemy_data.get('title', "") == 'Unbekannte Herkunft':
         # remove debuffs already manually adjusted
         for debuff in saved_used_skills_to_ignore_in_last:
-            try: del new_enemy_data.get("status", {})[debuff]
-            except: pass
+            try:
+                del new_enemy_data.get("status", {})[debuff]
+            except Exception:
+                pass
         # comapre all skill ids
         existing_debuffs, remove_attack = compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_attack)
         # remove skill ids if they were found before
@@ -701,9 +719,9 @@ def check_Mechanics(_entry, guide_data, _old_mechanics="N/A"):
             mechanic = {
                 "steps": [{
                     "step": "09",
-                    "notes": [{"note": f"Mechanics-note {counter}",}],
-                    "images": [{"url": "/assets/img/test.jpg","alt": "/assets/img/test.jpg","height": "250px",}],
-                    "videos": [{"url": "https&#58;//akurosia.de/upload/test.mp4",}],
+                    "notes": [{"note": f"Mechanics-note {counter}", }],
+                    "images": [{"url": "/assets/img/test.jpg", "alt": "/assets/img/test.jpg", "height": "250px", }],
+                    "videos": [{"url": "https&#58;//akurosia.de/upload/test.mp4", }],
                 }],
             }
             if mechanics == ['']:
@@ -747,9 +765,9 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             empty_enemy_data = {}
             try:
                 new_enemy_data = logdata_instance_content[old_enemy_data['title']]
-                if enemy_type == 'bosse' and len(_old_enemy) == i+1:
+                if enemy_type == 'bosse' and len(_old_enemy) == i + 1:
                     empty_enemy_data = logdata_instance_content['']
-            except:
+            except Exception:
                 new_enemy_data = {}
 
             # get enemy attacks and debuffs for all enemies with a name
@@ -757,14 +775,16 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
             old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
             guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type)
-            try: del logdata_instance_content[old_enemy_data['title']]
-            except: pass
+            try:
+                del logdata_instance_content[old_enemy_data['title']]
+            except Exception:
+                pass
 
             # handle enemy if name is ""
             if not empty_enemy_data == {}:
                 empty_enemy_available = True
-                base_data =      {'title': 'Unbekannte Herkunft','title_en': 'Unknown Source','id': f"boss0{i+2}","sequence": [{"phase": "09"}], 'debuffs': []}
-                old_enemy_data = {'title': 'Unbekannte Herkunft','title_en': 'Unknown Source','id': f"boss0{i+2}","sequence": [{"phase": "09"}], 'debuffs': []}
+                base_data = {'title': 'Unbekannte Herkunft', 'title_en': 'Unknown Source', 'id': f"boss0{i+2}", "sequence": [{"phase": "09"}], 'debuffs': []}
+                old_enemy_data = {'title': 'Unbekannte Herkunft', 'title_en': 'Unknown Source', 'id': f"boss0{i+2}", "sequence": [{"phase": "09"}], 'debuffs': []}
                 old_enemy_data = merge_attacks(old_enemy_data, empty_enemy_data, enemy_type)
                 old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, empty_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
 
@@ -782,8 +802,8 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
                 continue
             print_color_yellow(f"\tWork on '{enemy}'", disable_yellow_print)
             # for bosses, only write bosses, for adds skip bosse
-            lower_enemy_list = [ x.lower() for x in _entry[enemy_type] ]
-            lower_boss_list = [ x.lower() for x in _entry['bosse'] ]
+            lower_enemy_list = [x.lower() for x in _entry[enemy_type]]
+            lower_boss_list = [x.lower() for x in _entry['bosse']]
             lower_enemy_list.append("")
             if (enemy_type == 'bosse' and enemy.lower() not in lower_enemy_list) or (enemy_type == 'adds' and enemy.lower() in lower_boss_list):
                 continue
@@ -830,7 +850,7 @@ def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
     if not _entry["title_de"] == "" and logdata_lower.get(_entry["title_de"].lower()):
         try:
             logdata_instance_content = dict(logdata[getContentName(title, lang="de")])
-        except:
+        except Exception:
             logdata_instance_content = dict(logdata[title])
         logdata_instance_content = cleanup_logdata(logdata_instance_content)
     print_color_green(f"Work on '{_entry['title_de']}'", disable_green_print)
@@ -900,57 +920,57 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
         header_data += 'quest_npc: "' + _entry["quest_npc"] + '"\n'
     header_data += 'order: ' + get_order_id(_entry) + '\n'
     # mounts
-    if checkVariable(_entry,"mount1") or checkVariable(_entry,"mount2"):
+    if checkVariable(_entry, "mount1") or checkVariable(_entry, "mount2"):
         header_data += 'mount:\n'
-        if checkVariable(_entry,"mount1"):
+        if checkVariable(_entry, "mount1"):
             header_data += '    - name: "' + _entry["mount1"] + '"\n'
-        if checkVariable(_entry,"mount2"):
+        if checkVariable(_entry, "mount2"):
             header_data += '    - name: "' + _entry["mount2"] + '"\n'
     # minions
-    if checkVariable(_entry,"minion1") or checkVariable(_entry,"minion2") or checkVariable(_entry,"minion3"):
+    if checkVariable(_entry, "minion1") or checkVariable(_entry, "minion2") or checkVariable(_entry, "minion3"):
         header_data += 'minion:\n'
-        if checkVariable(_entry,"minion1"):
+        if checkVariable(_entry, "minion1"):
             header_data += '    - name: "' + _entry["minion1"] + '"\n'
-        if checkVariable(_entry,"minion2"):
+        if checkVariable(_entry, "minion2"):
             header_data += '    - name: "' + _entry["minion2"] + '"\n'
-        if checkVariable(_entry,"minion3"):
+        if checkVariable(_entry, "minion3"):
             header_data += '    - name: "' + _entry["minion3"] + '"\n'
     # gearset_loot
-    if checkVariable(_entry,"gearset_loot"):
+    if checkVariable(_entry, "gearset_loot"):
         header_data += 'gearset_loot:\n'
         for gset in _entry["gearset_loot"] .split(","):
             header_data += '    - gsetname: "' + gset + '"\n'
     # tt_cards
-    if checkVariable(_entry,"tt_card1") or checkVariable(_entry,"tt_card2"):
+    if checkVariable(_entry, "tt_card1") or checkVariable(_entry, "tt_card2"):
         header_data += 'tt_card:\n'
-        if checkVariable(_entry,"tt_card1"):
+        if checkVariable(_entry, "tt_card1"):
             header_data += '    - name: "' + _entry["tt_card1"] + '"\n'
-        if checkVariable(_entry,"tt_card2"):
+        if checkVariable(_entry, "tt_card2"):
             header_data += '    - name: "' + _entry["tt_card2"] + '"\n'
     # orchestrion
-    if checkVariable(_entry,"orchestrion") or checkVariable(_entry,"orchestrion2") or checkVariable(_entry,"orchestrion3") or checkVariable(_entry,"orchestrion4") or checkVariable(_entry,"orchestrion5"):
+    if checkVariable(_entry, "orchestrion") or checkVariable(_entry, "orchestrion2") or checkVariable(_entry, "orchestrion3") or checkVariable(_entry, "orchestrion4") or checkVariable(_entry, "orchestrion5"):
         header_data += 'orchestrion:\n'
-        if checkVariable(_entry,"orchestrion"):
+        if checkVariable(_entry, "orchestrion"):
             header_data += '    - name: "' + _entry["orchestrion"] + '"\n'
-        if checkVariable(_entry,"orchestrion2"):
+        if checkVariable(_entry, "orchestrion2"):
             header_data += '    - name: "' + _entry["orchestrion2"] + '"\n'
-        if checkVariable(_entry,"orchestrion3"):
+        if checkVariable(_entry, "orchestrion3"):
             header_data += '    - name: "' + _entry["orchestrion3"] + '"\n'
-        if checkVariable(_entry,"orchestrion4"):
+        if checkVariable(_entry, "orchestrion4"):
             header_data += '    - name: "' + _entry["orchestrion4"] + '"\n'
-        if checkVariable(_entry,"orchestrion5"):
+        if checkVariable(_entry, "orchestrion5"):
             header_data += '    - name: "' + _entry["orchestrion5"] + '"\n'
     # orchestrion material
-    if checkVariable(_entry,"orchestrion_material1") or checkVariable(_entry,"orchestrion_material2") or checkVariable(_entry,"orchestrion_material3"):
+    if checkVariable(_entry, "orchestrion_material1") or checkVariable(_entry, "orchestrion_material2") or checkVariable(_entry, "orchestrion_material3"):
         header_data += 'orchestrion_material:\n'
-        if checkVariable(_entry,"orchestrion_material1"):
+        if checkVariable(_entry, "orchestrion_material1"):
             header_data += '    - name: "' + _entry["orchestrion_material1"] + '"\n'
-        if checkVariable(_entry,"orchestrion_material2"):
+        if checkVariable(_entry, "orchestrion_material2"):
             header_data += '    - name: "' + _entry["orchestrion_material2"] + '"\n'
-        if checkVariable(_entry,"orchestrion_material3"):
+        if checkVariable(_entry, "orchestrion_material3"):
             header_data += '    - name: "' + _entry["orchestrion_material3"] + '"\n'
     # rouletts
-    if _entry["allianceraid"] == "True" or _entry["frontier"] == "True" or _entry["expert"] == "True" or _entry["guildhest"] == "True" or _entry["level50_60"] == "True" or _entry["level70"] == "True" or _entry["leveling"] == "True" or _entry["main"] == "True" or _entry["mentor"] == "True" or _entry["normalraid"] == "True"  or _entry["trial"] == "True":
+    if _entry["allianceraid"] == "True" or _entry["frontier"] == "True" or _entry["expert"] == "True" or _entry["guildhest"] == "True" or _entry["level50_60"] == "True" or _entry["level70"] == "True" or _entry["leveling"] == "True" or _entry["main"] == "True" or _entry["mentor"] == "True" or _entry["normalraid"] == "True" or _entry["trial"] == "True":
         header_data += 'rouletts:\n'
         if _entry["allianceraid"]:
             header_data += '    - allianceraid: ' + _entry["allianceraid"] + "\n"
@@ -975,25 +995,25 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
         if _entry["trial"]:
             header_data += '      trial: ' + _entry["trial"] + "\n"
     # links:
-    if checkVariable(_entry,"teamcraftlink") or checkVariable(_entry,"garlandtoolslink") or checkVariable(_entry,"gamerescapelink"):
+    if checkVariable(_entry, "teamcraftlink") or checkVariable(_entry, "garlandtoolslink") or checkVariable(_entry, "gamerescapelink"):
         header_data += 'links:\n'
         first = "-"
-        if checkVariable(_entry,"teamcraftlink"):
+        if checkVariable(_entry, "teamcraftlink"):
             header_data += f'    {first} teamcraftlink: "' + _entry["teamcraftlink"] + '"\n'
             first = " "
-        if checkVariable(_entry,"garlandtoolslink"):
+        if checkVariable(_entry, "garlandtoolslink"):
             header_data += f'    {first} garlandtoolslink: "' + _entry["garlandtoolslink"] + '"\n'
             first = " "
-        if checkVariable(_entry,"gamerescapelink"):
+        if checkVariable(_entry, "gamerescapelink"):
             header_data += f'    {first} gamerescapelink: "' + _entry["gamerescapelink"] + '"\n'
     # videos
-    if checkVariable(_entry,"mtqvid1"):
+    if checkVariable(_entry, "mtqvid1"):
         header_data += 'mtq_vid1: "' + get_video_url(_entry["mtqvid1"]) + '"\n'
-    if checkVariable(_entry,"mtqvid2"):
+    if checkVariable(_entry, "mtqvid2"):
         header_data += 'mtq_vid2: "' + get_video_url(_entry["mtqvid2"]) + '"\n'
-    if checkVariable(_entry,"mrhvid1"):
+    if checkVariable(_entry, "mrhvid1"):
         header_data += 'mrh_vid1: "' + get_video_url(_entry["mrhvid1"]) + '"\n'
-    if checkVariable(_entry,"mrhvid2"):
+    if checkVariable(_entry, "mrhvid2"):
         header_data += 'mrh_vid2: "' + get_video_url(_entry["mrhvid2"]) + '"\n'
     return header_data
 
@@ -1027,18 +1047,18 @@ def writeTags(header_data, _entry, tt_type_name):
     header_data += "    - term: \"" + _entry["patchNumber"] + "\"\n"
     header_data += "    - term: \"" + _entry["patchName"] + "\"\n"
     header_data += "    - term: \"" + _entry["quest"] + "\"\n"
-    if checkVariable(_entry,"mount1") or checkVariable(_entry,"mount2"):
+    if checkVariable(_entry, "mount1") or checkVariable(_entry, "mount2"):
         header_data += "    - term: \"mounts\"\n"
-    if checkVariable(_entry,"minion1") or checkVariable(_entry,"minion2") or checkVariable(_entry,"minion3"):
+    if checkVariable(_entry, "minion1") or checkVariable(_entry, "minion2") or checkVariable(_entry, "minion3"):
         header_data += "    - term: \"minions\"\n"
-    if checkVariable(_entry,"tt_card1") or checkVariable(_entry,"tt_card2"):
+    if checkVariable(_entry, "tt_card1") or checkVariable(_entry, "tt_card2"):
         header_data += "    - term: \"tt_cards\"\n"
-    if checkVariable(_entry,"gearset_loot"):
+    if checkVariable(_entry, "gearset_loot"):
         for gset in _entry["gearset_loot"].split(","):
             header_data += "    - term: \"" + gset + "\"\n"
-    if checkVariable(_entry,"orchestrion") or checkVariable(_entry,"orchestrion2") or checkVariable(_entry,"orchestrion3") or checkVariable(_entry,"orchestrion4") or checkVariable(_entry,"orchestrion5"):
+    if checkVariable(_entry, "orchestrion") or checkVariable(_entry, "orchestrion2") or checkVariable(_entry, "orchestrion3") or checkVariable(_entry, "orchestrion4") or checkVariable(_entry, "orchestrion5"):
         header_data += "    - term: \"orchestrion\"\n"
-    if checkVariable(_entry,"orchestrion_material1") or checkVariable(_entry,"orchestrion_material2") or checkVariable(_entry,"orchestrion_material3"):
+    if checkVariable(_entry, "orchestrion_material1") or checkVariable(_entry, "orchestrion_material2") or checkVariable(_entry, "orchestrion_material3"):
         header_data += "    - term: \"orchestrion_material\"\n"
     if _entry["instanceType"] == "trial":
         header_data += "    - term: \"" + "Prüfung" + "\"\n"
@@ -1080,7 +1100,7 @@ def add_Mechanic(guide_data, data):
             if step.get("videos", None):
                 guide_data += "        videos:\n"
                 for video in step["videos"]:
-                   guide_data += f"          - url: \"{video['url']}\"\n"
+                    guide_data += f"          - url: \"{video['url']}\"\n"
     return guide_data
 
 
@@ -1216,7 +1236,7 @@ def add_variation_Attack(guide_data, attack, enemy_type):
         for phase in attack.get('phases', {}):
             guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
 
-    if (attack.get('notes', None) and enemy_type != "adds") or (attack.get('notes', None) and enemy_type == "adds" and attack.get('notes', [{}])[0].get("note", None) != "Variation-note BIG" ):
+    if (attack.get('notes', None) and enemy_type != "adds") or (attack.get('notes', None) and enemy_type == "adds" and attack.get('notes', [{}])[0].get("note", None) != "Variation-note BIG"):
         guide_data += f'        notes:\n'
         for note in attack.get('notes', {}):
             guide_data += f'          - note: "{note["note"]}"\n'
@@ -1270,7 +1290,7 @@ def add_combo_Attack(guide_data, attack, enemy_type):
         for phase in attack.get('phases', {}):
             guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
 
-    if (attack.get('notes', None) and enemy_type != "adds") or (attack.get('notes', None) and enemy_type == "adds" and attack.get('notes', [{}])[0].get("note", None) != "Variation-note BIG" ):
+    if (attack.get('notes', None) and enemy_type != "adds") or (attack.get('notes', None) and enemy_type == "adds" and attack.get('notes', [{}])[0].get("note", None) != "Variation-note BIG"):
         guide_data += f'        notes:\n'
         for note in attack.get('notes', {}):
             guide_data += f'          - note: "{note["note"]}"\n'
@@ -1312,48 +1332,48 @@ def add_combo_Attack(guide_data, attack, enemy_type):
 
 
 def add_Sequence(guide_data, data):
-    guide_data +=  "    sequence:\n"
+    guide_data += "    sequence:\n"
     for phase in data['sequence']:
-        guide_data +=  f"      - phase: \"{phase['phase']}\"\n"
+        guide_data += f"      - phase: \"{phase['phase']}\"\n"
         if phase.get('name', None):
-            guide_data +=  f"        name: \"{phase['name']}\"\n"
+            guide_data += f"        name: \"{phase['name']}\"\n"
 
         if phase.get('alerts', None):
-            guide_data +=  "        alerts:\n"
+            guide_data += "        alerts:\n"
             for alert in phase['alerts']:
-                guide_data +=  f"          - alert: \"{alert['alert']}\"\n"
+                guide_data += f"          - alert: \"{alert['alert']}\"\n"
 
         if phase.get('toolbox', None):
-            guide_data +=  "        toolbox:\n"
+            guide_data += "        toolbox:\n"
             for toolbox in phase['toolbox']:
-                guide_data +=  f"          - link: \"{toolbox['link']}\"\n"
-                guide_data +=  f"            name: \"{toolbox['name']}\"\n"
+                guide_data += f"          - link: \"{toolbox['link']}\"\n"
+                guide_data += f"            name: \"{toolbox['name']}\"\n"
 
         if phase.get('mechanics', None):
-            guide_data +=  "        mechanics:\n"
+            guide_data += "        mechanics:\n"
             for mechanic in phase['mechanics']:
-                guide_data +=  f"          - title: \"{mechanic['title']}\"\n"
+                guide_data += f"          - title: \"{mechanic['title']}\"\n"
                 if mechanic.get('notes', None):
-                    guide_data +=  f"            notes:\n"
+                    guide_data += f"            notes:\n"
                     for note in mechanic['notes']:
-                        guide_data +=  f"              - note: \"{note['note']}\"\n"
+                        guide_data += f"              - note: \"{note['note']}\"\n"
 
         if phase.get('attacks', None):
-            guide_data +=  "        attacks:\n"
+            guide_data += "        attacks:\n"
             for attack in phase['attacks']:
-                guide_data +=  f"          - attack: \"{attack['attack']}\"\n"
+                guide_data += f"          - attack: \"{attack['attack']}\"\n"
 
         if phase.get('images', None):
-            guide_data +=  "        images:\n"
+            guide_data += "        images:\n"
             for image in phase['images']:
-                guide_data +=  f"          - url: \"{image['url']}\"\n"
-                guide_data +=  f"            alt: \"{image.get('alt', image['url'])}\"\n"
-                guide_data +=  f"            height: \"{image.get('height', '250px')}\"\n"
+                guide_data += f"          - url: \"{image['url']}\"\n"
+                guide_data += f"            alt: \"{image.get('alt', image['url'])}\"\n"
+                guide_data += f"            height: \"{image.get('height', '250px')}\"\n"
 
         if phase.get('videos', None):
-            guide_data +=  "        videos:\n"
+            guide_data += "        videos:\n"
             for video in phase['videos']:
-                guide_data +=  f"          - url: \"{video['url']}\"\n"
+                guide_data += f"          - url: \"{video['url']}\"\n"
     return guide_data
 
 
@@ -1362,7 +1382,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in  [282]: continue
+            # if i not in  [282]: continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
@@ -1383,7 +1403,7 @@ def run(sheet, max_row, max_column):
 
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_bosses, old_adds, old_mechanics, old_wip, i)
-        except Exception as e:
+        except Exception:
             print_color_red(f"Error when handeling '{filename}'")
             traceback.print_exception(*sys.exc_info())
 
