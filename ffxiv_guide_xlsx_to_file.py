@@ -617,7 +617,7 @@ def addknowndebuff(status_id, status_data):
         'description': get_fixed_status_description(status_id),
         'debuff_in_use': 'true',
         'disable': 'false',
-        'damage_type': status_data['damage_type'],
+        #'damage_type': status_data['damage_type'],
         'phases': [{'phase': '09'}],
         'roles': [{'role': 'Alle'}],
         'tags': [{'tag': 'Common'}],
@@ -689,7 +689,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
                 'description': get_fixed_status_description(status_id),
                 'debuff_in_use': 'false',
                 'disable': 'false',
-                'damage_type': status_data['damage_type'],
+                #'damage_type': status_data['damage_type'],
                 'phases': [{'phase': '09'}],
                 'roles': [{'role': 'role'}],
                 'tags': [{'tag': 'tag'}],
@@ -1144,7 +1144,7 @@ def add_Debuff(guide_data, debuff, enemy_type):
         guide_data += f'        durations: {debuff["durations"]}\n'
     guide_data += f'        debuff_in_use: "{debuff["debuff_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{debuff["disable"] or "false"}"\n'
-    guide_data += f'        damage_type: "{debuff["damage_type"] or "None"}"\n'
+    #guide_data += f'        damage_type: "{debuff["damage_type"] or "None"}"\n'
 
     if debuff.get('phases', None):
         guide_data += f'        phases:\n'
