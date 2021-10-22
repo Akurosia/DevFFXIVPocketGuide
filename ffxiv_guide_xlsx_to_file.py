@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
+import copy
 import os
 from operator import itemgetter
 import traceback
@@ -26,6 +27,10 @@ enemy = {
     "title": "",
     "title_en": "",
     "id": "",
+    "hp": {
+        "min": 100,
+        "max": 0
+    },
     "attacks": [{
         "title": "",
         "title_id": "",
@@ -34,6 +39,10 @@ enemy = {
         "disable": "",
         "type": "",
         "damage_type": "",
+        "damage": {
+            "min": 100,
+            "max": 0
+        },
         "phases": [{
             "phase": "",
         }],
@@ -511,6 +520,10 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     'title_id': tmp_attack['title_id'],
                     'damage_type': tmp_attack['damage_type']
                 }
+                if tmp_attack.get('damage', None):
+                    tmp["damage"] = {}
+                    tmp["damage"]["min"] = tmp_attack['damage']['min']
+                    tmp["damage"]["max"] = tmp_attack['damage']['max']
                 if tmp_attack.get('roles', None):
                     tmp['roles'] = list(tmp_attack.get('roles', None))
                     if tmp['roles'][0]['role'] == "role":
@@ -531,6 +544,10 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     'title_id': attack_id,
                     'damage_type': attack['damage_type'],
                 }
+                if tmp_attack.get('damage', None):
+                    tmp2["damage"] = {}
+                    tmp2["damage"]["min"] = tmp_attack['damage']['min']
+                    tmp2["damage"]["max"] = tmp_attack['damage']['max']
                 if tmp_attack.get('roles', None):
                     tmp2['roles'] = list(tmp_attack.get('roles', None))
                     if tmp2['roles'][0]['role'] == "role":
@@ -563,6 +580,10 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     'title_id': attack_id,
                     'damage_type': attack['damage_type']
                 }
+                if tmp_attack['variation'][0].get('damage', None) or tmp_attack.get('damage', None):
+                    tmp["damage"] = {}
+                    tmp["damage"]["min"] = tmp_attack['variation'][0].get('damage', {}).get('min', None) or tmp_attack.get('damage', {}).get('min', None)
+                    tmp["damage"]["max"] = tmp_attack['variation'][0].get('damage', {}).get('max', None) or tmp_attack.get('damage', {}).get('max', None)
                 if tmp_attack['variation'][0].get('roles', None) or tmp_attack.get('roles', None):
                     tmp['roles'] = tmp_attack['variation'][0].get('roles', None) or tmp_attack.get('roles', None)
                 if tmp_attack['variation'][0].get('tags', None) or tmp_attack.get('tags', None):
@@ -586,6 +607,11 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 'tags': [{'tag': 'tag'}],
                 'notes': [{'note': 'note'}]
             }
+            if attack.get('damage', None):
+                tmp["damage"] = {}
+                tmp["damage"]["min"] = attack['damage']['min']
+                tmp["damage"]["max"] = attack['damage']['max']
+
             if tmp['title'] == "Attacke":
                 tmp['attack_in_use'] = 'true'
                 tmp['disable'] = 'true'
@@ -734,6 +760,26 @@ def check_Mechanics(_entry, guide_data, _old_mechanics="N/A"):
     return guide_data
 
 
+def ugly_fix_enemy_data(enemy_data, new_enemy_data):
+    for attack in enemy_data.get('attacks', []):
+        if attack['type'] in ["variation", "combo"]:
+            for action in attack[attack['type']]:
+                if new_enemy_data.get("skill", {}).get(action["title_id"], None):
+                    x = new_enemy_data.get("skill", {}).get(action["title_id"], {})
+                    if x.get("damage", {}).get("min", None) or x.get("damage", {}).get("max", None):
+                        action['damage'] = {}
+                        action['damage']['min'] = x.get("damage", {}).get("min", None)
+                        action['damage']['max'] = x.get("damage", {}).get("max", None)
+        elif attack['type'] == "regular":
+            if new_enemy_data.get("skill", {}).get(attack["title_id"], None):
+                x = new_enemy_data.get("skill", {}).get(attack["title_id"], {})
+                if x.get("damage", {}).get("min", None) or x.get("damage", {}).get("max", None):
+                    attack['damage'] = {}
+                    attack['damage']['min'] = x.get("damage", {}).get("min", None)
+                    attack['damage']['max'] = x.get("damage", {}).get("max", None)
+    return enemy_data
+
+
 def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_content,  _old_enemy=None):
     if _old_enemy or logdata != {}:
         guide_data += f"{enemy_text}:\n"
@@ -769,12 +815,20 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
                     empty_enemy_data = logdata_instance_content['']
             except Exception:
                 new_enemy_data = {}
+            new_enemy_data_c = copy.deepcopy({**{}, **new_enemy_data})
 
             # get enemy attacks and debuffs for all enemies with a name
             old_enemy_data["enemy_id"] = new_enemy_data.get("id", "")
+
+            if new_enemy_data.get("minHP", None) or new_enemy_data.get("maxHP", None):
+                old_enemy_data["hp"] = {}
+                old_enemy_data["hp"]["min"] = new_enemy_data.get("minHP", "")
+                old_enemy_data["hp"]["max"] = new_enemy_data.get("maxHP", "")
+
             old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
             old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
-            guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type)
+
+            guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type, new_enemy_data_c)
             try:
                 del logdata_instance_content[old_enemy_data['title']]
             except Exception:
@@ -789,8 +843,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
                 old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, empty_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
 
                 if not old_enemy_data == base_data:
-                    guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type)
-
+                    guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type, new_enemy_data_c)
     if logdata_instance_content != {}:
         counter = 0
         if logdata_instance_content is None:
@@ -811,6 +864,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             new_enemy_data = logdata_instance_content.get(enemy, "Unknown_")
             if new_enemy_data == {}:
                 new_enemy_data = {'skill': {}}
+            new_enemy_data_c = copy.deepcopy({**{}, **new_enemy_data})
             # create new template file to merge against
             enemy_id = new_enemy_data.get("id", "")
             tmp = {
@@ -821,6 +875,12 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
                 "attacks": [],
                 "debuffs": []
             }
+
+            if new_enemy_data.get("minHP", None) or new_enemy_data.get("maxHP", None):
+                tmp["hp"] = {}
+                tmp["hp"]["min"] = new_enemy_data.get("minHP", "")
+                tmp["hp"]["max"] = new_enemy_data.get("maxHP", "")
+
             enemy_data = merge_attacks(tmp, new_enemy_data, enemy_type)
             enemy_data['attacks'] = sorted(enemy_data['attacks'], key=itemgetter('title'))
 
@@ -829,11 +889,11 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             if enemy == "":
                 empty_enemy = enemy_data
             else:
-                guide_data = add_Enemy(guide_data, enemy_data, enemy_type)
+                guide_data = add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data_c)
 
         if empty_enemy and not empty_enemy_available:
             if empty_enemy.get("attacks", None) or empty_enemy.get("debuffs", None):
-                guide_data = add_Enemy(guide_data, empty_enemy, "bosse")
+                guide_data = add_Enemy(guide_data, empty_enemy, "bosse", new_enemy_data_c)
     return guide_data
 
 
@@ -1104,11 +1164,17 @@ def add_Mechanic(guide_data, data):
     return guide_data
 
 
-def add_Enemy(guide_data, enemy_data, enemy_type):
+def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
+    enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
     guide_data += f'  - title: "{enemy_data["title"]}"\n'
     guide_data += f'    title_en: "{enemy_data["title_en"]}"\n'
     guide_data += f'    enemy_id: "{enemy_data.get("enemy_id", "")}"\n'
     guide_data += f'    id: "{enemy_data["id"]}"\n'
+
+    if enemy_data.get('hp', None):
+        guide_data += f'    hp:\n'
+        guide_data += f'      - min: {enemy_data["hp"]["min"] or "None"}\n'
+        guide_data += f'      - max: {enemy_data["hp"]["max"] or "None"}\n'
     if enemy_data.get("attacks", None):
         guide_data += '    attacks:\n'
         for attack in enemy_data["attacks"]:
@@ -1186,6 +1252,11 @@ def add_regular_Attack(guide_data, attack, enemy_type):
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
     guide_data += f'        damage_type: "{attack["damage_type"] or "None"}"\n'
 
+    if attack.get('damage', None):
+        guide_data += f'        damage:\n'
+        guide_data += f'          - min: {attack["damage"]["min"] or "None"}\n'
+        guide_data += f'          - max: {attack["damage"]["max"] or "None"}\n'
+
     if attack.get('phases', None):
         guide_data += f'        phases:\n'
         for phase in attack.get('phases', {}):
@@ -1247,6 +1318,13 @@ def add_variation_Attack(guide_data, attack, enemy_type):
             guide_data += f'          - title: "{variation["title"]}"\n'
             guide_data += f'            title_id: "{variation["title_id"]}"\n'
             guide_data += f'            damage_type: "{variation["damage_type"]}"\n'
+
+            # print_color_yellow(variation)
+            if variation.get('damage', None):
+                guide_data += f'            damage:\n'
+                guide_data += f'              - min: {variation["damage"]["min"] or "None"}\n'
+                guide_data += f'              - max: {variation["damage"]["max"] or "None"}\n'
+
             if variation.get('roles', None):
                 guide_data += f'            roles:\n'
                 for role in variation.get('roles', {}):
@@ -1301,6 +1379,12 @@ def add_combo_Attack(guide_data, attack, enemy_type):
             guide_data += f'          - title: "{combo["title"]}"\n'
             guide_data += f'            title_id: "{combo["title_id"]}"\n'
             guide_data += f'            damage_type: "{combo["damage_type"]}"\n'
+
+            if combo.get('damage', None):
+                guide_data += f'            damage:\n'
+                guide_data += f'              - min: {combo["damage"]["min"] or "None"}\n'
+                guide_data += f'              - max: {combo["damage"]["max"] or "None"}\n'
+
             if combo.get('roles', None):
                 guide_data += f'            roles:\n'
                 for role in combo.get('roles', {}):
@@ -1382,7 +1466,8 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            # if i not in  [282]: continue
+            # if i not in [257]:
+            #    continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
