@@ -1419,10 +1419,12 @@ h5.guide__accordion-trigger-title {
 }
 
 div {
-  &.guide__accordion-trigger-id, &.guide__accordion-trigger-subtitle {
+  &.guide__accordion-trigger-id,
+  &.guide__accordion-trigger-subtitle {
     place-items: flex-end;
     color: grey;
     font-size: smaller;
+    padding-left: 5px;
   }
 
   &.guide__accordion-trigger-id {
@@ -1905,6 +1907,17 @@ body {
   height: 32px !important;
   margin-top: -12px;
   margin-right: 5px;
+}
+
+.attack_icon {
+  width: 48px !important;
+  height: 48px !important;
+  margin-right: 15px;
+}
+
+.attack_skill_fix {
+    padding-left: 65px;
+    margin-top: -25px;
 }
 
 .guide__debuff_description {

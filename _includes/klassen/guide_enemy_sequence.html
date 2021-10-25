@@ -1,0 +1,27 @@
+<!-- Opens the Sequence Loop -->
+{% for phase in enemy.sequence %}
+    <!-- Determines the current phase. -->
+    {% assign currentPhase = phase.phase %}
+    <!-- Enters the enemy attack loop. -->
+    {% for attack in enemy.attacks %}
+        <!-- Enters the attack's phases. -->
+        {% for attackPhase in attack.phases %}
+            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+            {% if attackPhase.phase == currentPhase %}
+                <!-- Include Attack Template -->
+                {% include klassen/_components/guide-attack.html %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    <!-- Enters the enemy debuff loop. -->
+    {% for debuff in enemy.debuffs %}
+        <!-- Enters the attack's phases. -->
+        {% for debuffPhase in debuff.phases %}
+            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+            {% if debuffPhase.phase == currentPhase %}
+                <!-- Include Attack Template -->
+                {% include klassen/_components/guide-debuff.html %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endfor %}

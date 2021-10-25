@@ -1,0 +1,20 @@
+<div class="attack_skill_fix guide__accordion-tag-wrapper">
+  {% if attack.level %}
+    <span class="a guide__accordion-tag--role">Level: {{ attack.level }}</span>
+  {% endif %}
+  {% if attack.range %}
+    <span class="guide__accordion-tag--duty-action">Range: {{ attack.range }}</span>
+  {% endif %}
+  {% if attack.effectrange %}
+    <span class="guide__accordion-tag--duty-action">EffectRange: {{ attack.effectrange }}</span>
+  {% endif %}
+  {% if attack.cast %}
+    <span class="guide__accordion-tag--attack">Cast: {{ attack.cast }}</span>
+  {% endif %}
+  {% if attack.recast %}
+    <span class="guide__accordion-tag--attack">Recast: {{ attack.recast }}</span>
+  {% endif %}
+  {% if attack.kategorie %}
+    <span class="guide__accordion-tag--role">Kategorie: {{ attack.kategorie }}</span>
+  {% endif %}
+</div>

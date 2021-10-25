@@ -44,4 +44,8 @@
     {% if guide.instanceType == "bluemage" or guide.instance_type == "bluemage" %}
         {% assign counter = counter | plus: 1 %}
     {% endif %}
+{% elsif page.page_category == "klassenjobs" %}
+    {% if guide.instanceType == "klassenjobs" or guide.instance_type == "klassenjobs" %}
+        {% assign counter = counter | plus: 1 %}
+    {% endif %}
 {% endif %}

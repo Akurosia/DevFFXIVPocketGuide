@@ -1,0 +1,9 @@
+<!-- Guide Content ========================================================= -->
+<div class="guide-content">
+    <!-- Duty Bosses ======================================================= -->
+    {% if page.bosses %}
+        {% assign enemies = page.bosses %}
+        {% assign x = "Bosse" %}
+        {% include klassen/guide_enemy.html %}
+    {% endif %}
+</div>

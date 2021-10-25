@@ -77,6 +77,21 @@
             {% include _components/index-list.html %}
         </div>
     {% endif %}
+    <!-- Klassen Guide Index ============================================ -->
+    {% assign counter = 0 %}
+    {% for guide in site.categories.klassenjobs %}
+        {% include _components/index-counter.html %}
+    {% endfor %}
+    {% if counter > 0 %}
+        <a id="klassenjobs"></a>
+        <div class="index-divider" data-expansion="klassenjobs">
+            <h2 class="index-divider__title">Klassen und Jobs</h2>
+        </div>
+        <div class="index__list" data-expansion="klassenjobs">
+            {% assign sorted = site.categories.klassenjobs | sort:"order" %}
+            {% include _components/index-list.html %}
+        </div>
+    {% endif %}
     <!-- Include Null State -->
     {% include guide-index-null-state.html %}
 </div>

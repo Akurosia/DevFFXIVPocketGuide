@@ -1,0 +1,46 @@
+<!-- Debuff Template ======================================================= -->
+<div class="guide__accordion-trigger--{% if page.sequence %}02{% else %}03{% endif %}--debuff">
+    <i class="material-icons">expand_more</i>
+    <h4 class="guide__accordion-trigger-title">
+        <img class="debuff_icon" src="https://ffxiv.akurosia.de/extras/images/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
+        <span class="{% if debuff.damage_type == 'Magical' %}attack-is-magic
+                     {% elsif debuff.damage_type && debuff.damage_type != 'None' %}attack-is-physical
+                     {% endif %}">
+            {{ debuff.title }}</span>
+        {% if debuff.title_en %}
+            <div class="guide__accordion-trigger-subtitle"> | {{ debuff.title_en }}</div>
+        {% endif %}
+        {% if debuff.title_id %}
+            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title }}', 'debuff')">Skill-ID: {{ debuff.title_id }}</div>
+        {% endif %}
+
+        {% assign attack = debuff %}
+        {% include _components/guide-attack-types.html %}
+    </h4>
+</div>
+<div class="guide__accordion-content--{% if page.sequence %}02{% else %}03{% endif %}--debuff">
+    <div class="guide__accordion-copy-wrapper">
+        <!-- Standard Attacks -->
+        {% if debuff.description %}
+            <div class="guide__attack-notes-wrapper">
+                <h5 class="guide__attack-notes-title">Description:</h5>
+                <span class="guide__debuff_description">{{ debuff.description }}</span>
+            </div>
+        {% endif %}
+
+        <!-- Debuff durations -->
+        {% if debuff.durations %}
+            <div class="guide__attack-notes-wrapper">
+                <h5 class="guide__attack-notes-title">Folgende Zeiten wurden für diesen Debuff gefunden (kann Rundungsfehler enthalten):</h5>
+                <span class="guide__debuff_description">
+                {% for duration in debuff.durations %}
+                    {{ duration }} sek
+                    {% unless forloop.last %}
+                          -
+                    {% endunless %}
+                {% endfor %}
+                </span>
+            </div>
+        {% endif %}
+    </div>
+</div>

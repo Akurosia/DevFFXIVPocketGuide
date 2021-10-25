@@ -117,6 +117,13 @@
                         PVP
                     </a>
                 </li>
+                <li>
+                    <a {% if page.page_category == "klassenjobs" %}class="active"{% endif %}
+                        {% if page.instanceType == "klassenjobs" or page.instance_type == "klassenjobs" %}class="active"{% endif %}
+                        href="/klassenjobs/" title="Klassen/Jobs anzeigen">
+                        Klassen/Jobs
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
