@@ -1,0 +1,27 @@
+<!-- Attack Template ======================================================= -->
+<div class="guide__accordion-trigger--{% if page.sequence %}02{% else %}03{% endif %}--trait">
+    <i class="material-icons">expand_more</i>
+    <h4 class="guide__accordion-trigger-title">
+        <img class="attack_icon" src="https://ffxiv.akurosia.de/extras/images/{{ trait.icon }}" alt="{{ trait.icon }}"/>
+        <span class="">{{ trait.title }}</span>
+        {% if trait.title_en %}
+            <div class="guide__accordion-trigger-subtitle"> | {{ trait.title_en }}</div>
+        {% endif %}
+        {% if trait.title_id %}
+            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ trait.title_id }}', '{{ enemy.title }}', 'attack')">Skill-ID: {{ trait.title_id }}</div>
+        {% endif %}
+        {% include klassen/_components/guide-attack-types.html %}
+    </h4>
+</div>
+<div class="guide__accordion-content--{% if page.sequence %}02{% else %}03{% endif %}--trait">
+    <div class="guide__accordion-copy-wrapper">
+        <!-- Standard Attacks -->
+        {% if trait.description %}
+            <div class="guide__attack-notes-wrapper">
+                <h5 class="guide__attack-notes-title">Description:</h5>
+                <span class="guide__debuff_description">{{ trait.description }}</span>
+            </div>
+        {% endif %}
+        {% include _components/guide-attack-notes.html %}
+    </div>
+</div>

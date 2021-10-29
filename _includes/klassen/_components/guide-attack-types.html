@@ -1,6 +1,6 @@
 <div class="attack_skill_fix guide__accordion-tag-wrapper">
-  {% if attack.level %}
-    <span class="a guide__accordion-tag--role">Level: {{ attack.level }}</span>
+  {% if attack.level or trait.level %}
+    <span class="a guide__accordion-tag--role">Level: {{ attack.level }}{{ trait.level }}</span>
   {% endif %}
   {% if attack.range %}
     <span class="guide__accordion-tag--duty-action">Range: {{ attack.range }}</span>

@@ -1,4 +1,8 @@
-<div class="guide__accordion-tag-wrapper">
+{% if x == True %}
+  <div class="debuff_skill_fix guide__accordion-tag-wrapper">
+{% else %}
+  <div class="guide__accordion-tag-wrapper">
+{% endif %}
     {% if attack.combo %}
         {% for action in attack.dutyActions %}
             <span class="guide__accordion-tag--duty-action">Duty Action</span>

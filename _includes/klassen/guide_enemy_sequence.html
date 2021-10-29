@@ -24,4 +24,15 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
+    <!-- Enters the enemy trait loop. -->
+    {% for trait in enemy.traits %}
+        <!-- Enters the attack's phases. -->
+        {% for traitPhase in trait.phases %}
+            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+            {% if traitPhase.phase == currentPhase %}
+                <!-- Include Attack Template -->
+                {% include klassen/_components/guide-trait.html %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
 {% endfor %}

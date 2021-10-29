@@ -1202,6 +1202,26 @@ html {
       }
     }
 
+    &[class*=trait] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #efff00);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#efff00",GradientType=1);
+      padding: 1.5rem 1.5rem 1.5rem 4.5rem;
+
+      &:before {
+        background: #323232;
+        content: " ";
+        display: block;
+        height: 100%;
+        opacity: .7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+    }
+
     &[class*=dutyAction] {
       background: #000;
       background: linear-gradient(90deg, #000 5%, #9b40bf);
@@ -1311,6 +1331,26 @@ html {
     &[class*=debuff] {
       background: #476cff;
       background: linear-gradient(90deg, #476cff 5%, #000);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+
+      &:before {
+        background: #323232;
+        content: " ";
+        display: block;
+        height: 100%;
+        opacity: .7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+    }
+
+
+    &[class*=trait] {
+      background: #efff00;
+      background: linear-gradient(90deg, #000 5%, #efff00);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
 
       &:before {
@@ -1903,10 +1943,15 @@ body {
 }
 
 .debuff_icon {
-  width: 24px !important;
-  height: 32px !important;
+  width: 40px !important;
+  height: 55px !important;
   margin-top: -12px;
   margin-right: 5px;
+}
+
+.debuff_skill_fix {
+    padding-left: 45px;
+    margin-top: -25px;
 }
 
 .attack_icon {
