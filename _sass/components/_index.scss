@@ -20,6 +20,14 @@ div.index {
         grid-template-columns: 1fr 1fr;
         grid-column-gap: calc(#{$unit} * .3);
     }
+    @media #{$cinema-xl} {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: calc(#{$unit} * .3);
+    }
+    @media #{$cinema-xxl} {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-column-gap: calc(#{$unit} * .3);
+    }
     @media #{$navigation} {
         padding: 0 calc(#{$unit} * 3);
     }
