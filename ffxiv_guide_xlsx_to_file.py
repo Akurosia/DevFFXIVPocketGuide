@@ -513,13 +513,13 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 tmp_attack = old_enemy_data['attacks'][attack_index]
                 tmp_attack['type'] = "variation"
                 tmp_attack['notes'] = [{'note': 'Variation-note BIG'}]
-                if tmp_attack['title'] == "Attacke":
-                    tmp['disable'] = 'false'
                 tmp = {
                     'title': tmp_attack['title'],
                     'title_id': tmp_attack['title_id'],
                     'damage_type': tmp_attack['damage_type']
                 }
+                if tmp_attack['title'] == "Attacke":
+                    tmp['disable'] = 'false'
                 if tmp_attack.get('damage', None):
                     tmp["damage"] = {}
                     tmp["damage"]["min"] = tmp_attack['damage']['min']
