@@ -17,8 +17,19 @@
         {% if attack.title_id %}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title }}', 'attack')">Skill-ID: {{ attack.title_id }}</div>
         {% endif %}
+
         {% assign isDebuff = "False" %}
         {% include _components/guide-attack-types.html %}
+        {% if attack.damage %}
+            <div class="guide__accordion-trigger-id">DMG:
+                {% if attack.damage[0].min == attack.damage[1].max %}
+                    {{ attack.damage[0].min | intcomma: '.' }}
+                {% else %}
+                    {{ attack.damage[0].min | intcomma: '.' }}{% if attack.damage[0].min && attack.damage[1].max %} - {% endif %}{{ attack.damage[1].max | intcomma: '.' }}
+                {% endif %}
+            </div>
+        {% endif %}
+        <div>
     </h4>
 </div>
 <div class="guide__accordion-content--{% if page.sequence %}02{% else %}03{% endif %}

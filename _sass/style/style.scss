@@ -1441,6 +1441,20 @@ html {
   z-index: 2;
 }
 
+.guide__accordion-trigger-title_id {
+  text-align: right;
+  margin-top: -1.0rem;
+  font-size: initial;
+  font-weight: bold;
+}
+
+.guide__accordion-trigger-title_hp {
+  text-align: right;
+  margin-top: -1.0rem;
+  font-size: initial;
+  font-weight: bold;
+}
+
 h2.guide__accordion-trigger-title {
   font-size: 1.95313rem;
 }
@@ -1458,6 +1472,7 @@ h5.guide__accordion-trigger-title {
 }
 
 div {
+  &.guide__accordion-trigger-hp,
   &.guide__accordion-trigger-id,
   &.guide__accordion-trigger-subtitle {
     place-items: flex-end;
@@ -1466,12 +1481,14 @@ div {
     padding-left: 5px;
   }
 
+  &.guide__accordion-trigger-hp,
   &.guide__accordion-trigger-id {
     margin-left: auto;
   }
 
   &.guide__accordion-tag-wrapper {
     width: inherit;
+    display: flex;
   }
 }
 
@@ -1480,6 +1497,7 @@ div {
   display: inline-block;
   font-size: .707rem;
   padding: 0 4px 0 0;
+  margin-top: 0.3rem;
 
   &:first-child {
     padding-left: 0;

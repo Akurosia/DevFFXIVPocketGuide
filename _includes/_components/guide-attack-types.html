@@ -36,4 +36,7 @@
         {% endfor %}
       {% endif %}
     {% endif %}
-</div>
+  {% if attack.damage %}
+  {% else %}
+  </div>
+  {% endif %}

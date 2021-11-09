@@ -42,13 +42,22 @@
                         {{ enemy.title }}
                     </h3>
                     {% if enemy.enemy_id and enemy.enemy_id != "" %}
-                        <div style="text-align: right; margin-top: -1.5rem; font-size: initial; font-weight: bold;" class="guide__accordion-trigger-id">
+                        <div class="guide__accordion-trigger-title_id">
                             Enemy-ID: {{ enemy.enemy_id }}
                         </div>
                     {% endif %}
                     <h4 class="guide__accordion-trigger-title_en">
                         {{ enemy.title_en }}
                     </h4>
+                    {% if enemy.hp %}
+                        <div class="guide__accordion-trigger-title_hp">HP:
+                            {% if enemy.hp[0].min == enemy.hp[1].max %}
+                                {{ enemy.hp[0].min | intcomma: '.' }}
+                            {% else %}
+                                {{ enemy.hp[0].min | intcomma: '.' }}{% if enemy.hp[0].min && enemy.hp[1].max %} - {% endif %}{{ enemy.hp[1].max | intcomma: '.' }}
+                            {% endif %}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="guide__accordion-content--02">
             {% endif %}
