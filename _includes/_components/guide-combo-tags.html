@@ -4,6 +4,15 @@
         {% if combo.title_id %}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ combo.title_id }}', '{{ enemy.title }}', 'attack')">Skill-ID: {{ combo.title_id }}</div>
         {% endif %}
+        {% if combo.damage %}
+            <div class="guide__accordion-trigger-id">DMG:
+                {% if combo.damage[0].min == combo.damage[1].max %}
+                    {{ combo.damage[0].min | intcomma: '.' }}
+                {% else %}
+                    {{ combo.damage[0].min | intcomma: '.' }}{% if combo.damage[0].min && combo.damage[1].max %} - {% endif %}{{ combo.damage[1].max | intcomma: '.' }}
+                {% endif %}
+            </div>
+        {% endif %}
         {% if page.cms == "netlify-cms" %}
           {% for role in combo.roles %}
             <span class="guide__combo-tag--role">{{ role }}</span>
@@ -26,30 +35,31 @@
           {% endfor %}
         {% endif %}
     {% elsif attack.variation %}
-        <h5 class="guide__attack-notes-title">{{ variation.title }}</h5>
-        {% if variation.title_id %}
-            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ variation.title_id }}', '{{ enemy.title }}', 'attack')">Skill-ID: {{ variation.title_id }}</div>
-        {% endif %}
-        {% if page.cms == "netlify-cms" %}
-          {% for role in variation.roles %}
-            <span class="guide__combo-tag--role">{{ role }}</span>
-          {% endfor %}
-          {% for action in variation.dutyActions %}
-            <span class="guide__combo-tag--duty-action">Duty Action</span>
-          {% endfor %}
-          {% for tag in variation.tags %}
-            <span class="guide__combo-tag--attack">{{ tag }}</span>
-          {% endfor %}
-        {% else %}
-          {% for role in variation.roles %}
-            <span class="guide__combo-tag--role">{{ role.role }}</span>
-          {% endfor %}
-          {% for action in variation.dutyActions %}
-            <span class="guide__combo-tag--duty-action">Duty Action</span>
-          {% endfor %}
-          {% for tag in variation.tags %}
-            <span class="guide__combo-tag--attack">{{ tag.tag }}</span>
-          {% endfor %}
-        {% endif %}
+        <h5 class="guide__accordion-trigger-title">
+            <span style="margin: 0;" class="guide__attack-notes-title">{{ variation.title }}</span>
+            {% if variation.title_id %}
+                <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ variation.title_id }}', '{{ variation.title }}', 'attack')">Skill-ID: {{ variation.title_id }}</div>
+            {% endif %}
+            <div class="guide__accordion-tag-wrapper">
+            {% for role in variation.roles %}
+              <span class="guide__combo-tag--role">{{ role.role }}</span>
+            {% endfor %}
+            {% for action in variation.dutyActions %}
+              <span class="guide__combo-tag--duty-action">Duty Action</span>
+            {% endfor %}
+            {% for tag in variation.tags %}
+              <span class="guide__combo-tag--attack">{{ tag.tag }}</span>
+            {% endfor %}
+            {% if variation.damage %}
+                <div class="guide__accordion-trigger-id">DMG:
+                    {% if variation.damage[0].min == variation.damage[1].max %}
+                        {{ variation.damage[0].min | intcomma: '.' }}
+                    {% else %}
+                        {{ variation.damage[0].min | intcomma: '.' }}{% if variation.damage[0].min && variation.damage[1].max %} - {% endif %}{{ variation.damage[1].max | intcomma: '.' }}
+                    {% endif %}
+                </div>
+            {% endif %}
+            </div>
+        </h5>
     {% endif %}
 </div>

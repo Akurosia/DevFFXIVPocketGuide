@@ -43,18 +43,10 @@ enemy = {
             "min": 100,
             "max": 0
         },
-        "phases": [{
-            "phase": "",
-        }],
-        "roles": [{
-            "role": "",
-        }],
-        "tags": [{
-            "tag": "",
-        }],
-        "notes": [{
-            "note": "",
-        }],
+        "phases": [{"phase": "",}],
+        "roles": [{"role": "",}],
+        "tags": [{"tag": "",}],
+        "notes": [{"note": "",}],
     }],
 }
 example_sequence = {
@@ -84,9 +76,7 @@ example_sequence = {
     }]
 }
 example_add_sequence = {
-    "sequence": [{
-        "phase": "09",
-    }]
+    "sequence": [{"phase": "09",}]
 }
 
 
@@ -265,6 +255,7 @@ def fixCaptilaziationAndRomanNumerals(text):
     text = re.sub(r" (Ii|Iii|IIi|Vi|Vii|Viii|Iv|Ix|Xi|Xii|Xiii|Xliii|Iii-E|Xxiv|013Bl|Xii\.)$", lambda x:  x.group(0).upper(), text)
     text = re.sub(r" (Ii) ", lambda x:  x.group(0).upper(), text)
     text = re.sub(r"('[a-zA-Z])(?! )", lambda x:  x.group(0).upper(), text)
+    text = re.sub(r"('[a-zA-Z]) ", lambda x:  x.group(0).lower(), text)
     return text
 
 
