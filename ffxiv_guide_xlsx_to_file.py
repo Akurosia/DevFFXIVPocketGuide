@@ -9,6 +9,7 @@ import errno
 import openpyxl
 import yaml
 import collections
+import convert_skills_to_guide_form as csgf
 
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'python_module'))
@@ -43,10 +44,10 @@ enemy = {
             "min": 100,
             "max": 0
         },
-        "phases": [{"phase": "",}],
-        "roles": [{"role": "",}],
-        "tags": [{"tag": "",}],
-        "notes": [{"note": "",}],
+        "phases": [{"phase": "", }],
+        "roles": [{"role": "", }],
+        "tags": [{"tag": "", }],
+        "notes": [{"note": "", }],
     }],
 }
 example_sequence = {
@@ -76,7 +77,7 @@ example_sequence = {
     }]
 }
 example_add_sequence = {
-    "sequence": [{"phase": "09",}]
+    "sequence": [{"phase": "09", }]
 }
 
 
@@ -127,7 +128,8 @@ def getContentName(name, lang="en", difficulty=None, instanceType=None):
                 return place[f"Name_{lang}"]
     except KeyError:
         pass
-    print_color_red("Could not translate: " + name)
+    if name not in ['title']:
+        print_color_red("Could not translate: " + name)
     return ""
 
 
@@ -1492,3 +1494,4 @@ if __name__ == "__main__":
     run(sheet, max_row, max_column)
     # second run to fix boss order
     #run(sheet, max_row, max_column)
+    csgf.main()

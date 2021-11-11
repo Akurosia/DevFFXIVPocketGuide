@@ -132,69 +132,71 @@
             </h5>
         {% endif %}
     </div>
-    <ul class="guide-metadata__menu">
-        <h5 class="guide-metadata__subtitle">In This Guide:</h5>
-        {% if page.mechanics %}
-            <li>
-                <a href="#" data-id="guideNotes" title="Go to the Guide Notes" class="guide-metadata__menu-link">
-                    {% if page.instanceType == "allianzraid" %}Allianzraid Notizen{% endif %}
-                    {% if page.instanceType == "bluemage" %}Bluemage Notizen{% endif %}
-                    {% if page.instanceType == "dungeon" %}Dungeon Notizen{% endif %}
-                    {% if page.instanceType == "feldexkursion" %}Feldexkursion Notizen{% endif %}
-                    {% if page.instanceType == "guildhest" %}Gildengeheiß Notizen{% endif %}
-                    {% if page.instanceType == "potd" %}Deep Dungeon Notizen{% endif %}
-                    {% if page.instanceType == "pvp" %}PvP Notizen{% endif %}
-                    {% if page.instanceType == "raid" %}Raid Notizen{% endif %}
-                    {% if page.instanceType == "treasure" %}Schatzdungeon Notizen{% endif %}
-                    {% if page.instanceType == "trial" %}Prüfung Notizen{% endif %}
-                </a>
-            </li>
-        {% endif %}
-        {% if page.bosses.size > 1 %}
-            <li>
-                <a href="#" data-id="guideBosse" title="Go to the Guide Bosse" class="guide-metadata__menu-link">
-                    {% if page.instanceType == "allianzraid" %}Allianzraid Bosse{% endif %}
-                    {% if page.instanceType == "bluemage" %}Bluemage Bosse{% endif %}
-                    {% if page.instanceType == "dungeon" %}Dungeon Bosse{% endif %}
-                    {% if page.instanceType == "feldexkursion" %}Feldexkursion Bosse{% endif %}
-                    {% if page.instanceType == "guildhest" %}Gildengeheiß Bosse{% endif %}
-                    {% if page.instanceType == "potd" %}Deep Dungeon Bosse{% endif %}
-                    {% if page.instanceType == "pvp" %}PvP Bosse{% endif %}
-                    {% if page.instanceType == "raid" %}Raid Bosse{% endif %}
-                    {% if page.instanceType == "treasure" %}Schatzdungeon Bosse{% endif %}
-                    {% if page.instanceType == "trial" %}Prüfung Bosse{% endif %}
-                </a>
-                <ul class="guide-metadata__submenu">
-                    {% for boss in page.bosses %}
-                        <li>
-                            <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title }}" class="guide-metadata__menu-link">{{ boss.title }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </li>
-        {% endif %}
-        {% if page.adds.size > 1 %}
-            <li>
-                <a href="#" data-id="guideAdds" title="Go to the Guide Adds" class="guide-metadata__menu-link">
-                    {% if page.instanceType == "allianzraid" %}Allianzraid Adds{% endif %}
-                    {% if page.instanceType == "bluemage" %}Bluemage Adds{% endif %}
-                    {% if page.instanceType == "dungeon" %}Dungeon Adds{% endif %}
-                    {% if page.instanceType == "feldexkursion" %}Feldexkursion Adds{% endif %}
-                    {% if page.instanceType == "guildhest" %}Gildengeheiß Adds{% endif %}
-                    {% if page.instanceType == "potd" %}Deep Dungeon Adds{% endif %}
-                    {% if page.instanceType == "pvp" %}PvP Adds{% endif %}
-                    {% if page.instanceType == "raid" %}Raid Adds{% endif %}
-                    {% if page.instanceType == "treasure" %}Schatzdungeon Adds{% endif %}
-                    {% if page.instanceType == "trial" %}Prüfung Adds{% endif %}
-                </a>
-                <ul class="guide-metadata__submenu">
-                    {% for add in page.adds %}
-                        <li>
-                            <a href="#" data-id="{{ add.id }}" title="Go to {{ add.title }}" class="guide-metadata__menu-link">{{ add.title }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </li>
-        {% endif %}
-    </ul>
+    {% if page.mechanics || page.bosses.size > 1 || page.adds.size > 1 %}
+        <ul class="guide-metadata__menu">
+            <h5 class="guide-metadata__subtitle">In This Guide:</h5>
+            {% if page.mechanics %}
+                <li>
+                    <a href="#" data-id="guideNotes" title="Go to the Guide Notes" class="guide-metadata__menu-link">
+                        {% if page.instanceType == "allianzraid" %}Allianzraid Notizen{% endif %}
+                        {% if page.instanceType == "bluemage" %}Bluemage Notizen{% endif %}
+                        {% if page.instanceType == "dungeon" %}Dungeon Notizen{% endif %}
+                        {% if page.instanceType == "feldexkursion" %}Feldexkursion Notizen{% endif %}
+                        {% if page.instanceType == "guildhest" %}Gildengeheiß Notizen{% endif %}
+                        {% if page.instanceType == "potd" %}Deep Dungeon Notizen{% endif %}
+                        {% if page.instanceType == "pvp" %}PvP Notizen{% endif %}
+                        {% if page.instanceType == "raid" %}Raid Notizen{% endif %}
+                        {% if page.instanceType == "treasure" %}Schatzdungeon Notizen{% endif %}
+                        {% if page.instanceType == "trial" %}Prüfung Notizen{% endif %}
+                    </a>
+                </li>
+            {% endif %}
+            {% if page.bosses.size > 1 %}
+                <li>
+                    <a href="#" data-id="guideBosse" title="Go to the Guide Bosse" class="guide-metadata__menu-link">
+                        {% if page.instanceType == "allianzraid" %}Allianzraid Bosse{% endif %}
+                        {% if page.instanceType == "bluemage" %}Bluemage Bosse{% endif %}
+                        {% if page.instanceType == "dungeon" %}Dungeon Bosse{% endif %}
+                        {% if page.instanceType == "feldexkursion" %}Feldexkursion Bosse{% endif %}
+                        {% if page.instanceType == "guildhest" %}Gildengeheiß Bosse{% endif %}
+                        {% if page.instanceType == "potd" %}Deep Dungeon Bosse{% endif %}
+                        {% if page.instanceType == "pvp" %}PvP Bosse{% endif %}
+                        {% if page.instanceType == "raid" %}Raid Bosse{% endif %}
+                        {% if page.instanceType == "treasure" %}Schatzdungeon Bosse{% endif %}
+                        {% if page.instanceType == "trial" %}Prüfung Bosse{% endif %}
+                    </a>
+                    <ul class="guide-metadata__submenu">
+                        {% for boss in page.bosses %}
+                            <li>
+                                <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title }}" class="guide-metadata__menu-link">{{ boss.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endif %}
+            {% if page.adds.size > 1 %}
+                <li>
+                    <a href="#" data-id="guideAdds" title="Go to the Guide Adds" class="guide-metadata__menu-link">
+                        {% if page.instanceType == "allianzraid" %}Allianzraid Adds{% endif %}
+                        {% if page.instanceType == "bluemage" %}Bluemage Adds{% endif %}
+                        {% if page.instanceType == "dungeon" %}Dungeon Adds{% endif %}
+                        {% if page.instanceType == "feldexkursion" %}Feldexkursion Adds{% endif %}
+                        {% if page.instanceType == "guildhest" %}Gildengeheiß Adds{% endif %}
+                        {% if page.instanceType == "potd" %}Deep Dungeon Adds{% endif %}
+                        {% if page.instanceType == "pvp" %}PvP Adds{% endif %}
+                        {% if page.instanceType == "raid" %}Raid Adds{% endif %}
+                        {% if page.instanceType == "treasure" %}Schatzdungeon Adds{% endif %}
+                        {% if page.instanceType == "trial" %}Prüfung Adds{% endif %}
+                    </a>
+                    <ul class="guide-metadata__submenu">
+                        {% for add in page.adds %}
+                            <li>
+                                <a href="#" data-id="{{ add.id }}" title="Go to {{ add.title }}" class="guide-metadata__menu-link">{{ add.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
 </div>
