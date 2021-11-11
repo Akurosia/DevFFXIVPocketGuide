@@ -1,5 +1,20 @@
 <!-- Opens the Sequence Loop -->
 {% for phase in enemy.sequence %}
+
+    {% if enemy.sequence.size > 1 %}
+        <div class="guide__accordion-trigger--03" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
+            <i class="material-icons">expand_more</i>
+            {% if phase.name %}
+                <h3 class="guide__accordion-trigger-title">{{ phase.phase }}. {{ phase.name }}</h3>
+            {% else %}
+                <h3 class="guide__accordion-trigger-title">Phase {{ phase.phase }}</h3>
+            {% endif %}
+        </div>
+        <div class="guide__accordion-content--03">
+    {% endif %}
+    <!-- Determines the current phase. -->
+    {% assign currentPhase = phase.phase %}
+
     <!-- Determines the current phase. -->
     {% assign currentPhase = phase.phase %}
     <!-- Enters the enemy attack loop. -->
@@ -35,4 +50,8 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
+
+    {% if enemy.sequence.size > 1 %}
+        </div>
+    {% endif %}
 {% endfor %}
