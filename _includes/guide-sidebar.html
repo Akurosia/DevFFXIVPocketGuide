@@ -63,42 +63,66 @@
         {% if page.mount %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Mount(s):
                 {% for mount in page.mount %}
-                    <span class="block">- {{ mount.name }}</span>
+                    {% if page.mount.size > 1 %}
+                        <span class="block">- {{ mount.name }}</span>
+                    {% else %}
+                        <span class="block">{{ mount.name }}</span>
+                    {% endif %}
                 {% endfor %}
             </h5>
         {% endif %}
         {% if page.minion %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Minion(s):
                 {% for minion in page.minion %}
-                    <span class="block">- {{ minion.name }}</span>
+                    {% if page.minion.size > 1 %}
+                        <span class="block">- {{ minion.name }}</span>
+                    {% else %}
+                        <span class="block">{{ minion.name }}</span>
+                    {% endif %}
                 {% endfor %}
             </h5>
         {% endif %}
         {% if page.gearset_loot %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Gearset(s):
                 {% for gearset in page.gearset_loot %}
-                    <span class="block">- {{ gearset.gsetname }}</span>
+                    {% if page.gearset_loot.size > 1 %}
+                        <span class="block">- {{ gearset.gsetname }}</span>
+                    {% else %}
+                        <span class="block">{{ gearset.gsetname }}</span>
+                    {% endif %}
                 {% endfor %}
             </h5>
         {% endif %}
         {% if page.tt_card %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">TT_Karte(n):
                 {% for tt_card in page.tt_card %}
-                    <span class="block">- {{ tt_card.name }}</span>
+                    {% if page.tt_card.size > 1 %}
+                        <span class="block">- {{ tt_card.name }}</span>
+                    {% else %}
+                        <span class="block">{{ tt_card.name }}</span>
+                    {% endif %}
                 {% endfor %}
             </h5>
         {% endif %}
         {% if page.orchestrion %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Orchestrion Roll:
                 {% for orchestrion in page.orchestrion %}
-                    <span class="block">- {{ orchestrion.name }}</span>
+                    {% if page.orchestrion.size > 1 %}
+                        <span class="block">- {{ orchestrion.name }}</span>
+                    {% else %}
+                        <span class="block">{{ orchestrion.name }}</span>
+                    {% endif %}
                 {% endfor %}
             </h5>
         {% endif %}
         {% if page.orchestrion_material %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Orchestrion Roll Material:
                 {% for orchestrion_material in page.orchestrion_material %}
-                    <span class="block">- {{ orchestrion_material.name }}</span>
+                    {% if page.orchestrion_material.size > 1 %}
+                        <span class="block">- {{ orchestrion_material.name }}</span>
+                    {% else %}
+                        <span class="block">{{ orchestrion_material.name }}</span>
+                    {% endif %}
                 {% endfor %}
             </h5>
         {% endif %}
@@ -161,6 +185,7 @@
                         {% if page.instanceType == "raid" %}Raid Notizen{% endif %}
                         {% if page.instanceType == "treasure" %}Schatzdungeon Notizen{% endif %}
                         {% if page.instanceType == "trial" %}Prüfung Notizen{% endif %}
+                        {% if page.instanceType == "ultimate" %}Ultimate Notizen{% endif %}
                     </a>
                 </li>
             {% endif %}
@@ -177,6 +202,7 @@
                         {% if page.instanceType == "raid" %}Raid Bosse{% endif %}
                         {% if page.instanceType == "treasure" %}Schatzdungeon Bosse{% endif %}
                         {% if page.instanceType == "trial" %}Prüfung Bosse{% endif %}
+                        {% if page.instanceType == "ultimate" %}Ultimate Bosse{% endif %}
                     </a>
                     <ul class="guide-metadata__submenu">
                         {% for boss in page.bosses %}
@@ -200,6 +226,7 @@
                         {% if page.instanceType == "raid" %}Raid Adds{% endif %}
                         {% if page.instanceType == "treasure" %}Schatzdungeon Adds{% endif %}
                         {% if page.instanceType == "trial" %}Prüfung Adds{% endif %}
+                        {% if page.instanceType == "ultimate" %}Ultimate Adds{% endif %}
                     </a>
                     <ul class="guide-metadata__submenu">
                         {% for add in page.adds %}
