@@ -1044,25 +1044,25 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
         if _entry["allianceraid"]:
             header_data += '  - allianceraid: ' + _entry["allianceraid"] + "\n"
         if _entry["frontier"]:
-            header_data += '  frontier: ' + _entry["frontier"] + "\n"
+            header_data += '    frontier: ' + _entry["frontier"] + "\n"
         if _entry["expert"]:
-            header_data += '  expert: ' + _entry["expert"] + "\n"
+            header_data += '    expert: ' + _entry["expert"] + "\n"
         if _entry["guildhest"]:
-            header_data += '  guildhest: ' + _entry["guildhest"] + "\n"
+            header_data += '    guildhest: ' + _entry["guildhest"] + "\n"
         if _entry["level50_60"]:
-            header_data += '  level50_60: ' + _entry["level50_60"] + "\n"
+            header_data += '    level50_60: ' + _entry["level50_60"] + "\n"
         if _entry["level70"]:
-            header_data += '  level70: ' + _entry["level70"] + "\n"
+            header_data += '    level70: ' + _entry["level70"] + "\n"
         if _entry["leveling"]:
-            header_data += '  leveling: ' + _entry["leveling"] + "\n"
+            header_data += '    leveling: ' + _entry["leveling"] + "\n"
         if _entry["main"]:
-            header_data += '  main: ' + _entry["main"] + "\n"
+            header_data += '    main: ' + _entry["main"] + "\n"
         if _entry["mentor"]:
-            header_data += '  mentor: ' + _entry["mentor"] + "\n"
+            header_data += '    mentor: ' + _entry["mentor"] + "\n"
         if _entry["normalraid"]:
-            header_data += '  normalraid: ' + _entry["normalraid"] + "\n"
+            header_data += '    normalraid: ' + _entry["normalraid"] + "\n"
         if _entry["trial"]:
-            header_data += '  trial: ' + _entry["trial"] + "\n"
+            header_data += '    trial: ' + _entry["trial"] + "\n"
     # links:
     if checkVariable(_entry, "teamcraftlink") or checkVariable(_entry, "garlandtoolslink") or checkVariable(_entry, "gamerescapelink"):
         header_data += 'links:\n'
