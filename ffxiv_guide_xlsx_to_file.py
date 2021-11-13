@@ -376,6 +376,10 @@ def cleanup_logdata(logdata_instance_content):
         del logdata_instance_content["zone"]
     except Exception:
         pass
+    try:
+        del logdata_instance_content["contentzoneid"]
+    except Exception:
+        pass
     for enemy_name, enemy in logdata_instance_content.items():
         # try: del enemy["status"]
         # except Exception: pass
