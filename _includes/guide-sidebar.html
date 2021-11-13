@@ -37,7 +37,11 @@
         {% if page.contentzoneids %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contenzoneids:
             {% for zone in page.contentzoneids %}
-                <span class="block">- {{ zone.id }}</span>
+                {% if page.contentzoneids.size > 1 %}
+                    <span class="block">- {{ zone.id }}</span>
+                {% else %}
+                    <span class="block">{{ zone.id }}</span>
+                {% endif %}
             {% endfor %}
         {% endif %}
         {% if page.quest %}
