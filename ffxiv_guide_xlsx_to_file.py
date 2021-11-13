@@ -897,6 +897,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
 # Notizen, Bosse und Adds
 def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
     guide_data = ""
+    contentzoneid = ""
     logdata_instance_content = None
     # add mechanics
     guide_data = check_Mechanics(_entry, guide_data, _old_mechanics)
@@ -909,12 +910,22 @@ def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
             logdata_instance_content = dict(logdata[getContentName(title, lang="de")])
         except Exception:
             logdata_instance_content = dict(logdata[title])
+        if logdata_instance_content.get('contentzoneid', None):
+            contentzoneid = logdata_instance_content['contentzoneid']
         logdata_instance_content = cleanup_logdata(logdata_instance_content)
     print_color_green(f"Work on '{_entry['title_de']}'", disable_green_print)
     guide_data = check_Enemy(_entry, guide_data, "bosse", "bosses", logdata_instance_content, _old_bosses)
     guide_data = check_Enemy(_entry, guide_data, "adds", "adds", logdata_instance_content, _old_adds)
     #guide_data = check_Enemy(_entry, guide_data, "adds", _old_adds)
-    return guide_data
+    return guide_data, contentzoneid
+
+
+def addContentZoneIdToHeader(header_data, contentzoneid):
+    if not contentzoneid == "":
+        header_data += 'contentzoneids:\n'
+        for zone in contentzoneid:
+            header_data += '  - id: ' + zone + '\n'
+    return header_data
 
 
 def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechanics, old_wip, index):
@@ -922,7 +933,8 @@ def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechan
     seperate_data_into_array("adds", _entry)
     seperate_data_into_array("tags", _entry)
     header_data = rewrite_content_even_if_exists(_entry, old_wip, index)
-    guide_data = addGuide(_entry, _old_bosses, _old_adds, _old_mechanics)
+    guide_data, contentzoneid = addGuide(_entry, _old_bosses, _old_adds, _old_mechanics)
+    header_data = addContentZoneIdToHeader(header_data, contentzoneid)
     #print_color_blue(guide_data, disable_blue_print)
 
     with open(_filename, "w", encoding="utf8") as fi:
@@ -957,8 +969,8 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
     header_data += 'slug: "' + replaceSlug(_entry["slug"]) + '"\n'
     if _entry["image"]:
         header_data += 'image:\n'
-        header_data += '    - urlSmall: \"https://ffxiv.akurosia.de/extras/images/' + getImage(_entry["image"]) + '\n'
-        header_data += '    - url: \"https://ffxiv.akurosia.de/extras/images/' + getImage(_entry["image"]) + '\n'
+        header_data += '  - urlSmall: \"https://ffxiv.akurosia.de/extras/images/' + getImage(_entry["image"]) + '\n'
+        header_data += '  - url: \"https://ffxiv.akurosia.de/extras/images/' + getImage(_entry["image"]) + '\n'
     header_data += 'terms:\n'
     header_data = writeTags(header_data, _entry, tt_type_name)
     header_data += 'patchName: "' + _entry["patchName"] + '"\n'
@@ -980,89 +992,89 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
     if checkVariable(_entry, "mount1") or checkVariable(_entry, "mount2"):
         header_data += 'mount:\n'
         if checkVariable(_entry, "mount1"):
-            header_data += '    - name: "' + _entry["mount1"] + '"\n'
+            header_data += '  - name: "' + _entry["mount1"] + '"\n'
         if checkVariable(_entry, "mount2"):
-            header_data += '    - name: "' + _entry["mount2"] + '"\n'
+            header_data += '  - name: "' + _entry["mount2"] + '"\n'
     # minions
     if checkVariable(_entry, "minion1") or checkVariable(_entry, "minion2") or checkVariable(_entry, "minion3"):
         header_data += 'minion:\n'
         if checkVariable(_entry, "minion1"):
-            header_data += '    - name: "' + _entry["minion1"] + '"\n'
+            header_data += '  - name: "' + _entry["minion1"] + '"\n'
         if checkVariable(_entry, "minion2"):
-            header_data += '    - name: "' + _entry["minion2"] + '"\n'
+            header_data += '  - name: "' + _entry["minion2"] + '"\n'
         if checkVariable(_entry, "minion3"):
-            header_data += '    - name: "' + _entry["minion3"] + '"\n'
+            header_data += '  - name: "' + _entry["minion3"] + '"\n'
     # gearset_loot
     if checkVariable(_entry, "gearset_loot"):
         header_data += 'gearset_loot:\n'
         for gset in _entry["gearset_loot"] .split(","):
-            header_data += '    - gsetname: "' + gset + '"\n'
+            header_data += '  - gsetname: "' + gset + '"\n'
     # tt_cards
     if checkVariable(_entry, "tt_card1") or checkVariable(_entry, "tt_card2"):
         header_data += 'tt_card:\n'
         if checkVariable(_entry, "tt_card1"):
-            header_data += '    - name: "' + _entry["tt_card1"] + '"\n'
+            header_data += '  - name: "' + _entry["tt_card1"] + '"\n'
         if checkVariable(_entry, "tt_card2"):
-            header_data += '    - name: "' + _entry["tt_card2"] + '"\n'
+            header_data += '  - name: "' + _entry["tt_card2"] + '"\n'
     # orchestrion
     if checkVariable(_entry, "orchestrion") or checkVariable(_entry, "orchestrion2") or checkVariable(_entry, "orchestrion3") or checkVariable(_entry, "orchestrion4") or checkVariable(_entry, "orchestrion5"):
         header_data += 'orchestrion:\n'
         if checkVariable(_entry, "orchestrion"):
-            header_data += '    - name: "' + _entry["orchestrion"] + '"\n'
+            header_data += '  - name: "' + _entry["orchestrion"] + '"\n'
         if checkVariable(_entry, "orchestrion2"):
-            header_data += '    - name: "' + _entry["orchestrion2"] + '"\n'
+            header_data += '  - name: "' + _entry["orchestrion2"] + '"\n'
         if checkVariable(_entry, "orchestrion3"):
-            header_data += '    - name: "' + _entry["orchestrion3"] + '"\n'
+            header_data += '  - name: "' + _entry["orchestrion3"] + '"\n'
         if checkVariable(_entry, "orchestrion4"):
-            header_data += '    - name: "' + _entry["orchestrion4"] + '"\n'
+            header_data += '  - name: "' + _entry["orchestrion4"] + '"\n'
         if checkVariable(_entry, "orchestrion5"):
-            header_data += '    - name: "' + _entry["orchestrion5"] + '"\n'
+            header_data += '  - name: "' + _entry["orchestrion5"] + '"\n'
     # orchestrion material
     if checkVariable(_entry, "orchestrion_material1") or checkVariable(_entry, "orchestrion_material2") or checkVariable(_entry, "orchestrion_material3"):
         header_data += 'orchestrion_material:\n'
         if checkVariable(_entry, "orchestrion_material1"):
-            header_data += '    - name: "' + _entry["orchestrion_material1"] + '"\n'
+            header_data += '  - name: "' + _entry["orchestrion_material1"] + '"\n'
         if checkVariable(_entry, "orchestrion_material2"):
-            header_data += '    - name: "' + _entry["orchestrion_material2"] + '"\n'
+            header_data += '  - name: "' + _entry["orchestrion_material2"] + '"\n'
         if checkVariable(_entry, "orchestrion_material3"):
-            header_data += '    - name: "' + _entry["orchestrion_material3"] + '"\n'
+            header_data += '  - name: "' + _entry["orchestrion_material3"] + '"\n'
     # rouletts
     if _entry["allianceraid"] == "True" or _entry["frontier"] == "True" or _entry["expert"] == "True" or _entry["guildhest"] == "True" or _entry["level50_60"] == "True" or _entry["level70"] == "True" or _entry["leveling"] == "True" or _entry["main"] == "True" or _entry["mentor"] == "True" or _entry["normalraid"] == "True" or _entry["trial"] == "True":
         header_data += 'rouletts:\n'
         if _entry["allianceraid"]:
-            header_data += '    - allianceraid: ' + _entry["allianceraid"] + "\n"
+            header_data += '  - allianceraid: ' + _entry["allianceraid"] + "\n"
         if _entry["frontier"]:
-            header_data += '      frontier: ' + _entry["frontier"] + "\n"
+            header_data += '  frontier: ' + _entry["frontier"] + "\n"
         if _entry["expert"]:
-            header_data += '      expert: ' + _entry["expert"] + "\n"
+            header_data += '  expert: ' + _entry["expert"] + "\n"
         if _entry["guildhest"]:
-            header_data += '      guildhest: ' + _entry["guildhest"] + "\n"
+            header_data += '  guildhest: ' + _entry["guildhest"] + "\n"
         if _entry["level50_60"]:
-            header_data += '      level50_60: ' + _entry["level50_60"] + "\n"
+            header_data += '  level50_60: ' + _entry["level50_60"] + "\n"
         if _entry["level70"]:
-            header_data += '      level70: ' + _entry["level70"] + "\n"
+            header_data += '  level70: ' + _entry["level70"] + "\n"
         if _entry["leveling"]:
-            header_data += '      leveling: ' + _entry["leveling"] + "\n"
+            header_data += '  leveling: ' + _entry["leveling"] + "\n"
         if _entry["main"]:
-            header_data += '      main: ' + _entry["main"] + "\n"
+            header_data += '  main: ' + _entry["main"] + "\n"
         if _entry["mentor"]:
-            header_data += '      mentor: ' + _entry["mentor"] + "\n"
+            header_data += '  mentor: ' + _entry["mentor"] + "\n"
         if _entry["normalraid"]:
-            header_data += '      normalraid: ' + _entry["normalraid"] + "\n"
+            header_data += '  normalraid: ' + _entry["normalraid"] + "\n"
         if _entry["trial"]:
-            header_data += '      trial: ' + _entry["trial"] + "\n"
+            header_data += '  trial: ' + _entry["trial"] + "\n"
     # links:
     if checkVariable(_entry, "teamcraftlink") or checkVariable(_entry, "garlandtoolslink") or checkVariable(_entry, "gamerescapelink"):
         header_data += 'links:\n'
         first = "-"
         if checkVariable(_entry, "teamcraftlink"):
-            header_data += f'    {first} teamcraftlink: "' + _entry["teamcraftlink"] + '"\n'
+            header_data += f'  {first} teamcraftlink: "' + _entry["teamcraftlink"] + '"\n'
             first = " "
         if checkVariable(_entry, "garlandtoolslink"):
-            header_data += f'    {first} garlandtoolslink: "' + _entry["garlandtoolslink"] + '"\n'
+            header_data += f'  {first} garlandtoolslink: "' + _entry["garlandtoolslink"] + '"\n'
             first = " "
         if checkVariable(_entry, "gamerescapelink"):
-            header_data += f'    {first} gamerescapelink: "' + _entry["gamerescapelink"] + '"\n'
+            header_data += f'  {first} gamerescapelink: "' + _entry["gamerescapelink"] + '"\n'
     # videos
     if checkVariable(_entry, "mtqvid1"):
         header_data += 'mtq_vid1: "' + get_video_url(_entry["mtqvid1"]) + '"\n'
@@ -1078,60 +1090,60 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
 def writeTags(header_data, _entry, tt_type_name):
     # write tags per expansion
     if _entry["categories"] == "arr":
-        header_data += "    - term: \"A Realm Reborn\"\n"
-        header_data += "    - term: \"ARR\"\n"
+        header_data += "  - term: \"A Realm Reborn\"\n"
+        header_data += "  - term: \"ARR\"\n"
     elif _entry["categories"] == "hw":
-        header_data += "    - term: \"Heavensward\"\n"
-        header_data += "    - term: \"HW\"\n"
+        header_data += "  - term: \"Heavensward\"\n"
+        header_data += "  - term: \"HW\"\n"
     elif _entry["categories"] == "sb":
-        header_data += "    - term: \"Stormblood\"\n"
-        header_data += "    - term: \"SB\"\n"
+        header_data += "  - term: \"Stormblood\"\n"
+        header_data += "  - term: \"SB\"\n"
     elif _entry["categories"] == "shb":
-        header_data += "    - term: \"Shadowbringers\"\n"
-        header_data += "    - term: \"ShB\"\n"
+        header_data += "  - term: \"Shadowbringers\"\n"
+        header_data += "  - term: \"ShB\"\n"
     else:
         pass
 
     for lang in ["de", "en", "fr", "ja", "cn", "ko"]:
-        header_data += "    - term: \"" + tt_type_name["Name_" + lang] + "\"\n"
+        header_data += "  - term: \"" + tt_type_name["Name_" + lang] + "\"\n"
 
     #header_data += "    - term: \"" + _entry["title"] + "\"\n"
     for lang in ["de", "en", "fr", "ja", "cn", "ko"]:
-        header_data += "    - term: \"" + getContentName(_entry["title"], lang, _entry["difficulty"], _entry["instanceType"]) + "\"\n"
+        header_data += "  - term: \"" + getContentName(_entry["title"], lang, _entry["difficulty"], _entry["instanceType"]) + "\"\n"
 
     # write rest of the tags
-    header_data += "    - term: \"" + _entry["difficulty"] + "\"\n"
-    header_data += "    - term: \"" + _entry["patchNumber"] + "\"\n"
-    header_data += "    - term: \"" + _entry["patchName"] + "\"\n"
-    header_data += "    - term: \"" + _entry["quest"] + "\"\n"
+    header_data += "  - term: \"" + _entry["difficulty"] + "\"\n"
+    header_data += "  - term: \"" + _entry["patchNumber"] + "\"\n"
+    header_data += "  - term: \"" + _entry["patchName"] + "\"\n"
+    header_data += "  - term: \"" + _entry["quest"] + "\"\n"
     if checkVariable(_entry, "mount1") or checkVariable(_entry, "mount2"):
-        header_data += "    - term: \"mounts\"\n"
+        header_data += "  - term: \"mounts\"\n"
     if checkVariable(_entry, "minion1") or checkVariable(_entry, "minion2") or checkVariable(_entry, "minion3"):
-        header_data += "    - term: \"minions\"\n"
+        header_data += "  - term: \"minions\"\n"
     if checkVariable(_entry, "tt_card1") or checkVariable(_entry, "tt_card2"):
-        header_data += "    - term: \"tt_cards\"\n"
+        header_data += "  - term: \"tt_cards\"\n"
     if checkVariable(_entry, "gearset_loot"):
         for gset in _entry["gearset_loot"].split(","):
-            header_data += "    - term: \"" + gset + "\"\n"
+            header_data += "  - term: \"" + gset + "\"\n"
     if checkVariable(_entry, "orchestrion") or checkVariable(_entry, "orchestrion2") or checkVariable(_entry, "orchestrion3") or checkVariable(_entry, "orchestrion4") or checkVariable(_entry, "orchestrion5"):
-        header_data += "    - term: \"orchestrion\"\n"
+        header_data += "  - term: \"orchestrion\"\n"
     if checkVariable(_entry, "orchestrion_material1") or checkVariable(_entry, "orchestrion_material2") or checkVariable(_entry, "orchestrion_material3"):
-        header_data += "    - term: \"orchestrion_material\"\n"
+        header_data += "  - term: \"orchestrion_material\"\n"
     if _entry["instanceType"] == "trial":
-        header_data += "    - term: \"" + "Prüfung" + "\"\n"
-        header_data += "    - term: \"Trial\"\n"
-        header_data += "    - term: \"Primae\"\n"
-        header_data += "    - term: \"Primal\"\n"
-    header_data += "    - term: \"" + _entry["instanceType"] + "\"\n"
+        header_data += "  - term: \"" + "Prüfung" + "\"\n"
+        header_data += "  - term: \"Trial\"\n"
+        header_data += "  - term: \"Primae\"\n"
+        header_data += "  - term: \"Primal\"\n"
+    header_data += "  - term: \"" + _entry["instanceType"] + "\"\n"
 
     if not _entry["bosse"] == ['']:
         for b in _entry["bosse"]:
             if b != "Unknown_":
-                header_data += "    - term: \"" + b + "\"\n"
+                header_data += "  - term: \"" + b + "\"\n"
     if not _entry["tags"] == ['']:
         for t in _entry["tags"]:
             if t != "Unknown_":
-                header_data += "    - term: \"" + t + "\"\n"
+                header_data += "  - term: \"" + t + "\"\n"
     return header_data
 
 
@@ -1464,7 +1476,7 @@ def run(sheet, max_row, max_column):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             # if i not in [257]:
-            #    continue
+            #     continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
@@ -1474,8 +1486,6 @@ def run(sheet, max_row, max_column):
                 entry = clean_entries_from_single_quotes(entry)
                 # remove time from excel datetime
                 entry["date"] = str(entry["date"]).replace(" 00:00:00", "").replace("-", ".")
-                # convert special chars for html usage
-                entry["title"] = entry["title"]
                 filename = f"{entry['categories']}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 existing_filename = f"{entry['categories']}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 old_bosses, old_adds, old_mechanics, old_wip, replace_existing_file = get_old_content_if_file_is_found(existing_filename)

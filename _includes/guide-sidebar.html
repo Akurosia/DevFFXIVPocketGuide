@@ -31,6 +31,15 @@
         {% if page.contentname %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentname: <span class="block">{{ page.contentname }}</span></h5>
         {% endif %}
+        {% if page.contentname %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentname: <span class="block">{{ page.contentname }}</span></h5>
+        {% endif %}
+        {% if page.contentzoneids %}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contenzoneids:
+            {% for zone in page.contentzoneids %}
+                <span class="block">- {{ zone.id }}</span>
+            {% endfor %}
+        {% endif %}
         {% if page.quest %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest: <span class="block">{{ page.quest }}</span></h5>
             {% if page.quest_location %}
