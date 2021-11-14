@@ -90,6 +90,7 @@ logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
 action = loadDataTheQuickestWay("action_all.json", translate=True)
 territorytype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
 contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
+contentfinderconditionX = loadDataTheQuickestWay("ContentFinderCondition.de.json")
 placename = loadDataTheQuickestWay("placename_all.json", translate=True)
 bnpcname = loadDataTheQuickestWay("bnpcname_all.json", translate=True)
 eobjname = loadDataTheQuickestWay("eobjname_all.json", translate=True)
@@ -925,6 +926,9 @@ def addContentZoneIdToHeader(header_data, contentzoneid):
         header_data += 'contentzoneids:\n'
         for zone in contentzoneid:
             header_data += '  - id: ' + zone + '\n'
+    # TODO add system resource from:
+    # 8003 + pad to 4 digits hex(int(contentfinderconditionX[_id]['Content'].replace("InstanceContent#", "")))
+
     return header_data
 
 
