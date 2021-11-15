@@ -921,14 +921,24 @@ def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
     return guide_data, contentzoneid
 
 
-def addContentZoneIdToHeader(header_data, contentzoneid):
+def addContentZoneIdToHeader(header_data, contentzoneid, _entry):
+    global contentfinderconditionX
     if not contentzoneid == "":
         header_data += 'contentzoneids:\n'
         for zone in contentzoneid:
             header_data += '  - id: ' + zone + '\n'
-    # TODO add system resource from:
-    # 8003 + pad to 4 digits hex(int(contentfinderconditionX[_id]['Content'].replace("InstanceContent#", "")))
-
+    for key, value in contentfinderconditionX.items():
+        if value['Name'] == _entry['title_de']:
+            if not "InstanceContent" in value['Content']:
+                continue
+            contentid = value['Content'].replace("InstanceContent#", "")
+            if not contentid:
+                continue
+            _id = "8003" + str(hex(int(contentid))[2:]).rjust(4, '0').upper()
+            if "contentzoneids:" not in header_data:
+                header_data += 'contentzoneids:\n'
+            if _id not in contentzoneid:
+                header_data += '  - id: ' + _id + '\n'
     return header_data
 
 
@@ -938,8 +948,7 @@ def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechan
     seperate_data_into_array("tags", _entry)
     header_data = rewrite_content_even_if_exists(_entry, old_wip, index)
     guide_data, contentzoneid = addGuide(_entry, _old_bosses, _old_adds, _old_mechanics)
-    header_data = addContentZoneIdToHeader(header_data, contentzoneid)
-    #print_color_blue(guide_data, disable_blue_print)
+    header_data = addContentZoneIdToHeader(header_data, contentzoneid, _entry)
 
     with open(_filename, "w", encoding="utf8") as fi:
         fi.write('---\n')
@@ -1479,7 +1488,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            # if i not in [257]:
+            # if i not in [3]:
             #     continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
