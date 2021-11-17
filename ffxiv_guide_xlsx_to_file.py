@@ -937,7 +937,9 @@ def addContentZoneIdToHeader(header_data, contentzoneid, _entry):
             _id = "8003" + str(hex(int(contentid))[2:]).rjust(4, '0').upper()
             if "contentzoneids:" not in header_data:
                 header_data += 'contentzoneids:\n'
-            if _id not in contentzoneid:
+
+            if _id not in header_data:
+                # if _id not in contentzoneid:
                 header_data += '  - id: ' + _id + '\n'
     return header_data
 
