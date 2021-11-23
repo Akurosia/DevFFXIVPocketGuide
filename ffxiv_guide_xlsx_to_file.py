@@ -336,6 +336,30 @@ def try_to_create_file(filename):
             if exc.errno != errno.EEXIST:
                 raise
 
+# hopefully we will never need this again, this will convert all ids to capitalized ids
+
+
+def fix_id_cases(doc):
+    for entry in ['bosses', 'adds']:
+        if not doc.get(entry):
+            continue
+        for i, enemy in enumerate(doc[entry]):
+            if enemy.get('title_id', None):
+                doc[entry][i]['title_id'] = enemy['title_id'].upper()
+            for entry2 in ['attacks', 'debuffs']:
+                if enemy.get(entry2, None):
+                    for j, valuestuff in enumerate(enemy[entry2]):
+                        if valuestuff.get('title_id', None):
+                            doc[entry][i][entry2][j]['title_id'] = valuestuff['title_id'].upper()
+                        if valuestuff.get('icon', None):
+                            if not "_hr1.png" in valuestuff['icon']:
+                                doc[entry][i][entry2][j]['icon'] = valuestuff['icon'].replace('.png', "_hr1.png")
+                        if valuestuff.get('variation', None):
+                            for k, variation in enumerate(valuestuff['variation']):
+                                if variation.get('title_id', None):
+                                    doc[entry][i][entry2][j]['variation'][k]['title_id'] = variation['title_id'].upper()
+    return doc
+
 
 # returns existing boss data if available
 def get_old_content_if_file_is_found(_existing_filename):
@@ -343,6 +367,7 @@ def get_old_content_if_file_is_found(_existing_filename):
         with open(_existing_filename, encoding="utf8") as f:
             docs = yaml.load_all(f, Loader=Loader)
             for doc in docs:
+                doc = fix_id_cases(doc)
                 return doc.get("bosses", None), doc.get("adds", None), doc.get("mechanics", "N/A"), doc.get("wip", None), True
     return None, None, "N/A", None, False
 
@@ -1490,8 +1515,8 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            # if i not in [3]:
-            #     continue
+            # if i not in [380]:
+            #    continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
