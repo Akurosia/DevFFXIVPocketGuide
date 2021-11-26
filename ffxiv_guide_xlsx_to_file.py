@@ -91,6 +91,7 @@ action = loadDataTheQuickestWay("action_all.json", translate=True)
 territorytype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
 contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
 contentfinderconditionX = loadDataTheQuickestWay("ContentFinderCondition.de.json")
+contentmembertype = loadDataTheQuickestWay("ContentMemberType.json")
 placename = loadDataTheQuickestWay("placename_all.json", translate=True)
 bnpcname = loadDataTheQuickestWay("bnpcname_all.json", translate=True)
 eobjname = loadDataTheQuickestWay("eobjname_all.json", translate=True)
@@ -367,7 +368,7 @@ def get_old_content_if_file_is_found(_existing_filename):
         with open(_existing_filename, encoding="utf8") as f:
             docs = yaml.load_all(f, Loader=Loader)
             for doc in docs:
-                doc = fix_id_cases(doc)
+                #doc = fix_id_cases(doc)
                 return doc.get("bosses", None), doc.get("adds", None), doc.get("mechanics", "N/A"), doc.get("wip", None), True
     return None, None, "N/A", None, False
 
@@ -948,12 +949,14 @@ def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
 
 def addContentZoneIdToHeader(header_data, contentzoneid, _entry):
     global contentfinderconditionX
+    cmt = None
     if not contentzoneid == "":
         header_data += 'contentzoneids:\n'
         for zone in contentzoneid:
             header_data += '  - id: ' + zone + '\n'
     for key, value in contentfinderconditionX.items():
         if value['Name'] == _entry['title_de']:
+            cmt = value['ContentMemberType']
             if not "InstanceContent" in value['Content']:
                 continue
             contentid = value['Content'].replace("InstanceContent#", "")
@@ -966,6 +969,36 @@ def addContentZoneIdToHeader(header_data, contentzoneid, _entry):
             if _id not in header_data:
                 # if _id not in contentzoneid:
                 header_data += '  - id: ' + _id + '\n'
+    return header_data, cmt
+
+
+def addGroupCollections(header_data, cmt, _entry):
+    global contentmembertype
+    if not cmt:
+        return header_data
+
+    wanted_id = cmt.split("#")[1]
+    cmt_entry = contentmembertype[f"{wanted_id}.0"]
+    healerp = cmt_entry['HealersPerParty']
+    tankp = cmt_entry['TanksPerParty']
+    meleep = cmt_entry['MeleesPerParty']
+    rangep = cmt_entry['RangedPerParty']
+
+    if int(healerp) + int(tankp) + int(meleep) + int(rangep) > 0:
+        header_data += "group:\n"
+        first_done = "-"
+        if not healerp == "0":
+            header_data += f'  {first_done} healer: "{healerp}"\n'
+            first_done = " "
+        if not tankp == "0":
+            header_data += f'  {first_done} tank: "{tankp}"\n'
+            first_done = " "
+        if not meleep == "0":
+            header_data += f'  {first_done} melee: "{meleep}"\n'
+            first_done = " "
+        if not rangep == "0":
+            header_data += f'  {first_done} range: "{rangep}"\n'
+            first_done = " "
     return header_data
 
 
@@ -973,9 +1006,11 @@ def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechan
     seperate_data_into_array("bosse", _entry)
     seperate_data_into_array("adds", _entry)
     seperate_data_into_array("tags", _entry)
-    header_data = rewrite_content_even_if_exists(_entry, old_wip, index)
+    header_data, _entry = rewrite_content_even_if_exists(_entry, old_wip, index)
     guide_data, contentzoneid = addGuide(_entry, _old_bosses, _old_adds, _old_mechanics)
-    header_data = addContentZoneIdToHeader(header_data, contentzoneid, _entry)
+
+    header_data, cmt = addContentZoneIdToHeader(header_data, contentzoneid, _entry)
+    header_data = addGroupCollections(header_data, cmt, _entry)
 
     with open(_filename, "w", encoding="utf8") as fi:
         fi.write('---\n')
@@ -1124,7 +1159,7 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
         header_data += 'mrh_vid1: "' + get_video_url(_entry["mrhvid1"]) + '"\n'
     if checkVariable(_entry, "mrhvid2"):
         header_data += 'mrh_vid2: "' + get_video_url(_entry["mrhvid2"]) + '"\n'
-    return header_data
+    return header_data, _entry
 
 
 def writeTags(header_data, _entry, tt_type_name):
@@ -1141,6 +1176,9 @@ def writeTags(header_data, _entry, tt_type_name):
     elif _entry["categories"] == "shb":
         header_data += "  - term: \"Shadowbringers\"\n"
         header_data += "  - term: \"ShB\"\n"
+    elif _entry["categories"] == "ew":
+        header_data += "  - term: \"Endwalker\"\n"
+        header_data += "  - term: \"EW\"\n"
     else:
         pass
 
@@ -1153,7 +1191,7 @@ def writeTags(header_data, _entry, tt_type_name):
 
     # write rest of the tags
     header_data += "  - term: \"" + _entry["difficulty"] + "\"\n"
-    header_data += "  - term: \"" + _entry["patchNumber"] + "\"\n"
+    header_data += "  - term: \"" + _entry["patchNumber"] + "!\"\n"
     header_data += "  - term: \"" + _entry["patchName"] + "\"\n"
     header_data += "  - term: \"" + _entry["quest"] + "\"\n"
     if checkVariable(_entry, "mount1") or checkVariable(_entry, "mount2"):
@@ -1515,7 +1553,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            # if i not in [380]:
+            # if i not in [10]:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
