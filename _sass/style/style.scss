@@ -2007,6 +2007,11 @@ body {
     padding: 10px;
     border-radius: 10px;
 }
+
+.group-icon > img {
+    height: 40px;
+    width: 40px;
+}
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";
