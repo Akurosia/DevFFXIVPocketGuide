@@ -1214,6 +1214,55 @@ def writeTags(header_data, _entry, tt_type_name):
         header_data += "  - term: \"Primal\"\n"
     header_data += "  - term: \"" + _entry["instanceType"] + "\"\n"
 
+    found_roulette = False
+    if _entry.get("allianceraid", None) == "True":
+        header_data += "  - term: \"allianceraid\"\n"
+        if not found_roulette:
+            found_roulette = True
+    if _entry.get("frontier", None) == "True":
+        header_data += "  - term: \"frontier\"\n"
+        if not found_roulette:
+            found_roulette = True
+    if _entry.get("expert", None) == "True":
+        header_data += "  - term: \"expert\"\n"
+        if not found_roulette:
+            found_roulette = True
+    if _entry.get("guildhest", None) == "True":
+        header_data += "  - term: \"guildhest\"\n"
+        if not found_roulette:
+            found_roulette = True
+    if _entry.get("level50_60", None) == "True":
+        header_data += "  - term: \"level50_60\"\n"
+        if not found_roulette:
+            found_roulette = True
+    if _entry.get("level70", None) == "True":
+        header_data += "  - term: \"level70\"\n"
+        if not found_roulette:
+            found_roulette = True
+    if _entry.get("leveling", None) == "True":
+        header_data += "  - term: \"leveling\"\n"
+        if not found_roulette:
+            found_roulette = True
+    if _entry.get("main", None) == "True":
+        header_data += "  - term: \"main\"\n"
+        if not found_roulette:
+            found_roulette = True
+    if _entry.get("mentor", None) == "True":
+        header_data += "  - term: \"mentor\"\n"
+        if not found_roulette:
+            found_roulette = True
+    if _entry.get("normalraid", None) == "True":
+        header_data += "  - term: \"normalraid\"\n"
+        if not found_roulette:
+            found_roulette = True
+    if _entry.get("trial", None) == "True":
+        header_data += "  - term: \"trial\"\n"
+        if not found_roulette:
+            found_roulette = True
+    if found_roulette:
+        header_data += "  - term: \"Zufallsinhalt\"\n"
+        header_data += "  - term: \"roulette\"\n"
+
     if not _entry["bosse"] == ['']:
         for b in _entry["bosse"]:
             if b != "Unknown_":
