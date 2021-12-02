@@ -199,6 +199,7 @@ def main():
     for k in cj:
         job_d = k[1]
         job = job_d['Name_de']
+        en_name = job_d["Name_en"].title()
         job_data = skills.get(job, None)
         if not job_data:
             continue
@@ -218,7 +219,7 @@ def main():
             writeline(f, 'wip: "True"')
             writeline(f, f'title: "{job}"')
             writeline(f, f'title_de: "{job}"')
-            writeline(f, f'title_en: "{job_d["Name_en"]}"')
+            writeline(f, f'title_en: "{en_name}"')
             writeline(f, 'layout: klassen')
             writeline(f, 'page_type: guide')
             writeline(f, 'excel_line: "0"')
@@ -243,7 +244,7 @@ def main():
             writeline(f, f'ilvl: {maxilvl}')
             writeline(f, "bosses:")
             writeline(f, "  - title: \"" + job + "\"")
-            writeline(f, "    title_en: \"" + job_d["Name_en"] + "\"")
+            writeline(f, "    title_en: \"" + en_name + "\"")
             writeline(f, "    id: \"" + "boss" + str(counter) + "\"")
             if job == "Blaumagier":
                 addBlueAttackDetails(f, job_data)
