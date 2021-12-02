@@ -12,6 +12,7 @@ from operator import getitem
 
 
 skills = get_skills_for_player()
+pvpskills = get_skills_for_player(True)
 logdata = get_any_Logdata()
 cj = loadDataTheQuickestWay("classjob_all.json", translate=True)
 cjs = loadDataTheQuickestWay("ClassJob.de.json")
@@ -121,10 +122,12 @@ def addBlueAttackDetails(f, job_data):
         writeline(f, f'          - phase: "01"')
 
 
-def addAttackDetails(f, job_data):
+def addAttackDetails(f, job_data, pvp=False):
     global actions
     global craftactions
-    writeline(f, "    attacks:")
+    # only print for normal attacks
+    if not pvp:
+        writeline(f, "    attacks:")
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
         en_name = actions.get(skill_data['id'], {}).get("Name_en", "")
@@ -144,7 +147,10 @@ def addAttackDetails(f, job_data):
         writeline(f, f'        kategorie: "{skill_data["Kategorie"]}"')
         writeline(f, f'        description: "{desc}"')
         writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "01"')
+        if pvp:
+            writeline(f, f'          - phase: "04"')
+        else:
+            writeline(f, f'          - phase: "01"')
 
 
 def addStatusDetails(f, job):
@@ -269,6 +275,7 @@ def main():
         job = job_d['Name_de']
         en_name = job_d["Name_en"].title()
         job_data = skills.get(job, None)
+        job_data_pvp = pvpskills.get(job, None)
         if not job_data:
             continue
 
@@ -334,6 +341,7 @@ def main():
                 addBlueAttackDetails(f, job_data)
             else:
                 addAttackDetails(f, job_data)
+                addAttackDetails(f, job_data_pvp, True)
             addStatusDetails(f, job)
             addTraitDetails(f, job)
             writeline(f, "    sequence:" + "")
@@ -343,6 +351,8 @@ def main():
             writeline(f, "        name: \"Status\"")
             writeline(f, "      - phase: \"03\"")
             writeline(f, "        name: \"Traits\"")
+            writeline(f, "      - phase: \"04\"")
+            writeline(f, "        name: \"PvP\"")
             writeline(f, '---')
 
 
