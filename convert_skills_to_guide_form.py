@@ -351,8 +351,9 @@ def main():
             writeline(f, "        name: \"Status\"")
             writeline(f, "      - phase: \"03\"")
             writeline(f, "        name: \"Traits\"")
-            writeline(f, "      - phase: \"04\"")
-            writeline(f, "        name: \"PvP\"")
+            if not quest == "":
+                writeline(f, "      - phase: \"04\"")
+                writeline(f, "        name: \"PvP\"")
             writeline(f, '---')
 
 
