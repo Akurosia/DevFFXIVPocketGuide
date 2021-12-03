@@ -278,6 +278,7 @@ def main():
         job_data_pvp = pvpskills.get(job, None)
         if not job_data:
             continue
+        print(job)
 
         tmpmaxlvl = str(max([int(data["Level"]) for key, data in job_data.items() if int(data['Level']) < 99999]))
         if job == "Blaumagier":
