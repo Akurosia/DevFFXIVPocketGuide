@@ -31,6 +31,7 @@ plugins:
   - jekyll-sitemap
 include:
   - _pages
+future: true
 permalink: /:categories/:slug.html
 exclude:
   - .git
