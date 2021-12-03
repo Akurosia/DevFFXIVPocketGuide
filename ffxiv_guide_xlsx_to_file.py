@@ -311,7 +311,8 @@ def get_territorytype_from_mapid(mapid):
     for key, tt_type in territorytype.items():
         if tt_type["Name"].lower() == mapid.lower():
             return tt_type
-    return "unknown Zone"
+    print_color_red(f"Could not find territorytype for {mapid}")
+    return ""
 
 
 def clean_entries_from_single_quotes(_entry):
@@ -1050,7 +1051,8 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
     header_data = writeTags(header_data, _entry, tt_type_name)
     header_data += 'patchName: "' + _entry["patchName"] + '"\n'
     header_data += 'mapid: "' + _entry["mapid"] + '"\n'
-    header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
+    if not tt_type_name == "":
+        header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
     header_data += 'sortid: ' + _entry["sortid"] + '\n'
     header_data += 'plvl: ' + _entry["plvl"] + '\n'
     header_data += 'plvl_sync: ' + _entry["plvl_sync"] + '\n'
@@ -1182,8 +1184,9 @@ def writeTags(header_data, _entry, tt_type_name):
     else:
         pass
 
-    for lang in ["de", "en", "fr", "ja", "cn", "ko"]:
-        header_data += "  - term: \"" + tt_type_name["Name_" + lang] + "\"\n"
+    if not tt_type_name == "":
+        for lang in ["de", "en", "fr", "ja", "cn", "ko"]:
+            header_data += "  - term: \"" + tt_type_name["Name_" + lang] + "\"\n"
 
     #header_data += "    - term: \"" + _entry["title"] + "\"\n"
     for lang in ["de", "en", "fr", "ja", "cn", "ko"]:
@@ -1602,7 +1605,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            # if i not in [10]:
+            #if i not in [396]:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
