@@ -542,7 +542,8 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 tmp = {
                     'title': tmp_attack['title'],
                     'title_id': tmp_attack['title_id'],
-                    'damage_type': tmp_attack['damage_type']
+                    'damage_type': tmp_attack['damage_type'],
+                    'single_or_aoe': attack['type_id']
                 }
                 if tmp_attack['title'] == "Attacke":
                     tmp['disable'] = 'false'
@@ -569,6 +570,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     'title': attack['name'],
                     'title_id': attack_id,
                     'damage_type': attack['damage_type'],
+                    'single_or_aoe': attack['type_id']
                 }
                 if tmp_attack.get('damage', None):
                     tmp2["damage"] = {}
@@ -604,7 +606,8 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 tmp = {
                     'title': attack['name'],
                     'title_id': attack_id,
-                    'damage_type': attack['damage_type']
+                    'damage_type': attack['damage_type'],
+                    'single_or_aoe': attack['type_id']
                 }
                 if tmp_attack['variation'][0].get('damage', None) or tmp_attack.get('damage', None):
                     tmp["damage"] = {}
@@ -631,7 +634,8 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 'phases': [{'phase': '09'}],
                 'roles': [{'role': 'role'}],
                 'tags': [{'tag': 'tag'}],
-                'notes': [{'note': 'note'}]
+                'notes': [{'note': 'note'}],
+                'single_or_aoe': attack['type_id']
             }
             if attack.get('damage', None):
                 tmp["damage"] = {}
@@ -1440,6 +1444,9 @@ def add_regular_Attack(guide_data, attack, enemy_type):
         guide_data += f'        tags:\n'
         for tag in attack.get('tags', {}):
             guide_data += f'          - tag: "{tag["tag"]}"\n'
+        if attack.get('single_or_aoe', None):
+            x = "AoE" if attack["single_or_aoe"] == "22" else "Single"
+            guide_data += f'          - tag: "{x}"\n'
 
     if attack.get('notes', None):
         guide_data += f'        notes:\n'
@@ -1500,6 +1507,9 @@ def add_variation_Attack(guide_data, attack, enemy_type):
                 guide_data += f'            tags:\n'
                 for tag in variation.get('tags', {}):
                     guide_data += f'              - tag: "{tag["tag"]}"\n'
+                if variation.get('single_or_aoe', None):
+                    x = "AoE" if variation["single_or_aoe"] == "22" else "Single"
+                    guide_data += f'              - tag: "{x}"\n'
 
             if variation.get('notes', None) and enemy_type != "adds":
                 guide_data += f'            notes:\n'
@@ -1560,6 +1570,9 @@ def add_combo_Attack(guide_data, attack, enemy_type):
                 guide_data += f'            tags:\n'
                 for tag in combo.get('tags', {}):
                     guide_data += f'              - tag: "{tag["tag"]}"\n'
+                if combo.get('single_or_aoe', None):
+                    x = "AoE" if combo["single_or_aoe"] == "22" else "Single"
+                    guide_data += f'              - tag: "{x}"\n'
 
             if combo.get('notes', None) and enemy_type != "adds":
                 guide_data += f'            notes:\n'
@@ -1632,8 +1645,8 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if i not in [396]:
-                continue
+            #if i not in [396]:
+            #    continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
