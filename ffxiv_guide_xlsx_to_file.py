@@ -1638,5 +1638,5 @@ if __name__ == "__main__":
     # first run to create all files
     run(sheet, max_row, max_column)
     # second run to fix boss order
-    #run(sheet, max_row, max_column)
+    run(sheet, max_row, max_column)
     csgf.main()
