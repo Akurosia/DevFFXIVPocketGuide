@@ -1022,8 +1022,33 @@ def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechan
         fi.write('\n')
 
 
+def getEntriesForRouletts(_entry):
+    global contentfinderconditionX
+    for key, value in contentfinderconditionX.items():
+        if value['Name'] == _entry['title']:
+            tmp = {
+                'type': value['ContentType'].lower(),
+                'territorytype': value['TerritoryType'],
+                'allianceraid': value['AllianceRoulette'],
+                'frontier': value['FeastTeamRoulette'],
+                'expert': value['ExpertRoulette'],
+                'guildhest': value['GuildHestRoulette'],
+                'level50_60_70': value['Level50/60/70Roulette'],
+                'level80': value['Level80Roulette'],
+                'leveling': value['LevelingRoulette'],
+                'main': value['MSQRoulette'],
+                'mentor': value['MentorRoulette'],
+                'normalraid': value['NormalRaidRoulette'],
+                'trial': value['TrialRoulette']
+            }
+            return tmp
+    return {}
+
+
 def rewrite_content_even_if_exists(_entry, old_wip, index):
     header_data = ""
+
+    rouletts = getEntriesForRouletts(_entry)
     tt_type_name = get_territorytype_from_mapid(_entry["mapid"])
     _entry["title_de"] = getContentName(_entry["title"], "de", _entry["difficulty"], _entry["instanceType"])
     _entry["title_en"] = getContentName(_entry["title"], "en", _entry["difficulty"], _entry["instanceType"])
@@ -1051,7 +1076,8 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
     header_data += 'terms:\n'
     header_data = writeTags(header_data, _entry, tt_type_name)
     header_data += 'patchName: "' + _entry["patchName"] + '"\n'
-    header_data += 'mapid: "' + _entry["mapid"] + '"\n'
+    if rouletts.get("territorytype", None):
+        header_data += 'mapid: "' + rouletts["territorytype"] + '"\n'
     if not tt_type_name == "":
         header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
     header_data += 'sortid: ' + _entry["sortid"] + '\n'
@@ -1235,12 +1261,12 @@ def writeTags(header_data, _entry, tt_type_name):
         header_data += "  - term: \"guildhest\"\n"
         if not found_roulette:
             found_roulette = True
-    if _entry.get("level50_60", None) == "True":
-        header_data += "  - term: \"level50_60\"\n"
+    if _entry.get("level50_60_70", None) == "True":
+        header_data += "  - term: \"level50_60_70\"\n"
         if not found_roulette:
             found_roulette = True
-    if _entry.get("level70", None) == "True":
-        header_data += "  - term: \"level70\"\n"
+    if _entry.get("level80", None) == "True":
+        header_data += "  - term: \"level80\"\n"
         if not found_roulette:
             found_roulette = True
     if _entry.get("leveling", None) == "True":
@@ -1606,8 +1632,8 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            # if i not in [396]:
-            #    continue
+            if i not in [396]:
+                continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
@@ -1638,5 +1664,5 @@ if __name__ == "__main__":
     # first run to create all files
     run(sheet, max_row, max_column)
     # second run to fix boss order
-    run(sheet, max_row, max_column)
-    csgf.main()
+    #run(sheet, max_row, max_column)
+    # csgf.main()

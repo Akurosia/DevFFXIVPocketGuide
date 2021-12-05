@@ -155,8 +155,10 @@
                         <span class="block">- Experte</span>
                     {% elsif roulette.guildhest %}
                         <span class="block">- Gildengeheiß</span>
-                    {% elsif roulette.level50_60 or roulette.level70 %}
+                    {% elsif roulette.level50_60_70 %}
                         <span class="block">- Level 50/60/70</span>
+                    {% elsif roulette.level80 %}
+                        <span class="block">- Level 80</span>
                     {% elsif roulette.leveling %}
                         <span class="block">- Leveling</span>
                     {% elsif roulette.main %}
