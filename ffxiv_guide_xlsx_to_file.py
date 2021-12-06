@@ -1645,7 +1645,7 @@ def run(sheet, max_row, max_column):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [396]:
+            # if i not in [396]:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column, i)
             # if the done collumn is not prefilled
@@ -1678,4 +1678,4 @@ if __name__ == "__main__":
     run(sheet, max_row, max_column)
     # second run to fix boss order
     #run(sheet, max_row, max_column)
-    # csgf.main()
+    csgf.main()
