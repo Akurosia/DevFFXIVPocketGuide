@@ -1678,4 +1678,4 @@ if __name__ == "__main__":
     run(sheet, max_row, max_column)
     # second run to fix boss order
     #run(sheet, max_row, max_column)
-    csgf.main()
+    #csgf.main()
