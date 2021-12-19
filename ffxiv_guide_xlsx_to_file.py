@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# coding: utf8
 import copy
 import os
 from operator import itemgetter
@@ -1678,4 +1679,4 @@ if __name__ == "__main__":
     run(sheet, max_row, max_column)
     # second run to fix boss order
     #run(sheet, max_row, max_column)
-    #csgf.main()
+    # csgf.main()
