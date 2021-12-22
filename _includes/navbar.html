@@ -22,105 +22,105 @@
         style="background-image: url('{{ "/assets/img/guide_index_default.jpg" | prepend: site.baseurl }}');">
         <div class="sidebar__wrapper">
             <h1 class="sidebar__title">
-                <a href="/" title="Return to the Pocket Guide Home Page.">
-                    <img alt="FFXIV Icon" src="/assets/img/icon.svg">
+                <a href='{{ "/" | prepend: site.baseurl }}' title="Return to the Pocket Guide Home Page.">
+                    <img alt="FFXIV Icon" src='{{ "/assets/img/icon.svg" | prepend: site.baseurl }}'>
                 </a>
             </h1>
             <ul class="sidebar__menu">
                 <li>
                     <a {% if page.page_category == "about" %}class="active"{% endif %}
-                        href="/about.html" title="See what's new with the Pocket Guide.">
+                        href='{{ "/about.html" | prepend: site.baseurl }}' title="See what's new with the Pocket Guide.">
                         <img src='{{ "/assets/img/new.png" | prepend: site.baseurl }}' alt="A new icon." style="width: 1.5rem; vertical-align: middle; margin-bottom: .2rem; margin-right: .5rem;">
                         About
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "all" %}class="active"{% endif %}
-                        href="/" title="Alle Guides anzeigen">
+                        href='{{ "/" | prepend: site.baseurl }}' title="Alle Guides anzeigen">
                         Alle Guides
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "dungeons" %}class="active"{% endif %}
                         {% if page.instanceType == "dungeon" or page.instance_type == "Dungeon" %}class="active"{% endif %}
-                        href=' {{ "/dungeons/" | prepend: site.baseurl }}' title="Dungeon - Guides anzeigen">
+                        href='{{ "/dungeons/" | prepend: site.baseurl }}' title="Dungeon - Guides anzeigen">
                         Dungeons
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "trials" %}class="active"{% endif %}
                         {% if page.instanceType == "trial" or page.instance_type == "Trial" %}class="active"{% endif %}
-                        href=' {{ "/trials/" | prepend: site.baseurl }}' title="Prüfung - Guides anzeigen">
+                        href='{{ "/trials/" | prepend: site.baseurl }}' title="Prüfung - Guides anzeigen">
                         Prüfungen
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "raids" %}class="active"{% endif %}
                         {% if page.instanceType == "raid" or page.instance_type == "Raid" %}class="active"{% endif %}
-                        href=' {{ "/raids/" | prepend: site.baseurl }}' title="Raid - Guides anzeigen">
+                        href='{{ "/raids/" | prepend: site.baseurl }}' title="Raid - Guides anzeigen">
                         Raids
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "ultimates" %}class="active"{% endif %}
                         {% if page.instanceType == "ultimate" or page.instance_type == "ultimate" %}class="active"{% endif %}
-                        href=' {{ "/ultimates/" | prepend: site.baseurl }}' title="Ultimate - Guides anzeigen">
+                        href='{{ "/ultimates/" | prepend: site.baseurl }}' title="Ultimate - Guides anzeigen">
                         Ultimate Raids
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "allianzraid" %}class="active"{% endif %}
                         {% if page.instanceType == "allianzraid" or page.instance_type == "AllianzRaid" %}class="active"{% endif %}
-                        href=' {{ "/allianzraid/" | prepend: site.baseurl }}' title="Allianz Raid - Guides anzeigen">
+                        href='{{ "/allianzraid/" | prepend: site.baseurl }}' title="Allianz Raid - Guides anzeigen">
                         Allianz Raids
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "feldexkursion" %}class="active"{% endif %}
                         {% if page.instanceType == "feldexkursion" or page.instance_type == "feldexkursion" %}class="active"{% endif %}
-                        href=' {{ "/feldexkursion/" | prepend: site.baseurl }}' title="Feldexkursion - Guides anzeigen">
+                        href='{{ "/feldexkursion/" | prepend: site.baseurl }}' title="Feldexkursion - Guides anzeigen">
                         Feldexkursion
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "bluemage" %}class="active"{% endif %}
                         {% if page.instanceType == "bluemage" or page.instance_type == "Bluemage" %}class="active"{% endif %}
-                        href=' {{ "/bluemage/" | prepend: site.baseurl }}' title="Bluemage - Guides anzeigen">
+                        href='{{ "/bluemage/" | prepend: site.baseurl }}' title="Bluemage - Guides anzeigen">
                         Bluemage
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "potd" %}class="active"{% endif %}
                         {% if page.instanceType == "potd" or page.instance_type == "potd" %}class="active"{% endif %}
-                        href=' {{ "/potd/" | prepend: site.baseurl }}' title="Tiefes Gewöbe - Guides anzeigen">
+                        href='{{ "/potd/" | prepend: site.baseurl }}' title="Tiefes Gewöbe - Guides anzeigen">
                         Tiefes Gewöbe
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "guildhest" %}class="active"{% endif %}
                         {% if page.instanceType == "guildhest" or page.instance_type == "guildhest" %}class="active"{% endif %}
-                        href=' {{ "/guildhest/" | prepend: site.baseurl }}' title="Gildengeheiße - Guides anzeigen">
+                        href='{{ "/guildhest/" | prepend: site.baseurl }}' title="Gildengeheiße - Guides anzeigen">
                         Gildengeheiße
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "treasure" %}class="active"{% endif %}
                         {% if page.instanceType == "treasure" or page.instance_type == "treasure" %}class="active"{% endif %}
-                        href=' {{ "/treasure/" | prepend: site.baseurl }}' title="Schatzdungeon - Guides anzeigen">
+                        href='{{ "/treasure/" | prepend: site.baseurl }}' title="Schatzdungeon - Guides anzeigen">
                         Schatzdungeon
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "pvp" %}class="active"{% endif %}
                         {% if page.instanceType == "pvp" or page.instance_type == "pvp" %}class="active"{% endif %}
-                        href=' {{ "/pvp/" | prepend: site.baseurl }}' title="PVP - Guides anzeigen">
+                        href='{{ "/pvp/" | prepend: site.baseurl }}' title="PVP - Guides anzeigen">
                         PVP
                     </a>
                 </li>
                 <li>
                     <a {% if page.page_category == "klassenjobs" %}class="active"{% endif %}
                         {% if page.instanceType == "klassenjobs" or page.instance_type == "klassenjobs" %}class="active"{% endif %}
-                        href=' {{ "/klassenjobs/" | prepend: site.baseurl }}' title="Klassen/Jobs anzeigen">
+                        href='{{ "/klassenjobs/" | prepend: site.baseurl }}' title="Klassen/Jobs anzeigen">
                         Klassen/Jobs
                     </a>
                 </li>
