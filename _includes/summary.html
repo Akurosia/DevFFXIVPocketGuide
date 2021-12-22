@@ -2,7 +2,7 @@
     // Guide Summary
 =============================================================== {% endcomment %}
 <div class="summary">
-    <a class="index-item__link" href="{{ guide.url }}" title="Go to the {{ guide.title}} Guide">
+    <a class="index-item__link" href="{{ guide.url | prepend: site.baseurl }}" title="Go to the {{ guide.title }} Guide">
         <div
             class="index-item__background"
             {% if guide.cover %}
