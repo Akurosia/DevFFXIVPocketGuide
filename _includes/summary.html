@@ -6,13 +6,13 @@
         <div
             class="index-item__background"
             {% if guide.cover %}
-                style="background-image: url('{{ guide.cover | prepend: site.baseurl }}')"
+                style="background-image: url('{{ guide.cover }}')"
             {% elsif guide.image.urlSmall %}
-                style="background-image: url('{{ guide.image.urlSmall | prepend: site.baseurl }}')"
+                style="background-image: url('{{ guide.image.urlSmall }}')"
             {% elsif guide.image %}
-                style="background-image: url('{% for image in guide.image %}{{ image.urlSmall | prepend: site.baseurl }}{% endfor %}')"
+                style="background-image: url('{% for image in guide.image %}{{ image.urlSmall }}{% endfor %}')"
             {% elsif guide.list-image %}
-              style="background-image: url('{{ guide.list-image | prepend: site.baseurl }}')"
+              style="background-image: url('{{ guide.list-image }}')"
             {% endif %}>
         </div>
         <h3 class="index-item__title"
