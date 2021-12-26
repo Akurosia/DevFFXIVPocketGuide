@@ -1077,7 +1077,7 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
     header_data += 'slug: "' + replaceSlug(_entry["slug"]) + '"\n'
     if _entry["image"]:
         header_data += 'image:\n'
-        header_data += '  - urlSmall: \"/' + getImage(_entry["image"]) + '\n'
+        header_data += '  - url: \"/' + getImage(_entry["image"]) + '\n'
         #header_data += '    url: \"/' + getImage(_entry["image"]) + '\n'
     header_data += 'terms:\n'
     header_data = writeTags(header_data, _entry, tt_type_name)

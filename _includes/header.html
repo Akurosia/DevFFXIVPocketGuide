@@ -13,12 +13,12 @@
     <div class="site-header__grid"
         {% if page.page_type == "index" or page.page_category == "about" %}
             style="background-image: url('{{ "/assets/img/5-5.jpg" | prepend: site.baseurl }}')"
-        {% elsif page.image[0].urlSmall %}
+        {% elsif page.image[0].url %}
             style="background-image:
-            {% if page.image[0].urlSmall contains "/assets/" %}
-                url('{{ page.image[0].urlSmall | prepend: site.baseurl }}')
+            {% if page.image[0].url contains "/assets/" %}
+                url('{{ page.image[0].url | prepend: site.baseurl }}')
             {% else %}
-                url('{{ page.image[0].urlSmall | prepend: site.imageurl }}')
+                url('{{ page.image[0].url | prepend: site.imageurl }}')
             {% endif %}"
         {% endif %}>
         <div class="site-header__item-a">

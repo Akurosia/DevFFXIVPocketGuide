@@ -2,5 +2,11 @@
 <div class="guide__attack-image-item">
     <img style="object-fit: scale-down;
         height: {% if image.height %} {{ image.height }} {% else%} 200px {% endif%}
-    " src="{{ image.url }}" alt="{{ image.alt }}">
+    " src="
+        {% if image.url contains "/assets/" %}
+            {{ image.url | prepend: site.baseurl }}
+        {% else %}
+            {{ image.url | prepend: site.imageurl }}
+        {% endif %}
+    " alt="{{ image.alt }}">
 </div>

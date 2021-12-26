@@ -2,7 +2,7 @@
 <div class="guide__accordion-trigger--{% if page.sequence %}02{% else %}03{% endif %}--attack">
     <i class="material-icons">expand_more</i>
     <h4 class="guide__accordion-trigger-title">
-        <img class="attack_icon" src="https://ffxiv.akurosia.de/extras/images/{{ attack.icon }}" alt="{{ attack.icon }}"/>
+        <img class="attack_icon" src="{{ site.imageurl }}/{{ attack.icon }}" alt="{{ attack.icon }}"/>
         <span class="{% if attack.damage_type == 'Magical' %}attack-is-magic
                      {% elsif attack.damage_type && attack.damage_type != 'None' %}attack-is-physical
                      {% endif %}">{{ attack.title }}</span>

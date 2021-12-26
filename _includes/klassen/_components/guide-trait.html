@@ -2,7 +2,7 @@
 <div class="guide__accordion-trigger--{% if page.sequence %}02{% else %}03{% endif %}--trait">
     <i class="material-icons">expand_more</i>
     <h4 class="guide__accordion-trigger-title">
-        <img class="attack_icon" src="https://ffxiv.akurosia.de/extras/images/{{ trait.icon }}" alt="{{ trait.icon }}"/>
+        <img class="attack_icon" src="{{ site.imageurl }}/{{ trait.icon }}" alt="{{ trait.icon }}"/>
         <span class="">{{ trait.title }}</span>
         {% if trait.title_en %}
             <div class="guide__accordion-trigger-subtitle"> | {{ trait.title_en }}</div>
