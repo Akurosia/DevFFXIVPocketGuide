@@ -7,12 +7,12 @@
             class="index-item__background"
             {% if guide.cover %}
                 style="background-image: url('{{ guide.cover }}')"
-            {% elsif guide.image[0].urlSmall %}
+            {% elsif guide.image[0].url %}
                 style="background-image:
-                    {% if guide.image[0].urlSmall contains "/assets/" %}
-                        url('{{ guide.image[0].urlSmall | prepend: site.baseurl }}')
+                    {% if guide.image[0].url contains "/assets/" %}
+                        url('{{ guide.image[0].url | prepend: site.baseurl }}')
                     {% else %}
-                        url('{{ guide.image[0].urlSmall | prepend: site.imageurl }}')
+                        url('{{ guide.image[0].url | prepend: site.imageurl }}')
                     {% endif %}
             {% endif %}">
         </div>
