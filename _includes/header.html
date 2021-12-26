@@ -13,14 +13,13 @@
     <div class="site-header__grid"
         {% if page.page_type == "index" or page.page_category == "about" %}
             style="background-image: url('{{ "/assets/img/5-5.jpg" | prepend: site.baseurl }}')"
-        {% elsif page.image.url %}
-            style="background-image: url('{{ page.image.url }}')"
-        {% elsif page.image %}
-            style="background-image: url('{% for image in page.image %}{{ image.url }}{% endfor %}')"
-        {% elsif page.layout == "new-guide" %}
-            style="background-image: url('{{ page.hero-image }}')"
-        {% else %}
-            style="background-image: url('{{ page.cover }}')"
+        {% elsif page.image[0].urlSmall %}
+            style="background-image:
+            {% if page.image[0].urlSmall contains "/assets/" %}
+                url('{{ page.image[0].urlSmall | prepend: site.baseurl }}')
+            {% else %}
+                url('{{ page.image[0].urlSmall | prepend: site.imageurl }}')
+            {% endif %}"
         {% endif %}>
         <div class="site-header__item-a">
             <h1 class="{% if page.page_type == 'index' or page.page_type == 'guide' %}site-header__title{% else %}site-header__guide-title{% endif %}">

@@ -271,6 +271,7 @@ def replaceSlug(text):
 
 def getImage(image):
     image = image.replace(".tex", "_hr1.png\"")
+    image = image.replace("ui/icon/", "")
     return image
 
 
@@ -1076,8 +1077,8 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
     header_data += 'slug: "' + replaceSlug(_entry["slug"]) + '"\n'
     if _entry["image"]:
         header_data += 'image:\n'
-        header_data += '  - urlSmall: \"https://ffxiv.akurosia.de/extras/images/' + getImage(_entry["image"]) + '\n'
-        header_data += '  - url: \"https://ffxiv.akurosia.de/extras/images/' + getImage(_entry["image"]) + '\n'
+        header_data += '  - urlSmall: \"/' + getImage(_entry["image"]) + '\n'
+        #header_data += '    url: \"/' + getImage(_entry["image"]) + '\n'
     header_data += 'terms:\n'
     header_data = writeTags(header_data, _entry, tt_type_name)
     header_data += 'patchName: "' + _entry["patchName"] + '"\n'
@@ -1375,7 +1376,7 @@ def add_Debuff(guide_data, debuff, enemy_type):
     guide_data += f'        title_id: "{debuff["title_id"]}"\n'
     if debuff.get("title_en", None):
         guide_data += f'        title_en: "{debuff["title_en"]}"\n'
-    guide_data += f'        icon: "{debuff["icon"]}"\n'
+    guide_data += f'        icon: "{getImage(debuff["icon"])}"\n'
     guide_data += f'        description: "{debuff["description"]}"\n'
     if debuff.get("durations", None):
         guide_data += f'        durations: {debuff["durations"]}\n'

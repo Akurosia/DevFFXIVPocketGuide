@@ -26,6 +26,11 @@ traitstransient = loadDataTheQuickestWay("TraitTransient.de.json")
 aozactions = loadDataTheQuickestWay("aozaction_all.json", translate=True)
 aozactiontransient = loadDataTheQuickestWay("AozActionTransient.de.json")
 
+def getImage(image):
+    image = image.replace(".tex", "_hr1.png\"")
+    image = image.replace("ui/icon/", "")
+    return image
+
 
 def writeline(f, data):
     f.write(data)
@@ -111,7 +116,7 @@ def addBlueAttackDetails(f, job_data):
             writeline(f, f'        level: "{skill_data["Number"]}"')
         else:
             writeline(f, f'        level: "{level}"')
-        writeline(f, f'        icon: "{skill_data["Icon"]}"')
+        writeline(f, f'        icon: "{getImage(skill_data["Icon"])}"')
         writeline(f, f'        range: "{skill_data["Range"]}"')
         writeline(f, f'        effectrange: "{skill_data["EffectRange"]}"')
         writeline(f, f'        cast: "{skill_data["Cast"]}"')
@@ -139,7 +144,7 @@ def addAttackDetails(f, job_data, pvp=False):
         writeline(f, f'        title_id: "{skill_data["id"].split(".")[0]}"')
         writeline(f, f'        title_en: "{en_name}"')
         writeline(f, f'        level: "{level}"')
-        writeline(f, f'        icon: "{skill_data["Icon"]}"')
+        writeline(f, f'        icon: "{getImage(skill_data["Icon"])}"')
         writeline(f, f'        range: "{skill_data["Range"]}"')
         writeline(f, f'        effectrange: "{skill_data["EffectRange"]}"')
         writeline(f, f'        cast: "{skill_data["Cast"]}"')
@@ -166,7 +171,7 @@ def addStatusDetails(f, job):
             writeline(f, f'      - title: "{status["name"]}"')
             writeline(f, f'        title_id: "{key}"')
             writeline(f, f'        title_en: "{statuss[_id]["Name_en"]}"')
-            writeline(f, f'        icon: "{status["icon"]}"')
+            writeline(f, f'        icon: "{getImage(status["icon"])}"')
             writeline(f, f'        description: "{desc}"')
             writeline(f, f'        durations: {status["duration"]}')
             writeline(f, '        phases:')
@@ -190,7 +195,7 @@ def addTraitDetails(f, job):
         writeline(f, f'        title_id: "{_id.split(".")[0]}"')
         writeline(f, f'        title_en: "{en_name}"')
         writeline(f, f'        level: "{level}"')
-        writeline(f, f'        icon: "{trait_data["Icon"].replace(".tex", "_hr1.png")}"')
+        writeline(f, f'        icon: "{getImage(trait_data["Icon"].replace(".tex", "_hr1.png"))}"')
         writeline(f, f'        description: "{desc}"')
         writeline(f, f'        phases:')
         writeline(f, f'          - phase: "03"')
@@ -320,8 +325,8 @@ def main():
 
             writeline(f, 'slug: "klassen_und_jobs_' + job.lower() + '"')
             writeline(f, 'image:')
-            writeline(f, f'    - urlSmall: "/assets/img/content/klassen/{job}.png"')
             writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
+            #writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
             writeline(f, 'terms:')
             writeline(f, '    - term: "Klassen"')
             writeline(f, '    - term: "Jobs"')
