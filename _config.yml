@@ -29,6 +29,7 @@ github_username:  akurosia
 # Build settings
 markdown: kramdown
 plugins:
+  - jekyll-last-modified-at
   - jekyll-sitemap
 include:
   - _pages
