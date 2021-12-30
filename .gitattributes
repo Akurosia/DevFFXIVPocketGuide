@@ -1,0 +1,10 @@
+# Set the default behavior for all files.
+* text eol=crlf
+
+# Convert to CRLF line endings on checkout.
+*.sln text eol=crlf
+*.sh text eol=crlf
+
+# Binary files.
+*.png binary
+*.jpg binary
