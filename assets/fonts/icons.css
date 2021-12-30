@@ -4,7 +4,9 @@
   font-style: normal;
   font-weight: 400;
   src: url('/assets/fonts/GoogleMaterialIcons.woff2') format('woff2');
-  src: url('/DevFFXIVPocketGuide/assets/fonts/GoogleMaterialIcons.woff2') format('woff2');
+  src: local(''),
+       url('/assets/fonts/GoogleMaterialIcons.woff2') format('woff2'),
+       url('/DevFFXIVPocketGuide/assets/fonts/GoogleMaterialIcons.woff2') format('woff2');
 }
 
 .material-icons {
