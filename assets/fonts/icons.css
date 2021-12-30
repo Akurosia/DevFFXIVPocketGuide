@@ -3,10 +3,10 @@
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url('/assets/fonts/GoogleMaterialIcons.woff2') format('woff2');
+  src: url('/assets/fonts/GoogleMaterialIcons.woff2'); /* IE9 Compat Modes */
   src: local(''),
-       url('/assets/fonts/GoogleMaterialIcons.woff2') format('woff2'),
-       url('/DevFFXIVPocketGuide/assets/fonts/GoogleMaterialIcons.woff2') format('woff2');
+       url('/assets/fonts/GoogleMaterialIcons.woff2') format('woff2'), /* IE6-IE8 */
+       url('/DevFFXIVPocketGuide/assets/fonts/GoogleMaterialIcons.woff2') format('woff2'); /* Legacy iOS */
 }
 
 .material-icons {
