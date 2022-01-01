@@ -4,10 +4,9 @@
   font-style: normal;
   font-weight: 400;
   src: url('/assets/fonts/MaterialIcons-Regular.ttf'); /* IE9 Compat Modes */
-  src: local('Material Icons'),
-       local('MaterialIcons-Regular'),
-       url('/assets/fonts/GoogleMaterialIcons.woff2') format('woff2'), /* Super Modern Browsers */
-       url('/DevFFXIVPocketGuide/assets/fonts/GoogleMaterialIcons.woff2') format('woff2'), /* Super Modern Browsers */
+  src: local(''),
+       /*url('/assets/fonts/GoogleMaterialIcons.woff2') format('woff2'), /* Super Modern Browsers */
+       /*url('/DevFFXIVPocketGuide/assets/fonts/GoogleMaterialIcons.woff2') format('woff2'), /* Super Modern Browsers */
        url('/assets/fonts/MaterialIcons-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
        url('/DevFFXIVPocketGuide/assets/fonts/MaterialIcons-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
 }
