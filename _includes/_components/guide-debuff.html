@@ -3,7 +3,7 @@
             {% if debuff.debuff_in_use == 'false' %}--ignore
             {% else %}--debuff
             {% endif %}">
-    <i class="material-icons">expand_more</i>
+    <i class="material-icons"><ion-icon name="chevron-down-outline"></ion-icon></i>
     <h4 class="guide__accordion-trigger-title">
         <img class="debuff_icon" src="{{ site.imageurl }}/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
         <span class="{% if debuff.damage_type == 'Magical' %}attack-is-magic

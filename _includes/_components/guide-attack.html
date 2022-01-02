@@ -6,7 +6,7 @@
             {% elsif attack.variation %}--variation
             {% else %}--attack
             {% endif %}">
-    <i class="material-icons" style="{% if attack.disable == 'true' %}display: none;{% endif %}">expand_more</i>
+    <i class="material-icons" style="{% if attack.disable == 'true' %}display: none;{% endif %}"><ion-icon name="chevron-down-outline"></ion-icon></i>
     <h4 class="guide__accordion-trigger-title">
         <span class="{% if attack.damage_type == 'Magical' %}attack-is-magic
                      {% elsif attack.damage_type && attack.damage_type != 'None' %}attack-is-physical
