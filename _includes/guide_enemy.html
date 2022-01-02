@@ -1,7 +1,7 @@
 <!-- Guide Adds ========================================================== -->
 <div class="guide__accordion">
     <div class="guide__accordion-trigger--01 active" id="guide{{ x }}">
-        <i class="material-icons" style="{% if enemy.attacks or enemy.debuffs %}{% else %}display: none;{% endif %}">expand_more</i>
+        <i class="material-icons" style="{% if enemy.attacks or enemy.debuffs %}{% else %}display: none;{% endif %}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
         <h2 class="guide__accordion-trigger-title">
             {% if enemies.size > 1 %}
                 {% if page.instanceType == "allianzraid" %}Allianzraid {{ x }} {% endif %}
@@ -37,7 +37,7 @@
             {% if enemies.size > 1 %}
                 <!-- <div class="guide__accordion-trigger--02" id="{{ enemy.id }}"> -->
                 <div class="guide__accordion-trigger--02" id="{{ enemy.id | slugify }}">
-                    <i class="material-icons" style="{% if enemy.attacks or enemy.debuffs %}{% else %}display: none;{% endif %}">expand_more</i>
+                    <i class="material-icons" style="{% if enemy.attacks or enemy.debuffs %}{% else %}display: none;{% endif %}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
                     <h3 class="guide__accordion-trigger-title">
                         {{ enemy.title }}
                     </h3>
