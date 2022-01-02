@@ -3,7 +3,7 @@
 
     {% if enemy.sequence.size > 1 %}
         <div class="guide__accordion-trigger--03" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
-            <i class="material-icons">expand_more</i>
+            <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
             {% if phase.name %}
                 <h3 class="guide__accordion-trigger-title">{{ phase.phase }}. {{ phase.name }}</h3>
             {% else %}
