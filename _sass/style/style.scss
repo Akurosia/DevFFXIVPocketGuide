@@ -1019,6 +1019,7 @@ html {
   font-size: 1rem;
   font-weight: 800;
   margin: 1rem 0;
+  display: grid;
 
   &:last-child {
     margin-bottom: 0;
@@ -1028,7 +1029,8 @@ html {
     color: #ff575c;
     font-weight: 400;
     margin: 0.5rem 0 0;
-    display: block;
+    display: inline-flex;
+    align-items: center;
 
     &[class*=noblock] {
       display: inline !important;
@@ -1067,6 +1069,7 @@ html {
   list-style: disc;
   margin: 0;
   padding: 0;
+  color: grey;
 
   li {
     margin: 0.5rem 0 0.5rem 1.5rem;
