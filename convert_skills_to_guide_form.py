@@ -10,21 +10,50 @@ import json
 from collections import OrderedDict
 from operator import getitem
 
+skills = None
+pvpskills = None
+logdata = None
+cj = None
+cjs = None
+actions = None
+craftactions = None
+statuss = None
+statusss = None
+traits = None
+traitss = None
+traitstransient = None
+aozactions = None
+aozactiontransient = None
 
-skills = get_skills_for_player()
-pvpskills = get_skills_for_player(True)
-logdata = get_any_Logdata()
-cj = loadDataTheQuickestWay("classjob_all.json", translate=True)
-cjs = loadDataTheQuickestWay("ClassJob.de.json")
-actions = loadDataTheQuickestWay("action_all.json", translate=True)
-craftactions = loadDataTheQuickestWay("craftaction_all.json", translate=True)
-statuss = loadDataTheQuickestWay("status_all.json", translate=True)
-statusss = loadDataTheQuickestWay("Status.de.json")
-traits = loadDataTheQuickestWay("Trait.de.json")
-traitss = loadDataTheQuickestWay("trait_all.json", translate=True)
-traitstransient = loadDataTheQuickestWay("TraitTransient.de.json")
-aozactions = loadDataTheQuickestWay("aozaction_all.json", translate=True)
-aozactiontransient = loadDataTheQuickestWay("AozActionTransient.de.json")
+def load_global_data():
+    global skills
+    global pvpskills
+    global logdata
+    global cj
+    global cjs
+    global actions
+    global craftactions
+    global statuss
+    global statusss
+    global traits
+    global traitss
+    global traitstransient
+    global aozactions
+    global aozactiontransient
+    skills = get_skills_for_player()
+    pvpskills = get_skills_for_player(True)
+    logdata = get_any_Logdata()
+    cj = loadDataTheQuickestWay("classjob_all.json", translate=True)
+    cjs = loadDataTheQuickestWay("ClassJob.de.json")
+    actions = loadDataTheQuickestWay("action_all.json", translate=True)
+    craftactions = loadDataTheQuickestWay("craftaction_all.json", translate=True)
+    statuss = loadDataTheQuickestWay("status_all.json", translate=True)
+    statusss = loadDataTheQuickestWay("Status.de.json")
+    traits = loadDataTheQuickestWay("Trait.de.json")
+    traitss = loadDataTheQuickestWay("trait_all.json", translate=True)
+    traitstransient = loadDataTheQuickestWay("TraitTransient.de.json")
+    aozactions = loadDataTheQuickestWay("aozaction_all.json", translate=True)
+    aozactiontransient = loadDataTheQuickestWay("AozActionTransient.de.json")
 
 def getImage(image):
     image = image.replace(".tex", "_hr1.png\"")
@@ -364,5 +393,6 @@ def main():
 
 
 if __name__ == "__main__":
+    load_global_data()
     os.chdir("./_posts")
     main()

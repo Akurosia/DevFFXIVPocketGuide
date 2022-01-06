@@ -1020,13 +1020,23 @@ def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechan
     header_data, cmt = addContentZoneIdToHeader(header_data, contentzoneid, _entry)
     header_data = addGroupCollections(header_data, cmt, _entry)
 
-    with open(_filename, "w", encoding="utf8") as fi:
-        fi.write('---\n')
-        fi.write(header_data)
-        fi.write(guide_data)
-        fi.write('---')
-        fi.write('\n')
+    #build file, compare with existing data and write if data is not equals
+    filedata = '---\n'
+    filedata += header_data
+    filedata += guide_data
+    filedata += '---'
+    filedata += '\n'
 
+    try:
+        with open(_filename, "r", encoding="utf8") as f:
+            x_data = f.read()
+    except:
+        x_data = None
+
+    if not filedata == x_data:
+        with open(_filename, "w", encoding="utf8") as fi:
+            fi.write(filedata)
+        print(f"Wrote new data to file {_filename}")
 
 def getEntriesForRouletts(_entry):
     global contentfinderconditionX
