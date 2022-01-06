@@ -83,9 +83,6 @@ example_add_sequence = {
 }
 
 
-# specify elements you are looking for
-elements = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest", "quest_npc", "quest_location", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "allianceraid", "frontier", "expert", "guildhest", "level50_60", "level70", "leveling", "main", "mentor", "normalraid", "trial", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
-
 storeFilesInTmp(True)
 logdata = get_any_Logdata()
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
@@ -388,6 +385,7 @@ def read_xlsx_file():
 
 def get_data_from_xlsx(sheet, max_column, i):
     entry = {}
+    elements = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest", "quest_npc", "quest_location", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
     # for every column in row add all elements into a dict:
     # max_column will ignore last column due to how range is working
     for j in range(1, max_column + 1):
@@ -1038,33 +1036,32 @@ def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechan
             fi.write(filedata)
         print(f"Wrote new data to file {_filename}")
 
+
 def getEntriesForRouletts(_entry):
     global contentfinderconditionX
     for key, value in contentfinderconditionX.items():
-        if value['Name'] == _entry['title']:
-            tmp = {
-                'type': value['ContentType'].lower(),
-                'territorytype': value['TerritoryType'],
-                'allianceraid': value['AllianceRoulette'],
-                'frontier': value['FeastTeamRoulette'],
-                'expert': value['ExpertRoulette'],
-                'guildhest': value['GuildHestRoulette'],
-                'level50_60_70': value['Level50/60/70Roulette'],
-                'level80': value['Level80Roulette'],
-                'leveling': value['LevelingRoulette'],
-                'main': value['MSQRoulette'],
-                'mentor': value['MentorRoulette'],
-                'normalraid': value['NormalRaidRoulette'],
-                'trial': value['TrialRoulette']
-            }
-            return tmp
-    return {}
+        if value['Name'] == getContentName(_entry["title"], "de", _entry["difficulty"], _entry["instanceType"]):
+            _entry['type'] = value['ContentType'].lower()
+            _entry['mapid'] = value['TerritoryType']
+            _entry['allianceraid'] = value['AllianceRoulette']
+            _entry['frontier'] = value['FeastTeamRoulette']
+            _entry['expert'] = value['ExpertRoulette']
+            _entry['guildhest'] = value['GuildHestRoulette']
+            _entry['level50_60_70'] = value['Level50/60/70Roulette']
+            _entry['level80'] = value['Level80Roulette']
+            _entry['leveling'] = value['LevelingRoulette']
+            _entry['main'] = value['MSQRoulette']
+            _entry['mentor'] = value['MentorRoulette']
+            _entry['normalraid'] = value['NormalRaidRoulette']
+            _entry['trial'] = value['TrialRoulette']
+            return _entry
+    return _entry
 
 
 def rewrite_content_even_if_exists(_entry, old_wip, index):
     header_data = ""
 
-    rouletts = getEntriesForRouletts(_entry)
+    _entry = getEntriesForRouletts(_entry)
     tt_type_name = get_territorytype_from_mapid(_entry["mapid"])
     _entry["title_de"] = getContentName(_entry["title"], "de", _entry["difficulty"], _entry["instanceType"])
     _entry["title_en"] = getContentName(_entry["title"], "en", _entry["difficulty"], _entry["instanceType"])
@@ -1092,8 +1089,8 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
     header_data += 'terms:\n'
     header_data = writeTags(header_data, _entry, tt_type_name)
     header_data += 'patchName: "' + _entry["patchName"] + '"\n'
-    if rouletts.get("territorytype", None):
-        header_data += 'mapid: "' + rouletts["territorytype"] + '"\n'
+    if _entry.get("mapid", None):
+        header_data += 'mapid: "' + _entry["mapid"] + '"\n'
     if not tt_type_name == "":
         header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
     header_data += 'sortid: ' + _entry["sortid"] + '\n'
@@ -1159,7 +1156,7 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
         if checkVariable(_entry, "orchestrion_material3"):
             header_data += '  - name: "' + _entry["orchestrion_material3"] + '"\n'
     # rouletts
-    if _entry["allianceraid"] == "True" or _entry["frontier"] == "True" or _entry["expert"] == "True" or _entry["guildhest"] == "True" or _entry["level50_60"] == "True" or _entry["level70"] == "True" or _entry["leveling"] == "True" or _entry["main"] == "True" or _entry["mentor"] == "True" or _entry["normalraid"] == "True" or _entry["trial"] == "True":
+    if _entry.get("expert", None):
         header_data += 'rouletts:\n'
         if _entry["allianceraid"]:
             header_data += '  - allianceraid: ' + _entry["allianceraid"] + "\n"
@@ -1169,10 +1166,10 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
             header_data += '    expert: ' + _entry["expert"] + "\n"
         if _entry["guildhest"]:
             header_data += '    guildhest: ' + _entry["guildhest"] + "\n"
-        if _entry["level50_60"]:
-            header_data += '    level50_60: ' + _entry["level50_60"] + "\n"
-        if _entry["level70"]:
-            header_data += '    level70: ' + _entry["level70"] + "\n"
+        if _entry["level50_60_70"]:
+            header_data += '    level50_60_70: ' + _entry["level50_60_70"] + "\n"
+        if _entry["level80"]:
+            header_data += '    level80: ' + _entry["level80"] + "\n"
         if _entry["leveling"]:
             header_data += '    leveling: ' + _entry["leveling"] + "\n"
         if _entry["main"]:
@@ -1263,48 +1260,37 @@ def writeTags(header_data, _entry, tt_type_name):
     found_roulette = False
     if _entry.get("allianceraid", None) == "True":
         header_data += "  - term: \"allianceraid\"\n"
-        if not found_roulette:
-            found_roulette = True
+        found_roulette = True
     if _entry.get("frontier", None) == "True":
         header_data += "  - term: \"frontier\"\n"
-        if not found_roulette:
-            found_roulette = True
+        found_roulette = True
     if _entry.get("expert", None) == "True":
         header_data += "  - term: \"expert\"\n"
-        if not found_roulette:
-            found_roulette = True
+        found_roulette = True
     if _entry.get("guildhest", None) == "True":
         header_data += "  - term: \"guildhest\"\n"
-        if not found_roulette:
-            found_roulette = True
+        found_roulette = True
     if _entry.get("level50_60_70", None) == "True":
         header_data += "  - term: \"level50_60_70\"\n"
-        if not found_roulette:
-            found_roulette = True
+        found_roulette = True
     if _entry.get("level80", None) == "True":
         header_data += "  - term: \"level80\"\n"
-        if not found_roulette:
-            found_roulette = True
+        found_roulette = True
     if _entry.get("leveling", None) == "True":
         header_data += "  - term: \"leveling\"\n"
-        if not found_roulette:
-            found_roulette = True
+        found_roulette = True
     if _entry.get("main", None) == "True":
         header_data += "  - term: \"main\"\n"
-        if not found_roulette:
-            found_roulette = True
+        found_roulette = True
     if _entry.get("mentor", None) == "True":
         header_data += "  - term: \"mentor\"\n"
-        if not found_roulette:
-            found_roulette = True
+        found_roulette = True
     if _entry.get("normalraid", None) == "True":
         header_data += "  - term: \"normalraid\"\n"
-        if not found_roulette:
-            found_roulette = True
+        found_roulette = True
     if _entry.get("trial", None) == "True":
         header_data += "  - term: \"trial\"\n"
-        if not found_roulette:
-            found_roulette = True
+        found_roulette = True
     if found_roulette:
         header_data += "  - term: \"Zufallsinhalt\"\n"
         header_data += "  - term: \"roulette\"\n"
