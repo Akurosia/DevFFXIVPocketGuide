@@ -104,20 +104,46 @@ def checkVariable(element, name):
     return False
 
 
-ba_name = {
-    "de": "Eureka Baldesions Arsenal",
-    "en": "The Baldesion Arsenal",
-    "fr": "Eurêka et son arsenal",
-    "ja": "バルデシオンアーセナル",
-    "cn": "兵武塔",
-    "ko": "발데시온 무기고"
+discontinued_content = {
+    "Eureka Baldesions Arsenal": {
+        "de": "Eureka Baldesions Arsenal",
+        "en": "The Baldesion Arsenal",
+        "fr": "Eurêka et son arsenal",
+        "ja": "バルデシオンアーセナル",
+        "cn": "兵武塔",
+        "ko": "발데시온 무기고"
+    },
+    "Traumprüfung - Shiva": {
+        "de": "Traumprüfung - Shiva",
+        "en": "the Akh Afah Amphitheatre (Unreal)",
+        "fr": "l'Amphithéâtre d'Akh Afah (irréel)",
+        "ja": "幻シヴァ討滅戦",
+        "cn": "希瓦幻巧战",
+        "ko": "환 시바 토벌전"
+    },
+    "Traumprüfung - Leviathan": {
+        "de": "Traumprüfung - Leviathan",
+        "en": "the Whorleater (Unreal)",
+        "fr": "le Briseur de marées (irréel)",
+        "ja": "幻リヴァイアサン討滅戦",
+        "cn": "利维亚桑幻巧战",
+        "ko": "환 리바이어선 토벌전"
+    },
+    "Traumprüfung - Titan": {
+        "de": "Traumprüfung - Titan",
+        "en": "the Navel (Unreal)",
+        "fr": "le Nombril (irréel)",
+        "ja": "極タイタン討滅戦",
+        "cn": "泰坦歼殛战",
+        "ko": "극 타이탄 토벌전"
+    }
 }
 
 
 def getContentName(name, lang="en", difficulty=None, instanceType=None):
     name = uglyContentNameFix(name, instanceType, difficulty)
-    if name == "Eureka Baldesions Arsenal":
-        return ba_name[lang]
+    if discontinued_content.get(name, None):
+        return discontinued_content[name][lang]
     try:
         for key, content in contentfindercondition.items():
             if "memoria" in content["Name_de"].lower().strip() and "memoria" in name.lower().strip():
@@ -980,15 +1006,24 @@ def addContentZoneIdToHeader(header_data, contentzoneid, _entry):
 
 def addGroupCollections(header_data, cmt, _entry):
     global contentmembertype
+    skip_lookoup = False
     if not cmt:
-        return header_data
+        if discontinued_content.get(_entry['title'], None):
+            healerp = "2"
+            tankp = "2"
+            meleep = "2"
+            rangep = "2"
+            skip_lookoup = True
+        else:
+            return header_data
 
-    wanted_id = cmt.split("#")[1]
-    cmt_entry = contentmembertype[f"{wanted_id}.0"]
-    healerp = cmt_entry['HealersPerParty']
-    tankp = cmt_entry['TanksPerParty']
-    meleep = cmt_entry['MeleesPerParty']
-    rangep = cmt_entry['RangedPerParty']
+    if not skip_lookoup:
+        wanted_id = cmt.split("#")[1]
+        cmt_entry = contentmembertype[f"{wanted_id}.0"]
+        healerp = cmt_entry['HealersPerParty']
+        tankp = cmt_entry['TanksPerParty']
+        meleep = cmt_entry['MeleesPerParty']
+        rangep = cmt_entry['RangedPerParty']
 
     if int(healerp) + int(tankp) + int(meleep) + int(rangep) > 0:
         header_data += "group:\n"
@@ -1416,9 +1451,9 @@ def add_regular_Attack(guide_data, attack, enemy_type):
     if attack.get("title_en", None):
         guide_data += f'        title_en: "{attack["title_en"]}"\n'
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
-    guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
+    guide_data += f'        disable: "{attack.get("disable", "false")}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
-    guide_data += f'        damage_type: "{attack["damage_type"] or "None"}"\n'
+    guide_data += f'        damage_type: "{attack.get("damage_type", None)}"\n'
 
     if attack.get('damage', None):
         guide_data += f'        damage:\n'
@@ -1470,7 +1505,7 @@ def add_variation_Attack(guide_data, attack, enemy_type):
     if attack.get("title_en", None):
         guide_data += f'        title_en: "{attack["title_en"]}"\n'
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
-    guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
+    guide_data += f'        disable: "{attack.get("disable", "false")}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
 
     if attack.get('phases', None):
@@ -1488,7 +1523,7 @@ def add_variation_Attack(guide_data, attack, enemy_type):
         for variation in attack.get('variation', {}):
             guide_data += f'          - title: "{variation["title"]}"\n'
             guide_data += f'            title_id: "{variation["title_id"]}"\n'
-            guide_data += f'            damage_type: "{variation["damage_type"]}"\n'
+            guide_data += f'            damage_type: "{variation.get("damage_type", None)}"\n'
 
             # print_color_yellow(variation)
             if variation.get('damage', None):
