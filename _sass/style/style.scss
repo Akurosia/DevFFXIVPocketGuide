@@ -1225,6 +1225,26 @@ html {
       }
     }
 
+    &[class*=quest] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #00ff00);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#00ff00",GradientType=1);
+      padding: 1.5rem 1.5rem 1.5rem 4.5rem;
+
+      &:before {
+        background: #323232;
+        content: " ";
+        display: block;
+        height: 100%;
+        opacity: .7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+    }
+
     &[class*=dutyAction] {
       background: #000;
       background: linear-gradient(90deg, #000 5%, #9b40bf);
@@ -1353,6 +1373,25 @@ html {
     &[class*=trait] {
       background: #efff00;
       background: linear-gradient(90deg, #000 5%, #efff00);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+
+      &:before {
+        background: #323232;
+        content: " ";
+        display: block;
+        height: 100%;
+        opacity: .7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+    }
+
+    &[class*=quest] {
+      background: #00ff00;
+      background: linear-gradient(90deg, #000 5%, #00ff00);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
 
       &:before {

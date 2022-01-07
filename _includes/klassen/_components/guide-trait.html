@@ -8,7 +8,7 @@
             <div class="guide__accordion-trigger-subtitle"> | {{ trait.title_en }}</div>
         {% endif %}
         {% if trait.title_id %}
-            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ trait.title_id }}', '{{ enemy.title }}', 'attack')">Skill-ID: {{ trait.title_id }}</div>
+            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ trait.title_id }}', '{{ enemy.title }}', 'attack')">ID: {{ trait.title_id }}</div>
         {% endif %}
         {% include klassen/_components/guide-attack-types.html %}
     </h4>

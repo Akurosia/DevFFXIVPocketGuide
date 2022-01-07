@@ -1,6 +1,6 @@
-<div class="attack_skill_fix guide__accordion-tag-wrapper">
-  {% if attack.level or trait.level %}
-    <span class="a guide__accordion-tag--role">Level: {{ attack.level }}{{ trait.level }}</span>
+<div class="{% if quest.title %}{% else %}attack_skill_fix{% endif %} guide__accordion-tag-wrapper">
+  {% if attack.level or trait.level or quest.level %}
+    <span class="a guide__accordion-tag--role">Level: {{ attack.level }}{{ trait.level }}{{ quest.level }}</span>
   {% endif %}
   {% if attack.range %}
     <span class="guide__accordion-tag--duty-action">Range: {{ attack.range }}</span>
@@ -16,5 +16,21 @@
   {% endif %}
   {% if attack.kategorie %}
     <span class="guide__accordion-tag--role">Kategorie: {{ attack.kategorie }}</span>
+  {% endif %}
+
+  {% if quest.expansion %}
+    <span class="guide__accordion-tag--role">Expansion: {{ quest.expansion }}</span>
+  {% endif %}
+  {% if quest.journalgenre %}
+    <span class="guide__accordion-tag--role">Kategorie: {{ quest.journalgenre }}</span>
+  {% endif %}
+  {% if quest.issuer_start %}
+    <span class="guide__accordion-tag--role">NPC: {{ quest.issuer_start }}</span>
+  {% endif %}
+  {% if quest.place %}
+    <span class="guide__accordion-tag--role">Ort: {{ quest.place }}</span>
+  {% endif %}
+  {% if quest.issuer_location %}
+    <span class="guide__accordion-tag--role">Position: {{ quest.issuer_location }}</span>
   {% endif %}
 </div>

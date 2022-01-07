@@ -9,6 +9,7 @@ import yaml
 import json
 from collections import OrderedDict
 from operator import getitem
+import math
 
 skills = None
 pvpskills = None
@@ -24,6 +25,10 @@ traitss = None
 traitstransient = None
 aozactions = None
 aozactiontransient = None
+quests = None
+questss = None
+levels = None
+maps = None
 
 def load_global_data():
     global skills
@@ -40,6 +45,10 @@ def load_global_data():
     global traitstransient
     global aozactions
     global aozactiontransient
+    global quests
+    global questss
+    global levels
+    global maps
     skills = get_skills_for_player()
     pvpskills = get_skills_for_player(True)
     logdata = get_any_Logdata()
@@ -54,9 +63,14 @@ def load_global_data():
     traitstransient = loadDataTheQuickestWay("TraitTransient.de.json")
     aozactions = loadDataTheQuickestWay("aozaction_all.json", translate=True)
     aozactiontransient = loadDataTheQuickestWay("AozActionTransient.de.json")
+    quests = loadDataTheQuickestWay("Quest.de.json")
+    questss = loadDataTheQuickestWay("quest_all.json", translate=True)
+    levels = loadDataTheQuickestWay("Level.json", translate=false)
+    maps = loadDataTheQuickestWay("Map.json", translate=false)
+
 
 def getImage(image):
-    image = image.replace(".tex", "_hr1.png\"")
+    image = image.replace(".tex", "_hr1.png")
     image = image.replace("ui/icon/", "")
     return image
 
@@ -156,6 +170,25 @@ def addBlueAttackDetails(f, job_data):
         writeline(f, f'          - phase: "01"')
 
 
+def convertJobToAbrev(job):
+    global cj
+    global cjs
+    job_abbr = None
+    class_abbr = None
+    for key, value in cj.items():
+        if value['Name_de'] == job:
+            job_abbr = value['Abbreviation_de']
+
+    _class = [v['ClassJob_Parent_'] for k, v in cjs.items() if v["Name"] == job][0]
+    for key2, value2 in cj.items():
+        if value2['Name_de'] == _class:
+            class_abbr = value2['Abbreviation_de']
+
+    if not job_abbr == "" or not class_abbr == "":
+        return job_abbr, class_abbr
+    raise NotImplementedError
+
+
 def addAttackDetails(f, job_data, pvp=False):
     global actions
     global craftactions
@@ -228,6 +261,90 @@ def addTraitDetails(f, job):
         writeline(f, f'        description: "{desc}"')
         writeline(f, f'        phases:')
         writeline(f, f'          - phase: "03"')
+
+def getMaps(_map):
+    global maps
+    for key, value in maps.items():
+        if value['Id'] == _map:
+            return value
+    sys.exit()
+
+
+def truncate(f, n):
+    return math.floor(f * 10 ** n) / 10 ** n
+
+
+def ToMapCoordinate(val, mapsize):
+    c = mapsize / 100.0;
+    val *= c;
+    return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1;
+
+
+def getLevel(level):
+    global levels
+    try:
+        level = levels[level.replace('Level#', "") + ".0"]
+        map_ = getMaps(level['Map'])
+        x = truncate(ToMapCoordinate(float(level['X']), float(map_['SizeFactor'])), 1)
+        #x = truncate(ConvertCoordinatesIntoMapPosition(float(level['X']), float(map_['SizeFactor']), float(map_['Offset_X_'])), 1)
+        y = truncate(ToMapCoordinate(float(level['Z']), float(map_['SizeFactor'])), 1)
+        #y = truncate(ConvertCoordinatesIntoMapPosition(float(level['Z']), float(map_['SizeFactor']), float(map_['Offset_Y_'])), 1)
+        return { "x": x, "y": y, "region": map_['PlaceName_Region_'], "placename": map_['PlaceName']}
+    except:
+        return None
+
+
+def addQuestkDetails(f, job):
+    global quests
+    global questss
+    newjob, newclass = convertJobToAbrev(job)
+    klassenquests = {}
+    for key, quest in quests.items():
+        if "Restaurierung der Reliktwaffen" in quest['Name']:
+            continue
+        if quest['ClassJobCategory[0]'] in [newjob, newclass] or quest['ClassJobCategory[1]'] in [newjob, newclass]:
+            level_data = {}
+            try:
+                level_data = getLevel(quest['Issuer_Location_'])
+                if level_data == None:
+                    continue
+            except:
+                pass
+            place = f"{level_data['region']} > {quest['PlaceName']}"
+            if not level_data['placename'] in place:
+                place + f" > {level_data['placename']}"
+            newquest = {
+                "name": quest['Name'],
+                "id": key,
+                "expansion": quest['Expansion'],
+                "level": int(quest['ClassJobLevel[0]']),
+                "Icon": quest['Icon'].replace('.tex', "_hr1.png"),
+                "place": place,
+                "previousquest": [quest['PreviousQuest[0]'], quest['PreviousQuest[1]'], quest['PreviousQuest[2]']],
+                "journalgenre": quest['JournalGenre'],
+                "issuer_location_": f"X: {level_data['x']} / Y: {level_data['y']}",
+                "issuer_start_": quest['Issuer_Start_']
+            }
+            klassenquests[newquest['level']] = newquest
+
+    writeline(f, "    quests:")
+    for _level, quest in klassenquests.items():
+        en_name = questss.get(quest['id'], {}).get("Name_en", "")
+        level = "0" if quest['level'] == "99999" else quest['level']
+        #desc = skill_data["Description"].replace("\n", "</br>")
+        writeline(f, f'      - title: "{quest["name"]}"')
+        writeline(f, f'        title_id: "{quest["id"].split(".")[0]}"')
+        writeline(f, f'        title_en: "{en_name}"')
+        writeline(f, f'        level: "{level}"')
+        writeline(f, f'        expansion: "{quest["expansion"]}"')
+        writeline(f, f'        journalgenre: "{quest["journalgenre"]}"')
+        writeline(f, f'        issuer_location: "{quest["issuer_location_"]}"')
+        writeline(f, f'        issuer_start: "{quest["issuer_start_"]}"')
+        writeline(f, f'        place: "{quest["place"]}"')
+        #writeline(f, f'        icon: "{getImage(quest["Icon"])}"')
+        #writeline(f, f'        description: "{desc}"')
+        writeline(f, f'        phases:')
+        writeline(f, f'          - phase: "05"')
 
 
 classDetails = {
@@ -302,9 +419,9 @@ def main():
     global cj
     counter = 0
     # for job, job_data in skills.items():
-    cj = sorted(cj.items(), key=lambda item: int(item[0].split(".")[0]))
+    ncj = sorted(cj.items(), key=lambda item: int(item[0].split(".")[0]))
     maxlvl = ""
-    for k in cj:
+    for k in ncj:
         job_d = k[1]
         job = job_d['Name_de']
         en_name = job_d["Name_en"].title()
@@ -379,6 +496,7 @@ def main():
                 addAttackDetails(f, job_data_pvp, True)
             addStatusDetails(f, job)
             addTraitDetails(f, job)
+            addQuestkDetails(f, job)
             writeline(f, "    sequence:" + "")
             writeline(f, "      - phase: \"01\"")
             writeline(f, "        name: \"Skills\"")
@@ -389,6 +507,8 @@ def main():
             if not quest == "":
                 writeline(f, "      - phase: \"04\"")
                 writeline(f, "        name: \"PvP\"")
+            writeline(f, "      - phase: \"05\"")
+            writeline(f, "        name: \"Quests\"")
             writeline(f, '---')
 
 

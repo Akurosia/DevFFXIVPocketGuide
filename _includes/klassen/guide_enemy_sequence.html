@@ -17,6 +17,7 @@
 
     <!-- Determines the current phase. -->
     {% assign currentPhase = phase.phase %}
+
     <!-- Enters the enemy attack loop. -->
     {% for attack in enemy.attacks %}
         <!-- Enters the attack's phases. -->
@@ -28,6 +29,7 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
+
     <!-- Enters the enemy debuff loop. -->
     {% for debuff in enemy.debuffs %}
         <!-- Enters the attack's phases. -->
@@ -39,6 +41,7 @@
             {% endif %}
         {% endfor %}
     {% endfor %}
+
     <!-- Enters the enemy trait loop. -->
     {% for trait in enemy.traits %}
         <!-- Enters the attack's phases. -->
@@ -51,6 +54,17 @@
         {% endfor %}
     {% endfor %}
 
+    <!-- Enters the enemy trait loop. -->
+    {% for quest in enemy.quests %}
+        <!-- Enters the attack's phases. -->
+        {% for questsPhase in quest.phases %}
+            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+            {% if questsPhase.phase == currentPhase %}
+                <!-- Include Attack Template -->
+                {% include klassen/_components/guide-quests.html %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
     {% if enemy.sequence.size > 1 %}
         </div>
     {% endif %}
