@@ -71,7 +71,7 @@
             var input = this.value.toLowerCase().trim()
             var terms = input.split(" ");
 
-            $(".index .index__list").each(function(e) {
+            $(".index .index__list, .index .index__list_quests").each(function(e) {
 
                 $(this).find(".summary").each(function(e) {
 

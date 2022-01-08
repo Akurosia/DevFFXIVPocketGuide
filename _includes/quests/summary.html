@@ -16,7 +16,7 @@
             {% endif %}">
         </div>
         <h3 class="index-item__title"
-              data-terms="{% for term in guide.terms %}{{ term.term }}&#32;{% endfor %} {{guide.name}}&#32;{{guide.name_en}}&#32;{{guide.level}}&#32;{{guide.journal}}&#32;{{guide.place}}&#32;{{guide.location}}&#32;{{guide.issuer}}&#32;{{guide.unlocks}}&#32;">
+              data-terms="{% for term in guide.terms %}{{ term.term }}&#32;{% endfor %} {{guide.name}}&#32;{{guide.name_en}}&#32;{{guide.place}}&#32;{{guide.unlocks}}&#32;">
             {{ guide.name }} ~ ({{ guide.name_en }}) ~ [{{ guide.id }}]
         </h3>
         <h4 class="index-item__title_en">Level: {{ guide.level }}</h4>
