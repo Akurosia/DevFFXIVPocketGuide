@@ -49,33 +49,33 @@
                     All About the Guide
                 {% else %}
                     {{ page.title }}
-                    <span
-                        {% if page.difficulty == "Hard" %}
-                            class="hard"
-                        {% elsif page.difficulty == "Unreal" %}
-                            class="unreal"
-                        {% elsif page.difficulty == "Extreme" %}
-                            class="extreme"
-                        {% elsif page.difficulty == "Extrem" %}
-                            class="extreme"
-                        {% elsif page.difficulty == "Savage" %}
-                            class="savage"
-                        {% elsif page.difficulty == "Ultimate" %}
-                            class="ultimate"
-                        {% elsif page.difficulty == "Schwer" %}
-                            class="hard"
-                        {% elsif page.difficulty == "Traumprüfung" %}
-                            class="unreal"
-                        {% elsif page.difficulty == "Episch" %}
-                            class="savage"
-                        {% elsif page.difficulty == "Fatal" %}
-                            class="ultimate"
-                        {% endif %}
-                        >
+                    {% if page.difficulty %}
                         {% if page.difficulty != "Normal" %}
-                            ({{ page.difficulty }})
+                            <span
+                                {% if page.difficulty == "Hard" %}
+                                    class="hard"
+                                {% elsif page.difficulty == "Unreal" %}
+                                    class="unreal"
+                                {% elsif page.difficulty == "Extreme" %}
+                                    class="extreme"
+                                {% elsif page.difficulty == "Extrem" %}
+                                    class="extreme"
+                                {% elsif page.difficulty == "Savage" %}
+                                    class="savage"
+                                {% elsif page.difficulty == "Ultimate" %}
+                                    class="ultimate"
+                                {% elsif page.difficulty == "Schwer" %}
+                                    class="hard"
+                                {% elsif page.difficulty == "Traumprüfung" %}
+                                    class="unreal"
+                                {% elsif page.difficulty == "Episch" %}
+                                    class="savage"
+                                {% elsif page.difficulty == "Fatal" %}
+                                    class="ultimate"
+                                {% endif %}
+                            >({{ page.difficulty }})</span>
                         {% endif %}
-                    </span>
+                    {% endif %}
                 {% endif %}
             </h1>
             <h2 class="site-header__guide-title_en">
