@@ -1,0 +1,41 @@
+{% comment %} ==================================================================
+    // Index
+=============================================================== {% endcomment %}
+<div class="index">
+    {% assign my_array = "EW,SHB,SB,HW,ARR" | split: ',' %}
+    {% for x in my_array %}
+        {% case x %}
+            {% when "EW" %}
+    <!-- Endwalker Guide Index ============================================ -->
+                {% assign queryType = "quest_ew" %}
+                {% assign x_title = "6.x - Endwalker" %}
+            {% when "SHB" %}
+    <!-- Shadowbringers Guide Index ============================================ -->
+                {% assign queryType = "quest_shb" %}
+                {% assign x_title = "5.x - Shadowbringers" %}
+            {% when "SB" %}
+    <!-- Stormblood Guide Index ============================================ -->
+                {% assign queryType = "quest_sb" %}
+                {% assign x_title = "4.x - Stormblood" %}
+            {% when "HW" %}
+    <!-- Heavensward Guide Index ============================================ -->
+                {% assign queryType = "quest_hw" %}
+                {% assign x_title = "3.x - Heavensward" %}
+            {% when "ARR" %}
+    <!-- A Realm Reborn Guide Index ============================================ -->
+                {% assign queryType = "quest_arr" %}
+                {% assign x_title = "2.x - A Realm Reborn" %}
+        {% endcase %}
+        {% assign counterq = 0 %}
+        {% include quests/_components/index-counter.html %}
+        {% if counterq > 0 %}
+           <a id="endwalker"></a>
+           <div class="index-divider" data-expansion="{{ x | downcase }}">
+               <h2 class="index-divider__title">{{ x_title }}</h2>
+           </div>
+           <div class="index__list_quests" data-expansion="{{ x | downcase }}">
+               {% include quests/_components/index-list.html %}
+           </div>
+        {% endif %}
+    {% endfor %}
+</div>

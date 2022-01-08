@@ -1712,3 +1712,7 @@ if __name__ == "__main__":
     # second run to fix boss order
     #run(sheet, max_row, max_column)
     # csgf.main()
+
+    # below is a profiler
+    # import cProfile
+    # cProfile.run('run(sheet, max_row, max_column)')

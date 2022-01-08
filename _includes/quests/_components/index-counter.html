@@ -1,0 +1,7 @@
+{% for quests in site.categories.quests %}
+    {% for guide in quests.quests reversed %}
+        {% if guide.instanceType == queryType %}
+            {% assign counterq = counterq | plus: 1 %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}

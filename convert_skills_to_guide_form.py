@@ -349,59 +349,37 @@ def addQuestkDetails(f, job):
 
 classDetails = {
     "Ninja": {
-        "date": "2014.10.28", "patchNumber": "2.4", "patchName": "Dreams of Ice",
-        "quest_location": "Limsa Lominsa: Untere Decks (X:8 Y:16)",
-        "quest_npc": "Lonwoerd"
+        "date": "2014.10.28", "patchNumber": "2.4", "patchName": "Dreams of Ice"
     },
     "Maschinist": {
-        "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward",
-        "quest_location": "Fundamente (X:8 Y:10)",
-        "quest_npc": "Stephanivien"
+        "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward"
     },
     "Dunkelritter": {
-        "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward",
-        "quest_location": "Strebewerk (X:13 Y:8)",
-        "quest_npc": "Ishgarder Bürger"
+        "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward"
     },
     "Astrologe": {
-        "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward",
-        "quest_location": "Strebewerk (X:15 Y:10)",
-        "quest_npc": "Jannequinard"
+        "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward"
     },
     "Samurai": {
-        "date": "2017.06.20", "patchNumber": "4.0", "patchName": "Stormblood",
-        "quest_location": "Nald-Kreuzgang (Ul'dah) (X:9.2 Y:9.1)",
-        "quest_npc": "Aufgedrehter Ul'dahner"
+        "date": "2017.06.20", "patchNumber": "4.0", "patchName": "Stormblood"
     },
     "Rotmagier": {
-        "date": "2017.06.20", "patchNumber": "4.0", "patchName": "Stormblood",
-        "quest_location": "Thal-Kreuzgang (Ul'dah) (X:14.1 Y:11.7)",
-        "quest_npc": "Verzweifeltes Mädchen"
+        "date": "2017.06.20", "patchNumber": "4.0", "patchName": "Stormblood"
     },
     "Blaumagier": {
-        "date": "2019.01.08", "patchNumber": "4.5", "patchName": "A Requiem for Heroes",
-        "quest_location": "Untere Decks (X:10.0 Y:11.0)",
-        "quest_npc": "Wachmann"
+        "date": "2019.01.08", "patchNumber": "4.5", "patchName": "A Requiem for Heroes"
     },
     "Revolverklinge": {
-        "date": "2019.06.28", "patchNumber": "5.0", "patchName": "Shadowbringers",
-        "quest_location": "Neu-Gridania (X:11.5 Y:11.9)",
-        "quest_npc": "Aufrichtiger Soldat von Nophicas Schar"
+        "date": "2019.06.28", "patchNumber": "5.0", "patchName": "Shadowbringers"
     },
     "Tänzer": {
-        "date": "2019.06.28", "patchNumber": "5.0", "patchName": "Shadowbringers",
-        "quest_location": "Untere Decks (X:9.8 Y:12.0)",
-        "quest_npc": "Aufgeregter Bürger"
+        "date": "2019.06.28", "patchNumber": "5.0", "patchName": "Shadowbringers"
     },
     "Schnitter": {
-        "date": "2021.12.07", "patchNumber": "6.0", "patchName": "Endwalker",
-        "quest_location": "Nald-Kreuzgang (X:12.8 Y:8.6)",
-        "quest_npc": "Gehetzt wirkender Diener"
+        "date": "2021.12.07", "patchNumber": "6.0", "patchName": "Endwalker"
     },
     "Weiser": {
-        "date": "2021.12.07", "patchNumber": "6.0", "patchName": "Endwalker",
-        "quest_location": "Untere Decks (X:9.4 Y:12.9)",
-        "quest_npc": "Frau aus dem Norden"
+        "date": "2021.12.07", "patchNumber": "6.0", "patchName": "Endwalker"
     },
 }
 
@@ -458,8 +436,6 @@ def main():
                 writeline(f, f'date: "{classDetails[job]["date"]}"')
                 writeline(f, f'patchNumber: "{classDetails[job]["patchNumber"]}"')
                 writeline(f, f'patchName: "{classDetails[job]["patchName"]}"')
-                writeline(f, f'quest_location: "{classDetails[job]["quest_location"]}"')
-                writeline(f, f'quest_npc: "{classDetails[job]["quest_npc"]}"')
             else:
                 writeline(f, 'date: "2013.01.01"')
                 writeline(f, 'patchNumber: "2.0"')

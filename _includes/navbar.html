@@ -124,6 +124,13 @@
                         Klassen/Jobs
                     </a>
                 </li>
+                <li>
+                    <a {% if page.page_category == "quests" %}class="active"{% endif %}
+                        {% if page.instanceType == "quests" or page.instance_type == "quests" %}class="active"{% endif %}
+                        href='{{ "/quests/" | prepend: site.baseurl }}' title="Quests anzeigen">
+                        Quests
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
