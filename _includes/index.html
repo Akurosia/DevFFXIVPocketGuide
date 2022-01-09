@@ -2,96 +2,54 @@
     // Index
 =============================================================== {% endcomment %}
 <div class="index">
+    {% assign my_array = "ew,shb,sb,hw,arr,klassenjobs" | split: ',' %}
+    {% for queryType in my_array %}
+        {% case queryType %}
+            {% when "ew" %}
     <!-- Endwalker Guide Index ============================================ -->
-    {% assign counter = 0 %}
-    {% for guide in site.categories.ew %}
-        {% include _components/index-counter.html %}
-    {% endfor %}
-    {% if counter > 0 %}
-        <a id="endwalker"></a>
-        <div class="index-divider" data-expansion="ew">
-            <h2 class="index-divider__title">6.x - Endwalker</h2>
-        </div>
-        <div class="index__list" data-expansion="ew">
-            {% assign sorted = site.categories.ew | sort:"order" %}
-            {% include _components/index-list.html %}
-        </div>
-    {% endif %}
+                {% assign x_title = "6.x - Endwalker" %}
+                {% assign x_id = "endwalker" %}
+                {% assign categories = site.categories.ew %}
+            {% when "shb" %}
     <!-- Shadowbringers Guide Index ============================================ -->
-    {% assign counter = 0 %}
-    {% for guide in site.categories.shb %}
-        {% include _components/index-counter.html %}
-    {% endfor %}
-    {% if counter > 0 %}
-        <a id="shadowbringers"></a>
-        <div class="index-divider" data-expansion="shb">
-            <h2 class="index-divider__title">5.x - Shadowbringers</h2>
-        </div>
-        <div class="index__list" data-expansion="shb">
-            {% assign sorted = site.categories.shb | sort:"order" %}
-            {% include _components/index-list.html %}
-        </div>
-    {% endif %}
+                {% assign x_title = "5.x - Shadowbringers" %}
+                {% assign x_id = "shadowbringers" %}
+                {% assign categories = site.categories.shb %}
+            {% when "sb" %}
     <!-- Stormblood Guide Index ============================================ -->
-    {% assign counter = 0 %}
-    {% for guide in site.categories.sb %}
-        {% include _components/index-counter.html %}
-    {% endfor %}
-    {% if counter > 0 %}
-        <a id="stormblood"></a>
-        <div class="index-divider" data-expansion="sb">
-            <h2 class="index-divider__title">4.x - Stormblood</h2>
-        </div>
-        <div class="index__list" data-expansion="sb">
-            {% assign sorted = site.categories.sb | sort:"order" %}
-            {% include _components/index-list.html %}
-        </div>
-    {% endif %}
+                {% assign x_title = "4.x - Stormblood" %}
+                {% assign x_id = "stormblood" %}
+                {% assign categories = site.categories.sb %}
+            {% when "hw" %}
     <!-- Heavensward Guide Index ============================================ -->
-    {% assign counter = 0 %}
-    {% for guide in site.categories.hw %}
-        {% include _components/index-counter.html %}
-    {% endfor %}
-    {% if counter > 0 %}
-        <a id="heavensward"></a>
-        <div class="index-divider" data-expansion="hw">
-            <h2 class="index-divider__title">3.x - Heavensward</h2>
-        </div>
-        <div class="index__list" data-expansion="hw">
-            {% assign sorted = site.categories.hw | sort:"order" %}
-            {% include _components/index-list.html %}
-        </div>
-    {% endif %}
+                {% assign x_title = "3.x - Heavensward" %}
+                {% assign x_id = "heavensward" %}
+                {% assign categories = site.categories.hw %}
+            {% when "arr" %}
     <!-- A Realm Reborn Guide Index ============================================ -->
-    {% assign counter = 0 %}
-    {% for guide in site.categories.arr %}
-        {% include _components/index-counter.html %}
-    {% endfor %}
-    {% if counter > 0 %}
-        <a id="a_realm_reborn"></a>
-        <div class="index-divider" data-expansion="arr">
-            <h2 class="index-divider__title">2.x - A Realm Reborn</h2>
-        </div>
-        <div class="index__list" data-expansion="arr">
-            {% assign sorted = site.categories.arr | sort:"order" %}
-            {% include _components/index-list.html %}
-        </div>
-    {% endif %}
+                {% assign x_title = "2.x - A Realm Reborn" %}
+                {% assign x_id = "a_realm_reborn" %}
+                {% assign categories = site.categories.arr %}
+            {% when "klassenjobs" %}
     <!-- Klassen Guide Index ============================================ -->
-    {% assign counter = 0 %}
-    {% for guide in site.categories.klassenjobs %}
+                {% assign x_title = "Klassen und Jobs" %}
+                {% assign x_id = "klassenjobs" %}
+                {% assign categories = site.categories.klassenjobs %}
+        {% endcase %}
+        {% assign counter = 0 %}
         {% include _components/index-counter.html %}
+        {% if counter > 0 %}
+            <a id="{{ x_id }}"></a>
+            <div class="index-divider" data-expansion="{{ queryType }}">
+                <h2 class="index-divider__title">{{ x_title }}</h2>
+            </div>
+            <div class="index__list" data-expansion="{{ queryType }}">
+                {% assign sorted = categories | sort:"order" %}
+                {% include _components/index-list.html %}
+            </div>
+        {% endif %}
     {% endfor %}
-    {% if counter > 0 %}
-        <a id="klassenjobs"></a>
-        <div class="index-divider" data-expansion="klassenjobs">
-            <h2 class="index-divider__title">Klassen und Jobs</h2>
-        </div>
-        <div class="index__list" data-expansion="klassenjobs">
-            {% assign sorted = site.categories.klassenjobs | sort:"order" %}
-            {% include _components/index-list.html %}
-        </div>
-    {% endif %}
+
     <!-- Include Null State -->
     {% include guide-index-null-state.html %}
 </div>
