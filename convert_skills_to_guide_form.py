@@ -441,9 +441,10 @@ def main():
                 writeline(f, 'patchNumber: "2.0"')
                 writeline(f, 'patchName: "A Realm Reborn"')
 
+            # this will be empty for non jobs (crafter/gatherer are clases)
             quest = getQuestName(job)
-            if not quest == "":
-                writeline(f, f'quest: "{quest}"')
+            #if not quest == "":
+            #    writeline(f, f'quest: "{quest}"')
 
             writeline(f, 'slug: "klassen_und_jobs_' + job.lower() + '"')
             writeline(f, 'image:')
