@@ -329,9 +329,9 @@ def addQuestkDetails(f, job):
                 klassenquests[newquest['level'] + 0.1] = newquest
             else:
                 klassenquests[newquest['level']] = newquest
-
     writeline(f, "    quests:")
-    for _level, quest in klassenquests.items():
+    for _level in sorted(klassenquests):
+        quest = klassenquests[_level]
         en_name = questss.get(quest['id'], {}).get("Name_en", "")
         level = "0" if quest['level'] == "99999" else quest['level']
         #desc = skill_data["Description"].replace("\n", "</br>")
