@@ -325,7 +325,10 @@ def addQuestkDetails(f, job):
                 "issuer_location_": f"X: {level_data['x']} / Y: {level_data['y']}",
                 "issuer_start_": quest['Issuer_Start_']
             }
-            klassenquests[newquest['level']] = newquest
+            if klassenquests.get(newquest['level'], None):
+                klassenquests[newquest['level'] + 0.1] = newquest
+            else:
+                klassenquests[newquest['level']] = newquest
 
     writeline(f, "    quests:")
     for _level, quest in klassenquests.items():
