@@ -206,6 +206,7 @@ def addAttackDetails(f, job_data, pvp=False):
         writeline(f, f'        title_id: "{skill_data["id"].split(".")[0]}"')
         writeline(f, f'        title_en: "{en_name}"')
         writeline(f, f'        level: "{level}"')
+        writeline(f, f'        type: "{skill_data["Type"]}"')
         writeline(f, f'        icon: "{getImage(skill_data["Icon"])}"')
         writeline(f, f'        range: "{skill_data["Range"]}"')
         writeline(f, f'        effectrange: "{skill_data["EffectRange"]}"')
@@ -294,7 +295,7 @@ def getLevel(level):
         return None
 
 
-def addQuestkDetails(f, job):
+def addQuestkDetails(f, job, pvp):
     global quests
     global questss
     newjob, newclass = convertJobToAbrev(job)
@@ -332,10 +333,10 @@ def addQuestkDetails(f, job):
     writeline(f, "    quests:")
     for _level in sorted(klassenquests):
         quest = klassenquests[_level]
-        en_name = questss.get(quest['id'], {}).get("Name_en", "")
+        en_name = questss.get(quest['id'], {}).get("Name_en", "").replace(" ", "").replace(" ", "")
         level = "0" if quest['level'] == "99999" else quest['level']
         #desc = skill_data["Description"].replace("\n", "</br>")
-        writeline(f, f'      - title: "{quest["name"]}"')
+        writeline(f, f'      - title: "{quest["name"].replace(" ", "").replace(" ", "")}"')
         writeline(f, f'        title_id: "{quest["id"].split(".")[0]}"')
         writeline(f, f'        title_en: "{en_name}"')
         writeline(f, f'        level: "{level}"')
@@ -344,10 +345,11 @@ def addQuestkDetails(f, job):
         writeline(f, f'        issuer_location: "{quest["issuer_location_"]}"')
         writeline(f, f'        issuer_start: "{quest["issuer_start_"]}"')
         writeline(f, f'        place: "{quest["place"]}"')
-        #writeline(f, f'        icon: "{getImage(quest["Icon"])}"')
-        #writeline(f, f'        description: "{desc}"')
         writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "05"')
+        if pvp:
+            writeline(f, f'          - phase: "05"')
+        else:
+            writeline(f, f'          - phase: "04"')
 
 
 classDetails = {
@@ -444,10 +446,8 @@ def main():
                 writeline(f, 'patchNumber: "2.0"')
                 writeline(f, 'patchName: "A Realm Reborn"')
 
-            # this will be empty for non jobs (crafter/gatherer are clases)
-            quest = getQuestName(job)
-            #if not quest == "":
-            #    writeline(f, f'quest: "{quest}"')
+            # this will be empty for non jobs (crafter/gatherer are clases so we know if they have pvp spells)
+            pvp = getQuestName(job)
 
             writeline(f, 'slug: "klassen_und_jobs_' + job.lower() + '"')
             writeline(f, 'image:')
@@ -476,7 +476,7 @@ def main():
                 addAttackDetails(f, job_data_pvp, True)
             addStatusDetails(f, job)
             addTraitDetails(f, job)
-            addQuestkDetails(f, job)
+            addQuestkDetails(f, job, pvp)
             writeline(f, "    sequence:" + "")
             writeline(f, "      - phase: \"01\"")
             writeline(f, "        name: \"Skills\"")
@@ -484,10 +484,10 @@ def main():
             writeline(f, "        name: \"Status\"")
             writeline(f, "      - phase: \"03\"")
             writeline(f, "        name: \"Traits\"")
-            if not quest == "":
-                writeline(f, "      - phase: \"04\"")
+            writeline(f, "      - phase: \"04\"")
+            if pvp:
                 writeline(f, "        name: \"PvP\"")
-            writeline(f, "      - phase: \"05\"")
+                writeline(f, "      - phase: \"05\"")
             writeline(f, "        name: \"Quests\"")
             writeline(f, '---')
 
