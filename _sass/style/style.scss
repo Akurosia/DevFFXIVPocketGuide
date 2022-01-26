@@ -1245,6 +1245,26 @@ html {
       }
     }
 
+    &[class*=leve] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #f96700);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#f96700",GradientType=1);
+      padding: 1.5rem 1.5rem 1.5rem 4.5rem;
+
+      &:before {
+        background: #323232;
+        content: " ";
+        display: block;
+        height: 100%;
+        opacity: .7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+    }
+
     &[class*=dutyAction] {
       background: #000;
       background: linear-gradient(90deg, #000 5%, #9b40bf);
@@ -1352,9 +1372,9 @@ html {
     }
 
     &[class*=debuff] {
-      background: #476cff;
-      background: linear-gradient(90deg, #476cff 5%, #000);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #476cff);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#476cff",GradientType=1);
 
       &:before {
         background: #323232;
@@ -1374,6 +1394,25 @@ html {
       background: #efff00;
       background: linear-gradient(90deg, #000 5%, #efff00);
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+
+      &:before {
+        background: #323232;
+        content: " ";
+        display: block;
+        height: 100%;
+        opacity: .7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+    }
+
+    &[class*=leve] {
+      background: #00ff00;
+      background: linear-gradient(90deg, #000 5%, #f96700);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#f96700",GradientType=1);
 
       &:before {
         background: #323232;

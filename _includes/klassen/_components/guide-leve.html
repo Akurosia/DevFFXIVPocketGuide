@@ -1,0 +1,13 @@
+<!-- Attack Template ======================================================= -->
+<div class="guide__accordion-trigger--{% if page.sequence %}02{% else %}03{% endif %}--leve">
+    <h4 class="guide__accordion-trigger-title">
+        <span class="">{{ leve.title }}</span>
+        {% if leve.title_en %}
+            <div class="guide__accordion-trigger-subtitle"> | {{ leve.title_en }}</div>
+        {% endif %}
+        {% if leve.title_id %}
+            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ leve.title_id }}', '{{ enemy.title }}', 'attack')">ID: {{ leve.title_id }}</div>
+        {% endif %}
+        {% include klassen/_components/guide-attack-types.html %}
+    </h4>
+</div>
