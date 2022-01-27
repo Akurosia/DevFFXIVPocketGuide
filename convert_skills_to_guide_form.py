@@ -581,8 +581,8 @@ def main():
                 addAttackDetails(f, job_data_pvp, True)
             addStatusDetails(f, job)
             addTraitDetails(f, job)
-            leves = addCrafterLeve(f, job, all_crafter_leves)
-            leves = addCrafterLeve(f, job, all_gatherer_leves)
+            cleves = addCrafterLeve(f, job, all_crafter_leves)
+            gleves = addCrafterLeve(f, job, all_gatherer_leves)
             addQuestkDetails(f, job, pvp or leves)
             writeline(f, "    sequence:" + "")
             writeline(f, "      - phase: \"01\"")
@@ -595,7 +595,7 @@ def main():
             if pvp:
                 writeline(f, "        name: \"PvP\"")
                 writeline(f, "      - phase: \"05\"")
-            if leves:
+            if cleves or gleves:
                 writeline(f, "        name: \"Freibriefe\"")
                 writeline(f, "      - phase: \"05\"")
             writeline(f, "        name: \"Quests\"")
