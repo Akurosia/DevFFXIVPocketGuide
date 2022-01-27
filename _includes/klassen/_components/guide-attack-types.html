@@ -33,4 +33,23 @@
   {% if quest.issuer_location %}
     <span class="guide__accordion-tag--role">Position: {{ quest.issuer_location }}</span>
   {% endif %}
+
+  {% if leve.leveamount %}
+    <span class="guide__accordion-tag--role">Freibriefanzahl: {{ leve.leveamount }}</span>
+  {% endif %}
+  {% if leve.exphq %}
+    <span class="guide__accordion-tag--role">HQ EXP: {{ leve.exphq }}</span>
+  {% endif %}
+  {% if leve.gilhq %}
+    <span class="guide__accordion-tag--role">HQ Gil: {{ leve.gilhq }}</span>
+  {% endif %}
+  {% if leve.item %}
+    <span class="guide__accordion-tag--role">Item: {{ leve.item }}</span>
+    {% if leve.itemamount %}
+      <span class="guide__accordion-tag--role">Itemanzahl: {{ leve.itemamount }}</span>
+    {% endif %}
+    {% if leve.repeat %}
+      <span class="guide__accordion-tag--role">Wiederholbar: {{ leve.repeat }}</span>
+    {% endif %}
+  {% endif %}
 </div>
