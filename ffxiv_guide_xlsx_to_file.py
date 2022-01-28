@@ -164,6 +164,8 @@ def getBnpcNameFromID(_id, aname, nname):
     bnew_name = ""
     enew_name = ""
     ennew_name = ""
+    if type(_id) == list:
+        _id = _id[0]
     try:
         bnew_name = bnpcname[_id + ".0"]["Singular_de"]
         m = re.search(nname, bnew_name, re.IGNORECASE)
@@ -188,6 +190,7 @@ def getBnpcNameFromID(_id, aname, nname):
             return enpcresident[_id + ".0"]["Singular_en"]
     except Exception:
         pass
+
     if "α" not in bnew_name and "β" not in bnew_name and "（仮）鎖" not in bnew_name:
         print_color_red(f"'{bnew_name}', '{enew_name}', '{ennew_name}' not found {aname} ({nname}) - ({_id})")
     return ""
@@ -1371,7 +1374,10 @@ def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
     enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
     guide_data += f'  - title: "{enemy_data["title"]}"\n'
     guide_data += f'    title_en: "{enemy_data["title_en"]}"\n'
-    guide_data += f'    enemy_id: "{enemy_data.get("enemy_id", "")}"\n'
+    if type(enemy_data.get("enemy_id", "")) == list:
+        guide_data += f'    enemy_id: "{", ".join(enemy_data.get("enemy_id", ""))}"\n'
+    else:
+        guide_data += f'    enemy_id: "{enemy_data.get("enemy_id", "")}"\n'
     guide_data += f'    id: "{enemy_data["id"]}"\n'
 
     if enemy_data.get('hp', None):
