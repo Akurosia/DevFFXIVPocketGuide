@@ -35,21 +35,28 @@
   {% endif %}
 
   {% if leve.leveamount %}
-    <span class="guide__accordion-tag--role">Freibriefanzahl: {{ leve.leveamount }}</span>
+    <span class="guide__accordion-tag--role">Vollmachten: {{ leve.leveamount }}</span>
   {% endif %}
   {% if leve.exphq %}
-    <span class="guide__accordion-tag--role">HQ EXP: {{ leve.exphq }}</span>
-  {% endif %}
-  {% if leve.gilhq %}
-    <span class="guide__accordion-tag--role">HQ Gil: {{ leve.gilhq }}</span>
+    <span class="guide__accordion-tag--role">HQ EXP: {{ leve.exphq | intcomma: '.' }}</span>
   {% endif %}
   {% if leve.item %}
     <span class="guide__accordion-tag--role">Item: {{ leve.item }}</span>
     {% if leve.itemamount %}
-      <span class="guide__accordion-tag--role">Itemanzahl: {{ leve.itemamount }}</span>
+      <span class="guide__accordion-tag--role">Anzahl: {{ leve.itemamount }}
+        {% if leve.repeat != "1" %}
+          ({{ leve.itemamount | times: leve.repeat }})
+        {% endif %}
+      </span>
     {% endif %}
-    {% if leve.repeat %}
+    {% if leve.repeat != "1" %}
       <span class="guide__accordion-tag--role">Wiederholbar: {{ leve.repeat }}</span>
+    {% endif %}
+    {% if leve.exphq %}
+      <span class="guide__accordion-tag--role">Total HQ EXP: {{ leve.exphq | times: leve.repeat | intcomma: '.' }}</span>
+    {% endif %}
+    {% if leve.gilhq %}
+      <span class="guide__accordion-tag--role">Total HQ Gil: {{ leve.gilhq | times: leve.repeat | intcomma: '.' }}</span>
     {% endif %}
   {% endif %}
 </div>
