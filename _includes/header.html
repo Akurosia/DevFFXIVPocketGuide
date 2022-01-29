@@ -23,11 +23,11 @@
         {% endif %}>
         <div>
             {% if page.previous_slug %}
-                <a id="pref_slug" href="{{ page.previous_slug | prepend: site.baseurl }}" style="display: none;"></a>
+                <a id="pref_slug" href="{{ page.previous_slug | prepend: site.baseurl }}.html" style="display: none;"></a>
                 <button class="content_btn" onclick="document.getElementById('pref_slug').click()" title="{{ page.previous_slug }}"> < </button>
             {% endif %}
             {% if page.next_slug %}
-                <a id="next_slug" href="{{ page.next_slug | prepend: site.baseurl }}" style="display: none;"/></a>
+                <a id="next_slug" href="{{ page.next_slug | prepend: site.baseurl }}.html" style="display: none;"/></a>
                 <button class="content_btn" onclick="document.getElementById('next_slug').click()" title="{{ page.next_slug }}"> > </button>
             {% endif %}
         </div>
