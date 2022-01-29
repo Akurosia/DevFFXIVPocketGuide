@@ -271,6 +271,101 @@ def addTraitDetails(f, job):
         writeline(f, f'          - phase: "03"')
 
 
+def translatename(name):
+    global trans_leves
+    for y, x in trans_leves.items():
+        if x["Name_de"] == name:
+            return x["Name_en"]
+
+
+def getCrafterLeves():
+    global leves
+    global craftleves
+    final_results = {}
+    for leve_id, leve in leves.items():
+        new_leve_id = int(str(int(leve_id.split(".")[0])))
+
+        if "Fertigungserlasse" not in leve["JournalGenre"]:
+            continue
+        for cleve_id, cleve in craftleves.items():
+            if leve["Name"] == cleve["Leve"]:
+                if not final_results.get(leve["JournalGenre"], None):
+                    final_results[leve["JournalGenre"]] = {}
+                final_results[leve["JournalGenre"]][new_leve_id] = {
+                    "Name_DE": leve["Name"],
+                    "Name_EN": translatename(leve["Name"]),
+                    "0xID": hex(new_leve_id)[2:].upper(),
+                    "ID": str(new_leve_id),
+                    "item": cleve['Item[0]'],
+                    "item_amount": int(cleve['ItemCount[0]']) + int(cleve['ItemCount[1]']) + int(cleve['ItemCount[2]']),
+                    "level": leve['ClassJobLevel'],
+                    "Start_Leve_Zone": leve['PlaceName_Issued_'],
+                    "Start_Leve_NPC": leve['LeveClient'],
+                    "Freibriefanzahl": leve["AllowanceCost"],
+                    "Wiederholbar": (int(cleve["Repeats"]) + 1) if cleve["Repeats"] != "0" else 1,
+                    "EXP_per_full_hq_leve": (int(cleve['Repeats']) + 1) * int(leve['ExpReward']) * 2,
+                    "Gil_per_full_hq_leve": (int(cleve['Repeats']) + 1) * int(leve['GilReward']) * 2,
+                    "Gil_per_100_hq_leve": (int(cleve['Repeats']) + 1) *  int(leve['GilReward']) * 100 * 2,
+                }
+    return final_results
+
+
+def getGathererLeves():
+    global leves
+    final_results = {}
+    for leve_id, leve in leves.items():
+        new_leve_id = int(str(int(leve_id.split(".")[0])))
+
+        if "Sammelerlasse" not in leve["JournalGenre"]:
+            continue
+        if not final_results.get(leve["JournalGenre"], None):
+            final_results[leve["JournalGenre"]] = {}
+        final_results[leve["JournalGenre"]][new_leve_id] = {
+            "Name_DE": leve["Name"],
+            "Name_EN": translatename(leve["Name"]),
+            "0xID": hex(new_leve_id)[2:].upper(),
+            "ID": str(new_leve_id),
+            "item": "",
+            "item_amount": "",
+            #"item": cleve['Item[0]'],
+            #"item_amount": cleve['ItemCount[0]'],
+            "level": leve['ClassJobLevel'],
+            "Start_Leve_Zone": leve['PlaceName_Issued_'],
+            "Start_Leve_NPC": leve['LeveClient'],
+            "Freibriefanzahl": leve["AllowanceCost"],
+            #"Wiederholbar": True if cleve["Repeats"] != "0" else False,
+            "EXP_per_full_hq_leve": int(leve['ExpReward']),
+            "Gil_per_full_hq_leve": int(leve['GilReward']),
+            "Gil_per_100_hq_leve": int(leve['GilReward']) * 100,
+        }
+    return final_results
+
+
+def addCrafterLeve(f, job, all_crafter_leves):
+    for key, value in all_crafter_leves.items():
+        if job not in key:
+            continue
+        writeline(f, "    leves:")
+        job_leve_data = OrderedDict(sorted(value.items(), key=lambda x: int(getitem(x[1], 'level'))))
+        for _id, leve_data in job_leve_data.items():
+            level = "0" if leve_data['level'] == "99999" else leve_data['level']
+            writeline(f, f'      - title: "{leve_data["Name_DE"]}"')
+            writeline(f, f'        title_en: "{leve_data["Name_EN"]}"')
+            writeline(f, f'        title_id: "{leve_data["0xID"]}"')
+            writeline(f, f'        level: "{level}"')
+            writeline(f, f'        leveamount: "{leve_data["Freibriefanzahl"]}"')
+            if leve_data.get('item', None):
+                writeline(f, f'        item: "{leve_data["item"]}"')
+                writeline(f, f'        itemamount: "{leve_data["item_amount"]}"')
+                writeline(f, f'        repeat: "{leve_data["Wiederholbar"]}"')
+            writeline(f, f'        exphq: "{leve_data["EXP_per_full_hq_leve"]}"')
+            writeline(f, f'        gilhq: "{leve_data["Gil_per_full_hq_leve"]}"')
+            writeline(f, f'        phases:')
+            writeline(f, f'          - phase: "04"')
+        return True
+    return False
+
+
 def getMaps(_map):
     global maps
     for key, value in maps.items():
@@ -405,101 +500,6 @@ def getQuestName(job):
     return ""
 
 
-def translatename(name):
-    global trans_leves
-    for y, x in trans_leves.items():
-        if x["Name_de"] == name:
-            return x["Name_en"]
-
-
-def getCrafterLeves():
-    global leves
-    global craftleves
-    final_results = {}
-    for leve_id, leve in leves.items():
-        new_leve_id = int(str(int(leve_id.split(".")[0])))
-
-        if "Fertigungserlasse" not in leve["JournalGenre"]:
-            continue
-        for cleve_id, cleve in craftleves.items():
-            if leve["Name"] == cleve["Leve"]:
-                if not final_results.get(leve["JournalGenre"], None):
-                    final_results[leve["JournalGenre"]] = {}
-                final_results[leve["JournalGenre"]][new_leve_id] = {
-                    "Name_DE": leve["Name"],
-                    "Name_EN": translatename(leve["Name"]),
-                    "0xID": hex(new_leve_id)[2:].upper(),
-                    "ID": str(new_leve_id),
-                    "item": cleve['Item[0]'],
-                    "item_amount": int(cleve['ItemCount[0]']) + int(cleve['ItemCount[1]']) + int(cleve['ItemCount[2]']),
-                    "level": leve['ClassJobLevel'],
-                    "Start_Leve_Zone": leve['PlaceName_Issued_'],
-                    "Start_Leve_NPC": leve['LeveClient'],
-                    "Freibriefanzahl": leve["AllowanceCost"],
-                    "Wiederholbar": (int(cleve["Repeats"]) + 1) if cleve["Repeats"] != "0" else 1,
-                    "EXP_per_full_hq_leve": (int(cleve['Repeats']) + 1) * int(leve['ExpFactor']) * int(leve['ExpReward']) * 2,
-                    "Gil_per_full_hq_leve": (int(cleve['Repeats']) + 1) * int(leve['ExpFactor']) * int(leve['GilReward']) * 2,
-                    "Gil_per_100_hq_leve": (int(cleve['Repeats']) + 1) * int(leve['ExpFactor']) * int(leve['GilReward']) * 100 * 2,
-                }
-    return final_results
-
-
-def getGathererLeves():
-    global leves
-    final_results = {}
-    for leve_id, leve in leves.items():
-        new_leve_id = int(str(int(leve_id.split(".")[0])))
-
-        if "Sammelerlasse" not in leve["JournalGenre"]:
-            continue
-        if not final_results.get(leve["JournalGenre"], None):
-            final_results[leve["JournalGenre"]] = {}
-        final_results[leve["JournalGenre"]][new_leve_id] = {
-            "Name_DE": leve["Name"],
-            "Name_EN": translatename(leve["Name"]),
-            "0xID": hex(new_leve_id)[2:].upper(),
-            "ID": str(new_leve_id),
-            "item": "",
-            "item_amount": "",
-            #"item": cleve['Item[0]'],
-            #"item_amount": cleve['ItemCount[0]'],
-            "level": leve['ClassJobLevel'],
-            "Start_Leve_Zone": leve['PlaceName_Issued_'],
-            "Start_Leve_NPC": leve['LeveClient'],
-            "Freibriefanzahl": leve["AllowanceCost"],
-            #"Wiederholbar": True if cleve["Repeats"] != "0" else False,
-            "EXP_per_full_hq_leve": int(leve['ExpReward']) * 2,
-            "Gil_per_full_hq_leve": int(leve['GilReward']) * 2,
-            "Gil_per_100_hq_leve": int(leve['GilReward']) * 100 * 2,
-        }
-    return final_results
-
-
-def addCrafterLeve(f, job, all_crafter_leves):
-    for key, value in all_crafter_leves.items():
-        if job not in key:
-            continue
-        writeline(f, "    leves:")
-        job_leve_data = OrderedDict(sorted(value.items(), key=lambda x: int(getitem(x[1], 'level'))))
-        for _id, leve_data in job_leve_data.items():
-            level = "0" if leve_data['level'] == "99999" else leve_data['level']
-            writeline(f, f'      - title: "{leve_data["Name_DE"]}"')
-            writeline(f, f'        title_en: "{leve_data["Name_EN"]}"')
-            writeline(f, f'        title_id: "{leve_data["0xID"]}"')
-            writeline(f, f'        level: "{level}"')
-            writeline(f, f'        leveamount: "{leve_data["Freibriefanzahl"]}"')
-            if leve_data.get('item', None):
-                writeline(f, f'        item: "{leve_data["item"]}"')
-                writeline(f, f'        itemamount: "{leve_data["item_amount"]}"')
-                writeline(f, f'        repeat: "{leve_data["Wiederholbar"]}"')
-            writeline(f, f'        exphq: "{leve_data["EXP_per_full_hq_leve"]}"')
-            writeline(f, f'        gilhq: "{leve_data["Gil_per_full_hq_leve"]}"')
-            writeline(f, f'        phases:')
-            writeline(f, f'          - phase: "04"')
-        return True
-    return False
-
-
 def main():
     global cj
     counter = 0
@@ -555,9 +555,10 @@ def main():
             pvp = getQuestName(job)
 
             writeline(f, 'slug: "klassen_und_jobs_' + job.lower() + '"')
-            writeline(f, 'image:')
-            writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
-            #writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
+            if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
+                writeline(f, 'image:')
+                writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
+                #writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
             writeline(f, 'terms:')
             writeline(f, '    - term: "Klassen"')
             writeline(f, '    - term: "Jobs"')
