@@ -2095,6 +2095,30 @@ body {
     width: 40px;
 }
 
+.content_btn {
+    display: block;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(255,255,255,.2);
+    border: 0;
+    padding: 0px 10px 0px 10px;
+    &:first-of-type {
+      left: 0px;
+      z-index: 500;
+    }
+    &:last-of-type {
+      right: 0px;
+      z-index: 500;
+    }
+    &:hover {
+      background-color: rgba(255,255,255,.3);
+    }
+    &:active {
+      background-color: rgba(255,255,255,.1);
+    }
+
+}
+
 ion-icon {
   color: #FF575C;
 }

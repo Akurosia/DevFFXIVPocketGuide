@@ -21,7 +21,18 @@
                 url('{{ page.image[0].url | prepend: site.imageurl }}')
             {% endif %}"
         {% endif %}>
+        <div>
+            {% if page.previous_slug %}
+                <a id="pref_slug" href="{{ page.previous_slug | prepend: site.baseurl }}" style="display: none;"></a>
+                <button class="content_btn" onclick="document.getElementById('pref_slug').click()" title="{{ page.previous_slug }}"> < </button>
+            {% endif %}
+            {% if page.next_slug %}
+                <a id="next_slug" href="{{ page.next_slug | prepend: site.baseurl }}" style="display: none;"/></a>
+                <button class="content_btn" onclick="document.getElementById('next_slug').click()" title="{{ page.next_slug }}"> > </button>
+            {% endif %}
+        </div>
         <div class="site-header__item-a">
+
             <h1 class="{% if page.page_type == 'index' or page.page_type == 'guide' %}site-header__title{% else %}site-header__guide-title{% endif %}">
                 {% if page.page_category == "all" %}
                     The FFXIV Pocket Guide
@@ -81,6 +92,7 @@
             <h2 class="site-header__guide-title_en">
                 {{ page.title_en }}
             </h2>
+
         </div>
         {% if page.page_type == "index" %}
             <ul

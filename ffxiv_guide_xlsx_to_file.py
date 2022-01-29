@@ -9,7 +9,8 @@ import re
 import errno
 import openpyxl
 import yaml
-import collections
+import natsort
+from collections import OrderedDict
 import convert_skills_to_guide_form as csgf
 
 import sys
@@ -292,7 +293,7 @@ def fixCaptilaziationAndRomanNumerals(text):
 
 
 def replaceSlug(text):
-    return str(text).replace(",", "").replace("'", "").replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("Ü", "Ue").replace("ß", "ss")
+    return str(text).replace("_", "-").replace(",", "").replace("'", "").replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("Ü", "Ue").replace("ß", "ss")
 
 
 def getImage(image):
@@ -412,9 +413,8 @@ def read_xlsx_file():
     return sheet, max_row, max_column
 
 
-def get_data_from_xlsx(sheet, max_column, i):
+def get_data_from_xlsx(sheet, max_column, i, elements):
     entry = {}
-    elements = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest", "quest_npc", "quest_location", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
     # for every column in row add all elements into a dict:
     # max_column will ignore last column due to how range is working
     for j in range(1, max_column + 1):
@@ -758,7 +758,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
     new_enemy_data_status = new_enemy_data.get('status', {})
 
     # sort after the name key in subdicts
-    new_enemy_data_status = collections.OrderedDict(sorted(new_enemy_data_status.items(), key=lambda x: x[1]['name']))
+    new_enemy_data_status = OrderedDict(sorted(new_enemy_data_status.items(), key=lambda x: x[1]['name']))
 
     for status_id, status_data in new_enemy_data_status.items():
         if status_data['name'] == "":
@@ -1046,11 +1046,11 @@ def addGroupCollections(header_data, cmt, _entry):
     return header_data
 
 
-def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechanics, old_wip, index):
+def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechanics, old_wip, index, _previous, _next):
     seperate_data_into_array("bosse", _entry)
     seperate_data_into_array("adds", _entry)
     seperate_data_into_array("tags", _entry)
-    header_data, _entry = rewrite_content_even_if_exists(_entry, old_wip, index)
+    header_data, _entry = rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next)
     guide_data, contentzoneid = addGuide(_entry, _old_bosses, _old_adds, _old_mechanics)
 
     header_data, cmt = addContentZoneIdToHeader(header_data, contentzoneid, _entry)
@@ -1096,7 +1096,7 @@ def getEntriesForRouletts(_entry):
     return _entry
 
 
-def rewrite_content_even_if_exists(_entry, old_wip, index):
+def rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next):
     header_data = ""
 
     _entry = getEntriesForRouletts(_entry)
@@ -1120,6 +1120,10 @@ def rewrite_content_even_if_exists(_entry, old_wip, index):
     header_data += 'instanceType: "' + _entry["instanceType"] + '"\n'
     header_data += 'date: "' + _entry["date"] + '"\n'
     header_data += 'slug: "' + replaceSlug(_entry["slug"]) + '"\n'
+    if _previous:
+        header_data += 'previous_slug: "' + replaceSlug(_previous) + '"\n'
+    if _next:
+        header_data += 'next_slug: "' + replaceSlug(_next) + '"\n'
     if _entry["image"]:
         header_data += 'image:\n'
         header_data += '  - url: \"/' + getImage(_entry["image"]) + '\n'
@@ -1679,14 +1683,30 @@ def add_Sequence(guide_data, data):
     return guide_data
 
 
-def run(sheet, max_row, max_column):
+def getBeforeAndAfterContentEntries(orderedContent, entry):
+    _previous = None
+    _next = None
+    _type = orderedContent[entry['instanceType']]
+    _typeKeys = list(_type)
+    for i, k in enumerate(_type):
+        if _type[k].endswith(entry['slug']):
+            if i-1 >= 0:
+                try: _previous = _type[_typeKeys[i-1]]
+                except: pass
+            try: _next = _type[_typeKeys[i+1]]
+            except: pass
+            return _previous, _next
+    return None, None
+
+
+def run(sheet, max_row, max_column, elements, orderedContent):
     # for every row do:
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            # if i not in [396]:
+            #if i not in [70]:
             #    continue
-            entry = get_data_from_xlsx(sheet, max_column, i)
+            entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
                 print("END FLAG WAS FOUND!")
@@ -1698,23 +1718,40 @@ def run(sheet, max_row, max_column):
                 filename = f"{entry['categories']}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 existing_filename = f"{entry['categories']}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 old_bosses, old_adds, old_mechanics, old_wip, replace_existing_file = get_old_content_if_file_is_found(existing_filename)
+                _previous, _next = getBeforeAndAfterContentEntries(orderedContent, entry)
                 # if old file was found, replace filename to save
                 if replace_existing_file:
                     filename = existing_filename
 
                 try_to_create_file(filename)
-                write_content_to_file(entry, filename, old_bosses, old_adds, old_mechanics, old_wip, i)
+                write_content_to_file(entry, filename, old_bosses, old_adds, old_mechanics, old_wip, i, _previous, _next)
         except Exception:
             print_color_red(f"Error when handeling '{filename}'")
             traceback.print_exception(*sys.exc_info())
 
 
+def test(sheet, elements, max_row):
+    entry = {}
+    for i in range(1, max_row + 1):
+        instanceType = str(sheet.cell(row=int(i), column=int(38)).value).replace("None", "")
+        if not entry.get(instanceType, None):
+            entry[instanceType] = {}
+        sortID = str(sheet.cell(row=int(i), column=int(3)).value).replace("None", "")
+        addon = str(sheet.cell(row=int(i), column=int(5)).value).replace("None", "")
+        slug = str(sheet.cell(row=int(i), column=int(6)).value).replace("None", "")
+        entry[instanceType][sortID] = "/" + addon + "/" + slug
+    return OrderedDict(natsort.natsorted(entry.items()))
+
 if __name__ == "__main__":
+    elements = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest", "quest_npc", "quest_location", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
+
     sheet, max_row, max_column = read_xlsx_file()
     # change into _posts dir
     os.chdir("./_posts")
     # first run to create all files
-    run(sheet, max_row, max_column)
+    orderedContent = test(sheet, elements, max_row)
+    #print_color_red(orderedContent)
+    run(sheet, max_row, max_column, elements, orderedContent)
     # second run to fix boss order
     #run(sheet, max_row, max_column)
     # csgf.main()
