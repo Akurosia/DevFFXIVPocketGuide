@@ -1386,8 +1386,12 @@ def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
 
     if enemy_data.get('hp', None):
         guide_data += f'    hp:\n'
-        guide_data += f'      - min: {enemy_data["hp"]["min"] or "None"}\n'
-        guide_data += f'      - max: {enemy_data["hp"]["max"] or "None"}\n'
+        try:
+            guide_data += f'      - min: {enemy_data["hp"]["min"] or "None"}\n'
+            guide_data += f'      - max: {enemy_data["hp"]["max"] or "None"}\n'
+        except TypeError:
+            guide_data += f'      - min: {enemy_data["hp"][0]["min"] or "None"}\n'
+            guide_data += f'      - max: {enemy_data["hp"][1]["max"] or "None"}\n'
     if enemy_data.get("attacks", None):
         guide_data += '    attacks:\n'
         for attack in enemy_data["attacks"]:
@@ -1467,8 +1471,12 @@ def add_regular_Attack(guide_data, attack, enemy_type):
 
     if attack.get('damage', None):
         guide_data += f'        damage:\n'
-        guide_data += f'          - min: {attack["damage"]["min"] or "None"}\n'
-        guide_data += f'          - max: {attack["damage"]["max"] or "None"}\n'
+        try:
+            guide_data += f'          - min: {attack["damage"]["min"] or "None"}\n'
+            guide_data += f'          - max: {attack["damage"]["max"] or "None"}\n'
+        except TypeError:
+            guide_data += f'          - min: {attack["damage"][0]["min"] or "None"}\n'
+            guide_data += f'          - max: {attack["damage"][1]["max"] or "None"}\n'
 
     if attack.get('phases', None):
         guide_data += f'        phases:\n'
@@ -1538,8 +1546,13 @@ def add_variation_Attack(guide_data, attack, enemy_type):
             # print_color_yellow(variation)
             if variation.get('damage', None):
                 guide_data += f'            damage:\n'
-                guide_data += f'              - min: {variation["damage"]["min"] or "None"}\n'
-                guide_data += f'              - max: {variation["damage"]["max"] or "None"}\n'
+                try:
+                    guide_data += f'              - min: {variation["damage"]["min"] or "None"}\n'
+                    guide_data += f'              - max: {variation["damage"]["max"] or "None"}\n'
+                except TypeError:
+                    guide_data += f'              - min: {variation["damage"][0]["min"] or "None"}\n'
+                    guide_data += f'              - max: {variation["damage"][1]["max"] or "None"}\n'
+
 
             if variation.get('roles', None):
                 guide_data += f'            roles:\n'
@@ -1704,8 +1717,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [70]:
-            #    continue
+            if i not in [417]:
+                continue
             entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
