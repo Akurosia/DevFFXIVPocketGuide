@@ -877,7 +877,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             new_enemy_data_c = copy.deepcopy({**{}, **new_enemy_data})
 
             # get enemy attacks and debuffs for all enemies with a name
-            old_enemy_data["enemy_id"] = new_enemy_data.get("id", "")
+            old_enemy_data["enemy_id"] = new_enemy_data.get("id", old_enemy_data.get('enemy_id', ""))
 
             if new_enemy_data.get("minHP", None) or new_enemy_data.get("maxHP", None):
                 old_enemy_data["hp"] = {}
