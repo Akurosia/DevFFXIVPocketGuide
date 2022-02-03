@@ -648,8 +648,12 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 }
                 if tmp_attack['variation'][0].get('damage', None) or tmp_attack.get('damage', None):
                     tmp["damage"] = {}
-                    tmp["damage"]["min"] = tmp_attack['variation'][0].get('damage', {}).get('min', None) or tmp_attack.get('damage', {}).get('min', None)
-                    tmp["damage"]["max"] = tmp_attack['variation'][0].get('damage', {}).get('max', None) or tmp_attack.get('damage', {}).get('max', None)
+                    try:
+                        tmp["damage"]["min"] = tmp_attack['variation'][0].get('damage', {}).get('min', None) or tmp_attack.get('damage', {}).get('min', None)
+                        tmp["damage"]["max"] = tmp_attack['variation'][0].get('damage', {}).get('max', None) or tmp_attack.get('damage', {}).get('max', None)
+                    except:
+                        tmp["damage"]["min"] = tmp_attack['variation'][0].get('damage', {})[0].get('min', None) or tmp_attack.get('damage', {})[0].get('min', None)
+                        tmp["damage"]["max"] = tmp_attack['variation'][0].get('damage', {})[1].get('max', None) or tmp_attack.get('damage', {})[1].get('max', None)
                 if tmp_attack['variation'][0].get('roles', None) or tmp_attack.get('roles', None):
                     tmp['roles'] = tmp_attack['variation'][0].get('roles', None) or tmp_attack.get('roles', None)
                 if tmp_attack['variation'][0].get('tags', None) or tmp_attack.get('tags', None):
