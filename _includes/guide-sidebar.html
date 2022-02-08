@@ -26,7 +26,13 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Item Level Sync: <span class="noblock">{{ page.ilvl_sync }}</span></h5>
         {% endif %}
         {% if page.patchNumber %}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Patch:<span class="block">{{ page.patchNumber }} - {{ page.patchName }}</span></h5>
+            {% if page.patchLink %}
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Patch:
+                    <span class="block"><a target="_blank" href="{{ page.patchLink }}">{{ page.patchNumber }} - {{ page.patchName }}</a></span>
+                </h5>
+            {% else %}
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Patch:<span class="block">{{ page.patchNumber }} - {{ page.patchName }}</span></h5>
+            {% endif %}
         {% endif %}
         {% if page.contentname %}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentname: <span class="block">{{ page.contentname }}</span></h5>
@@ -82,9 +88,17 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Mount(s):
                 {% for mount in page.mount %}
                     {% if page.mount.size > 1 %}
-                        <span class="block">- {{ mount.name }}</span>
+                        {% if mount.id %}
+                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">- {{ mount.name }}</a></span>
+                        {% else %}
+                            <span class="block">- {{ mount.name }}</span>
+                        {% endif %}
                     {% else %}
-                        <span class="block">{{ mount.name }}</span>
+                        {% if mount.id %}
+                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name }}</a></span>
+                        {% else %}
+                            <span class="block">{{ mount.name }}</span>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </h5>
@@ -93,9 +107,17 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Minion(s):
                 {% for minion in page.minion %}
                     {% if page.minion.size > 1 %}
-                        <span class="block">- {{ minion.name }}</span>
+                        {% if minion.id %}
+                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">- {{ minion.name }}</a></span>
+                        {% else %}
+                            <span class="block">- {{ minion.name }}</span>
+                        {% endif %}
                     {% else %}
-                        <span class="block">{{ minion.name }}</span>
+                        {% if minion.id %}
+                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name }}</a></span>
+                        {% else %}
+                            <span class="block">{{ minion.name }}</span>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </h5>

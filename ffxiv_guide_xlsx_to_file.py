@@ -86,6 +86,7 @@ example_add_sequence = {
 
 storeFilesInTmp(True)
 logdata = get_any_Logdata()
+patchversions = get_any_Versiondata()
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
 action = loadDataTheQuickestWay("action_all.json", translate=True)
 territorytype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
@@ -97,6 +98,8 @@ bnpcname = loadDataTheQuickestWay("bnpcname_all.json", translate=True)
 eobjname = loadDataTheQuickestWay("eobjname_all.json", translate=True)
 status = loadDataTheQuickestWay("status_all.json", translate=True)
 enpcresident = loadDataTheQuickestWay("enpcresident_all.json", translate=True)
+mounts = loadDataTheQuickestWay("mount_all.json", translate=True)
+minions = loadDataTheQuickestWay("companion_all.json", translate=True)
 
 
 def checkVariable(element, name):
@@ -195,6 +198,20 @@ def getBnpcNameFromID(_id, aname, nname):
     if "α" not in bnew_name and "β" not in bnew_name and "（仮）鎖" not in bnew_name:
         print_color_red(f"'{bnew_name}', '{enew_name}', '{ennew_name}' not found {aname} ({nname}) - ({_id})")
     return ""
+
+
+def getMountIDByName(name):
+    for id, mount in mounts.items():
+        if mount['Singular_de'] == name:
+            return id.split(".0")[0]
+    return None
+
+
+def getMinionIDByName(name):
+    for id, minion in minions.items():
+        if minion['Singular_de'] == name:
+            return id.split(".0")[0]
+    return None
 
 
 def getBnpcName(name, _id, lang="en"):
@@ -1108,6 +1125,24 @@ def getEntriesForRouletts(_entry):
     return _entry
 
 
+def addMountEntries(header_data, _entry, field):
+    if checkVariable(_entry, field):
+        header_data += '  - name: "' + _entry[field] + '"\n'
+        mount_id = getMountIDByName(_entry[field])
+        if mount_id:
+            header_data += '    id: "' + mount_id + '"\n'
+    return header_data
+
+
+def addMinionEntries(header_data, _entry, field):
+    if checkVariable(_entry, field):
+        header_data += '  - name: "' + _entry[field] + '"\n'
+        minion_id = getMinionIDByName(_entry[field])
+        if minion_id:
+            header_data += '    id: "' + minion_id + '"\n'
+    return header_data
+
+
 def rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next):
     header_data = ""
 
@@ -1128,6 +1163,8 @@ def rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next):
     header_data += f'excel_line: \"{index}\"\n'
     header_data += 'categories: "' + _entry["categories"] + '"\n'
     header_data += 'patchNumber: "' + _entry["patchNumber"].replace("'", "") + '"\n'
+    if patchversions.get(_entry["patchNumber"], None):
+        header_data += 'patchLink: "' + patchversions[_entry["patchNumber"]]['link_to_patch'] + '"\n'
     header_data += 'difficulty: "' + _entry["difficulty"] + '"\n'
     header_data += 'instanceType: "' + _entry["instanceType"] + '"\n'
     header_data += 'date: "' + _entry["date"] + '"\n'
@@ -1162,19 +1199,14 @@ def rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next):
     # mounts
     if checkVariable(_entry, "mount1") or checkVariable(_entry, "mount2"):
         header_data += 'mount:\n'
-        if checkVariable(_entry, "mount1"):
-            header_data += '  - name: "' + _entry["mount1"] + '"\n'
-        if checkVariable(_entry, "mount2"):
-            header_data += '  - name: "' + _entry["mount2"] + '"\n'
+        header_data = addMountEntries(header_data, _entry, "mount1")
+        header_data = addMountEntries(header_data, _entry, "mount2")
     # minions
     if checkVariable(_entry, "minion1") or checkVariable(_entry, "minion2") or checkVariable(_entry, "minion3"):
         header_data += 'minion:\n'
-        if checkVariable(_entry, "minion1"):
-            header_data += '  - name: "' + _entry["minion1"] + '"\n'
-        if checkVariable(_entry, "minion2"):
-            header_data += '  - name: "' + _entry["minion2"] + '"\n'
-        if checkVariable(_entry, "minion3"):
-            header_data += '  - name: "' + _entry["minion3"] + '"\n'
+        header_data = addMinionEntries(header_data, _entry, "minion1")
+        header_data = addMinionEntries(header_data, _entry, "minion2")
+        header_data = addMinionEntries(header_data, _entry, "minion3")
     # gearset_loot
     if checkVariable(_entry, "gearset_loot"):
         header_data += 'gearset_loot:\n'
@@ -1729,8 +1761,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if i not in [417]:
-                continue
+            #if i not in [417]:
+            #    continue
             entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
