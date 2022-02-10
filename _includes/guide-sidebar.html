@@ -137,9 +137,17 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">TT_Karte(n):
                 {% for tt_card in page.tt_card %}
                     {% if page.tt_card.size > 1 %}
-                        <span class="block">- {{ tt_card.name }}</span>
+                        {% if tt_card.id %}
+                            <span class="block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">- {{ tt_card.name }}</a></span>
+                        {% else %}
+                            <span class="block">- {{ tt_card.name }}</span>
+                        {% endif %}
                     {% else %}
-                        <span class="block">{{ tt_card.name }}</span>
+                        {% if tt_card.id %}
+                            <span class="block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name }}</a></span>
+                        {% else %}
+                            <span class="block">{{ tt_card.name }}</span>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </h5>
@@ -148,9 +156,17 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Orchestrion Roll:
                 {% for orchestrion in page.orchestrion %}
                     {% if page.orchestrion.size > 1 %}
-                        <span class="block">- {{ orchestrion.name }}</span>
+                        {% if orchestrion.id %}
+                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">- {{ orchestrion.name }}</a></span>
+                        {% else %}
+                            <span class="block">- {{ orchestrion.name }}</span>
+                        {% endif %}
                     {% else %}
-                        <span class="block">{{ orchestrion.name }}</span>
+                        {% if orchestrion.id %}
+                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name }}</a></span>
+                        {% else %}
+                            <span class="block">{{ orchestrion.name }}</span>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </h5>

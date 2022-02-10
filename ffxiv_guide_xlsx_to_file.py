@@ -100,6 +100,8 @@ status = loadDataTheQuickestWay("status_all.json", translate=True)
 enpcresident = loadDataTheQuickestWay("enpcresident_all.json", translate=True)
 mounts = loadDataTheQuickestWay("mount_all.json", translate=True)
 minions = loadDataTheQuickestWay("companion_all.json", translate=True)
+orchestrions = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
+ttcards = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
 
 
 def checkVariable(element, name):
@@ -210,6 +212,20 @@ def getMountIDByName(name):
 def getMinionIDByName(name):
     for id, minion in minions.items():
         if minion['Singular_de'] == name:
+            return id.split(".0")[0]
+    return None
+
+
+def getOrchestrionIDByName(name):
+    for id, orchestrion in orchestrions.items():
+        if orchestrion['Name_de'] == name:
+            return id.split(".0")[0]
+    return None
+
+
+def getTTCardIDByName(name):
+    for id, ttcard in ttcards.items():
+        if ttcard['Name_de'] == name:
             return id.split(".0")[0]
     return None
 
@@ -1125,21 +1141,12 @@ def getEntriesForRouletts(_entry):
     return _entry
 
 
-def addMountEntries(header_data, _entry, field):
+def addEntries(header_data, _entry, field, get_data_function):
     if checkVariable(_entry, field):
         header_data += '  - name: "' + _entry[field] + '"\n'
-        mount_id = getMountIDByName(_entry[field])
+        mount_id = get_data_function(_entry[field])
         if mount_id:
             header_data += '    id: "' + mount_id + '"\n'
-    return header_data
-
-
-def addMinionEntries(header_data, _entry, field):
-    if checkVariable(_entry, field):
-        header_data += '  - name: "' + _entry[field] + '"\n'
-        minion_id = getMinionIDByName(_entry[field])
-        if minion_id:
-            header_data += '    id: "' + minion_id + '"\n'
     return header_data
 
 
@@ -1199,14 +1206,14 @@ def rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next):
     # mounts
     if checkVariable(_entry, "mount1") or checkVariable(_entry, "mount2"):
         header_data += 'mount:\n'
-        header_data = addMountEntries(header_data, _entry, "mount1")
-        header_data = addMountEntries(header_data, _entry, "mount2")
+        header_data = addEntries(header_data, _entry, "mount1", getMountIDByName)
+        header_data = addEntries(header_data, _entry, "mount2", getMountIDByName)
     # minions
     if checkVariable(_entry, "minion1") or checkVariable(_entry, "minion2") or checkVariable(_entry, "minion3"):
         header_data += 'minion:\n'
-        header_data = addMinionEntries(header_data, _entry, "minion1")
-        header_data = addMinionEntries(header_data, _entry, "minion2")
-        header_data = addMinionEntries(header_data, _entry, "minion3")
+        header_data = addEntries(header_data, _entry, "minion1", getMinionIDByName)
+        header_data = addEntries(header_data, _entry, "minion2", getMinionIDByName)
+        header_data = addEntries(header_data, _entry, "minion3", getMinionIDByName)
     # gearset_loot
     if checkVariable(_entry, "gearset_loot"):
         header_data += 'gearset_loot:\n'
@@ -1215,23 +1222,16 @@ def rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next):
     # tt_cards
     if checkVariable(_entry, "tt_card1") or checkVariable(_entry, "tt_card2"):
         header_data += 'tt_card:\n'
-        if checkVariable(_entry, "tt_card1"):
-            header_data += '  - name: "' + _entry["tt_card1"] + '"\n'
-        if checkVariable(_entry, "tt_card2"):
-            header_data += '  - name: "' + _entry["tt_card2"] + '"\n'
+        header_data = addEntries(header_data, _entry, "tt_card1", getTTCardIDByName)
+        header_data = addEntries(header_data, _entry, "tt_card2", getTTCardIDByName)
     # orchestrion
     if checkVariable(_entry, "orchestrion") or checkVariable(_entry, "orchestrion2") or checkVariable(_entry, "orchestrion3") or checkVariable(_entry, "orchestrion4") or checkVariable(_entry, "orchestrion5"):
         header_data += 'orchestrion:\n'
-        if checkVariable(_entry, "orchestrion"):
-            header_data += '  - name: "' + _entry["orchestrion"] + '"\n'
-        if checkVariable(_entry, "orchestrion2"):
-            header_data += '  - name: "' + _entry["orchestrion2"] + '"\n'
-        if checkVariable(_entry, "orchestrion3"):
-            header_data += '  - name: "' + _entry["orchestrion3"] + '"\n'
-        if checkVariable(_entry, "orchestrion4"):
-            header_data += '  - name: "' + _entry["orchestrion4"] + '"\n'
-        if checkVariable(_entry, "orchestrion5"):
-            header_data += '  - name: "' + _entry["orchestrion5"] + '"\n'
+        header_data = addEntries(header_data, _entry, "orchestrion", getOrchestrionIDByName)
+        header_data = addEntries(header_data, _entry, "orchestrion2", getOrchestrionIDByName)
+        header_data = addEntries(header_data, _entry, "orchestrion3", getOrchestrionIDByName)
+        header_data = addEntries(header_data, _entry, "orchestrion4", getOrchestrionIDByName)
+        header_data = addEntries(header_data, _entry, "orchestrion5", getOrchestrionIDByName)
     # orchestrion material
     if checkVariable(_entry, "orchestrion_material1") or checkVariable(_entry, "orchestrion_material2") or checkVariable(_entry, "orchestrion_material3"):
         header_data += 'orchestrion_material:\n'
