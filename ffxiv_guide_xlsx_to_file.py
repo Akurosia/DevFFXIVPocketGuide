@@ -1325,19 +1325,23 @@ def writeTags(header_data, _entry, tt_type_name):
     header_data += "  - term: \"" + _entry["quest"] + "\"\n"
     if checkVariable(_entry, "mount1") or checkVariable(_entry, "mount2"):
         header_data += "  - term: \"mounts\"\n"
+        header_data += "  - term: \"Reittier\"\n"
     if checkVariable(_entry, "minion1") or checkVariable(_entry, "minion2") or checkVariable(_entry, "minion3"):
         header_data += "  - term: \"minions\"\n"
+        header_data += "  - term: \"Begleiter\"\n"
     if checkVariable(_entry, "tt_card1") or checkVariable(_entry, "tt_card2"):
         header_data += "  - term: \"tt_cards\"\n"
+        header_data += "  - term: \"Triple Triad Karte\"\n"
     if checkVariable(_entry, "gearset_loot"):
         for gset in _entry["gearset_loot"].split(","):
             header_data += "  - term: \"" + gset + "\"\n"
     if checkVariable(_entry, "orchestrion") or checkVariable(_entry, "orchestrion2") or checkVariable(_entry, "orchestrion3") or checkVariable(_entry, "orchestrion4") or checkVariable(_entry, "orchestrion5"):
         header_data += "  - term: \"orchestrion\"\n"
+        header_data += "  - term: \"Notenrolle\"\n"
     if checkVariable(_entry, "orchestrion_material1") or checkVariable(_entry, "orchestrion_material2") or checkVariable(_entry, "orchestrion_material3"):
         header_data += "  - term: \"orchestrion_material\"\n"
     if _entry["instanceType"] == "trial":
-        header_data += "  - term: \"" + "Prüfung" + "\"\n"
+        header_data += "  - term: \"Prüfung\"\n"
         header_data += "  - term: \"Trial\"\n"
         header_data += "  - term: \"Primae\"\n"
         header_data += "  - term: \"Primal\"\n"
