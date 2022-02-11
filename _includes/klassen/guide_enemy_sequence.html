@@ -1,84 +1,84 @@
 <!-- Opens the Sequence Loop -->
-{% for phase in enemy.sequence %}
+{%- for phase in enemy.sequence -%}
 
-    {% if enemy.sequence.size > 1 %}
+    {%- if enemy.sequence.size > 1 -%}
         <div class="guide__accordion-trigger--03" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
             <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
-            {% if phase.name %}
+            {%- if phase.name -%}
                 <h3 class="guide__accordion-trigger-title">{{ phase.phase }}. {{ phase.name }}</h3>
-            {% else %}
+            {%- else -%}
                 <h3 class="guide__accordion-trigger-title">Phase {{ phase.phase }}</h3>
-            {% endif %}
+            {%- endif -%}
         </div>
         <div class="guide__accordion-content--03">
-    {% endif %}
+    {%- endif -%}
     <!-- Determines the current phase. -->
-    {% assign currentPhase = phase.phase %}
+    {%- assign currentPhase = phase.phase -%}
 
     <!-- Determines the current phase. -->
-    {% assign currentPhase = phase.phase %}
+    {%- assign currentPhase = phase.phase -%}
 
     <!-- Enters the enemy attack loop. -->
-    {% for attack in enemy.attacks %}
+    {%- for attack in enemy.attacks -%}
         <!-- Enters the attack's phases. -->
-        {% for attackPhase in attack.phases %}
+        {%- for attackPhase in attack.phases -%}
             <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {% if attackPhase.phase == currentPhase %}
+            {%- if attackPhase.phase == currentPhase -%}
                 <!-- Include Attack Template -->
-                {% include klassen/_components/guide-attack.html %}
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
+                {%- include klassen/_components/guide-attack.html -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endfor -%}
 
     <!-- Enters the enemy debuff loop. -->
-    {% for debuff in enemy.debuffs %}
+    {%- for debuff in enemy.debuffs -%}
         <!-- Enters the attack's phases. -->
-        {% for debuffPhase in debuff.phases %}
+        {%- for debuffPhase in debuff.phases -%}
             <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {% if debuffPhase.phase == currentPhase %}
+            {%- if debuffPhase.phase == currentPhase -%}
                 <!-- Include Attack Template -->
-                {% include klassen/_components/guide-debuff.html %}
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
+                {%- include klassen/_components/guide-debuff.html -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endfor -%}
 
     <!-- Enters the enemy trait loop. -->
-    {% for trait in enemy.traits %}
+    {%- for trait in enemy.traits -%}
         <!-- Enters the attack's phases. -->
-        {% for traitPhase in trait.phases %}
+        {%- for traitPhase in trait.phases -%}
             <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {% if traitPhase.phase == currentPhase %}
+            {%- if traitPhase.phase == currentPhase -%}
                 <!-- Include Attack Template -->
-                {% include klassen/_components/guide-trait.html %}
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
+                {%- include klassen/_components/guide-trait.html -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endfor -%}
 
     <!-- Enters the enemy leve loop. -->
-    {% for leve in enemy.leves %}
+    {%- for leve in enemy.leves -%}
         <!-- Enters the attack's phases. -->
-        {% for levesPhase in leve.phases %}
+        {%- for levesPhase in leve.phases -%}
             <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {% if levesPhase.phase == currentPhase %}
+            {%- if levesPhase.phase == currentPhase -%}
                 <!-- Include Attack Template -->
-                {% include klassen/_components/guide-leve.html %}
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
+                {%- include klassen/_components/guide-leve.html -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endfor -%}
 
     <!-- Enters the enemy quest loop. -->
-    {% for quest in enemy.quests %}
+    {%- for quest in enemy.quests -%}
         <!-- Enters the attack's phases. -->
-        {% for questsPhase in quest.phases %}
+        {%- for questsPhase in quest.phases -%}
             <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {% if questsPhase.phase == currentPhase %}
+            {%- if questsPhase.phase == currentPhase -%}
                 <!-- Include Attack Template -->
-                {% include klassen/_components/guide-quests.html %}
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
+                {%- include klassen/_components/guide-quests.html -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endfor -%}
 
-    {% if enemy.sequence.size > 1 %}
+    {%- if enemy.sequence.size > 1 -%}
         </div>
-    {% endif %}
-{% endfor %}
+    {%- endif -%}
+{%- endfor -%}

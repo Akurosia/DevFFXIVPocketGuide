@@ -8,13 +8,13 @@
         <hr/>
         <!-- Boss Attack Loop -->
         <ul class="guide__script-list">
-            {% for attack in phase.attacks %}
-                <li class="guide__script-attack {% if attack.dutyActions %}duty-action{% endif %}">{{ attack.attack }}</li>
+            {%- for attack in phase.attacks -%}
+                <li class="guide__script-attack {%- if attack.dutyActions -%}duty-action{%- endif -%}">{{ attack.attack }}</li>
                 <!-- Checks to see if this is the last attack to prevent a final divider element. -->
-                <!-- {% if forloop.last != true %}
+                <!-- {%- if forloop.last != true -%}
                     <span class="guide__script-divider"><i class="material-icons">play_arrow</i></span>
-                {% endif %} -->
-            {% endfor %}
+                {%- endif -%} -->
+            {%- endfor -%}
         </ul>
     </div>
 </div>

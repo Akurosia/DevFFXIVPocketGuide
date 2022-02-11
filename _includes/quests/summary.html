@@ -1,22 +1,22 @@
-{% comment %} ==================================================================
+{%- comment -%} ==================================================================
     // Guide Summary
-=============================================================== {% endcomment %}
+=============================================================== {%- endcomment -%}
 <div class="summary">
     <span class="index-item__link" title="Go to the {{ guide.name }} Guide">
         <div class="index-item__background"
-            {% if guide.cover %}
+            {%- if guide.cover -%}
                 style="background-image: url('{{ guide.cover }}')"
-            {% elsif guide.icon %}
+            {%- elsif guide.icon -%}
                 style="background-image:
-                    {% if guide.icon contains "/assets/" %}
+                    {%- if guide.icon contains "/assets/" -%}
                         url('{{ guide.icon | prepend: site.baseurl }}')
-                    {% else %}
+                    {%- else -%}
                         url('{{ guide.icon | prepend: site.imageurl }}')
-                    {% endif %}
-            {% endif %}">
+                    {%- endif -%}
+            {%- endif -%}">
         </div>
         <h3 class="index-item__title"
-              data-terms="{% for term in guide.terms %}{{ term.term }}&#32;{% endfor %} {{guide.name}}&#32;{{guide.name_en}}&#32;{{guide.place}}&#32;{{guide.unlocks}}&#32;">
+              data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%} {{guide.name}}&#32;{{guide.name_en}}&#32;{{guide.place}}&#32;{{guide.unlocks}}&#32;">
             {{ guide.name }} ~ ({{ guide.name_en }}) ~ [{{ guide.id }}]
         </h3>
         <h4 class="index-item__title_en">Level: {{ guide.level }}</h4>

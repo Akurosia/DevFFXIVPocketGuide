@@ -1,6 +1,6 @@
-{% comment %} ==================================================================
+{%- comment -%} ==================================================================
     // Sidebar
-=============================================================== {% endcomment %}
+=============================================================== {%- endcomment -%}
 <!-- Mobile Menu Trigger -->
     <button class="sidebar__trigger">
         <span class="sidebar__trigger-inactive">
@@ -28,117 +28,117 @@
             </h1>
             <ul class="sidebar__menu">
                 <li>
-                    <a {% if page.page_category == "about" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "about" -%}class="active"{%- endif -%}
                         href='{{ "/about.html" | prepend: site.baseurl }}' title="See what's new with the Pocket Guide.">
                         <img src='{{ "/assets/img/new.png" | prepend: site.baseurl }}' alt="A new icon." style="width: 1.5rem; vertical-align: middle; margin-bottom: .2rem; margin-right: .5rem;">
                         About
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "all" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "all" -%}class="active"{%- endif -%}
                         href='{{ "/" | prepend: site.baseurl }}' title="Alle Guides anzeigen">
                         Alle Guides
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "dungeons" %}class="active"{% endif %}
-                        {% if page.instanceType == "dungeon" or page.instance_type == "Dungeon" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "dungeons" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "dungeon" or page.instance_type == "Dungeon" -%}class="active"{%- endif -%}
                         href='{{ "/dungeons/" | prepend: site.baseurl }}' title="Dungeon - Guides anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061801_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Dungeons
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "trials" %}class="active"{% endif %}
-                        {% if page.instanceType == "trial" or page.instance_type == "Trial" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "trials" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "trial" or page.instance_type == "Trial" -%}class="active"{%- endif -%}
                         href='{{ "/trials/" | prepend: site.baseurl }}' title="Prüfung - Guides anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061804_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Prüfungen
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "raids" %}class="active"{% endif %}
-                        {% if page.instanceType == "raid" or page.instance_type == "Raid" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "raids" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "raid" or page.instance_type == "Raid" -%}class="active"{%- endif -%}
                         href='{{ "/raids/" | prepend: site.baseurl }}' title="Raid - Guides anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061802_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Raids
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "ultimates" %}class="active"{% endif %}
-                        {% if page.instanceType == "ultimate" or page.instance_type == "ultimate" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "ultimates" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "ultimate" or page.instance_type == "ultimate" -%}class="active"{%- endif -%}
                         href='{{ "/ultimates/" | prepend: site.baseurl }}' title="Ultimate - Guides anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061832_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Ultimate Raids
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "allianzraid" %}class="active"{% endif %}
-                        {% if page.instanceType == "allianzraid" or page.instance_type == "AllianzRaid" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "allianzraid" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "allianzraid" or page.instance_type == "AllianzRaid" -%}class="active"{%- endif -%}
                         href='{{ "/allianzraid/" | prepend: site.baseurl }}' title="Allianz Raid - Guides anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061802_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Allianz Raids
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "feldexkursion" %}class="active"{% endif %}
-                        {% if page.instanceType == "feldexkursion" or page.instance_type == "feldexkursion" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "feldexkursion" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "feldexkursion" or page.instance_type == "feldexkursion" -%}class="active"{%- endif -%}
                         href='{{ "/feldexkursion/" | prepend: site.baseurl }}' title="Feldexkursion - Guides anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061837_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Feldexkursion
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "bluemage" %}class="active"{% endif %}
-                        {% if page.instanceType == "bluemage" or page.instance_type == "Bluemage" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "bluemage" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "bluemage" or page.instance_type == "Bluemage" -%}class="active"{%- endif -%}
                         href='{{ "/bluemage/" | prepend: site.baseurl }}' title="Bluemage - Guides anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061836_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Bluemage
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "potd" %}class="active"{% endif %}
-                        {% if page.instanceType == "potd" or page.instance_type == "potd" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "potd" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "potd" or page.instance_type == "potd" -%}class="active"{%- endif -%}
                         href='{{ "/potd/" | prepend: site.baseurl }}' title="Tiefes Gewöbe - Guides anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061824_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Tiefes Gewöbe
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "guildhest" %}class="active"{% endif %}
-                        {% if page.instanceType == "guildhest" or page.instance_type == "guildhest" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "guildhest" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "guildhest" or page.instance_type == "guildhest" -%}class="active"{%- endif -%}
                         href='{{ "/guildhest/" | prepend: site.baseurl }}' title="Gildengeheiße - Guides anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061803_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Gildengeheiße
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "treasure" %}class="active"{% endif %}
-                        {% if page.instanceType == "treasure" or page.instance_type == "treasure" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "treasure" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "treasure" or page.instance_type == "treasure" -%}class="active"{%- endif -%}
                         href='{{ "/treasure/" | prepend: site.baseurl }}' title="Schatzdungeon - Guides anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061808_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Schatzdungeon
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "pvp" %}class="active"{% endif %}
-                        {% if page.instanceType == "pvp" or page.instance_type == "pvp" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "pvp" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "pvp" or page.instance_type == "pvp" -%}class="active"{%- endif -%}
                         href='{{ "/pvp/" | prepend: site.baseurl }}' title="PVP - Guides anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061806_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         PVP
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "klassenjobs" %}class="active"{% endif %}
-                        {% if page.instanceType == "klassenjobs" or page.instance_type == "klassenjobs" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "klassenjobs" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "klassenjobs" or page.instance_type == "klassenjobs" -%}class="active"{%- endif -%}
                         href='{{ "/klassenjobs/" | prepend: site.baseurl }}' title="Klassen/Jobs anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061828_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Klassen/Jobs
                     </a>
                 </li>
                 <li>
-                    <a {% if page.page_category == "quests" %}class="active"{% endif %}
-                        {% if page.instanceType == "quests" or page.instance_type == "quests" %}class="active"{% endif %}
+                    <a target="" {%- if page.page_category == "quests" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "quests" or page.instance_type == "quests" -%}class="active"{%- endif -%}
                         href='{{ "/quests/" | prepend: site.baseurl }}' title="Quests anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061723_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Quests

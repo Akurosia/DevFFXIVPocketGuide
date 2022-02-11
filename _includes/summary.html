@@ -1,54 +1,54 @@
-{% comment %} ==================================================================
+{%- comment -%} ==================================================================
     // Guide Summary
-=============================================================== {% endcomment %}
+=============================================================== {%- endcomment -%}
 <div class="summary">
     <a class="index-item__link" href="{{ guide.url | prepend: site.baseurl }}" title="Go to the {{ guide.title }} Guide">
         <div
             class="index-item__background"
-            {% if guide.cover %}
+            {%- if guide.cover -%}
                 style="background-image: url('{{ guide.cover }}')"
-            {% elsif guide.image[0].url %}
+            {%- elsif guide.image[0].url -%}
                 style="background-image:
-                    {% if guide.image[0].url contains "/assets/" %}
+                    {%- if guide.image[0].url contains "/assets/" -%}
                         url('{{ guide.image[0].url | prepend: site.baseurl }}')
-                    {% else %}
+                    {%- else -%}
                         url('{{ guide.image[0].url | prepend: site.imageurl }}')
-                    {% endif %}
-            {% endif %}">
+                    {%- endif -%}
+            {%- endif -%}">
         </div>
         <h3 class="index-item__title"
-            {% if guide.layout == "new-guide" %}
-              data-terms="{{ guide.title }}&#32;{{ guide.guide-type }}&#32;{{ guide.categories }}&#32;{% for term in guide.search-terms %}{{ term }}&#32;{% endfor %}"
-            {% else %}
-              data-terms="{% for term in guide.terms %}{{ term.term }}&#32;{% endfor %}"
-            {% endif %}>
+            {%- if guide.layout == "new-guide" -%}
+              data-terms="{{ guide.title }}&#32;{{ guide.guide-type }}&#32;{{ guide.categories }}&#32;{%- for term in guide.search-terms -%}{{ term }}&#32;{%- endfor -%}"
+            {%- else -%}
+              data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%}"
+            {%- endif -%}>
             {{ guide.title }}
             <span
-                {% if guide.difficulty == "Hard" %}
+                {%- if guide.difficulty == "Hard" -%}
                     class="hard"
-                {% elsif guide.difficulty == "Unreal" %}
+                {%- elsif guide.difficulty == "Unreal" -%}
                     class="unreal"
-                {% elsif guide.difficulty == "Extreme" %}
+                {%- elsif guide.difficulty == "Extreme" -%}
                     class="extreme"
-                {% elsif guide.difficulty == "Extrem" %}
+                {%- elsif guide.difficulty == "Extrem" -%}
                     class="extreme"
-                {% elsif guide.difficulty == "Savage" %}
+                {%- elsif guide.difficulty == "Savage" -%}
                     class="savage"
-                {% elsif guide.difficulty == "Ultimate" %}
+                {%- elsif guide.difficulty == "Ultimate" -%}
                     class="ultimate"
-                {% elsif guide.difficulty == "Schwer" %}
+                {%- elsif guide.difficulty == "Schwer" -%}
                     class="hard"
-                {% elsif guide.difficulty == "Traumprüfung" %}
+                {%- elsif guide.difficulty == "Traumprüfung" -%}
                     class="unreal"
-                {% elsif guide.difficulty == "Episch" %}
+                {%- elsif guide.difficulty == "Episch" -%}
                     class="savage"
-                {% elsif guide.difficulty == "Fatal" %}
+                {%- elsif guide.difficulty == "Fatal" -%}
                     class="ultimate"
-                {% endif %}
+                {%- endif -%}
                 >
-                {% if guide.difficulty != "Normal" %}
+                {%- if guide.difficulty != "Normal" -%}
                     ({{ guide.difficulty }})
-                {% endif %}
+                {%- endif -%}
             </span>
         </h3>
         <h4 class="index-item__title_en">

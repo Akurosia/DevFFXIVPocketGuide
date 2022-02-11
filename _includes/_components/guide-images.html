@@ -1,12 +1,11 @@
 <!-- Boss Image -->
 <div class="guide__attack-image-item">
-    <img style="object-fit: scale-down;
-        height: {% if image.height %} {{ image.height }} {% else%} 200px {% endif%}
+    <img style="object-fit: scale-down; height: {%- if image.height -%} {{ image.height }} {%- else -%} 200px {%- endif -%}
     " src="
-        {% if image.url contains "/assets/" %}
+        {%- if image.url contains "/assets/" -%}
             {{ image.url | prepend: site.baseurl }}
-        {% else %}
+        {%- else -%}
             {{ image.url | prepend: site.imageurl }}
-        {% endif %}
-    " alt="{{ image.alt }}">
+        {%- endif -%}
+    " alt="{{ image.alt }}"/>
 </div>

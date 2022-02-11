@@ -1,8 +1,8 @@
-{% if video.url contains "youtube" %}
+{%- if video.url contains "youtube" -%}
     <iframe width="630" height="315" src="{{ video.url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-{% else %}
+{%- else -%}
     <video src="{{ video.url }}" type="video/mp4" controls>
       Ihr Browser kann dieses Video nicht wiedergeben.<br/>
       Sie können ihn unter <a href="{{ video.url }}">{{ video.url }}</a> abrufen.
     </video>
-{% endif %}
+{%- endif -%}

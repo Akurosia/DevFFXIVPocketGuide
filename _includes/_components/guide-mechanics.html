@@ -5,16 +5,16 @@
         <h3 class="guide__accordion-trigger-title">Hinweise zu den Mechaniken</h3>
     </div>
     <div class="guide__accordion-content--04">
-        {% for mechanic in phase.mechanics %}
+        {%- for mechanic in phase.mechanics -%}
             <hr/>
             <!-- Mechanic Title -->
             <h5 class="guide__mechanics-title">{{ mechanic.title }}</h5>
             <!-- Mechanics List -->
             <ul class="guide__mechanics-list">
-                {% for note in mechanic.notes %}
+                {%- for note in mechanic.notes -%}
                     <li class="guide__mechanics-item">{{ note.note }}</li>
-                {% endfor %}
+                {%- endfor -%}
             </ul>
-        {% endfor %}
+        {%- endfor -%}
     </div>
 </div>

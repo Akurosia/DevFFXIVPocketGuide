@@ -6,11 +6,11 @@
     </div>
     <div class="guide__accordion-content--04">
         <hr/>
-        {% for toolbox in phase.toolbox %}
+        {%- for toolbox in phase.toolbox -%}
             <a class="guide__toolbox-title" target="_blank" href="{{ toolbox.link }}" alt="{{ toolbox.name }}">{{ toolbox.name }}</a>
-            {% unless forloop.last %}
+            {%- unless forloop.last -%}
                 <br/>
-            {% endunless %}
-        {% endfor %}
+            {%- endunless -%}
+        {%- endfor -%}
     </div>
 </div>

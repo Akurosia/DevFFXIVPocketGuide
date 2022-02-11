@@ -1,85 +1,85 @@
 <!-- Opens the Sequence Loop -->
-{% for phase in enemy.sequence %}
+{%- for phase in enemy.sequence -%}
 
-    {% if enemy.sequence.size > 1 %}
+    {%- if enemy.sequence.size > 1 -%}
         <div class="guide__accordion-trigger--03" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
             <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
-            {% if phase.name %}
+            {%- if phase.name -%}
                 <h3 class="guide__accordion-trigger-title">{{ phase.phase }}. {{ phase.name }}</h3>
-            {% else %}
+            {%- else -%}
                 <h3 class="guide__accordion-trigger-title">Phase {{ phase.phase }}</h3>
-            {% endif %}
+            {%- endif -%}
         </div>
         <div class="guide__accordion-content--03">
-    {% endif %}
-        {% if phase.name or phase.alerts or phase.toolbox or phase.mechanics or phase.attacks or phase.images or phase.videos  %}
+    {%- endif -%}
+        {%- if phase.name or phase.alerts or phase.toolbox or phase.mechanics or phase.attacks or phase.images or phase.videos  -%}
             <div class="guide__accordion-copy-wrapper" id="phase{{ phase.phase }}">
-                {% if enemy.sequence.size == 1 %}
-                    {% if phase.name %}
+                {%- if enemy.sequence.size == 1 -%}
+                    {%- if phase.name -%}
                         <h1 class="guide__accordion-title">{{ phase.name }} - Phase {{ phase.phase }}</h1>
-                    {% else %}
+                    {%- else -%}
                         <h1 class="guide__accordion-title">Phase {{ phase.phase }}</h4>
-                    {% endif %}
-                {% endif %}
+                    {%- endif -%}
+                {%- endif -%}
                 <!-- Phase Title -->
                 <!-- Opens the Alerts Loop -->
-                {% if phase.alerts %}
+                {%- if phase.alerts -%}
                     <!-- Include Guide Alerts -->
-                    {% include _components/guide-alerts.html %}
-                {% endif %}
+                    {%- include _components/guide-alerts.html -%}
+                {%- endif -%}
                 <!-- Opens the toolbox Loops -->
-                {% if phase.toolbox %}
+                {%- if phase.toolbox -%}
                     <!-- Include Guide toolbox -->
-                    {% include _components/guide-toolbox.html %}
-                {% endif %}
+                    {%- include _components/guide-toolbox.html -%}
+                {%- endif -%}
                 <!-- Opens the Mechanics Loops -->
-                {% if phase.mechanics %}
+                {%- if phase.mechanics -%}
                     <!-- Include Guide Mechanics -->
-                    {% include _components/guide-mechanics.html %}
-                {% endif %}
+                    {%- include _components/guide-mechanics.html -%}
+                {%- endif -%}
                 <!-- Opens the Attack Loop -->
-                {% if phase.attacks %}
+                {%- if phase.attacks -%}
                     <!-- Include Guide Skill Script -->
-                    {% include _components/guide-script.html %}
-                {% endif %}
+                    {%- include _components/guide-script.html -%}
+                {%- endif -%}
                 <!-- Opens the Image Loop -->
-                {% if phase.images %}
+                {%- if phase.images -%}
                     <!-- Include Guide Image Script -->
-                    {% include _components/guide-images-wrapper.html %}
-                {% endif %}
+                    {%- include _components/guide-images-wrapper.html -%}
+                {%- endif -%}
                 <!-- Opens the Video Loop -->
-                {% if phase.videos %}
+                {%- if phase.videos -%}
                     <!-- Include Guide video Script -->
-                    {% include _components/guide-videos-wrapper.html %}
-                {% endif %}
+                    {%- include _components/guide-videos-wrapper.html -%}
+                {%- endif -%}
             </div>
-        {% endif %}
+        {%- endif -%}
         <!-- Determines the current phase. -->
-        {% assign currentPhase = phase.phase %}
+        {%- assign currentPhase = phase.phase -%}
         <!-- Enters the enemy attack loop. -->
-        {% for attack in enemy.attacks %}
+        {%- for attack in enemy.attacks -%}
             <!-- Enters the attack's phases. -->
-            {% for attackPhase in attack.phases %}
+            {%- for attackPhase in attack.phases -%}
                 <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-                {% if attackPhase.phase == currentPhase %}
+                {%- if attackPhase.phase == currentPhase -%}
                     <!-- Include Attack Template -->
-                    {% include _components/guide-attack.html %}
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
+                    {%- include _components/guide-attack.html -%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endfor -%}
         <!-- Enters the enemy debuff loop. -->
-        {% for debuff in enemy.debuffs %}
+        {%- for debuff in enemy.debuffs -%}
             <!-- Enters the attack's phases. -->
-            {% for debuffPhase in debuff.phases %}
+            {%- for debuffPhase in debuff.phases -%}
                 <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-                {% if debuffPhase.phase == currentPhase %}
+                {%- if debuffPhase.phase == currentPhase -%}
                     <!-- Include Attack Template -->
-                    {% include _components/guide-debuff.html %}
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
+                    {%- include _components/guide-debuff.html -%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endfor -%}
 
-    {% if enemy.sequence.size > 1 %}
+    {%- if enemy.sequence.size > 1 -%}
         </div>
-    {% endif %}
-{% endfor %}
+    {%- endif -%}
+{%- endfor -%}

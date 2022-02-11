@@ -1,46 +1,46 @@
-{% comment %} ==================================================================
+{%- comment -%} ==================================================================
     // Index
-=============================================================== {% endcomment %}
+=============================================================== {%- endcomment -%}
 <div class="index">
-    {% assign my_array = "ew,shb,sb,hw,arr" | split: ',' %}
-    {% for x in my_array %}
-        {% case x %}
-            {% when "ew" %}
+    {%- assign my_array = "ew,shb,sb,hw,arr" | split: ',' -%}
+    {%- for x in my_array -%}
+        {%- case x -%}
+            {%- when "ew" -%}
     <!-- Endwalker Guide Index ============================================ -->
-                {% assign queryType = "quest_ew" %}
-                {% assign x_id = "endwalker" %}
-                {% assign x_title = "6.x - Endwalker" %}
-            {% when "shb" %}
+                {%- assign queryType = "quest_ew" -%}
+                {%- assign x_id = "endwalker" -%}
+                {%- assign x_title = "6.x - Endwalker" -%}
+            {%- when "shb" -%}
     <!-- Shadowbringers Guide Index ============================================ -->
-                {% assign queryType = "quest_shb" %}
-                {% assign x_id = "shadowbringers" %}
-                {% assign x_title = "5.x - Shadowbringers" %}
-            {% when "sb" %}
+                {%- assign queryType = "quest_shb" -%}
+                {%- assign x_id = "shadowbringers" -%}
+                {%- assign x_title = "5.x - Shadowbringers" -%}
+            {%- when "sb" -%}
     <!-- Stormblood Guide Index ============================================ -->
-                {% assign queryType = "quest_sb" %}
-                {% assign x_id = "stormblood" %}
-                {% assign x_title = "4.x - Stormblood" %}
-            {% when "hw" %}
+                {%- assign queryType = "quest_sb" -%}
+                {%- assign x_id = "stormblood" -%}
+                {%- assign x_title = "4.x - Stormblood" -%}
+            {%- when "hw" -%}
     <!-- Heavensward Guide Index ============================================ -->
-                {% assign queryType = "quest_hw" %}
-                {% assign x_id = "heavensward" %}
-                {% assign x_title = "3.x - Heavensward" %}
-            {% when "arr" %}
+                {%- assign queryType = "quest_hw" -%}
+                {%- assign x_id = "heavensward" -%}
+                {%- assign x_title = "3.x - Heavensward" -%}
+            {%- when "arr" -%}
     <!-- A Realm Reborn Guide Index ============================================ -->
-                {% assign queryType = "quest_arr" %}
-                {% assign x_id = "a_realm_reborn" %}
-                {% assign x_title = "2.x - A Realm Reborn" %}
-        {% endcase %}
-        {% assign counterq = 0 %}
-        {% include quests/_components/index-counter.html %}
-        {% if counterq > 0 %}
+                {%- assign queryType = "quest_arr" -%}
+                {%- assign x_id = "a_realm_reborn" -%}
+                {%- assign x_title = "2.x - A Realm Reborn" -%}
+        {%- endcase -%}
+        {%- assign counterq = 0 -%}
+        {%- include quests/_components/index-counter.html -%}
+        {%- if counterq > 0 -%}
            <a id="{{ x_id }}"></a>
            <div class="index-divider" data-expansion="{{ x }}">
                <h2 class="index-divider__title">{{ x_title }}</h2>
            </div>
            <div class="index__list_quests" data-expansion="{{ x }}">
-               {% include quests/_components/index-list.html %}
+               {%- include quests/_components/index-list.html -%}
            </div>
-        {% endif %}
-    {% endfor %}
+        {%- endif -%}
+    {%- endfor -%}
 </div>

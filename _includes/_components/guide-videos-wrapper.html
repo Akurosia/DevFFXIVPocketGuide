@@ -3,12 +3,12 @@
     <!-- Boss Video Loop -->
     <ul class="guide__script-list">
         <!-- Handler for Mechanics -->
-        {% for video in step.videos %}
-            {% include _components/guide-videos.html %}
-        {% endfor %}
+        {%- for video in step.videos -%}
+            {%- include _components/guide-videos.html -%}
+        {%- endfor -%}
         <!-- Handler for Attacks -->
-        {% for video in phase.videos %}
-            {% include _components/guide-videos.html %}
-        {% endfor %}
+        {%- for video in phase.videos -%}
+            {%- include _components/guide-videos.html -%}
+        {%- endfor -%}
     </ul>
 </div>

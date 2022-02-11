@@ -3,12 +3,12 @@
     <!-- Boss Image Loop Wrapper-->
     <ul class="guide__image-list">
         <!-- Handler for Mechanics -->
-        {% for image in step.images %}
-            {% include _components/guide-images.html %}
-        {% endfor %}
+        {%- for image in step.images -%}
+            {%- include _components/guide-images.html -%}
+        {%- endfor -%}
         <!-- Handler for Attacks -->
-        {% for image in phase.images %}
-            {% include _components/guide-images.html %}
-        {% endfor %}
+        {%- for image in phase.images -%}
+            {%- include _components/guide-images.html -%}
+        {%- endfor -%}
     </ul>
 </div>

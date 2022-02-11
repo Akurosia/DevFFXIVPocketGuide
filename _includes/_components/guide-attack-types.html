@@ -1,42 +1,42 @@
-{% if isDebuff == "True" %}
+{%- if isDebuff == "True" -%}
   <div class="debuff_skill_fix guide__accordion-tag-wrapper">
-{% else %}
+{%- else -%}
   <div class="guide__accordion-tag-wrapper">
-{% endif %}
-    {% if attack.combo %}
-        {% for action in attack.dutyActions %}
+{%- endif -%}
+    {%- if attack.combo -%}
+        {%- for action in attack.dutyActions -%}
             <span class="guide__accordion-tag--duty-action">Duty Action</span>
-        {% endfor %}
+        {%- endfor -%}
         <span class="guide__accordion-tag--combo">Combo</span>
-    {% elsif attack.variation %}
-        {% for action in attack.dutyActions %}
+    {%- elsif attack.variation -%}
+        {%- for action in attack.dutyActions -%}
             <span class="guide__accordion-tag--duty-action">Duty Action</span>
-        {% endfor %}
+        {%- endfor -%}
         <span class="guide__accordion-tag--variation">Variation</span>
-    {% else %}
-      {% if page.cms == "netlify-cms" %}
-        {% for role in attack.roles %}
+    {%- else -%}
+      {%- if page.cms == "netlify-cms" -%}
+        {%- for role in attack.roles -%}
           <span class="guide__accordion-tag--role">{{ role }}</span>
-        {% endfor %}
-        {% for action in attack.dutyActions %}
+        {%- endfor -%}
+        {%- for action in attack.dutyActions -%}
           <span class="guide__accordion-tag--duty-action">Duty Action</span>
-        {% endfor %}
-        {% for tag in attack.tags %}
+        {%- endfor -%}
+        {%- for tag in attack.tags -%}
           <span class="guide__accordion-tag--attack">{{ tag }}</span>
-        {% endfor %}
-      {% else %}
-        {% for role in attack.roles %}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for role in attack.roles -%}
           <span class="guide__accordion-tag--role">{{ role.role }}</span>
-        {% endfor %}
-        {% for action in attack.dutyActions %}
+        {%- endfor -%}
+        {%- for action in attack.dutyActions -%}
           <span class="guide__accordion-tag--duty-action">Duty Action</span>
-        {% endfor %}
-        {% for tag in attack.tags %}
+        {%- endfor -%}
+        {%- for tag in attack.tags -%}
           <span class="guide__accordion-tag--attack">{{ tag.tag }}</span>
-        {% endfor %}
-      {% endif %}
-    {% endif %}
-  {% if attack.damage %}
-  {% else %}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- if attack.damage -%}
+  {%- else -%}
   </div>
-  {% endif %}
+  {%- endif -%}

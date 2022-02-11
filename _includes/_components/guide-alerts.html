@@ -8,9 +8,9 @@
         <hr/>
         <!-- Alert List -->
         <ul class="guide__alerts-list">
-            {% for alert in phase.alerts %}
+            {%- for alert in phase.alerts -%}
                 <li class="guide__alerts-item">{{ alert.alert }}</li>
-            {% endfor %}
+            {%- endfor -%}
         </ul>
     </div>
 </div>

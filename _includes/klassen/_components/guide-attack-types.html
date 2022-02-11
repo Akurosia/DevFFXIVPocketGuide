@@ -1,59 +1,59 @@
 <div class="{% if quest.title %}{% elsif leve.title %}{% else %}attack_skill_fix{% endif %} guide__accordion-tag-wrapper">
-  {% if attack.level or trait.level or quest.level or leve.level %}
+  {%- if attack.level or trait.level or quest.level or leve.level -%}
     <span class="a guide__accordion-tag--role">Level: {{ attack.level }}{{ trait.level }}{{ quest.level }}{{ leve.level }}</span>
-  {% endif %}
-  {% if attack.range %}
+  {%- endif -%}
+  {%- if attack.range -%}
     <span class="guide__accordion-tag--duty-action">Range: {{ attack.range }}</span>
-  {% endif %}
-  {% if attack.effectrange %}
+  {%- endif -%}
+  {%- if attack.effectrange -%}
     <span class="guide__accordion-tag--duty-action">EffectRange: {{ attack.effectrange }}</span>
-  {% endif %}
-  {% if attack.cast %}
+  {%- endif -%}
+  {%- if attack.cast -%}
     <span class="guide__accordion-tag--attack">Cast: {{ attack.cast }}</span>
-  {% endif %}
-  {% if attack.recast %}
+  {%- endif -%}
+  {%- if attack.recast -%}
     <span class="guide__accordion-tag--attack">Recast: {{ attack.recast }}</span>
-  {% endif %}
-  {% if attack.kategorie %}
+  {%- endif -%}
+  {%- if attack.kategorie -%}
     <span class="guide__accordion-tag--role">Kategorie: {{ attack.kategorie }}</span>
-  {% endif %}
+  {%- endif -%}
 
-  {% if quest.expansion %}
+  {%- if quest.expansion -%}
     <span class="guide__accordion-tag--role">Expansion: {{ quest.expansion }}</span>
-  {% endif %}
-  {% if quest.journalgenre %}
+  {%- endif -%}
+  {%- if quest.journalgenre -%}
     <span class="guide__accordion-tag--role">Kategorie: {{ quest.journalgenre }}</span>
-  {% endif %}
-  {% if quest.issuer_start %}
+  {%- endif -%}
+  {%- if quest.issuer_start -%}
     <span class="guide__accordion-tag--role">NPC: {{ quest.issuer_start }}</span>
-  {% endif %}
-  {% if quest.place %}
+  {%- endif -%}
+  {%- if quest.place -%}
     <span class="guide__accordion-tag--role">Ort: {{ quest.place }}</span>
-  {% endif %}
-  {% if quest.issuer_location %}
+  {%- endif -%}
+  {%- if quest.issuer_location -%}
     <span class="guide__accordion-tag--role">Position: {{ quest.issuer_location }}</span>
-  {% endif %}
+  {%- endif -%}
 
-  {% if leve.leveamount %}
+  {%- if leve.leveamount -%}
     <span class="guide__accordion-tag--role">Vollmachten: {{ leve.leveamount }}</span>
-  {% endif %}
-  {% if leve.item %}
+  {%- endif -%}
+  {%- if leve.item -%}
     <span class="guide__accordion-tag--role">Item: {{ leve.item }}</span>
-    {% if leve.itemamount %}
+    {%- if leve.itemamount -%}
       <span class="guide__accordion-tag--role">Anzahl: {{ leve.itemamount }}
-        {% if leve.repeat != "1" %}
+        {%- if leve.repeat != "1" -%}
           ({{ leve.itemamount | times: leve.repeat }})
-        {% endif %}
+        {%- endif -%}
       </span>
-    {% endif %}
-    {% if leve.repeat != "1" %}
+    {%- endif -%}
+    {%- if leve.repeat != "1" -%}
       <span class="guide__accordion-tag--role">Wiederholbar: {{ leve.repeat }}</span>
-    {% endif %}
-    {% if leve.exphq %}
+    {%- endif -%}
+    {%- if leve.exphq -%}
       <span class="guide__accordion-tag--role">Total HQ EXP: {{ leve.exphq | intcomma: '.' }}</span>
-    {% endif %}
-    {% if leve.gilhq %}
+    {%- endif -%}
+    {%- if leve.gilhq -%}
       <span class="guide__accordion-tag--role">Total HQ Gil: {{ leve.gilhq |  intcomma: '.' }}</span>
-    {% endif %}
-  {% endif %}
+    {%- endif -%}
+  {%- endif -%}
 </div>

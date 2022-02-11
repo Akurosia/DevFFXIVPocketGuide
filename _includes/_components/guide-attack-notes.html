@@ -1,43 +1,43 @@
 <!-- Standard Attack Notes -->
 <div class="guide__attack-notes-wrapper">
-    {% if attack.combo  %}
-        {% if combo.notes %}
+    {%- if attack.combo -%}
+        {%- if combo.notes -%}
             <!-- Do Nothing -->
-        {% else %}
+        {%- else -%}
             &nbsp;
-        {% endif %}
-    {% elsif attack.variation %}
-        {% if variation.notes %}
+        {%- endif -%}
+    {%- elsif attack.variation -%}
+        {%- if variation.notes -%}
             <!-- Do Nothing -->
-        {% else %}
+        {%- else -%}
             &nbsp;
-        {% endif %}
-    {% else %}
-        {% if attack.notes %}
+        {%- endif -%}
+    {%- else -%}
+        {%- if attack.notes -%}
             <h5 class="guide__attack-notes-title">Important Notes:</h5>
             <ul class="guide__attack-notes-list">
-                {% for note in attack.notes %}
+                {%- for note in attack.notes -%}
                     <li class="guide__attack-notes-item">{{ note.note }}</li>
-                {% endfor %}
+                {%- endfor -%}
             </ul>
-        {% endif %}
-    {% endif %}
+        {%- endif -%}
+    {%- endif -%}
     <!-- Combo Attack Notes -->
-    {% if combo.notes %}
+    {%- if combo.notes -%}
         <h5 class="guide__attack-notes-title">Important Notes:</h5>
         <ul class="guide__attack-notes-list">
-            {% for note in combo.notes %}
+            {%- for note in combo.notes -%}
                 <li class="guide__attack-notes-item">{{ note.note }}</li>
-            {% endfor %}
+            {%- endfor -%}
         </ul>
-    {% endif %}
+    {%- endif -%}
     <!-- Variation Attack Notes -->
-    {% if variation.notes %}
+    {%- if variation.notes -%}
         <h5 class="guide__attack-notes-title">Important Notes:</h5>
         <ul class="guide__attack-notes-list">
-            {% for note in variation.notes %}
+            {%- for note in variation.notes -%}
                 <li class="guide__attack-notes-item">{{ note.note }}</li>
-            {% endfor %}
+            {%- endfor -%}
         </ul>
-    {% endif %}
+    {%- endif -%}
 </div>

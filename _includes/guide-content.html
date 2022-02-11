@@ -1,24 +1,24 @@
 <!-- Guide Content ========================================================= -->
 <div class="guide-content">
-    {% if page.wip == "True" %}
+    {%- if page.wip == "True" -%}
         <div class="guide__content__wip" id="wip">
             <h2 class="guide__accordion-trigger-title guide__content__wip__title">WORK IN PROGRESS !!!</h2>
         </div>
-    {% endif %}
+    {%- endif -%}
     <!-- Duty Notes ======================================================== -->
-    {% if page.mechanics %}
-        {% include guide-notes.html %}
-    {% endif %}
+    {%- if page.mechanics -%}
+        {%- include guide-notes.html -%}
+    {%- endif -%}
     <!-- Duty Bosses ======================================================= -->
-    {% if page.bosses %}
-        {% assign enemies = page.bosses %}
-        {% assign x = "Bosse" %}
-        {% include guide_enemy.html %}
-    {% endif %}
+    {%- if page.bosses -%}
+        {%- assign enemies = page.bosses -%}
+        {%- assign x = "Bosse" -%}
+        {%- include guide_enemy.html -%}
+    {%- endif -%}
     <!-- Duty Adds ======================================================= -->
-    {% if page.adds %}
-        {% assign enemies = page.adds %}
-        {% assign x = "Adds" %}
-        {% include guide_enemy.html %}
-    {% endif %}
+    {%- if page.adds -%}
+        {%- assign enemies = page.adds -%}
+        {%- assign x = "Adds" -%}
+        {%- include guide_enemy.html -%}
+    {%- endif -%}
 </div>
