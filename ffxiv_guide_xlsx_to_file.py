@@ -1765,7 +1765,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [417]:
+            #if i not in [255]:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled
