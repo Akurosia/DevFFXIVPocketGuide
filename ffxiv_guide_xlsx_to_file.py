@@ -452,9 +452,6 @@ def get_data_from_xlsx(sheet, max_column, i, elements):
     # max_column will ignore last column due to how range is working
     for j in range(1, max_column + 1):
         entry[elements[j - 1]] = str(sheet.cell(row=int(i), column=int(j)).value).replace("None", "")
-    # fix fataler raid
-    # if entry["instanceType"] == "fataler_raid":
-    #     entry["instanceType"] = "raid"
     return entry
 
 
@@ -1765,7 +1762,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [255]:
+            #if i not in [256]:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled
