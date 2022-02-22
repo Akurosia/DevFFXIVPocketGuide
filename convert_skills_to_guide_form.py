@@ -559,6 +559,8 @@ def main():
                 writeline(f, 'image:')
                 writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
                 #writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
+            else:
+                print(f"Missing img: {job}.png")
             writeline(f, 'terms:')
             writeline(f, '    - term: "Klassen"')
             writeline(f, '    - term: "Jobs"')
