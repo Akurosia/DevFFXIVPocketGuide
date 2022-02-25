@@ -1,0 +1,31 @@
+{%- comment -%} ==================================================================
+    // Index
+=============================================================== {%- endcomment -%}
+<div class="index">
+    {%- for category in page.links -%}
+        {%- assign csize = category.links | size -%}
+        {%- if csize > 0 -%}
+            <a id="{{ category.category }}"></a>
+            <div class="index-divider" data-expansion="{{ category.category }}">
+                <h2 class="index-divider__title">{{ category.category }}</h2>
+            </div>
+            <div class="index__list" data-expansion="{{ category.category }}">
+                {%- for link in category.links -%}
+                    <div class="summary">
+                        <a class="index-item__link" target="_blank" href="{{ link.url }}" title="Go to the {{ link.name }} Guide">
+                            <div class="index-item__background"> </div>
+                            <h3 class="index-item__title"
+                                data-terms="{%- for term in link.terms -%}{{ term.term }}&#32;{%- endfor -%}">
+                                {{ link.name }}
+                            </h3>
+                            <h4 class="index-item__title_en">
+                                {{ link.url }}
+                            </h4>
+                        </a>
+                    </div>
+                {%- endfor -%}
+            </div>
+        {%- endif -%}
+    {%- endfor -%}
+
+</div>

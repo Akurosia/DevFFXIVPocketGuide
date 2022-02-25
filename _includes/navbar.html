@@ -144,6 +144,14 @@
                         Quests
                     </a>
                 </li>
+                <li>
+                    <a target="" {%- if page.page_category == "links" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "links" or page.instance_type == "links" -%}class="active"{%- endif -%}
+                        href='{{ "/links/" | prepend: site.baseurl }}' title="Quests anzeigen">
+                        <img src='{{ site.imageurl }}/{{ "/061000/061723_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
+                        Links
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

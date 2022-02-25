@@ -12,6 +12,7 @@ import yaml
 import natsort
 from collections import OrderedDict
 import convert_skills_to_guide_form as csgf
+import generateLinks as gl
 
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'python_module'))
@@ -1814,6 +1815,7 @@ if __name__ == "__main__":
     # second run to fix boss order
     #run(sheet, max_row, max_column)
     # csgf.main()
+    # gl.links()
 
     # below is a profiler
     # import cProfile

@@ -537,7 +537,6 @@ def main():
             writeline(f, f'title_en: "{en_name}"')
             writeline(f, 'layout: klassen')
             writeline(f, 'page_type: guide')
-            writeline(f, 'excel_line: "0"')
             writeline(f, 'categories: "klassenjobs"')
             writeline(f, 'difficulty: "Normal"')
             writeline(f, 'instanceType: "klassenjobs"')
