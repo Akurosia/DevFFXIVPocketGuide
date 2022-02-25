@@ -14,6 +14,7 @@
                     <div class="summary">
                         <a class="index-item__link" target="_blank" href="{{ link.url }}" title="Go to the {{ link.name }} Guide">
                             <div class="index-item__background"> </div>
+                            <img src="{{ link.favicon }}" onerror="this.style.display='none'" style="height: 40px;width: 40px;z-index: 900;"></img>
                             <h3 class="index-item__title"
                                 data-terms="{%- for term in link.terms -%}{{ term.term }}&#32;{%- endfor -%}">
                                 {{ link.name }}
@@ -27,5 +28,4 @@
             </div>
         {%- endif -%}
     {%- endfor -%}
-
 </div>

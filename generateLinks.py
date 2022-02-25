@@ -27,6 +27,7 @@ def links():
                     continue
                 writeline(f, f"        - name: {name}")
                 writeline(f, f"          url: {entry['url']}")
+                writeline(f, f"          favicon: {entry['favicon']}")
 
         writeline(f, '---')
 
