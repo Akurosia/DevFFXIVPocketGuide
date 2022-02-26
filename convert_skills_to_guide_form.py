@@ -305,7 +305,7 @@ def getCrafterLeves():
                     "Wiederholbar": (int(cleve["Repeats"]) + 1) if cleve["Repeats"] != "0" else 1,
                     "EXP_per_full_hq_leve": (int(cleve['Repeats']) + 1) * int(leve['ExpReward']) * 2,
                     "Gil_per_full_hq_leve": (int(cleve['Repeats']) + 1) * int(leve['GilReward']) * 2,
-                    "Gil_per_100_hq_leve": (int(cleve['Repeats']) + 1) *  int(leve['GilReward']) * 100 * 2,
+                    "Gil_per_100_hq_leve": (int(cleve['Repeats']) + 1) * int(leve['GilReward']) * 100 * 2,
                 }
     return final_results
 
@@ -374,13 +374,13 @@ def getMaps(_map):
     sys.exit()
 
 
-def truncate(f, n):
-    result = math.floor(f * 10 ** n) / 10 ** n
+def truncate(f):
+    result = math.floor(f * 10 ** 1) / 10 ** 1
     return result
 
 
-def ToMapCoordinate(val, mapsize):
-    c = mapsize / 100.0
+def ToMapCoordinate(val, sizefactor):
+    c = sizefactor / 100.0
     val *= c
     return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1
 
@@ -390,8 +390,8 @@ def getLevel(level):
     try:
         level = levels[level.replace('Level#', "") + ".0"]
         map_ = getMaps(level['Map'])
-        x = truncate(ToMapCoordinate(float(level['X']), float(map_['SizeFactor'])), 1)
-        y = truncate(ToMapCoordinate(float(level['Z']), float(map_['SizeFactor'])), 1)
+        x = truncate(ToMapCoordinate(float(level['X']), float(map_['SizeFactor'])))
+        y = truncate(ToMapCoordinate(float(level['Z']), float(map_['SizeFactor'])))
         return {"x": x, "y": y, "region": map_['PlaceName_Region_'], "placename": map_['PlaceName']}
     except Exception:
         return None
