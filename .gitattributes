@@ -6,5 +6,19 @@
 *.sh text eol=crlf
 
 # Binary files.
-*.png binary
-*.jpg binary
+*.class         binary
+*.jar           binary
+*.gif           binary
+*.jpg           binary
+*.png           binary
+*.xlsx          binary
+
+# Text files.
+*.css           text
+*.html          text
+*.java          text
+*.js            text
+*.json          text
+*.properties    text
+*.txt           text
+*.xml           text
