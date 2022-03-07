@@ -9,6 +9,7 @@ import re
 import errno
 import openpyxl
 import yaml
+import math
 import natsort
 from collections import OrderedDict
 import convert_skills_to_guide_form as csgf
@@ -94,6 +95,9 @@ territorytype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
 contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
 contentfinderconditionX = loadDataTheQuickestWay("ContentFinderCondition.de.json")
 contentmembertype = loadDataTheQuickestWay("ContentMemberType.json")
+quests = loadDataTheQuickestWay("Quest.de.json")
+levels = loadDataTheQuickestWay("Level.json")
+maps = loadDataTheQuickestWay("Map.json")
 placename = loadDataTheQuickestWay("placename_all.json", translate=True)
 bnpcname = loadDataTheQuickestWay("bnpcname_all.json", translate=True)
 eobjname = loadDataTheQuickestWay("eobjname_all.json", translate=True)
@@ -1148,6 +1152,52 @@ def addEntries(header_data, _entry, field, get_data_function):
     return header_data
 
 
+def getMaps(_map):
+    global maps
+    for key, value in maps.items():
+        if value['Id'] == _map:
+            return value
+    sys.exit()
+
+
+def truncate(f, n):
+    return math.floor(f * 10 ** n) / 10 ** n
+
+
+def getLevel(level):
+    global levels
+    level = levels[level.replace('Level#', "") + ".0"]
+    map_ = getMaps(level['Map'])
+    x = truncate(ToMapCoordinate(float(level['X']), float(map_['SizeFactor'])), 1)
+    y = truncate(ToMapCoordinate(float(level['Z']), float(map_['SizeFactor'])), 1)
+    return {"x": x, "y": y, "region": map_['PlaceName_Region_'], "placename": map_['PlaceName']}
+
+
+def ToMapCoordinate(val, mapsize):
+    c = mapsize / 100.0
+    val *= c
+    return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1
+
+
+def workOnQuests(_entry, quest_id):
+    global quests
+    if quest_id == "":
+        _entry['quest'] = ""
+        _entry['quest_location'] = ""
+        _entry['quest_npc'] = ""
+        return _entry
+    quest = quests[quest_id + ".0"]
+    _entry['quest'] = quest['Name'].replace(" ", "").replace(" ", "")
+    _entry['quest_npc'] = quest['Issuer_Start_']
+    try:
+        level_data = getLevel(quest['Issuer_Location_'])
+        _entry['quest_location'] = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
+    except KeyError:
+        _entry['quest_location'] = ""
+        print_color_red(f"Error on loading: {quest['Issuer_Location_']}")
+    return _entry
+
+
 def rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next):
     header_data = ""
 
@@ -1320,7 +1370,8 @@ def writeTags(header_data, _entry, tt_type_name):
     header_data += "  - term: \"" + _entry["difficulty"] + "\"\n"
     header_data += "  - term: \"" + _entry["patchNumber"] + "!\"\n"
     header_data += "  - term: \"" + _entry["patchName"] + "\"\n"
-    header_data += "  - term: \"" + _entry["quest"] + "\"\n"
+    if not _entry.get("quest", "") == "":
+        header_data += "  - term: \"" + _entry["quest"] + "\"\n"
     if checkVariable(_entry, "mount1") or checkVariable(_entry, "mount2"):
         header_data += "  - term: \"mounts\"\n"
         header_data += "  - term: \"Reittier\"\n"
@@ -1763,7 +1814,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [256]:
+            #if i not in [3]:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled
@@ -1772,6 +1823,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 sys.exit(0)
             if not (entry["exclude"] or entry["done"]):
                 entry = clean_entries_from_single_quotes(entry)
+                entry = workOnQuests(entry, entry["quest_id"])
                 # remove time from excel datetime
                 entry["date"] = str(entry["date"]).replace(" 00:00:00", "").replace("-", ".")
                 filename = f"{entry['categories']}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
@@ -1792,7 +1844,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
 def test(sheet, elements, max_row):
     entry = {}
     for i in range(1, max_row + 1):
-        instanceType = str(sheet.cell(row=int(i), column=int(38)).value).replace("None", "")
+        instanceType = str(sheet.cell(row=int(i), column=int(elements.index('instanceType'))+1).value).replace("None", "")
         if not entry.get(instanceType, None):
             entry[instanceType] = {}
         sortID = str(sheet.cell(row=int(i), column=int(3)).value).replace("None", "")
@@ -1803,7 +1855,7 @@ def test(sheet, elements, max_row):
 
 
 if __name__ == "__main__":
-    elements = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest", "quest_npc", "quest_location", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
+    elements = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest_id", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
 
     sheet, max_row, max_column = read_xlsx_file()
     # change into _posts dir
