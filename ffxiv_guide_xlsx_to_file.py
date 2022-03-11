@@ -5,6 +5,7 @@ import copy
 import os
 from operator import itemgetter
 import traceback
+#traceback.print_exc()
 import re
 import errno
 import openpyxl
@@ -177,28 +178,29 @@ def getBnpcNameFromID(_id, aname, nname):
     ennew_name = ""
     if type(_id) == list:
         _id = _id[0]
+    _id = str(_id)
     try:
-        bnew_name = bnpcname[_id + ".0"]["Singular_de"]
+        bnew_name = bnpcname[_id]["Singular_de"]
         m = re.search(nname, bnew_name, re.IGNORECASE)
         n = re.search(aname, bnew_name, re.IGNORECASE)
         if m or n:
-            return bnpcname[_id + ".0"]["Singular_en"]
+            return bnpcname[_id]["Singular_en"]
     except Exception:
         pass
     try:
-        enew_name = eobjname[_id + ".0"]["Singular_de"]
+        enew_name = eobjname[_id]["Singular_de"]
         m = re.search(nname, enew_name, re.IGNORECASE)
         n = re.search(aname, enew_name, re.IGNORECASE)
         if m or n:
-            return eobjname[_id + ".0"]["Singular_en"]
+            return eobjname[_id]["Singular_en"]
     except Exception:
         pass
     try:
-        ennew_name = enpcresident[_id + ".0"]["Singular_de"]
+        ennew_name = enpcresident[_id]["Singular_de"]
         m = re.search(nname, ennew_name, re.IGNORECASE)
         n = re.search(aname, ennew_name, re.IGNORECASE)
         if m or n:
-            return enpcresident[_id + ".0"]["Singular_en"]
+            return enpcresident[_id]["Singular_en"]
     except Exception:
         pass
 
@@ -314,7 +316,7 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
 
 def translateAttack(skill_id, _type=action):
     try:
-        text = _type[str(int(skill_id, 16)) + ".0"]["Name_en"]
+        text = _type[str(int(skill_id, 16))]["Name_en"]
         return fixCaptilaziationAndRomanNumerals(text)
     except KeyError:
         return f"Unknown_{skill_id}"
@@ -533,9 +535,11 @@ def remove_status_from_list_if_found(remove_debuff, new_enemy_data):
 
 def get_fixed_status_description(_id):
     try:
-        description = status[str(int(_id, 16)) + ".0"]['Description_de']
+        description = status[str(int(_id, 16))]['Description_de']
         description = re.sub('<UIForeground>[0-9A-F]{1,6}</UIForeground>', '', description)
         description = re.sub('<UIGlow>[0-9A-F]{1,6}</UIGlow>', '', description)
+        description = description.replace("\n\n", "<br>")
+        description = description.replace("\n", "<br>")
         return description
     except KeyError:
         return f"Unknown_{_id}"
@@ -1069,7 +1073,7 @@ def addGroupCollections(header_data, cmt, _entry):
 
     if not skip_lookoup:
         wanted_id = cmt.split("#")[1]
-        cmt_entry = contentmembertype[f"{wanted_id}.0"]
+        cmt_entry = contentmembertype[f"{wanted_id}"]
         healerp = cmt_entry['HealersPerParty']
         tankp = cmt_entry['TanksPerParty']
         meleep = cmt_entry['MeleesPerParty']
@@ -1166,11 +1170,11 @@ def truncate(f, n):
 
 def getLevel(level):
     global levels
-    level = levels[level.replace('Level#', "") + ".0"]
+    level = levels[level.replace('Level#', "")]
     map_ = getMaps(level['Map'])
-    x = truncate(ToMapCoordinate(float(level['X']), float(map_['SizeFactor'])), 1)
-    y = truncate(ToMapCoordinate(float(level['Z']), float(map_['SizeFactor'])), 1)
-    return {"x": x, "y": y, "region": map_['PlaceName_Region_'], "placename": map_['PlaceName']}
+    x = truncate(ToMapCoordinate(float(level['X'].replace(",",".")), float(map_['SizeFactor'])), 1)
+    y = truncate(ToMapCoordinate(float(level['Z'].replace(",",".")), float(map_['SizeFactor'])), 1)
+    return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
 
 
 def ToMapCoordinate(val, mapsize):
@@ -1186,15 +1190,15 @@ def workOnQuests(_entry, quest_id):
         _entry['quest_location'] = ""
         _entry['quest_npc'] = ""
         return _entry
-    quest = quests[quest_id + ".0"]
+    quest = quests[quest_id]
     _entry['quest'] = quest['Name'].replace(" ", "").replace(" ", "")
-    _entry['quest_npc'] = quest['Issuer_Start_']
+    _entry['quest_npc'] = quest['Issuer']['Start']
     try:
-        level_data = getLevel(quest['Issuer_Location_'])
+        level_data = getLevel(quest['Issuer']['Location'])
         _entry['quest_location'] = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
     except KeyError:
         _entry['quest_location'] = ""
-        print_color_red(f"Error on loading: {quest['Issuer_Location_']}")
+        print_color_red(f"Error on loading: {quest['Issuer']['Location']}")
     return _entry
 
 
