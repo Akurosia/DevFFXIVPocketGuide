@@ -393,7 +393,7 @@ def getLevel(level):
         y = truncate(ToMapCoordinate(float(level['Z'].replace(",", ".")), float(map_['SizeFactor'])))
         return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
     except Exception as e:
-        print(e)
+        #print(f"Error in getLevel: {e}")
         return None
 
 
@@ -413,7 +413,7 @@ def addQuestkDetails(f, job, pvp):
                 if level_data is None:
                     continue
             except Exception as e:
-                print(e)
+                print(f"Error in addQuestkDetails: {e}")
                 pass
             place = f"{level_data['region']} > {quest['PlaceName']}"
             if not level_data['placename'] in place:
@@ -519,7 +519,7 @@ def main():
         job_data_pvp = pvpskills.get(job, None)
         if not job_data:
             continue
-        #print(job)
+        print(job)
 
         tmpmaxlvl = str(max([int(data["Level"]) for key, data in job_data.items() if int(data['Level']) < 99999]))
         if job == "Blaumagier":
