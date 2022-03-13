@@ -141,7 +141,7 @@ def addBlueAttackDetails(f, job_data):
         if en_name == "":
             en_name = craftactions[skill_data['id'] + ".0"]["Name_en"]
         level = skill_data['Level']
-        desc = skill_data["Description"]
+        desc = skill_data["Description"].replace("</br></br>", "</br>")
         locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
         locations = sorted(locations, key=lambda x: x['Ort'])
         max_zone_length = 0
@@ -155,7 +155,7 @@ def addBlueAttackDetails(f, job_data):
             desc += "\n\n#########################################\n\nLOCATIONS:\n" + "&emsp;Zone".ljust(max_zone_length) + " -> " + "Gegnername".ljust(max_enemyname_length) + ":"
         for location in locations:
             desc += "\n&emsp;" + location["Ort"].ljust(max_zone_length) + " -> " + location["Gegner"].ljust(max_enemyname_length)
-        desc = desc.replace("\n", "</br>")
+        desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
         if skill_data.get("Number", None) and int(level) < 901:
             writeline(f, f'      - title: "{level}. {skill_data["Name"]}"')
         else:
@@ -185,8 +185,7 @@ def convertJobToAbrev(job):
     for key, value in cj.items():
         if value['Name_de'] == job:
             job_abbr = value['Abbreviation_de']
-
-    _class = [v['ClassJob_Parent_'] for k, v in cjs.items() if v["Name"] == job][0]
+    _class = [v['ClassJob']['Parent'] for k, v in cjs.items() if v["Name"]['Value'] == job][0]
     for key2, value2 in cj.items():
         if value2['Name_de'] == _class:
             class_abbr = value2['Abbreviation_de']
@@ -206,9 +205,9 @@ def addAttackDetails(f, job_data, pvp=False):
     for _id, skill_data in job_data.items():
         en_name = actions.get(skill_data['id'], {}).get("Name_en", "")
         if en_name == "":
-            en_name = craftactions[skill_data['id'] + ".0"]["Name_en"]
+            en_name = craftactions[skill_data['id']]["Name_en"]
         level = "0" if skill_data['Level'] == "99999" else skill_data['Level']
-        desc = skill_data["Description"].replace("\n", "</br>")
+        desc = skill_data["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
         writeline(f, f'      - title: "{skill_data["Name"]}"')
         writeline(f, f'        title_id: "{skill_data["id"].split(".")[0]}"')
         writeline(f, f'        title_en: "{en_name}"')
@@ -236,8 +235,8 @@ def addStatusDetails(f, job):
         jobstatusdata = OrderedDict(sorted(jobstatusdata.items(), key=lambda x: getitem(x[1], 'name')))
         writeline(f, "    debuffs:")
         for key, status in jobstatusdata.items():
-            _id = str(int(key, 16)) + ".0"
-            desc = statusss[_id]["Description"].replace("\n", "</br>")
+            _id = str(int(key, 16))
+            desc = statusss[_id]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
             writeline(f, f'      - title: "{status["name"]}"')
             writeline(f, f'        title_id: "{key}"')
             writeline(f, f'        title_en: "{statuss[_id]["Name_en"]}"')
@@ -252,14 +251,14 @@ def addTraitDetails(f, job):
     global traits
     # TODO get traits by class
     writeline(f, "    traits:")
-    _class = [v['ClassJob_Parent_'] for k, v in cjs.items() if v["Name"] == job]
+    _class = [v['ClassJob']['Parent'] for k, v in cjs.items() if v["Name"]['Value'] == job]
     traitsss = {k: v for k, v in traits.items() if v["ClassJob"] in ([job] + _class)}
     job_trait_data = OrderedDict(sorted(traitsss.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, trait_data in job_trait_data.items():
         if not trait_data.get("Icon", None):
             continue
         en_name = traitss[_id]["Name_en"]
-        desc = traitstransient[_id]["Description"].replace("\n", "</br>")
+        desc = traitstransient[_id]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
         level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
         writeline(f, f'      - title: "{trait_data["Name"]}"')
         writeline(f, f'        title_id: "{_id.split(".")[0]}"')
@@ -296,10 +295,10 @@ def getCrafterLeves():
                     "Name_EN": translatename(leve["Name"]),
                     "0xID": hex(new_leve_id)[2:].upper(),
                     "ID": str(new_leve_id),
-                    "item": cleve['Item[0]'],
-                    "item_amount": int(cleve['ItemCount[0]']) + int(cleve['ItemCount[1]']) + int(cleve['ItemCount[2]']),
+                    "item": cleve['Item']["0"],
+                    "item_amount": int(cleve['ItemCount']["0"]) + int(cleve['ItemCount']["1"]) + int(cleve['ItemCount']["2"]),
                     "level": leve['ClassJobLevel'],
-                    "Start_Leve_Zone": leve['PlaceName_Issued_'],
+                    "Start_Leve_Zone": leve['PlaceName']['Issued'],
                     "Start_Leve_NPC": leve['LeveClient'],
                     "Freibriefanzahl": leve["AllowanceCost"],
                     "Wiederholbar": (int(cleve["Repeats"]) + 1) if cleve["Repeats"] != "0" else 1,
@@ -330,7 +329,7 @@ def getGathererLeves():
             #"item": cleve['Item[0]'],
             #"item_amount": cleve['ItemCount[0]'],
             "level": leve['ClassJobLevel'],
-            "Start_Leve_Zone": leve['PlaceName_Issued_'],
+            "Start_Leve_Zone": leve['PlaceName']['Issued'],
             "Start_Leve_NPC": leve['LeveClient'],
             "Freibriefanzahl": leve["AllowanceCost"],
             #"Wiederholbar": True if cleve["Repeats"] != "0" else False,
@@ -388,12 +387,13 @@ def ToMapCoordinate(val, sizefactor):
 def getLevel(level):
     global levels
     try:
-        level = levels[level.replace('Level#', "") + ".0"]
+        level = levels[level.replace('Level#', "")]
         map_ = getMaps(level['Map'])
-        x = truncate(ToMapCoordinate(float(level['X']), float(map_['SizeFactor'])))
-        y = truncate(ToMapCoordinate(float(level['Z']), float(map_['SizeFactor'])))
-        return {"x": x, "y": y, "region": map_['PlaceName_Region_'], "placename": map_['PlaceName']}
-    except Exception:
+        x = truncate(ToMapCoordinate(float(level['X'].replace(",", ".")), float(map_['SizeFactor'])))
+        y = truncate(ToMapCoordinate(float(level['Z'].replace(",", ".")), float(map_['SizeFactor'])))
+        return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
+    except Exception as e:
+        print(e)
         return None
 
 
@@ -405,13 +405,15 @@ def addQuestkDetails(f, job, pvp):
     for key, quest in quests.items():
         if "Restaurierung der Reliktwaffen" in quest['Name']:
             continue
-        if quest['ClassJobCategory[0]'] in [newjob, newclass] or quest['ClassJobCategory[1]'] in [newjob, newclass]:
+        if quest['ClassJobCategory']["0"] in [newjob, newclass] or quest['ClassJobCategory']["1"] in [newjob, newclass]:
+            #print(" \t" + quest['Name'])
             level_data = {}
             try:
-                level_data = getLevel(quest['Issuer_Location_'])
+                level_data = getLevel(quest['Issuer']['Location'])
                 if level_data is None:
                     continue
-            except Exception:
+            except Exception as e:
+                print(e)
                 pass
             place = f"{level_data['region']} > {quest['PlaceName']}"
             if not level_data['placename'] in place:
@@ -420,13 +422,13 @@ def addQuestkDetails(f, job, pvp):
                 "name": quest['Name'],
                 "id": key,
                 "expansion": quest['Expansion'],
-                "level": int(quest['ClassJobLevel[0]']),
-                "Icon": quest['Icon'].replace('.tex', "_hr1.png"),
+                "level": int(quest['ClassJobLevel']["0"]),
+                "Icon": quest['Icon']['Value'].replace('.tex', "_hr1.png"),
                 "place": place,
-                "previousquest": [quest['PreviousQuest[0]'], quest['PreviousQuest[1]'], quest['PreviousQuest[2]']],
+                "previousquest": [quest['PreviousQuest']["0"], quest['PreviousQuest']["1"], quest['PreviousQuest']["2"]],
                 "journalgenre": quest['JournalGenre'],
                 "issuer_location_": f"X: {level_data['x']} / Y: {level_data['y']}",
-                "issuer_start_": quest['Issuer_Start_']
+                "issuer_start_": quest['Issuer']['Start']
             }
             if klassenquests.get(newquest['level'], None):
                 klassenquests[newquest['level'] + 0.1] = newquest
@@ -493,7 +495,7 @@ classDetails = {
 
 def getQuestName(job):
     for key, value in cjs.items():
-        if job == value['Name']:
+        if job == value['Name']['Value']:
             if not value['UnlockQuest'] == "0":
                 return value['UnlockQuest']
             return ""
@@ -517,7 +519,7 @@ def main():
         job_data_pvp = pvpskills.get(job, None)
         if not job_data:
             continue
-        print(job)
+        #print(job)
 
         tmpmaxlvl = str(max([int(data["Level"]) for key, data in job_data.items() if int(data['Level']) < 99999]))
         if job == "Blaumagier":

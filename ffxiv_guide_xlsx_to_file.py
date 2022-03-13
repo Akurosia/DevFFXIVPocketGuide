@@ -5,7 +5,7 @@ import copy
 import os
 from operator import itemgetter
 import traceback
-#traceback.print_exc()
+# traceback.print_exc()
 import re
 import errno
 import openpyxl
@@ -379,7 +379,7 @@ def get_order_id(_entry):
 
 def get_territorytype_from_mapid(mapid):
     for key, tt_type in territorytype.items():
-        if tt_type["Name"].lower() == mapid.lower():
+        if tt_type["TerritoryType"].lower() == mapid.lower():
             return tt_type
     print_color_red(f"Could not find territorytype for {mapid}")
     return ""
@@ -1107,7 +1107,7 @@ def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechan
     header_data, cmt = addContentZoneIdToHeader(header_data, contentzoneid, _entry)
     header_data = addGroupCollections(header_data, cmt, _entry)
 
-    #build file, compare with existing data and write if data is not equals
+    # build file, compare with existing data and write if data is not equals
     filedata = '---\n'
     filedata += header_data
     filedata += guide_data
@@ -1172,8 +1172,8 @@ def getLevel(level):
     global levels
     level = levels[level.replace('Level#', "")]
     map_ = getMaps(level['Map'])
-    x = truncate(ToMapCoordinate(float(level['X'].replace(",",".")), float(map_['SizeFactor'])), 1)
-    y = truncate(ToMapCoordinate(float(level['Z'].replace(",",".")), float(map_['SizeFactor'])), 1)
+    x = truncate(ToMapCoordinate(float(level['X'].replace(",", ".")), float(map_['SizeFactor'])), 1)
+    y = truncate(ToMapCoordinate(float(level['Z'].replace(",", ".")), float(map_['SizeFactor'])), 1)
     return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
 
 
@@ -1654,7 +1654,6 @@ def add_variation_Attack(guide_data, attack, enemy_type):
                     guide_data += f'              - min: {variation["damage"][0]["min"] or "None"}\n'
                     guide_data += f'              - max: {variation["damage"][1]["max"] or "None"}\n'
 
-
             if variation.get('roles', None):
                 guide_data += f'            roles:\n'
                 for role in variation.get('roles', {}):
@@ -1804,11 +1803,15 @@ def getBeforeAndAfterContentEntries(orderedContent, entry):
     _typeKeys = list(_type)
     for i, k in enumerate(_type):
         if _type[k].endswith(entry['slug']):
-            if i-1 >= 0:
-                try: _previous = _type[_typeKeys[i-1]]
-                except: pass
-            try: _next = _type[_typeKeys[i+1]]
-            except: pass
+            if i - 1 >= 0:
+                try:
+                    _previous = _type[_typeKeys[i - 1]]
+                except:
+                    pass
+            try:
+                _next = _type[_typeKeys[i + 1]]
+            except:
+                pass
             return _previous, _next
     return None, None
 
@@ -1818,7 +1821,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [3]:
+            # if i not in [3]:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled
@@ -1848,7 +1851,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
 def test(sheet, elements, max_row):
     entry = {}
     for i in range(1, max_row + 1):
-        instanceType = str(sheet.cell(row=int(i), column=int(elements.index('instanceType'))+1).value).replace("None", "")
+        instanceType = str(sheet.cell(row=int(i), column=int(elements.index('instanceType')) + 1).value).replace("None", "")
         if not entry.get(instanceType, None):
             entry[instanceType] = {}
         sortID = str(sheet.cell(row=int(i), column=int(3)).value).replace("None", "")
@@ -1866,7 +1869,7 @@ if __name__ == "__main__":
     os.chdir("./_posts")
     # first run to create all files
     orderedContent = test(sheet, elements, max_row)
-    #print_color_red(orderedContent)
+    # print_color_red(orderedContent)
     run(sheet, max_row, max_column, elements, orderedContent)
     # second run to fix boss order
     #run(sheet, max_row, max_column)
