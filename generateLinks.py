@@ -13,7 +13,7 @@ def links():
         writeline(f, '---')
         writeline(f, 'layout: links')
         writeline(f, 'title: Links')
-        writeline(f, 'last_modified_at: 2022-02-25')
+        writeline(f, 'last_modified_at: 2022-03-17')
         writeline(f, 'permalink: /links/')
         writeline(f, 'description: "Search through class and jobs guides on the FFXIV Pocket Guide."')
         writeline(f, 'page_type: index')

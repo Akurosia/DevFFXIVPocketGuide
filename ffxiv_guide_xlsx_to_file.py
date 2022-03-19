@@ -17,7 +17,6 @@ import convert_skills_to_guide_form as csgf
 import generateLinks as gl
 
 import sys
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'python_module'))
 from ffxiv_aku import *
 
 try:
