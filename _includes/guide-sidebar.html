@@ -50,6 +50,25 @@
                 {%- endif -%}
             {%- endfor -%}
         {%- endif -%}
+        {%- if page.music -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Content Music:
+                {%- for music in page.music -%}
+                    {%- if page.music.size > 1 -%}
+                        {%- if music.id -%}
+                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name }}</a></span>
+                        {%- else -%}
+                            <span class="block">- {{ music.name }}</span>
+                        {%- endif -%}
+                    {%- else -%}
+                        {%- if music.id -%}
+                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name }}</a></span>
+                        {%- else -%}
+                            <span class="block">{{ music.name }}</span>
+                        {%- endif -%}
+                    {%- endif -%}
+                {%- endfor -%}
+            </h5>
+        {%- endif -%}
         {%- if page.group -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Guppenaufstellung:
                 <span class="block group-icon">

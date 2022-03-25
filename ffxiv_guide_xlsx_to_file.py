@@ -224,7 +224,7 @@ def getMinionIDByName(name):
 
 def getOrchestrionIDByName(name):
     for id, orchestrion in orchestrions.items():
-        if orchestrion['Name_de'] == name:
+        if orchestrion['Name_de'].lower() == name.lower():
             return id.split(".0")[0]
     return None
 
@@ -474,7 +474,9 @@ def cleanup_logdata(logdata_instance_content):
         del logdata_instance_content["contentzoneid"]
     except Exception:
         pass
+    music = None
     try:
+        music = logdata_instance_content["music"]
         del logdata_instance_content["music"]
     except Exception:
         pass
@@ -493,7 +495,7 @@ def cleanup_logdata(logdata_instance_content):
     for k, v in logdata_instance_content.items():
         # if not k == "":
         new_lic[k] = v
-    return new_lic
+    return new_lic, music
 
 
 def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack):
@@ -1017,6 +1019,7 @@ def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
     logdata_instance_content = None
     # add mechanics
     guide_data = check_Mechanics(_entry, guide_data, _old_mechanics)
+    music = None
 
     # get correct title capitalization to read data from logdata
     title = uglyContentNameFix(_entry["title_de"].title(), _entry["instanceType"], _entry["difficulty"])
@@ -1028,12 +1031,12 @@ def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
             logdata_instance_content = dict(logdata[title])
         if logdata_instance_content.get('contentzoneid', None):
             contentzoneid = logdata_instance_content['contentzoneid']
-        logdata_instance_content = cleanup_logdata(logdata_instance_content)
+        logdata_instance_content, music = cleanup_logdata(logdata_instance_content)
     print_color_green(f"Work on '{_entry['title_de']}'", disable_green_print)
     guide_data = check_Enemy(_entry, guide_data, "bosse", "bosses", logdata_instance_content, _old_bosses)
     guide_data = check_Enemy(_entry, guide_data, "adds", "adds", logdata_instance_content, _old_adds)
     #guide_data = check_Enemy(_entry, guide_data, "adds", _old_adds)
-    return guide_data, contentzoneid
+    return guide_data, contentzoneid, music
 
 
 def addContentZoneIdToHeader(header_data, contentzoneid, _entry):
@@ -1100,15 +1103,27 @@ def addGroupCollections(header_data, cmt, _entry):
     return header_data
 
 
+def addMusic(header_data, music):
+    header_data += "music:\n"
+    for m in music:
+        header_data += f"    - name: \"{m}\"\n"
+        _id = getOrchestrionIDByName(m)
+        if _id:
+            header_data += f"      id: \"{_id}\"\n"
+    return header_data
+
+
 def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechanics, old_wip, index, _previous, _next):
     seperate_data_into_array("bosse", _entry)
     seperate_data_into_array("adds", _entry)
     seperate_data_into_array("tags", _entry)
     header_data, _entry = rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next)
-    guide_data, contentzoneid = addGuide(_entry, _old_bosses, _old_adds, _old_mechanics)
+    guide_data, contentzoneid, music = addGuide(_entry, _old_bosses, _old_adds, _old_mechanics)
 
     header_data, cmt = addContentZoneIdToHeader(header_data, contentzoneid, _entry)
     header_data = addGroupCollections(header_data, cmt, _entry)
+    if music:
+        header_data = addMusic(header_data, music)
 
     # build file, compare with existing data and write if data is not equals
     filedata = '---\n'
@@ -1824,7 +1839,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [401]:
+            #if i not in [397]:
             #   continue
             entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled
