@@ -29,10 +29,15 @@ twitter_username: ff14pocketguide
 github_username:  akurosia
 
 # Build settings
-markdown: kramdown
+#markdown: kramdown
+markdown: CommonMark
+commonmark:
+  options: ["SMART", "FOOTNOTES"]
+  extensions: ["strikethrough", "autolink", "table"]
 plugins:
   - jekyll-last-modified-at
   - jekyll-sitemap
+  - jekyll-commonmark
 include:
   - _pages
 future: true

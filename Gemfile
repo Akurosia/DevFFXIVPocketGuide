@@ -9,8 +9,8 @@ ruby RUBY_VERSION
 #
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
-gem "jekyll"
-
+gem "jekyll", github: "jekyll/jekyll"
+gem "liquid-c"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 gem "minima", "~> 2.0"
 
@@ -25,6 +25,7 @@ group :jekyll_plugins do
    gem "jekyll-last-modified-at"
    gem "jekyll-sitemap"
    gem "jekyll-include-cache"
+   gem "jekyll-commonmark"
    #gem "jekyll-admin"
 end
 gem "webrick", "~> 1.7"
