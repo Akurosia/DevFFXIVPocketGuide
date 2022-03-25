@@ -332,7 +332,7 @@ def fixCaptilaziationAndRomanNumerals(text):
 
 
 def replaceSlug(text):
-    return str(text).replace("_", "-").replace(",", "").replace("'", "").replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("Ü", "Ue").replace("ß", "ss")
+    return str(text).replace("_", "-").replace(".", "-").replace(",", "").replace("'", "").replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("Ü", "Ue").replace("ß", "ss")
 
 
 def getImage(image):
@@ -472,6 +472,10 @@ def cleanup_logdata(logdata_instance_content):
         pass
     try:
         del logdata_instance_content["contentzoneid"]
+    except Exception:
+        pass
+    try:
+        del logdata_instance_content["music"]
     except Exception:
         pass
     for enemy_name, enemy in logdata_instance_content.items():
@@ -1820,8 +1824,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            # if i not in [3]:
-            #    continue
+            #if i not in [401]:
+            #   continue
             entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
@@ -1843,7 +1847,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_bosses, old_adds, old_mechanics, old_wip, i, _previous, _next)
         except Exception:
-            print_color_red(f"Error when handeling '{filename}'")
+            print_color_red(f"Error when handeling '{filename}' with line id '{i}'")
             traceback.print_exception(*sys.exc_info())
 
 
