@@ -88,7 +88,11 @@
             </h5>
         {%- endif -%}
         {%- if page.quest -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest: <span class="block">{{ page.quest }}</span></h5>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest:
+                <span class="block">
+                    <a target="_blank" href="https://de.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest }}">{{ page.quest }}</a>
+                </span>
+            </h5>
             {%- if page.quest_location -%}
                 <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest Location: <span class="block">{{ page.quest_location }}</span></h5>
             {%- endif -%}
