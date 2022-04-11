@@ -1890,9 +1890,9 @@ if __name__ == "__main__":
     # print_color_red(orderedContent)
     run(sheet, max_row, max_column, elements, orderedContent)
     # second run to fix boss order
-    #run(sheet, max_row, max_column)
+    # run(sheet, max_row, max_column)
     # csgf.main()
-    # gl.links()
+    gl.links()
 
     # below is a profiler
     # import cProfile
