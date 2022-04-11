@@ -1031,6 +1031,7 @@ html {
     margin: 0.5rem 0 0;
     display: inline-flex;
     align-items: center;
+    flex-wrap: wrap;
 
     &[class*=noblock] {
       display: inline !important;
@@ -2102,6 +2103,7 @@ body {
     background-color: rgba(255,255,255,.2);
     border: 0;
     padding: 0px 10px 0px 10px;
+    z-index: 5;
     &:hover {
       background-color: rgba(255,255,255,.3);
     }
@@ -2111,14 +2113,17 @@ body {
 }
 
 .content_btn_next {
-      right: 0px;
-      z-index: 500;
+    right: 0px;
 }
 .content_btn_prev {
-      left: 0px;
-      z-index: 500;
+    left: 0px;
 }
 
+.link-favicon {
+    height: 40px;
+    width: 40px;
+    z-index: 7;
+}
 
 ion-icon {
   color: #FF575C;

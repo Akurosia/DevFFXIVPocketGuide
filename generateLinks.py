@@ -6,6 +6,26 @@ def writeline(f, data):
     f.write("\n")
 
 
+def createShortURL(url):
+    newURL = url
+    removeHTTPS = False
+    removeHTTP = False
+    if "https" in newURL:
+        removeHTTPS = True
+        newURL = url.replace("https://", "")
+    if "http" in newURL:
+        removeHTTP = True
+        newURL = url.replace("http://", "")
+    newURL = newURL.split("/")
+    if len(newURL) > 1:
+        newURL = newURL[0] + "/" + newURL[1]
+    else:
+        newURL = newURL[0]
+    if removeHTTPS:
+        return "https://" + newURL
+    if removeHTTP:
+        return "http://" + newURL
+
 def links():
     with open(f"T:/var/www/ffxiv/links.json", "r", encoding="utf-8") as f:
         links = json.load(f)
@@ -27,6 +47,7 @@ def links():
                     continue
                 writeline(f, f"        - name: {name}")
                 writeline(f, f"          url: {entry['url']}")
+                writeline(f, f"          shorturl: {createShortURL(entry['url'])}")
                 writeline(f, f"          favicon: {entry['favicon']}")
 
         writeline(f, '---')
