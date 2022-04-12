@@ -1224,7 +1224,7 @@ def workOnQuests(_entry, quest_id):
         _entry['quest_location'] = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
     except KeyError:
         _entry['quest_location'] = ""
-        print_color_red(f"Error on loading: {quest['Issuer']['Location']}")
+        print_color_red(f"[workOnQuests] Error on loading: {quest['Issuer']['Location']} ({quest_id})")
     return _entry
 
 

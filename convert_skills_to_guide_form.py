@@ -281,10 +281,11 @@ def getCrafterLeves():
     global craftleves
     final_results = {}
     for leve_id, leve in leves.items():
-        new_leve_id = int(str(int(leve_id.split(".")[0])))
+        new_leve_id = int(leve_id)
 
         if "Fertigungserlasse" not in leve["JournalGenre"]:
             continue
+        print(leve)
         for cleve_id, cleve in craftleves.items():
             if leve["Name"] == cleve["Leve"]:
                 if not final_results.get(leve["JournalGenre"], None):
@@ -392,7 +393,7 @@ def getLevel(level):
         y = truncate(ToMapCoordinate(float(level['Z'].replace(",", ".")), float(map_['SizeFactor'])))
         return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
     except Exception as e:
-        #print(f"Error in getLevel: {e}")
+        print(f"Error in getLevel: {e}")
         return None
 
 
@@ -586,6 +587,8 @@ def main():
             addTraitDetails(f, job)
             cleves = addCrafterLeve(f, job, all_crafter_leves)
             gleves = addCrafterLeve(f, job, all_gatherer_leves)
+            print(f"{cleves} - {gleves}")
+            asdfasdf
             addQuestkDetails(f, job, pvp or leves)
             writeline(f, "    sequence:" + "")
             writeline(f, "      - phase: \"01\"")
