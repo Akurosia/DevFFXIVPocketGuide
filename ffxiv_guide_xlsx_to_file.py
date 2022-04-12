@@ -147,6 +147,14 @@ discontinued_content = {
         "ja": "極タイタン討滅戦",
         "cn": "泰坦歼殛战",
         "ko": "극 타이탄 토벌전"
+    },
+    "Traumprüfung - Ultima": {
+        "de": "Traumprüfung - Titan",
+        "en": "Ultima's Bane (Unreal)",
+        "fr": "Le fléau d'Ultima (irréel)",
+        "ja": "幻アルテマウェポン破壊作戦",
+        "cn": "",
+        "ko": ""
     }
 }
 
