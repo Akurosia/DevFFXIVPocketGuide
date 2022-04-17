@@ -17,7 +17,7 @@ function copyValuetoClipboard(value){
 
 function buildAndCopyRegex(_id, bossname, type){
   if (type == "attack"){
-    copyValuetoClipboard("(14|15|16):" + _id + ":" + bossname)
+    copyValuetoClipboard(" (14|15|16):[^:]*:[^:]*:" + _id + ":[^:]*:[^:]*:"+bossname)
   }else if(type == "debuff"){
     copyValuetoClipboard(":" + _id + ":" + bossname)
   }
