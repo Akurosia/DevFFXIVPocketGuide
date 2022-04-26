@@ -588,7 +588,6 @@ def main():
             cleves = addCrafterLeve(f, job, all_crafter_leves)
             gleves = addCrafterLeve(f, job, all_gatherer_leves)
             print(f"{cleves} - {gleves}")
-            asdfasdf
             addQuestkDetails(f, job, pvp or leves)
             writeline(f, "    sequence:" + "")
             writeline(f, "      - phase: \"01\"")
