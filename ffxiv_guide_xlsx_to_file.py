@@ -107,6 +107,7 @@ mounts = loadDataTheQuickestWay("mount_all.json", translate=True)
 minions = loadDataTheQuickestWay("companion_all.json", translate=True)
 orchestrions = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
 ttcards = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
+LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
 
 
 def checkVariable(element, name):
@@ -179,7 +180,7 @@ def getContentName(name, lang="en", difficulty=None, instanceType=None):
     return ""
 
 
-def getBnpcNameFromID(_id, aname, nname):
+def getBnpcNameFromID(_id, aname, nname, lang="en"):
     bnew_name = ""
     enew_name = ""
     ennew_name = ""
@@ -191,7 +192,7 @@ def getBnpcNameFromID(_id, aname, nname):
         m = re.search(nname, bnew_name, re.IGNORECASE)
         n = re.search(aname, bnew_name, re.IGNORECASE)
         if m or n:
-            return bnpcname[_id]["Singular_en"]
+            return bnpcname[_id][f"Singular_{lang}"]
     except Exception:
         pass
     try:
@@ -199,7 +200,7 @@ def getBnpcNameFromID(_id, aname, nname):
         m = re.search(nname, enew_name, re.IGNORECASE)
         n = re.search(aname, enew_name, re.IGNORECASE)
         if m or n:
-            return eobjname[_id]["Singular_en"]
+            return eobjname[_id][f"Singular_{lang}"]
     except Exception:
         pass
     try:
@@ -207,7 +208,7 @@ def getBnpcNameFromID(_id, aname, nname):
         m = re.search(nname, ennew_name, re.IGNORECASE)
         n = re.search(aname, ennew_name, re.IGNORECASE)
         if m or n:
-            return enpcresident[_id]["Singular_en"]
+            return enpcresident[_id][f"Singular_{lang}"]
     except Exception:
         pass
 
@@ -267,7 +268,7 @@ def getBnpcName(name, _id, lang="en"):
         nname = nname[:-2] + r"(\[a\]|(e|es|er|en))"
 
     if not _id == "":
-        resultname = getBnpcNameFromID(_id, aname, nname)
+        resultname = getBnpcNameFromID(_id, aname, nname, lang)
         if not resultname == "":
             return resultname
     # check results agains bnpcname
@@ -321,9 +322,9 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
     return name
 
 
-def translateAttack(skill_id, _type=action):
+def translateAttack(skill_id, _type=action, lang="en"):
     try:
-        text = _type[str(int(skill_id, 16))]["Name_en"]
+        text = _type[str(int(skill_id, 16))][f"Name_{lang}"]
         return fixCaptilaziationAndRomanNumerals(text)
     except KeyError:
         return f"Unknown_{skill_id}"
@@ -719,7 +720,12 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
             tmp = {
                 'title': attack['name'],
                 'title_id': attack_id,
-                'title_en': translateAttack(attack_id),
+                'title_en': translateAttack(attack_id, lang="en"),
+                'title_de': translateAttack(attack_id, lang="de"),
+                'title_fr': translateAttack(attack_id, lang="fr"),
+                'title_ja': translateAttack(attack_id, lang="ja"),
+                'title_cn': translateAttack(attack_id, lang="cn"),
+                'title_ko': translateAttack(attack_id, lang="ko"),
                 'attack_in_use': 'false',
                 'disable': 'false',
                 'type': 'regular',
@@ -761,7 +767,12 @@ def addknowndebuff(status_id, status_data):
     tmp_status = {
         'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
         'title_id': status_id,
-        'title_en': translateAttack(status_id, _type=status),
+        'title_en': translateAttack(status_id, _type=status, lang="en"),
+        'title_de': translateAttack(status_id, _type=status, lang="de"),
+        'title_fr': translateAttack(status_id, _type=status, lang="fr"),
+        'title_ja': translateAttack(status_id, _type=status, lang="ja"),
+        'title_cn': translateAttack(status_id, _type=status, lang="cn"),
+        'title_ko': translateAttack(status_id, _type=status, lang="ko"),
         'icon': status_data['icon'],
         'description': get_fixed_status_description(status_id),
         'debuff_in_use': 'true',
@@ -833,7 +844,12 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
             tmp_status = {
                 'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
                 'title_id': status_id,
-                'title_en': translateAttack(status_id, _type=status),
+                'title_en': translateAttack(status_id, _type=status, lang="en"),
+                'title_de': translateAttack(status_id, _type=status, lang="de"),
+                'title_fr': translateAttack(status_id, _type=status, lang="fr"),
+                'title_ja': translateAttack(status_id, _type=status, lang="ja"),
+                'title_cn': translateAttack(status_id, _type=status, lang="cn"),
+                'title_ko': translateAttack(status_id, _type=status, lang="ko"),
                 'icon': status_data['icon'],
                 'description': get_fixed_status_description(status_id),
                 'debuff_in_use': 'false',
@@ -992,7 +1008,12 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             enemy_id = new_enemy_data.get("id", "")
             tmp = {
                 "title": enemy if enemy != "" else "Unbekannte Herkunft",
-                "title_en": getBnpcName(enemy, enemy_id) if enemy != "" else "Unknown Source",
+                "title_en": getBnpcName(enemy, enemy_id, "en") if enemy != "" else "Unknown Source",
+                "title_de": getBnpcName(enemy, enemy_id, "de") if enemy != "" else "Unknown Source",
+                "title_fr": getBnpcName(enemy, enemy_id, "fr") if enemy != "" else "Unknown Source",
+                "title_ja": getBnpcName(enemy, enemy_id, "ja") if enemy != "" else "Unknown Source",
+                "title_cn": getBnpcName(enemy, enemy_id, "cn") if enemy != "" else "Unknown Source",
+                "title_ko": getBnpcName(enemy, enemy_id, "ko") if enemy != "" else "Unknown Source",
                 "enemy_id": enemy_id,
                 "id": f"{enemy_type[:-1]}{counter:02d}",
                 "attacks": [],
@@ -1233,16 +1254,17 @@ def rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next):
 
     _entry = getEntriesForRouletts(_entry)
     tt_type_name = get_territorytype_from_mapid(_entry["mapid"])
-    _entry["title_de"] = getContentName(_entry["title"], "de", _entry["difficulty"], _entry["instanceType"])
-    _entry["title_en"] = getContentName(_entry["title"], "en", _entry["difficulty"], _entry["instanceType"])
+    for lang in LANGUAGES:
+        _entry[f"title_{lang}"] = getContentName(_entry["title"], lang, _entry["difficulty"], _entry["instanceType"])
 
     if old_wip in ["True", "False"]:
         header_data += 'wip: "' + str(old_wip).title() + '"\n'
     else:
         header_data += 'wip: "True"\n'
     header_data += 'title: "' + _entry["title"] + '"\n'
-    header_data += 'title_de: "' + _entry["title_de"] + '"\n'
-    header_data += 'title_en: "' + _entry["title_en"] + '"\n'
+
+    for lang in LANGUAGES:
+        header_data += f'title_{lang}: "' + _entry[f"title_{lang}"] + '"\n'
     header_data += 'layout: guide_post\n'
     header_data += 'page_type: guide\n'
     header_data += f'excel_line: \"{index}\"\n'
@@ -1389,12 +1411,12 @@ def writeTags(header_data, _entry, tt_type_name):
         pass
 
     if not tt_type_name == "":
-        for lang in ["de", "en", "fr", "ja", "cn", "ko"]:
+        for lang in LANGUAGES:
             header_data += "  - term: \"" + tt_type_name["Name_" + lang] + "\"\n"
 
     #header_data += "    - term: \"" + _entry["title"] + "\"\n"
-    for lang in ["de", "en", "fr", "ja", "cn", "ko"]:
-        header_data += "  - term: \"" + getContentName(_entry["title"], lang, _entry["difficulty"], _entry["instanceType"]) + "\"\n"
+    for lang in LANGUAGES:
+        header_data += "  - term: \"" + _entry[f"title_{lang}"] + "\"\n"
 
     # write rest of the tags
     header_data += "  - term: \"" + _entry["difficulty"] + "\"\n"
@@ -1504,7 +1526,9 @@ def add_Mechanic(guide_data, data):
 def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
     enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
     guide_data += f'  - title: "{enemy_data["title"]}"\n'
-    guide_data += f'    title_en: "{enemy_data["title_en"]}"\n'
+    for lang in LANGUAGES:
+        if enemy_data.get(f"title_{lang}", None):
+            guide_data += f'    title_{lang}: "{enemy_data[f"title_{lang}"]}"\n'
     if type(enemy_data.get("enemy_id", "")) == list:
         guide_data += f'    enemy_id: "{", ".join(enemy_data.get("enemy_id", ""))}"\n'
     else:
@@ -1546,8 +1570,9 @@ def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
 def add_Debuff(guide_data, debuff, enemy_type):
     guide_data += f'      - title: "{debuff["title"]}"\n'
     guide_data += f'        title_id: "{debuff["title_id"]}"\n'
-    if debuff.get("title_en", None):
-        guide_data += f'        title_en: "{debuff["title_en"]}"\n'
+    for lang in LANGUAGES:
+        if debuff.get(f"title_{lang}", None):
+            guide_data += f'        title_{lang}: "{debuff[f"title_{lang}"]}"\n'
     guide_data += f'        icon: "{getImage(debuff["icon"])}"\n'
     guide_data += f'        description: "{debuff["description"]}"\n'
     if debuff.get("durations", None):
@@ -1589,8 +1614,9 @@ def add_Debuff(guide_data, debuff, enemy_type):
 def add_regular_Attack(guide_data, attack, enemy_type):
     guide_data += f'      - title: "{attack["title"]}"\n'
     guide_data += f'        title_id: "{attack["title_id"]}"\n'
-    if attack.get("title_en", None):
-        guide_data += f'        title_en: "{attack["title_en"]}"\n'
+    for lang in LANGUAGES:
+        if attack.get(f"title_{lang}", None):
+            guide_data += f'        title_{lang}: "{attack[f"title_{lang}"]}"\n'
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack.get("disable", "false")}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
@@ -1647,8 +1673,9 @@ def add_regular_Attack(guide_data, attack, enemy_type):
 
 def add_variation_Attack(guide_data, attack, enemy_type):
     guide_data += f'      - title: "{attack["title"]}"\n'
-    if attack.get("title_en", None):
-        guide_data += f'        title_en: "{attack["title_en"]}"\n'
+    for lang in LANGUAGES:
+        if attack.get(f"title_{lang}", None):
+            guide_data += f'        title_{lang}: "{attack[f"title_{lang}"]}"\n'
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack.get("disable", "false")}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
@@ -1715,8 +1742,9 @@ def add_variation_Attack(guide_data, attack, enemy_type):
 
 def add_combo_Attack(guide_data, attack, enemy_type):
     guide_data += f'      - title: "{attack["title"]}"\n'
-    if attack.get("title_en", None):
-        guide_data += f'        title_en: "{attack["title_en"]}"\n'
+    for lang in LANGUAGES:
+        if attack.get(f"title_{lang}", None):
+            guide_data += f'        title_{lang}: "{attack[f"title_{lang}"]}"\n'
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
@@ -1847,8 +1875,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if i not in [423]:
-               continue
+            #if i not in [423]:
+            #    continue
             entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
@@ -1900,7 +1928,7 @@ if __name__ == "__main__":
     # second run to fix boss order
     # run(sheet, max_row, max_column)
     # csgf.main()
-    #gl.links()
+    # gl.links()
 
     # below is a profiler
     # import cProfile
