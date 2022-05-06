@@ -86,7 +86,7 @@ example_add_sequence = {
 }
 
 
-storeFilesInTmp(True)
+storeFilesInTmp(False)
 logdata = get_any_Logdata()
 patchversions = get_any_Versiondata()
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
@@ -117,46 +117,46 @@ def checkVariable(element, name):
 
 
 discontinued_content = {
-    "Eureka Baldesions Arsenal": {
-        "de": "Eureka Baldesions Arsenal",
-        "en": "The Baldesion Arsenal",
-        "fr": "Eurêka et son arsenal",
-        "ja": "バルデシオンアーセナル",
-        "cn": "兵武塔",
-        "ko": "발데시온 무기고"
-    },
-    "Traumprüfung - Shiva": {
-        "de": "Traumprüfung - Shiva",
-        "en": "the Akh Afah Amphitheatre (Unreal)",
-        "fr": "l'Amphithéâtre d'Akh Afah (irréel)",
-        "ja": "幻シヴァ討滅戦",
-        "cn": "希瓦幻巧战",
-        "ko": "환 시바 토벌전"
-    },
-    "Traumprüfung - Leviathan": {
-        "de": "Traumprüfung - Leviathan",
-        "en": "the Whorleater (Unreal)",
-        "fr": "le Briseur de marées (irréel)",
-        "ja": "幻リヴァイアサン討滅戦",
-        "cn": "利维亚桑幻巧战",
-        "ko": "환 리바이어선 토벌전"
-    },
-    "Traumprüfung - Titan": {
-        "de": "Traumprüfung - Titan",
-        "en": "the Navel (Unreal)",
-        "fr": "le Nombril (irréel)",
-        "ja": "極タイタン討滅戦",
-        "cn": "泰坦歼殛战",
-        "ko": "극 타이탄 토벌전"
-    },
-    "Traumprüfung - Ultima": {
-        "de": "Traumprüfung - Ultima",
-        "en": "Ultima's Bane (Unreal)",
-        "fr": "Le fléau d'Ultima (irréel)",
-        "ja": "幻アルテマウェポン破壊作戦",
-        "cn": "",
-        "ko": ""
-    }
+    #"Eureka Baldesions Arsenal": {
+    #    "cn": "兵武塔",
+    #    "de": "Eureka Baldesions Arsenal",
+    #    "en": "The Baldesion Arsenal",
+    #    "fr": "Eurêka et son arsenal",
+    #    "ja": "バルデシオンアーセナル",
+    #    "ko": "발데시온 무기고"
+    #},
+    #"Traumprüfung - Shiva": {
+    #    "cn": "希瓦幻巧战",
+    #    "de": "Traumprüfung - Shiva",
+    #    "en": "the Akh Afah Amphitheatre (Unreal)",
+    #    "fr": "l'Amphithéâtre d'Akh Afah (irréel)",
+    #    "ja": "幻シヴァ討滅戦",
+    #    "ko": "환 시바 토벌전"
+    #},
+    #"Traumprüfung - Leviathan": {
+    #    "cn": "利维亚桑幻巧战",
+    #    "de": "Traumprüfung - Leviathan",
+    #    "en": "the Whorleater (Unreal)",
+    #    "fr": "le Briseur de marées (irréel)",
+    #    "ja": "幻リヴァイアサン討滅戦",
+    #    "ko": "환 리바이어선 토벌전"
+    #},
+    #"Traumprüfung - Titan": {
+    #    "cn": "泰坦歼殛战",
+    #    "de": "Traumprüfung - Titan",
+    #    "en": "the Navel (Unreal)",
+    #    "fr": "le Nombril (irréel)",
+    #    "ja": "極タイタン討滅戦",
+    #    "ko": "극 타이탄 토벌전"
+    #},
+    #"Traumprüfung - Ultima": {
+    #    "de": "Traumprüfung - Ultima",
+    #    "en": "Ultima's Bane (Unreal)",
+    #    "fr": "Le fléau d'Ultima (irréel)",
+    #    "ja": "幻アルテマウェポン破壊作戦",
+    #    "cn": "",
+    #    "ko": ""
+    #}
 }
 
 
@@ -514,7 +514,7 @@ def cleanup_logdata(logdata_instance_content):
 def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack):
     for attack_id in new_enemy_data.get('skill', {}):
         for attack in old_enemy_data.get('attacks', []):
-            existing_attacks[attack['title']] = attack['type']
+            existing_attacks[attack['title']['de']] = attack['type']
             if attack_id == attack.get('title_id', None):
                 remove_attack.append(attack_id)
             if attack.get("variation", None):
@@ -585,16 +585,24 @@ def delete_invalid_entries(tmp_attack):
 
 def sort_list_of_skills(data):
     if data.get('attacks', None):
-        data['attacks'] = sorted(data['attacks'], key=itemgetter('title'))
+        data['attacks'] = sorted(data['attacks'], key=itemgetter('sortname'))
         unknown_attacks = []
         known_attacks = []
         for attack in data['attacks']:
-            if attack['title'].startswith("Unknown_"):
+            if attack['title']['de'].startswith("Unknown_"):
                 unknown_attacks.append(attack)
             else:
                 known_attacks.append(attack)
         data['attacks'] = unknown_attacks + known_attacks
     return data
+
+
+def addSortName(old_enemy_data, type_):
+    if old_enemy_data.get(type_, None):
+        for i, attack in enumerate(old_enemy_data[type_]):
+            if not old_enemy_data[type_][i].get('sortname', None):
+                old_enemy_data[type_][i]['sortname'] = old_enemy_data[type_][i]['title']['de']
+    return old_enemy_data
 
 
 def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
@@ -605,6 +613,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
     # remove skill ids if they were found before
     new_enemy_data = remove_skills_from_list_if_found(remove_attack, new_enemy_data)
 
+    old_enemy_data = addSortName(old_enemy_data, "attacks")
     old_enemy_data = sort_list_of_skills(old_enemy_data)
     if not new_enemy_data.get('skill', None):
         return old_enemy_data
@@ -619,14 +628,21 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 # find attack
                 attack_index = None
                 for i, old_attack in enumerate(old_enemy_data['attacks']):
-                    if old_attack.get('title', None) == attack['name']:
+                    if old_attack.get('title', {}).get('de', None) == attack['name']:
                         attack_index = i
                         break
                 tmp_attack = old_enemy_data['attacks'][attack_index]
                 tmp_attack['type'] = "variation"
                 tmp_attack['notes'] = [{'note': 'Variation-note BIG'}]
                 tmp = {
-                    'title': tmp_attack['title'],
+                    'title': {
+                        'en': translateAttack(tmp_attack['title_id'], lang="en"),
+                        'de': translateAttack(tmp_attack['title_id'], lang="de"),
+                        'fr': translateAttack(tmp_attack['title_id'], lang="fr"),
+                        'ja': translateAttack(tmp_attack['title_id'], lang="ja"),
+                        'cn': translateAttack(tmp_attack['title_id'], lang="cn"),
+                        'ko': translateAttack(tmp_attack['title_id'], lang="ko")
+                    },
                     'title_id': tmp_attack['title_id'],
                     'damage_type': tmp_attack['damage_type'],
                     'single_or_aoe': attack['type_id']
@@ -657,7 +673,14 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
 
                 # add new attack
                 tmp2 = {
-                    'title': attack['name'],
+                    'title': {
+                        'en': translateAttack(attack_id, lang="en"),
+                        'de': translateAttack(attack_id, lang="de"),
+                        'fr': translateAttack(attack_id, lang="fr"),
+                        'ja': translateAttack(attack_id, lang="ja"),
+                        'cn': translateAttack(attack_id, lang="cn"),
+                        'ko': translateAttack(attack_id, lang="ko")
+                    },
                     'title_id': attack_id,
                     'damage_type': attack['damage_type'],
                     'single_or_aoe': attack['type_id']
@@ -692,13 +715,20 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 # find attack
                 attack_index = None
                 for i, old_attack in enumerate(old_enemy_data['attacks']):
-                    if old_attack.get('title', None) == attack['name']:
+                    if old_attack.get('title', {}).get('de', None) == attack['name']:
                         attack_index = i
                         break
                 tmp_attack = old_enemy_data['attacks'][attack_index]
                 # add new attack
                 tmp = {
-                    'title': attack['name'],
+                    'title': {
+                        'en': translateAttack(attack_id, lang="en"),
+                        'de': translateAttack(attack_id, lang="de"),
+                        'fr': translateAttack(attack_id, lang="fr"),
+                        'ja': translateAttack(attack_id, lang="ja"),
+                        'cn': translateAttack(attack_id, lang="cn"),
+                        'ko': translateAttack(attack_id, lang="ko")
+                    },
                     'title_id': attack_id,
                     'damage_type': attack['damage_type'],
                     'single_or_aoe': attack['type_id']
@@ -722,14 +752,16 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
             print_color_blue("\t\tAdded new entry for regular: " + attack['name'], disable_blue_print)
             # create new regular
             tmp = {
-                'title': attack['name'],
+                'sortname': translateAttack(attack_id, lang="de"),
+                'title': {
+                    'en': translateAttack(attack_id, lang="en"),
+                    'de': translateAttack(attack_id, lang="de"),
+                    'fr': translateAttack(attack_id, lang="fr"),
+                    'ja': translateAttack(attack_id, lang="ja"),
+                    'cn': translateAttack(attack_id, lang="cn"),
+                    'ko': translateAttack(attack_id, lang="ko")
+                },
                 'title_id': attack_id,
-                'title_en': translateAttack(attack_id, lang="en"),
-                'title_de': translateAttack(attack_id, lang="de"),
-                'title_fr': translateAttack(attack_id, lang="fr"),
-                'title_ja': translateAttack(attack_id, lang="ja"),
-                'title_cn': translateAttack(attack_id, lang="cn"),
-                'title_ko': translateAttack(attack_id, lang="ko"),
                 'attack_in_use': 'false',
                 'disable': 'false',
                 'type': 'regular',
@@ -745,14 +777,14 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 tmp["damage"]["min"] = attack['damage']['min']
                 tmp["damage"]["max"] = attack['damage']['max']
 
-            if tmp['title'] == "Attacke":
+            if tmp['title']['de'] == "Attacke":
                 tmp['attack_in_use'] = 'true'
                 tmp['disable'] = 'true'
                 tmp['roles'][0]['role'] = 'Tank'
                 tmp['tags'][0]['tag'] = 'Auto-Angriff'
                 del tmp['notes']
 
-            if tmp['title'].startswith("Unknown_"):
+            if tmp['title']['de'].startswith("Unknown_"):
                 tmp['disable'] = 'true'
 
             if enemy_type == "adds" and tmp.get("notes", None):
@@ -769,14 +801,16 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
 
 def addknowndebuff(status_id, status_data):
     tmp_status = {
-        'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
+        'sortname': translateAttack(status_id, _type=status, lang="de"),
+        'title': {
+            'en': translateAttack(status_id, _type=status, lang="en"),
+            'de': translateAttack(status_id, _type=status, lang="de"),
+            'fr': translateAttack(status_id, _type=status, lang="fr"),
+            'ja': translateAttack(status_id, _type=status, lang="ja"),
+            'cn': translateAttack(status_id, _type=status, lang="cn"),
+            'ko': translateAttack(status_id, _type=status, lang="ko")
+        },
         'title_id': status_id,
-        'title_en': translateAttack(status_id, _type=status, lang="en"),
-        'title_de': translateAttack(status_id, _type=status, lang="de"),
-        'title_fr': translateAttack(status_id, _type=status, lang="fr"),
-        'title_ja': translateAttack(status_id, _type=status, lang="ja"),
-        'title_cn': translateAttack(status_id, _type=status, lang="cn"),
-        'title_ko': translateAttack(status_id, _type=status, lang="ko"),
         'icon': status_data['icon'],
         'description': get_fixed_status_description(status_id),
         'debuff_in_use': 'true',
@@ -808,7 +842,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
     disable_yellow_print = True
     old_enemy_data["debuffs"] = tmp_debuffs
 
-    if not new_enemy_data.get('title', "") == 'Unbekannte Herkunft':
+    if not new_enemy_data.get('title', {}).get('de', "") == 'Unbekannte Herkunft':
         # remove debuffs already manually adjusted
         for debuff in saved_used_skills_to_ignore_in_last:
             try:
@@ -824,11 +858,12 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
     # remove skill ids if they were found before
     new_enemy_data = remove_status_from_list_if_found(remove_attack, new_enemy_data)
 
+    old_enemy_data = addSortName(old_enemy_data, "debuffs")
     # merge new keys
     if not old_enemy_data.get('debuffs', None):
         old_enemy_data['debuffs'] = []
     else:
-        old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('title'))
+        old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('sortname'))
 
     if not new_enemy_data.get('status', None):
         return old_enemy_data, saved_used_skills_to_ignore_in_last
@@ -846,14 +881,16 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
             tmp_status = addknowndebuff(status_id, status_data)
         else:
             tmp_status = {
-                'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
+                'sortname': translateAttack(status_id, _type=status, lang="de"),
+                'title': {
+                    'en': translateAttack(status_id, _type=status, lang="en"),
+                    'de': translateAttack(status_id, _type=status, lang="de"),
+                    'fr': translateAttack(status_id, _type=status, lang="fr"),
+                    'ja': translateAttack(status_id, _type=status, lang="ja"),
+                    'cn': translateAttack(status_id, _type=status, lang="cn"),
+                    'ko': translateAttack(status_id, _type=status, lang="ko")
+                },
                 'title_id': status_id,
-                'title_en': translateAttack(status_id, _type=status, lang="en"),
-                'title_de': translateAttack(status_id, _type=status, lang="de"),
-                'title_fr': translateAttack(status_id, _type=status, lang="fr"),
-                'title_ja': translateAttack(status_id, _type=status, lang="ja"),
-                'title_cn': translateAttack(status_id, _type=status, lang="cn"),
-                'title_ko': translateAttack(status_id, _type=status, lang="ko"),
                 'icon': status_data['icon'],
                 'description': get_fixed_status_description(status_id),
                 'debuff_in_use': 'false',
@@ -867,14 +904,14 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
             if status_data.get('duration', None):
                 tmp_status["durations"] = status_data['duration']
         old_enemy_data['debuffs'].append(tmp_status)
-    old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('title'))
+    old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('sortname'))
     return old_enemy_data, saved_used_skills_to_ignore_in_last
 
 
 def setMultipleLanguageStrings(guide_data, elementName, elemntArray, spaces):
     for lang in LANGUAGES:
-        if elemntArray.get(f"{elementName}{lang}", None):
-            guide_data += f'{spaces}{lang}: "{elemntArray[f"{elementName}{lang}"]}"\n'
+        if elemntArray[elementName].get(f"{lang}", None):
+            guide_data += f'{spaces}{lang}: "{elemntArray[elementName][lang]}"\n'
     return guide_data
 
 #####################################################################################################################################################
@@ -942,7 +979,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
         if _entry.get(enemy_type, None) and enemy_type == "bosse":
             for enemy in _entry[enemy_type]:
                 for old_enemy_data in _old_enemy:
-                    if old_enemy_data['title'].lower() == enemy.lower():
+                    if old_enemy_data['title'].get('de', "").lower() == enemy.lower():
                         final_old_enemy.append(old_enemy_data)
         # if you created a new order, apply it
         if not final_old_enemy == []:
@@ -950,16 +987,16 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
 
         saved_used_skills_to_ignore_in_last = []
         for i, old_enemy_data in enumerate(_old_enemy):
-            if old_enemy_data['title'] == "":
+            if old_enemy_data['title']['de'] == "":
                 continue
-            elif old_enemy_data['title'] == "Unbekannte Herkunft":
+            elif old_enemy_data['title']['de'] == "Unbekannte Herkunft":
                 empty_enemy_available = True
 
-            old_enemy_data['title'] = old_enemy_data['title'].replace("&#246;", "ö").replace("&#252;", "ü").replace("&#228;", "ä").replace("&#223;", "ß")
-            print_color_yellow(f"\tWork on '{old_enemy_data['title']}'", disable_yellow_print)
+            old_enemy_data['title']['de'] = old_enemy_data['title']['de'].replace("&#246;", "ö").replace("&#252;", "ü").replace("&#228;", "ä").replace("&#223;", "ß")
+            print_color_yellow(f"\tWork on '{old_enemy_data['title']['de']}'", disable_yellow_print)
             empty_enemy_data = {}
             try:
-                new_enemy_data = logdata_instance_content[old_enemy_data['title']]
+                new_enemy_data = logdata_instance_content[old_enemy_data['title']['de']]
                 if enemy_type == 'bosse' and len(_old_enemy) == i + 1:
                     empty_enemy_data = logdata_instance_content['']
             except Exception:
@@ -1017,13 +1054,15 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
             # create new template file to merge against
             enemy_id = new_enemy_data.get("id", "")
             tmp = {
-                "title": enemy if enemy != "" else "Unbekannte Herkunft",
-                "title_en": getBnpcName(enemy, enemy_id, "en") if enemy != "" else "Unknown Source",
-                "title_de": getBnpcName(enemy, enemy_id, "de") if enemy != "" else "Unknown Source",
-                "title_fr": getBnpcName(enemy, enemy_id, "fr") if enemy != "" else "Unknown Source",
-                "title_ja": getBnpcName(enemy, enemy_id, "ja") if enemy != "" else "Unknown Source",
-                "title_cn": getBnpcName(enemy, enemy_id, "cn") if enemy != "" else "Unknown Source",
-                "title_ko": getBnpcName(enemy, enemy_id, "ko") if enemy != "" else "Unknown Source",
+                "sortname": getBnpcName(enemy, enemy_id, "de") if enemy != "" else "Unbekannte Herkunft",
+                "title": {
+                    "en": getBnpcName(enemy, enemy_id, "en") if enemy != "" else "Unknown Source",
+                    "de": getBnpcName(enemy, enemy_id, "de") if enemy != "" else "Unbekannte Herkunft",
+                    "fr": getBnpcName(enemy, enemy_id, "fr") if enemy != "" else "Unknown Source",
+                    "ja": getBnpcName(enemy, enemy_id, "ja") if enemy != "" else "Unknown Source",
+                    "cn": getBnpcName(enemy, enemy_id, "cn") if enemy != "" else "Unknown Source",
+                    "ko": getBnpcName(enemy, enemy_id, "ko") if enemy != "" else "Unknown Source"
+                },
                 "enemy_id": enemy_id,
                 "id": f"{enemy_type[:-1]}{counter:02d}",
                 "attacks": [],
@@ -1036,10 +1075,10 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
                 tmp["hp"]["max"] = new_enemy_data.get("maxHP", "")
 
             enemy_data = merge_attacks(tmp, new_enemy_data, enemy_type)
-            enemy_data['attacks'] = sorted(enemy_data['attacks'], key=itemgetter('title'))
+            enemy_data['attacks'] = sorted(enemy_data['attacks'], key=itemgetter('sortname'))
 
             enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(tmp, new_enemy_data, enemy_type, [])
-            enemy_data['debuffs'] = sorted(enemy_data['debuffs'], key=itemgetter('title'))
+            enemy_data['debuffs'] = sorted(enemy_data['debuffs'], key=itemgetter('sortname'))
             if enemy == "":
                 empty_enemy = enemy_data
             else:
@@ -1536,7 +1575,7 @@ def add_Mechanic(guide_data, data):
 def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
     enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
     guide_data += f'  - title:\n'
-    guide_data = setMultipleLanguageStrings(guide_data, "title_", enemy_data, "      ")
+    guide_data = setMultipleLanguageStrings(guide_data, "title", enemy_data, "      ")
     if type(enemy_data.get("enemy_id", "")) == list:
         guide_data += f'    enemy_id: "{", ".join(enemy_data.get("enemy_id", ""))}"\n'
     else:
@@ -1577,7 +1616,7 @@ def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
 
 def add_Debuff(guide_data, debuff, enemy_type):
     guide_data += f'      - title:\n'
-    guide_data = setMultipleLanguageStrings(guide_data, "title_", debuff, "          ")
+    guide_data = setMultipleLanguageStrings(guide_data, "title", debuff, "          ")
     guide_data += f'        title_id: "{debuff["title_id"]}"\n'
     guide_data += f'        icon: "{getImage(debuff["icon"])}"\n'
     guide_data += f'        description: "{debuff["description"]}"\n'
@@ -1592,7 +1631,7 @@ def add_Debuff(guide_data, debuff, enemy_type):
         for phase in debuff.get('phases', {}):
             guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
 
-    if debuff["title"].startswith("Unknown_"):
+    if debuff["title"]['de'].startswith("Unknown_"):
         return guide_data
 
     if debuff.get('roles', None):
@@ -1619,7 +1658,7 @@ def add_Debuff(guide_data, debuff, enemy_type):
 
 def add_regular_Attack(guide_data, attack, enemy_type):
     guide_data += f'      - title:\n'
-    guide_data = setMultipleLanguageStrings(guide_data, "title_", attack, "          ")
+    guide_data = setMultipleLanguageStrings(guide_data, "title", attack, "          ")
     guide_data += f'        title_id: "{attack["title_id"]}"\n'
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack.get("disable", "false")}"\n'
@@ -1640,7 +1679,7 @@ def add_regular_Attack(guide_data, attack, enemy_type):
         for phase in attack.get('phases', {}):
             guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
 
-    if attack["title"].startswith("Unknown_"):
+    if attack["title"]['de'].startswith("Unknown_"):
         return guide_data
 
     if attack.get('roles', None):
@@ -1677,7 +1716,7 @@ def add_regular_Attack(guide_data, attack, enemy_type):
 
 def add_variation_Attack(guide_data, attack, enemy_type):
     guide_data += f'      - title:\n'
-    guide_data = setMultipleLanguageStrings(guide_data, "title_", attack, "          ")
+    guide_data = setMultipleLanguageStrings(guide_data, "title", attack, "          ")
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack.get("disable", "false")}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
@@ -1695,7 +1734,8 @@ def add_variation_Attack(guide_data, attack, enemy_type):
     if attack.get('variation', None):
         guide_data += f'        variation:\n'
         for variation in attack.get('variation', {}):
-            guide_data += f'          - title: "{variation["title"]}"\n'
+            guide_data += f'          - title:\n'
+            guide_data = setMultipleLanguageStrings(guide_data, "title", variation, "              ")
             guide_data += f'            title_id: "{variation["title_id"]}"\n'
             guide_data += f'            damage_type: "{variation.get("damage_type", None)}"\n'
 
@@ -1744,7 +1784,7 @@ def add_variation_Attack(guide_data, attack, enemy_type):
 
 def add_combo_Attack(guide_data, attack, enemy_type):
     guide_data += f'      - title:\n'
-    guide_data = setMultipleLanguageStrings(guide_data, "title_", attack, "          ")
+    guide_data = setMultipleLanguageStrings(guide_data, "title", attack, "          ")
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
@@ -1875,7 +1915,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [423]:
+            #if i not in [84]:
+            #if i > 20:
             #    continue
             entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled

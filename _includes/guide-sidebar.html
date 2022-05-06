@@ -288,7 +288,12 @@
                     <ul class="guide-metadata__submenu">
                         {%- for boss in page.bosses -%}
                             <li>
-                                <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title }}" class="guide-metadata__menu-link">{{ boss.title }}</a>
+                                <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title.de }}" class="lang-toggle lang-toogle-de guide-metadata__menu-link">{{ boss.title.de }}</a>
+                                <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title.en }}" class="lang-toggle lang-toogle-en guide-metadata__menu-link">{{ boss.title.en }}</a>
+                                <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title.fr }}" class="lang-toggle lang-toogle-fr guide-metadata__menu-link">{{ boss.title.fr }}</a>
+                                <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title.ja }}" class="lang-toggle lang-toogle-ja guide-metadata__menu-link">{{ boss.title.ja }}</a>
+                                <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title.cn }}" class="lang-toggle lang-toogle-cn guide-metadata__menu-link">{{ boss.title.cn }}</a>
+                                <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title.ko }}" class="lang-toggle lang-toogle-ko guide-metadata__menu-link">{{ boss.title.ko }}</a>
                             </li>
                         {%- endfor -%}
                     </ul>
@@ -312,7 +317,12 @@
                     <ul class="guide-metadata__submenu">
                         {%- for add in page.adds -%}
                             <li>
-                                <a href="#" data-id="{{ add.id }}" title="Go to {{ add.title }}" class="guide-metadata__menu-link">{{ add.title }}</a>
+                                <a href="#" data-id="{{ add.id }}" title="Go to {{ add.title.de }}" class="lang-toggle lang-toogle-de guide-metadata__menu-link">{{ add.title.de }}</a>
+                                <a href="#" data-id="{{ add.id }}" title="Go to {{ add.title.en }}" class="lang-toggle lang-toogle-en guide-metadata__menu-link">{{ add.title.en }}</a>
+                                <a href="#" data-id="{{ add.id }}" title="Go to {{ add.title.fr }}" class="lang-toggle lang-toogle-fr guide-metadata__menu-link">{{ add.title.fr }}</a>
+                                <a href="#" data-id="{{ add.id }}" title="Go to {{ add.title.ja }}" class="lang-toggle lang-toogle-ja guide-metadata__menu-link">{{ add.title.ja }}</a>
+                                <a href="#" data-id="{{ add.id }}" title="Go to {{ add.title.cn }}" class="lang-toggle lang-toogle-cn guide-metadata__menu-link">{{ add.title.cn }}</a>
+                                <a href="#" data-id="{{ add.id }}" title="Go to {{ add.title.ko }}" class="lang-toggle lang-toogle-ko guide-metadata__menu-link">{{ add.title.ko }}</a>
                             </li>
                         {%- endfor -%}
                     </ul>
