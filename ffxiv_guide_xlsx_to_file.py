@@ -325,7 +325,10 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
 def translateAttack(skill_id, _type=action, lang="en"):
     try:
         text = _type[str(int(skill_id, 16))][f"Name_{lang}"]
-        return fixCaptilaziationAndRomanNumerals(text)
+        text = fixCaptilaziationAndRomanNumerals(text)
+        if text == "":
+            text = f"Unknown_{skill_id}"
+        return text
     except KeyError:
         return f"Unknown_{skill_id}"
 
@@ -337,6 +340,7 @@ def fixCaptilaziationAndRomanNumerals(text):
     text = re.sub(r" (Ii) ", lambda x:  x.group(0).upper(), text)
     text = re.sub(r"('[a-zA-Z])(?! )", lambda x:  x.group(0).upper(), text)
     text = re.sub(r"('[a-zA-Z]) ", lambda x:  x.group(0).lower(), text)
+    text = text.replace('"', r'\"')
     return text
 
 
@@ -866,6 +870,12 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
     old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('title'))
     return old_enemy_data, saved_used_skills_to_ignore_in_last
 
+
+def setMultipleLanguageStrings(guide_data, elementName, elemntArray, spaces):
+    for lang in LANGUAGES:
+        if elemntArray.get(f"{elementName}{lang}", None):
+            guide_data += f'{spaces}{lang}: "{elemntArray[f"{elementName}{lang}"]}"\n'
+    return guide_data
 
 #####################################################################################################################################################
 
@@ -1525,10 +1535,8 @@ def add_Mechanic(guide_data, data):
 
 def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
     enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
-    guide_data += f'  - title: "{enemy_data["title"]}"\n'
-    for lang in LANGUAGES:
-        if enemy_data.get(f"title_{lang}", None):
-            guide_data += f'    title_{lang}: "{enemy_data[f"title_{lang}"]}"\n'
+    guide_data += f'  - title:\n'
+    guide_data = setMultipleLanguageStrings(guide_data, "title_", enemy_data, "      ")
     if type(enemy_data.get("enemy_id", "")) == list:
         guide_data += f'    enemy_id: "{", ".join(enemy_data.get("enemy_id", ""))}"\n'
     else:
@@ -1568,11 +1576,9 @@ def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
 
 
 def add_Debuff(guide_data, debuff, enemy_type):
-    guide_data += f'      - title: "{debuff["title"]}"\n'
+    guide_data += f'      - title:\n'
+    guide_data = setMultipleLanguageStrings(guide_data, "title_", debuff, "          ")
     guide_data += f'        title_id: "{debuff["title_id"]}"\n'
-    for lang in LANGUAGES:
-        if debuff.get(f"title_{lang}", None):
-            guide_data += f'        title_{lang}: "{debuff[f"title_{lang}"]}"\n'
     guide_data += f'        icon: "{getImage(debuff["icon"])}"\n'
     guide_data += f'        description: "{debuff["description"]}"\n'
     if debuff.get("durations", None):
@@ -1612,11 +1618,9 @@ def add_Debuff(guide_data, debuff, enemy_type):
 
 
 def add_regular_Attack(guide_data, attack, enemy_type):
-    guide_data += f'      - title: "{attack["title"]}"\n'
+    guide_data += f'      - title:\n'
+    guide_data = setMultipleLanguageStrings(guide_data, "title_", attack, "          ")
     guide_data += f'        title_id: "{attack["title_id"]}"\n'
-    for lang in LANGUAGES:
-        if attack.get(f"title_{lang}", None):
-            guide_data += f'        title_{lang}: "{attack[f"title_{lang}"]}"\n'
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack.get("disable", "false")}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
@@ -1672,10 +1676,8 @@ def add_regular_Attack(guide_data, attack, enemy_type):
 
 
 def add_variation_Attack(guide_data, attack, enemy_type):
-    guide_data += f'      - title: "{attack["title"]}"\n'
-    for lang in LANGUAGES:
-        if attack.get(f"title_{lang}", None):
-            guide_data += f'        title_{lang}: "{attack[f"title_{lang}"]}"\n'
+    guide_data += f'      - title:\n'
+    guide_data = setMultipleLanguageStrings(guide_data, "title_", attack, "          ")
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack.get("disable", "false")}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
@@ -1741,10 +1743,8 @@ def add_variation_Attack(guide_data, attack, enemy_type):
 
 
 def add_combo_Attack(guide_data, attack, enemy_type):
-    guide_data += f'      - title: "{attack["title"]}"\n'
-    for lang in LANGUAGES:
-        if attack.get(f"title_{lang}", None):
-            guide_data += f'        title_{lang}: "{attack[f"title_{lang}"]}"\n'
+    guide_data += f'      - title:\n'
+    guide_data = setMultipleLanguageStrings(guide_data, "title_", attack, "          ")
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'

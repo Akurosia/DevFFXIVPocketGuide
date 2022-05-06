@@ -6,12 +6,33 @@
     <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <h4 class="guide__accordion-trigger-title">
         <img class="debuff_icon" src="{{ site.imageurl }}/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
-        <span class="{%- if debuff.damage_type == 'Magical' -%}attack-is-magic
-                     {%- elsif debuff.damage_type && debuff.damage_type != 'None' -%}attack-is-physical
-                     {%- endif -%}">
-            {{ debuff.title }}</span>
-        {%- if debuff.title_en -%}
-            <div class="guide__accordion-trigger-subtitle"> | {{ debuff.title_en }}</div>
+        <span class="lang-toggle lang-toogle-de {% if debuff.damage_type == 'Magical' %} attack-is-magic
+                     {% elsif debuff.damage_type && debuff.damage_type != 'None' %} attack-is-physical
+                     {% endif %}">
+            {{ debuff.title.de }}</span>
+        <span class="lang-toggle lang-toogle-en {% if debuff.damage_type == 'Magical' %} attack-is-magic
+                     {% elsif debuff.damage_type && debuff.damage_type != 'None' %} attack-is-physical
+                     {% endif %}">
+            {{ debuff.title.en }}</span>
+        <span class="lang-toggle lang-toogle-fr {% if debuff.damage_type == 'Magical' %} attack-is-magic
+                     {% elsif debuff.damage_type && debuff.damage_type != 'None' %} attack-is-physical
+                     {% endif %}">
+            {{ debuff.title.fr }}</span>
+        <span class="lang-toggle lang-toogle-ja {% if debuff.damage_type == 'Magical' %} attack-is-magic
+                     {% elsif debuff.damage_type && debuff.damage_type != 'None' %} attack-is-physical
+                     {% endif %}">
+            {{ debuff.title.ja }}</span>
+        <span class="lang-toggle lang-toogle-cn {% if debuff.damage_type == 'Magical' %} attack-is-magic
+                     {% elsif debuff.damage_type && debuff.damage_type != 'None' %} attack-is-physical
+                     {% endif %}">
+            {{ debuff.title.cn }}</span>
+        <span class="lang-toggle lang-toogle-ko {% if debuff.damage_type == 'Magical' %} attack-is-magic
+                     {% elsif debuff.damage_type && debuff.damage_type != 'None' %} attack-is-physical
+                     {% endif %}">
+            {{ debuff.title.ko }}</span>
+
+        {%- if debuff.title.en -%}
+            <div class="guide__accordion-trigger-subtitle"> | {{ debuff.title.en }}</div>
         {%- endif -%}
         {%- if debuff.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title }}', 'debuff')">Skill-ID: {{ debuff.title_id }}</div>
