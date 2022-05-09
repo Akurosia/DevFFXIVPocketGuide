@@ -1,0 +1,29 @@
+<div class="guide__combo-tag-wrapper">
+    {%- if attack.variation -%}
+        <h5 class="guide__accordion-trigger-title">
+            {%- if variation.title_id -%}
+                <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ variation.title_id }}', '{{ enemy.title.de }}', 'attack')">Skill-ID: {{ variation.title_id }}</div>
+            {%- endif -%}
+            <div class="guide__accordion-tag-wrapper">
+            {%- for role in variation.roles -%}
+              <span class="guide__combo-tag--role">{{ role.role }}</span>
+            {%- endfor -%}
+            {%- for action in variation.dutyActions -%}
+              <span class="guide__combo-tag--duty-action">Duty Action</span>
+            {%- endfor -%}
+            {%- for tag in variation.tags -%}
+              <span class="guide__combo-tag--attack">{{ tag.tag }}</span>
+            {%- endfor -%}
+            {%- if variation.damage -%}
+                <div class="guide__accordion-trigger-id">DMG:
+                    {%- if variation.damage[0].min == variation.damage[1].max -%}
+                        {{ variation.damage[0].min | intcomma: '.' }}
+                    {%- else -%}
+                        {{ variation.damage[0].min | intcomma: '.' }}{%- if variation.damage[0].min && variation.damage[1].max -%} - {%- endif -%}{{ variation.damage[1].max | intcomma: '.' }}
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
+            </div>
+        </h5>
+    {%- endif -%}
+</div>

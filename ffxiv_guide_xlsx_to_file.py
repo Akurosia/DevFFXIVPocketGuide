@@ -10,24 +10,18 @@ import re
 import errno
 import openpyxl
 import yaml
+from yaml.loader import SafeLoader
 import math
 import natsort
 from collections import OrderedDict
 import convert_skills_to_guide_form as csgf
 import generateLinks as gl
+import logging
 
 import sys
 from ffxiv_aku import *
 
-try:
-    from yaml import CLoader as Loader
-except ImportError:
-    from yaml import Loader
-
-disable_green_print = True
-disable_yellow_print = True
-disable_blue_print = True
-
+import logging
 
 enemy = {
     "title": "",
@@ -86,7 +80,38 @@ example_add_sequence = {
 }
 
 
-storeFilesInTmp(True)
+class CustomFormatter(logging.Formatter):
+    grey = "\x1b[38;20m"
+    yellow = "\x1b[33;20m"
+    red = "\x1b[31;20m"
+    bold_red = "\x1b[31;1m"
+    reset = "\x1b[0m"
+    format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s (%(filename)s:%(lineno)d)"
+    FORMATS = {
+        logging.DEBUG: wrap_in_color_green(format),
+        logging.INFO: wrap_in_color_blue(format),
+        logging.WARNING: wrap_in_color_yellow(format),
+        logging.ERROR: wrap_in_color_red(format),
+        logging.CRITICAL: bold_red + format + reset
+    }
+    def format(self, record):
+        log_fmt = self.FORMATS.get(record.levelno)
+        formatter = logging.Formatter(log_fmt)
+        return formatter.format(record)
+
+logger = logging.getLogger("My_app")
+logger.setLevel(logging.CRITICAL)
+ch = logging.StreamHandler()
+ch.setLevel(logging.CRITICAL)
+ch.setFormatter(CustomFormatter())
+logger.addHandler(ch)
+
+disable_green_print = True
+disable_yellow_print = True
+disable_blue_print = True
+disable_red_print = True
+
+storeFilesInTmp(False)
 logdata = get_any_Logdata()
 patchversions = get_any_Versiondata()
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
@@ -108,189 +133,100 @@ minions = loadDataTheQuickestWay("companion_all.json", translate=True)
 orchestrions = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
 ttcards = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
+XLSXELEMENTS = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest_id", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
+UNKNOWNTITLE = { 'de': 'Unbekannte Herkunft', 'en': 'Unknown Source', 'fr': 'Unknown Source', 'ja': 'Unknown Source', 'cn': 'Unknown Source', 'ko': 'Unknown Source' }
+
+def read_xlsx_file():
+    # open file, get sheet, last row and last coulmn
+    wb = openpyxl.load_workbook('./guide_ffxiv.xlsx')
+    sheet = wb['Tabelle1']
+    max_row = sheet.max_row
+    max_column = sheet.max_column
+    return sheet, max_row, max_column
 
 
-def checkVariable(element, name):
-    if element[name] and not element[name] == "###":
-        return True
-    return False
+def getPrevAndNextContentOrder(sheet, elements, max_row):
+    entry = {}
+    for i in range(1, max_row + 1):
+        instanceType = str(sheet.cell(row=int(i), column=int(elements.index('instanceType')) + 1).value).replace("None", "")
+        if not entry.get(instanceType, None):
+            entry[instanceType] = {}
+        sortID = str(sheet.cell(row=int(i), column=int(3)).value).replace("None", "")
+        addon = str(sheet.cell(row=int(i), column=int(5)).value).replace("None", "")
+        slug = str(sheet.cell(row=int(i), column=int(6)).value).replace("None", "")
+        entry[instanceType][sortID] = "/" + addon + "/" + slug
+    return OrderedDict(natsort.natsorted(entry.items()))
 
 
-discontinued_content = {
-    "Eureka Baldesions Arsenal": {
-        "de": "Eureka Baldesions Arsenal",
-        "en": "The Baldesion Arsenal",
-        "fr": "Eurêka et son arsenal",
-        "ja": "バルデシオンアーセナル",
-        "cn": "兵武塔",
-        "ko": "발데시온 무기고"
-    },
-    "Traumprüfung - Shiva": {
-        "de": "Traumprüfung - Shiva",
-        "en": "the Akh Afah Amphitheatre (Unreal)",
-        "fr": "l'Amphithéâtre d'Akh Afah (irréel)",
-        "ja": "幻シヴァ討滅戦",
-        "cn": "希瓦幻巧战",
-        "ko": "환 시바 토벌전"
-    },
-    "Traumprüfung - Leviathan": {
-        "de": "Traumprüfung - Leviathan",
-        "en": "the Whorleater (Unreal)",
-        "fr": "le Briseur de marées (irréel)",
-        "ja": "幻リヴァイアサン討滅戦",
-        "cn": "利维亚桑幻巧战",
-        "ko": "환 리바이어선 토벌전"
-    },
-    "Traumprüfung - Titan": {
-        "de": "Traumprüfung - Titan",
-        "en": "the Navel (Unreal)",
-        "fr": "le Nombril (irréel)",
-        "ja": "極タイタン討滅戦",
-        "cn": "泰坦歼殛战",
-        "ko": "극 타이탄 토벌전"
-    },
-    "Traumprüfung - Ultima": {
-        "de": "Traumprüfung - Ultima",
-        "en": "Ultima's Bane (Unreal)",
-        "fr": "Le fléau d'Ultima (irréel)",
-        "ja": "幻アルテマウェポン破壊作戦",
-        "cn": "",
-        "ko": ""
-    }
-}
+def get_data_from_xlsx(sheet, max_column, i, elements):
+    entry = {}
+    # for every column in row add all elements into a dict:
+    # max_column will ignore last column due to how range is working
+    for j in range(1, max_column + 1):
+        entry[elements[j - 1]] = str(sheet.cell(row=int(i), column=int(j)).value).replace("None", "")
+    return entry
 
 
-def getContentName(name, lang="en", difficulty=None, instanceType=None):
-    name = uglyContentNameFix(name, instanceType, difficulty)
-    if discontinued_content.get(name, None):
-        return discontinued_content[name][lang]
+def clean_entries_from_single_quotes(entry):
+    for key, value in entry.items():
+        if value.startswith("'"):
+            entry[key] = value[1:]
+        if value.endswith("'"):
+            entry[key] = value[:-1]
+    return entry
+
+
+def getMaps(_map):
+    global maps
+    for key, value in maps.items():
+        if value['Id'] == _map:
+            return value
+    sys.exit()
+
+
+def truncate(f, n):
+    # line to collaps
+    return math.floor(f * 10 ** n) / 10 ** n
+
+
+def getLevel(level):
+    global levels
+    level = levels[level.replace('Level#', "")]
+    map_ = getMaps(level['Map'])
+    x = truncate(ToMapCoordinate(float(level['X'].replace(",", ".")), float(map_['SizeFactor'])), 1)
+    y = truncate(ToMapCoordinate(float(level['Z'].replace(",", ".")), float(map_['SizeFactor'])), 1)
+    return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
+
+
+def ToMapCoordinate(val, mapsize):
+    c = mapsize / 100.0
+    val *= c
+    return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1
+
+
+def workOnQuests(entry, quest_id):
+    global quests
+    if quest_id == "":
+        entry['quest'] = ""
+        entry['quest_location'] = ""
+        entry['quest_npc'] = ""
+        return entry
+    quest = quests[quest_id]
+    entry['quest'] = quest['Name'].replace(" ", "").replace(" ", "")
+    entry['quest_npc'] = quest['Issuer']['Start']
     try:
-        for key, content in contentfindercondition.items():
-            if "memoria" in content["Name_de"].lower().strip() and "memoria" in name.lower().strip():
-                return content[f"Name_{lang}"]
-            if content["Name_de"].lower().strip() == name.lower().strip():
-                return content[f"Name_{lang}"]
-        for key, place in placename.items():
-            if place["Name_de"].lower().strip() == name.lower().strip():
-                return place[f"Name_{lang}"]
+        level_data = getLevel(quest['Issuer']['Location'])
+        entry['quest_location'] = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
     except KeyError:
-        pass
-    if name not in ['title']:
-        print_color_red("Could not translate: " + name)
-    return ""
+        entry['quest_location'] = ""
+        print_color_red(f"[workOnQuests] Error on loading: {quest['Issuer']['Location']} ({quest_id})")
+    return entry
 
 
-def getBnpcNameFromID(_id, aname, nname, lang="en"):
-    bnew_name = ""
-    enew_name = ""
-    ennew_name = ""
-    if type(_id) == list:
-        _id = _id[0]
-    _id = str(_id)
-    try:
-        bnew_name = bnpcname[_id]["Singular_de"]
-        m = re.search(nname, bnew_name, re.IGNORECASE)
-        n = re.search(aname, bnew_name, re.IGNORECASE)
-        if m or n:
-            return bnpcname[_id][f"Singular_{lang}"]
-    except Exception:
-        pass
-    try:
-        enew_name = eobjname[_id]["Singular_de"]
-        m = re.search(nname, enew_name, re.IGNORECASE)
-        n = re.search(aname, enew_name, re.IGNORECASE)
-        if m or n:
-            return eobjname[_id][f"Singular_{lang}"]
-    except Exception:
-        pass
-    try:
-        ennew_name = enpcresident[_id]["Singular_de"]
-        m = re.search(nname, ennew_name, re.IGNORECASE)
-        n = re.search(aname, ennew_name, re.IGNORECASE)
-        if m or n:
-            return enpcresident[_id][f"Singular_{lang}"]
-    except Exception:
-        pass
-
-    if "α" not in bnew_name and "β" not in bnew_name and "（仮）鎖" not in bnew_name:
-        print_color_red(f"'{bnew_name}', '{enew_name}', '{ennew_name}' not found {aname} ({nname}) - ({_id})")
-    return ""
-
-
-def getMountIDByName(name):
-    for id, mount in mounts.items():
-        if mount['Singular_de'] == name:
-            return id.split(".0")[0]
-    return None
-
-
-def getMinionIDByName(name):
-    for id, minion in minions.items():
-        if minion['Singular_de'] == name:
-            return id.split(".0")[0]
-    return None
-
-
-def getOrchestrionIDByName(name):
-    for id, orchestrion in orchestrions.items():
-        if orchestrion['Name_de'].lower() == name.lower():
-            return id.split(".0")[0]
-    return None
-
-
-def getTTCardIDByName(name):
-    for id, ttcard in ttcards.items():
-        if ttcard['Name_de'] == name:
-            return id.split(".0")[0]
-    return None
-
-
-def getBnpcName(name, _id, lang="en"):
-    name = name.lower()
-    aname = ""
-    # take care of all the article cases
-    name_match = re.search("^(der|die|das) ", name)
-    if name_match:
-        aname = name.replace("der ", r"(\[t\]|(der|die|das)) ").replace("die ", r"(\[t\]|(der|die|das)) ").replace("das ", r"(\[t\]|(der|die|das)) ")
-
-    name_match = re.search(" (der|die|das)", name)
-    if name_match:
-        aname = name.replace(" der ", r" (\[t\]|(der|die|das)) ").replace(" die ", r" (\[t\]|(der|die|das)) ").replace(" das ", r" (\[t\]|(der|die|das)) ")
-
-    if aname == "":
-        aname = name
-
-    # take care of the german gender cases
-    nname = aname.replace("er ", r"(\[a\]|(e|es|er|en)) ").replace("es ", r"(\[a\]|(e|es|er|en)) ").replace("en ", r"(\[a\]|(e|es|er|en)) ").replace("e ", r"(\[a\]|(e|es|er|en)) ")
-    if nname.endswith("e"):
-        nname = nname[:-1] + r"(\[a\]|(e|es|er|en))"
-    elif nname.endswith("en") or nname.endswith("es") or nname.endswith("er"):
-        nname = nname[:-2] + r"(\[a\]|(e|es|er|en))"
-
-    if not _id == "":
-        resultname = getBnpcNameFromID(_id, aname, nname, lang)
-        if not resultname == "":
-            return resultname
-    # check results agains bnpcname
-    for key, bnpc in bnpcname.items():
-        m = re.search(nname, bnpc["Singular_de"].lower())
-        if m:
-            return bnpc[f"Singular_{lang}"]
-
-    # check results agains eobjname
-    for key, eobj in eobjname.items():
-        m = re.search(nname, eobj["Singular_de"].lower())
-        if m:
-            return eobj[f"Singular_{lang}"]
-
-    # check results agains eobjname
-    for key, eobj in enpcresident.items():
-        m = re.search(nname, eobj["Singular_de"].lower())
-        if m:
-            return eobj[f"Singular_{lang}"]
-    # return anything, just in case
-    print_color_yellow(f"Missing {name} examples where ({aname}) and ({nname})", disable_yellow_print)
-    return ""
+def seperate_data_into_array(tag, entry):
+    if entry[tag]:
+        entry[tag] = entry[tag].strip("'[").strip("]'").strip("\"[").strip("]\"").strip("[").strip("]").replace("\", \"", "', '").replace("\",\"", "', '").split("', '")
+        entry[tag] = [b for b in entry[tag]]
 
 
 def uglyContentNameFix(name, instanceType=None, difficulty=None):
@@ -322,22 +258,107 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
     return name
 
 
-def translateAttack(skill_id, _type=action, lang="en"):
+def getContentName(name, lang="en", difficulty=None, instanceType=None):
+    name = uglyContentNameFix(name, instanceType, difficulty)
     try:
-        text = _type[str(int(skill_id, 16))][f"Name_{lang}"]
-        return fixCaptilaziationAndRomanNumerals(text)
+        for key, content in contentfindercondition.items():
+            if "memoria" in content["Name_de"].lower().strip() and "memoria" in name.lower().strip():
+                return content[f"Name_{lang}"]
+            if content["Name_de"].lower().strip() == name.lower().strip():
+                return content[f"Name_{lang}"]
+        for key, place in placename.items():
+            if place["Name_de"].lower().strip() == name.lower().strip():
+                return place[f"Name_{lang}"]
     except KeyError:
-        return f"Unknown_{skill_id}"
+        pass
+    if name not in ['title']:
+        print_color_red("Could not translate: " + name)
+    return ""
 
 
-def fixCaptilaziationAndRomanNumerals(text):
-    text = text.title()
-    text = re.sub(r" (Ii|Iii|IIi|Vi|Vii|Viii|Iv|Ix|Xi|Xii|Xiii|Xliii|Iii-E|Xxiv|013Bl|Xii\.)\. ", lambda x:  x.group(0).upper(), text)
-    text = re.sub(r" (Ii|Iii|IIi|Vi|Vii|Viii|Iv|Ix|Xi|Xii|Xiii|Xliii|Iii-E|Xxiv|013Bl|Xii\.)$", lambda x:  x.group(0).upper(), text)
-    text = re.sub(r" (Ii) ", lambda x:  x.group(0).upper(), text)
-    text = re.sub(r"('[a-zA-Z])(?! )", lambda x:  x.group(0).upper(), text)
-    text = re.sub(r"('[a-zA-Z]) ", lambda x:  x.group(0).lower(), text)
-    return text
+def getEntriesForRouletts(entry):
+    global contentfinderconditionX
+    for key, value in contentfinderconditionX.items():
+        if value['Name'] == getContentName(entry["title"], "de", entry["difficulty"], entry["instanceType"]):
+            entry['type'] = value['ContentType'].lower()
+            entry['mapid'] = value['TerritoryType']
+            entry['allianceraid'] = value['AllianceRoulette']
+            entry['frontier'] = value['FeastTeamRoulette']
+            entry['expert'] = value['ExpertRoulette']
+            entry['guildhest'] = value['GuildHestRoulette']
+            entry['level50_60_70'] = value['Level50/60/70Roulette']
+            entry['level80'] = value['Level80Roulette']
+            entry['leveling'] = value['LevelingRoulette']
+            entry['main'] = value['MSQRoulette']
+            entry['mentor'] = value['MentorRoulette']
+            entry['normalraid'] = value['NormalRaidRoulette']
+            entry['trial'] = value['TrialRoulette']
+            return entry
+    return entry
+
+
+def getEntryData(sheet, max_column, i, elements, orderedContent):
+    entry = get_data_from_xlsx(sheet, max_column, i, elements)
+    entry = clean_entries_from_single_quotes(entry)
+    entry = workOnQuests(entry, entry["quest_id"])
+    entry = getEntriesForRouletts(entry)
+    for lang in LANGUAGES:
+        entry[f"title_{lang}"] = getContentName(entry["title"], lang, entry["difficulty"], entry["instanceType"])
+    _previous, _next = getBeforeAndAfterContentEntries(orderedContent, entry)
+    # remove time from excel datetime
+    entry["date"] = str(entry["date"]).replace(" 00:00:00", "").replace("-", ".")
+    entry["prev_content"] = _previous
+    entry["next_content"] = _next
+    entry["line_index"] = i
+    seperate_data_into_array("bosse", entry)
+    seperate_data_into_array("adds", entry)
+    seperate_data_into_array("tags", entry)
+    return entry
+
+
+def get_old_content_if_file_is_found(_existing_filename):
+    if os.path.exists(_existing_filename):
+        with open(_existing_filename, encoding="utf8") as f:
+            doc = list(yaml.load_all(f, Loader=SafeLoader))[0]
+            return doc
+    return {}
+
+
+def getBeforeAndAfterContentEntries(orderedContent, entry):
+    _previous = None
+    _next = None
+    _type = orderedContent[entry['instanceType']]
+    _typeKeys = list(_type)
+    for i, k in enumerate(_type):
+        if _type[k].endswith(entry['slug']):
+            if i - 1 >= 0:
+                try:
+                    _previous = _type[_typeKeys[i - 1]]
+                except:
+                    pass
+            try:
+                _next = _type[_typeKeys[i + 1]]
+            except:
+                pass
+            return _previous, _next
+    return None, None
+
+
+def try_to_create_file(filename):
+    if not os.path.exists(os.path.dirname(filename)):
+        try:
+            os.makedirs(os.path.dirname(filename))
+        except OSError as exc:  # Guard against race condition
+            if exc.errno != errno.EEXIST:
+                raise
+
+
+def get_territorytype_from_mapid(mapid):
+    for key, tt_type in territorytype.items():
+        if tt_type["TerritoryType"].lower() == mapid.lower():
+            return tt_type
+    print_color_red(f"Could not find territorytype for {mapid}")
+    return ""
 
 
 def replaceSlug(text):
@@ -350,19 +371,19 @@ def getImage(image):
     return image
 
 
-def get_video_url(url):
-    if url.startswith("https"):
-        return url
-    return "https://www.youtube.com/watch?v={}".format(url)
+def checkVariable(element, name):
+    if element[name] and not element[name] == "###":
+        return True
+    return False
 
 
-def get_order_id(_entry):
+def get_order_id(entry):
     patch = "0000"
     plvl = "00"
     sortid = "0000"
-    if "." in _entry["patchNumber"]:
+    if "." in entry["patchNumber"]:
         t_minor = 0
-        major, minor = _entry["patchNumber"].split(".")
+        major, minor = entry["patchNumber"].split(".")
         if str(minor).endswith("a") or str(minor).endswith("b"):
             t_minor = int(minor[:-1])
             t_minor = t_minor * 10 if t_minor < 10 else t_minor
@@ -375,99 +396,299 @@ def get_order_id(_entry):
             minor = f"{minor}0" if len(minor) < 2 else minor
             minor = f"{minor}0" if len(minor) < 3 else minor
         patch = f"{major}{minor}"
-    if _entry["plvl"]:
-        plvl = int(_entry["plvl"]) * 10 if len(_entry["plvl"]) < 2 else _entry["plvl"]
-    if _entry["sortid"]:
-        sortid = f"0{_entry['sortid']}" if len(_entry["sortid"]) < 1 else _entry["sortid"]
+    if entry["plvl"]:
+        plvl = int(entry["plvl"]) * 10 if len(entry["plvl"]) < 2 else entry["plvl"]
+    if entry["sortid"]:
+        sortid = f"0{entry['sortid']}" if len(entry["sortid"]) < 1 else entry["sortid"]
         sortid = f"0{sortid}" if len(sortid) < 2 else sortid
         sortid = f"0{sortid}" if len(sortid) < 3 else sortid
         sortid = f"0{sortid}" if len(sortid) < 4 else sortid
     return f"{patch}{plvl}{sortid}"
 
 
-def get_territorytype_from_mapid(mapid):
-    for key, tt_type in territorytype.items():
-        if tt_type["TerritoryType"].lower() == mapid.lower():
-            return tt_type
-    print_color_red(f"Could not find territorytype for {mapid}")
-    return ""
+def addEntries(header_data, entry, field, get_data_function):
+    if checkVariable(entry, field):
+        header_data += '  - name: "' + entry[field] + '"\n'
+        mount_id = get_data_function(entry[field])
+        if mount_id:
+            header_data += '    id: "' + mount_id + '"\n'
+    return header_data
 
 
-def clean_entries_from_single_quotes(_entry):
-    for key, value in _entry.items():
-        if value.startswith("'"):
-            _entry[key] = value[1:]
-        if value.endswith("'"):
-            _entry[key] = value[:-1]
-    return _entry
+def getMountIDByName(name):
+    for _id, mount in mounts.items():
+        if mount['Singular_de'] == name:
+            return _id
+    return None
 
 
-def seperate_data_into_array(tag, _entry):
-    if _entry[tag]:
-        _entry[tag] = _entry[tag].strip("'[").strip("]'").strip("\"[").strip("]\"").strip("[").strip("]").replace("\", \"", "', '").replace("\",\"", "', '").split("', '")
-        _entry[tag] = [b for b in _entry[tag]]
+def getMinionIDByName(name):
+    for _id, minion in minions.items():
+        if minion['Singular_de'] == name:
+            return _id
+    return None
 
 
-def try_to_create_file(filename):
-    if not os.path.exists(os.path.dirname(filename)):
-        try:
-            os.makedirs(os.path.dirname(filename))
-        except OSError as exc:  # Guard against race condition
-            if exc.errno != errno.EEXIST:
-                raise
-
-# hopefully we will never need this again, this will convert all ids to capitalized ids
+def getOrchestrionIDByName(name):
+    for _id, orchestrion in orchestrions.items():
+        if orchestrion['Name_de'].lower() == name.lower():
+            return _id
+    return None
 
 
-def fix_id_cases(doc):
-    for entry in ['bosses', 'adds']:
-        if not doc.get(entry):
-            continue
-        for i, enemy in enumerate(doc[entry]):
-            if enemy.get('title_id', None):
-                doc[entry][i]['title_id'] = enemy['title_id'].upper()
-            for entry2 in ['attacks', 'debuffs']:
-                if enemy.get(entry2, None):
-                    for j, valuestuff in enumerate(enemy[entry2]):
-                        if valuestuff.get('title_id', None):
-                            doc[entry][i][entry2][j]['title_id'] = valuestuff['title_id'].upper()
-                        if valuestuff.get('icon', None):
-                            if not "_hr1.png" in valuestuff['icon']:
-                                doc[entry][i][entry2][j]['icon'] = valuestuff['icon'].replace('.png', "_hr1.png")
-                        if valuestuff.get('variation', None):
-                            for k, variation in enumerate(valuestuff['variation']):
-                                if variation.get('title_id', None):
-                                    doc[entry][i][entry2][j]['variation'][k]['title_id'] = variation['title_id'].upper()
-    return doc
+def getTTCardIDByName(name):
+    for id, ttcard in ttcards.items():
+        if ttcard['Name_de'] == name:
+            return id.split(".0")[0]
+    return None
 
 
-# returns existing boss data if available
-def get_old_content_if_file_is_found(_existing_filename):
-    if os.path.exists(_existing_filename):
-        with open(_existing_filename, encoding="utf8") as f:
-            docs = yaml.load_all(f, Loader=Loader)
-            for doc in docs:
-                #doc = fix_id_cases(doc)
-                return doc.get("bosses", None), doc.get("adds", None), doc.get("mechanics", "N/A"), doc.get("wip", None), True
-    return None, None, "N/A", None, False
+def get_video_url(url):
+    if url.startswith("https"):
+        return url
+    return "https://www.youtube.com/watch?v={}".format(url)
 
 
-def read_xlsx_file():
-    # open file, get sheet, last row and last coulmn
-    wb = openpyxl.load_workbook('./guide_ffxiv.xlsx')
-    sheet = wb['Tabelle1']
-    max_row = sheet.max_row
-    max_column = sheet.max_column
-    return sheet, max_row, max_column
+def rewrite_content_even_if_exists(entry, old_wip):
+    header_data = ""
+    tt_type_name = get_territorytype_from_mapid(entry["mapid"])
+    if old_wip in ["True", "False"]:
+        header_data += 'wip: "' + str(old_wip).title() + '"\n'
+    else:
+        header_data += 'wip: "True"\n'
+    #header_data += 'title: "' + entry["title"] + '"\n'
+    header_data += 'title:\n'
+    for lang in LANGUAGES:
+        header_data += f'  {lang}: "' + entry[f"title_{lang}"] + '"\n'
+    header_data += 'layout: guide_post\n'
+    header_data += 'page_type: guide\n'
+    header_data += f'excel_line: \"{entry["line_index"]}\"\n'
+    header_data += 'categories: "' + entry["categories"] + '"\n'
+    header_data += 'patchNumber: "' + entry["patchNumber"].replace("'", "") + '"\n'
+    if patchversions.get(entry["patchNumber"], None):
+        header_data += 'patchLink: "' + patchversions[entry["patchNumber"]]['link_to_patch'] + '"\n'
+    header_data += 'difficulty: "' + entry["difficulty"] + '"\n'
+    header_data += 'instanceType: "' + entry["instanceType"] + '"\n'
+    header_data += 'date: "' + entry["date"] + '"\n'
+    header_data += 'slug: "' + replaceSlug(entry["slug"]) + '"\n'
+    if entry["prev_content"]:
+        header_data += 'previous_slug: "' + replaceSlug(entry["prev_content"]) + '"\n'
+    if entry["next_content"]:
+        header_data += 'next_slug: "' + replaceSlug(entry["next_content"]) + '"\n'
+    if entry["image"]:
+        header_data += 'image:\n'
+        header_data += '  - url: \"/' + getImage(entry["image"]) + '\n'
+        #header_data += '    url: \"/' + getImage(entry["image"]) + '\n'
+    header_data += 'terms:\n'
+    header_data = writeTags(header_data, entry, tt_type_name)
+    header_data += 'patchName: "' + entry["patchName"] + '"\n'
+    if entry.get("mapid", None):
+        header_data += 'mapid: "' + entry["mapid"] + '"\n'
+    if not tt_type_name == "":
+        header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
+    header_data += 'sortid: ' + entry["sortid"] + '\n'
+    header_data += 'plvl: ' + entry["plvl"] + '\n'
+    header_data += 'plvl_sync: ' + entry["plvl_sync"] + '\n'
+    header_data += 'ilvl: ' + entry["ilvl"] + '\n'
+    header_data += 'ilvl_sync: ' + entry["ilvl_sync"] + '\n'
+    if not entry["quest"] == "":
+        header_data += 'quest: "' + entry["quest"] + '"\n'
+    if not entry["quest_location"] == "":
+        header_data += 'quest_location: "' + entry["quest_location"] + '"\n'
+    if not entry["quest_npc"] == "":
+        header_data += 'quest_npc: "' + entry["quest_npc"] + '"\n'
+    header_data += 'order: ' + get_order_id(entry) + '\n'
+    # mounts
+    if checkVariable(entry, "mount1") or checkVariable(entry, "mount2"):
+        header_data += 'mount:\n'
+        header_data = addEntries(header_data, entry, "mount1", getMountIDByName)
+        header_data = addEntries(header_data, entry, "mount2", getMountIDByName)
+    # minions
+    if checkVariable(entry, "minion1") or checkVariable(entry, "minion2") or checkVariable(entry, "minion3"):
+        header_data += 'minion:\n'
+        header_data = addEntries(header_data, entry, "minion1", getMinionIDByName)
+        header_data = addEntries(header_data, entry, "minion2", getMinionIDByName)
+        header_data = addEntries(header_data, entry, "minion3", getMinionIDByName)
+    # gearset_loot
+    if checkVariable(entry, "gearset_loot"):
+        header_data += 'gearset_loot:\n'
+        for gset in entry["gearset_loot"] .split(","):
+            header_data += '  - gsetname: "' + gset + '"\n'
+    # tt_cards
+    if checkVariable(entry, "tt_card1") or checkVariable(entry, "tt_card2"):
+        header_data += 'tt_card:\n'
+        header_data = addEntries(header_data, entry, "tt_card1", getTTCardIDByName)
+        header_data = addEntries(header_data, entry, "tt_card2", getTTCardIDByName)
+    # orchestrion
+    if checkVariable(entry, "orchestrion") or checkVariable(entry, "orchestrion2") or checkVariable(entry, "orchestrion3") or checkVariable(entry, "orchestrion4") or checkVariable(entry, "orchestrion5"):
+        header_data += 'orchestrion:\n'
+        header_data = addEntries(header_data, entry, "orchestrion", getOrchestrionIDByName)
+        header_data = addEntries(header_data, entry, "orchestrion2", getOrchestrionIDByName)
+        header_data = addEntries(header_data, entry, "orchestrion3", getOrchestrionIDByName)
+        header_data = addEntries(header_data, entry, "orchestrion4", getOrchestrionIDByName)
+        header_data = addEntries(header_data, entry, "orchestrion5", getOrchestrionIDByName)
+    # orchestrion material
+    if checkVariable(entry, "orchestrion_material1") or checkVariable(entry, "orchestrion_material2") or checkVariable(entry, "orchestrion_material3"):
+        header_data += 'orchestrion_material:\n'
+        if checkVariable(entry, "orchestrion_material1"):
+            header_data += '  - name: "' + entry["orchestrion_material1"] + '"\n'
+        if checkVariable(entry, "orchestrion_material2"):
+            header_data += '  - name: "' + entry["orchestrion_material2"] + '"\n'
+        if checkVariable(entry, "orchestrion_material3"):
+            header_data += '  - name: "' + entry["orchestrion_material3"] + '"\n'
+    # rouletts
+    if entry.get("expert", None):
+        header_data += 'rouletts:\n'
+        if entry["allianceraid"]:
+            header_data += '  - allianceraid: ' + entry["allianceraid"] + "\n"
+        if entry["frontier"]:
+            header_data += '    frontier: ' + entry["frontier"] + "\n"
+        if entry["expert"]:
+            header_data += '    expert: ' + entry["expert"] + "\n"
+        if entry["guildhest"]:
+            header_data += '    guildhest: ' + entry["guildhest"] + "\n"
+        if entry["level50_60_70"]:
+            header_data += '    level50_60_70: ' + entry["level50_60_70"] + "\n"
+        if entry["level80"]:
+            header_data += '    level80: ' + entry["level80"] + "\n"
+        if entry["leveling"]:
+            header_data += '    leveling: ' + entry["leveling"] + "\n"
+        if entry["main"]:
+            header_data += '    main: ' + entry["main"] + "\n"
+        if entry["mentor"]:
+            header_data += '    mentor: ' + entry["mentor"] + "\n"
+        if entry["normalraid"]:
+            header_data += '    normalraid: ' + entry["normalraid"] + "\n"
+        if entry["trial"]:
+            header_data += '    trial: ' + entry["trial"] + "\n"
+    # links:
+    if checkVariable(entry, "teamcraftlink") or checkVariable(entry, "garlandtoolslink") or checkVariable(entry, "gamerescapelink"):
+        header_data += 'links:\n'
+        first = "-"
+        if checkVariable(entry, "teamcraftlink"):
+            header_data += f'  {first} teamcraftlink: "' + entry["teamcraftlink"] + '"\n'
+            first = " "
+        if checkVariable(entry, "garlandtoolslink"):
+            header_data += f'  {first} garlandtoolslink: "' + entry["garlandtoolslink"] + '"\n'
+            first = " "
+        if checkVariable(entry, "gamerescapelink"):
+            header_data += f'  {first} gamerescapelink: "' + entry["gamerescapelink"] + '"\n'
+    # videos
+    if checkVariable(entry, "mtqvid1"):
+        header_data += 'mtq_vid1: "' + get_video_url(entry["mtqvid1"]) + '"\n'
+    if checkVariable(entry, "mtqvid2"):
+        header_data += 'mtq_vid2: "' + get_video_url(entry["mtqvid2"]) + '"\n'
+    if checkVariable(entry, "mrhvid1"):
+        header_data += 'mrh_vid1: "' + get_video_url(entry["mrhvid1"]) + '"\n'
+    if checkVariable(entry, "mrhvid2"):
+        header_data += 'mrh_vid2: "' + get_video_url(entry["mrhvid2"]) + '"\n'
+    return header_data, entry
 
 
-def get_data_from_xlsx(sheet, max_column, i, elements):
-    entry = {}
-    # for every column in row add all elements into a dict:
-    # max_column will ignore last column due to how range is working
-    for j in range(1, max_column + 1):
-        entry[elements[j - 1]] = str(sheet.cell(row=int(i), column=int(j)).value).replace("None", "")
-    return entry
+def writeTags(header_data, entry, tt_type_name):
+    # write tags per expansion
+    if entry["categories"] == "arr":
+        header_data += "  - term: \"A Realm Reborn\"\n"
+        header_data += "  - term: \"ARR\"\n"
+    elif entry["categories"] == "hw":
+        header_data += "  - term: \"Heavensward\"\n"
+        header_data += "  - term: \"HW\"\n"
+    elif entry["categories"] == "sb":
+        header_data += "  - term: \"Stormblood\"\n"
+        header_data += "  - term: \"SB\"\n"
+    elif entry["categories"] == "shb":
+        header_data += "  - term: \"Shadowbringers\"\n"
+        header_data += "  - term: \"ShB\"\n"
+    elif entry["categories"] == "ew":
+        header_data += "  - term: \"Endwalker\"\n"
+        header_data += "  - term: \"EW\"\n"
+    else:
+        pass
+
+    if not tt_type_name == "":
+        for lang in LANGUAGES:
+            header_data += "  - term: \"" + tt_type_name["Name_" + lang] + "\"\n"
+
+    for lang in LANGUAGES:
+        header_data += "  - term: \"" + entry[f"title_{lang}"] + "\"\n"
+
+    # write rest of the tags
+    header_data += "  - term: \"" + entry["difficulty"] + "\"\n"
+    header_data += "  - term: \"" + entry["patchNumber"] + "!\"\n"
+    header_data += "  - term: \"" + entry["patchName"] + "\"\n"
+    if not entry.get("quest", "") == "":
+        header_data += "  - term: \"" + entry["quest"] + "\"\n"
+    if checkVariable(entry, "mount1") or checkVariable(entry, "mount2"):
+        header_data += "  - term: \"mounts\"\n"
+        header_data += "  - term: \"Reittier\"\n"
+    if checkVariable(entry, "minion1") or checkVariable(entry, "minion2") or checkVariable(entry, "minion3"):
+        header_data += "  - term: \"minions\"\n"
+        header_data += "  - term: \"Begleiter\"\n"
+    if checkVariable(entry, "tt_card1") or checkVariable(entry, "tt_card2"):
+        header_data += "  - term: \"tt_cards\"\n"
+        header_data += "  - term: \"Triple Triad Karte\"\n"
+    if checkVariable(entry, "gearset_loot"):
+        for gset in entry["gearset_loot"].split(","):
+            header_data += "  - term: \"" + gset + "\"\n"
+    if checkVariable(entry, "orchestrion") or checkVariable(entry, "orchestrion2") or checkVariable(entry, "orchestrion3") or checkVariable(entry, "orchestrion4") or checkVariable(entry, "orchestrion5"):
+        header_data += "  - term: \"orchestrion\"\n"
+        header_data += "  - term: \"Notenrolle\"\n"
+    if checkVariable(entry, "orchestrion_material1") or checkVariable(entry, "orchestrion_material2") or checkVariable(entry, "orchestrion_material3"):
+        header_data += "  - term: \"orchestrion_material\"\n"
+    if entry["instanceType"] == "trial":
+        header_data += "  - term: \"Prüfung\"\n"
+        header_data += "  - term: \"Trial\"\n"
+        header_data += "  - term: \"Primae\"\n"
+        header_data += "  - term: \"Primal\"\n"
+    header_data += "  - term: \"" + entry["instanceType"] + "\"\n"
+
+    found_roulette = False
+    if entry.get("allianceraid", None) == "True":
+        header_data += "  - term: \"allianceraid\"\n"
+        found_roulette = True
+    if entry.get("frontier", None) == "True":
+        header_data += "  - term: \"frontier\"\n"
+        found_roulette = True
+    if entry.get("expert", None) == "True":
+        header_data += "  - term: \"expert\"\n"
+        found_roulette = True
+    if entry.get("guildhest", None) == "True":
+        header_data += "  - term: \"guildhest\"\n"
+        found_roulette = True
+    if entry.get("level50_60_70", None) == "True":
+        header_data += "  - term: \"level50_60_70\"\n"
+        found_roulette = True
+    if entry.get("level80", None) == "True":
+        header_data += "  - term: \"level80\"\n"
+        found_roulette = True
+    if entry.get("leveling", None) == "True":
+        header_data += "  - term: \"leveling\"\n"
+        found_roulette = True
+    if entry.get("main", None) == "True":
+        header_data += "  - term: \"main\"\n"
+        found_roulette = True
+    if entry.get("mentor", None) == "True":
+        header_data += "  - term: \"mentor\"\n"
+        found_roulette = True
+    if entry.get("normalraid", None) == "True":
+        header_data += "  - term: \"normalraid\"\n"
+        found_roulette = True
+    if entry.get("trial", None) == "True":
+        header_data += "  - term: \"trial\"\n"
+        found_roulette = True
+    if found_roulette:
+        header_data += "  - term: \"Zufallsinhalt\"\n"
+        header_data += "  - term: \"roulette\"\n"
+
+    if not entry["bosse"] == ['']:
+        for b in entry["bosse"]:
+            if b != "Unknown_":
+                header_data += "  - term: \"" + b + "\"\n"
+    if not entry["tags"] == ['']:
+        for t in entry["tags"]:
+            if t != "Unknown_":
+                header_data += "  - term: \"" + t + "\"\n"
+    return header_data
 
 
 def cleanup_logdata(logdata_instance_content):
@@ -507,553 +728,14 @@ def cleanup_logdata(logdata_instance_content):
     return new_lic, music
 
 
-def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack):
-    for attack_id in new_enemy_data.get('skill', {}):
-        for attack in old_enemy_data.get('attacks', []):
-            existing_attacks[attack['title']] = attack['type']
-            if attack_id == attack.get('title_id', None):
-                remove_attack.append(attack_id)
-            if attack.get("variation", None):
-                for vari in attack.get("variation", None):
-                    if attack_id == vari['title_id']:
-                        remove_attack.append(attack_id)
-    return existing_attacks, remove_attack
-
-
-def compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_debuff):
-    for debuff_id in new_enemy_data.get('status', {}):
-        for debuff in old_enemy_data.get('debuffs', {}):
-            existing_debuffs[debuff['title']] = ""
-            if debuff_id == debuff.get('title_id', None):
-                remove_debuff.append(debuff_id)
-    return existing_debuffs, remove_debuff
-
-
-def remove_skills_from_list_if_found(remove_attack, new_enemy_data):
-    for x in remove_attack:
-        try:
-            del new_enemy_data["skill"][x]
-        except Exception:
-            pass
-    return new_enemy_data
-
-
-def remove_status_from_list_if_found(remove_debuff, new_enemy_data):
-    for x in remove_debuff:
-        try:
-            del new_enemy_data["status"][x]
-        except Exception:
-            pass
-    return new_enemy_data
-
-
-def get_fixed_status_description(_id):
-    try:
-        description = status[str(int(_id, 16))]['Description_de']
-        description = re.sub('<UIForeground>[0-9A-F]{1,6}</UIForeground>', '', description)
-        description = re.sub('<UIGlow>[0-9A-F]{1,6}</UIGlow>', '', description)
-        description = description.replace("\n\n", "<br>")
-        description = description.replace("\n", "<br>")
-        return description
-    except KeyError:
-        return f"Unknown_{_id}"
-
-
-def delete_invalid_entries(tmp_attack):
-    try:
-        del tmp_attack['title_id']
-    except Exception:
-        pass
-    try:
-        del tmp_attack['damage_type']
-    except Exception:
-        pass
-    try:
-        del tmp_attack['roles']
-    except Exception:
-        pass
-    try:
-        del tmp_attack['tags']
-    except Exception:
-        pass
-    return tmp_attack
-
-
-def sort_list_of_skills(data):
-    if data.get('attacks', None):
-        data['attacks'] = sorted(data['attacks'], key=itemgetter('title'))
-        unknown_attacks = []
-        known_attacks = []
-        for attack in data['attacks']:
-            if attack['title'].startswith("Unknown_"):
-                unknown_attacks.append(attack)
-            else:
-                known_attacks.append(attack)
-        data['attacks'] = unknown_attacks + known_attacks
-    return data
-
-
-def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
-    remove_attack = []
-    existing_attacks = {}
-    # comapre all skill ids
-    existing_attacks, remove_attack = compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack)
-    # remove skill ids if they were found before
-    new_enemy_data = remove_skills_from_list_if_found(remove_attack, new_enemy_data)
-
-    old_enemy_data = sort_list_of_skills(old_enemy_data)
-    if not new_enemy_data.get('skill', None):
-        return old_enemy_data
-    # merge new keys
-    for attack_id, attack in new_enemy_data['skill'].items():
-        if attack["name"] == "":
-            attack["name"] = "Unknown_" + attack_id
-        if existing_attacks.get(attack['name'], None):
-            # convert regular attk to variation
-            if existing_attacks[attack['name']] == "regular":
-                print_color_blue(f"\t\tNeed to convert: {attack['name']} ({attack_id})", disable_blue_print)
-                # find attack
-                attack_index = None
-                for i, old_attack in enumerate(old_enemy_data['attacks']):
-                    if old_attack.get('title', None) == attack['name']:
-                        attack_index = i
-                        break
-                tmp_attack = old_enemy_data['attacks'][attack_index]
-                tmp_attack['type'] = "variation"
-                tmp_attack['notes'] = [{'note': 'Variation-note BIG'}]
-                tmp = {
-                    'title': tmp_attack['title'],
-                    'title_id': tmp_attack['title_id'],
-                    'damage_type': tmp_attack['damage_type'],
-                    'single_or_aoe': attack['type_id']
-                }
-                if tmp_attack['title'] == "Attacke":
-                    tmp['disable'] = 'false'
-                if tmp_attack.get('damage', None):
-                    tmp["damage"] = {}
-                    try:
-                        tmp["damage"]["min"] = tmp_attack['damage']['min']
-                        tmp["damage"]["max"] = tmp_attack['damage']['max']
-                    except:
-                        tmp["damage"]["min"] = tmp_attack['damage'][0]['min']
-                        tmp["damage"]["max"] = tmp_attack['damage'][1]['max']
-                if tmp_attack.get('roles', None):
-                    tmp['roles'] = list(tmp_attack.get('roles', None))
-                    if tmp['roles'][0]['role'] == "role":
-                        tmp['roles'][0]['role'] = "Variation-role 1"
-                if tmp_attack.get('tags', None):
-                    tmp['tags'] = list(tmp_attack.get('tags', None))
-                    if tmp['tags'][0]['tag'] == "tag":
-                        tmp['tags'][0]['tag'] = "Variation-tag 1"
-                if tmp_attack.get('notes', None):
-                    tmp['notes'] = [{'note': 'Variation-note BIG'}]
-                    if tmp_attack['notes'][0]['note'] == "Variation-note BIG":
-                        tmp['notes'][0]['note'] = "Variation-note 1"
-                tmp_attack['variation'] = [tmp]
-
-                # add new attack
-                tmp2 = {
-                    'title': attack['name'],
-                    'title_id': attack_id,
-                    'damage_type': attack['damage_type'],
-                    'single_or_aoe': attack['type_id']
-                }
-                if tmp_attack.get('damage', None):
-                    tmp2["damage"] = {}
-                    try:
-                        tmp2["damage"]["min"] = tmp_attack['damage']['min']
-                        tmp2["damage"]["max"] = tmp_attack['damage']['max']
-                    except:
-                        tmp2["damage"]["min"] = tmp_attack['damage'][0]['min']
-                        tmp2["damage"]["max"] = tmp_attack['damage'][1]['max']
-                if tmp_attack.get('roles', None):
-                    tmp2['roles'] = list(tmp_attack.get('roles', None))
-                    if tmp2['roles'][0]['role'] == "role":
-                        tmp2['roles'][0]['role'] = "Variation-role 1"
-                if tmp_attack.get('tags', None):
-                    tmp2['tags'] = list(tmp_attack.get('tags', None))
-                    if tmp2['tags'][0]['tag'] == "tag":
-                        tmp2['tags'][0]['tag'] = "Variation-tag 1"
-                if tmp_attack.get('notes', None):
-                    tmp2['notes'] = [{'note': 'Variation-note BIG'}]
-                    if tmp_attack['notes'][0]['note'] == "Variation-note BIG":
-                        tmp2['notes'][0]['note'] = "Variation-note 1"
-                tmp_attack['variation'].append(tmp2)
-
-                # delete old invalid entries
-                tmp_attack = delete_invalid_entries(tmp_attack)
-                existing_attacks[attack['name']] = 'variation'
-            else:
-                print_color_blue("\t\tNeed to add to variation: " + attack['name'], disable_blue_print)
-                # find attack
-                attack_index = None
-                for i, old_attack in enumerate(old_enemy_data['attacks']):
-                    if old_attack.get('title', None) == attack['name']:
-                        attack_index = i
-                        break
-                tmp_attack = old_enemy_data['attacks'][attack_index]
-                # add new attack
-                tmp = {
-                    'title': attack['name'],
-                    'title_id': attack_id,
-                    'damage_type': attack['damage_type'],
-                    'single_or_aoe': attack['type_id']
-                }
-                if tmp_attack['variation'][0].get('damage', None) or tmp_attack.get('damage', None):
-                    tmp["damage"] = {}
-                    try:
-                        tmp["damage"]["min"] = tmp_attack['variation'][0].get('damage', {}).get('min', None) or tmp_attack.get('damage', {}).get('min', None)
-                        tmp["damage"]["max"] = tmp_attack['variation'][0].get('damage', {}).get('max', None) or tmp_attack.get('damage', {}).get('max', None)
-                    except:
-                        tmp["damage"]["min"] = tmp_attack['variation'][0].get('damage', {})[0].get('min', None) or tmp_attack.get('damage', {})[0].get('min', None)
-                        tmp["damage"]["max"] = tmp_attack['variation'][0].get('damage', {})[1].get('max', None) or tmp_attack.get('damage', {})[1].get('max', None)
-                if tmp_attack['variation'][0].get('roles', None) or tmp_attack.get('roles', None):
-                    tmp['roles'] = tmp_attack['variation'][0].get('roles', None) or tmp_attack.get('roles', None)
-                if tmp_attack['variation'][0].get('tags', None) or tmp_attack.get('tags', None):
-                    tmp['tags'] = tmp_attack['variation'][0].get('tags', None) or tmp_attack.get('tags', None)
-                if tmp_attack['variation'][0].get('notes', None) or tmp_attack.get('notes', None):
-                    tmp['notes'] = tmp_attack['variation'][0].get('notes', None) or tmp_attack.get('notes', None)
-                tmp_attack['variation'].append(tmp)
-        else:
-            print_color_blue("\t\tAdded new entry for regular: " + attack['name'], disable_blue_print)
-            # create new regular
-            tmp = {
-                'title': attack['name'],
-                'title_id': attack_id,
-                'title_en': translateAttack(attack_id, lang="en"),
-                'title_de': translateAttack(attack_id, lang="de"),
-                'title_fr': translateAttack(attack_id, lang="fr"),
-                'title_ja': translateAttack(attack_id, lang="ja"),
-                'title_cn': translateAttack(attack_id, lang="cn"),
-                'title_ko': translateAttack(attack_id, lang="ko"),
-                'attack_in_use': 'false',
-                'disable': 'false',
-                'type': 'regular',
-                'damage_type': attack['damage_type'],
-                'phases': [{'phase': '09'}],
-                'roles': [{'role': 'role'}],
-                'tags': [{'tag': 'tag'}],
-                'notes': [{'note': 'note'}],
-                'single_or_aoe': attack['type_id']
-            }
-            if attack.get('damage', None):
-                tmp["damage"] = {}
-                tmp["damage"]["min"] = attack['damage']['min']
-                tmp["damage"]["max"] = attack['damage']['max']
-
-            if tmp['title'] == "Attacke":
-                tmp['attack_in_use'] = 'true'
-                tmp['disable'] = 'true'
-                tmp['roles'][0]['role'] = 'Tank'
-                tmp['tags'][0]['tag'] = 'Auto-Angriff'
-                del tmp['notes']
-
-            if tmp['title'].startswith("Unknown_"):
-                tmp['disable'] = 'true'
-
-            if enemy_type == "adds" and tmp.get("notes", None):
-                del tmp['notes']
-            if old_enemy_data.get('attacks', []) == []:
-                old_enemy_data['attacks'] = []
-            old_enemy_data['attacks'].append(tmp)
-
-            existing_attacks[attack['name']] = 'regular'
-
-    old_enemy_data = sort_list_of_skills(old_enemy_data)
-    return old_enemy_data
-
-
-def addknowndebuff(status_id, status_data):
-    tmp_status = {
-        'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
-        'title_id': status_id,
-        'title_en': translateAttack(status_id, _type=status, lang="en"),
-        'title_de': translateAttack(status_id, _type=status, lang="de"),
-        'title_fr': translateAttack(status_id, _type=status, lang="fr"),
-        'title_ja': translateAttack(status_id, _type=status, lang="ja"),
-        'title_cn': translateAttack(status_id, _type=status, lang="cn"),
-        'title_ko': translateAttack(status_id, _type=status, lang="ko"),
-        'icon': status_data['icon'],
-        'description': get_fixed_status_description(status_id),
-        'debuff_in_use': 'true',
-        'disable': 'false',
-        #'damage_type': status_data['damage_type'],
-        'phases': [{'phase': '09'}],
-        'roles': [{'role': 'Alle'}],
-        'tags': [{'tag': 'Common'}],
-    }
-    return tmp_status
-
-
-def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last):
-    remove_attack = []
-    existing_debuffs = {}
-    ignore_debuffs = ['130', '13d']
-    obviouse_debuffs = ['82b', '82a', '82c', '9d4', '9d7', '95', '12', '38e', '828', '0e', '113', '06', '07', '01', '11', '282', 'ca', '11', '196', '1b6', '23c', '']
-    # filter duplicate debuffs
-    tmp_debuffs = []
-    tmp_debuff_ids = []
-    disable_yellow_print = False
-    for x in old_enemy_data.get("debuffs", []):
-        if x['title_id'] not in tmp_debuff_ids and x['title_id'] not in ignore_debuffs:
-            saved_used_skills_to_ignore_in_last.append(x['title_id'])
-            tmp_debuff_ids.append(x['title_id'])
-            tmp_debuffs.append(x)
-        else:
-            print_color_yellow(f"Ignore Duplicate Debuff {x['title']}")
-    disable_yellow_print = True
-    old_enemy_data["debuffs"] = tmp_debuffs
-
-    if not new_enemy_data.get('title', "") == 'Unbekannte Herkunft':
-        # remove debuffs already manually adjusted
-        for debuff in saved_used_skills_to_ignore_in_last:
-            try:
-                del new_enemy_data.get("status", {})[debuff]
-            except Exception:
-                pass
-        # comapre all skill ids
-        existing_debuffs, remove_attack = compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_attack)
-        # remove skill ids if they were found before
-        new_enemy_data = remove_status_from_list_if_found(remove_attack, new_enemy_data)
-    # comapre all skill ids
-    existing_debuffs, remove_attack = compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_attack)
-    # remove skill ids if they were found before
-    new_enemy_data = remove_status_from_list_if_found(remove_attack, new_enemy_data)
-
-    # merge new keys
-    if not old_enemy_data.get('debuffs', None):
-        old_enemy_data['debuffs'] = []
-    else:
-        old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('title'))
-
-    if not new_enemy_data.get('status', None):
-        return old_enemy_data, saved_used_skills_to_ignore_in_last
-
-    # get only status to make sorting easier
-    new_enemy_data_status = new_enemy_data.get('status', {})
-
-    # sort after the name key in subdicts
-    new_enemy_data_status = OrderedDict(sorted(new_enemy_data_status.items(), key=lambda x: x[1]['name']))
-
-    for status_id, status_data in new_enemy_data_status.items():
-        if status_data['name'] == "":
-            continue
-        if status_id in obviouse_debuffs:
-            tmp_status = addknowndebuff(status_id, status_data)
-        else:
-            tmp_status = {
-                'title': fixCaptilaziationAndRomanNumerals(status_data['name']),
-                'title_id': status_id,
-                'title_en': translateAttack(status_id, _type=status, lang="en"),
-                'title_de': translateAttack(status_id, _type=status, lang="de"),
-                'title_fr': translateAttack(status_id, _type=status, lang="fr"),
-                'title_ja': translateAttack(status_id, _type=status, lang="ja"),
-                'title_cn': translateAttack(status_id, _type=status, lang="cn"),
-                'title_ko': translateAttack(status_id, _type=status, lang="ko"),
-                'icon': status_data['icon'],
-                'description': get_fixed_status_description(status_id),
-                'debuff_in_use': 'false',
-                'disable': 'false',
-                #'damage_type': status_data['damage_type'],
-                'phases': [{'phase': '09'}],
-                'roles': [{'role': 'role'}],
-                'tags': [{'tag': 'tag'}],
-                'notes': [{'note': 'note'}]
-            }
-            if status_data.get('duration', None):
-                tmp_status["durations"] = status_data['duration']
-        old_enemy_data['debuffs'].append(tmp_status)
-    old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('title'))
-    return old_enemy_data, saved_used_skills_to_ignore_in_last
-
-
-#####################################################################################################################################################
-
-def check_Mechanics(_entry, guide_data, _old_mechanics="N/A"):
-    # this contruct looks ugly but it forbidds the recreation of empty mechanics
-    if not _old_mechanics == "N/A":
-        guide_data += "mechanics:\n"
-        if _old_mechanics:
-            for mechanic in _old_mechanics:
-                guide_data = add_Mechanic(guide_data, mechanic)
-    elif _entry["mechanics"] != "":
-        guide_data += "mechanics:\n"
-        mechanics = _entry["mechanics"].strip("\"[").strip("]\"").split("\",\"")
-        counter = 1
-        for m in mechanics:
-            mechanic = {
-                "steps": [{
-                    "step": "09",
-                    "notes": [{"note": f"Mechanics-note {counter}", }],
-                    "images": [{"url": "/assets/img/test.jpg", "alt": "/assets/img/test.jpg", "height": "250px", }],
-                    "videos": [{"url": "https&#58;//akurosia.de/upload/test.mp4", }],
-                }],
-            }
-            if mechanics == ['']:
-                mechanic['title'] = f"Mechanic-Title {counter}"
-            else:
-                mechanic['title'] = m
-
-            guide_data = add_Mechanic(guide_data, mechanic)
-            counter += 1
-    return guide_data
-
-
-def ugly_fix_enemy_data(enemy_data, new_enemy_data):
-    for attack in enemy_data.get('attacks', []):
-        if attack['type'] in ["variation", "combo"]:
-            for action in attack[attack['type']]:
-                if new_enemy_data.get("skill", {}).get(action["title_id"], None):
-                    x = new_enemy_data.get("skill", {}).get(action["title_id"], {})
-                    if x.get("damage", {}).get("min", None) or x.get("damage", {}).get("max", None):
-                        action['damage'] = {}
-                        action['damage']['min'] = x.get("damage", {}).get("min", None)
-                        action['damage']['max'] = x.get("damage", {}).get("max", None)
-        elif attack['type'] == "regular":
-            if new_enemy_data.get("skill", {}).get(attack["title_id"], None):
-                x = new_enemy_data.get("skill", {}).get(attack["title_id"], {})
-                if x.get("damage", {}).get("min", None) or x.get("damage", {}).get("max", None):
-                    attack['damage'] = {}
-                    attack['damage']['min'] = x.get("damage", {}).get("min", None)
-                    attack['damage']['max'] = x.get("damage", {}).get("max", None)
-    return enemy_data
-
-
-def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_content,  _old_enemy=None):
-    if _old_enemy or logdata != {}:
-        guide_data += f"{enemy_text}:\n"
-
-    empty_enemy_available = False
-    if _old_enemy:
-        # sort old enemies
-        final_old_enemy = []
-
-        # do this only for bosses
-        if _entry.get(enemy_type, None) and enemy_type == "bosse":
-            for enemy in _entry[enemy_type]:
-                for old_enemy_data in _old_enemy:
-                    if old_enemy_data['title'].lower() == enemy.lower():
-                        final_old_enemy.append(old_enemy_data)
-        # if you created a new order, apply it
-        if not final_old_enemy == []:
-            _old_enemy = final_old_enemy
-
-        saved_used_skills_to_ignore_in_last = []
-        for i, old_enemy_data in enumerate(_old_enemy):
-            if old_enemy_data['title'] == "":
-                continue
-            elif old_enemy_data['title'] == "Unbekannte Herkunft":
-                empty_enemy_available = True
-
-            old_enemy_data['title'] = old_enemy_data['title'].replace("&#246;", "ö").replace("&#252;", "ü").replace("&#228;", "ä").replace("&#223;", "ß")
-            print_color_yellow(f"\tWork on '{old_enemy_data['title']}'", disable_yellow_print)
-            empty_enemy_data = {}
-            try:
-                new_enemy_data = logdata_instance_content[old_enemy_data['title']]
-                if enemy_type == 'bosse' and len(_old_enemy) == i + 1:
-                    empty_enemy_data = logdata_instance_content['']
-            except Exception:
-                new_enemy_data = {}
-            new_enemy_data_c = copy.deepcopy({**{}, **new_enemy_data})
-
-            # get enemy attacks and debuffs for all enemies with a name
-            old_enemy_data["enemy_id"] = new_enemy_data.get("id", old_enemy_data.get('enemy_id', ""))
-
-            if new_enemy_data.get("minHP", None) or new_enemy_data.get("maxHP", None):
-                old_enemy_data["hp"] = {}
-                old_enemy_data["hp"]["min"] = new_enemy_data.get("minHP", "")
-                old_enemy_data["hp"]["max"] = new_enemy_data.get("maxHP", "")
-
-            old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
-            old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
-
-            guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type, new_enemy_data_c)
-            try:
-                del logdata_instance_content[old_enemy_data['title']]
-            except Exception:
-                pass
-
-            # handle enemy if name is ""
-            if not empty_enemy_data == {}:
-                empty_enemy_available = True
-                base_data = {'title': 'Unbekannte Herkunft', 'title_en': 'Unknown Source', 'id': f"boss0{i+2}", "sequence": [{"phase": "09"}], 'debuffs': []}
-                old_enemy_data = {'title': 'Unbekannte Herkunft', 'title_en': 'Unknown Source', 'id': f"boss0{i+2}", "sequence": [{"phase": "09"}], 'debuffs': []}
-                old_enemy_data = merge_attacks(old_enemy_data, empty_enemy_data, enemy_type)
-                old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, empty_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
-
-                if not old_enemy_data == base_data:
-                    guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type, new_enemy_data_c)
-    if logdata_instance_content != {}:
-        counter = 0
-        if logdata_instance_content is None:
-            return guide_data
-
-        empty_enemy = None
-        for i, enemy in enumerate(logdata_instance_content, 1):
-            if enemy == "" and enemy_type == 'adds':
-                continue
-            print_color_yellow(f"\tWork on '{enemy}'", disable_yellow_print)
-            # for bosses, only write bosses, for adds skip bosse
-            lower_enemy_list = [x.lower() for x in _entry[enemy_type]]
-            lower_boss_list = [x.lower() for x in _entry['bosse']]
-            lower_enemy_list.append("")
-            if (enemy_type == 'bosse' and enemy.lower() not in lower_enemy_list) or (enemy_type == 'adds' and enemy.lower() in lower_boss_list):
-                continue
-            counter = counter + 1
-            new_enemy_data = logdata_instance_content.get(enemy, "Unknown_")
-            if new_enemy_data == {}:
-                new_enemy_data = {'skill': {}}
-            new_enemy_data_c = copy.deepcopy({**{}, **new_enemy_data})
-            # create new template file to merge against
-            enemy_id = new_enemy_data.get("id", "")
-            tmp = {
-                "title": enemy if enemy != "" else "Unbekannte Herkunft",
-                "title_en": getBnpcName(enemy, enemy_id, "en") if enemy != "" else "Unknown Source",
-                "title_de": getBnpcName(enemy, enemy_id, "de") if enemy != "" else "Unknown Source",
-                "title_fr": getBnpcName(enemy, enemy_id, "fr") if enemy != "" else "Unknown Source",
-                "title_ja": getBnpcName(enemy, enemy_id, "ja") if enemy != "" else "Unknown Source",
-                "title_cn": getBnpcName(enemy, enemy_id, "cn") if enemy != "" else "Unknown Source",
-                "title_ko": getBnpcName(enemy, enemy_id, "ko") if enemy != "" else "Unknown Source",
-                "enemy_id": enemy_id,
-                "id": f"{enemy_type[:-1]}{counter:02d}",
-                "attacks": [],
-                "debuffs": []
-            }
-
-            if new_enemy_data.get("minHP", None) or new_enemy_data.get("maxHP", None):
-                tmp["hp"] = {}
-                tmp["hp"]["min"] = new_enemy_data.get("minHP", "")
-                tmp["hp"]["max"] = new_enemy_data.get("maxHP", "")
-
-            enemy_data = merge_attacks(tmp, new_enemy_data, enemy_type)
-            enemy_data['attacks'] = sorted(enemy_data['attacks'], key=itemgetter('title'))
-
-            enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(tmp, new_enemy_data, enemy_type, [])
-            enemy_data['debuffs'] = sorted(enemy_data['debuffs'], key=itemgetter('title'))
-            if enemy == "":
-                empty_enemy = enemy_data
-            else:
-                guide_data = add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data_c)
-
-        if empty_enemy and not empty_enemy_available:
-            if empty_enemy.get("attacks", None) or empty_enemy.get("debuffs", None):
-                guide_data = add_Enemy(guide_data, empty_enemy, "bosse", new_enemy_data_c)
-    return guide_data
-
-
-# Notizen, Bosse und Adds
-def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
-    guide_data = ""
-    contentzoneid = ""
+def getDataFromLogfile(entry):
     logdata_instance_content = None
-    # add mechanics
-    guide_data = check_Mechanics(_entry, guide_data, _old_mechanics)
     music = None
-
+    contentzoneid = ""
     # get correct title capitalization to read data from logdata
-    title = uglyContentNameFix(_entry["title_de"].title(), _entry["instanceType"], _entry["difficulty"])
+    title = uglyContentNameFix(entry["title_de"].title(), entry["instanceType"], entry["difficulty"])
     # get the latest data from logdata
-    if not _entry["title_de"] == "" and logdata_lower.get(_entry["title_de"].lower()):
+    if not entry["title_de"] == "" and logdata_lower.get(entry["title_de"].lower()):
         try:
             logdata_instance_content = dict(logdata[getContentName(title, lang="de")])
         except Exception:
@@ -1061,14 +743,10 @@ def addGuide(_entry, _old_bosses, _old_adds, _old_mechanics):
         if logdata_instance_content.get('contentzoneid', None):
             contentzoneid = logdata_instance_content['contentzoneid']
         logdata_instance_content, music = cleanup_logdata(logdata_instance_content)
-    print_color_green(f"Work on '{_entry['title_de']}'", disable_green_print)
-    guide_data = check_Enemy(_entry, guide_data, "bosse", "bosses", logdata_instance_content, _old_bosses)
-    guide_data = check_Enemy(_entry, guide_data, "adds", "adds", logdata_instance_content, _old_adds)
-    #guide_data = check_Enemy(_entry, guide_data, "adds", _old_adds)
-    return guide_data, contentzoneid, music
+    return logdata_instance_content, music, contentzoneid
 
 
-def addContentZoneIdToHeader(header_data, contentzoneid, _entry):
+def addContentZoneIdToHeader(header_data, contentzoneid, entry):
     global contentfinderconditionX
     cmt = None
     if not contentzoneid == "":
@@ -1076,7 +754,7 @@ def addContentZoneIdToHeader(header_data, contentzoneid, _entry):
         for zone in contentzoneid:
             header_data += '  - id: ' + zone + '\n'
     for key, value in contentfinderconditionX.items():
-        if value['Name'] == _entry['title_de']:
+        if value['Name'] == entry['title_de']:
             cmt = value['ContentMemberType']
             if not "InstanceContent" in value['Content']:
                 continue
@@ -1093,17 +771,20 @@ def addContentZoneIdToHeader(header_data, contentzoneid, _entry):
     return header_data, cmt
 
 
-def addGroupCollections(header_data, cmt, _entry):
+def addGroupCollections(cmt, entry):
     global contentmembertype
+    header_data = ""
     skip_lookoup = False
     if not cmt:
-        if discontinued_content.get(_entry['title'], None):
-            healerp = "2"
-            tankp = "2"
-            meleep = "2"
-            rangep = "2"
-            skip_lookoup = True
+        if "Traumprüfung" in entry['title'] or "Dalriada" in entry['title'] or "Castrum Lacus Litore" in entry['title']:
+            cmt_entry = 8
+            healerp = 2
+            tankp = 2
+            meleep = 2
+            rangep = 2
+            skip_lookoup = true
         else:
+            print("Could not find GroupCollection for: " + entry['title'])
             return header_data
 
     if not skip_lookoup:
@@ -1142,362 +823,76 @@ def addMusic(header_data, music):
     return header_data
 
 
-def write_content_to_file(_entry, _filename, _old_bosses, _old_adds, _old_mechanics, old_wip, index, _previous, _next):
-    seperate_data_into_array("bosse", _entry)
-    seperate_data_into_array("adds", _entry)
-    seperate_data_into_array("tags", _entry)
-    header_data, _entry = rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next)
-    guide_data, contentzoneid, music = addGuide(_entry, _old_bosses, _old_adds, _old_mechanics)
-
-    header_data, cmt = addContentZoneIdToHeader(header_data, contentzoneid, _entry)
-    header_data = addGroupCollections(header_data, cmt, _entry)
-    if music:
-        header_data = addMusic(header_data, music)
-
-    # build file, compare with existing data and write if data is not equals
-    filedata = '---\n'
-    filedata += header_data
-    filedata += guide_data
-    filedata += '---'
-    filedata += '\n'
-
+def delete_invalid_entries(tmp_attack):
     try:
-        with open(_filename, "r", encoding="utf8") as f:
+        del tmp_attack['title_id']
+    except Exception:
+        pass
+    try:
+        del tmp_attack['damage_type']
+    except Exception:
+        pass
+    try:
+        del tmp_attack['roles']
+    except Exception:
+        pass
+    try:
+        del tmp_attack['tags']
+    except Exception:
+        pass
+    return tmp_attack
+
+
+def writeFileIfNoDifferent(filename, filedata):
+    try:
+        with open(filename, "r", encoding="utf8") as f:
             x_data = f.read()
     except:
         x_data = None
 
     if not filedata == x_data:
-        with open(_filename, "w", encoding="utf8") as fi:
+        with open(filename, "w", encoding="utf8") as fi:
             fi.write(filedata)
-        print(f"Wrote new data to file {_filename}")
+        print(f"Wrote new data to file {filename}")
 
 
-def getEntriesForRouletts(_entry):
-    global contentfinderconditionX
-    for key, value in contentfinderconditionX.items():
-        if value['Name'] == getContentName(_entry["title"], "de", _entry["difficulty"], _entry["instanceType"]):
-            _entry['type'] = value['ContentType'].lower()
-            _entry['mapid'] = value['TerritoryType']
-            _entry['allianceraid'] = value['AllianceRoulette']
-            _entry['frontier'] = value['FeastTeamRoulette']
-            _entry['expert'] = value['ExpertRoulette']
-            _entry['guildhest'] = value['GuildHestRoulette']
-            _entry['level50_60_70'] = value['Level50/60/70Roulette']
-            _entry['level80'] = value['Level80Roulette']
-            _entry['leveling'] = value['LevelingRoulette']
-            _entry['main'] = value['MSQRoulette']
-            _entry['mentor'] = value['MentorRoulette']
-            _entry['normalraid'] = value['NormalRaidRoulette']
-            _entry['trial'] = value['TrialRoulette']
-            return _entry
-    return _entry
+# EVERYTHING RELATED TO GUIDE DATA
+####################################################################################################################
+
+def check_Mechanics(entry, old_mechanics):
+    guide_data = ""
+    # this contruct looks ugly but it forbidds the recreation of empty mechanics
+    if old_mechanics:
+        guide_data += "mechanics:\n"
+        if old_mechanics:
+            for mechanic in old_mechanics:
+                guide_data += add_Mechanic(mechanic)
+    # if no old mechanics are found and excel contains [] it will create the example mechanic
+    elif entry["mechanics"] != "":
+        guide_data += "mechanics:\n"
+        mechanics = entry["mechanics"].strip("\"[").strip("]\"").split("\",\"")
+        counter = 1
+        for m in mechanics:
+            mechanic = {
+                "steps": [{
+                    "step": "09",
+                    "notes": [{"note": f"Mechanics-note {counter}", }],
+                    "images": [{"url": "/assets/img/test.jpg", "alt": "/assets/img/test.jpg", "height": "250px", }],
+                    "videos": [{"url": "https&#58;//akurosia.de/upload/test.mp4", }],
+                }],
+            }
+            if mechanics == ['']:
+                mechanic['title'] = f"Mechanic-Title {counter}"
+            else:
+                mechanic['title'] = m
+
+            guide_data += add_Mechanic(mechanic)
+            counter += 1
+    return guide_data
 
 
-def addEntries(header_data, _entry, field, get_data_function):
-    if checkVariable(_entry, field):
-        header_data += '  - name: "' + _entry[field] + '"\n'
-        mount_id = get_data_function(_entry[field])
-        if mount_id:
-            header_data += '    id: "' + mount_id + '"\n'
-    return header_data
-
-
-def getMaps(_map):
-    global maps
-    for key, value in maps.items():
-        if value['Id'] == _map:
-            return value
-    sys.exit()
-
-
-def truncate(f, n):
-    return math.floor(f * 10 ** n) / 10 ** n
-
-
-def getLevel(level):
-    global levels
-    level = levels[level.replace('Level#', "")]
-    map_ = getMaps(level['Map'])
-    x = truncate(ToMapCoordinate(float(level['X'].replace(",", ".")), float(map_['SizeFactor'])), 1)
-    y = truncate(ToMapCoordinate(float(level['Z'].replace(",", ".")), float(map_['SizeFactor'])), 1)
-    return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
-
-
-def ToMapCoordinate(val, mapsize):
-    c = mapsize / 100.0
-    val *= c
-    return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1
-
-
-def workOnQuests(_entry, quest_id):
-    global quests
-    if quest_id == "":
-        _entry['quest'] = ""
-        _entry['quest_location'] = ""
-        _entry['quest_npc'] = ""
-        return _entry
-    quest = quests[quest_id]
-    _entry['quest'] = quest['Name'].replace(" ", "").replace(" ", "")
-    _entry['quest_npc'] = quest['Issuer']['Start']
-    try:
-        level_data = getLevel(quest['Issuer']['Location'])
-        _entry['quest_location'] = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
-    except KeyError:
-        _entry['quest_location'] = ""
-        print_color_red(f"[workOnQuests] Error on loading: {quest['Issuer']['Location']} ({quest_id})")
-    return _entry
-
-
-def rewrite_content_even_if_exists(_entry, old_wip, index, _previous, _next):
-    header_data = ""
-
-    _entry = getEntriesForRouletts(_entry)
-    tt_type_name = get_territorytype_from_mapid(_entry["mapid"])
-    for lang in LANGUAGES:
-        _entry[f"title_{lang}"] = getContentName(_entry["title"], lang, _entry["difficulty"], _entry["instanceType"])
-
-    if old_wip in ["True", "False"]:
-        header_data += 'wip: "' + str(old_wip).title() + '"\n'
-    else:
-        header_data += 'wip: "True"\n'
-    header_data += 'title: "' + _entry["title"] + '"\n'
-
-    for lang in LANGUAGES:
-        header_data += f'title_{lang}: "' + _entry[f"title_{lang}"] + '"\n'
-    header_data += 'layout: guide_post\n'
-    header_data += 'page_type: guide\n'
-    header_data += f'excel_line: \"{index}\"\n'
-    header_data += 'categories: "' + _entry["categories"] + '"\n'
-    header_data += 'patchNumber: "' + _entry["patchNumber"].replace("'", "") + '"\n'
-    if patchversions.get(_entry["patchNumber"], None):
-        header_data += 'patchLink: "' + patchversions[_entry["patchNumber"]]['link_to_patch'] + '"\n'
-    header_data += 'difficulty: "' + _entry["difficulty"] + '"\n'
-    header_data += 'instanceType: "' + _entry["instanceType"] + '"\n'
-    header_data += 'date: "' + _entry["date"] + '"\n'
-    header_data += 'slug: "' + replaceSlug(_entry["slug"]) + '"\n'
-    if _previous:
-        header_data += 'previous_slug: "' + replaceSlug(_previous) + '"\n'
-    if _next:
-        header_data += 'next_slug: "' + replaceSlug(_next) + '"\n'
-    if _entry["image"]:
-        header_data += 'image:\n'
-        header_data += '  - url: \"/' + getImage(_entry["image"]) + '\n'
-        #header_data += '    url: \"/' + getImage(_entry["image"]) + '\n'
-    header_data += 'terms:\n'
-    header_data = writeTags(header_data, _entry, tt_type_name)
-    header_data += 'patchName: "' + _entry["patchName"] + '"\n'
-    if _entry.get("mapid", None):
-        header_data += 'mapid: "' + _entry["mapid"] + '"\n'
-    if not tt_type_name == "":
-        header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
-    header_data += 'sortid: ' + _entry["sortid"] + '\n'
-    header_data += 'plvl: ' + _entry["plvl"] + '\n'
-    header_data += 'plvl_sync: ' + _entry["plvl_sync"] + '\n'
-    header_data += 'ilvl: ' + _entry["ilvl"] + '\n'
-    header_data += 'ilvl_sync: ' + _entry["ilvl_sync"] + '\n'
-    if not _entry["quest"] == "":
-        header_data += 'quest: "' + _entry["quest"] + '"\n'
-    if not _entry["quest_location"] == "":
-        header_data += 'quest_location: "' + _entry["quest_location"] + '"\n'
-    if not _entry["quest_npc"] == "":
-        header_data += 'quest_npc: "' + _entry["quest_npc"] + '"\n'
-    header_data += 'order: ' + get_order_id(_entry) + '\n'
-    # mounts
-    if checkVariable(_entry, "mount1") or checkVariable(_entry, "mount2"):
-        header_data += 'mount:\n'
-        header_data = addEntries(header_data, _entry, "mount1", getMountIDByName)
-        header_data = addEntries(header_data, _entry, "mount2", getMountIDByName)
-    # minions
-    if checkVariable(_entry, "minion1") or checkVariable(_entry, "minion2") or checkVariable(_entry, "minion3"):
-        header_data += 'minion:\n'
-        header_data = addEntries(header_data, _entry, "minion1", getMinionIDByName)
-        header_data = addEntries(header_data, _entry, "minion2", getMinionIDByName)
-        header_data = addEntries(header_data, _entry, "minion3", getMinionIDByName)
-    # gearset_loot
-    if checkVariable(_entry, "gearset_loot"):
-        header_data += 'gearset_loot:\n'
-        for gset in _entry["gearset_loot"] .split(","):
-            header_data += '  - gsetname: "' + gset + '"\n'
-    # tt_cards
-    if checkVariable(_entry, "tt_card1") or checkVariable(_entry, "tt_card2"):
-        header_data += 'tt_card:\n'
-        header_data = addEntries(header_data, _entry, "tt_card1", getTTCardIDByName)
-        header_data = addEntries(header_data, _entry, "tt_card2", getTTCardIDByName)
-    # orchestrion
-    if checkVariable(_entry, "orchestrion") or checkVariable(_entry, "orchestrion2") or checkVariable(_entry, "orchestrion3") or checkVariable(_entry, "orchestrion4") or checkVariable(_entry, "orchestrion5"):
-        header_data += 'orchestrion:\n'
-        header_data = addEntries(header_data, _entry, "orchestrion", getOrchestrionIDByName)
-        header_data = addEntries(header_data, _entry, "orchestrion2", getOrchestrionIDByName)
-        header_data = addEntries(header_data, _entry, "orchestrion3", getOrchestrionIDByName)
-        header_data = addEntries(header_data, _entry, "orchestrion4", getOrchestrionIDByName)
-        header_data = addEntries(header_data, _entry, "orchestrion5", getOrchestrionIDByName)
-    # orchestrion material
-    if checkVariable(_entry, "orchestrion_material1") or checkVariable(_entry, "orchestrion_material2") or checkVariable(_entry, "orchestrion_material3"):
-        header_data += 'orchestrion_material:\n'
-        if checkVariable(_entry, "orchestrion_material1"):
-            header_data += '  - name: "' + _entry["orchestrion_material1"] + '"\n'
-        if checkVariable(_entry, "orchestrion_material2"):
-            header_data += '  - name: "' + _entry["orchestrion_material2"] + '"\n'
-        if checkVariable(_entry, "orchestrion_material3"):
-            header_data += '  - name: "' + _entry["orchestrion_material3"] + '"\n'
-    # rouletts
-    if _entry.get("expert", None):
-        header_data += 'rouletts:\n'
-        if _entry["allianceraid"]:
-            header_data += '  - allianceraid: ' + _entry["allianceraid"] + "\n"
-        if _entry["frontier"]:
-            header_data += '    frontier: ' + _entry["frontier"] + "\n"
-        if _entry["expert"]:
-            header_data += '    expert: ' + _entry["expert"] + "\n"
-        if _entry["guildhest"]:
-            header_data += '    guildhest: ' + _entry["guildhest"] + "\n"
-        if _entry["level50_60_70"]:
-            header_data += '    level50_60_70: ' + _entry["level50_60_70"] + "\n"
-        if _entry["level80"]:
-            header_data += '    level80: ' + _entry["level80"] + "\n"
-        if _entry["leveling"]:
-            header_data += '    leveling: ' + _entry["leveling"] + "\n"
-        if _entry["main"]:
-            header_data += '    main: ' + _entry["main"] + "\n"
-        if _entry["mentor"]:
-            header_data += '    mentor: ' + _entry["mentor"] + "\n"
-        if _entry["normalraid"]:
-            header_data += '    normalraid: ' + _entry["normalraid"] + "\n"
-        if _entry["trial"]:
-            header_data += '    trial: ' + _entry["trial"] + "\n"
-    # links:
-    if checkVariable(_entry, "teamcraftlink") or checkVariable(_entry, "garlandtoolslink") or checkVariable(_entry, "gamerescapelink"):
-        header_data += 'links:\n'
-        first = "-"
-        if checkVariable(_entry, "teamcraftlink"):
-            header_data += f'  {first} teamcraftlink: "' + _entry["teamcraftlink"] + '"\n'
-            first = " "
-        if checkVariable(_entry, "garlandtoolslink"):
-            header_data += f'  {first} garlandtoolslink: "' + _entry["garlandtoolslink"] + '"\n'
-            first = " "
-        if checkVariable(_entry, "gamerescapelink"):
-            header_data += f'  {first} gamerescapelink: "' + _entry["gamerescapelink"] + '"\n'
-    # videos
-    if checkVariable(_entry, "mtqvid1"):
-        header_data += 'mtq_vid1: "' + get_video_url(_entry["mtqvid1"]) + '"\n'
-    if checkVariable(_entry, "mtqvid2"):
-        header_data += 'mtq_vid2: "' + get_video_url(_entry["mtqvid2"]) + '"\n'
-    if checkVariable(_entry, "mrhvid1"):
-        header_data += 'mrh_vid1: "' + get_video_url(_entry["mrhvid1"]) + '"\n'
-    if checkVariable(_entry, "mrhvid2"):
-        header_data += 'mrh_vid2: "' + get_video_url(_entry["mrhvid2"]) + '"\n'
-    return header_data, _entry
-
-
-def writeTags(header_data, _entry, tt_type_name):
-    # write tags per expansion
-    if _entry["categories"] == "arr":
-        header_data += "  - term: \"A Realm Reborn\"\n"
-        header_data += "  - term: \"ARR\"\n"
-    elif _entry["categories"] == "hw":
-        header_data += "  - term: \"Heavensward\"\n"
-        header_data += "  - term: \"HW\"\n"
-    elif _entry["categories"] == "sb":
-        header_data += "  - term: \"Stormblood\"\n"
-        header_data += "  - term: \"SB\"\n"
-    elif _entry["categories"] == "shb":
-        header_data += "  - term: \"Shadowbringers\"\n"
-        header_data += "  - term: \"ShB\"\n"
-    elif _entry["categories"] == "ew":
-        header_data += "  - term: \"Endwalker\"\n"
-        header_data += "  - term: \"EW\"\n"
-    else:
-        pass
-
-    if not tt_type_name == "":
-        for lang in LANGUAGES:
-            header_data += "  - term: \"" + tt_type_name["Name_" + lang] + "\"\n"
-
-    #header_data += "    - term: \"" + _entry["title"] + "\"\n"
-    for lang in LANGUAGES:
-        header_data += "  - term: \"" + _entry[f"title_{lang}"] + "\"\n"
-
-    # write rest of the tags
-    header_data += "  - term: \"" + _entry["difficulty"] + "\"\n"
-    header_data += "  - term: \"" + _entry["patchNumber"] + "!\"\n"
-    header_data += "  - term: \"" + _entry["patchName"] + "\"\n"
-    if not _entry.get("quest", "") == "":
-        header_data += "  - term: \"" + _entry["quest"] + "\"\n"
-    if checkVariable(_entry, "mount1") or checkVariable(_entry, "mount2"):
-        header_data += "  - term: \"mounts\"\n"
-        header_data += "  - term: \"Reittier\"\n"
-    if checkVariable(_entry, "minion1") or checkVariable(_entry, "minion2") or checkVariable(_entry, "minion3"):
-        header_data += "  - term: \"minions\"\n"
-        header_data += "  - term: \"Begleiter\"\n"
-    if checkVariable(_entry, "tt_card1") or checkVariable(_entry, "tt_card2"):
-        header_data += "  - term: \"tt_cards\"\n"
-        header_data += "  - term: \"Triple Triad Karte\"\n"
-    if checkVariable(_entry, "gearset_loot"):
-        for gset in _entry["gearset_loot"].split(","):
-            header_data += "  - term: \"" + gset + "\"\n"
-    if checkVariable(_entry, "orchestrion") or checkVariable(_entry, "orchestrion2") or checkVariable(_entry, "orchestrion3") or checkVariable(_entry, "orchestrion4") or checkVariable(_entry, "orchestrion5"):
-        header_data += "  - term: \"orchestrion\"\n"
-        header_data += "  - term: \"Notenrolle\"\n"
-    if checkVariable(_entry, "orchestrion_material1") or checkVariable(_entry, "orchestrion_material2") or checkVariable(_entry, "orchestrion_material3"):
-        header_data += "  - term: \"orchestrion_material\"\n"
-    if _entry["instanceType"] == "trial":
-        header_data += "  - term: \"Prüfung\"\n"
-        header_data += "  - term: \"Trial\"\n"
-        header_data += "  - term: \"Primae\"\n"
-        header_data += "  - term: \"Primal\"\n"
-    header_data += "  - term: \"" + _entry["instanceType"] + "\"\n"
-
-    found_roulette = False
-    if _entry.get("allianceraid", None) == "True":
-        header_data += "  - term: \"allianceraid\"\n"
-        found_roulette = True
-    if _entry.get("frontier", None) == "True":
-        header_data += "  - term: \"frontier\"\n"
-        found_roulette = True
-    if _entry.get("expert", None) == "True":
-        header_data += "  - term: \"expert\"\n"
-        found_roulette = True
-    if _entry.get("guildhest", None) == "True":
-        header_data += "  - term: \"guildhest\"\n"
-        found_roulette = True
-    if _entry.get("level50_60_70", None) == "True":
-        header_data += "  - term: \"level50_60_70\"\n"
-        found_roulette = True
-    if _entry.get("level80", None) == "True":
-        header_data += "  - term: \"level80\"\n"
-        found_roulette = True
-    if _entry.get("leveling", None) == "True":
-        header_data += "  - term: \"leveling\"\n"
-        found_roulette = True
-    if _entry.get("main", None) == "True":
-        header_data += "  - term: \"main\"\n"
-        found_roulette = True
-    if _entry.get("mentor", None) == "True":
-        header_data += "  - term: \"mentor\"\n"
-        found_roulette = True
-    if _entry.get("normalraid", None) == "True":
-        header_data += "  - term: \"normalraid\"\n"
-        found_roulette = True
-    if _entry.get("trial", None) == "True":
-        header_data += "  - term: \"trial\"\n"
-        found_roulette = True
-    if found_roulette:
-        header_data += "  - term: \"Zufallsinhalt\"\n"
-        header_data += "  - term: \"roulette\"\n"
-
-    if not _entry["bosse"] == ['']:
-        for b in _entry["bosse"]:
-            if b != "Unknown_":
-                header_data += "  - term: \"" + b + "\"\n"
-    if not _entry["tags"] == ['']:
-        for t in _entry["tags"]:
-            if t != "Unknown_":
-                header_data += "  - term: \"" + t + "\"\n"
-    return header_data
-
-
-def add_Mechanic(guide_data, data):
+def add_Mechanic(data):
+    guide_data = ""
     guide_data += f"  - title: \"{data['title']}\"\n"
     if data.get("steps", None):
         guide_data += "    steps:\n"
@@ -1523,56 +918,722 @@ def add_Mechanic(guide_data, data):
     return guide_data
 
 
-def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
-    enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
-    guide_data += f'  - title: "{enemy_data["title"]}"\n'
-    for lang in LANGUAGES:
-        if enemy_data.get(f"title_{lang}", None):
-            guide_data += f'    title_{lang}: "{enemy_data[f"title_{lang}"]}"\n'
-    if type(enemy_data.get("enemy_id", "")) == list:
-        guide_data += f'    enemy_id: "{", ".join(enemy_data.get("enemy_id", ""))}"\n'
-    else:
-        guide_data += f'    enemy_id: "{enemy_data.get("enemy_id", "")}"\n'
-    guide_data += f'    id: "{enemy_data["id"]}"\n'
+def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack):
+    for attack_id in new_enemy_data.get('skill', {}):
+        for attack in old_enemy_data.get('attacks', []):
+            if type(attack['title']) == str:
+                _id = attack.get('title_id', None)
+                if not attack.get('title_id', None):
+                    if attack.get('variation', None):
+                        _id = attack['variation'][0]['title_id']
+                attack['title'] = addLanguageElements("action", _id, attack['title'] )
+            existing_attacks[attack['title']['de']] = attack['type']
+            if attack_id == attack.get('title_id', None):
+                remove_attack.append(attack_id)
+            if attack.get("variation", None):
+                for vari in attack.get("variation", None):
+                    if attack_id == vari['title_id']:
+                        remove_attack.append(attack_id)
+    return existing_attacks, remove_attack
 
-    if enemy_data.get('hp', None):
-        guide_data += f'    hp:\n'
+
+def remove_skills_from_list_if_found(remove_attack, new_enemy_data):
+    for x in remove_attack:
         try:
-            guide_data += f'      - min: {enemy_data["hp"]["min"] or "None"}\n'
-            guide_data += f'      - max: {enemy_data["hp"]["max"] or "None"}\n'
-        except TypeError:
-            guide_data += f'      - min: {enemy_data["hp"][0]["min"] or "None"}\n'
-            guide_data += f'      - max: {enemy_data["hp"][1]["max"] or "None"}\n'
-    if enemy_data.get("attacks", None):
-        guide_data += '    attacks:\n'
-        for attack in enemy_data["attacks"]:
-            if attack["type"] == "regular":
-                guide_data = add_regular_Attack(guide_data, attack, enemy_type)
-            elif attack["type"] == "variation":
-                guide_data = add_variation_Attack(guide_data, attack, enemy_type)
-            elif attack["type"] == "combo":
-                guide_data = add_combo_Attack(guide_data, attack, enemy_type)
-    if enemy_data.get("debuffs", None):
-        guide_data += '    debuffs:\n'
-        for debuff in enemy_data["debuffs"]:
-            guide_data = add_Debuff(guide_data, debuff, enemy_type)
-    if enemy_data.get("sequence", None):
-        guide_data = add_Sequence(guide_data, enemy_data)
-    else:
-        if enemy_type == "bosse":
-            guide_data = add_Sequence(guide_data, example_sequence)
-        else:
-            guide_data = add_Sequence(guide_data, example_add_sequence)
+            del new_enemy_data["skill"][x]
+        except Exception:
+            pass
+    return new_enemy_data
 
+
+def addSortName(old_enemy_data, type_):
+    if old_enemy_data.get(type_, None):
+        for i, attack in enumerate(old_enemy_data[type_]):
+            if not old_enemy_data[type_][i].get('sortname', None):
+                if type(old_enemy_data[type_][i]['title']) == str:
+                    x = "status"
+                    if type_ == "attacks":
+                        x = "action"
+                    if not old_enemy_data[type_][i].get('title_id', None):
+                        if old_enemy_data[type_][i].get('variation', None):
+                            _id = old_enemy_data[type_][i]['variation'][0]['title_id']
+                    else:
+                        _id = old_enemy_data[type_][i]['title_id']
+                    old_enemy_data[type_][i]['title'] = addLanguageElements(x, _id, old_enemy_data[type_][i]['title'])
+                old_enemy_data[type_][i]['sortname'] = old_enemy_data[type_][i]['title']['de']
+    return old_enemy_data
+
+
+def sort_list_of_skills(data):
+    if data.get('attacks', None):
+        data['attacks'] = sorted(data['attacks'], key=itemgetter('sortname'))
+        unknown_attacks = []
+        known_attacks = []
+        for attack in data['attacks']:
+            if attack['title']['de'].startswith("Unknown_"):
+                unknown_attacks.append(attack)
+            else:
+                known_attacks.append(attack)
+        data['attacks'] = unknown_attacks + known_attacks
+    return data
+
+
+def translateAttack(skill_id, _type=action, lang="en"):
+    try:
+        text = _type[str(int(skill_id, 16))][f"Name_{lang}"]
+        text = fixCaptilaziationAndRomanNumerals(text)
+        if text == "":
+            text = f"Unknown_{skill_id}"
+        return text
+    except KeyError:
+        return f"Unknown_{skill_id}"
+
+
+def fixCaptilaziationAndRomanNumerals(text):
+    text = text.title()
+    text = re.sub(r" (Ii|Iii|IIi|Vi|Vii|Viii|Iv|Ix|Xi|Xii|Xiii|Xliii|Iii-E|Xxiv|013Bl|Xii\.)\. ", lambda x:  x.group(0).upper(), text)
+    text = re.sub(r" (Ii|Iii|IIi|Vi|Vii|Viii|Iv|Ix|Xi|Xii|Xiii|Xliii|Iii-E|Xxiv|013Bl|Xii\.)$", lambda x:  x.group(0).upper(), text)
+    text = re.sub(r" (Ii) ", lambda x:  x.group(0).upper(), text)
+    text = re.sub(r"('[a-zA-Z])(?! )", lambda x:  x.group(0).upper(), text)
+    text = re.sub(r"('[a-zA-Z]) ", lambda x:  x.group(0).lower(), text)
+    text = text.replace('"', r'\"')
+    text = text.replace("&#246;", "ö").replace("&#252;", "ü").replace("&#228;", "ä").replace("&#223;", "ß")
+    return text
+
+
+def get_fixed_status_description(_id):
+    try:
+        description = status[str(int(_id, 16))]['Description_de']
+        description = re.sub('<UIForeground>[0-9A-F]{1,6}</UIForeground>', '', description)
+        description = re.sub('<UIGlow>[0-9A-F]{1,6}</UIGlow>', '', description)
+        description = description.replace("\n\n", "<br>")
+        description = description.replace("\n", "<br>")
+        return description
+    except KeyError:
+        return f"Unknown_{_id}"
+
+
+def getBnpcNameFromID(_id, aname, nname, lang="en"):
+    bnew_name = ""
+    enew_name = ""
+    ennew_name = ""
+    if type(_id) == list:
+        _id = _id[0]
+    _id = str(_id)
+    try:
+        bnew_name = bnpcname[_id]["Singular_de"]
+        m = re.search(nname, bnew_name, re.IGNORECASE)
+        n = re.search(aname, bnew_name, re.IGNORECASE)
+        if m or n:
+            return bnpcname[_id][f"Singular_{lang}"]
+    except Exception:
+        pass
+    try:
+        enew_name = eobjname[_id]["Singular_de"]
+        m = re.search(nname, enew_name, re.IGNORECASE)
+        n = re.search(aname, enew_name, re.IGNORECASE)
+        if m or n:
+            return eobjname[_id][f"Singular_{lang}"]
+    except Exception:
+        pass
+    try:
+        ennew_name = enpcresident[_id]["Singular_de"]
+        m = re.search(nname, ennew_name, re.IGNORECASE)
+        n = re.search(aname, ennew_name, re.IGNORECASE)
+        if m or n:
+            return enpcresident[_id][f"Singular_{lang}"]
+    except Exception:
+        pass
+
+    if "α" not in bnew_name and "β" not in bnew_name and "（仮）鎖" not in bnew_name:
+        print_color_red(f"'{bnew_name}', '{enew_name}', '{ennew_name}' not found {aname} ({nname}) - ({_id})")
+    return ""
+
+
+def getBnpcName(name, _id, lang="en"):
+    name = name.lower()
+    aname = ""
+    # take care of all the article cases
+    name_match = re.search("^(der|die|das) ", name)
+    if name_match:
+        aname = name.replace("der ", r"(\[t\]|(der|die|das)) ").replace("die ", r"(\[t\]|(der|die|das)) ").replace("das ", r"(\[t\]|(der|die|das)) ")
+
+    name_match = re.search(" (der|die|das)", name)
+    if name_match:
+        aname = name.replace(" der ", r" (\[t\]|(der|die|das)) ").replace(" die ", r" (\[t\]|(der|die|das)) ").replace(" das ", r" (\[t\]|(der|die|das)) ")
+
+    if aname == "":
+        aname = name
+
+    # take care of the german gender cases
+    nname = aname.replace("er ", r"(\[a\]|(e|es|er|en)) ").replace("es ", r"(\[a\]|(e|es|er|en)) ").replace("en ", r"(\[a\]|(e|es|er|en)) ").replace("e ", r"(\[a\]|(e|es|er|en)) ")
+    if nname.endswith("e"):
+        nname = nname[:-1] + r"(\[a\]|(e|es|er|en))"
+    elif nname.endswith("en") or nname.endswith("es") or nname.endswith("er"):
+        nname = nname[:-2] + r"(\[a\]|(e|es|er|en))"
+
+    if not _id == "":
+        resultname = getBnpcNameFromID(_id, aname, nname, lang)
+        if not resultname == "":
+            return fixCaptilaziationAndRomanNumerals(resultname)
+    # check results agains bnpcname
+    for key, bnpc in bnpcname.items():
+        m = re.search(nname, bnpc["Singular_de"].lower())
+        if m:
+            return fixCaptilaziationAndRomanNumerals(bnpc[f"Singular_{lang}"])
+
+    # check results agains eobjname
+    for key, eobj in eobjname.items():
+        m = re.search(nname, eobj["Singular_de"].lower())
+        if m:
+            return fixCaptilaziationAndRomanNumerals(eobj[f"Singular_{lang}"])
+
+    # check results agains eobjname
+    for key, eobj in enpcresident.items():
+        m = re.search(nname, eobj["Singular_de"].lower())
+        if m:
+            return fixCaptilaziationAndRomanNumerals(eobj[f"Singular_{lang}"])
+    # return anything, just in case
+    print_color_yellow(f"Missing {name} examples where ({aname}) and ({nname})", disable_yellow_print)
+    return ""
+
+
+def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
+    remove_attack = []
+    existing_attacks = {}
+    # comapre all skill ids
+    existing_attacks, remove_attack = compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack)
+    # remove skill ids if they were found before
+    new_enemy_data = remove_skills_from_list_if_found(remove_attack, new_enemy_data)
+
+    old_enemy_data = addSortName(old_enemy_data, "attacks")
+    old_enemy_data = sort_list_of_skills(old_enemy_data)
+    if not new_enemy_data.get('skill', None):
+        return old_enemy_data
+    # merge new keys
+    for attack_id, attack in new_enemy_data['skill'].items():
+        if attack["name"] == "":
+            attack["name"] = "Unknown_" + attack_id
+        if existing_attacks.get(attack['name'], None):
+            # convert regular attk to variation
+            if existing_attacks[attack['name']] == "regular":
+                print_color_blue(f"\t\tNeed to convert: {attack['name']} ({attack_id})", disable_blue_print)
+                # find attack
+                attack_index = None
+                for i, old_attack in enumerate(old_enemy_data['attacks']):
+                    if old_attack.get('title', {}).get('de', None) == fixCaptilaziationAndRomanNumerals(attack['name']):
+                        attack_index = i
+                        break
+                tmp_attack = old_enemy_data['attacks'][attack_index]
+                tmp_attack['type'] = "variation"
+                tmp_attack['notes'] = [{'note': 'Variation-note BIG'}]
+                tmp = {
+                    'title': {
+                        'en': translateAttack(tmp_attack['title_id'], lang="en"),
+                        'de': translateAttack(tmp_attack['title_id'], lang="de"),
+                        'fr': translateAttack(tmp_attack['title_id'], lang="fr"),
+                        'ja': translateAttack(tmp_attack['title_id'], lang="ja"),
+                        'cn': translateAttack(tmp_attack['title_id'], lang="cn"),
+                        'ko': translateAttack(tmp_attack['title_id'], lang="ko")
+                    },
+                    'title_id': tmp_attack['title_id'],
+                    'damage_type': tmp_attack['damage_type'],
+                    'single_or_aoe': attack['type_id']
+                }
+                if tmp_attack['title'] == "Attacke":
+                    tmp['disable'] = 'false'
+                if tmp_attack.get('damage', None):
+                    tmp["damage"] = {}
+                    try:
+                        tmp["damage"]["min"] = tmp_attack['damage']['min']
+                        tmp["damage"]["max"] = tmp_attack['damage']['max']
+                    except:
+                        tmp["damage"]["min"] = tmp_attack['damage'][0]['min']
+                        tmp["damage"]["max"] = tmp_attack['damage'][1]['max']
+                if tmp_attack.get('roles', None):
+                    tmp['roles'] = list(tmp_attack.get('roles', None))
+                    if tmp['roles'][0]['role'] == "role":
+                        tmp['roles'][0]['role'] = "Variation-role 1"
+                if tmp_attack.get('tags', None):
+                    tmp['tags'] = list(tmp_attack.get('tags', None))
+                    if tmp['tags'][0]['tag'] == "tag":
+                        tmp['tags'][0]['tag'] = "Variation-tag 1"
+                if tmp_attack.get('notes', None):
+                    tmp['notes'] = [{'note': 'Variation-note BIG'}]
+                    if tmp_attack['notes'][0]['note'] == "Variation-note BIG":
+                        tmp['notes'][0]['note'] = "Variation-note 1"
+                tmp_attack['variation'] = [tmp]
+
+                # add new attack
+                tmp2 = {
+                    'title': {
+                        'en': translateAttack(attack_id, lang="en"),
+                        'de': translateAttack(attack_id, lang="de"),
+                        'fr': translateAttack(attack_id, lang="fr"),
+                        'ja': translateAttack(attack_id, lang="ja"),
+                        'cn': translateAttack(attack_id, lang="cn"),
+                        'ko': translateAttack(attack_id, lang="ko")
+                    },
+                    'title_id': attack_id,
+                    'damage_type': attack['damage_type'],
+                    'single_or_aoe': attack['type_id']
+                }
+                if tmp_attack.get('damage', None):
+                    tmp2["damage"] = {}
+                    try:
+                        tmp2["damage"]["min"] = tmp_attack['damage']['min']
+                        tmp2["damage"]["max"] = tmp_attack['damage']['max']
+                    except:
+                        tmp2["damage"]["min"] = tmp_attack['damage'][0]['min']
+                        tmp2["damage"]["max"] = tmp_attack['damage'][1]['max']
+                if tmp_attack.get('roles', None):
+                    tmp2['roles'] = list(tmp_attack.get('roles', None))
+                    if tmp2['roles'][0]['role'] == "role":
+                        tmp2['roles'][0]['role'] = "Variation-role 1"
+                if tmp_attack.get('tags', None):
+                    tmp2['tags'] = list(tmp_attack.get('tags', None))
+                    if tmp2['tags'][0]['tag'] == "tag":
+                        tmp2['tags'][0]['tag'] = "Variation-tag 1"
+                if tmp_attack.get('notes', None):
+                    tmp2['notes'] = [{'note': 'Variation-note BIG'}]
+                    if tmp_attack['notes'][0]['note'] == "Variation-note BIG":
+                        tmp2['notes'][0]['note'] = "Variation-note 1"
+                tmp_attack['variation'].append(tmp2)
+
+                # delete old invalid entries
+                tmp_attack = delete_invalid_entries(tmp_attack)
+                existing_attacks[attack['name']] = 'variation'
+            else:
+                print_color_blue("\t\tNeed to add to variation: " + attack['name'], disable_blue_print)
+                # find attack
+                attack_index = None
+                for i, old_attack in enumerate(old_enemy_data['attacks']):
+                    if old_attack.get('title', {}).get('de', None) == attack['name']:
+                        attack_index = i
+                        break
+                tmp_attack = old_enemy_data['attacks'][attack_index]
+                # add new attack
+                tmp = {
+                    'title': {
+                        'en': translateAttack(attack_id, lang="en"),
+                        'de': translateAttack(attack_id, lang="de"),
+                        'fr': translateAttack(attack_id, lang="fr"),
+                        'ja': translateAttack(attack_id, lang="ja"),
+                        'cn': translateAttack(attack_id, lang="cn"),
+                        'ko': translateAttack(attack_id, lang="ko")
+                    },
+                    'title_id': attack_id,
+                    'damage_type': attack['damage_type'],
+                    'single_or_aoe': attack['type_id']
+                }
+                if tmp_attack['variation'][0].get('damage', None) or tmp_attack.get('damage', None):
+                    tmp["damage"] = {}
+                    try:
+                        tmp["damage"]["min"] = tmp_attack['variation'][0].get('damage', {}).get('min', None) or tmp_attack.get('damage', {}).get('min', None)
+                        tmp["damage"]["max"] = tmp_attack['variation'][0].get('damage', {}).get('max', None) or tmp_attack.get('damage', {}).get('max', None)
+                    except:
+                        tmp["damage"]["min"] = tmp_attack['variation'][0].get('damage', {})[0].get('min', None) or tmp_attack.get('damage', {})[0].get('min', None)
+                        tmp["damage"]["max"] = tmp_attack['variation'][0].get('damage', {})[1].get('max', None) or tmp_attack.get('damage', {})[1].get('max', None)
+                if tmp_attack['variation'][0].get('roles', None) or tmp_attack.get('roles', None):
+                    tmp['roles'] = tmp_attack['variation'][0].get('roles', None) or tmp_attack.get('roles', None)
+                if tmp_attack['variation'][0].get('tags', None) or tmp_attack.get('tags', None):
+                    tmp['tags'] = tmp_attack['variation'][0].get('tags', None) or tmp_attack.get('tags', None)
+                if tmp_attack['variation'][0].get('notes', None) or tmp_attack.get('notes', None):
+                    tmp['notes'] = tmp_attack['variation'][0].get('notes', None) or tmp_attack.get('notes', None)
+                tmp_attack['variation'].append(tmp)
+        else:
+            print_color_blue("\t\tAdded new entry for regular: " + attack['name'], disable_blue_print)
+            # create new regular
+            tmp = {
+                'sortname': translateAttack(attack_id, lang="de"),
+                'title': {
+                    'en': translateAttack(attack_id, lang="en"),
+                    'de': translateAttack(attack_id, lang="de"),
+                    'fr': translateAttack(attack_id, lang="fr"),
+                    'ja': translateAttack(attack_id, lang="ja"),
+                    'cn': translateAttack(attack_id, lang="cn"),
+                    'ko': translateAttack(attack_id, lang="ko")
+                },
+                'title_id': attack_id,
+                'attack_in_use': 'false',
+                'disable': 'false',
+                'type': 'regular',
+                'damage_type': attack['damage_type'],
+                'phases': [{'phase': '09'}],
+                'roles': [{'role': 'role'}],
+                'tags': [{'tag': 'tag'}],
+                'notes': [{'note': 'note'}],
+                'single_or_aoe': attack['type_id']
+            }
+            if attack.get('damage', None):
+                tmp["damage"] = {}
+                tmp["damage"]["min"] = attack['damage']['min']
+                tmp["damage"]["max"] = attack['damage']['max']
+
+            if tmp['title']['de'] == "Attacke":
+                tmp['attack_in_use'] = 'true'
+                tmp['disable'] = 'true'
+                tmp['roles'][0]['role'] = 'Tank'
+                tmp['tags'][0]['tag'] = 'Auto-Angriff'
+                del tmp['notes']
+
+            if tmp['title']['de'].startswith("Unknown_"):
+                tmp['disable'] = 'true'
+
+            if enemy_type == "adds" and tmp.get("notes", None):
+                del tmp['notes']
+            if old_enemy_data.get('attacks', []) == []:
+                old_enemy_data['attacks'] = []
+            old_enemy_data['attacks'].append(tmp)
+
+            existing_attacks[attack['name']] = 'regular'
+
+    old_enemy_data = sort_list_of_skills(old_enemy_data)
+    return old_enemy_data
+
+
+def compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_debuff):
+    for debuff_id in new_enemy_data.get('status', {}):
+        for debuff in old_enemy_data.get('debuffs', {}):
+            if type(debuff['title']) == str:
+                debuff['title'] = addLanguageElements("status", debuff.get('title_id', None), debuff['title'] )
+            existing_debuffs[debuff['title']['de']] = ""
+            if debuff_id == debuff.get('title_id', None):
+                remove_debuff.append(debuff_id)
+    return existing_debuffs, remove_debuff
+
+
+def remove_status_from_list_if_found(remove_debuff, new_enemy_data):
+    for x in remove_debuff:
+        try:
+            del new_enemy_data["status"][x]
+        except Exception:
+            pass
+    return new_enemy_data
+
+
+def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last):
+    remove_attack = []
+    existing_debuffs = {}
+    ignore_debuffs = ['130', '13d']
+    obviouse_debuffs = ['82b', '82a', '82c', '9d4', '9d7', '95', '12', '38e', '828', '0e', '113', '06', '07', '01', '11', '282', 'ca', '11', '196', '1b6', '23c', '']
+    # filter duplicate debuffs
+    tmp_debuffs = []
+    tmp_debuff_ids = []
+    disable_yellow_print = False
+    for x in old_enemy_data.get("debuffs", []):
+        if x['title_id'] not in tmp_debuff_ids and x['title_id'] not in ignore_debuffs:
+            saved_used_skills_to_ignore_in_last.append(x['title_id'])
+            tmp_debuff_ids.append(x['title_id'])
+            tmp_debuffs.append(x)
+        else:
+            print_color_yellow(f"Ignore Duplicate Debuff {x['title']}")
+    disable_yellow_print = True
+    old_enemy_data["debuffs"] = tmp_debuffs
+
+    if not new_enemy_data.get('title', {}).get('de', "") == 'Unbekannte Herkunft':
+        # remove debuffs already manually adjusted
+        for debuff in saved_used_skills_to_ignore_in_last:
+            try:
+                del new_enemy_data.get("status", {})[debuff]
+            except Exception:
+                pass
+        # comapre all skill ids
+        existing_debuffs, remove_attack = compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_attack)
+        # remove skill ids if they were found before
+        new_enemy_data = remove_status_from_list_if_found(remove_attack, new_enemy_data)
+    # comapre all skill ids
+    existing_debuffs, remove_attack = compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_attack)
+    # remove skill ids if they were found before
+    new_enemy_data = remove_status_from_list_if_found(remove_attack, new_enemy_data)
+
+    old_enemy_data = addSortName(old_enemy_data, "debuffs")
+    # merge new keys
+    if not old_enemy_data.get('debuffs', None):
+        old_enemy_data['debuffs'] = []
+    else:
+        old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('sortname'))
+
+    if not new_enemy_data.get('status', None):
+        return old_enemy_data, saved_used_skills_to_ignore_in_last
+
+    # get only status to make sorting easier
+    new_enemy_data_status = new_enemy_data.get('status', {})
+
+    # sort after the name key in subdicts
+    new_enemy_data_status = OrderedDict(sorted(new_enemy_data_status.items(), key=lambda x: x[1]['name']))
+
+    for status_id, status_data in new_enemy_data_status.items():
+        if status_data['name'] == "":
+            continue
+        if status_id in obviouse_debuffs:
+            tmp_status = addknowndebuff(status_id, status_data)
+        else:
+            tmp_status = {
+                'sortname': translateAttack(status_id, _type=status, lang="de"),
+                'title': {
+                    'en': translateAttack(status_id, _type=status, lang="en"),
+                    'de': translateAttack(status_id, _type=status, lang="de"),
+                    'fr': translateAttack(status_id, _type=status, lang="fr"),
+                    'ja': translateAttack(status_id, _type=status, lang="ja"),
+                    'cn': translateAttack(status_id, _type=status, lang="cn"),
+                    'ko': translateAttack(status_id, _type=status, lang="ko")
+                },
+                'title_id': status_id,
+                'icon': status_data['icon'],
+                'description': get_fixed_status_description(status_id),
+                'debuff_in_use': 'false',
+                'disable': 'false',
+                #'damage_type': status_data['damage_type'],
+                'phases': [{'phase': '09'}],
+                'roles': [{'role': 'role'}],
+                'tags': [{'tag': 'tag'}],
+                'notes': [{'note': 'note'}]
+            }
+            if status_data.get('duration', None):
+                tmp_status["durations"] = status_data['duration']
+        old_enemy_data['debuffs'].append(tmp_status)
+    old_enemy_data['debuffs'] = sorted(old_enemy_data['debuffs'], key=itemgetter('sortname'))
+    return old_enemy_data, saved_used_skills_to_ignore_in_last
+
+
+def addknowndebuff(status_id, status_data):
+    tmp_status = {
+        'sortname': translateAttack(status_id, _type=status, lang="de"),
+        'title': {
+            'en': translateAttack(status_id, _type=status, lang="en"),
+            'de': translateAttack(status_id, _type=status, lang="de"),
+            'fr': translateAttack(status_id, _type=status, lang="fr"),
+            'ja': translateAttack(status_id, _type=status, lang="ja"),
+            'cn': translateAttack(status_id, _type=status, lang="cn"),
+            'ko': translateAttack(status_id, _type=status, lang="ko")
+        },
+        'title_id': status_id,
+        'icon': status_data['icon'],
+        'description': get_fixed_status_description(status_id),
+        'debuff_in_use': 'true',
+        'disable': 'false',
+        #'damage_type': status_data['damage_type'],
+        'phases': [{'phase': '09'}],
+        'roles': [{'role': 'Alle'}],
+        'tags': [{'tag': 'Common'}],
+    }
+    return tmp_status
+
+
+def reorder_old_enemies(entry, enemy_type, old_enemies):
+    # sort old enemies
+    final_old_enemy = []
+
+    # do this only for bosses as they will be reorderd in the same order as in the EXCEL file
+    if entry.get(enemy_type, None) and enemy_type == "bosse":
+        for enemy in entry[enemy_type]:
+            for old_enemy_data in old_enemies:
+                # if old title is empty set it to default
+                if not old_enemy_data['title']:
+                    old_enemy_data['title'] = UNKNOWNTITLE
+                if type(old_enemy_data['title']) == str:
+                    old_enemy_data['title'] = addLanguageElements("bnpc", old_enemy_data['enemy_id'], old_enemy_data['title'])
+                if old_enemy_data['title'].get('de', "").lower() == enemy.lower():
+                    final_old_enemy.append(old_enemy_data)
+
+    # if you created a new order, apply it
+    if not final_old_enemy == []:
+        old_enemies = final_old_enemy
+    return old_enemies
+
+
+def addLanguageElements(_type, _id, ori_value):
+    if _type == "bnpc":
+        data = bnpcname
+        field = "Singular"
+    if _type == "action":
+        data = action
+        field = "Name"
+        _id = str(int(_id, 16))
+    if _type == "status":
+        data = status
+        field = "Name"
+        _id = str(int(_id, 16))
+
+    if _id:
+        return {
+            'en': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_en']),
+            'de': fixCaptilaziationAndRomanNumerals(ori_value),
+            'fr': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_fr']),
+            'ja': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_ja']),
+            'cn': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_cn']),
+            'ko': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_ko']),
+        }
+    return UNKNOWNTITLE
+
+
+def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instance_content):
+    empty_enemy_available = False
+    if old_enemies:
+        print_color_red(f"\tStart looking at old_enem {enemy_type}", disable_red_print)
+        old_enemies = reorder_old_enemies(entry, enemy_type, old_enemies)
+
+        saved_used_skills_to_ignore_in_last = []
+        for i, old_enemy_data in enumerate(old_enemies):
+            if type(old_enemy_data['title']) == str:
+                old_enemy_data['title'] = addLanguageElements("bnpc", old_enemy_data['enemy_id'], old_enemy_data['title'])
+            if old_enemy_data['title']['de'] == "":
+                continue
+            elif old_enemy_data['title']['de'] == "Unbekannte Herkunft":
+                empty_enemy_available = True
+
+            old_enemy_data['title']['de'] = fixCaptilaziationAndRomanNumerals(old_enemy_data['title']['de'])
+            print_color_yellow(f"\tWork on '{old_enemy_data['title']['de']}'", disable_yellow_print)
+            empty_enemy_data = {}
+            try:
+                new_enemy_data = logdata_instance_content[old_enemy_data['title']['de']]
+                if enemy_type == 'bosse' and len(old_enemies) == i + 1:
+                    empty_enemy_data = logdata_instance_content['']
+            except Exception as e:
+                #print(logdata_instance_content)
+                if not old_enemy_data['title']['de'] == "Unbekannte Herkunft":
+                    print(f"Could not find {old_enemy_data['title']['de']} in logdata")
+                new_enemy_data = {}
+            new_enemy_data_c = copy.deepcopy({**{}, **new_enemy_data})
+
+            # get enemy attacks and debuffs for all enemies with a name
+            old_enemy_data["enemy_id"] = new_enemy_data.get("id", old_enemy_data.get('enemy_id', ""))
+
+            if new_enemy_data.get("minHP", None) or new_enemy_data.get("maxHP", None):
+                old_enemy_data["hp"] = {}
+                old_enemy_data["hp"]["min"] = new_enemy_data.get("minHP", "")
+                old_enemy_data["hp"]["max"] = new_enemy_data.get("maxHP", "")
+
+            old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
+            old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
+
+            guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type, new_enemy_data_c)
+
+            # this try catch will remove enemy from logdata, so it wont be readded later on
+            try:
+                if old_enemy_data['title']['de'].title() == "Hesperos I":
+                    del logdata_instance_content["Hesperos"]
+            except:
+                print_color_red("!Could not remove enemy: Hesperos", disable_red_print)
+
+            try:
+                del logdata_instance_content[fixCaptilaziationAndRomanNumerals(old_enemy_data['title']['de'])]
+            except Exception as e:
+                print_color_red("Could not remove enemy: " + old_enemy_data['title']['de'], disable_red_print)
+
+
+            # handle enemy if name is ""
+            if not empty_enemy_data == {}:
+                empty_enemy_available = True
+                base_data = {'title': UNKNOWNTITLE, 'id': f"boss0{i+2}", "sequence": [{"phase": "09"}], 'debuffs': []}
+                old_enemy_data = {'title': UNKNOWNTITLE, 'id': f"boss0{i+2}", "sequence": [{"phase": "09"}], 'debuffs': []}
+                old_enemy_data = merge_attacks(old_enemy_data, empty_enemy_data, enemy_type)
+                old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, empty_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
+
+                if not old_enemy_data == base_data:
+                    guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type, new_enemy_data_c)
+    return guide_data, empty_enemy_available
+
+
+def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enemy_available):
+    guide_data = ""
+    if logdata_instance_content != {}:
+        print_color_red(f"\t Start looking at logdata {enemy_type}", disable_red_print)
+        counter = 0
+        if logdata_instance_content is None:
+            return guide_data
+
+        empty_enemy = None
+        for i, enemy in enumerate(logdata_instance_content, 1):
+            if enemy == "" and enemy_type == 'adds':
+                continue
+            print_color_yellow(f"\tWork on '{enemy}'", disable_yellow_print)
+            # for bosses, only write bosses, for adds skip bosse
+            lower_enemy_list = [x.lower() for x in entry[enemy_type]]
+            lower_boss_list = [x.lower() for x in entry['bosse']]
+            lower_enemy_list.append("")
+            if (enemy_type == 'bosse' and enemy.lower() not in lower_enemy_list) or (enemy_type == 'adds' and enemy.lower() in lower_boss_list):
+                logger.debug(f"Skip {enemy} ({enemy_type}) -> " + str(enemy.lower() not in lower_enemy_list))
+                continue
+            counter = counter + 1
+            new_enemy_data = logdata_instance_content.get(enemy, "Unknown_")
+            if new_enemy_data == {}:
+                new_enemy_data = {'skill': {}}
+            new_enemy_data_c = copy.deepcopy({**{}, **new_enemy_data})
+            # create new template file to merge against
+            enemy_id = new_enemy_data.get("id", "")
+            de_and_sort_name = enemy if enemy != "" else "Unbekannte Herkunft"
+            tmp = {
+                "sortname": de_and_sort_name,
+                "title": {
+                    "en": getBnpcName(enemy, enemy_id, "en") if enemy != "" else "Unknown Source",
+                    "de": de_and_sort_name,
+                    "fr": getBnpcName(enemy, enemy_id, "fr") if enemy != "" else "Unknown Source",
+                    "ja": getBnpcName(enemy, enemy_id, "ja") if enemy != "" else "Unknown Source",
+                    "cn": getBnpcName(enemy, enemy_id, "cn") if enemy != "" else "Unknown Source",
+                    "ko": getBnpcName(enemy, enemy_id, "ko") if enemy != "" else "Unknown Source"
+                },
+                "enemy_id": enemy_id,
+                "id": f"{enemy_type[:-1]}{counter:02d}",
+                "attacks": [],
+                "debuffs": []
+            }
+
+            if new_enemy_data.get("minHP", None) or new_enemy_data.get("maxHP", None):
+                tmp["hp"] = {}
+                tmp["hp"]["min"] = new_enemy_data.get("minHP", "")
+                tmp["hp"]["max"] = new_enemy_data.get("maxHP", "")
+
+            enemy_data = merge_attacks(tmp, new_enemy_data, enemy_type)
+            enemy_data['attacks'] = sorted(enemy_data['attacks'], key=itemgetter('sortname'))
+
+            enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(tmp, new_enemy_data, enemy_type, [])
+            enemy_data['debuffs'] = sorted(enemy_data['debuffs'], key=itemgetter('sortname'))
+            if enemy == "":
+                empty_enemy = enemy_data
+            else:
+                guide_data = add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data_c)
+
+        if empty_enemy and not empty_enemy_available:
+            if empty_enemy.get("attacks", None) or empty_enemy.get("debuffs", None):
+                guide_data = add_Enemy(guide_data, empty_enemy, "bosse", new_enemy_data_c)
+    return guide_data
+
+
+def ugly_fix_enemy_data(enemy_data, new_enemy_data):
+    for attack in enemy_data.get('attacks', []):
+        if attack['type'] in ["variation", "combo"]:
+            for action in attack[attack['type']]:
+                if new_enemy_data.get("skill", {}).get(action["title_id"], None):
+                    x = new_enemy_data.get("skill", {}).get(action["title_id"], {})
+                    if x.get("damage", {}).get("min", None) or x.get("damage", {}).get("max", None):
+                        action['damage'] = {}
+                        action['damage']['min'] = x.get("damage", {}).get("min", None)
+                        action['damage']['max'] = x.get("damage", {}).get("max", None)
+        elif attack['type'] == "regular":
+            if new_enemy_data.get("skill", {}).get(attack["title_id"], None):
+                x = new_enemy_data.get("skill", {}).get(attack["title_id"], {})
+                if x.get("damage", {}).get("min", None) or x.get("damage", {}).get("max", None):
+                    attack['damage'] = {}
+                    attack['damage']['min'] = x.get("damage", {}).get("min", None)
+                    attack['damage']['max'] = x.get("damage", {}).get("max", None)
+    return enemy_data
+
+
+def setMultipleLanguageStrings(guide_data, elementName, elemntArray, spaces):
+    for lang in LANGUAGES:
+        if type(elemntArray[elementName]) == str:
+            continue
+        if elemntArray[elementName].get(f"{lang}", None):
+            guide_data += f'{spaces}{lang}: "{elemntArray[elementName][lang]}"\n'
     return guide_data
 
 
 def add_Debuff(guide_data, debuff, enemy_type):
-    guide_data += f'      - title: "{debuff["title"]}"\n'
+    guide_data += f'      - title:\n'
+    guide_data = setMultipleLanguageStrings(guide_data, "title", debuff, "          ")
     guide_data += f'        title_id: "{debuff["title_id"]}"\n'
-    for lang in LANGUAGES:
-        if debuff.get(f"title_{lang}", None):
-            guide_data += f'        title_{lang}: "{debuff[f"title_{lang}"]}"\n'
     guide_data += f'        icon: "{getImage(debuff["icon"])}"\n'
     guide_data += f'        description: "{debuff["description"]}"\n'
     if debuff.get("durations", None):
@@ -1586,7 +1647,7 @@ def add_Debuff(guide_data, debuff, enemy_type):
         for phase in debuff.get('phases', {}):
             guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
 
-    if debuff["title"].startswith("Unknown_"):
+    if debuff["title"]['de'].startswith("Unknown_"):
         return guide_data
 
     if debuff.get('roles', None):
@@ -1612,11 +1673,9 @@ def add_Debuff(guide_data, debuff, enemy_type):
 
 
 def add_regular_Attack(guide_data, attack, enemy_type):
-    guide_data += f'      - title: "{attack["title"]}"\n'
+    guide_data += f'      - title:\n'
+    guide_data = setMultipleLanguageStrings(guide_data, "title", attack, "          ")
     guide_data += f'        title_id: "{attack["title_id"]}"\n'
-    for lang in LANGUAGES:
-        if attack.get(f"title_{lang}", None):
-            guide_data += f'        title_{lang}: "{attack[f"title_{lang}"]}"\n'
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack.get("disable", "false")}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
@@ -1636,7 +1695,7 @@ def add_regular_Attack(guide_data, attack, enemy_type):
         for phase in attack.get('phases', {}):
             guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
 
-    if attack["title"].startswith("Unknown_"):
+    if attack["title"]['de'].startswith("Unknown_"):
         return guide_data
 
     if attack.get('roles', None):
@@ -1672,10 +1731,8 @@ def add_regular_Attack(guide_data, attack, enemy_type):
 
 
 def add_variation_Attack(guide_data, attack, enemy_type):
-    guide_data += f'      - title: "{attack["title"]}"\n'
-    for lang in LANGUAGES:
-        if attack.get(f"title_{lang}", None):
-            guide_data += f'        title_{lang}: "{attack[f"title_{lang}"]}"\n'
+    guide_data += f'      - title:\n'
+    guide_data = setMultipleLanguageStrings(guide_data, "title", attack, "          ")
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack.get("disable", "false")}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
@@ -1693,8 +1750,9 @@ def add_variation_Attack(guide_data, attack, enemy_type):
     if attack.get('variation', None):
         guide_data += f'        variation:\n'
         for variation in attack.get('variation', {}):
-            guide_data += f'          - title: "{variation["title"]}"\n'
-            guide_data += f'            title_id: "{variation["title_id"]}"\n'
+            #guide_data += f'          - title:\n'
+            #guide_data = setMultipleLanguageStrings(guide_data, "title", variation, "              ")
+            guide_data += f'          - title_id: "{variation["title_id"]}"\n'
             guide_data += f'            damage_type: "{variation.get("damage_type", None)}"\n'
 
             # print_color_yellow(variation)
@@ -1741,10 +1799,8 @@ def add_variation_Attack(guide_data, attack, enemy_type):
 
 
 def add_combo_Attack(guide_data, attack, enemy_type):
-    guide_data += f'      - title: "{attack["title"]}"\n'
-    for lang in LANGUAGES:
-        if attack.get(f"title_{lang}", None):
-            guide_data += f'        title_{lang}: "{attack[f"title_{lang}"]}"\n'
+    guide_data += f'      - title:\n'
+    guide_data = setMultipleLanguageStrings(guide_data, "title", attack, "          ")
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
@@ -1850,24 +1906,90 @@ def add_Sequence(guide_data, data):
     return guide_data
 
 
-def getBeforeAndAfterContentEntries(orderedContent, entry):
-    _previous = None
-    _next = None
-    _type = orderedContent[entry['instanceType']]
-    _typeKeys = list(_type)
-    for i, k in enumerate(_type):
-        if _type[k].endswith(entry['slug']):
-            if i - 1 >= 0:
-                try:
-                    _previous = _type[_typeKeys[i - 1]]
-                except:
-                    pass
-            try:
-                _next = _type[_typeKeys[i + 1]]
-            except:
-                pass
-            return _previous, _next
-    return None, None
+def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
+    enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
+    guide_data += f'  - title:\n'
+    guide_data = setMultipleLanguageStrings(guide_data, "title", enemy_data, "      ")
+    if type(enemy_data.get("enemy_id", "")) == list:
+        guide_data += f'    enemy_id: "{", ".join(enemy_data.get("enemy_id", ""))}"\n'
+    else:
+        guide_data += f'    enemy_id: "{enemy_data.get("enemy_id", "")}"\n'
+    guide_data += f'    id: "{enemy_data["id"]}"\n'
+
+    if enemy_data.get('hp', None):
+        guide_data += f'    hp:\n'
+        try:
+            guide_data += f'      - min: {enemy_data["hp"]["min"] or "None"}\n'
+            guide_data += f'      - max: {enemy_data["hp"]["max"] or "None"}\n'
+        except TypeError:
+            guide_data += f'      - min: {enemy_data["hp"][0]["min"] or "None"}\n'
+            guide_data += f'      - max: {enemy_data["hp"][1]["max"] or "None"}\n'
+    if enemy_data.get("attacks", None):
+        guide_data += '    attacks:\n'
+        for attack in enemy_data["attacks"]:
+            if attack["type"] == "regular":
+                guide_data = add_regular_Attack(guide_data, attack, enemy_type)
+            elif attack["type"] == "variation":
+                guide_data = add_variation_Attack(guide_data, attack, enemy_type)
+            elif attack["type"] == "combo":
+                guide_data = add_combo_Attack(guide_data, attack, enemy_type)
+    if enemy_data.get("debuffs", None):
+        guide_data += '    debuffs:\n'
+        for debuff in enemy_data["debuffs"]:
+            guide_data = add_Debuff(guide_data, debuff, enemy_type)
+    if enemy_data.get("sequence", None):
+        guide_data = add_Sequence(guide_data, enemy_data)
+    else:
+        if enemy_type == "bosse":
+            guide_data = add_Sequence(guide_data, example_sequence)
+        else:
+            guide_data = add_Sequence(guide_data, example_add_sequence)
+    return guide_data
+
+
+def check_Enemy(entry, enemy_type, logdata_instance_content, old_enemies):
+    guide_data = ""
+    if old_enemies == {} and logdata == {}:
+        return guide_data
+    guide_data += "bosses:\n" if enemy_type == "bosse" else "adds:\n"
+    guide_data, empty_enemy_available = workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instance_content)
+    print_color_yellow(guide_data, disable_yellow_print)
+    guide_data += workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enemy_available)
+    print_color_blue(guide_data, disable_blue_print)
+    return guide_data
+
+
+# Notizen, Bosse und Adds
+def addGuide(entry, old_data, logdata_instance_content):
+    guide_data = ""
+    # add mechanics
+    guide_data += check_Mechanics(entry, old_data.get('mechanics', None))
+    print_color_green(f"Work on '{entry['title_de']}'", disable_green_print)
+    guide_data += check_Enemy(entry, "bosse", logdata_instance_content, old_data.get('bosses', {}))
+    guide_data += check_Enemy(entry, "adds", logdata_instance_content, old_data.get('adds', {}))
+    return guide_data
+
+
+####################################################################################################################
+
+
+def addHeader(entry, old_data, music, contentzoneid):
+    header_data, entry = rewrite_content_even_if_exists(entry, old_data.get('wip', False))
+    header_data, cmt = addContentZoneIdToHeader(header_data, contentzoneid, entry)
+    header_data += addGroupCollections(cmt, entry)
+    if music:
+        header_data = addMusic(header_data, music)
+    return header_data
+
+
+def write_content_to_file(entry, filename, old_data):
+    logdata_instance_content, music, contentzoneid = getDataFromLogfile(entry)
+    filedata = '---\n'
+    filedata += addHeader(entry, old_data, music, contentzoneid)
+    filedata += addGuide(entry, old_data, logdata_instance_content)
+    filedata += '---'
+    filedata += '\n'
+    writeFileIfNoDifferent(filename, filedata)
 
 
 def run(sheet, max_row, max_column, elements, orderedContent):
@@ -1875,61 +1997,36 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [423]:
+            #if i not in [323]:
             #    continue
-            entry = get_data_from_xlsx(sheet, max_column, i, elements)
+            entry = getEntryData(sheet, max_column, i, elements, orderedContent)
+            logger.info(pretty_json(entry))
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
                 print("END FLAG WAS FOUND!")
                 sys.exit(0)
             if not (entry["exclude"] or entry["done"]):
-                entry = clean_entries_from_single_quotes(entry)
-                entry = workOnQuests(entry, entry["quest_id"])
-                # remove time from excel datetime
-                entry["date"] = str(entry["date"]).replace(" 00:00:00", "").replace("-", ".")
+                logger.debug(pretty_json(entry))
                 filename = f"{entry['categories']}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 existing_filename = f"{entry['categories']}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
-                old_bosses, old_adds, old_mechanics, old_wip, replace_existing_file = get_old_content_if_file_is_found(existing_filename)
-                _previous, _next = getBeforeAndAfterContentEntries(orderedContent, entry)
+                old_data = get_old_content_if_file_is_found(existing_filename)
                 # if old file was found, replace filename to save
-                if replace_existing_file:
+                if not old_data == {}:
                     filename = existing_filename
-
+                    #logger.info(pretty_json(old_data))
                 try_to_create_file(filename)
-                write_content_to_file(entry, filename, old_bosses, old_adds, old_mechanics, old_wip, i, _previous, _next)
-        except Exception:
-            print_color_red(f"Error when handeling '{filename}' with line id '{i}'")
+                write_content_to_file(entry, filename, old_data)
+        except Exception as e:
+            logger.critical(f"Error when handeling '{filename}' with line id '{i}' ({e})")
             traceback.print_exception(*sys.exc_info())
 
 
-def test(sheet, elements, max_row):
-    entry = {}
-    for i in range(1, max_row + 1):
-        instanceType = str(sheet.cell(row=int(i), column=int(elements.index('instanceType')) + 1).value).replace("None", "")
-        if not entry.get(instanceType, None):
-            entry[instanceType] = {}
-        sortID = str(sheet.cell(row=int(i), column=int(3)).value).replace("None", "")
-        addon = str(sheet.cell(row=int(i), column=int(5)).value).replace("None", "")
-        slug = str(sheet.cell(row=int(i), column=int(6)).value).replace("None", "")
-        entry[instanceType][sortID] = "/" + addon + "/" + slug
-    return OrderedDict(natsort.natsorted(entry.items()))
-
-
 if __name__ == "__main__":
-    elements = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest_id", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
-
     sheet, max_row, max_column = read_xlsx_file()
     # change into _posts dir
     os.chdir("./_posts")
     # first run to create all files
-    orderedContent = test(sheet, elements, max_row)
-    # print_color_red(orderedContent)
-    run(sheet, max_row, max_column, elements, orderedContent)
-    # second run to fix boss order
-    # run(sheet, max_row, max_column)
-    # csgf.main()
-    # gl.links()
+    orderedContent = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
+    logger.debug(orderedContent)
+    run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
 
-    # below is a profiler
-    # import cProfile
-    # cProfile.run('run(sheet, max_row, max_column)')
