@@ -24,9 +24,10 @@ try:
 except ImportError:
     from yaml import Loader
 
-disable_green_print = True
-disable_yellow_print = True
-disable_blue_print = True
+disable_green_print = false
+disable_yellow_print = false
+disable_blue_print = false
+disable_red_print = false
 
 
 enemy = {
@@ -116,54 +117,8 @@ def checkVariable(element, name):
     return False
 
 
-discontinued_content = {
-    #"Eureka Baldesions Arsenal": {
-    #    "cn": "兵武塔",
-    #    "de": "Eureka Baldesions Arsenal",
-    #    "en": "The Baldesion Arsenal",
-    #    "fr": "Eurêka et son arsenal",
-    #    "ja": "バルデシオンアーセナル",
-    #    "ko": "발데시온 무기고"
-    #},
-    #"Traumprüfung - Shiva": {
-    #    "cn": "希瓦幻巧战",
-    #    "de": "Traumprüfung - Shiva",
-    #    "en": "the Akh Afah Amphitheatre (Unreal)",
-    #    "fr": "l'Amphithéâtre d'Akh Afah (irréel)",
-    #    "ja": "幻シヴァ討滅戦",
-    #    "ko": "환 시바 토벌전"
-    #},
-    #"Traumprüfung - Leviathan": {
-    #    "cn": "利维亚桑幻巧战",
-    #    "de": "Traumprüfung - Leviathan",
-    #    "en": "the Whorleater (Unreal)",
-    #    "fr": "le Briseur de marées (irréel)",
-    #    "ja": "幻リヴァイアサン討滅戦",
-    #    "ko": "환 리바이어선 토벌전"
-    #},
-    #"Traumprüfung - Titan": {
-    #    "cn": "泰坦歼殛战",
-    #    "de": "Traumprüfung - Titan",
-    #    "en": "the Navel (Unreal)",
-    #    "fr": "le Nombril (irréel)",
-    #    "ja": "極タイタン討滅戦",
-    #    "ko": "극 타이탄 토벌전"
-    #},
-    #"Traumprüfung - Ultima": {
-    #    "de": "Traumprüfung - Ultima",
-    #    "en": "Ultima's Bane (Unreal)",
-    #    "fr": "Le fléau d'Ultima (irréel)",
-    #    "ja": "幻アルテマウェポン破壊作戦",
-    #    "cn": "",
-    #    "ko": ""
-    #}
-}
-
-
 def getContentName(name, lang="en", difficulty=None, instanceType=None):
     name = uglyContentNameFix(name, instanceType, difficulty)
-    if discontinued_content.get(name, None):
-        return discontinued_content[name][lang]
     try:
         for key, content in contentfindercondition.items():
             if "memoria" in content["Name_de"].lower().strip() and "memoria" in name.lower().strip():
@@ -420,30 +375,6 @@ def try_to_create_file(filename):
             if exc.errno != errno.EEXIST:
                 raise
 
-# hopefully we will never need this again, this will convert all ids to capitalized ids
-
-
-def fix_id_cases(doc):
-    for entry in ['bosses', 'adds']:
-        if not doc.get(entry):
-            continue
-        for i, enemy in enumerate(doc[entry]):
-            if enemy.get('title_id', None):
-                doc[entry][i]['title_id'] = enemy['title_id'].upper()
-            for entry2 in ['attacks', 'debuffs']:
-                if enemy.get(entry2, None):
-                    for j, valuestuff in enumerate(enemy[entry2]):
-                        if valuestuff.get('title_id', None):
-                            doc[entry][i][entry2][j]['title_id'] = valuestuff['title_id'].upper()
-                        if valuestuff.get('icon', None):
-                            if not "_hr1.png" in valuestuff['icon']:
-                                doc[entry][i][entry2][j]['icon'] = valuestuff['icon'].replace('.png', "_hr1.png")
-                        if valuestuff.get('variation', None):
-                            for k, variation in enumerate(valuestuff['variation']):
-                                if variation.get('title_id', None):
-                                    doc[entry][i][entry2][j]['variation'][k]['title_id'] = variation['title_id'].upper()
-    return doc
-
 
 # returns existing boss data if available
 def get_old_content_if_file_is_found(_existing_filename):
@@ -451,7 +382,6 @@ def get_old_content_if_file_is_found(_existing_filename):
         with open(_existing_filename, encoding="utf8") as f:
             docs = yaml.load_all(f, Loader=Loader)
             for doc in docs:
-                #doc = fix_id_cases(doc)
                 return doc.get("bosses", None), doc.get("adds", None), doc.get("mechanics", "N/A"), doc.get("wip", None), True
     return None, None, "N/A", None, False
 
@@ -910,6 +840,8 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
 
 def setMultipleLanguageStrings(guide_data, elementName, elemntArray, spaces):
     for lang in LANGUAGES:
+        if type(elemntArray[elementName]) == str:
+            continue
         if elemntArray[elementName].get(f"{lang}", None):
             guide_data += f'{spaces}{lang}: "{elemntArray[elementName][lang]}"\n'
     return guide_data
@@ -972,6 +904,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
 
     empty_enemy_available = False
     if _old_enemy:
+        print_color_red(f"\t Start looking at old_enem {enemy_type}", disable_red_print)
         # sort old enemies
         final_old_enemy = []
 
@@ -981,6 +914,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
                 for old_enemy_data in _old_enemy:
                     if old_enemy_data['title'].get('de', "").lower() == enemy.lower():
                         final_old_enemy.append(old_enemy_data)
+
         # if you created a new order, apply it
         if not final_old_enemy == []:
             _old_enemy = final_old_enemy
@@ -1031,6 +965,7 @@ def check_Enemy(_entry, guide_data, enemy_type, enemy_text, logdata_instance_con
                 if not old_enemy_data == base_data:
                     guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type, new_enemy_data_c)
     if logdata_instance_content != {}:
+        print_color_red(f"\t Start looking at logdata {enemy_type}", disable_red_print)
         counter = 0
         if logdata_instance_content is None:
             return guide_data
@@ -1915,9 +1850,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [84]:
-            #if i > 20:
-            #    continue
+            if i not in [171]:
+                continue
             entry = get_data_from_xlsx(sheet, max_column, i, elements)
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
@@ -1938,22 +1872,12 @@ def run(sheet, max_row, max_column, elements, orderedContent):
 
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_bosses, old_adds, old_mechanics, old_wip, i, _previous, _next)
-        except Exception:
-            print_color_red(f"Error when handeling '{filename}' with line id '{i}'")
-            traceback.print_exception(*sys.exc_info())
+        except Exception as e:
+            print_color_red(f"Error when handeling '{filename}' with line id '{i}' ({e})")
+            #traceback.print_exception(*sys.exc_info())
 
 
-def test(sheet, elements, max_row):
-    entry = {}
-    for i in range(1, max_row + 1):
-        instanceType = str(sheet.cell(row=int(i), column=int(elements.index('instanceType')) + 1).value).replace("None", "")
-        if not entry.get(instanceType, None):
-            entry[instanceType] = {}
-        sortID = str(sheet.cell(row=int(i), column=int(3)).value).replace("None", "")
-        addon = str(sheet.cell(row=int(i), column=int(5)).value).replace("None", "")
-        slug = str(sheet.cell(row=int(i), column=int(6)).value).replace("None", "")
-        entry[instanceType][sortID] = "/" + addon + "/" + slug
-    return OrderedDict(natsort.natsorted(entry.items()))
+
 
 
 if __name__ == "__main__":
