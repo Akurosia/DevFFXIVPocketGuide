@@ -59,7 +59,7 @@
                 {%- elsif page.page_category == "about" -%}
                     All About the Guide
                 {%- else -%}
-                    {{ page.title }}
+                    {{ page.title.de }}
                     {%- if page.difficulty -%}
                         {%- if page.difficulty != "Normal" -%}
                             <span
@@ -90,7 +90,7 @@
                 {%- endif -%}
             </h1>
             <h2 class="site-header__guide-title_en">
-                {{ page.title_en }}
+                {{ page.title.en }}
             </h2>
 
         </div>
@@ -127,7 +127,7 @@
             <ul
                 class="site-header__links">
                 <li>
-                    <a href="https://twitter.com/intent/tweet?via=Akurosia&url={{ site.url }}{{ page.url | url_encode }}&text=I%20want%20to%20submit%20feedback%20on%20{{ page.title | url_encode }}%2E&related=Akurosia, ffxiv_pocket_guide" target="_blank" title="Sende Feedback für {{ page.title }}.">
+                    <a href="https://twitter.com/intent/tweet?via=Akurosia&url={{ site.url }}{{ page.url | url_encode }}&text=I%20want%20to%20submit%20feedback%20on%20{{ page.title | url_encode }}%2E&related=Akurosia, ffxiv_pocket_guide" target="_blank" title="Sende Feedback für {{ page.title.de }}.">
                         <ion-icon name="logo-twitter"></ion-icon>
                         Sende Feedback
                     </a>

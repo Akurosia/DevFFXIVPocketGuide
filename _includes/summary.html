@@ -2,7 +2,7 @@
     // Guide Summary
 =============================================================== {%- endcomment -%}
 <div class="summary">
-    <a class="index-item__link" href="{{ guide.url | prepend: site.baseurl }}" title="Go to the {{ guide.title }} Guide">
+    <a class="index-item__link" href="{{ guide.url | prepend: site.baseurl }}" title="Go to the {{ guide.title.de }} Guide">
         <div
             class="index-item__background"
             {%- if guide.cover -%}
@@ -18,11 +18,11 @@
         </div>
         <h3 class="index-item__title"
             {%- if guide.layout == "new-guide" -%}
-              data-terms="{{ guide.title }}&#32;{{ guide.guide-type }}&#32;{{ guide.categories }}&#32;{%- for term in guide.search-terms -%}{{ term }}&#32;{%- endfor -%}"
+              data-terms="{{ guide.title.de }}&#32;{{ guide.guide-type }}&#32;{{ guide.categories }}&#32;{%- for term in guide.search-terms -%}{{ term }}&#32;{%- endfor -%}"
             {%- else -%}
               data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%}"
             {%- endif -%}>
-            {{ guide.title }}
+            {{ guide.title.de }}
             <span
                 {%- if guide.difficulty == "Hard" -%}
                     class="hard"
@@ -52,7 +52,7 @@
             </span>
         </h3>
         <h4 class="index-item__title_en">
-            {{ guide.title_en }}
+            {{ guide.title.en }}
         </h4>
     </a>
 </div>

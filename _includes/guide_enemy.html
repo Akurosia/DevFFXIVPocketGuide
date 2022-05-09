@@ -16,7 +16,7 @@
                 {%- if page.instanceType == "treasure" -%}Schatzdungeon {{ x }} {%- endif -%}
                 {%- if page.instanceType == "trial" -%}Prüfung {{ x }} {%- endif -%}
             {%- else -%}
-                {{ enemies[0].title }}
+                {{ enemies[0].title.de }}
             {%- endif -%}
         </h2>
         {%- if enemies.size == 1 -%}
@@ -26,7 +26,7 @@
                 </div>
             {%- endif -%}
             <h3 class="guide__accordion-trigger-title_en">
-                {{ enemies[0].title_en }}
+                {{ enemies[0].title.en }}
             </h3>
         {%- endif -%}
     </div>
