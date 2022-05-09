@@ -18,7 +18,7 @@
 <!-- Open Graph & Twitter Tags -->
     <meta name="twitter:card" content="summary" />
     <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
-    <meta property="og:title" content="{{ page.title }}{%- if page.difficulty -%} ({{ page.difficulty }}){%- endif -%} | FFXIV Pocket Guide - Final Fantasy XIV - Stormblood" />
+    <meta property="og:title" content="{{ page.title.de }}{%- if page.difficulty -%} ({{ page.difficulty }}){%- endif -%} | FFXIV Pocket Guide - Final Fantasy XIV - Stormblood" />
     <meta property="og:description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV. {%- if page.description -%}{{ page.description | strip_html | strip_newlines | truncate: 300 }}{%- else -%}{{ site.description }}{%- endif -%}" />
     {%- if page.page_category == "all" or page.page_category == "dungeons" or page.page_category == "trials" or page.page_category == "raids" -%}
         <meta property="og:image" content="{{ site.url }}/assets/img/guide_social.jpg" />
