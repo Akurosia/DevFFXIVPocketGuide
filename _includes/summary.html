@@ -18,11 +18,17 @@
         </div>
         <h3 class="index-item__title"
             {%- if guide.layout == "new-guide" -%}
-              data-terms="{{ guide.title.de }}&#32;{{ guide.guide-type }}&#32;{{ guide.categories }}&#32;{%- for term in guide.search-terms -%}{{ term }}&#32;{%- endfor -%}"
+              data-terms="{{ guide.title.de }}&#32;{{ guide.title.en }}&#32;{{ guide.title.fr }}&#32;{{ guide.title.ja }}&#32;{{ guide.title.cn }}&#32;{{ guide.title.ko }}&#32;{{ guide.guide-type }}&#32;{{ guide.categories }}&#32;{%- for term in guide.search-terms -%}{{ term }}&#32;{%- endfor -%}"
             {%- else -%}
               data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%}"
             {%- endif -%}>
-            {{ guide.title.de }}
+            <span class="lang-toggle lang-toogle-de"> {{ guide.title.de }} </span>
+            <span class="lang-toggle lang-toogle-en"> {{ guide.title.en }} </span>
+            <span class="lang-toggle lang-toogle-fr"> {{ guide.title.fr }} </span>
+            <span class="lang-toggle lang-toogle-ja"> {{ guide.title.ja }} </span>
+            <span class="lang-toggle lang-toogle-cn"> {{ guide.title.cn }} </span>
+            <span class="lang-toggle lang-toogle-ko"> {{ guide.title.ko }} </span>
+
             <span
                 {%- if guide.difficulty == "Hard" -%}
                     class="hard"
@@ -51,7 +57,7 @@
                 {%- endif -%}
             </span>
         </h3>
-        <h4 class="index-item__title_en">
+        <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
             {{ guide.title.en }}
         </h4>
     </a>

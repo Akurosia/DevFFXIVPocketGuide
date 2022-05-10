@@ -6,12 +6,12 @@
         <span class="{%- if debuff.damage_type == 'Magical' -%}attack-is-magic
                      {%- elsif debuff.damage_type && debuff.damage_type != 'None' -%}attack-is-physical
                      {%- endif -%}">
-            {{ debuff.title }}</span>
-        {%- if debuff.title_en -%}
-            <div class="guide__accordion-trigger-subtitle"> | {{ debuff.title_en }}</div>
+            {{ debuff.title.de }}</span>
+        {%- if debuff.title.en -%}
+            <div class="guide__accordion-trigger-subtitle"> | {{ debuff.title.en }}</div>
         {%- endif -%}
         {%- if debuff.title_id -%}
-            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title }}', 'debuff')">ID: {{ debuff.title_id }}</div>
+            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'debuff')">ID: {{ debuff.title_id }}</div>
         {%- endif -%}
 
         {%- assign attack = debuff -%}

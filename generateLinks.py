@@ -26,6 +26,7 @@ def createShortURL(url):
     if removeHTTP:
         return "http://" + newURL
 
+
 def links():
     with open(f"T:/var/www/ffxiv/links.json", "r", encoding="utf-8") as f:
         links = json.load(f)

@@ -136,7 +136,11 @@ def addBlueAttackDetails(f, job_data):
         locations = []
         if skill_data.get('Location', None):
             locations.append(skill_data['Location'])
-        en_name = actions.get(skill_data['id'], {}).get("Name_en", "")
+        en_name = actions.get(skill_data['id'], {}).get("Name_en", "").title()
+        fr_name = actions.get(skill_data['id'], {}).get("Name_fr", "").title()
+        ja_name = actions.get(skill_data['id'], {}).get("Name_ja", "").title()
+        cn_name = actions.get(skill_data['id'], {}).get("Name_cn", "").title()
+        ko_name = actions.get(skill_data['id'], {}).get("Name_ko", "").title()
         if en_name == "":
             en_name = craftactions[skill_data['id'] + ".0"]["Name_en"]
         level = skill_data['Level']
@@ -156,11 +160,22 @@ def addBlueAttackDetails(f, job_data):
             desc += "\n&emsp;" + location["Ort"].ljust(max_zone_length) + " -> " + location["Gegner"].ljust(max_enemyname_length)
         desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
         if skill_data.get("Number", None) and int(level) < 901:
-            writeline(f, f'      - title: "{level}. {skill_data["Name"]}"')
+            writeline(f, f'      - title:')
+            writeline(f, f'          de: "{level}. {skill_data["Name"]}"')
+            writeline(f, f'          en: "{level}. {en_name}"')
+            writeline(f, f'          fr: "{level}. {fr_name}"')
+            writeline(f, f'          ja: "{level}. {ja_name}"')
+            writeline(f, f'          cn: "{level}. {cn_name}"')
+            writeline(f, f'          ko: "{level}. {ko_name}"')
         else:
-            writeline(f, f'      - title: "{skill_data["Name"]}"')
+            writeline(f, f'      - title:')
+            writeline(f, f'          de: "{skill_data["Name"]}"')
+            writeline(f, f'          en: "{en_name}"')
+            writeline(f, f'          fr: "{fr_name}"')
+            writeline(f, f'          ja: "{ja_name}"')
+            writeline(f, f'          cn: "{cn_name}"')
+            writeline(f, f'          ko: "{ko_name}"')
         writeline(f, f'        title_id: "{skill_data["id"].split(".")[0]}"')
-        writeline(f, f'        title_en: "{en_name}"')
         if skill_data.get("Number", None):
             writeline(f, f'        level: "{skill_data["Number"]}"')
         else:
@@ -203,13 +218,26 @@ def addAttackDetails(f, job_data, pvp=False):
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
         en_name = actions.get(skill_data['id'], {}).get("Name_en", "")
+        fr_name = actions.get(skill_data['id'], {}).get("Name_fr", "")
+        ja_name = actions.get(skill_data['id'], {}).get("Name_ja", "")
+        cn_name = actions.get(skill_data['id'], {}).get("Name_cn", "")
+        ko_name = actions.get(skill_data['id'], {}).get("Name_ko", "")
         if en_name == "":
             en_name = craftactions[skill_data['id']]["Name_en"]
+            fr_name = craftactions[skill_data['id']]["Name_fr"]
+            ja_name = craftactions[skill_data['id']]["Name_ja"]
+            cn_name = craftactions[skill_data['id']]["Name_cn"]
+            ko_name = craftactions[skill_data['id']]["Name_ko"]
         level = "0" if skill_data['Level'] == "99999" else skill_data['Level']
         desc = skill_data["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
-        writeline(f, f'      - title: "{skill_data["Name"]}"')
+        writeline(f, f'      - title:')
+        writeline(f, f'          de: "{skill_data["Name"]}"')
+        writeline(f, f'          en: "{en_name}"')
+        writeline(f, f'          fr: "{fr_name}"')
+        writeline(f, f'          ja: "{ja_name}"')
+        writeline(f, f'          cn: "{cn_name}"')
+        writeline(f, f'          ko: "{ko_name}"')
         writeline(f, f'        title_id: "{skill_data["id"].split(".")[0]}"')
-        writeline(f, f'        title_en: "{en_name}"')
         writeline(f, f'        level: "{level}"')
         writeline(f, f'        type: "{skill_data["Type"]}"')
         writeline(f, f'        icon: "{getImage(skill_data["Icon"])}"')
@@ -229,6 +257,7 @@ def addAttackDetails(f, job_data, pvp=False):
 def addStatusDetails(f, job):
     global logdata
     global statusss
+    global statuss
     jobstatusdata = logdata["Klassen"].get(job, {}).get("status", {})
     if not jobstatusdata == {}:
         jobstatusdata = OrderedDict(sorted(jobstatusdata.items(), key=lambda x: getitem(x[1], 'name')))
@@ -236,9 +265,14 @@ def addStatusDetails(f, job):
         for key, status in jobstatusdata.items():
             _id = str(int(key, 16))
             desc = statusss[_id]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
-            writeline(f, f'      - title: "{status["name"]}"')
+            writeline(f, f'      - title:')
+            writeline(f, f'          de: "{status["name"]}"')
+            writeline(f, f'          en: "{statuss[_id]["Name_en"]}"')
+            writeline(f, f'          fr: "{statuss[_id]["Name_fr"]}"')
+            writeline(f, f'          ja: "{statuss[_id]["Name_ja"]}"')
+            writeline(f, f'          cn: "{statuss[_id]["Name_cn"]}"')
+            writeline(f, f'          ko: "{statuss[_id]["Name_ko"]}"')
             writeline(f, f'        title_id: "{key}"')
-            writeline(f, f'        title_en: "{statuss[_id]["Name_en"]}"')
             writeline(f, f'        icon: "{getImage(status["icon"])}"')
             writeline(f, f'        description: "{desc}"')
             writeline(f, f'        durations: {status["duration"]}')
@@ -257,11 +291,20 @@ def addTraitDetails(f, job):
         if not trait_data.get("Icon", None):
             continue
         en_name = traitss[_id]["Name_en"]
+        fr_name = traitss[_id]["Name_fr"]
+        ja_name = traitss[_id]["Name_ja"]
+        cn_name = traitss[_id]["Name_cn"]
+        ko_name = traitss[_id]["Name_ko"]
         desc = traitstransient[_id]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
         level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
-        writeline(f, f'      - title: "{trait_data["Name"]}"')
+        writeline(f, f'      - title:')
+        writeline(f, f'          de: "{trait_data["Name"]}"')
+        writeline(f, f'          en: "{en_name}"')
+        writeline(f, f'          fr: "{fr_name}"')
+        writeline(f, f'          ja: "{ja_name}"')
+        writeline(f, f'          cn: "{cn_name}"')
+        writeline(f, f'          ko: "{ko_name}"')
         writeline(f, f'        title_id: "{_id.split(".")[0]}"')
-        writeline(f, f'        title_en: "{en_name}"')
         writeline(f, f'        level: "{level}"')
         writeline(f, f'        icon: "{getImage(trait_data["Icon"].replace(".tex", "_hr1.png"))}"')
         writeline(f, f'        description: "{desc}"')
@@ -269,11 +312,11 @@ def addTraitDetails(f, job):
         writeline(f, f'          - phase: "03"')
 
 
-def translatename(name):
+def translatename(name, lang="en"):
     global trans_leves
     for y, x in trans_leves.items():
         if x["Name_de"] == name:
-            return x["Name_en"]
+            return x[f"Name_{lang}"]
 
 
 def getCrafterLeves():
@@ -285,14 +328,17 @@ def getCrafterLeves():
 
         if "Fertigungserlasse" not in leve["JournalGenre"]:
             continue
-        print(leve)
         for cleve_id, cleve in craftleves.items():
             if leve["Name"] == cleve["Leve"]:
                 if not final_results.get(leve["JournalGenre"], None):
                     final_results[leve["JournalGenre"]] = {}
                 final_results[leve["JournalGenre"]][new_leve_id] = {
                     "Name_DE": leve["Name"],
-                    "Name_EN": translatename(leve["Name"]),
+                    "Name_EN": translatename(leve["Name"], "en"),
+                    "Name_FR": translatename(leve["Name"], "fr"),
+                    "Name_JA": translatename(leve["Name"], "ja"),
+                    "Name_CN": translatename(leve["Name"], "cn"),
+                    "Name_KO": translatename(leve["Name"], "ko"),
                     "0xID": hex(new_leve_id)[2:].upper(),
                     "ID": str(new_leve_id),
                     "item": cleve['Item']["0"],
@@ -321,7 +367,11 @@ def getGathererLeves():
             final_results[leve["JournalGenre"]] = {}
         final_results[leve["JournalGenre"]][new_leve_id] = {
             "Name_DE": leve["Name"],
-            "Name_EN": translatename(leve["Name"]),
+            "Name_EN": translatename(leve["Name"], "en"),
+            "Name_FR": translatename(leve["Name"], "fr"),
+            "Name_JA": translatename(leve["Name"], "ja"),
+            "Name_CN": translatename(leve["Name"], "cn"),
+            "Name_KO": translatename(leve["Name"], "ko"),
             "0xID": hex(new_leve_id)[2:].upper(),
             "ID": str(new_leve_id),
             "item": "",
@@ -348,8 +398,13 @@ def addCrafterLeve(f, job, all_crafter_leves):
         job_leve_data = OrderedDict(sorted(value.items(), key=lambda x: int(getitem(x[1], 'level'))))
         for _id, leve_data in job_leve_data.items():
             level = "0" if leve_data['level'] == "99999" else leve_data['level']
-            writeline(f, f'      - title: "{leve_data["Name_DE"]}"')
-            writeline(f, f'        title_en: "{leve_data["Name_EN"]}"')
+            writeline(f, f'      - title:')
+            writeline(f, f'          de: "{leve_data["Name_DE"]}"')
+            writeline(f, f'          en: "{leve_data["Name_EN"]}"')
+            writeline(f, f'          fr: "{leve_data["Name_FR"]}"')
+            writeline(f, f'          ja: "{leve_data["Name_JA"]}"')
+            writeline(f, f'          cn: "{leve_data["Name_CN"]}"')
+            writeline(f, f'          ko: "{leve_data["Name_KO"]}"')
             writeline(f, f'        title_id: "{leve_data["0xID"]}"')
             writeline(f, f'        level: "{level}"')
             writeline(f, f'        leveamount: "{leve_data["Freibriefanzahl"]}"')
@@ -438,11 +493,20 @@ def addQuestkDetails(f, job, pvp):
     for _level in sorted(klassenquests):
         quest = klassenquests[_level]
         en_name = questss.get(quest['id'], {}).get("Name_en", "").replace(" ", "").replace(" ", "")
+        fr_name = questss.get(quest['id'], {}).get("Name_fr", "").replace(" ", "").replace(" ", "")
+        ja_name = questss.get(quest['id'], {}).get("Name_ja", "").replace(" ", "").replace(" ", "")
+        cn_name = questss.get(quest['id'], {}).get("Name_cn", "").replace(" ", "").replace(" ", "")
+        ko_name = questss.get(quest['id'], {}).get("Name_ko", "").replace(" ", "").replace(" ", "")
         level = "0" if quest['level'] == "99999" else quest['level']
         #desc = skill_data["Description"].replace("\n", "</br>")
-        writeline(f, f'      - title: "{quest["name"].replace(" ", "").replace(" ", "")}"')
+        writeline(f, f'      - title:')
+        writeline(f, f'          de: "{quest["name"].replace(" ", "").replace(" ", "")}"')
+        writeline(f, f'          en: "{en_name}"')
+        writeline(f, f'          fr: "{fr_name}"')
+        writeline(f, f'          ja: "{ja_name}"')
+        writeline(f, f'          cn: "{cn_name}"')
+        writeline(f, f'          ko: "{ko_name}"')
         writeline(f, f'        title_id: "{quest["id"].split(".")[0]}"')
-        writeline(f, f'        title_en: "{en_name}"')
         writeline(f, f'        level: "{level}"')
         writeline(f, f'        expansion: "{quest["expansion"]}"')
         writeline(f, f'        journalgenre: "{quest["journalgenre"]}"')
@@ -534,9 +598,13 @@ def main():
         with open(f"klassen_und_jobs/2013-01-01--2.0--{counter}--{job}.md", "w", encoding="utf8") as f:
             writeline(f, '---')
             writeline(f, 'wip: "True"')
-            writeline(f, f'title: "{job}"')
-            writeline(f, f'title_de: "{job}"')
-            writeline(f, f'title_en: "{en_name}"')
+            writeline(f, 'title:')
+            writeline(f, f'  de: "{job_d["Name_de"]}"')
+            writeline(f, f'  en: "{job_d["Name_en"]}"')
+            writeline(f, f'  fr: "{job_d["Name_fr"]}"')
+            writeline(f, f'  ja: "{job_d["Name_ja"]}"')
+            writeline(f, f'  cn: "{job_d["Name_cn"]}"')
+            writeline(f, f'  ko: "{job_d["Name_ko"]}"')
             writeline(f, 'layout: klassen')
             writeline(f, 'page_type: guide')
             writeline(f, 'categories: "klassenjobs"')
@@ -568,15 +636,24 @@ def main():
             writeline(f, '    - term: "Skills"')
             writeline(f, '    - term: "Status"')
             writeline(f, '    - term: "Traits"')
-            writeline(f, f'    - term: "{job}"')
-            writeline(f, f'    - term: "{en_name}"')
+            writeline(f, f'    - term: "{job_d["Name_de"]}"')
+            writeline(f, f'    - term: "{job_d["Name_en"]}"')
+            writeline(f, f'    - term: "{job_d["Name_fr"]}"')
+            writeline(f, f'    - term: "{job_d["Name_ja"]}"')
+            writeline(f, f'    - term: "{job_d["Name_cn"]}"')
+            writeline(f, f'    - term: "{job_d["Name_ko"]}"')
             writeline(f, f'sortid: {counter}')
             writeline(f, f'order: {counter}')
             writeline(f, f'plvl: {maxlvl}')
             writeline(f, f'ilvl: {maxilvl}')
             writeline(f, "bosses:")
-            writeline(f, "  - title: \"" + job + "\"")
-            writeline(f, "    title_en: \"" + en_name + "\"")
+            writeline(f, "  - title:")
+            writeline(f, f'      de: "{job_d["Name_de"]}"')
+            writeline(f, f'      en: "{job_d["Name_en"]}"')
+            writeline(f, f'      fr: "{job_d["Name_fr"]}"')
+            writeline(f, f'      ja: "{job_d["Name_ja"]}"')
+            writeline(f, f'      cn: "{job_d["Name_cn"]}"')
+            writeline(f, f'      ko: "{job_d["Name_ko"]}"')
             writeline(f, "    id: \"" + "boss" + str(counter) + "\"")
             if job == "Blaumagier":
                 addBlueAttackDetails(f, job_data)
@@ -587,7 +664,7 @@ def main():
             addTraitDetails(f, job)
             cleves = addCrafterLeve(f, job, all_crafter_leves)
             gleves = addCrafterLeve(f, job, all_gatherer_leves)
-            print(f"{cleves} - {gleves}")
+            #print(f"{cleves} - {gleves}")
             addQuestkDetails(f, job, pvp or leves)
             writeline(f, "    sequence:" + "")
             writeline(f, "      - phase: \"01\"")

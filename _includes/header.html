@@ -58,8 +58,19 @@
                     Schatzdungeon Guides
                 {%- elsif page.page_category == "about" -%}
                     All About the Guide
+                {%- elsif page.page_category == "links" -%}
+                    Links
+                {%- elsif page.page_category == "klassenjobs" -%}
+                    Klassen und Jobs
+                {%- elsif page.page_category == "quests" -%}
+                    Quests
                 {%- else -%}
-                    {{ page.title.de }}
+                    <span class="lang-toggle lang-toogle-de ">{{  page.title.de }}</span>
+                    <span class="lang-toggle lang-toogle-en ">{{  page.title.en }}</span>
+                    <span class="lang-toggle lang-toogle-fr ">{{  page.title.fr }}</span>
+                    <span class="lang-toggle lang-toogle-ja ">{{  page.title.ja }}</span>
+                    <span class="lang-toggle lang-toogle-cn ">{{  page.title.cn }}</span>
+                    <span class="lang-toggle lang-toogle-ko ">{{  page.title.ko }}</span>
                     {%- if page.difficulty -%}
                         {%- if page.difficulty != "Normal" -%}
                             <span
@@ -89,9 +100,7 @@
                     {%- endif -%}
                 {%- endif -%}
             </h1>
-            <h2 class="site-header__guide-title_en">
-                {{ page.title.en }}
-            </h2>
+            <h2 class="lang-toggle lang-toogle-en-sub site-header__guide-title_en">{{ page.title.en }}</h2>
 
         </div>
         {%- if page.page_type == "index" -%}

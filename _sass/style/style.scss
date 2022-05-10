@@ -2132,6 +2132,50 @@ body {
 ion-icon {
   color: #FF575C;
 }
+
+.flex-box {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.enemy_id {
+  text-align: right;
+  margin-top: -1.5rem;
+  font-size: initial;
+  font-weight: bold;
+}
+
+
+.languages {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-box {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.flags_img {
+    background-image: url('/assets/img/flags.png');
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 26px;
+    height: 20px;
+    background-color: transparent;
+    vertical-align: middle;
+    background-position: 27px 21px;
+    margin: 8px;
+}
+
+.iso_CN {background-position: 0 0}
+.iso_DE {background-position: -54px 0}
+.iso_FR {background-position: -27px 0}
+.iso_JP {background-position: 0 -21px}
+.iso_KR {background-position: -27px -21px}
+.iso_US {background-position: -54px -21px}
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";

@@ -5,12 +5,12 @@
         <img class="attack_icon" src="{{ site.imageurl }}/{{ attack.icon }}" alt="{{ attack.icon }}"/>
         <span class="{%- if attack.damage_type == 'Magical' -%}attack-is-magic
                      {%- elsif attack.damage_type && attack.damage_type != 'None' -%}attack-is-physical
-                     {%- endif -%}">{{ attack.title }}</span>
-        {%- if attack.title_en -%}
-            <div class="guide__accordion-trigger-subtitle"> | {{ attack.title_en }}</div>
+                     {%- endif -%}">{{ attack.title.de }}</span>
+        {%- if attack.title.en -%}
+            <div class="guide__accordion-trigger-subtitle"> | {{ attack.title.en }}</div>
         {%- endif -%}
         {%- if attack.title_id -%}
-            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title }}', 'attack')">ID: {{ attack.title_id }}</div>
+            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'attack')">ID: {{ attack.title_id }}</div>
         {%- endif -%}
         {%- include klassen/_components/guide-attack-types.html -%}
     </h4>

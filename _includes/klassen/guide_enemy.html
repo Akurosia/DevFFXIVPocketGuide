@@ -2,32 +2,17 @@
 <div class="guide__accordion">
     <div class="guide__accordion-trigger--01 active" id="guide{{ x }}">
         <i class="material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
-        <h2 class="guide__accordion-trigger-title">
-            {%- if enemies.size > 1 -%}
-                {%- if page.instanceType == "allianzraid" -%}Allianzraid {{ x }} {%- endif -%}
-                {%- if page.instanceType == "bluemage" -%}Bluemage {{ x }} {%- endif -%}
-                {%- if page.instanceType == "dungeon" -%}Dungeon {{ x }} {%- endif -%}
-                {%- if page.instanceType == "feldexkursion" -%}Feldexkursion {{ x }} {%- endif -%}
-                {%- if page.instanceType == "guildhest" -%}Gildengeheiß {{ x }} {%- endif -%}
-                {%- if page.instanceType == "potd" -%}Deep Dungeon {{ x }} {%- endif -%}
-                {%- if page.instanceType == "pvp" -%}PvP {{ x }} {%- endif -%}
-                {%- if page.instanceType == "raid" -%}Raid {{ x }} {%- endif -%}
-                {%- if page.instanceType == "ultimate" -%}Ultimate {{ x }} {%- endif -%}
-                {%- if page.instanceType == "treasure" -%}Schatzdungeon {{ x }} {%- endif -%}
-                {%- if page.instanceType == "trial" -%}Prüfung {{ x }} {%- endif -%}
-            {%- else -%}
-                {{ enemies[0].title }}
-            {%- endif -%}
-        </h2>
+        <h2 class="lang-toggle lang-toogle-de guide__accordion-trigger-title">{{ enemies[0].title.de }}</h2>
+        <h2 class="lang-toggle lang-toogle-en guide__accordion-trigger-title">{{ enemies[0].title.en }}</h2>
+        <h2 class="lang-toggle lang-toogle-fr guide__accordion-trigger-title">{{ enemies[0].title.fr }}</h2>
+        <h2 class="lang-toggle lang-toogle-ja guide__accordion-trigger-title">{{ enemies[0].title.ja }}</h2>
+        <h2 class="lang-toggle lang-toogle-cn guide__accordion-trigger-title">{{ enemies[0].title.cn }}</h2>
+        <h2 class="lang-toggle lang-toogle-ko guide__accordion-trigger-title">{{ enemies[0].title.ko }}</h2>
         {%- if enemies.size == 1 -%}
             {%- if enemies[0].enemy_id and enemies[0].enemy_id != "" -%}
-                <div style="text-align: right; margin-top: -1.5rem; font-size: initial; font-weight: bold;" class="guide__accordion-trigger-id">
-                    Enemy-ID: {{ enemies[0].enemy_id }}
-                </div>
+                <div class="guide__accordion-trigger-id enemy_id">Enemy-ID: {{ enemies[0].enemy_id }}</div>
             {%- endif -%}
-            <h3 class="guide__accordion-trigger-title_en">
-                {{ enemies[0].title_en }}
-            </h3>
+            <h3 class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemies[0].title.en }}</h3>
         {%- endif -%}
     </div>
     <!-- Guide Event Accordion Content -->
@@ -38,17 +23,16 @@
                 <!-- <div class="guide__accordion-trigger--02" id="{{ enemy.id }}"> -->
                 <div class="guide__accordion-trigger--02" id="{{ enemy.id | slugify }}">
                     <i class="material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
-                    <h3 class="guide__accordion-trigger-title">
-                        {{ enemy.title }}
-                    </h3>
+                    <h3 class="lang-toggle lang-toogle-de guide__accordion-trigger-title">{{ enemy.title.de }}</h3>
+                    <h3 class="lang-toggle lang-toogle-en guide__accordion-trigger-title">{{ enemy.title.en }}</h3>
+                    <h3 class="lang-toggle lang-toogle-fr guide__accordion-trigger-title">{{ enemy.title.fr }}</h3>
+                    <h3 class="lang-toggle lang-toogle-ja guide__accordion-trigger-title">{{ enemy.title.ja }}</h3>
+                    <h3 class="lang-toggle lang-toogle-cn guide__accordion-trigger-title">{{ enemy.title.cn }}</h3>
+                    <h3 class="lang-toggle lang-toogle-ko guide__accordion-trigger-title">{{ enemy.title.ko }}</h3>
                     {%- if enemy.enemy_id and enemy.enemy_id != "" -%}
-                        <div style="text-align: right; margin-top: -1.5rem; font-size: initial; font-weight: bold;" class="guide__accordion-trigger-id">
-                            Enemy-ID: {{ enemy.enemy_id }}
-                        </div>
+                        <div class="guide__accordion-trigger-id enemy_id">Enemy-ID: {{ enemy.enemy_id }}</div>
                     {%- endif -%}
-                    <h4 class="guide__accordion-trigger-title_en">
-                        {{ enemy.title_en }}
-                    </h4>
+                    <h4 class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemy.title.en }}</h4>
                 </div>
                 <div class="guide__accordion-content--02">
             {%- endif -%}
