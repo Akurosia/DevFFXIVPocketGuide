@@ -1,9 +1,16 @@
 <!-- Attack Template ======================================================= -->
 <div class="guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--quest">
     <h4 class="guide__accordion-trigger-title">
-        <span class="">{{ quest.title.de }}</span>
+        <span class="">
+            <span class="lang-toggle lang-toogle-de">{{ quest.title.de }}</span>
+            <span class="lang-toggle lang-toogle-en">{{ quest.title.en }}</span>
+            <span class="lang-toggle lang-toogle-fr">{{ quest.title.fr }}</span>
+            <span class="lang-toggle lang-toogle-ja">{{ quest.title.ja }}</span>
+            <span class="lang-toggle lang-toogle-cn">{{ quest.title.cn }}</span>
+            <span class="lang-toggle lang-toogle-ko">{{ quest.title.ko }}</span>
+        </span>
         {%- if quest.title.en -%}
-            <div class="guide__accordion-trigger-subtitle"> | {{ quest.title.en }}</div>
+            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ quest.title.en }}</div>
         {%- endif -%}
         {%- if quest.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ quest.title_id }}', '{{ enemy.title.de }}', 'attack')">ID: {{ quest.title_id }}</div>

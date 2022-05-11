@@ -3,9 +3,16 @@
     <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <h4 class="guide__accordion-trigger-title">
         <img class="attack_icon" src="{{ site.imageurl }}/{{ trait.icon }}" alt="{{ trait.icon }}"/>
-        <span class="">{{ trait.title.de }}</span>
+        <span class="">
+            <span class="lang-toggle lang-toogle-de">{{ trait.title.de }}</span>
+            <span class="lang-toggle lang-toogle-en">{{ trait.title.en }}</span>
+            <span class="lang-toggle lang-toogle-fr">{{ trait.title.fr }}</span>
+            <span class="lang-toggle lang-toogle-ja">{{ trait.title.ja }}</span>
+            <span class="lang-toggle lang-toogle-cn">{{ trait.title.cn }}</span>
+            <span class="lang-toggle lang-toogle-ko">{{ trait.title.ko }}</span>
+        </span>
         {%- if trait.title.en -%}
-            <div class="guide__accordion-trigger-subtitle"> | {{ trait.title.en }}</div>
+            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ trait.title.en }}</div>
         {%- endif -%}
         {%- if trait.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ trait.title_id }}', '{{ enemy.title.de }}', 'attack')">ID: {{ trait.title_id }}</div>

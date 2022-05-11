@@ -8,27 +8,19 @@
             {%- endif -%}">
     <i class="material-icons" style="{%- if attack.disable == 'true' -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <h4 class="guide__accordion-trigger-title">
-        <span class="lang-toggle lang-toogle-de {% if attack.damage_type == 'Magical' %} attack-is-magic
+        <span class="{% if attack.damage_type == 'Magical' %} attack-is-magic
                      {% elsif attack.damage_type && attack.damage_type != 'None' %} attack-is-physical
-                     {% endif %}">{{ attack.title.de }}</span>
-        <span class="lang-toggle lang-toogle-en {% if attack.damage_type == 'Magical' %} attack-is-magic
-                     {% elsif attack.damage_type && attack.damage_type != 'None' %} attack-is-physical
-                     {% endif %}">{{ attack.title.en }}</span>
-        <span class="lang-toggle lang-toogle-fr {% if attack.damage_type == 'Magical' %} attack-is-magic
-                     {% elsif attack.damage_type && attack.damage_type != 'None' %} attack-is-physical
-                     {% endif %}">{{ attack.title.fr }}</span>
-        <span class="lang-toggle lang-toogle-ja {% if attack.damage_type == 'Magical' %} attack-is-magic
-                     {% elsif attack.damage_type && attack.damage_type != 'None' %} attack-is-physical
-                     {% endif %}">{{ attack.title.ja }}</span>
-        <span class="lang-toggle lang-toogle-cn {% if attack.damage_type == 'Magical' %} attack-is-magic
-                     {% elsif attack.damage_type && attack.damage_type != 'None' %} attack-is-physical
-                     {% endif %}">{{ attack.title.cn }}</span>
-        <span class="lang-toggle lang-toogle-ko {% if attack.damage_type == 'Magical' %} attack-is-magic
-                     {% elsif attack.damage_type && attack.damage_type != 'None' %} attack-is-physical
-                     {% endif %}">{{ attack.title.ko }}</span>
+                     {% endif %}">
+            <span class="lang-toggle lang-toogle-de">{{ attack.title.de }}</span>
+            <span class="lang-toggle lang-toogle-en">{{ attack.title.en }}</span>
+            <span class="lang-toggle lang-toogle-fr">{{ attack.title.fr }}</span>
+            <span class="lang-toggle lang-toogle-ja">{{ attack.title.ja }}</span>
+            <span class="lang-toggle lang-toogle-cn">{{ attack.title.cn }}</span>
+            <span class="lang-toggle lang-toogle-ko">{{ attack.title.ko }}</span>
+        </span>
 
         {%- if attack.title.en -%}
-            <div class="guide__accordion-trigger-subtitle"> | {{ attack.title.en }}</div>
+            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ attack.title.en }}</div>
         {%- endif -%}
         {%- if attack.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'attack')">ID: {{ attack.title_id }}</div>

@@ -94,10 +94,12 @@ class CustomFormatter(logging.Formatter):
         logging.ERROR: wrap_in_color_red(format),
         logging.CRITICAL: bold_red + format + reset
     }
+
     def format(self, record):
         log_fmt = self.FORMATS.get(record.levelno)
         formatter = logging.Formatter(log_fmt)
         return formatter.format(record)
+
 
 logger = logging.getLogger("My_app")
 logger.setLevel(logging.CRITICAL)
@@ -111,7 +113,7 @@ disable_yellow_print = True
 disable_blue_print = True
 disable_red_print = True
 
-storeFilesInTmp(False)
+storeFilesInTmp(True)
 logdata = get_any_Logdata()
 patchversions = get_any_Versiondata()
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
@@ -134,7 +136,8 @@ orchestrions = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
 ttcards = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
 XLSXELEMENTS = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest_id", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
-UNKNOWNTITLE = { 'de': 'Unbekannte Herkunft', 'en': 'Unknown Source', 'fr': 'Unknown Source', 'ja': 'Unknown Source', 'cn': 'Unknown Source', 'ko': 'Unknown Source' }
+UNKNOWNTITLE = {'de': 'Unbekannte Herkunft', 'en': 'Unknown Source', 'fr': 'Unknown Source', 'ja': 'Unknown Source', 'cn': 'Unknown Source', 'ko': 'Unknown Source'}
+
 
 def read_xlsx_file():
     # open file, get sheet, last row and last coulmn
@@ -926,7 +929,7 @@ def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_a
                 if not attack.get('title_id', None):
                     if attack.get('variation', None):
                         _id = attack['variation'][0]['title_id']
-                attack['title'] = addLanguageElements("action", _id, attack['title'] )
+                attack['title'] = addLanguageElements("action", _id, attack['title'])
             existing_attacks[attack['title']['de']] = attack['type']
             if attack_id == attack.get('title_id', None):
                 remove_attack.append(attack_id)
@@ -1296,7 +1299,7 @@ def compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_
     for debuff_id in new_enemy_data.get('status', {}):
         for debuff in old_enemy_data.get('debuffs', {}):
             if type(debuff['title']) == str:
-                debuff['title'] = addLanguageElements("status", debuff.get('title_id', None), debuff['title'] )
+                debuff['title'] = addLanguageElements("status", debuff.get('title_id', None), debuff['title'])
             existing_debuffs[debuff['title']['de']] = ""
             if debuff_id == debuff.get('title_id', None):
                 remove_debuff.append(debuff_id)
@@ -1491,7 +1494,7 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
                 if enemy_type == 'bosse' and len(old_enemies) == i + 1:
                     empty_enemy_data = logdata_instance_content['']
             except Exception as e:
-                #print(logdata_instance_content)
+                # print(logdata_instance_content)
                 if not old_enemy_data['title']['de'] == "Unbekannte Herkunft":
                     print(f"Could not find {old_enemy_data['title']['de']} in logdata")
                 new_enemy_data = {}
@@ -1521,7 +1524,6 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
                 del logdata_instance_content[fixCaptilaziationAndRomanNumerals(old_enemy_data['title']['de'])]
             except Exception as e:
                 print_color_red("Could not remove enemy: " + old_enemy_data['title']['de'], disable_red_print)
-
 
             # handle enemy if name is ""
             if not empty_enemy_data == {}:
@@ -1997,7 +1999,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [323]:
+            # if i not in [323]:
             #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             logger.info(pretty_json(entry))
@@ -2013,7 +2015,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 # if old file was found, replace filename to save
                 if not old_data == {}:
                     filename = existing_filename
-                    #logger.info(pretty_json(old_data))
+                    # logger.info(pretty_json(old_data))
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_data)
         except Exception as e:
@@ -2029,4 +2031,3 @@ if __name__ == "__main__":
     orderedContent = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
     logger.debug(orderedContent)
     run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
-

@@ -20,14 +20,22 @@ $(document).ready(function() {
     }
     // set all elements for the language to be displayed
     for (const box of setlangfields) {
-        box.style.display = 'block';
+        if (box.tagName == "SPAN"){
+            box.style.display = 'inline';
+        } else {
+            box.style.display = 'block';
+        }
     }
 
     // only show en_translation, if main language is not en
     if (l1 != "lang-toogle-en"){
         setlangfields = document.getElementsByClassName("lang-toogle-en-sub");
         for (const box of setlangfields) {
-            box.style.display = 'block';
+            if (box.tagName == "SPAN"){
+                box.style.display = 'inline';
+            } else {
+                box.style.display = 'block';
+            }
         }
     }
 

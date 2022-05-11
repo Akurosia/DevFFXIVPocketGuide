@@ -6,9 +6,15 @@
         <span class="{%- if debuff.damage_type == 'Magical' -%}attack-is-magic
                      {%- elsif debuff.damage_type && debuff.damage_type != 'None' -%}attack-is-physical
                      {%- endif -%}">
-            {{ debuff.title.de }}</span>
+            <span class="lang-toggle lang-toogle-de">{{ debuff.title.de }}</span>
+            <span class="lang-toggle lang-toogle-en">{{ debuff.title.en }}</span>
+            <span class="lang-toggle lang-toogle-fr">{{ debuff.title.fr }}</span>
+            <span class="lang-toggle lang-toogle-ja">{{ debuff.title.ja }}</span>
+            <span class="lang-toggle lang-toogle-cn">{{ debuff.title.cn }}</span>
+            <span class="lang-toggle lang-toogle-ko">{{ debuff.title.ko }}</span>
+        </span>
         {%- if debuff.title.en -%}
-            <div class="guide__accordion-trigger-subtitle"> | {{ debuff.title.en }}</div>
+            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ debuff.title.en }}</div>
         {%- endif -%}
         {%- if debuff.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'debuff')">ID: {{ debuff.title_id }}</div>
