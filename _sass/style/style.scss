@@ -2158,8 +2158,8 @@ ion-icon {
     align-items: center;
 }
 
+// background-image is specified in navbar.html
 .flags_img {
-    background-image: url('/assets/img/flags.png');
     background-repeat: no-repeat;
     display: inline-block;
     width: 26px;
@@ -2176,6 +2176,7 @@ ion-icon {
 .iso_JP {background-position: 0 -21px}
 .iso_KR {background-position: -27px -21px}
 .iso_US {background-position: -54px -21px}
+
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";
