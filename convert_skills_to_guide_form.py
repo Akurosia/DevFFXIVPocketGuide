@@ -217,17 +217,17 @@ def addAttackDetails(f, job_data, pvp=False):
         writeline(f, "    attacks:")
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
-        en_name = actions.get(skill_data['id'], {}).get("Name_en", "")
-        fr_name = actions.get(skill_data['id'], {}).get("Name_fr", "")
-        ja_name = actions.get(skill_data['id'], {}).get("Name_ja", "")
-        cn_name = actions.get(skill_data['id'], {}).get("Name_cn", "")
-        ko_name = actions.get(skill_data['id'], {}).get("Name_ko", "")
+        en_name = actions.get(skill_data['id'], {}).get("Name_en", "").title()
+        fr_name = actions.get(skill_data['id'], {}).get("Name_fr", "").title()
+        ja_name = actions.get(skill_data['id'], {}).get("Name_ja", "").title()
+        cn_name = actions.get(skill_data['id'], {}).get("Name_cn", "").title()
+        ko_name = actions.get(skill_data['id'], {}).get("Name_ko", "").title()
         if en_name == "":
-            en_name = craftactions[skill_data['id']]["Name_en"]
-            fr_name = craftactions[skill_data['id']]["Name_fr"]
-            ja_name = craftactions[skill_data['id']]["Name_ja"]
-            cn_name = craftactions[skill_data['id']]["Name_cn"]
-            ko_name = craftactions[skill_data['id']]["Name_ko"]
+            en_name = craftactions[skill_data['id']]["Name_en"].title()
+            fr_name = craftactions[skill_data['id']]["Name_fr"].title()
+            ja_name = craftactions[skill_data['id']]["Name_ja"].title()
+            cn_name = craftactions[skill_data['id']]["Name_cn"].title()
+            ko_name = craftactions[skill_data['id']]["Name_ko"].title()
         level = "0" if skill_data['Level'] == "99999" else skill_data['Level']
         desc = skill_data["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
         writeline(f, f'      - title:')
@@ -266,12 +266,12 @@ def addStatusDetails(f, job):
             _id = str(int(key, 16))
             desc = statusss[_id]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
             writeline(f, f'      - title:')
-            writeline(f, f'          de: "{status["name"]}"')
-            writeline(f, f'          en: "{statuss[_id]["Name_en"]}"')
-            writeline(f, f'          fr: "{statuss[_id]["Name_fr"]}"')
-            writeline(f, f'          ja: "{statuss[_id]["Name_ja"]}"')
-            writeline(f, f'          cn: "{statuss[_id]["Name_cn"]}"')
-            writeline(f, f'          ko: "{statuss[_id]["Name_ko"]}"')
+            writeline(f, f'          de: "{status["name"].title()}"')
+            writeline(f, f'          en: "{statuss[_id]["Name_en"].title()}"')
+            writeline(f, f'          fr: "{statuss[_id]["Name_fr"].title()}"')
+            writeline(f, f'          ja: "{statuss[_id]["Name_ja"].title()}"')
+            writeline(f, f'          cn: "{statuss[_id]["Name_cn"].title()}"')
+            writeline(f, f'          ko: "{statuss[_id]["Name_ko"].title()}"')
             writeline(f, f'        title_id: "{key}"')
             writeline(f, f'        icon: "{getImage(status["icon"])}"')
             writeline(f, f'        description: "{desc}"')
@@ -290,15 +290,15 @@ def addTraitDetails(f, job):
     for _id, trait_data in job_trait_data.items():
         if not trait_data.get("Icon", None):
             continue
-        en_name = traitss[_id]["Name_en"]
-        fr_name = traitss[_id]["Name_fr"]
-        ja_name = traitss[_id]["Name_ja"]
-        cn_name = traitss[_id]["Name_cn"]
-        ko_name = traitss[_id]["Name_ko"]
+        en_name = traitss[_id]["Name_en"].title()
+        fr_name = traitss[_id]["Name_fr"].title()
+        ja_name = traitss[_id]["Name_ja"].title()
+        cn_name = traitss[_id]["Name_cn"].title()
+        ko_name = traitss[_id]["Name_ko"].title()
         desc = traitstransient[_id]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
         level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
         writeline(f, f'      - title:')
-        writeline(f, f'          de: "{trait_data["Name"]}"')
+        writeline(f, f'          de: "{trait_data["Name"].title()}"')
         writeline(f, f'          en: "{en_name}"')
         writeline(f, f'          fr: "{fr_name}"')
         writeline(f, f'          ja: "{ja_name}"')
@@ -316,7 +316,7 @@ def translatename(name, lang="en"):
     global trans_leves
     for y, x in trans_leves.items():
         if x["Name_de"] == name:
-            return x[f"Name_{lang}"]
+            return x[f"Name_{lang}"].title()
 
 
 def getCrafterLeves():
@@ -492,15 +492,15 @@ def addQuestkDetails(f, job, pvp):
     writeline(f, "    quests:")
     for _level in sorted(klassenquests):
         quest = klassenquests[_level]
-        en_name = questss.get(quest['id'], {}).get("Name_en", "").replace(" ", "").replace(" ", "")
-        fr_name = questss.get(quest['id'], {}).get("Name_fr", "").replace(" ", "").replace(" ", "")
-        ja_name = questss.get(quest['id'], {}).get("Name_ja", "").replace(" ", "").replace(" ", "")
-        cn_name = questss.get(quest['id'], {}).get("Name_cn", "").replace(" ", "").replace(" ", "")
-        ko_name = questss.get(quest['id'], {}).get("Name_ko", "").replace(" ", "").replace(" ", "")
+        en_name = questss.get(quest['id'], {}).get("Name_en", "").replace(" ", "").replace(" ", "").title()
+        fr_name = questss.get(quest['id'], {}).get("Name_fr", "").replace(" ", "").replace(" ", "").title()
+        ja_name = questss.get(quest['id'], {}).get("Name_ja", "").replace(" ", "").replace(" ", "").title()
+        cn_name = questss.get(quest['id'], {}).get("Name_cn", "").replace(" ", "").replace(" ", "").title()
+        ko_name = questss.get(quest['id'], {}).get("Name_ko", "").replace(" ", "").replace(" ", "").title()
         level = "0" if quest['level'] == "99999" else quest['level']
         #desc = skill_data["Description"].replace("\n", "</br>")
         writeline(f, f'      - title:')
-        writeline(f, f'          de: "{quest["name"].replace(" ", "").replace(" ", "")}"')
+        writeline(f, f'          de: "{quest["name"].title().replace(" ", "").replace(" ", "")}"')
         writeline(f, f'          en: "{en_name}"')
         writeline(f, f'          fr: "{fr_name}"')
         writeline(f, f'          ja: "{ja_name}"')
@@ -599,12 +599,12 @@ def main():
             writeline(f, '---')
             writeline(f, 'wip: "True"')
             writeline(f, 'title:')
-            writeline(f, f'  de: "{job_d["Name_de"]}"')
-            writeline(f, f'  en: "{job_d["Name_en"]}"')
-            writeline(f, f'  fr: "{job_d["Name_fr"]}"')
-            writeline(f, f'  ja: "{job_d["Name_ja"]}"')
-            writeline(f, f'  cn: "{job_d["Name_cn"]}"')
-            writeline(f, f'  ko: "{job_d["Name_ko"]}"')
+            writeline(f, f'  de: "{job_d["Name_de"].title()}"')
+            writeline(f, f'  en: "{job_d["Name_en"].title()}"')
+            writeline(f, f'  fr: "{job_d["Name_fr"].title()}"')
+            writeline(f, f'  ja: "{job_d["Name_ja"].title()}"')
+            writeline(f, f'  cn: "{job_d["Name_cn"].title()}"')
+            writeline(f, f'  ko: "{job_d["Name_ko"].title()}"')
             writeline(f, 'layout: klassen')
             writeline(f, 'page_type: guide')
             writeline(f, 'categories: "klassenjobs"')
@@ -636,24 +636,24 @@ def main():
             writeline(f, '    - term: "Skills"')
             writeline(f, '    - term: "Status"')
             writeline(f, '    - term: "Traits"')
-            writeline(f, f'    - term: "{job_d["Name_de"]}"')
-            writeline(f, f'    - term: "{job_d["Name_en"]}"')
-            writeline(f, f'    - term: "{job_d["Name_fr"]}"')
-            writeline(f, f'    - term: "{job_d["Name_ja"]}"')
-            writeline(f, f'    - term: "{job_d["Name_cn"]}"')
-            writeline(f, f'    - term: "{job_d["Name_ko"]}"')
+            writeline(f, f'    - term: "{job_d["Name_de"].title()}"')
+            writeline(f, f'    - term: "{job_d["Name_en"].title()}"')
+            writeline(f, f'    - term: "{job_d["Name_fr"].title()}"')
+            writeline(f, f'    - term: "{job_d["Name_ja"].title()}"')
+            writeline(f, f'    - term: "{job_d["Name_cn"].title()}"')
+            writeline(f, f'    - term: "{job_d["Name_ko"].title()}"')
             writeline(f, f'sortid: {counter}')
             writeline(f, f'order: {counter}')
             writeline(f, f'plvl: {maxlvl}')
             writeline(f, f'ilvl: {maxilvl}')
             writeline(f, "bosses:")
             writeline(f, "  - title:")
-            writeline(f, f'      de: "{job_d["Name_de"]}"')
-            writeline(f, f'      en: "{job_d["Name_en"]}"')
-            writeline(f, f'      fr: "{job_d["Name_fr"]}"')
-            writeline(f, f'      ja: "{job_d["Name_ja"]}"')
-            writeline(f, f'      cn: "{job_d["Name_cn"]}"')
-            writeline(f, f'      ko: "{job_d["Name_ko"]}"')
+            writeline(f, f'      de: "{job_d["Name_de"].title()}"')
+            writeline(f, f'      en: "{job_d["Name_en"].title()}"')
+            writeline(f, f'      fr: "{job_d["Name_fr"].title()}"')
+            writeline(f, f'      ja: "{job_d["Name_ja"].title()}"')
+            writeline(f, f'      cn: "{job_d["Name_cn"].title()}"')
+            writeline(f, f'      ko: "{job_d["Name_ko"].title()}"')
             writeline(f, "    id: \"" + "boss" + str(counter) + "\"")
             if job == "Blaumagier":
                 addBlueAttackDetails(f, job_data)
