@@ -6,6 +6,7 @@ from ffxiv_aku import *
 from collections import OrderedDict
 from operator import getitem
 import math
+import traceback
 
 skills = None
 pvpskills = None
@@ -29,6 +30,7 @@ leves = None
 trans_leves = None
 craftleves = None
 
+disable_print = True
 
 def load_global_data():
     global skills
@@ -215,8 +217,10 @@ def addAttackDetails(f, job_data, pvp=False):
     # only print for normal attacks
     if not pvp:
         writeline(f, "    attacks:")
+
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
+        print_color_red(pretty_json(skill_data) + "\n", disable_print)
         en_name = actions.get(skill_data['id'], {}).get("Name_en", "").title()
         fr_name = actions.get(skill_data['id'], {}).get("Name_fr", "").title()
         ja_name = actions.get(skill_data['id'], {}).get("Name_ja", "").title()
@@ -439,7 +443,7 @@ def ToMapCoordinate(val, sizefactor):
     return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1
 
 
-def getLevel(level):
+def getLevel(level, debugquest=None):
     global levels
     try:
         level = levels[level.replace('Level#', "")]
@@ -449,6 +453,8 @@ def getLevel(level):
         return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
     except Exception as e:
         print(f"Error in getLevel: {e}")
+        #print(f"Error in getLevel: {e} -> {debugquest}")
+        traceback.print_exc()
         return None
 
 
@@ -464,7 +470,7 @@ def addQuestkDetails(f, job, pvp):
             #print(" \t" + quest['Name'])
             level_data = {}
             try:
-                level_data = getLevel(quest['Issuer']['Location'])
+                level_data = getLevel(quest['Issuer']['Location'], quest)
                 if level_data is None:
                     continue
             except Exception as e:
@@ -574,16 +580,18 @@ def main():
     all_gatherer_leves = getGathererLeves()
 
     ncj = sorted(cj.items(), key=lambda item: int(item[0].split(".")[0]))
+    #print_color_red(pretty_json(ncj))
     maxlvl = ""
     for k in ncj:
         job_d = k[1]
         job = job_d['Name_de']
-        en_name = job_d["Name_en"].title()
         job_data = skills.get(job, None)
         job_data_pvp = pvpskills.get(job, None)
         if not job_data:
             continue
-        print(job)
+        #if not job == "Weiser":
+        #    continue
+        print_color_red(job)
 
         tmpmaxlvl = str(max([int(data["Level"]) for key, data in job_data.items() if int(data['Level']) < 99999]))
         if job == "Blaumagier":
