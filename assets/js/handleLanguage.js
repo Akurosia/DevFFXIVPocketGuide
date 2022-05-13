@@ -37,6 +37,12 @@ $(document).ready(function() {
                 box.style.display = 'block';
             }
         }
+    } else {
+        setlangfields = document.getElementsByClassName("lang-toogle-en-sub");
+        for (const box of setlangfields) {
+            box.style.display = 'block';
+            box.style.visibility = 'hidden';
+        }
     }
 
 });
