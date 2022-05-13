@@ -72,30 +72,32 @@
                     <span class="lang-toggle lang-toogle-cn ">{{  page.title.cn }}</span>
                     <span class="lang-toggle lang-toogle-ko ">{{  page.title.ko }}</span>
                     {%- if page.difficulty -%}
-                        {%- if page.difficulty != "Normal" && page.difficulty != "Fatal" -%}
-                            <span
+                        {%- if page.difficulty != "Normal" -%}
+                            <span class
                                 {%- if page.difficulty == "Hard" -%}
-                                    class="hard"
+                                    ="hard"
                                 {%- elsif page.difficulty == "Unreal" -%}
-                                    class="unreal"
+                                    ="unreal"
                                 {%- elsif page.difficulty == "Extreme" -%}
-                                    class="extreme"
+                                    ="extreme"
                                 {%- elsif page.difficulty == "Extrem" -%}
-                                    class="extreme"
+                                    ="extreme"
                                 {%- elsif page.difficulty == "Savage" -%}
-                                    class="savage"
+                                    ="savage"
                                 {%- elsif page.difficulty == "Ultimate" -%}
-                                    class="ultimate"
+                                    ="ultimate"
                                 {%- elsif page.difficulty == "Schwer" -%}
-                                    class="hard"
+                                    ="hard"
                                 {%- elsif page.difficulty == "Traumprüfung" -%}
-                                    class="unreal"
+                                    ="unreal"
                                 {%- elsif page.difficulty == "Episch" -%}
-                                    class="savage"
+                                    ="savage"
                                 {%- elsif page.difficulty == "Fatal" -%}
-                                    class="ultimate"
+                                    ="ultimate"
                                 {%- endif -%}
-                            > ({{ page.difficulty }})</span>
+                            >
+                            <span class="lang-toggle lang-toogle-de"> ({{ page.difficulty }})</span>
+                        </span>
                         {%- endif -%}
                     {%- endif -%}
                 {%- endif -%}

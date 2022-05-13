@@ -29,31 +29,31 @@
             <span class="lang-toggle lang-toogle-cn"> {{ guide.title.cn }} </span>
             <span class="lang-toggle lang-toogle-ko"> {{ guide.title.ko }} </span>
 
-            <span
+            <span class
                 {%- if guide.difficulty == "Hard" -%}
-                    class="hard"
+                    ="hard"
                 {%- elsif guide.difficulty == "Unreal" -%}
-                    class="unreal"
+                    ="unreal"
                 {%- elsif guide.difficulty == "Extreme" -%}
-                    class="extreme"
+                    ="extreme"
                 {%- elsif guide.difficulty == "Extrem" -%}
-                    class="extreme"
+                    ="extreme"
                 {%- elsif guide.difficulty == "Savage" -%}
-                    class="savage"
+                    ="savage"
                 {%- elsif guide.difficulty == "Ultimate" -%}
-                    class="ultimate"
+                    ="ultimate"
                 {%- elsif guide.difficulty == "Schwer" -%}
-                    class="hard"
+                    ="hard"
                 {%- elsif guide.difficulty == "Traumprüfung" -%}
-                    class="unreal"
+                    ="unreal"
                 {%- elsif guide.difficulty == "Episch" -%}
-                    class="savage"
+                    ="savage"
                 {%- elsif guide.difficulty == "Fatal" -%}
-                    class="ultimate"
+                    ="ultimate"
                 {%- endif -%}
                 >
                 {%- if guide.difficulty != "Normal" -%}
-                    ({{ guide.difficulty }})
+                    <span class="lang-toggle lang-toogle-de">({{ guide.difficulty }})</span>
                 {%- endif -%}
             </span>
         </h3>

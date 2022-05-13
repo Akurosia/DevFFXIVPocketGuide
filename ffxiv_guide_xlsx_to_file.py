@@ -462,7 +462,10 @@ def rewrite_content_even_if_exists(entry, old_wip):
     #header_data += 'title: "' + entry["title"] + '"\n'
     header_data += 'title:\n'
     for lang in LANGUAGES:
-        header_data += f'  {lang}: "' + entry[f"title_{lang}"] + '"\n'
+        tmp = entry[f"title_{lang}"].replace(f' ({entry["difficulty"].lower()})', "")
+        tmp = tmp.replace(f' ({entry["difficulty"].title()})', "")
+        tmp = tmp.replace(f'Traumprüfung - ', "")
+        header_data += f'  {lang}: "' + tmp + '"\n'
     header_data += 'layout: guide_post\n'
     header_data += 'page_type: guide\n'
     header_data += f'excel_line: \"{entry["line_index"]}\"\n'
