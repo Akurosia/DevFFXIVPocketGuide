@@ -1511,7 +1511,7 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
             old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
             old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
 
-            guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type, new_enemy_data_c)
+            guide_data += add_Enemy(old_enemy_data, enemy_type, new_enemy_data_c)
 
             # this try catch will remove enemy from logdata, so it wont be readded later on
             try:
@@ -1534,7 +1534,7 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
                 old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, empty_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
 
                 if not old_enemy_data == base_data:
-                    guide_data = add_Enemy(guide_data, old_enemy_data, enemy_type, new_enemy_data_c)
+                    guide_data += add_Enemy(old_enemy_data, enemy_type, new_enemy_data_c)
     return guide_data, empty_enemy_available
 
 
@@ -1546,6 +1546,8 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
         if logdata_instance_content is None:
             return guide_data
 
+        # the array is used to sort bosses
+        enemies_to_add = []
         empty_enemy = None
         for i, enemy in enumerate(logdata_instance_content, 1):
             if enemy == "" and enemy_type == 'adds':
@@ -1595,11 +1597,23 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
             if enemy == "":
                 empty_enemy = enemy_data
             else:
-                guide_data = add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data_c)
+                tmp_guide_data_from_enemy = add_Enemy(enemy_data, enemy_type, new_enemy_data_c)
+                enemies_to_add.append(tmp_guide_data_from_enemy)
+
+        # this will add bosses in order as specified and add adds in order they were added to the array
+        if enemy_type == 'bosse':
+            for boss in entry['bosse']:
+                for e in enemies_to_add:
+                    if f'      de: "{boss}"' in e:
+                        guide_data += e
+                        break
+        else:
+            for e in enemies_to_add:
+                guide_data += e
 
         if empty_enemy and not empty_enemy_available:
             if empty_enemy.get("attacks", None) or empty_enemy.get("debuffs", None):
-                guide_data = add_Enemy(guide_data, empty_enemy, "bosse", new_enemy_data_c)
+                guide_data += add_Enemy(empty_enemy, "bosse", new_enemy_data_c)
     return guide_data
 
 
@@ -1908,7 +1922,8 @@ def add_Sequence(guide_data, data):
     return guide_data
 
 
-def add_Enemy(guide_data, enemy_data, enemy_type, new_enemy_data):
+def add_Enemy(enemy_data, enemy_type, new_enemy_data):
+    guide_data = ""
     enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
     guide_data += f'  - title:\n'
     guide_data = setMultipleLanguageStrings(guide_data, "title", enemy_data, "      ")
@@ -1999,7 +2014,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            # if i not in [323]:
+            #if i not in [423]:
             #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             logger.info(pretty_json(entry))

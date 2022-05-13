@@ -72,7 +72,7 @@
                     <span class="lang-toggle lang-toogle-cn ">{{  page.title.cn }}</span>
                     <span class="lang-toggle lang-toogle-ko ">{{  page.title.ko }}</span>
                     {%- if page.difficulty -%}
-                        {%- if page.difficulty != "Normal" -%}
+                        {%- if page.difficulty != "Normal" && page.difficulty != "Fatal" -%}
                             <span
                                 {%- if page.difficulty == "Hard" -%}
                                     class="hard"
