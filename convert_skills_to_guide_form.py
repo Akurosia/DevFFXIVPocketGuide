@@ -14,6 +14,9 @@ logdata = None
 cj = None
 cjs = None
 actions = None
+actionss = None
+action_trans = None
+lo_actions = None
 craftactions = None
 statuss = None
 statusss = None
@@ -32,6 +35,7 @@ craftleves = None
 
 disable_print = True
 
+
 def load_global_data():
     global skills
     global pvpskills
@@ -39,6 +43,9 @@ def load_global_data():
     global cj
     global cjs
     global actions
+    global actionss
+    global action_trans
+    global lo_actions
     global craftactions
     global statuss
     global statusss
@@ -59,10 +66,13 @@ def load_global_data():
     logdata = get_any_Logdata()
     cj = loadDataTheQuickestWay("classjob_all.json", translate=True)
     cjs = loadDataTheQuickestWay("ClassJob.de.json")
-    actions = loadDataTheQuickestWay("action_all.json", translate=True)
+    actions = loadDataTheQuickestWay("action.de.json", translate=False)
+    actionss = loadDataTheQuickestWay("action_all.json", translate=True)
+    action_trans = loadDataTheQuickestWay("actiontransient.de.json", translate=False)
+    lo_actions = loadDataTheQuickestWay("eurekamagiaaction.json", translate=False)
     craftactions = loadDataTheQuickestWay("craftaction_all.json", translate=True)
     statuss = loadDataTheQuickestWay("status_all.json", translate=True)
-    statusss = loadDataTheQuickestWay("Status.de.json")
+    statusss = loadDataTheQuickestWay("Status.de.json", translate=False)
     traits = loadDataTheQuickestWay("Trait.de.json")
     traitss = loadDataTheQuickestWay("trait_all.json", translate=True)
     traitstransient = loadDataTheQuickestWay("TraitTransient.de.json")
@@ -110,7 +120,7 @@ def getBLULocationsFromLogdata(name, locations):
 
 
 def addBlueAttackDetails(f, job_data):
-    global actions
+    global actionss
     global aozactions
     global aozactiontransient
     writeline(f, "    attacks:")
@@ -138,11 +148,11 @@ def addBlueAttackDetails(f, job_data):
         locations = []
         if skill_data.get('Location', None):
             locations.append(skill_data['Location'])
-        en_name = actions.get(skill_data['id'], {}).get("Name_en", "").title()
-        fr_name = actions.get(skill_data['id'], {}).get("Name_fr", "").title()
-        ja_name = actions.get(skill_data['id'], {}).get("Name_ja", "").title()
-        cn_name = actions.get(skill_data['id'], {}).get("Name_cn", "").title()
-        ko_name = actions.get(skill_data['id'], {}).get("Name_ko", "").title()
+        en_name = actionss.get(skill_data['id'], {}).get("Name_en", "").title()
+        fr_name = actionss.get(skill_data['id'], {}).get("Name_fr", "").title()
+        ja_name = actionss.get(skill_data['id'], {}).get("Name_ja", "").title()
+        cn_name = actionss.get(skill_data['id'], {}).get("Name_cn", "").title()
+        ko_name = actionss.get(skill_data['id'], {}).get("Name_ko", "").title()
         if en_name == "":
             en_name = craftactions[skill_data['id'] + ".0"]["Name_en"]
         level = skill_data['Level']
@@ -212,7 +222,7 @@ def convertJobToAbrev(job):
 
 
 def addAttackDetails(f, job_data, pvp=False):
-    global actions
+    global actionss
     global craftactions
     # only print for normal attacks
     if not pvp:
@@ -221,11 +231,11 @@ def addAttackDetails(f, job_data, pvp=False):
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
         print_color_red(pretty_json(skill_data) + "\n", disable_print)
-        en_name = actions.get(skill_data['id'], {}).get("Name_en", "").title()
-        fr_name = actions.get(skill_data['id'], {}).get("Name_fr", "").title()
-        ja_name = actions.get(skill_data['id'], {}).get("Name_ja", "").title()
-        cn_name = actions.get(skill_data['id'], {}).get("Name_cn", "").title()
-        ko_name = actions.get(skill_data['id'], {}).get("Name_ko", "").title()
+        en_name = actionss.get(skill_data['id'], {}).get("Name_en", "").title()
+        fr_name = actionss.get(skill_data['id'], {}).get("Name_fr", "").title()
+        ja_name = actionss.get(skill_data['id'], {}).get("Name_ja", "").title()
+        cn_name = actionss.get(skill_data['id'], {}).get("Name_cn", "").title()
+        ko_name = actionss.get(skill_data['id'], {}).get("Name_ko", "").title()
         if en_name == "":
             en_name = craftactions[skill_data['id']]["Name_en"].title()
             fr_name = craftactions[skill_data['id']]["Name_fr"].title()
@@ -314,6 +324,80 @@ def addTraitDetails(f, job):
         writeline(f, f'        description: "{desc}"')
         writeline(f, f'        phases:')
         writeline(f, f'          - phase: "03"')
+
+
+def getStatusKey(stat):
+    for k, v in statusss.items():
+        if v["Name"] == stat:
+            return k
+    return "0"
+
+
+def getActionDetails():
+    results = {}
+    new_lo_actions = {}
+    # get all eurekamagiaaction
+    for x, v in lo_actions.items():
+        _id = int(x.split(".")[0])
+        new_lo_actions[_id] = v
+
+    for k, i in actions.items():
+        for k2, lo in new_lo_actions.items():
+            if i["Name"] == lo["Action"] and not i["Name"] == "":
+                if k2 not in results:
+                    status_key = getStatusKey(i["Status"]['GainSelf'])
+                    results[int(k2)] = {
+                        "name": {
+                            "de": actionss[k]['Name_de'],
+                            "en": actionss[k]['Name_en'],
+                            "fr": actionss[k]['Name_fr'],
+                            "ja": actionss[k]['Name_ja'],
+                            "cn": actionss[k]['Name_cn'],
+                            "ko": actionss[k]['Name_ko']
+                        },
+                        "icon": i["Icon"].replace(".png", "_hr1.png"),
+                        "type": i["ActionCategory"],
+                        "cj": i["ClassJobCategory"],
+                        "uses": lo["MaxUses"],
+                        "status": {
+                            "de": statuss[status_key]['Name_de'],
+                            "en": statuss[status_key]['Name_en'],
+                            "fr": statuss[status_key]['Name_fr'],
+                            "ja": statuss[status_key]['Name_ja'],
+                            "cn": statuss[status_key]['Name_cn'],
+                            "ko": statuss[status_key]['Name_ko']
+                        },
+                        "status_icon": statuss[status_key]['Icon'].replace(".tex", "_hr1.png"),
+                        "description": action_trans[k]["Description"].replace("\n", "</br>")
+                    }
+                    break
+                else:
+                    print("Douplicate for " + str(k2))
+                    continue
+    return results
+
+
+def addEurekaActions(f, job, eureka_actions):
+    writeline(f, "    eureka:")
+    _class = [v['Abbreviation'] for k, v in cjs.items() if v["Name"]['Value'] == job]
+    for k, value in eureka_actions.items():
+        if _class[0] in value['cj']:
+            desc = value["description"].replace("\n", "</br>").replace("</br></br>", "</br>")
+            # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
+            writeline(f, f'      - title:')
+            writeline(f, f'          de: "{value["name"]["de"]}"')
+            writeline(f, f'          en: "{value["name"]["de"]}"')
+            writeline(f, f'          fr: "{value["name"]["de"]}"')
+            writeline(f, f'          ja: "{value["name"]["de"]}"')
+            writeline(f, f'          cn: "{value["name"]["de"]}"')
+            writeline(f, f'          ko: "{value["name"]["de"]}"')
+            writeline(f, f'        title_id: "{k}"')
+            writeline(f, f'        level: "70"')
+            writeline(f, f'        icon: "{getImage(value["icon"])}"')
+            writeline(f, f'        description: "{desc}"')
+            writeline(f, f'        type: "{value["type"]}"')
+            writeline(f, f'        phases:')
+            writeline(f, f'          - phase: "06"')
 
 
 def translatename(name, lang="en"):
@@ -453,7 +537,7 @@ def getLevel(level, debugquest=None):
         return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
     except Exception as e:
         print(f"Error in getLevel: {e}")
-        #print(f"Error in getLevel: {e} -> {debugquest}")
+        # print(f"Error in getLevel: {e} -> {debugquest}")
         traceback.print_exc()
         return None
 
@@ -467,7 +551,7 @@ def addQuestkDetails(f, job, pvp):
         if "Restaurierung der Reliktwaffen" in quest['Name']:
             continue
         if quest['ClassJobCategory']["0"] in [newjob, newclass] or quest['ClassJobCategory']["1"] in [newjob, newclass]:
-            #print(" \t" + quest['Name'])
+            # print(" \t" + quest['Name'])
             level_data = {}
             try:
                 level_data = getLevel(quest['Issuer']['Location'], quest)
@@ -504,7 +588,7 @@ def addQuestkDetails(f, job, pvp):
         cn_name = questss.get(quest['id'], {}).get("Name_cn", "").replace(" ", "").replace(" ", "").title()
         ko_name = questss.get(quest['id'], {}).get("Name_ko", "").replace(" ", "").replace(" ", "").title()
         level = "0" if quest['level'] == "99999" else quest['level']
-        #desc = skill_data["Description"].replace("\n", "</br>")
+        # desc = skill_data["Description"].replace("\n", "</br>")
         writeline(f, f'      - title:')
         writeline(f, f'          de: "{quest["name"].title().replace(" ", "").replace(" ", "")}"')
         writeline(f, f'          en: "{en_name}"')
@@ -578,9 +662,11 @@ def main():
     # for job, job_data in skills.items():
     all_crafter_leves = getCrafterLeves()
     all_gatherer_leves = getGathererLeves()
+    eureka_actions = getActionDetails()
+    # print_color_yellow(pretty_json(eureka_actions))
 
     ncj = sorted(cj.items(), key=lambda item: int(item[0].split(".")[0]))
-    #print_color_red(pretty_json(ncj))
+    # print_color_red(pretty_json(ncj))
     maxlvl = ""
     for k in ncj:
         job_d = k[1]
@@ -589,8 +675,8 @@ def main():
         job_data_pvp = pvpskills.get(job, None)
         if not job_data:
             continue
-        #if not job == "Weiser":
-        #    continue
+        if not job == "Rotmagier":
+            continue
         print_color_red(job)
 
         tmpmaxlvl = str(max([int(data["Level"]) for key, data in job_data.items() if int(data['Level']) < 99999]))
@@ -635,7 +721,6 @@ def main():
             if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
                 writeline(f, 'image:')
                 writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
-                #writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
             else:
                 print(f"Missing img: {job}.png")
             writeline(f, 'terms:')
@@ -670,9 +755,10 @@ def main():
                 addAttackDetails(f, job_data_pvp, True)
             addStatusDetails(f, job)
             addTraitDetails(f, job)
+            ea = addEurekaActions(f, job, eureka_actions)
+            # addBozjaActions(f, job)
             cleves = addCrafterLeve(f, job, all_crafter_leves)
             gleves = addCrafterLeve(f, job, all_gatherer_leves)
-            #print(f"{cleves} - {gleves}")
             addQuestkDetails(f, job, pvp or leves)
             writeline(f, "    sequence:" + "")
             writeline(f, "      - phase: \"01\"")
@@ -689,6 +775,10 @@ def main():
                 writeline(f, "        name: \"Freibriefe\"")
                 writeline(f, "      - phase: \"05\"")
             writeline(f, "        name: \"Quests\"")
+            writeline(f, "      - phase: \"06\"")
+            writeline(f, "        name: \"Eureka Skills\"")
+            writeline(f, "      - phase: \"07\"")
+            writeline(f, "        name: \"Bozja Skills\"")
             writeline(f, '---')
 
 
