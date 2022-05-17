@@ -39,8 +39,20 @@
         {%- endfor -%}
     {%- endfor -%}
 
-    <!-- Enters the enemy trait loop. -->
+    <!-- Enters the enemy eureka loop. -->
     {%- for attack in enemy.eureka -%}
+        <!-- Enters the attack's phases. -->
+        {%- for eurekaPhase in attack.phases -%}
+            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+            {%- if eurekaPhase.phase == currentPhase -%}
+                <!-- Include Attack Template -->
+                {%- include klassen/_components/guide-attack.html -%}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endfor -%}
+
+    <!-- Enters the enemy bozja loop. -->
+    {%- for attack in enemy.bozja -%}
         <!-- Enters the attack's phases. -->
         {%- for eurekaPhase in attack.phases -%}
             <!-- Checks to see if any of the attack's phases are equal to the current phase. -->

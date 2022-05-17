@@ -29,6 +29,13 @@
             <div class="guide__attack-notes-wrapper">
                 <h5 class="guide__attack-notes-title">Description:</h5>
                 <span class="guide__debuff_description">{{ attack.description }}</span>
+                {%- if attack.status_icon -%}
+                    {%- unless attack.status_icon == "" -%}
+                        <br/>
+                        <h5 class="guide__attack-notes-title">Status: {{ attack.status.de }}</h5><br>
+                        <img class="debuff_icon" src="{{ site.imageurl }}/{{ attack.status_icon }}" alt="{{ attack.status_icon }}"/>
+                    {%- endunless -%}
+                {%- endif -%}
             </div>
         {%- endif -%}
         {%- include _components/guide-attack-notes.html -%}

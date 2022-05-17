@@ -17,6 +17,9 @@
   {%- if attack.kategorie -%}
     <span class="guide__accordion-tag--role">Kategorie: {{ attack.kategorie }}</span>
   {%- endif -%}
+  {%- if attack.frontsplitter -%}
+    <span class="guide__accordion-tag--role">Frontsplitter: {{ attack.frontsplitter }}</span>
+  {%- endif -%}
 
   {%- if quest.expansion -%}
     <span class="guide__accordion-tag--role">Expansion: {{ quest.expansion }}</span>

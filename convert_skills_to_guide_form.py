@@ -17,6 +17,7 @@ actions = None
 actionss = None
 action_trans = None
 lo_actions = None
+bo_actions = None
 craftactions = None
 statuss = None
 statusss = None
@@ -46,6 +47,7 @@ def load_global_data():
     global actionss
     global action_trans
     global lo_actions
+    global bo_actions
     global craftactions
     global statuss
     global statusss
@@ -70,6 +72,7 @@ def load_global_data():
     actionss = loadDataTheQuickestWay("action_all.json", translate=True)
     action_trans = loadDataTheQuickestWay("actiontransient.de.json", translate=False)
     lo_actions = loadDataTheQuickestWay("eurekamagiaaction.json", translate=False)
+    bo_actions = loadDataTheQuickestWay("MYCTemporaryItem.json", translate=False)
     craftactions = loadDataTheQuickestWay("craftaction_all.json", translate=True)
     statuss = loadDataTheQuickestWay("status_all.json", translate=True)
     statusss = loadDataTheQuickestWay("Status.de.json", translate=False)
@@ -333,7 +336,7 @@ def getStatusKey(stat):
     return "0"
 
 
-def getActionDetails():
+def getEurekaActionDetails():
     results = {}
     new_lo_actions = {}
     # get all eurekamagiaaction
@@ -346,7 +349,7 @@ def getActionDetails():
             if i["Name"] == lo["Action"] and not i["Name"] == "":
                 if k2 not in results:
                     status_key = getStatusKey(i["Status"]['GainSelf'])
-                    results[int(k2)] = {
+                    results[k] = {
                         "name": {
                             "de": actionss[k]['Name_de'],
                             "en": actionss[k]['Name_en'],
@@ -367,7 +370,7 @@ def getActionDetails():
                             "cn": statuss[status_key]['Name_cn'],
                             "ko": statuss[status_key]['Name_ko']
                         },
-                        "status_icon": statuss[status_key]['Icon'].replace(".tex", "_hr1.png"),
+                        "status_icon": statuss[status_key]['Icon'].replace(".tex", "_hr1.png").replace(".png", "_hr1.png"),
                         "description": action_trans[k]["Description"].replace("\n", "</br>")
                     }
                     break
@@ -377,11 +380,64 @@ def getActionDetails():
     return results
 
 
+def getActionDataSet(name):
+    for _ida, action in actions.items():
+        if action["Name"] == name:
+            return _ida, action
+
+
+def getFrontsplitterEntry(name, result):
+    if not name.startswith("Verschollen") and not name.startswith("Gemüt") or not name.startswith("Würfel "):
+        return name
+    if name.startswith("Gemüt") or name.startswith("Würfel "):
+        return "Frontsplitter des " + name
+    if name.startswith("Verschollen"):
+        new_name = re.split("Verschollen(?:e|es|er) (.*)", name)[1]
+        for x, x_data in result["Splitter"].items():
+            for y in x_data["Frontsplitter"]:
+                if new_name in y:
+                    return y
+    return ""
+
+
+def getBozjaActionDetails():
+    result = {}
+    for _id, action in bo_actions.items():
+        if action['Category'] == "":
+            continue
+        if action['Category'] == "Gegenstände":
+            action['Category'] = "ZGegenstände"
+        if not result.get(action['Category']):
+            result[action['Category']] = {}
+        b, a = getActionDataSet(action['Action'])
+        icon = a["Icon"].replace(".tex", "_hr1.png")
+        if action['Action'] == "Würfel des Schicksals":
+            icon = "ui/icon/064000/064690_hr1.png"
+        tmp = {
+            "name": {
+                "de": actionss[b]['Name_de'],
+                "en": actionss[b]['Name_en'],
+                "fr": actionss[b]['Name_fr'],
+                "ja": actionss[b]['Name_ja'],
+                "cn": actionss[b]['Name_cn'],
+                "ko": actionss[b]['Name_ko']
+            },
+            "icon": icon,
+            "cj": a["ClassJobCategory"],
+            "frontsplitter": getFrontsplitterEntry(action['Action'], result),
+            "description": action_trans[b]["Description"].replace("\n", "<br>"),
+        }
+        result[action['Category']][b] = tmp
+    return json.loads(json.dumps(result, indent=4, sort_keys=true, ensure_ascii=false))
+
+
 def addEurekaActions(f, job, eureka_actions):
+    result = False
     writeline(f, "    eureka:")
     _class = [v['Abbreviation'] for k, v in cjs.items() if v["Name"]['Value'] == job]
     for k, value in eureka_actions.items():
         if _class[0] in value['cj']:
+            result = True
             desc = value["description"].replace("\n", "</br>").replace("</br></br>", "</br>")
             # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
             writeline(f, f'      - title:')
@@ -391,6 +447,14 @@ def addEurekaActions(f, job, eureka_actions):
             writeline(f, f'          ja: "{value["name"]["de"]}"')
             writeline(f, f'          cn: "{value["name"]["de"]}"')
             writeline(f, f'          ko: "{value["name"]["de"]}"')
+            writeline(f, f'        status:')
+            writeline(f, f'          de: "{value["name"]["de"]}"')
+            writeline(f, f'          en: "{value["name"]["de"]}"')
+            writeline(f, f'          fr: "{value["name"]["de"]}"')
+            writeline(f, f'          ja: "{value["name"]["de"]}"')
+            writeline(f, f'          cn: "{value["name"]["de"]}"')
+            writeline(f, f'          ko: "{value["name"]["de"]}"')
+            writeline(f, f'        status_icon: "{getImage(value["status_icon"])}"')
             writeline(f, f'        title_id: "{k}"')
             writeline(f, f'        level: "70"')
             writeline(f, f'        icon: "{getImage(value["icon"])}"')
@@ -398,6 +462,34 @@ def addEurekaActions(f, job, eureka_actions):
             writeline(f, f'        type: "{value["type"]}"')
             writeline(f, f'        phases:')
             writeline(f, f'          - phase: "06"')
+    return result
+
+
+def addBozjaActions(f, job, bozja_actions):
+    result = False
+    writeline(f, "    bozja:")
+    _class = [v['Abbreviation'] for k, v in cjs.items() if v["Name"]['Value'] == job]
+    for categorie, data in bozja_actions.items():
+        for k, value in data.items():
+            if _class[0] in value['cj']:
+                result = True
+                desc = value["description"].replace("\n", "</br>").replace("</br></br>", "</br>")
+                # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
+                writeline(f, f'      - title:')
+                writeline(f, f'          de: "{value["name"]["de"]}"')
+                writeline(f, f'          en: "{value["name"]["de"]}"')
+                writeline(f, f'          fr: "{value["name"]["de"]}"')
+                writeline(f, f'          ja: "{value["name"]["de"]}"')
+                writeline(f, f'          cn: "{value["name"]["de"]}"')
+                writeline(f, f'          ko: "{value["name"]["de"]}"')
+                writeline(f, f'        title_id: "{k}"')
+                writeline(f, f'        level: "80"')
+                writeline(f, f'        icon: "{getImage(value["icon"])}"')
+                writeline(f, f'        description: "{desc}"')
+                writeline(f, f'        frontsplitter: "{value["frontsplitter"]}"')
+                writeline(f, f'        phases:')
+                writeline(f, f'          - phase: "07"')
+    return result
 
 
 def translatename(name, lang="en"):
@@ -662,8 +754,9 @@ def main():
     # for job, job_data in skills.items():
     all_crafter_leves = getCrafterLeves()
     all_gatherer_leves = getGathererLeves()
-    eureka_actions = getActionDetails()
-    # print_color_yellow(pretty_json(eureka_actions))
+    eureka_actions = getEurekaActionDetails()
+    bozja_actions = getBozjaActionDetails()
+    #print_color_yellow(pretty_json(bozja_actions))
 
     ncj = sorted(cj.items(), key=lambda item: int(item[0].split(".")[0]))
     # print_color_red(pretty_json(ncj))
@@ -675,8 +768,8 @@ def main():
         job_data_pvp = pvpskills.get(job, None)
         if not job_data:
             continue
-        if not job == "Rotmagier":
-            continue
+        #if not job == "Rotmagier":
+        #    continue
         print_color_red(job)
 
         tmpmaxlvl = str(max([int(data["Level"]) for key, data in job_data.items() if int(data['Level']) < 99999]))
@@ -756,7 +849,7 @@ def main():
             addStatusDetails(f, job)
             addTraitDetails(f, job)
             ea = addEurekaActions(f, job, eureka_actions)
-            # addBozjaActions(f, job)
+            bz = addBozjaActions(f, job, bozja_actions)
             cleves = addCrafterLeve(f, job, all_crafter_leves)
             gleves = addCrafterLeve(f, job, all_gatherer_leves)
             addQuestkDetails(f, job, pvp or leves)
@@ -775,10 +868,12 @@ def main():
                 writeline(f, "        name: \"Freibriefe\"")
                 writeline(f, "      - phase: \"05\"")
             writeline(f, "        name: \"Quests\"")
-            writeline(f, "      - phase: \"06\"")
-            writeline(f, "        name: \"Eureka Skills\"")
-            writeline(f, "      - phase: \"07\"")
-            writeline(f, "        name: \"Bozja Skills\"")
+            if ea:
+                writeline(f, "      - phase: \"06\"")
+                writeline(f, "        name: \"Eureka Skills\"")
+            if bz:
+                writeline(f, "      - phase: \"07\"")
+                writeline(f, "        name: \"Bozja Skills\"")
             writeline(f, '---')
 
 
