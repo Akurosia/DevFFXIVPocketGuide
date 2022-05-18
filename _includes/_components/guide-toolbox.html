@@ -12,5 +12,12 @@
                 <br/>
             {%- endunless -%}
         {%- endfor -%}
+        {%- for raidplan in phase.raidplan -%}
+            <a class="guide__toolbox-title" target="_blank" href="{{ raidplan.link }}" alt="{{ raidplan.name }}">{{ raidplan.name }}</a>
+            <embed src="{{ raidplan.link }}" width="100%" height="850px">
+            {%- unless forloop.last -%}
+                <br/>
+            {%- endunless -%}
+        {%- endfor -%}
     </div>
 </div>
