@@ -33,6 +33,9 @@ maps = None
 leves = None
 trans_leves = None
 craftleves = None
+chocoboskills = None
+chocoboitems = None
+chocobochallange = None
 
 disable_print = True
 
@@ -63,6 +66,10 @@ def load_global_data():
     global leves
     global trans_leves
     global craftleves
+
+    global chocoboskills
+    global chocoboitems
+    global chocobochallange
     skills = get_skills_for_player()
     pvpskills = get_skills_for_player(True)
     logdata = get_any_Logdata()
@@ -88,6 +95,9 @@ def load_global_data():
     leves = loadDataTheQuickestWay("leve.de.json", translate=False)
     trans_leves = loadDataTheQuickestWay("leve_all.json", translate=True)
     craftleves = loadDataTheQuickestWay("craftleve.json", translate=False)
+    chocoboskills = loadDataTheQuickestWay("chocoboraceability_all.json", translate=True)
+    chocoboitems = loadDataTheQuickestWay("chocoboraceitem_all.json", translate=True)
+    chocobochallange = loadDataTheQuickestWay("chocoboracechallenge_all.json", translate=True)
 
 
 def getImage(image):
@@ -748,9 +758,8 @@ def getQuestName(job):
     return ""
 
 
-def main():
+def addKlassJobs():
     global cj
-    counter = 0
     # for job, job_data in skills.items():
     all_crafter_leves = getCrafterLeves()
     all_gatherer_leves = getGathererLeves()
@@ -759,6 +768,7 @@ def main():
     #print_color_yellow(pretty_json(bozja_actions))
 
     ncj = sorted(cj.items(), key=lambda item: int(item[0].split(".")[0]))
+    counter = 0
     # print_color_red(pretty_json(ncj))
     maxlvl = ""
     for k in ncj:
@@ -875,6 +885,156 @@ def main():
                 writeline(f, "      - phase: \"07\"")
                 writeline(f, "        name: \"Bozja Skills\"")
             writeline(f, '---')
+    return counter
+
+
+def addRennChocoboSkills(f):
+    global chocoboskills
+    writeline(f, "    attacks:")
+    ordered = OrderedDict(sorted(chocoboskills.items(), key=lambda x: int(x[0])))
+    for key, value in ordered.items():
+        if value["Name_de"] == "":
+            continue
+        desc = value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>")
+        # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
+        writeline(f, f'      - title:')
+        writeline(f, f'          de: "{value["Name_de"]}"')
+        writeline(f, f'          en: "{value["Name_en"]}"')
+        writeline(f, f'          fr: "{value["Name_fr"]}"')
+        writeline(f, f'          ja: "{value["Name_ja"]}"')
+        writeline(f, f'          cn: "{value["Name_cn"]}"')
+        writeline(f, f'          ko: "{value["Name_ko"]}"')
+        writeline(f, f'        title_id: "{key}"')
+        writeline(f, f'        icon: "{getImage(value["Icon"])}"')
+        writeline(f, f'        description: "{desc}"')
+        writeline(f, f'        phases:')
+        writeline(f, f'          - phase: "03"')
+
+
+def addRennChocoboItems(f):
+    global chocoboitems
+    ordered = OrderedDict(sorted(chocoboitems.items(), key=lambda x: int(x[0])))
+    for key, value in ordered.items():
+        if value["Name_de"] == "":
+            continue
+        desc = value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>")
+        # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
+        writeline(f, f'      - title:')
+        writeline(f, f'          de: "{value["Name_de"]}"')
+        writeline(f, f'          en: "{value["Name_en"]}"')
+        writeline(f, f'          fr: "{value["Name_fr"]}"')
+        writeline(f, f'          ja: "{value["Name_ja"]}"')
+        writeline(f, f'          cn: "{value["Name_cn"]}"')
+        writeline(f, f'          ko: "{value["Name_ko"]}"')
+        writeline(f, f'        title_id: "{key}"')
+        writeline(f, f'        icon: "{getImage(value["Icon"])}"')
+        writeline(f, f'        description: "{desc}"')
+        writeline(f, f'        phases:')
+        writeline(f, f'          - phase: "05"')
+
+
+def addRennChocoboMissions(f):
+    global chocobochallange
+    ordered = OrderedDict(sorted(chocobochallange.items(), key=lambda x: int(x[0])))
+    for key, value in ordered.items():
+        if value["col_0_de"] == "":
+            continue
+        writeline(f, f'      - title:')
+        writeline(f, f'          de: "{value["col_0_de"]}"')
+        writeline(f, f'          en: "{value["col_0_en"]}"')
+        writeline(f, f'          fr: "{value["col_0_fr"]}"')
+        writeline(f, f'          ja: "{value["col_0_ja"]}"')
+        writeline(f, f'          cn: "{value["col_0_cn"]}"')
+        writeline(f, f'          ko: "{value["col_0_ko"]}"')
+        writeline(f, f'        title_id: "{key}"')
+        writeline(f, f'        phases:')
+        writeline(f, f'          - phase: "06"')
+
+
+def addChocobo():
+    job = "Chocobo"
+    job_d = {
+        "Name_de": "Chocobo",
+        "Name_en": "chocobo",
+        "Name_fr": "chocobo",
+        "Name_ja": "チョコボ",
+        "Name_cn": "チョコボ",
+        "Name_ko": "초코보"
+    }
+    with open(f"klassen_und_jobs/2013-01-01--2.0--0--{job}.md", "w", encoding="utf8") as f:
+        writeline(f, '---')
+        writeline(f, 'wip: "True"')
+        writeline(f, 'title:')
+        writeline(f, f'  de: "{job_d["Name_de"].title()}"')
+        writeline(f, f'  en: "{job_d["Name_en"].title()}"')
+        writeline(f, f'  fr: "{job_d["Name_fr"].title()}"')
+        writeline(f, f'  ja: "{job_d["Name_ja"].title()}"')
+        writeline(f, f'  cn: "{job_d["Name_cn"].title()}"')
+        writeline(f, f'  ko: "{job_d["Name_ko"].title()}"')
+        writeline(f, 'layout: klassen')
+        writeline(f, 'page_type: guide')
+        writeline(f, 'categories: "klassenjobs"')
+        writeline(f, 'difficulty: "Normal"')
+        writeline(f, 'instanceType: "klassenjobs"')
+        writeline(f, 'date: "2013.01.01"')
+        writeline(f, 'patchNumber: "2.0"')
+        writeline(f, 'patchName: "A Realm Reborn"')
+        writeline(f, 'slug: "klassen_und_jobs_' + job.lower() + '"')
+        if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
+            writeline(f, 'image:')
+            writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
+        else:
+            print(f"Missing img: {job}.png")
+        writeline(f, 'terms:')
+        writeline(f, '    - term: "Klassen"')
+        writeline(f, '    - term: "Jobs"')
+        writeline(f, '    - term: "Skills"')
+        writeline(f, '    - term: "Status"')
+        writeline(f, '    - term: "Traits"')
+        writeline(f, f'    - term: "{job_d["Name_de"].title()}"')
+        writeline(f, f'    - term: "{job_d["Name_en"].title()}"')
+        writeline(f, f'    - term: "{job_d["Name_fr"].title()}"')
+        writeline(f, f'    - term: "{job_d["Name_ja"].title()}"')
+        writeline(f, f'    - term: "{job_d["Name_cn"].title()}"')
+        writeline(f, f'    - term: "{job_d["Name_ko"].title()}"')
+        writeline(f, f'sortid: 0')
+        writeline(f, f'order: 0')
+        writeline(f, f'plvl: 50')
+        writeline(f, "bosses:")
+        writeline(f, "  - title:")
+        writeline(f, f'      de: "{job_d["Name_de"].title()}"')
+        writeline(f, f'      en: "{job_d["Name_en"].title()}"')
+        writeline(f, f'      fr: "{job_d["Name_fr"].title()}"')
+        writeline(f, f'      ja: "{job_d["Name_ja"].title()}"')
+        writeline(f, f'      cn: "{job_d["Name_cn"].title()}"')
+        writeline(f, f'      ko: "{job_d["Name_ko"].title()}"')
+        writeline(f, "    id: \"" + "boss0\"")
+        #todo add chocobo stuff
+        #addChocoboPartnerSkills()
+        #addChocoboPartnerStatus()
+        addRennChocoboSkills(f)
+        #addRennChocoboStatus()
+        addRennChocoboItems(f)
+        addRennChocoboMissions(f)
+        writeline(f, "    sequence:" + "")
+        writeline(f, "      - phase: \"01\"")
+        writeline(f, "        name: \"Chocobo-Partner-Skills\"")
+        #writeline(f, "      - phase: \"02\"")
+        #writeline(f, "        name: \"Chocobo-Partner-Status\"")
+        writeline(f, "      - phase: \"03\"")
+        writeline(f, "        name: \"Renn-Chocobo-Skills\"")
+        #writeline(f, "      - phase: \"04\"")
+        #writeline(f, "        name: \"Renn-Chocobo-Status\"")
+        writeline(f, "      - phase: \"05\"")
+        writeline(f, "        name: \"Renn-Chocobo-Items\"")
+        writeline(f, "      - phase: \"06\"")
+        writeline(f, "        name: \"Renn-Chocobo-Missions\"")
+        writeline(f, '---')
+
+
+def main():
+    #counter = addKlassJobs()
+    addChocobo()
 
 
 if __name__ == "__main__":
