@@ -888,6 +888,32 @@ def addKlassJobs():
     return counter
 
 
+def addChocoboPartnerTraits(f):
+    global traits
+    global traitss
+    global traitstransient
+    chocobo_traits = ['71', '72', '73', '74', '75', '76', '77', '78', '79', '80', '81', '82', '83', '84', '85', '86', '87', '88']
+    chocobo_traitss = { key:traits[key] for key in chocobo_traits }
+    ordered = OrderedDict(sorted(chocobo_traitss.items(), key=lambda x: int(getitem(x[1], 'Level'))))
+    writeline(f, "    traits:")
+    for key, _ in ordered.items():
+        desc = traitstransient[key]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
+        t = traitss[key]
+        writeline(f, f'      - title:')
+        writeline(f, f'          de: "{t["Name_de"]}"')
+        writeline(f, f'          en: "{t["Name_en"]}"')
+        writeline(f, f'          fr: "{t["Name_fr"]}"')
+        writeline(f, f'          ja: "{t["Name_ja"]}"')
+        writeline(f, f'          cn: "{t["Name_cn"]}"')
+        writeline(f, f'          ko: "{t["Name_ko"]}"')
+        writeline(f, f'        icon: "{getImage(t["Icon"])}"')
+        writeline(f, f'        level: "{traits[key]["Level"]}"')
+        writeline(f, f'        title_id: "{key}"')
+        writeline(f, f'        description: "{desc}"')
+        writeline(f, f'        phases:')
+        writeline(f, f'          - phase: "02"')
+
+
 def addRennChocoboSkills(f):
     global chocoboskills
     writeline(f, "    attacks:")
@@ -1011,16 +1037,16 @@ def addChocobo():
         writeline(f, "    id: \"" + "boss0\"")
         #todo add chocobo stuff
         #addChocoboPartnerSkills()
-        #addChocoboPartnerStatus()
         addRennChocoboSkills(f)
         #addRennChocoboStatus()
         addRennChocoboItems(f)
         addRennChocoboMissions(f)
+        addChocoboPartnerTraits(f)
         writeline(f, "    sequence:" + "")
         writeline(f, "      - phase: \"01\"")
         writeline(f, "        name: \"Chocobo-Partner-Skills\"")
-        #writeline(f, "      - phase: \"02\"")
-        #writeline(f, "        name: \"Chocobo-Partner-Status\"")
+        writeline(f, "      - phase: \"02\"")
+        writeline(f, "        name: \"Chocobo-Partner-Traits\"")
         writeline(f, "      - phase: \"03\"")
         writeline(f, "        name: \"Renn-Chocobo-Skills\"")
         #writeline(f, "      - phase: \"04\"")
