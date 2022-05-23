@@ -36,6 +36,7 @@ craftleves = None
 chocoboskills = None
 chocoboitems = None
 chocobochallange = None
+buddyskill = None
 
 disable_print = True
 
@@ -70,34 +71,36 @@ def load_global_data():
     global chocoboskills
     global chocoboitems
     global chocobochallange
+    global buddyskill
     skills = get_skills_for_player()
     pvpskills = get_skills_for_player(True)
     logdata = get_any_Logdata()
-    cj = loadDataTheQuickestWay("classjob_all.json", translate=True)
-    cjs = loadDataTheQuickestWay("ClassJob.de.json")
-    actions = loadDataTheQuickestWay("action.de.json", translate=False)
-    actionss = loadDataTheQuickestWay("action_all.json", translate=True)
-    action_trans = loadDataTheQuickestWay("actiontransient.de.json", translate=False)
-    lo_actions = loadDataTheQuickestWay("eurekamagiaaction.json", translate=False)
-    bo_actions = loadDataTheQuickestWay("MYCTemporaryItem.json", translate=False)
-    craftactions = loadDataTheQuickestWay("craftaction_all.json", translate=True)
-    statuss = loadDataTheQuickestWay("status_all.json", translate=True)
-    statusss = loadDataTheQuickestWay("Status.de.json", translate=False)
-    traits = loadDataTheQuickestWay("Trait.de.json")
-    traitss = loadDataTheQuickestWay("trait_all.json", translate=True)
-    traitstransient = loadDataTheQuickestWay("TraitTransient.de.json")
-    aozactions = loadDataTheQuickestWay("aozaction_all.json", translate=True)
-    aozactiontransient = loadDataTheQuickestWay("AozActionTransient.de.json")
-    quests = loadDataTheQuickestWay("Quest.de.json")
-    questss = loadDataTheQuickestWay("quest_all.json", translate=True)
-    levels = loadDataTheQuickestWay("Level.json", translate=false)
-    maps = loadDataTheQuickestWay("Map.json", translate=false)
-    leves = loadDataTheQuickestWay("leve.de.json", translate=False)
-    trans_leves = loadDataTheQuickestWay("leve_all.json", translate=True)
-    craftleves = loadDataTheQuickestWay("craftleve.json", translate=False)
-    chocoboskills = loadDataTheQuickestWay("chocoboraceability_all.json", translate=True)
-    chocoboitems = loadDataTheQuickestWay("chocoboraceitem_all.json", translate=True)
-    chocobochallange = loadDataTheQuickestWay("chocoboracechallenge_all.json", translate=True)
+    cj = loadDataTheQuickestWay("classjob", translate=True)
+    cjs = loadDataTheQuickestWay("ClassJob")
+    actions = loadDataTheQuickestWay("action")
+    actionss = loadDataTheQuickestWay("action", translate=True)
+    action_trans = loadDataTheQuickestWay("actiontransient")
+    lo_actions = loadDataTheQuickestWay("eurekamagiaaction.json")
+    bo_actions = loadDataTheQuickestWay("MYCTemporaryItem.json")
+    craftactions = loadDataTheQuickestWay("craftaction", translate=True)
+    statuss = loadDataTheQuickestWay("status", translate=True)
+    statusss = loadDataTheQuickestWay("Status")
+    traits = loadDataTheQuickestWay("Trait")
+    traitss = loadDataTheQuickestWay("trait", translate=True)
+    traitstransient = loadDataTheQuickestWay("TraitTransient")
+    aozactions = loadDataTheQuickestWay("aozaction", translate=True)
+    aozactiontransient = loadDataTheQuickestWay("AozActionTransient")
+    quests = loadDataTheQuickestWay("Quest")
+    questss = loadDataTheQuickestWay("quest", translate=True)
+    levels = loadDataTheQuickestWay("Level.json")
+    maps = loadDataTheQuickestWay("Map.json")
+    leves = loadDataTheQuickestWay("leve")
+    trans_leves = loadDataTheQuickestWay("leve", translate=True)
+    craftleves = loadDataTheQuickestWay("craftleve.json")
+    chocoboskills = loadDataTheQuickestWay("chocoboraceability", translate=True)
+    chocoboitems = loadDataTheQuickestWay("chocoboraceitem", translate=True)
+    chocobochallange = loadDataTheQuickestWay("chocoboracechallenge", translate=True)
+    buddyskill = loadDataTheQuickestWay("buddyskill.json", exd="raw-exd-all")
 
 
 def getImage(image):
@@ -888,11 +891,70 @@ def addKlassJobs():
     return counter
 
 
+def addChocoboPartnerSkills(f):
+    global actions
+    global actionss
+    global action_trans
+
+    global buddyskill
+    test = [ [ x['Attacker'], x['Defender'], x['Healer'] ] for key, x in buddyskill.items() if x['IsActive'] == "True" and not key == "0" ]
+    chocobo_skills = []
+    for x in test:
+        chocobo_skills += x
+    chocobo_skillss = { key:actions[key] for key in chocobo_skills }
+    #print(chocobo_skillss)
+    ordered = OrderedDict(sorted(chocobo_skillss.items(), key=lambda x: int(x[0])))
+    writeline(f, "    attacks:")
+    for key, _ in ordered.items():
+        desc = action_trans[key]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
+        t = actionss[key]
+        writeline(f, f'      - title:')
+        writeline(f, f'          de: "{t["Name_de"]}"')
+        writeline(f, f'          en: "{t["Name_en"]}"')
+        writeline(f, f'          fr: "{t["Name_fr"]}"')
+        writeline(f, f'          ja: "{t["Name_ja"]}"')
+        writeline(f, f'          cn: "{t["Name_cn"]}"')
+        writeline(f, f'          ko: "{t["Name_ko"]}"')
+        writeline(f, f'        icon: "{getImage(t["Icon"])}"')
+        #writeline(f, f'        level: "{actions[key]["Level"]}"')
+        writeline(f, f'        title_id: "{key}"')
+        writeline(f, f'        description: "{desc}"')
+        writeline(f, f'        phases:')
+        writeline(f, f'          - phase: "01"')
+
+
+def addRennChocoboSkills(f):
+    global chocoboskills
+    ordered = OrderedDict(sorted(chocoboskills.items(), key=lambda x: int(x[0])))
+    for key, value in ordered.items():
+        if value["Name_de"] == "":
+            continue
+        desc = value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>")
+        # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
+        writeline(f, f'      - title:')
+        writeline(f, f'          de: "{value["Name_de"]}"')
+        writeline(f, f'          en: "{value["Name_en"]}"')
+        writeline(f, f'          fr: "{value["Name_fr"]}"')
+        writeline(f, f'          ja: "{value["Name_ja"]}"')
+        writeline(f, f'          cn: "{value["Name_cn"]}"')
+        writeline(f, f'          ko: "{value["Name_ko"]}"')
+        writeline(f, f'        title_id: "{key}"')
+        writeline(f, f'        icon: "{getImage(value["Icon"])}"')
+        writeline(f, f'        description: "{desc}"')
+        writeline(f, f'        phases:')
+        writeline(f, f'          - phase: "03"')
+
+
 def addChocoboPartnerTraits(f):
     global traits
     global traitss
     global traitstransient
-    chocobo_traits = ['71', '72', '73', '74', '75', '76', '77', '78', '79', '80', '81', '82', '83', '84', '85', '86', '87', '88']
+    global buddyskill
+    test = [ [x['Attacker'], x['Defender'], x['Healer']] for key, x in buddyskill.items() if x['IsActive'] == "False" and not key == "0"]
+    chocobo_traits = []
+    for x in test:
+        chocobo_traits += x
+    chocobo_traits = sorted(chocobo_traits)
     chocobo_traitss = { key:traits[key] for key in chocobo_traits }
     ordered = OrderedDict(sorted(chocobo_traitss.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     writeline(f, "    traits:")
@@ -914,29 +976,6 @@ def addChocoboPartnerTraits(f):
         writeline(f, f'          - phase: "02"')
 
 
-def addRennChocoboSkills(f):
-    global chocoboskills
-    writeline(f, "    attacks:")
-    ordered = OrderedDict(sorted(chocoboskills.items(), key=lambda x: int(x[0])))
-    for key, value in ordered.items():
-        if value["Name_de"] == "":
-            continue
-        desc = value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>")
-        # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
-        writeline(f, f'      - title:')
-        writeline(f, f'          de: "{value["Name_de"]}"')
-        writeline(f, f'          en: "{value["Name_en"]}"')
-        writeline(f, f'          fr: "{value["Name_fr"]}"')
-        writeline(f, f'          ja: "{value["Name_ja"]}"')
-        writeline(f, f'          cn: "{value["Name_cn"]}"')
-        writeline(f, f'          ko: "{value["Name_ko"]}"')
-        writeline(f, f'        title_id: "{key}"')
-        writeline(f, f'        icon: "{getImage(value["Icon"])}"')
-        writeline(f, f'        description: "{desc}"')
-        writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "03"')
-
-
 def addRennChocoboItems(f):
     global chocoboitems
     ordered = OrderedDict(sorted(chocoboitems.items(), key=lambda x: int(x[0])))
@@ -956,7 +995,7 @@ def addRennChocoboItems(f):
         writeline(f, f'        icon: "{getImage(value["Icon"])}"')
         writeline(f, f'        description: "{desc}"')
         writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "05"')
+        writeline(f, f'          - phase: "04"')
 
 
 def addRennChocoboMissions(f):
@@ -974,7 +1013,7 @@ def addRennChocoboMissions(f):
         writeline(f, f'          ko: "{value["col_0_ko"]}"')
         writeline(f, f'        title_id: "{key}"')
         writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "06"')
+        writeline(f, f'          - phase: "05"')
 
 
 def addChocobo():
@@ -1036,7 +1075,7 @@ def addChocobo():
         writeline(f, f'      ko: "{job_d["Name_ko"].title()}"')
         writeline(f, "    id: \"" + "boss0\"")
         #todo add chocobo stuff
-        #addChocoboPartnerSkills()
+        addChocoboPartnerSkills(f)
         addRennChocoboSkills(f)
         #addRennChocoboStatus()
         addRennChocoboItems(f)
@@ -1051,9 +1090,9 @@ def addChocobo():
         writeline(f, "        name: \"Renn-Chocobo-Skills\"")
         #writeline(f, "      - phase: \"04\"")
         #writeline(f, "        name: \"Renn-Chocobo-Status\"")
-        writeline(f, "      - phase: \"05\"")
+        writeline(f, "      - phase: \"04\"")
         writeline(f, "        name: \"Renn-Chocobo-Items\"")
-        writeline(f, "      - phase: \"06\"")
+        writeline(f, "      - phase: \"05\"")
         writeline(f, "        name: \"Renn-Chocobo-Missions\"")
         writeline(f, '---')
 
