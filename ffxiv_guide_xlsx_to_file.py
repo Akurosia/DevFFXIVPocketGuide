@@ -546,7 +546,7 @@ def rewrite_content_even_if_exists(entry, old_wip):
     if entry.get("expert", None):
         header_data += 'rouletts:\n'
         if entry["allianceraid"]:
-            header_data += '  - allianceraid: ' + entry["allianceraid"] + "\n"
+            header_data += '    allianceraid: ' + entry["allianceraid"] + "\n"
         if entry["frontier"]:
             header_data += '    frontier: ' + entry["frontier"] + "\n"
         if entry["expert"]:
@@ -570,15 +570,12 @@ def rewrite_content_even_if_exists(entry, old_wip):
     # links:
     if checkVariable(entry, "teamcraftlink") or checkVariable(entry, "garlandtoolslink") or checkVariable(entry, "gamerescapelink"):
         header_data += 'links:\n'
-        first = "-"
         if checkVariable(entry, "teamcraftlink"):
-            header_data += f'  {first} teamcraftlink: "' + entry["teamcraftlink"] + '"\n'
-            first = " "
+            header_data += f'    teamcraftlink: "' + entry["teamcraftlink"] + '"\n'
         if checkVariable(entry, "garlandtoolslink"):
-            header_data += f'  {first} garlandtoolslink: "' + entry["garlandtoolslink"] + '"\n'
-            first = " "
+            header_data += f'    garlandtoolslink: "' + entry["garlandtoolslink"] + '"\n'
         if checkVariable(entry, "gamerescapelink"):
-            header_data += f'  {first} gamerescapelink: "' + entry["gamerescapelink"] + '"\n'
+            header_data += f'    gamerescapelink: "' + entry["gamerescapelink"] + '"\n'
     # videos
     if checkVariable(entry, "mtqvid1"):
         header_data += 'mtq_vid1: "' + get_video_url(entry["mtqvid1"]) + '"\n'
@@ -803,19 +800,14 @@ def addGroupCollections(cmt, entry):
 
     if int(healerp) + int(tankp) + int(meleep) + int(rangep) > 0:
         header_data += "group:\n"
-        first_done = "-"
         if not healerp == "0":
-            header_data += f'  {first_done} healer: "{healerp}"\n'
-            first_done = " "
+            header_data += f'    healer: "{healerp}"\n'
         if not tankp == "0":
-            header_data += f'  {first_done} tank: "{tankp}"\n'
-            first_done = " "
+            header_data += f'    tank: "{tankp}"\n'
         if not meleep == "0":
-            header_data += f'  {first_done} melee: "{meleep}"\n'
-            first_done = " "
+            header_data += f'    melee: "{meleep}"\n'
         if not rangep == "0":
-            header_data += f'  {first_done} range: "{rangep}"\n'
-            first_done = " "
+            header_data += f'    range: "{rangep}"\n'
     return header_data
 
 
