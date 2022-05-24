@@ -1098,7 +1098,7 @@ def addChocobo():
 
 
 def main():
-    #counter = addKlassJobs()
+    addKlassJobs()
     addChocobo()
 
 
