@@ -2009,8 +2009,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if i not in [423]:
-                continue
+            #if i not in [423]:
+            #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             logger.info(pretty_json(entry))
             # if the done collumn is not prefilled
