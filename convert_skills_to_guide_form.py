@@ -791,7 +791,7 @@ def addKlassJobs():
         else:
             maxlvl = tmpmaxlvl if tmpmaxlvl > maxlvl else maxlvl
 
-        gear = ffxiv_aku_api.get_gear(lvl_from=1, lvl_to=maxlvl, ilvl_from=1, classjob=job_d['Abbreviation_de'], category="Rumpf")
+        gear = gear_get(lvl_from=1, lvl_to=int(maxlvl), ilvl_from=1, ilvl_to=999999, rarity=[1, 7, 2, 3, 4], classjob=job_d['Abbreviation_de'], category="Rumpf")
         maxilvl = str(max([int(e["Level_Item"]) for e in gear]))
 
         counter += 1
@@ -1097,12 +1097,12 @@ def addChocobo():
         writeline(f, '---')
 
 
-def main():
+def run():
+    load_global_data()
     addKlassJobs()
     addChocobo()
 
 
 if __name__ == "__main__":
-    load_global_data()
     os.chdir("./_posts")
-    main()
+    run()

@@ -53,6 +53,8 @@ def links():
 
         writeline(f, '---')
 
+def run():
+    links()
 
 if __name__ == "__main__":
-    links()
+    run()
