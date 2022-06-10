@@ -1015,6 +1015,7 @@ def getBnpcNameFromID(_id, aname, nname, lang="en"):
     bnew_name = ""
     enew_name = ""
     ennew_name = ""
+    nname = nname.replace("\?", "?")
     if type(_id) == list:
         _id = _id[0]
     _id = str(_id)
@@ -1025,7 +1026,9 @@ def getBnpcNameFromID(_id, aname, nname, lang="en"):
         if m or n:
             return bnpcname[_id][f"Singular_{lang}"]
     except Exception:
-        pass
+        if nname == bnew_name or aname == bnew_name:
+            return bnpcname[_id][f"Singular_{lang}"]
+
     try:
         enew_name = eobjname[_id]["Singular_de"]
         m = re.search(nname, enew_name, re.IGNORECASE)
@@ -1033,7 +1036,9 @@ def getBnpcNameFromID(_id, aname, nname, lang="en"):
         if m or n:
             return eobjname[_id][f"Singular_{lang}"]
     except Exception:
-        pass
+        if nname == enew_name or aname == enew_name:
+            return eobjname[_id][f"Singular_{lang}"]
+
     try:
         ennew_name = enpcresident[_id]["Singular_de"]
         m = re.search(nname, ennew_name, re.IGNORECASE)
@@ -1041,7 +1046,8 @@ def getBnpcNameFromID(_id, aname, nname, lang="en"):
         if m or n:
             return enpcresident[_id][f"Singular_{lang}"]
     except Exception:
-        pass
+        if nname == ennew_name or aname == ennew_name:
+            return enpcresident[_id][f"Singular_{lang}"]
 
     if "α" not in bnew_name and "β" not in bnew_name and "（仮）鎖" not in bnew_name:
         print_color_red(f"'{bnew_name}', '{enew_name}', '{ennew_name}' not found {aname} ({nname}) - ({_id})")
@@ -1064,7 +1070,7 @@ def getBnpcName(name, _id, lang="en"):
         aname = name
 
     # take care of the german gender cases
-    nname = aname.replace("er ", r"(\[a\]|(e|es|er|en)) ").replace("es ", r"(\[a\]|(e|es|er|en)) ").replace("en ", r"(\[a\]|(e|es|er|en)) ").replace("e ", r"(\[a\]|(e|es|er|en)) ")
+    nname = aname.replace("er ", r"(\[a\]|(e|es|er|en)) ").replace("es ", r"(\[a\]|(e|es|er|en)) ").replace("en ", r"(\[a\]|(e|es|er|en)) ").replace("e ", r"(\[a\]|(e|es|er|en)) ").replace("?", "\?")
     if nname.endswith("e"):
         nname = nname[:-1] + r"(\[a\]|(e|es|er|en))"
     elif nname.endswith("en") or nname.endswith("es") or nname.endswith("er"):
@@ -2009,7 +2015,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [0]:
+            #if i not in [231]:
             #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             logger.info(pretty_json(entry))
