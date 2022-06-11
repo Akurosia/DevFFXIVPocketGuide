@@ -103,7 +103,7 @@ def load_global_data():
     buddyskill = loadDataTheQuickestWay("buddyskill.json", exd="raw-exd-all")
 
 
-def getImage(image):
+def getImage(image: str) -> str:
     image = image.replace(".tex", "_hr1.png")
     image = image.replace("ui/icon/", "")
     return image
