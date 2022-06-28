@@ -1075,6 +1075,8 @@ def getBnpcName(name, _id, lang="en"):
         if not resultname == "":
             return fixCaptilaziationAndRomanNumerals(resultname)
     # check results agains bnpcname
+    if nname == "???":
+        nname = "\?\?\?"
     for key, bnpc in bnpcname.items():
         m = re.search(nname, bnpc["Singular_de"].lower())
         if m:
@@ -2009,8 +2011,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [0]:
-            #    continue
+            if i not in [231]:
+                continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             logger.info(pretty_json(entry))
             # if the done collumn is not prefilled
