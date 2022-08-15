@@ -185,7 +185,11 @@ def addBlueAttackDetails(f, job_data):
         if not locations == []:
             desc += "\n\n#########################################\n\nLOCATIONS:\n" + "&emsp;Zone".ljust(max_zone_length) + " -> " + "Gegnername".ljust(max_enemyname_length) + ":"
         for location in locations:
-            desc += "\n&emsp;" + location["Ort"].ljust(max_zone_length) + " -> " + location["Gegner"].ljust(max_enemyname_length)
+            zone_name = location["Ort"].ljust(max_zone_length)
+            enemy_name = location["Gegner"].ljust(max_enemyname_length)
+            #TODO add link for click reference to zone_name (e.g. for unlocking)
+            #desc += "\n&emsp;" + f"{zone_name} -> {enemy_name}"
+            desc += "\n&emsp;" + f"{zone_name} -> {enemy_name}"
         desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
         if skill_data.get("Number", None) and int(level) < 901:
             writeline(f, f'      - title:')
