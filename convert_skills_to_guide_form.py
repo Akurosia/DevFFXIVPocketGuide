@@ -135,6 +135,35 @@ def getBLULocationsFromLogdata(name, locations):
     return nresult
 
 
+def fix_slug(name):
+    return (
+        name.lower()
+            .replace("ö", "oe")
+            .replace("ä", "ae")
+            .replace("ü", "ue")
+            .replace("ß", "ss")
+            .replace(" ", "_")
+            .replace(")(", "_")
+            .replace("(", "")
+            .replace(")", "")
+            .replace("-", "_")
+            .replace("'", "")
+            .replace(":", "_")
+            .replace("__", "_")
+            .replace("__", "_")
+    )
+
+
+def get_propper_zone_name(zone_name, files):
+    n = fix_slug(zone_name)
+    for file in files:
+        if n in file:
+            print_color_green(n)
+            return file.split("\\")[0].replace("_new", "") + "/" + n + ".html"
+    print_color_red(n)
+    return None
+
+
 def addBlueAttackDetails(f, job_data):
     global actionss
     global aozactions
@@ -159,6 +188,9 @@ def addBlueAttackDetails(f, job_data):
         if not y.get("Number", None):
             job_data[x]["Number"] = job_data[x]["Level"]
             job_data[x]["Level"] = "90" + job_data[x]["Level"]
+
+    files = glob("**/**/*.md")
+
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
         locations = []
@@ -175,21 +207,25 @@ def addBlueAttackDetails(f, job_data):
         desc = skill_data["Description"].replace("</br></br>", "</br>")
         locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
         locations = sorted(locations, key=lambda x: x['Ort'])
-        max_zone_length = 0
-        max_enemyname_length = 0
-        for location in locations:
-            if len(location['Ort']) > max_zone_length:
-                max_zone_length = len(location['Ort'])
-            if len(location['Gegner']) > max_enemyname_length:
-                max_enemyname_length = len(location['Gegner'])
+
+
         if not locations == []:
-            desc += "\n\n#########################################\n\nLOCATIONS:\n" + "&emsp;Zone".ljust(max_zone_length) + " -> " + "Gegnername".ljust(max_enemyname_length) + ":"
+            desc += "\n\n#########################################\n\nLOCATIONS:\n"
+            #desc += "&emsp;Zone".ljust(max_zone_length) + " -> " + "Gegnername".ljust(max_enemyname_length) + ":"
+            desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td></thead><tbody>"
+
         for location in locations:
-            zone_name = location["Ort"].ljust(max_zone_length)
-            enemy_name = location["Gegner"].ljust(max_enemyname_length)
-            #TODO add link for click reference to zone_name (e.g. for unlocking)
-            #desc += "\n&emsp;" + f"{zone_name} -> {enemy_name}"
-            desc += "\n&emsp;" + f"{zone_name} -> {enemy_name}"
+            zone_name = location["Ort"]
+            enemy_name = location["Gegner"]
+            p_zone_name = get_propper_zone_name(zone_name, files)
+            tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
+            #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
+            if p_zone_name:
+                tmp = f"<tr><td><a href='/{p_zone_name}' target='_blank'>{zone_name} </a></td><td> {enemy_name}</td></tr>"
+                #tmp = "\n&emsp;" + f"<a href='{p_zone_name}' target='_blank'>{zone_name}</a> -> {enemy_name}"
+            desc += tmp
+        desc += "</tbody></table>"
+
         desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
         if skill_data.get("Number", None) and int(level) < 901:
             writeline(f, f'      - title:')

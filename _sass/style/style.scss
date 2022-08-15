@@ -2158,6 +2158,14 @@ ion-icon {
     align-items: center;
 }
 
+.table-dark th, .table-dark td, .table-dark thead th {
+    padding-right: 10px;
+}
+
+.table-dark > tbody > tr > td > a{
+    color: $palette-aku-link-color;
+}
+
 // background-image is specified in navbar.html
 .flags_img {
     background-repeat: no-repeat;
