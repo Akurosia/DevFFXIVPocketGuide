@@ -159,7 +159,7 @@ def get_propper_zone_name(zone_name, files):
     for file in files:
         if n in file:
             #print_color_green(n)
-            return file.split("\\")[0].replace("_new", "") + "/" + n + ".html"
+            return file.split("\\")[0].replace("_new", "") + "/" + n.replace("_", "-") + ".html"
     #print_color_red(n)
     return None
 
