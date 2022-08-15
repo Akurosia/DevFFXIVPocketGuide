@@ -158,9 +158,9 @@ def get_propper_zone_name(zone_name, files):
     n = fix_slug(zone_name)
     for file in files:
         if n in file:
-            print_color_green(n)
+            #print_color_green(n)
             return file.split("\\")[0].replace("_new", "") + "/" + n + ".html"
-    print_color_red(n)
+    #print_color_red(n)
     return None
 
 
@@ -221,7 +221,7 @@ def addBlueAttackDetails(f, job_data):
             tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
             #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
             if p_zone_name:
-                tmp = f"<tr><td><a href='/{p_zone_name}' target='_blank'>{zone_name} </a></td><td> {enemy_name}</td></tr>"
+                tmp = f"<tr><td><a href='/DevFFXIVPocketGuide/{p_zone_name}' target='_blank'>{zone_name} </a></td><td> {enemy_name}</td></tr>"
                 #tmp = "\n&emsp;" + f"<a href='{p_zone_name}' target='_blank'>{zone_name}</a> -> {enemy_name}"
             desc += tmp
         desc += "</tbody></table>"
