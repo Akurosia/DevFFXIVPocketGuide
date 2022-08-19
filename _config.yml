@@ -38,6 +38,7 @@ plugins:
   - jekyll-last-modified-at
   - jekyll-sitemap
   - jekyll-commonmark
+  - jekyll-include-cache
 include:
   - _pages
 future: true
@@ -47,6 +48,7 @@ exclude:
   - .sass-cache
   - .jekyll-cache
   - _site
+  - tmp
   - node_modules
   - assets/node_modules
   - Gemfile

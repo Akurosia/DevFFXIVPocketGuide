@@ -6,7 +6,7 @@
     <body class="{{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
             <!-- Include Sidebar -->
-            {% include navbar.html %}
+            {% include_cached navbar.html %}
             <div class="layout__wrapper">
                 <!-- Include Header -->
                 {% include header.html %}
@@ -22,9 +22,9 @@
                 <!-- Include Guide Index -->
                 {% include index.html %}
                 <!-- Include Footer -->
-                {% include footer.html %}
+                {% include_cached footer.html %}
             </div>
         </div>
-        {% include scripts.html %}
+        {% include_cached scripts.html %}
     </body>
 </html>
