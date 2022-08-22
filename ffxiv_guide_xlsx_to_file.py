@@ -16,6 +16,7 @@ import natsort
 from collections import OrderedDict
 import convert_skills_to_guide_form as csgf
 import generateLinks as gl
+import generatePatch as gp
 import logging
 
 import sys
@@ -2055,3 +2056,4 @@ if __name__ == "__main__":
     # move back to DEVPOCKETGUIDE dir
     os.chdir("..")
     gl.run()
+    gp.run()

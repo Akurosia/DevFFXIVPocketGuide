@@ -10,8 +10,10 @@
 <!-- Page Title -->
     {%- if page.page_category == "all" -%}
         <title>FFXIV Pocket Guide - Final Fantasy XIV - Endwalker</title>
+    {%- elsif page.title.de -%}
+        <title>{{ page.title.de }}{% if page.difficulty %} ({{ page.difficulty }}){% endif %} | FFXIV Pocket Guide - Final Fantasy XIV - Endwalker</title>
     {%- else -%}
-        <title>{{ page.title.de }}{%- if page.difficulty -%} ({{ page.difficulty }}){%- endif -%} | FFXIV Pocket Guide - Final Fantasy XIV - Endwalker</title>
+        <title>{{ page.title }} | FFXIV Pocket Guide - Final Fantasy XIV - Endwalker</title>
     {%- endif -%}
 <!-- Page Description -->
     <meta name="description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV. {%- if page.description -%}{{ page.description | strip_html | strip_newlines | truncate: 300 }}{%- else -%}{{ site.description }}{%- endif -%}" />
