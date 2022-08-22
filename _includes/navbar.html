@@ -43,6 +43,12 @@
                     </a>
                 </li>
                 <li>
+                    <a target="" {%- if page.page_category == "patches" -%}class="active"{%- endif -%}
+                        href='{{ "/patches/" | prepend: site.baseurl }}' title="Alle Patches anzeigen">
+                        Patches
+                    </a>
+                </li>
+                <li>
                     <a target="" {%- if page.page_category == "all" -%}class="active"{%- endif -%}
                         href='{{ "/" | prepend: site.baseurl }}' title="Alle Guides anzeigen">
                         Alle Guides
