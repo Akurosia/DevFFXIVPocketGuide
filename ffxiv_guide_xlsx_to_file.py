@@ -114,7 +114,8 @@ disable_yellow_print = True
 disable_blue_print = True
 disable_red_print = True
 
-storeFilesInTmp(True)
+storeFilesInTmp(False)
+#storeFilesInTmp(True)
 logdata = get_any_Logdata()
 patchversions = get_any_Versiondata()
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
@@ -357,11 +358,11 @@ def try_to_create_file(filename):
                 raise
 
 
-def get_territorytype_from_mapid(mapid):
+def get_territorytype_from_mapid(entry):
     for key, tt_type in territorytype.items():
-        if tt_type["TerritoryType"].lower() == mapid.lower():
+        if tt_type["TerritoryType"].lower() == entry["mapid"].lower():
             return tt_type
-    print_color_red(f"Could not find territorytype for {mapid}")
+    print_color_red(f"Could not find territorytype for {entry['mapid']} ({entry['title']})")
     return ""
 
 
@@ -455,7 +456,7 @@ def get_video_url(url):
 
 def rewrite_content_even_if_exists(entry, old_wip):
     header_data = ""
-    tt_type_name = get_territorytype_from_mapid(entry["mapid"])
+    tt_type_name = get_territorytype_from_mapid(entry)
     if old_wip in ["True", "False"]:
         header_data += 'wip: "' + str(old_wip).title() + '"\n'
     else:
@@ -2019,7 +2020,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [231]:
+            #if i not in [61]:
             #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             logger.info(pretty_json(entry))
