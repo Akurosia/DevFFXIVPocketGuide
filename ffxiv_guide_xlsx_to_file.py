@@ -132,10 +132,14 @@ bnpcname = loadDataTheQuickestWay("bnpcname_all.json", translate=True)
 eobjname = loadDataTheQuickestWay("eobjname_all.json", translate=True)
 status = loadDataTheQuickestWay("status_all.json", translate=True)
 enpcresident = loadDataTheQuickestWay("enpcresident_all.json", translate=True)
+enpcresidents = loadDataTheQuickestWay("Enpcresident.de.json")
 mounts = loadDataTheQuickestWay("mount_all.json", translate=True)
 minions = loadDataTheQuickestWay("companion_all.json", translate=True)
 orchestrions = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
 ttcards = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
+questss = loadDataTheQuickestWay("Quest.de.json", exd="raw-exd-all")
+different_pronouns = {'0': 'Der', '1': 'Die', '2': 'Das'}
+different_pronounss = {'0': 'er', '1': 'e', '2': 'es'}
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
 XLSXELEMENTS = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest_id", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
 UNKNOWNTITLE = {'de': 'Unbekannte Herkunft', 'en': 'Unknown Source', 'fr': 'Unknown Source', 'ja': 'Unknown Source', 'cn': 'Unknown Source', 'ko': 'Unknown Source'}
@@ -209,6 +213,23 @@ def ToMapCoordinate(val, mapsize):
     return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1
 
 
+def make_name_readable(entry):
+    global different_articles
+    global different_pronouns
+    global different_adjective
+    name = entry["Singular"]
+    name = name.replace("[t]", different_pronouns[entry["Pronoun"]])
+    name = name.replace("[a]", different_pronounss[entry["Pronoun"]])
+    return name
+
+
+def getPropperQuestNPC(_id):
+    global questss
+    global enpcresidents
+    npc_id = questss[_id]['Issuer']['Start']
+    return make_name_readable(enpcresidents[npc_id])
+
+
 def workOnQuests(entry, quest_id):
     global quests
     if quest_id == "":
@@ -218,7 +239,10 @@ def workOnQuests(entry, quest_id):
         return entry
     quest = quests[quest_id]
     entry['quest'] = quest['Name'].replace(" ", "").replace(" ", "")
-    entry['quest_npc'] = quest['Issuer']['Start']
+    npc = quest['Issuer']['Start']
+    if "[a]" in npc or "[t]" in npc:
+        npc = getPropperQuestNPC(quest_id)
+    entry['quest_npc'] = npc
     try:
         level_data = getLevel(quest['Issuer']['Location'])
         entry['quest_location'] = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
