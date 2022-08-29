@@ -260,18 +260,30 @@ enemy_phase_fields: &enemy_phase_fields
         - *field_videos
 
 guide-fields: &guide-fields
-  - {label: "WIP", name: "wip", required: false, widget: "select", options: ["True", "False"]}
-  - {label: "Name", name: "title", widget: "string"}
-  - {label: "DE Name", name: "title_de", widget: "string"}
-  - {label: "EN Name", name: "title_en", widget: "string"}
+
+  - {label: "WIP", name: "wip", widget: "boolean", default: true}
+  - label: "title"
+    name: "title"
+    widget: "object"
+    collapsed: false
+    fields:
+      - {label: "de", name: "de", required: false, widget: "string"}
+      - {label: "en", name: "en", required: false, widget: "string"}
+      - {label: "fr", name: "fr", required: false, widget: "string"}
+      - {label: "ja", name: "ja", required: false, widget: "string"}
+      - {label: "cn", name: "cn", required: false, widget: "string"}
+      - {label: "ko", name: "ko", required: false, widget: "string"}
   - {label: "Layout", name: "layout", widget: "string"}
   - {label: "page_type", name: "page_type", widget: "string"}
   - {label: "Expansion", name: "categories", widget: "select", options: [{label: "Endwalker", value: "ew"},{label: "Shadowbringers", value: "shb"},{label: "Stormblood", value: "sb"},{label: "Heavensward", value: "hw"},{label: "A Realm Reborn", value: "arr"}]}
   - {label: "Patch", name: "patchNumber", valueType: "float", widget: "number"}
+  - {label: "Patch Link", name: "patchLink", widget: "string"}
   - {label: "difficulty", name: "difficulty", widget: "string"}
   - {label: "Type", name: "instanceType", widget: "select", options: ["dungeon", "raid", "trial", "allianzraid", "treasure", "eureka", "pvp"]}
   - {label: "Date", name: "date", widget: "date"}
   - {label: "Slug", name: "slug", widget: "string"}
+  - {label: "Prev Slug", name: "previous_slug", widget: "string"}
+  - {label: "Next Slug", name: "next_slug", widget: "string"}
   - *field_image
   - {label: "terms", name: "terms", widget: "list", fields: [{label: "term", name: "term", required: false, widget: "string"}]}
   - {label: "patchName", name: "patchName", widget: "string"}
@@ -294,22 +306,24 @@ guide-fields: &guide-fields
   - {label: "orchestrion_material", name: "orchestrion_material", widget: "list", fields: [{label: "name", name: "name", required: false, widget: "string"}]}
   - label: "rouletts"
     name: "rouletts"
-    widget: "list"
+    widget: "object"
+    collapsed: true
     fields:
-      - {label: "allianceraid", name: "allianceraid", required: false, allowMultiple: false, widget: "select", options: ["True", "False"]}
-      - {label: "frontier", name: "frontier", required: false, allowMultiple: false, widget: "select", options: ["True", "False"]}
-      - {label: "expert", name: "expert", required: false, allowMultiple: false, widget: "select", options: ["True", "False"]}
-      - {label: "guildhest", name: "guildhest", required: false, allowMultiple: false, widget: "select", options: ["True", "False"]}
-      - {label: "level50_60", name: "level50_60", required: false, allowMultiple: false, widget: "select", options: ["True", "False"]}
-      - {label: "level70", name: "level70", required: false, allowMultiple: false, widget: "select", options: ["True", "False"]}
-      - {label: "leveling", name: "leveling", required: false, allowMultiple: false, widget: "select", options: ["True", "False"]}
-      - {label: "main", name: "main", required: false, allowMultiple: false, widget: "select", options: ["True", "False"]}
-      - {label: "mentor", name: "mentor", required: false, allowMultiple: false, widget: "select", options: ["True", "False"]}
-      - {label: "normalraid", name: "normalraid", required: false, allowMultiple: false, widget: "select", options: ["True", "False"]}
-      - {label: "trial", name: "trial", required: false, allowMultiple: false, widget: "select", options: ["True", "False"]}
+      - {label: "allianceraid", name: "allianceraid", required: false, widget: "boolean", default: true}
+      - {label: "frontier", name: "frontier", required: false, widget: "boolean", default: true}
+      - {label: "expert", name: "expert", required: false, widget: "boolean", default: true}
+      - {label: "guildhest", name: "guildhest", required: false, widget: "boolean", default: true}
+      - {label: "level50_60_70", name: "level50_60_70", required: false, widget: "boolean", default: true}
+      - {label: "level80", name: "level80", required: false, widget: "boolean", default: true}
+      - {label: "leveling", name: "leveling", required: false, widget: "boolean", default: true}
+      - {label: "main", name: "main", required: false, widget: "boolean", default: true}
+      - {label: "mentor", name: "mentor", required: false, widget: "boolean", default: true}
+      - {label: "normalraid", name: "normalraid", required: false, widget: "boolean", default: true}
+      - {label: "trial", name: "trial", required: false, widget: "boolean", default: true}
   - label: "links"
     name: "links"
-    widget: "list"
+    widget: "object"
+    collapsed: true
     fields:
       - {label: "teamcraftlink", name: "teamcraftlink", required: false, widget: "string"}
       - {label: "garlandtoolslink", name: "garlandtoolslink", required: false, widget: "string"}
@@ -318,6 +332,16 @@ guide-fields: &guide-fields
   - {label: "mtq_vid2", name: "mtq_vid2", required: false, widget: "string"}
   - {label: "mrh_vid1", name: "mrh_vid1", required: false, widget: "string"}
   - {label: "mrh_vid2", name: "mrh_vid2", required: false, widget: "string"}
+  - {label: "contentzoneids", name: "contentzoneids", widget: "list", fields: [{label: "id", name: "id", required: false, widget: "string"}]}
+  - label: "group"
+    name: "group"
+    widget: "object"
+    collapsed: true
+    fields:
+      - {label: "healer", name: "healer", required: false, widget: "string"}
+      - {label: "tank", name: "tank", required: false, widget: "string"}
+      - {label: "melee", name: "melee", required: false, widget: "string"}
+      - {label: "range", name: "range", required: false, widget: "string"}
   - {label: "mechanics", name: "mechanics", widget: "list", fields: [{label: "Title", name: "title", required: false, allowMultiple: false, widget: "string"}, *field_mechanics_steps]}
   - label: "Bosses"
     name: "bosses"
@@ -349,7 +373,7 @@ collections:
     create: true
     editor:
       preview: True
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
     summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
@@ -362,8 +386,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -375,8 +399,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -388,8 +412,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -401,8 +425,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -414,8 +438,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -427,8 +451,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -440,8 +464,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -453,8 +477,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -466,8 +490,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -479,8 +503,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -492,8 +516,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -505,8 +529,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -518,8 +542,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -531,8 +555,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -544,8 +568,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -557,8 +581,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -570,8 +594,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -583,8 +607,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -596,8 +620,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -609,8 +633,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -622,8 +646,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -635,8 +659,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -648,8 +672,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -661,8 +685,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -674,8 +698,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -687,8 +711,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -700,8 +724,8 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
 
@@ -713,7 +737,7 @@ collections:
     create: true
     editor:
       preview: false
-    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
-    summary: "{{title}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    slug: "{{year}}-{{month}}-{{day}}--{{patchNumber}}--{{sortid}}--{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
     fields:
       *guide-fields
