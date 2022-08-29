@@ -341,6 +341,19 @@ guide-fields: &guide-fields
   - {label: "CMS Used", name: "cms", widget: "hidden", default: "netlify-cms"}
 
 collections:
+  - name: "ew_new_dungeon"
+    label: "Endwalker (Dunegon)"
+    delete: false
+    label_singular: "Endwalker (Dunegon) Guide"
+    folder: "_posts/ew_new/dungeon"
+    create: true
+    editor:
+      preview: True
+    slug: "{{year}}-{{month}}-{{day}}---{{patchNumber}}-{{fields.slug}}"
+    summary: "{{title.de}} ({{difficulty}}) -- {{year}}/{{month}}/{{day}}"
+    fields:
+      *guide-fields
+
   - name: "shb_new_dungeon"
     label: "Shadowbringers (Dunegon)"
     delete: false
