@@ -1153,8 +1153,9 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 print_color_blue(f"\t\tNeed to convert: {attack['name']} ({attack_id})", disable_blue_print)
                 # find attack
                 attack_index = None
+                x_attack_name = fixCaptilaziationAndRomanNumerals(attack['name'])
                 for i, old_attack in enumerate(old_enemy_data['attacks']):
-                    if old_attack.get('title', {}).get('de', None) == fixCaptilaziationAndRomanNumerals(attack['name']):
+                    if old_attack.get('title', {}).get('de', None) == x_attack_name:
                         attack_index = i
                         break
                 tmp_attack = old_enemy_data['attacks'][attack_index]
@@ -2044,8 +2045,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [61]:
-            #    continue
+            if i not in [431]:
+                continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             logger.info(pretty_json(entry))
             # if the done collumn is not prefilled
