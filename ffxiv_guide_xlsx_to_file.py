@@ -145,7 +145,7 @@ questss = loadDataTheQuickestWay("Quest.de.json", exd="raw-exd-all")
 different_pronouns = {'0': 'Der', '1': 'Die', '2': 'Das'}
 different_pronounss = {'0': 'er', '1': 'e', '2': 'es'}
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
-XLSXELEMENTS = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest_id", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "mapid", "bosse", "adds", "mechanics", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
+XLSXELEMENTS = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest_id", "gearset_loot", "tt_card1", "tt_card2", "orchestrion", "orchestrion2", "orchestrion3", "orchestrion4", "orchestrion5", "orchestrion_material1", "orchestrion_material2", "orchestrion_material3", "mtqvid1", "mtqvid2", "mrhvid1", "mrhvid2", "mount1", "mount2", "minion1", "minion2", "minion3", "instanceType", "mapid", "bosse", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
 UNKNOWNTITLE = {'de': 'Unbekannte Herkunft', 'en': 'Unknown Source', 'fr': 'Unknown Source', 'ja': 'Unknown Source', 'cn': 'Unknown Source', 'ko': 'Unknown Source'}
 
 
@@ -353,8 +353,9 @@ def getEntryData(sheet, max_column, i, elements, orderedContent):
     entry["next_content"] = _next
     entry["line_index"] = i
     seperate_data_into_array("bosse", entry)
-    seperate_data_into_array("adds", entry)
     seperate_data_into_array("tags", entry)
+    entry['adds'] = []
+    entry['mechanics'] = "[]"
     return entry
 
 
