@@ -8,7 +8,6 @@ import traceback
 # traceback.print_exc()
 import re
 import errno
-import openpyxl
 import yaml
 from yaml.loader import SafeLoader
 import math
@@ -18,6 +17,11 @@ import convert_skills_to_guide_form as csgf
 import generateLinks as gl
 import generatePatch as gp
 import logging
+
+import openpyxl
+from openpyxl import load_workbook
+from io import BytesIO
+import requests
 
 import sys
 from ffxiv_aku import *
@@ -145,9 +149,18 @@ XLSXELEMENTS = ["exclude", "date", "sortid", "title", "categories", "slug", "ima
 UNKNOWNTITLE = {'de': 'Unbekannte Herkunft', 'en': 'Unknown Source', 'fr': 'Unknown Source', 'ja': 'Unknown Source', 'cn': 'Unknown Source', 'ko': 'Unknown Source'}
 
 
+def load_workbook_from_url(url):
+    file = requests.get(url)
+    return load_workbook(filename = BytesIO(file.content))
+
+
 def read_xlsx_file():
-    # open file, get sheet, last row and last coulmn
-    wb = openpyxl.load_workbook('./guide_ffxiv.xlsx')
+    KEY = os.environ.get("GDRIVE_APIKEY")
+    MIME_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    SHEET = "11SBQWYyFnyh19Ku6T1Wr5tNAJvxdze8tvD6m4bzPGIA"
+    r = f"https://www.googleapis.com/drive/v3/files/{SHEET}/export?key={KEY}&mimeType={MIME_TYPE}"
+    wb = load_workbook_from_url(r)
+    #wb = openpyxl.load_workbook('./guide_ffxiv.xlsx')
     sheet = wb['Tabelle1']
     max_row = sheet.max_row
     max_column = sheet.max_column
