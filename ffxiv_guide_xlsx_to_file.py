@@ -119,7 +119,7 @@ disable_blue_print = True
 disable_red_print = True
 
 storeFilesInTmp(False)
-#storeFilesInTmp(True)
+# storeFilesInTmp(True)
 logdata = get_any_Logdata()
 patchversions = get_any_Versiondata()
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
@@ -151,7 +151,7 @@ UNKNOWNTITLE = {'de': 'Unbekannte Herkunft', 'en': 'Unknown Source', 'fr': 'Unkn
 
 def load_workbook_from_url(url):
     file = requests.get(url)
-    return load_workbook(filename = BytesIO(file.content))
+    return load_workbook(filename=BytesIO(file.content))
 
 
 def read_xlsx_file():
@@ -2059,7 +2059,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     for i in range(2, max_row):
         try:
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if i not in [432]:
+            # if i not in [432]:
             #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             logger.info(pretty_json(entry))
