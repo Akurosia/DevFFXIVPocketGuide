@@ -198,34 +198,6 @@ def clean_entries_from_single_quotes(entry):
     return entry
 
 
-def getMaps(_map):
-    global maps
-    for key, value in maps.items():
-        if value['Id'] == _map:
-            return value
-    sys.exit()
-
-
-def truncate(f, n):
-    # line to collaps
-    return math.floor(f * 10 ** n) / 10 ** n
-
-
-def getLevel(level):
-    global levels
-    level = levels[level.replace('Level#', "")]
-    map_ = getMaps(level['Map'])
-    x = truncate(ToMapCoordinate(float(level['X'].replace(",", ".")), float(map_['SizeFactor'])), 1)
-    y = truncate(ToMapCoordinate(float(level['Z'].replace(",", ".")), float(map_['SizeFactor'])), 1)
-    return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
-
-
-def ToMapCoordinate(val, mapsize):
-    c = mapsize / 100.0
-    val *= c
-    return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1
-
-
 def make_name_readable(entry):
     global different_articles
     global different_pronouns
@@ -1051,7 +1023,10 @@ def get_fixed_status_description(_id):
         return f"Unknown_{_id}"
 
 
+
+ids_to_replace = ["10742", "11399", "10744", "11402"]
 def getBnpcNameFromID(_id, aname, nname, lang="en"):
+    global ids_to_replace
     bnew_name = ""
     enew_name = ""
     ennew_name = ""
@@ -1062,6 +1037,8 @@ def getBnpcNameFromID(_id, aname, nname, lang="en"):
     _id = str(_id)
     try:
         bnew_name = bnpcname[_id]["Singular_de"]
+        if _id in ids_to_replace:
+            nname = nname.replace(" ii", "").replace(" i", "")
         m = re.search(nname, bnew_name, re.IGNORECASE)
         n = re.search(aname, bnew_name, re.IGNORECASE)
         if m or n:
@@ -1562,6 +1539,8 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
             try:
                 if old_enemy_data['title']['de'].title() == "Hesperos I":
                     del logdata_instance_content["Hesperos"]
+                elif old_enemy_data['title']['de'].title() == "Hephaistos I":
+                    del logdata_instance_content["Hephaistos"]
             except:
                 print_color_red("!Could not remove enemy: Hesperos", disable_red_print)
 
