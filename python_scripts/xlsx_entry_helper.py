@@ -1,0 +1,173 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# coding: utf8
+import natsort
+from collections import OrderedDict
+from openpyxl import load_workbook
+from io import BytesIO
+import requests
+import os
+from ffxiv_aku import *
+try:
+    from python_scripts.constants import *
+    from python_scripts.helper import *
+except:
+    from constants import *
+    from helper import *
+
+
+quests = loadDataTheQuickestWay("Quest.de.json")
+quests_all = loadDataTheQuickestWay("quest_all.json", translate=True)
+questss = loadDataTheQuickestWay("Quest.de.json", exd="raw-exd-all")
+enpcresidents = loadDataTheQuickestWay("Enpcresident.de.json")
+contentfinderconditionX = loadDataTheQuickestWay("ContentFinderCondition.de.json")
+
+
+def get_data_from_xlsx(sheet, max_column, i, elements):
+    entry = {}
+    # for every column in row add all elements into a dict:
+    # max_column will ignore last column due to how range is working
+    for j in range(1, max_column + 1):
+        entry[elements[j - 1]] = str(sheet.cell(row=int(i), column=int(j)).value).replace("None", "").strip()
+    return entry
+
+
+def clean_entries_from_single_quotes(entry):
+    for key, value in entry.items():
+        if value.startswith("'"):
+            entry[key] = value[1:]
+        if value.endswith("'"):
+            entry[key] = value[:-1]
+    return entry
+
+
+def make_name_readable(entry):
+    name = entry["Singular"]
+    name = name.replace("[t]", DIFFERENT_PRONOUNS[entry["Pronoun"]])
+    name = name.replace("[a]", DIFFERENT_PRONOUNSS[entry["Pronoun"]])
+    return name
+
+
+def getPropperQuestNPC(_id):
+    npc_id = questss[_id]['Issuer']['Start']
+    return make_name_readable(enpcresidents[npc_id])
+
+
+def workOnQuests(entry, quest_id):
+    if quest_id == "":
+        entry['quest'] = ""
+        entry['quest_location'] = ""
+        entry['quest_npc'] = ""
+        return entry
+    quest = quests[quest_id]
+    for lang in LANGUAGES:
+        entry[f'quest_{lang}'] = quests_all[quest_id][f'Name_{lang}'].replace(" ", "").replace(" ", "")
+    npc = quest['Issuer']['Start']
+    if "[a]" in npc or "[t]" in npc:
+        npc = getPropperQuestNPC(quest_id)
+    entry['quest_npc'] = npc
+    try:
+        level_data = getLevel(quest['Issuer']['Location'])
+        entry['quest_location'] = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
+    except KeyError:
+        entry['quest_location'] = ""
+        print_color_red(f"[workOnQuests] Error on loading: {quest['Issuer']['Location']} ({quest_id})")
+    return entry
+
+
+def getEntriesForRouletts(entry):
+    global contentfinderconditionX
+    for key, value in contentfinderconditionX.items():
+        if value['Name'] == getContentName(entry["title"], "de", entry["difficulty"], entry["instanceType"]):
+            entry['type'] = value['ContentType'].lower()
+            entry['mapid'] = value['TerritoryType']
+            entry['allianceraid'] = value['AllianceRoulette']
+            entry['frontier'] = value['FeastTeamRoulette']
+            entry['expert'] = value['ExpertRoulette']
+            entry['guildhest'] = value['GuildHestRoulette']
+            entry['level50_60_70'] = value['Level50/60/70Roulette']
+            entry['level80'] = value['Level80Roulette']
+            entry['leveling'] = value['LevelingRoulette']
+            entry['main'] = value['MSQRoulette']
+            entry['mentor'] = value['MentorRoulette']
+            entry['normalraid'] = value['NormalRaidRoulette']
+            entry['trial'] = value['TrialRoulette']
+            return entry
+    return entry
+
+
+def getBeforeAndAfterContentEntries(orderedContent, entry):
+    _previous = None
+    _next = None
+    _type = orderedContent[entry['instanceType']]
+    _typeKeys = list(_type)
+    for i, k in enumerate(_type):
+        if _type[k].endswith(entry['slug']):
+            if i - 1 >= 0:
+                try:
+                    _previous = _type[_typeKeys[i - 1]]
+                except:
+                    pass
+            try:
+                _next = _type[_typeKeys[i + 1]]
+            except:
+                pass
+            return _previous, _next
+    return None, None
+
+
+def seperate_data_into_array(tag, entry):
+    if entry[tag]:
+        entry[tag] = entry[tag].strip("'[").strip("]'").strip("\"[").strip("]\"").strip("[").strip("]").replace("\", \"", "', '").replace("\",\"", "', '").split("', '")
+        entry[tag] = [b for b in entry[tag]]
+
+
+def getEntryData(sheet, max_column, i, elements, orderedContent):
+    entry = get_data_from_xlsx(sheet, max_column, i, elements)
+    entry = clean_entries_from_single_quotes(entry)
+    entry = workOnQuests(entry, entry["quest_id"])
+    entry = getEntriesForRouletts(entry)
+    for lang in LANGUAGES:
+        entry[f"title_{lang}"] = getContentName(entry["title"], lang, entry["difficulty"], entry["instanceType"])
+    _previous, _next = getBeforeAndAfterContentEntries(orderedContent, entry)
+    # remove time from excel datetime
+    entry["date"] = str(entry["date"]).replace(" 00:00:00", "").replace("-", ".")
+    entry["prev_content"] = _previous
+    entry["next_content"] = _next
+    entry["line_index"] = i
+    seperate_data_into_array("bosse", entry)
+    seperate_data_into_array("tags", entry)
+    entry['adds'] = []
+    entry['mechanics'] = "[]"
+    return entry
+
+
+def getPrevAndNextContentOrder(sheet, elements, max_row):
+    entry = {}
+    for i in range(1, max_row + 1):
+        instanceType = str(sheet.cell(row=int(i), column=int(elements.index('instanceType')) + 1).value).replace("None", "")
+        if not entry.get(instanceType, None):
+            entry[instanceType] = {}
+        sortID = str(sheet.cell(row=int(i), column=int(3)).value).replace("None", "")
+        addon = str(sheet.cell(row=int(i), column=int(5)).value).replace("None", "")
+        slug = str(sheet.cell(row=int(i), column=int(6)).value).replace("None", "")
+        entry[instanceType][sortID] = "/" + addon + "/" + slug
+    return OrderedDict(natsort.natsorted(entry.items()))
+
+
+def load_workbook_from_url(url):
+    file = requests.get(url)
+    return load_workbook(filename=BytesIO(file.content))
+
+
+def read_xlsx_file():
+    KEY = os.environ.get("GDRIVE_APIKEY")
+    MIME_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    SHEET = "11SBQWYyFnyh19Ku6T1Wr5tNAJvxdze8tvD6m4bzPGIA"
+    r = f"https://www.googleapis.com/drive/v3/files/{SHEET}/export?key={KEY}&mimeType={MIME_TYPE}"
+    wb = load_workbook_from_url(r)
+    #wb = openpyxl.load_workbook('./guide_ffxiv.xlsx')
+    sheet = wb['Tabelle1']
+    max_row = sheet.max_row
+    max_column = sheet.max_column
+    return sheet, max_row, max_column

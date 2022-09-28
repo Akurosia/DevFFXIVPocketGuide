@@ -109,11 +109,6 @@ def getImage(image: str) -> str:
     return image
 
 
-def writeline(f, data):
-    f.write(data)
-    f.write("\n")
-
-
 def getBLULocationsFromLogdata(name, locations):
     global logdata
     if not name:
@@ -164,11 +159,12 @@ def get_propper_zone_name(zone_name, files):
     return None
 
 
-def addBlueAttackDetails(f, job_data):
+def addBlueAttackDetails(job_data):
     global actionss
     global aozactions
     global aozactiontransient
-    writeline(f, "    attacks:")
+    result = ""
+    result += "    attacks:\n"
     # get special aoz action data from correct files e.g. number in blu spell book and description
     for x, y in job_data.items():
         for key, value in aozactions.items():
@@ -228,35 +224,36 @@ def addBlueAttackDetails(f, job_data):
 
         desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
         if skill_data.get("Number", None) and int(level) < 901:
-            writeline(f, f'      - title:')
-            writeline(f, f'          de: "{level}. {skill_data["Name"]}"')
-            writeline(f, f'          en: "{level}. {en_name}"')
-            writeline(f, f'          fr: "{level}. {fr_name}"')
-            writeline(f, f'          ja: "{level}. {ja_name}"')
-            writeline(f, f'          cn: "{level}. {cn_name}"')
-            writeline(f, f'          ko: "{level}. {ko_name}"')
+            result += f'      - title:\n'
+            result += f'          de: "{level}. {skill_data["Name"]}"\n'
+            result += f'          en: "{level}. {en_name}"\n'
+            result += f'          fr: "{level}. {fr_name}"\n'
+            result += f'          ja: "{level}. {ja_name}"\n'
+            result += f'          cn: "{level}. {cn_name}"\n'
+            result += f'          ko: "{level}. {ko_name}"\n'
         else:
-            writeline(f, f'      - title:')
-            writeline(f, f'          de: "{skill_data["Name"]}"')
-            writeline(f, f'          en: "{en_name}"')
-            writeline(f, f'          fr: "{fr_name}"')
-            writeline(f, f'          ja: "{ja_name}"')
-            writeline(f, f'          cn: "{cn_name}"')
-            writeline(f, f'          ko: "{ko_name}"')
-        writeline(f, f'        title_id: "{skill_data["id"].split(".")[0]}"')
+            result += f'      - title:\n'
+            result += f'          de: "{skill_data["Name"]}"\n'
+            result += f'          en: "{en_name}"\n'
+            result += f'          fr: "{fr_name}"\n'
+            result += f'          ja: "{ja_name}"\n'
+            result += f'          cn: "{cn_name}"\n'
+            result += f'          ko: "{ko_name}"\n'
+        result += f'        title_id: "{skill_data["id"].split(".")[0]}"\n'
         if skill_data.get("Number", None):
-            writeline(f, f'        level: "{skill_data["Number"]}"')
+            result += f'        level: "{skill_data["Number"]}"\n'
         else:
-            writeline(f, f'        level: "{level}"')
-        writeline(f, f'        icon: "{getImage(skill_data["Icon"])}"')
-        writeline(f, f'        range: "{skill_data["Range"]}"')
-        writeline(f, f'        effectrange: "{skill_data["EffectRange"]}"')
-        writeline(f, f'        cast: "{skill_data["Cast"]}"')
-        writeline(f, f'        recast: "{skill_data["Recast"]}"')
-        writeline(f, f'        kategorie: "{skill_data["Kategorie"]}"')
-        writeline(f, f'        description: "{desc}"')
-        writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "01"')
+            result += f'        level: "{level}"\n'
+        result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
+        result += f'        range: "{skill_data["Range"]}"\n'
+        result += f'        effectrange: "{skill_data["EffectRange"]}"\n'
+        result += f'        cast: "{skill_data["Cast"]}"\n'
+        result += f'        recast: "{skill_data["Recast"]}"\n'
+        result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
+        result += f'        description: "{desc}"\n'
+        result += f'        phases:\n'
+        result += f'          - phase: "01"\n'
+    return result
 
 
 def convertJobToAbrev(job):
@@ -277,12 +274,13 @@ def convertJobToAbrev(job):
     raise NotImplementedError
 
 
-def addAttackDetails(f, job_data, pvp=False):
+def addAttackDetails(job_data, pvp=False):
     global actionss
     global craftactions
+    result = ""
     # only print for normal attacks
     if not pvp:
-        writeline(f, "    attacks:")
+        result += "    attacks:\n"
 
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
@@ -300,60 +298,64 @@ def addAttackDetails(f, job_data, pvp=False):
             ko_name = craftactions[skill_data['id']]["Name_ko"].title()
         level = "0" if skill_data['Level'] == "99999" else skill_data['Level']
         desc = skill_data["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
-        writeline(f, f'      - title:')
-        writeline(f, f'          de: "{skill_data["Name"]}"')
-        writeline(f, f'          en: "{en_name}"')
-        writeline(f, f'          fr: "{fr_name}"')
-        writeline(f, f'          ja: "{ja_name}"')
-        writeline(f, f'          cn: "{cn_name}"')
-        writeline(f, f'          ko: "{ko_name}"')
-        writeline(f, f'        title_id: "{skill_data["id"].split(".")[0]}"')
-        writeline(f, f'        level: "{level}"')
-        writeline(f, f'        type: "{skill_data["Type"]}"')
-        writeline(f, f'        icon: "{getImage(skill_data["Icon"])}"')
-        writeline(f, f'        range: "{skill_data["Range"]}"')
-        writeline(f, f'        effectrange: "{skill_data["EffectRange"]}"')
-        writeline(f, f'        cast: "{skill_data["Cast"]}"')
-        writeline(f, f'        recast: "{skill_data["Recast"]}"')
-        writeline(f, f'        kategorie: "{skill_data["Kategorie"]}"')
-        writeline(f, f'        description: "{desc}"')
-        writeline(f, f'        phases:')
+        result += f'      - title:\n'
+        result += f'          de: "{skill_data["Name"]}"\n'
+        result += f'          en: "{en_name}"\n'
+        result += f'          fr: "{fr_name}"\n'
+        result += f'          ja: "{ja_name}"\n'
+        result += f'          cn: "{cn_name}"\n'
+        result += f'          ko: "{ko_name}"\n'
+        result += f'        title_id: "{skill_data["id"].split(".")[0]}"\n'
+        result += f'        level: "{level}"\n'
+        result += f'        type: "{skill_data["Type"]}"\n'
+        result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
+        result += f'        range: "{skill_data["Range"]}"\n'
+        result += f'        effectrange: "{skill_data["EffectRange"]}"\n'
+        result += f'        cast: "{skill_data["Cast"]}"\n'
+        result += f'        recast: "{skill_data["Recast"]}"\n'
+        result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
+        result += f'        description: "{desc}"\n'
+        result += f'        phases:\n'
         if pvp:
-            writeline(f, f'          - phase: "04"')
+            result += f'          - phase: "04"\n'
         else:
-            writeline(f, f'          - phase: "01"')
+            result += f'          - phase: "01"\n'
+    return result
 
 
-def addStatusDetails(f, job):
+def addStatusDetails(job):
     global logdata
     global statusss
     global statuss
+    result = ""
     jobstatusdata = logdata["Klassen"].get(job, {}).get("status", {})
     if not jobstatusdata == {}:
         jobstatusdata = OrderedDict(sorted(jobstatusdata.items(), key=lambda x: getitem(x[1], 'name')))
-        writeline(f, "    debuffs:")
+        result += "    debuffs:\n"
         for key, status in jobstatusdata.items():
             _id = str(int(key, 16))
             desc = statusss[_id]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
-            writeline(f, f'      - title:')
-            writeline(f, f'          de: "{status["name"].title()}"')
-            writeline(f, f'          en: "{statuss[_id]["Name_en"].title()}"')
-            writeline(f, f'          fr: "{statuss[_id]["Name_fr"].title()}"')
-            writeline(f, f'          ja: "{statuss[_id]["Name_ja"].title()}"')
-            writeline(f, f'          cn: "{statuss[_id]["Name_cn"].title()}"')
-            writeline(f, f'          ko: "{statuss[_id]["Name_ko"].title()}"')
-            writeline(f, f'        title_id: "{key}"')
-            writeline(f, f'        icon: "{getImage(status["icon"])}"')
-            writeline(f, f'        description: "{desc}"')
-            writeline(f, f'        durations: {status["duration"]}')
-            writeline(f, '        phases:')
-            writeline(f, '          - phase: "02"')
+            result += f'      - title:\n'
+            result += f'          de: "{status["name"].title()}"\n'
+            result += f'          en: "{statuss[_id]["Name_en"].title()}"\n'
+            result += f'          fr: "{statuss[_id]["Name_fr"].title()}"\n'
+            result += f'          ja: "{statuss[_id]["Name_ja"].title()}"\n'
+            result += f'          cn: "{statuss[_id]["Name_cn"].title()}"\n'
+            result += f'          ko: "{statuss[_id]["Name_ko"].title()}"\n'
+            result += f'        title_id: "{key}"\n'
+            result += f'        icon: "{getImage(status["icon"])}"\n'
+            result += f'        description: "{desc}"\n'
+            result += f'        durations: {status["duration"]}\n'
+            result += '        phases:\n'
+            result += '          - phase: "02"\n'
+    return result
 
 
-def addTraitDetails(f, job):
+def addTraitDetails(job):
     global traits
     # TODO get traits by class
-    writeline(f, "    traits:")
+    result = ""
+    result += "    traits:\n"
     _class = [v['ClassJob']['Parent'] for k, v in cjs.items() if v["Name"]['Value'] == job]
     traitsss = {k: v for k, v in traits.items() if v["ClassJob"] in ([job] + _class)}
     job_trait_data = OrderedDict(sorted(traitsss.items(), key=lambda x: int(getitem(x[1], 'Level'))))
@@ -367,19 +369,20 @@ def addTraitDetails(f, job):
         ko_name = traitss[_id]["Name_ko"].title()
         desc = traitstransient[_id]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
         level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
-        writeline(f, f'      - title:')
-        writeline(f, f'          de: "{trait_data["Name"].title()}"')
-        writeline(f, f'          en: "{en_name}"')
-        writeline(f, f'          fr: "{fr_name}"')
-        writeline(f, f'          ja: "{ja_name}"')
-        writeline(f, f'          cn: "{cn_name}"')
-        writeline(f, f'          ko: "{ko_name}"')
-        writeline(f, f'        title_id: "{_id.split(".")[0]}"')
-        writeline(f, f'        level: "{level}"')
-        writeline(f, f'        icon: "{getImage(trait_data["Icon"].replace(".tex", "_hr1.png"))}"')
-        writeline(f, f'        description: "{desc}"')
-        writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "03"')
+        result += f'      - title:\n'
+        result += f'          de: "{trait_data["Name"].title()}"\n'
+        result += f'          en: "{en_name}"\n'
+        result += f'          fr: "{fr_name}"\n'
+        result += f'          ja: "{ja_name}"\n'
+        result += f'          cn: "{cn_name}"\n'
+        result += f'          ko: "{ko_name}"\n'
+        result += f'        title_id: "{_id.split(".")[0]}"\n'
+        result += f'        level: "{level}"\n'
+        result += f'        icon: "{getImage(trait_data["Icon"].replace(".tex", "_hr1.png"))}"\n'
+        result += f'        description: "{desc}"\n'
+        result += f'        phases:\n'
+        result += f'          - phase: "03"\n'
+    return result
 
 
 def getStatusKey(stat):
@@ -484,43 +487,45 @@ def getBozjaActionDetails():
     return json.loads(json.dumps(result, indent=4, sort_keys=true, ensure_ascii=false))
 
 
-def addEurekaActions(f, job, eureka_actions):
+def addEurekaActions(job, eureka_actions):
     result = False
-    writeline(f, "    eureka:")
+    result_text = ""
+    result_text += "    eureka:\n"
     _class = [v['Abbreviation'] for k, v in cjs.items() if v["Name"]['Value'] == job]
     for k, value in eureka_actions.items():
         if _class[0] in value['cj']:
             result = True
             desc = value["description"].replace("\n", "</br>").replace("</br></br>", "</br>")
             # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
-            writeline(f, f'      - title:')
-            writeline(f, f'          de: "{value["name"]["de"]}"')
-            writeline(f, f'          en: "{value["name"]["en"]}"')
-            writeline(f, f'          fr: "{value["name"]["fr"]}"')
-            writeline(f, f'          ja: "{value["name"]["ja"]}"')
-            writeline(f, f'          cn: "{value["name"]["cn"]}"')
-            writeline(f, f'          ko: "{value["name"]["ko"]}"')
-            writeline(f, f'        status:')
-            writeline(f, f'          de: "{value["name"]["de"]}"')
-            writeline(f, f'          en: "{value["name"]["en"]}"')
-            writeline(f, f'          fr: "{value["name"]["fr"]}"')
-            writeline(f, f'          ja: "{value["name"]["ja"]}"')
-            writeline(f, f'          cn: "{value["name"]["cn"]}"')
-            writeline(f, f'          ko: "{value["name"]["ko"]}"')
-            writeline(f, f'        status_icon: "{getImage(value["status_icon"])}"')
-            writeline(f, f'        title_id: "{k}"')
-            writeline(f, f'        level: "70"')
-            writeline(f, f'        icon: "{getImage(value["icon"])}"')
-            writeline(f, f'        description: "{desc}"')
-            writeline(f, f'        type: "{value["type"]}"')
-            writeline(f, f'        phases:')
-            writeline(f, f'          - phase: "06"')
-    return result
+            result_text += f'      - title:\n'
+            result_text += f'          de: "{value["name"]["de"]}"\n'
+            result_text += f'          en: "{value["name"]["en"]}"\n'
+            result_text += f'          fr: "{value["name"]["fr"]}"\n'
+            result_text += f'          ja: "{value["name"]["ja"]}"\n'
+            result_text += f'          cn: "{value["name"]["cn"]}"\n'
+            result_text += f'          ko: "{value["name"]["ko"]}"\n'
+            result_text += f'        status:\n'
+            result_text += f'          de: "{value["name"]["de"]}"\n'
+            result_text += f'          en: "{value["name"]["en"]}"\n'
+            result_text += f'          fr: "{value["name"]["fr"]}"\n'
+            result_text += f'          ja: "{value["name"]["ja"]}"\n'
+            result_text += f'          cn: "{value["name"]["cn"]}"\n'
+            result_text += f'          ko: "{value["name"]["ko"]}"\n'
+            result_text += f'        status_icon: "{getImage(value["status_icon"])}"\n'
+            result_text += f'        title_id: "{k}"\n'
+            result_text += f'        level: "70"\n'
+            result_text += f'        icon: "{getImage(value["icon"])}"\n'
+            result_text += f'        description: "{desc}"\n'
+            result_text += f'        type: "{value["type"]}"\n'
+            result_text += f'        phases:\n'
+            result_text += f'          - phase: "06"\n'
+    return result, result_text
 
 
-def addBozjaActions(f, job, bozja_actions):
+def addBozjaActions(job, bozja_actions):
     result = False
-    writeline(f, "    bozja:")
+    result_text = ""
+    result_text += "    bozja:\n"
     _class = [v['Abbreviation'] for k, v in cjs.items() if v["Name"]['Value'] == job]
     for categorie, data in bozja_actions.items():
         for k, value in data.items():
@@ -528,21 +533,21 @@ def addBozjaActions(f, job, bozja_actions):
                 result = True
                 desc = value["description"].replace("\n", "</br>").replace("</br></br>", "</br>")
                 # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
-                writeline(f, f'      - title:')
-                writeline(f, f'          de: "{value["name"]["de"]}"')
-                writeline(f, f'          en: "{value["name"]["en"]}"')
-                writeline(f, f'          fr: "{value["name"]["fr"]}"')
-                writeline(f, f'          ja: "{value["name"]["ja"]}"')
-                writeline(f, f'          cn: "{value["name"]["cn"]}"')
-                writeline(f, f'          ko: "{value["name"]["ko"]}"')
-                writeline(f, f'        title_id: "{k}"')
-                writeline(f, f'        level: "80"')
-                writeline(f, f'        icon: "{getImage(value["icon"])}"')
-                writeline(f, f'        description: "{desc}"')
-                writeline(f, f'        frontsplitter: "{value["frontsplitter"]}"')
-                writeline(f, f'        phases:')
-                writeline(f, f'          - phase: "07"')
-    return result
+                result_text += f'      - title:\n'
+                result_text += f'          de: "{value["name"]["de"]}"\n'
+                result_text += f'          en: "{value["name"]["en"]}"\n'
+                result_text += f'          fr: "{value["name"]["fr"]}"\n'
+                result_text += f'          ja: "{value["name"]["ja"]}"\n'
+                result_text += f'          cn: "{value["name"]["cn"]}"\n'
+                result_text += f'          ko: "{value["name"]["ko"]}"\n'
+                result_text += f'        title_id: "{k}"\n'
+                result_text += f'        level: "80"\n'
+                result_text += f'        icon: "{getImage(value["icon"])}"\n'
+                result_text += f'        description: "{desc}"\n'
+                result_text += f'        frontsplitter: "{value["frontsplitter"]}"\n'
+                result_text += f'        phases:\n'
+                result_text += f'          - phase: "07"\n'
+    return result, result_text
 
 
 def translatename(name, lang="en"):
@@ -623,71 +628,72 @@ def getGathererLeves():
     return final_results
 
 
-def addCrafterLeve(f, job, all_crafter_leves):
+def addCrafterLeve(job, all_crafter_leves):
+    result = ""
     for key, value in all_crafter_leves.items():
         if job not in key:
             continue
-        writeline(f, "    leves:")
+        result += "    leves:\n"
         job_leve_data = OrderedDict(sorted(value.items(), key=lambda x: int(getitem(x[1], 'level'))))
         for _id, leve_data in job_leve_data.items():
             level = "0" if leve_data['level'] == "99999" else leve_data['level']
-            writeline(f, f'      - title:')
-            writeline(f, f'          de: "{leve_data["Name_DE"]}"')
-            writeline(f, f'          en: "{leve_data["Name_EN"]}"')
-            writeline(f, f'          fr: "{leve_data["Name_FR"]}"')
-            writeline(f, f'          ja: "{leve_data["Name_JA"]}"')
-            writeline(f, f'          cn: "{leve_data["Name_CN"]}"')
-            writeline(f, f'          ko: "{leve_data["Name_KO"]}"')
-            writeline(f, f'        title_id: "{leve_data["0xID"]}"')
-            writeline(f, f'        level: "{level}"')
-            writeline(f, f'        leveamount: "{leve_data["Freibriefanzahl"]}"')
+            result += f'      - title:\n'
+            result += f'          de: "{leve_data["Name_DE"]}"\n'
+            result += f'          en: "{leve_data["Name_EN"]}"\n'
+            result += f'          fr: "{leve_data["Name_FR"]}"\n'
+            result += f'          ja: "{leve_data["Name_JA"]}"\n'
+            result += f'          cn: "{leve_data["Name_CN"]}"\n'
+            result += f'          ko: "{leve_data["Name_KO"]}"\n'
+            result += f'        title_id: "{leve_data["0xID"]}"\n'
+            result += f'        level: "{level}"\n'
+            result += f'        leveamount: "{leve_data["Freibriefanzahl"]}"\n'
             if leve_data.get('item', None):
-                writeline(f, f'        item: "{leve_data["item"]}"')
-                writeline(f, f'        itemamount: "{leve_data["item_amount"]}"')
-                writeline(f, f'        repeat: "{leve_data["Wiederholbar"]}"')
-            writeline(f, f'        exphq: "{leve_data["EXP_per_full_hq_leve"]}"')
-            writeline(f, f'        gilhq: "{leve_data["Gil_per_full_hq_leve"]}"')
-            writeline(f, f'        phases:')
-            writeline(f, f'          - phase: "04"')
-        return True
-    return False
+                result += f'        item: "{leve_data["item"]}"\n'
+                result += f'        itemamount: "{leve_data["item_amount"]}"\n'
+                result += f'        repeat: "{leve_data["Wiederholbar"]}"\n'
+            result += f'        exphq: "{leve_data["EXP_per_full_hq_leve"]}"\n'
+            result += f'        gilhq: "{leve_data["Gil_per_full_hq_leve"]}"\n'
+            result += f'        phases:\n'
+            result += f'          - phase: "04"\n'
+        return True, result
+    return False, result
 
 
-def getMaps(_map):
-    global maps
-    for key, value in maps.items():
-        if value['Id'] == _map:
-            return value
-    sys.exit()
+#def getMaps(_map):
+#    global maps
+#    for key, value in maps.items():
+#        if value['Id'] == _map:
+#            return value
+#    sys.exit()
+#
+#
+#def truncate(f):
+#    result = math.floor(f * 10 ** 1) / 10 ** 1
+#    return result
+#
+#
+#def ToMapCoordinate(val, sizefactor):
+#    c = sizefactor / 100.0
+#    val *= c
+#    return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1
+#
+#
+#def getLevel(level, debugquest=None):
+#    global levels
+#    try:
+#        level = levels[level.replace('Level#', "")]
+#        map_ = getMaps(level['Map'])
+#        x = truncate(ToMapCoordinate(float(level['X'].replace(",", ".")), float(map_['SizeFactor'])))
+#        y = truncate(ToMapCoordinate(float(level['Z'].replace(",", ".")), float(map_['SizeFactor'])))
+#        return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
+#    except Exception as e:
+#        print(f"Error in getLevel: {e}")
+#        # print(f"Error in getLevel: {e} -> {debugquest}")
+#        traceback.print_exc()
+#        return None
 
 
-def truncate(f):
-    result = math.floor(f * 10 ** 1) / 10 ** 1
-    return result
-
-
-def ToMapCoordinate(val, sizefactor):
-    c = sizefactor / 100.0
-    val *= c
-    return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1
-
-
-def getLevel(level, debugquest=None):
-    global levels
-    try:
-        level = levels[level.replace('Level#', "")]
-        map_ = getMaps(level['Map'])
-        x = truncate(ToMapCoordinate(float(level['X'].replace(",", ".")), float(map_['SizeFactor'])))
-        y = truncate(ToMapCoordinate(float(level['Z'].replace(",", ".")), float(map_['SizeFactor'])))
-        return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
-    except Exception as e:
-        print(f"Error in getLevel: {e}")
-        # print(f"Error in getLevel: {e} -> {debugquest}")
-        traceback.print_exc()
-        return None
-
-
-def addQuestkDetails(f, job, pvp):
+def addQuestkDetails(job, pvp):
     global quests
     global questss
     newjob, newclass = convertJobToAbrev(job)
@@ -697,9 +703,11 @@ def addQuestkDetails(f, job, pvp):
             continue
         if quest['ClassJobCategory']["0"] in [newjob, newclass] or quest['ClassJobCategory']["1"] in [newjob, newclass]:
             # print(" \t" + quest['Name'])
+            if quest['Issuer']['Location'] == "":
+                continue
             level_data = {}
             try:
-                level_data = getLevel(quest['Issuer']['Location'], quest)
+                level_data = getLevel(quest['Issuer']['Location'])
                 if level_data is None:
                     continue
             except Exception as e:
@@ -724,7 +732,8 @@ def addQuestkDetails(f, job, pvp):
                 klassenquests[newquest['level'] + 0.1] = newquest
             else:
                 klassenquests[newquest['level']] = newquest
-    writeline(f, "    quests:")
+    result = ""
+    result += "    quests:\n"
     for _level in sorted(klassenquests):
         quest = klassenquests[_level]
         en_name = questss.get(quest['id'], {}).get("Name_en", "").replace(" ", "").replace(" ", "").title()
@@ -734,25 +743,26 @@ def addQuestkDetails(f, job, pvp):
         ko_name = questss.get(quest['id'], {}).get("Name_ko", "").replace(" ", "").replace(" ", "").title()
         level = "0" if quest['level'] == "99999" else quest['level']
         # desc = skill_data["Description"].replace("\n", "</br>")
-        writeline(f, f'      - title:')
-        writeline(f, f'          de: "{quest["name"].title().replace(" ", "").replace(" ", "")}"')
-        writeline(f, f'          en: "{en_name}"')
-        writeline(f, f'          fr: "{fr_name}"')
-        writeline(f, f'          ja: "{ja_name}"')
-        writeline(f, f'          cn: "{cn_name}"')
-        writeline(f, f'          ko: "{ko_name}"')
-        writeline(f, f'        title_id: "{quest["id"].split(".")[0]}"')
-        writeline(f, f'        level: "{level}"')
-        writeline(f, f'        expansion: "{quest["expansion"]}"')
-        writeline(f, f'        journalgenre: "{quest["journalgenre"]}"')
-        writeline(f, f'        issuer_location: "{quest["issuer_location_"]}"')
-        writeline(f, f'        issuer_start: "{quest["issuer_start_"]}"')
-        writeline(f, f'        place: "{quest["place"]}"')
-        writeline(f, f'        phases:')
+        result += f'      - title:\n'
+        result += f'          de: "{quest["name"].title().replace(" ", "").replace(" ", "")}"\n'
+        result += f'          en: "{en_name}"\n'
+        result += f'          fr: "{fr_name}"\n'
+        result += f'          ja: "{ja_name}"\n'
+        result += f'          cn: "{cn_name}"\n'
+        result += f'          ko: "{ko_name}"\n'
+        result += f'        title_id: "{quest["id"].split(".")[0]}"\n'
+        result += f'        level: "{level}"\n'
+        result += f'        expansion: "{quest["expansion"]}"\n'
+        result += f'        journalgenre: "{quest["journalgenre"]}"\n'
+        result += f'        issuer_location: "{quest["issuer_location_"]}"\n'
+        result += f'        issuer_start: "{quest["issuer_start_"]}"\n'
+        result += f'        place: "{quest["place"]}"\n'
+        result += f'        phases:\n'
         if pvp:
-            writeline(f, f'          - phase: "05"')
+            result += f'          - phase: "05"\n'
         else:
-            writeline(f, f'          - phase: "04"')
+            result += f'          - phase: "04"\n'
+    return result
 
 
 classDetails = {
@@ -835,103 +845,114 @@ def addKlassJobs():
         maxilvl = str(max([int(e["Level_Item"]) for e in gear]))
 
         counter += 1
-        with open(f"klassen_und_jobs/2013-01-01--2.0--{counter}--{job}.md", "w", encoding="utf8") as f:
-            writeline(f, '---')
-            writeline(f, 'wip: "True"')
-            writeline(f, 'title:')
-            writeline(f, f'  de: "{job_d["Name_de"].title()}"')
-            writeline(f, f'  en: "{job_d["Name_en"].title()}"')
-            writeline(f, f'  fr: "{job_d["Name_fr"].title()}"')
-            writeline(f, f'  ja: "{job_d["Name_ja"].title()}"')
-            writeline(f, f'  cn: "{job_d["Name_cn"].title()}"')
-            writeline(f, f'  ko: "{job_d["Name_ko"].title()}"')
-            writeline(f, 'layout: klassen')
-            writeline(f, 'page_type: guide')
-            writeline(f, 'categories: "klassenjobs"')
-            writeline(f, 'difficulty: "Normal"')
-            writeline(f, 'instanceType: "klassenjobs"')
+        filecontent = ""
+        filecontent += '---\n'
+        filecontent += 'wip: "True"\n'
+        filecontent += 'title:\n'
+        filecontent += f'  de: "{job_d["Name_de"].title()}"\n'
+        filecontent += f'  en: "{job_d["Name_en"].title()}"\n'
+        filecontent += f'  fr: "{job_d["Name_fr"].title()}"\n'
+        filecontent += f'  ja: "{job_d["Name_ja"].title()}"\n'
+        filecontent += f'  cn: "{job_d["Name_cn"].title()}"\n'
+        filecontent += f'  ko: "{job_d["Name_ko"].title()}"\n'
+        filecontent += 'layout: klassen\n'
+        filecontent += 'page_type: guide\n'
+        filecontent += 'categories: "klassenjobs"\n'
+        filecontent += 'difficulty: "Normal"\n'
+        filecontent += 'instanceType: "klassenjobs"\n'
 
-            if classDetails.get(job, {}):
-                writeline(f, f'date: "{classDetails[job]["date"]}"')
-                writeline(f, f'patchNumber: "{classDetails[job]["patchNumber"]}"')
-                writeline(f, f'patchName: "{classDetails[job]["patchName"]}"')
-            else:
-                writeline(f, 'date: "2013.01.01"')
-                writeline(f, 'patchNumber: "2.0"')
-                writeline(f, 'patchName: "A Realm Reborn"')
+        if classDetails.get(job, {}):
+            filecontent += f'date: "{classDetails[job]["date"]}"\n'
+            filecontent += f'patchNumber: "{classDetails[job]["patchNumber"]}"\n'
+            filecontent += f'patchName: "{classDetails[job]["patchName"]}"\n'
+        else:
+            filecontent += 'date: "2013.01.01"\n'
+            filecontent += 'patchNumber: "2.0"\n'
+            filecontent += 'patchName: "A Realm Reborn"\n'
 
-            # this will be empty for non jobs (crafter/gatherer are clases so we know if they have pvp spells)
-            pvp = getQuestName(job)
+        # this will be empty for non jobs (crafter/gatherer are clases so we know if they have pvp spells)
+        pvp = getQuestName(job)
 
-            writeline(f, 'slug: "klassen_und_jobs_' + job.lower() + '"')
-            if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
-                writeline(f, 'image:')
-                writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
-            else:
-                print(f"Missing img: {job}.png")
-            writeline(f, 'terms:')
-            writeline(f, '    - term: "Klassen"')
-            writeline(f, '    - term: "Jobs"')
-            writeline(f, '    - term: "Skills"')
-            writeline(f, '    - term: "Status"')
-            writeline(f, '    - term: "Traits"')
-            writeline(f, f'    - term: "{job_d["Name_de"].title()}"')
-            writeline(f, f'    - term: "{job_d["Name_en"].title()}"')
-            writeline(f, f'    - term: "{job_d["Name_fr"].title()}"')
-            writeline(f, f'    - term: "{job_d["Name_ja"].title()}"')
-            writeline(f, f'    - term: "{job_d["Name_cn"].title()}"')
-            writeline(f, f'    - term: "{job_d["Name_ko"].title()}"')
-            writeline(f, f'sortid: {counter}')
-            writeline(f, f'order: {counter}')
-            writeline(f, f'plvl: {maxlvl}')
-            writeline(f, f'ilvl: {maxilvl}')
-            writeline(f, "bosses:")
-            writeline(f, "  - title:")
-            writeline(f, f'      de: "{job_d["Name_de"].title()}"')
-            writeline(f, f'      en: "{job_d["Name_en"].title()}"')
-            writeline(f, f'      fr: "{job_d["Name_fr"].title()}"')
-            writeline(f, f'      ja: "{job_d["Name_ja"].title()}"')
-            writeline(f, f'      cn: "{job_d["Name_cn"].title()}"')
-            writeline(f, f'      ko: "{job_d["Name_ko"].title()}"')
-            writeline(f, "    id: \"" + "boss" + str(counter) + "\"")
-            if job == "Blaumagier":
-                addBlueAttackDetails(f, job_data)
-            else:
-                addAttackDetails(f, job_data)
-                addAttackDetails(f, job_data_pvp, True)
-            addStatusDetails(f, job)
-            addTraitDetails(f, job)
-            ea = addEurekaActions(f, job, eureka_actions)
-            bz = addBozjaActions(f, job, bozja_actions)
-            cleves = addCrafterLeve(f, job, all_crafter_leves)
-            gleves = addCrafterLeve(f, job, all_gatherer_leves)
-            addQuestkDetails(f, job, pvp or leves)
-            writeline(f, "    sequence:" + "")
-            writeline(f, "      - phase: \"01\"")
-            writeline(f, "        name: \"Skills\"")
-            writeline(f, "      - phase: \"02\"")
-            writeline(f, "        name: \"Status\"")
-            writeline(f, "      - phase: \"03\"")
-            writeline(f, "        name: \"Traits\"")
-            writeline(f, "      - phase: \"04\"")
-            if pvp:
-                writeline(f, "        name: \"PvP\"")
-                writeline(f, "      - phase: \"05\"")
-            if cleves or gleves:
-                writeline(f, "        name: \"Freibriefe\"")
-                writeline(f, "      - phase: \"05\"")
-            writeline(f, "        name: \"Quests\"")
-            if ea:
-                writeline(f, "      - phase: \"06\"")
-                writeline(f, "        name: \"Eureka Skills\"")
-            if bz:
-                writeline(f, "      - phase: \"07\"")
-                writeline(f, "        name: \"Bozja Skills\"")
-            writeline(f, '---')
+        filecontent += 'slug: "klassen_und_jobs_' + job.lower() + '"\n'
+        if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
+            filecontent += 'image:\n'
+            filecontent += f'    - url: "/assets/img/content/klassen/{job}.png"\n'
+        else:
+            print(f"Missing img: {job}.png")
+        filecontent += 'terms:\n'
+        filecontent += '    - term: "Klassen"\n'
+        filecontent += '    - term: "Jobs"\n'
+        filecontent += '    - term: "Skills"\n'
+        filecontent += '    - term: "Status"\n'
+        filecontent += '    - term: "Traits"\n'
+        filecontent += f'    - term: "{job_d["Name_de"].title()}"\n'
+        filecontent += f'    - term: "{job_d["Name_en"].title()}"\n'
+        filecontent += f'    - term: "{job_d["Name_fr"].title()}"\n'
+        filecontent += f'    - term: "{job_d["Name_ja"].title()}"\n'
+        filecontent += f'    - term: "{job_d["Name_cn"].title()}"\n'
+        filecontent += f'    - term: "{job_d["Name_ko"].title()}"\n'
+        filecontent += f'sortid: {counter}\n'
+        filecontent += f'order: {counter}\n'
+        filecontent += f'plvl: {maxlvl}\n'
+        filecontent += f'ilvl: {maxilvl}\n'
+        filecontent += "bosses:\n"
+        filecontent += "  - title:\n"
+        filecontent += f'      de: "{job_d["Name_de"].title()}"\n'
+        filecontent += f'      en: "{job_d["Name_en"].title()}"\n'
+        filecontent += f'      fr: "{job_d["Name_fr"].title()}"\n'
+        filecontent += f'      ja: "{job_d["Name_ja"].title()}"\n'
+        filecontent += f'      cn: "{job_d["Name_cn"].title()}"\n'
+        filecontent += f'      ko: "{job_d["Name_ko"].title()}"\n'
+        filecontent += "    id: \"" + "boss" + str(counter) + "\"\n"
+        if job == "Blaumagier":
+            filecontent += addBlueAttackDetails(job_data)
+        else:
+            filecontent += addAttackDetails(job_data)
+            filecontent += addAttackDetails(job_data_pvp, True)
+        filecontent += addStatusDetails(job)
+        filecontent += addTraitDetails(job)
+
+        ea, ea_text = addEurekaActions(job, eureka_actions)
+        filecontent += ea_text
+        bz, bz_text = addBozjaActions(job, bozja_actions)
+        filecontent += bz_text
+        cleves, cleves_text = addCrafterLeve(job, all_crafter_leves)
+        filecontent += cleves_text
+        gleves, gleves_text = addCrafterLeve(job, all_gatherer_leves)
+        filecontent += gleves_text
+        filecontent += addQuestkDetails(job, pvp or leves)
+        filecontent += "    sequence:" + "\n"
+        filecontent += "      - phase: \"01\"\n"
+        filecontent += "        name: \"Skills\"\n"
+        filecontent += "      - phase: \"02\"\n"
+        filecontent += "        name: \"Status\"\n"
+        filecontent += "      - phase: \"03\"\n"
+        filecontent += "        name: \"Traits\"\n"
+        filecontent += "      - phase: \"04\"\n"
+        if pvp:
+            filecontent += "        name: \"PvP\"\n"
+            filecontent += "      - phase: \"05\"\n"
+        if cleves or gleves:
+            filecontent += "        name: \"Freibriefe\"\n"
+            filecontent += "      - phase: \"05\"\n"
+        filecontent += "        name: \"Quests\"\n"
+        if ea:
+            filecontent += "      - phase: \"06\"\n"
+            filecontent += "        name: \"Eureka Skills\"\n"
+        if bz:
+            filecontent += "      - phase: \"07\"\n"
+            filecontent += "        name: \"Bozja Skills\"\n"
+        filecontent += '---\n'
+        filename = f"klassen_und_jobs/2013-01-01--2.0--{counter}--{job}.md"
+        with open(filename, encoding="utf8") as f:
+            doc = f.read()
+        if not doc == filecontent:
+            with open(filename, "w", encoding="utf8") as f:
+                f.write(filecontent)
     return counter
 
 
-def addChocoboPartnerSkills(f):
+def addChocoboPartnerSkills():
     global actions
     global actionss
     global action_trans
@@ -944,48 +965,52 @@ def addChocoboPartnerSkills(f):
     chocobo_skillss = { key:actions[key] for key in chocobo_skills }
     #print(chocobo_skillss)
     ordered = OrderedDict(sorted(chocobo_skillss.items(), key=lambda x: int(x[0])))
-    writeline(f, "    attacks:")
+    result = ""
+    result += "    attacks:\n"
     for key, _ in ordered.items():
         desc = action_trans[key]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
         t = actionss[key]
-        writeline(f, f'      - title:')
-        writeline(f, f'          de: "{t["Name_de"]}"')
-        writeline(f, f'          en: "{t["Name_en"]}"')
-        writeline(f, f'          fr: "{t["Name_fr"]}"')
-        writeline(f, f'          ja: "{t["Name_ja"]}"')
-        writeline(f, f'          cn: "{t["Name_cn"]}"')
-        writeline(f, f'          ko: "{t["Name_ko"]}"')
-        writeline(f, f'        icon: "{getImage(t["Icon"])}"')
-        #writeline(f, f'        level: "{actions[key]["Level"]}"')
-        writeline(f, f'        title_id: "{key}"')
-        writeline(f, f'        description: "{desc}"')
-        writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "01"')
+        result += f'      - title:\n'
+        result += f'          de: "{t["Name_de"]}"\n'
+        result += f'          en: "{t["Name_en"]}"\n'
+        result += f'          fr: "{t["Name_fr"]}"\n'
+        result += f'          ja: "{t["Name_ja"]}"\n'
+        result += f'          cn: "{t["Name_cn"]}"\n'
+        result += f'          ko: "{t["Name_ko"]}"\n'
+        result += f'        icon: "{getImage(t["Icon"])}"\n'
+        #result += f'        level: "{actions[key]["Level"]}"\n'
+        result += f'        title_id: "{key}"\n'
+        result += f'        description: "{desc}"\n'
+        result += f'        phases:\n'
+        result += f'          - phase: "01"\n'
+    return result
 
 
-def addRennChocoboSkills(f):
+def addRennChocoboSkills():
     global chocoboskills
     ordered = OrderedDict(sorted(chocoboskills.items(), key=lambda x: int(x[0])))
+    result = ""
     for key, value in ordered.items():
         if value["Name_de"] == "":
             continue
         desc = value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>")
         # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
-        writeline(f, f'      - title:')
-        writeline(f, f'          de: "{value["Name_de"]}"')
-        writeline(f, f'          en: "{value["Name_en"]}"')
-        writeline(f, f'          fr: "{value["Name_fr"]}"')
-        writeline(f, f'          ja: "{value["Name_ja"]}"')
-        writeline(f, f'          cn: "{value["Name_cn"]}"')
-        writeline(f, f'          ko: "{value["Name_ko"]}"')
-        writeline(f, f'        title_id: "{key}"')
-        writeline(f, f'        icon: "{getImage(value["Icon"])}"')
-        writeline(f, f'        description: "{desc}"')
-        writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "03"')
+        result += f'      - title:\n'
+        result += f'          de: "{value["Name_de"]}"\n'
+        result += f'          en: "{value["Name_en"]}"\n'
+        result += f'          fr: "{value["Name_fr"]}"\n'
+        result += f'          ja: "{value["Name_ja"]}"\n'
+        result += f'          cn: "{value["Name_cn"]}"\n'
+        result += f'          ko: "{value["Name_ko"]}"\n'
+        result += f'        title_id: "{key}"\n'
+        result += f'        icon: "{getImage(value["Icon"])}"\n'
+        result += f'        description: "{desc}"\n'
+        result += f'        phases:\n'
+        result += f'          - phase: "03"\n'
+    return result
 
 
-def addChocoboPartnerTraits(f):
+def addChocoboPartnerTraits():
     global traits
     global traitss
     global traitstransient
@@ -997,63 +1022,69 @@ def addChocoboPartnerTraits(f):
     chocobo_traits = sorted(chocobo_traits)
     chocobo_traitss = { key:traits[key] for key in chocobo_traits }
     ordered = OrderedDict(sorted(chocobo_traitss.items(), key=lambda x: int(getitem(x[1], 'Level'))))
-    writeline(f, "    traits:")
+    result = ""
+    result += "    traits:\n"
     for key, _ in ordered.items():
         desc = traitstransient[key]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
         t = traitss[key]
-        writeline(f, f'      - title:')
-        writeline(f, f'          de: "{t["Name_de"]}"')
-        writeline(f, f'          en: "{t["Name_en"]}"')
-        writeline(f, f'          fr: "{t["Name_fr"]}"')
-        writeline(f, f'          ja: "{t["Name_ja"]}"')
-        writeline(f, f'          cn: "{t["Name_cn"]}"')
-        writeline(f, f'          ko: "{t["Name_ko"]}"')
-        writeline(f, f'        icon: "{getImage(t["Icon"])}"')
-        writeline(f, f'        level: "{traits[key]["Level"]}"')
-        writeline(f, f'        title_id: "{key}"')
-        writeline(f, f'        description: "{desc}"')
-        writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "02"')
+        result += f'      - title:\n'
+        result += f'          de: "{t["Name_de"]}"\n'
+        result += f'          en: "{t["Name_en"]}"\n'
+        result += f'          fr: "{t["Name_fr"]}"\n'
+        result += f'          ja: "{t["Name_ja"]}"\n'
+        result += f'          cn: "{t["Name_cn"]}"\n'
+        result += f'          ko: "{t["Name_ko"]}"\n'
+        result += f'        icon: "{getImage(t["Icon"])}"\n'
+        result += f'        level: "{traits[key]["Level"]}"\n'
+        result += f'        title_id: "{key}"\n'
+        result += f'        description: "{desc}"\n'
+        result += f'        phases:\n'
+        result += f'          - phase: "02"\n'
+    return result
 
 
-def addRennChocoboItems(f):
+def addRennChocoboItems():
     global chocoboitems
     ordered = OrderedDict(sorted(chocoboitems.items(), key=lambda x: int(x[0])))
+    result = ""
     for key, value in ordered.items():
         if value["Name_de"] == "":
             continue
         desc = value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>")
         # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
-        writeline(f, f'      - title:')
-        writeline(f, f'          de: "{value["Name_de"]}"')
-        writeline(f, f'          en: "{value["Name_en"]}"')
-        writeline(f, f'          fr: "{value["Name_fr"]}"')
-        writeline(f, f'          ja: "{value["Name_ja"]}"')
-        writeline(f, f'          cn: "{value["Name_cn"]}"')
-        writeline(f, f'          ko: "{value["Name_ko"]}"')
-        writeline(f, f'        title_id: "{key}"')
-        writeline(f, f'        icon: "{getImage(value["Icon"])}"')
-        writeline(f, f'        description: "{desc}"')
-        writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "04"')
+        result += f'      - title:\n'
+        result += f'          de: "{value["Name_de"]}"\n'
+        result += f'          en: "{value["Name_en"]}"\n'
+        result += f'          fr: "{value["Name_fr"]}"\n'
+        result += f'          ja: "{value["Name_ja"]}"\n'
+        result += f'          cn: "{value["Name_cn"]}"\n'
+        result += f'          ko: "{value["Name_ko"]}"\n'
+        result += f'        title_id: "{key}"\n'
+        result += f'        icon: "{getImage(value["Icon"])}"\n'
+        result += f'        description: "{desc}"\n'
+        result += f'        phases:\n'
+        result += f'          - phase: "04"\n'
+    return result
 
 
-def addRennChocoboMissions(f):
+def addRennChocoboMissions():
     global chocobochallange
     ordered = OrderedDict(sorted(chocobochallange.items(), key=lambda x: int(x[0])))
+    result = ""
     for key, value in ordered.items():
         if value["col_0_de"] == "":
             continue
-        writeline(f, f'      - title:')
-        writeline(f, f'          de: "{value["col_0_de"]}"')
-        writeline(f, f'          en: "{value["col_0_en"]}"')
-        writeline(f, f'          fr: "{value["col_0_fr"]}"')
-        writeline(f, f'          ja: "{value["col_0_ja"]}"')
-        writeline(f, f'          cn: "{value["col_0_cn"]}"')
-        writeline(f, f'          ko: "{value["col_0_ko"]}"')
-        writeline(f, f'        title_id: "{key}"')
-        writeline(f, f'        phases:')
-        writeline(f, f'          - phase: "05"')
+        result += f'      - title:\n'
+        result += f'          de: "{value["col_0_de"]}"\n'
+        result += f'          en: "{value["col_0_en"]}"\n'
+        result += f'          fr: "{value["col_0_fr"]}"\n'
+        result += f'          ja: "{value["col_0_ja"]}"\n'
+        result += f'          cn: "{value["col_0_cn"]}"\n'
+        result += f'          ko: "{value["col_0_ko"]}"\n'
+        result += f'        title_id: "{key}"\n'
+        result += f'        phases:\n'
+        result += f'          - phase: "05"\n'
+    return result
 
 
 def addChocobo():
@@ -1066,75 +1097,82 @@ def addChocobo():
         "Name_cn": "チョコボ",
         "Name_ko": "초코보"
     }
-    with open(f"klassen_und_jobs/2013-01-01--2.0--0--{job}.md", "w", encoding="utf8") as f:
-        writeline(f, '---')
-        writeline(f, 'wip: "True"')
-        writeline(f, 'title:')
-        writeline(f, f'  de: "{job_d["Name_de"].title()}"')
-        writeline(f, f'  en: "{job_d["Name_en"].title()}"')
-        writeline(f, f'  fr: "{job_d["Name_fr"].title()}"')
-        writeline(f, f'  ja: "{job_d["Name_ja"].title()}"')
-        writeline(f, f'  cn: "{job_d["Name_cn"].title()}"')
-        writeline(f, f'  ko: "{job_d["Name_ko"].title()}"')
-        writeline(f, 'layout: klassen')
-        writeline(f, 'page_type: guide')
-        writeline(f, 'categories: "klassenjobs"')
-        writeline(f, 'difficulty: "Normal"')
-        writeline(f, 'instanceType: "klassenjobs"')
-        writeline(f, 'date: "2013.01.01"')
-        writeline(f, 'patchNumber: "2.0"')
-        writeline(f, 'patchName: "A Realm Reborn"')
-        writeline(f, 'slug: "klassen_und_jobs_' + job.lower() + '"')
-        if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
-            writeline(f, 'image:')
-            writeline(f, f'    - url: "/assets/img/content/klassen/{job}.png"')
-        else:
-            print(f"Missing img: {job}.png")
-        writeline(f, 'terms:')
-        writeline(f, '    - term: "Klassen"')
-        writeline(f, '    - term: "Jobs"')
-        writeline(f, '    - term: "Skills"')
-        writeline(f, '    - term: "Status"')
-        writeline(f, '    - term: "Traits"')
-        writeline(f, f'    - term: "{job_d["Name_de"].title()}"')
-        writeline(f, f'    - term: "{job_d["Name_en"].title()}"')
-        writeline(f, f'    - term: "{job_d["Name_fr"].title()}"')
-        writeline(f, f'    - term: "{job_d["Name_ja"].title()}"')
-        writeline(f, f'    - term: "{job_d["Name_cn"].title()}"')
-        writeline(f, f'    - term: "{job_d["Name_ko"].title()}"')
-        writeline(f, f'sortid: 0')
-        writeline(f, f'order: 0')
-        writeline(f, f'plvl: 50')
-        writeline(f, "bosses:")
-        writeline(f, "  - title:")
-        writeline(f, f'      de: "{job_d["Name_de"].title()}"')
-        writeline(f, f'      en: "{job_d["Name_en"].title()}"')
-        writeline(f, f'      fr: "{job_d["Name_fr"].title()}"')
-        writeline(f, f'      ja: "{job_d["Name_ja"].title()}"')
-        writeline(f, f'      cn: "{job_d["Name_cn"].title()}"')
-        writeline(f, f'      ko: "{job_d["Name_ko"].title()}"')
-        writeline(f, "    id: \"" + "boss0\"")
-        #todo add chocobo stuff
-        addChocoboPartnerSkills(f)
-        addRennChocoboSkills(f)
-        #addRennChocoboStatus()
-        addRennChocoboItems(f)
-        addRennChocoboMissions(f)
-        addChocoboPartnerTraits(f)
-        writeline(f, "    sequence:" + "")
-        writeline(f, "      - phase: \"01\"")
-        writeline(f, "        name: \"Chocobo-Partner-Skills\"")
-        writeline(f, "      - phase: \"02\"")
-        writeline(f, "        name: \"Chocobo-Partner-Traits\"")
-        writeline(f, "      - phase: \"03\"")
-        writeline(f, "        name: \"Renn-Chocobo-Skills\"")
-        #writeline(f, "      - phase: \"04\"")
-        #writeline(f, "        name: \"Renn-Chocobo-Status\"")
-        writeline(f, "      - phase: \"04\"")
-        writeline(f, "        name: \"Renn-Chocobo-Items\"")
-        writeline(f, "      - phase: \"05\"")
-        writeline(f, "        name: \"Renn-Chocobo-Missions\"")
-        writeline(f, '---')
+    filecontent = ""
+    filecontent += '---\n'
+    filecontent += 'wip: "True"\n'
+    filecontent += 'title:\n'
+    filecontent += f'  de: "{job_d["Name_de"].title()}"\n'
+    filecontent += f'  en: "{job_d["Name_en"].title()}"\n'
+    filecontent += f'  fr: "{job_d["Name_fr"].title()}"\n'
+    filecontent += f'  ja: "{job_d["Name_ja"].title()}"\n'
+    filecontent += f'  cn: "{job_d["Name_cn"].title()}"\n'
+    filecontent += f'  ko: "{job_d["Name_ko"].title()}"\n'
+    filecontent += 'layout: klassen\n'
+    filecontent += 'page_type: guide\n'
+    filecontent += 'categories: "klassenjobs"\n'
+    filecontent += 'difficulty: "Normal"\n'
+    filecontent += 'instanceType: "klassenjobs"\n'
+    filecontent += 'date: "2013.01.01"\n'
+    filecontent += 'patchNumber: "2.0"\n'
+    filecontent += 'patchName: "A Realm Reborn"\n'
+    filecontent += 'slug: "klassen_und_jobs_' + job.lower() + '"\n'
+    if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
+        filecontent += 'image:\n'
+        filecontent += f'    - url: "/assets/img/content/klassen/{job}.png"\n'
+    else:
+        print(f"Missing img: {job}.png")
+    filecontent += 'terms:\n'
+    filecontent += '    - term: "Klassen"\n'
+    filecontent += '    - term: "Jobs"\n'
+    filecontent += '    - term: "Skills"\n'
+    filecontent += '    - term: "Status"\n'
+    filecontent += '    - term: "Traits"\n'
+    filecontent += f'    - term: "{job_d["Name_de"].title()}"\n'
+    filecontent += f'    - term: "{job_d["Name_en"].title()}"\n'
+    filecontent += f'    - term: "{job_d["Name_fr"].title()}"\n'
+    filecontent += f'    - term: "{job_d["Name_ja"].title()}"\n'
+    filecontent += f'    - term: "{job_d["Name_cn"].title()}"\n'
+    filecontent += f'    - term: "{job_d["Name_ko"].title()}"\n'
+    filecontent += f'sortid: 0\n'
+    filecontent += f'order: 0\n'
+    filecontent += f'plvl: 50\n'
+    filecontent += "bosses:\n"
+    filecontent += "  - title:\n"
+    filecontent += f'      de: "{job_d["Name_de"].title()}"\n'
+    filecontent += f'      en: "{job_d["Name_en"].title()}"\n'
+    filecontent += f'      fr: "{job_d["Name_fr"].title()}"\n'
+    filecontent += f'      ja: "{job_d["Name_ja"].title()}"\n'
+    filecontent += f'      cn: "{job_d["Name_cn"].title()}"\n'
+    filecontent += f'      ko: "{job_d["Name_ko"].title()}"\n'
+    filecontent += "    id: \"" + "boss0\"\n"
+    #todo add chocobo stuff
+    filecontent += addChocoboPartnerSkills()
+    filecontent += addRennChocoboSkills()
+    #addRennChocoboStatus()
+    filecontent += addRennChocoboItems()
+    filecontent += addRennChocoboMissions()
+    filecontent += addChocoboPartnerTraits()
+    filecontent += "    sequence:" + "\n"
+    filecontent += "      - phase: \"01\"\n"
+    filecontent += "        name: \"Chocobo-Partner-Skills\"\n"
+    filecontent += "      - phase: \"02\"\n"
+    filecontent += "        name: \"Chocobo-Partner-Traits\"\n"
+    filecontent += "      - phase: \"03\"\n"
+    filecontent += "        name: \"Renn-Chocobo-Skills\"\n"
+    #filecontent += "      - phase: \"04\"\n"
+    #filecontent += "        name: \"Renn-Chocobo-Status\"\n"
+    filecontent += "      - phase: \"04\"\n"
+    filecontent += "        name: \"Renn-Chocobo-Items\"\n"
+    filecontent += "      - phase: \"05\"\n"
+    filecontent += "        name: \"Renn-Chocobo-Missions\"\n"
+    filecontent += '---\n'
+
+    filename = f"klassen_und_jobs/2013-01-01--2.0--0--{job}.md"
+    with open(filename, encoding="utf8") as f:
+        doc = f.read()
+    if not doc == filecontent:
+        with open(filename, "w", encoding="utf8") as f:
+            f.write(filecontent)
 
 
 def run():
@@ -1144,5 +1182,5 @@ def run():
 
 
 if __name__ == "__main__":
-    os.chdir("./_posts")
+    os.chdir("../_posts")
     run()

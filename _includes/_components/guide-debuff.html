@@ -38,7 +38,12 @@
         {%- if debuff.description -%}
             <div class="guide__attack-notes-wrapper">
                 <h5 class="guide__attack-notes-title">Description:</h5>
-                <span class="guide__debuff_description">{{ debuff.description }}</span>
+                <span class="lang-toggle lang-toogle2-de guide__debuff_description">{{ debuff.description.de }}</span>
+                <span class="lang-toggle lang-toogle2-en guide__debuff_description">{{ debuff.description.en }}</span>
+                <span class="lang-toggle lang-toogle2-fr guide__debuff_description">{{ debuff.description.fr }}</span>
+                <span class="lang-toggle lang-toogle2-ja guide__debuff_description">{{ debuff.description.ja }}</span>
+                <span class="lang-toggle lang-toogle2-cn guide__debuff_description">{{ debuff.description.cn }}</span>
+                <span class="lang-toggle lang-toogle2-ko guide__debuff_description">{{ debuff.description.ko }}</span>
             </div>
         {%- endif -%}
 

@@ -35,7 +35,7 @@
             {%- endif -%}
         {%- endif -%}
         {%- if page.contentname -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentname: <span class="block">{{ page.contentname }}</span></h5>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentname: <span class="block">{{ page.contentname.de }}</span></h5>
         {%- endif -%}
         {%- if page.mapid -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">MapID: <span class="block">{{ page.mapid }}</span></h5>
@@ -55,15 +55,35 @@
                 {%- for music in page.music -%}
                     {%- if page.music.size > 1 -%}
                         {%- if music.id -%}
-                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name }}</a></span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name.ko }}</a></span>
                         {%- else -%}
-                            <span class="block">- {{ music.name }}</span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank">- {{ music.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank">- {{ music.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank">- {{ music.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank">- {{ music.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank">- {{ music.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank">- {{ music.name.ko }}</a></span>
                         {%- endif -%}
                     {%- else -%}
                         {%- if music.id -%}
-                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name }}</a></span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name.ko }}</a></span>
                         {%- else -%}
-                            <span class="block">{{ music.name }}</span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank">{{ music.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank">{{ music.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank">{{ music.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank">{{ music.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank">{{ music.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank">{{ music.name.ko }}</a></span>
                         {%- endif -%}
                     {%- endif -%}
                 {%- endfor -%}
@@ -90,7 +110,12 @@
         {%- if page.quest -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest:
                 <span class="block">
-                    <a target="_blank" href="https://de.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest }}">{{ page.quest }}</a>
+                    <a target="_blank" class="lang-toggle lang-toogle-de" href="https://de.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest.de }}">{{ page.quest.de }}</a>
+                    <a target="_blank" class="lang-toggle lang-toogle-en" href="https://en.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest.en }}">{{ page.quest.en }}</a>
+                    <a target="_blank" class="lang-toggle lang-toogle-fr" href="https://fr.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest.fr }}">{{ page.quest.fr }}</a>
+                    <a target="_blank" class="lang-toggle lang-toogle-ja" href="https://ja.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest.ja }}">{{ page.quest.ja }}</a>
+                    <a target="_blank" class="lang-toggle lang-toogle-cn" href="https://cn.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest.cn }}">{{ page.quest.cn }}</a>
+                    <a target="_blank" class="lang-toggle lang-toogle-ko" href="https://ko.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest.ko }}">{{ page.quest.ko }}</a>
                 </span>
             </h5>
             {%- if page.quest_location -%}
@@ -112,15 +137,35 @@
                 {%- for mount in page.mount -%}
                     {%- if page.mount.size > 1 -%}
                         {%- if mount.id -%}
-                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">- {{ mount.name }}</a></span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">- {{ mount.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">- {{ mount.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">- {{ mount.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">- {{ mount.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">- {{ mount.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">- {{ mount.name.ko }}</a></span>
                         {%- else -%}
-                            <span class="block">- {{ mount.name }}</span>
+                            <span class="lang-toggle lang-toogle-de block">- {{ mount.name.de }}</span>
+                            <span class="lang-toggle lang-toogle-en block">- {{ mount.name.en }}</span>
+                            <span class="lang-toggle lang-toogle-fr block">- {{ mount.name.fr }}</span>
+                            <span class="lang-toggle lang-toogle-ja block">- {{ mount.name.ja }}</span>
+                            <span class="lang-toggle lang-toogle-cn block">- {{ mount.name.cn }}</span>
+                            <span class="lang-toggle lang-toogle-ko block">- {{ mount.name.ko }}</span>
                         {%- endif -%}
                     {%- else -%}
                         {%- if mount.id -%}
-                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name }}</a></span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name.ko }}</a></span>
                         {%- else -%}
-                            <span class="block">{{ mount.name }}</span>
+                            <span class="lang-toggle lang-toogle-de block">{{ mount.name.de }}</span>
+                            <span class="lang-toggle lang-toogle-en block">{{ mount.name.en }}</span>
+                            <span class="lang-toggle lang-toogle-fr block">{{ mount.name.fr }}</span>
+                            <span class="lang-toggle lang-toogle-ja block">{{ mount.name.ja }}</span>
+                            <span class="lang-toggle lang-toogle-cn block">{{ mount.name.cn }}</span>
+                            <span class="lang-toggle lang-toogle-ko block">{{ mount.name.ko }}</span>
                         {%- endif -%}
                     {%- endif -%}
                 {%- endfor -%}
@@ -131,15 +176,35 @@
                 {%- for minion in page.minion -%}
                     {%- if page.minion.size > 1 -%}
                         {%- if minion.id -%}
-                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">- {{ minion.name }}</a></span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">- {{ minion.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">- {{ minion.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">- {{ minion.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">- {{ minion.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">- {{ minion.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">- {{ minion.name.ko }}</a></span>
                         {%- else -%}
-                            <span class="block">- {{ minion.name }}</span>
+                            <span class="lang-toggle lang-toogle-de block">- {{ minion.name.de }}</span>
+                            <span class="lang-toggle lang-toogle-en block">- {{ minion.name.en }}</span>
+                            <span class="lang-toggle lang-toogle-fr block">- {{ minion.name.fr }}</span>
+                            <span class="lang-toggle lang-toogle-ja block">- {{ minion.name.ja }}</span>
+                            <span class="lang-toggle lang-toogle-cn block">- {{ minion.name.cn }}</span>
+                            <span class="lang-toggle lang-toogle-ko block">- {{ minion.name.ko }}</span>
                         {%- endif -%}
                     {%- else -%}
                         {%- if minion.id -%}
-                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name }}</a></span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name.ko }}</a></span>
                         {%- else -%}
-                            <span class="block">{{ minion.name }}</span>
+                            <span class="lang-toggle lang-toogle-de block">{{ minion.name.de }}</span>
+                            <span class="lang-toggle lang-toogle-en block">{{ minion.name.en }}</span>
+                            <span class="lang-toggle lang-toogle-fr block">{{ minion.name.fr }}</span>
+                            <span class="lang-toggle lang-toogle-ja block">{{ minion.name.ja }}</span>
+                            <span class="lang-toggle lang-toogle-cn block">{{ minion.name.cn }}</span>
+                            <span class="lang-toggle lang-toogle-ko block">{{ minion.name.ko }}</span>
                         {%- endif -%}
                     {%- endif -%}
                 {%- endfor -%}
@@ -161,15 +226,35 @@
                 {%- for tt_card in page.tt_card -%}
                     {%- if page.tt_card.size > 1 -%}
                         {%- if tt_card.id -%}
-                            <span class="block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">- {{ tt_card.name }}</a></span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">- {{ tt_card.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">- {{ tt_card.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">- {{ tt_card.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">- {{ tt_card.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">- {{ tt_card.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">- {{ tt_card.name.ko }}</a></span>
                         {%- else -%}
-                            <span class="block">- {{ tt_card.name }}</span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank">- {{ tt_card.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank">- {{ tt_card.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank">- {{ tt_card.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank">- {{ tt_card.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank">- {{ tt_card.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank">- {{ tt_card.name.ko }}</a></span>
                         {%- endif -%}
                     {%- else -%}
                         {%- if tt_card.id -%}
-                            <span class="block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name }}</a></span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name.ko }}</a></span>
                         {%- else -%}
-                            <span class="block">{{ tt_card.name }}</span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank">{{ tt_card.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank">{{ tt_card.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank">{{ tt_card.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank">{{ tt_card.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank">{{ tt_card.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank">{{ tt_card.name.ko }}</a></span>
                         {%- endif -%}
                     {%- endif -%}
                 {%- endfor -%}
@@ -180,15 +265,35 @@
                 {%- for orchestrion in page.orchestrion -%}
                     {%- if page.orchestrion.size > 1 -%}
                         {%- if orchestrion.id -%}
-                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">- {{ orchestrion.name }}</a></span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">- {{ orchestrion.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">- {{ orchestrion.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">- {{ orchestrion.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">- {{ orchestrion.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">- {{ orchestrion.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">- {{ orchestrion.name.ko }}</a></span>
                         {%- else -%}
-                            <span class="block">- {{ orchestrion.name }}</span>
+                            <span class="lang-toggle lang-toogle-de block">{{ orchestrion.name.de }}</span>
+                            <span class="lang-toggle lang-toogle-en block">{{ orchestrion.name.en }}</span>
+                            <span class="lang-toggle lang-toogle-fr block">{{ orchestrion.name.fr }}</span>
+                            <span class="lang-toggle lang-toogle-ja block">{{ orchestrion.name.ja }}</span>
+                            <span class="lang-toggle lang-toogle-cn block">{{ orchestrion.name.cn }}</span>
+                            <span class="lang-toggle lang-toogle-ko block">{{ orchestrion.name.ko }}</span>
                         {%- endif -%}
                     {%- else -%}
                         {%- if orchestrion.id -%}
-                            <span class="block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name }}</a></span>
+                            <span class="lang-toggle lang-toogle-de block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name.de }}</a></span>
+                            <span class="lang-toggle lang-toogle-en block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name.en }}</a></span>
+                            <span class="lang-toggle lang-toogle-fr block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name.fr }}</a></span>
+                            <span class="lang-toggle lang-toogle-ja block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name.ja }}</a></span>
+                            <span class="lang-toggle lang-toogle-cn block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name.cn }}</a></span>
+                            <span class="lang-toggle lang-toogle-ko block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name.ko }}</a></span>
                         {%- else -%}
-                            <span class="block">{{ orchestrion.name }}</span>
+                            <span class="lang-toggle lang-toogle-de block">{{ orchestrion.name.de }}</span>
+                            <span class="lang-toggle lang-toogle-en block">{{ orchestrion.name.en }}</span>
+                            <span class="lang-toggle lang-toogle-fr block">{{ orchestrion.name.fr }}</span>
+                            <span class="lang-toggle lang-toogle-ja block">{{ orchestrion.name.ja }}</span>
+                            <span class="lang-toggle lang-toogle-cn block">{{ orchestrion.name.cn }}</span>
+                            <span class="lang-toggle lang-toogle-ko block">{{ orchestrion.name.ko }}</span>
                         {%- endif -%}
                     {%- endif -%}
                 {%- endfor -%}
@@ -198,9 +303,19 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Orchestrion Roll Material:
                 {%- for orchestrion_material in page.orchestrion_material -%}
                     {%- if page.orchestrion_material.size > 1 -%}
-                        <span class="block">- {{ orchestrion_material.name }}</span>
+                        <span class="lang-toggle lang-toogle-de block">- {{ orchestrion_material.name.de }}</span>
+                        <span class="lang-toggle lang-toogle-en block">- {{ orchestrion_material.name.en }}</span>
+                        <span class="lang-toggle lang-toogle-fr block">- {{ orchestrion_material.name.fr }}</span>
+                        <span class="lang-toggle lang-toogle-ja block">- {{ orchestrion_material.name.ja }}</span>
+                        <span class="lang-toggle lang-toogle-cn block">- {{ orchestrion_material.name.cn }}</span>
+                        <span class="lang-toggle lang-toogle-ko block">- {{ orchestrion_material.name.ko }}</span>
                     {%- else -%}
-                        <span class="block">{{ orchestrion_material.name }}</span>
+                        <span class="lang-toggle lang-toogle-de block">{{ orchestrion_material.name.de }}</span>
+                        <span class="lang-toggle lang-toogle-en block">{{ orchestrion_material.name.en }}</span>
+                        <span class="lang-toggle lang-toogle-fr block">{{ orchestrion_material.name.fr }}</span>
+                        <span class="lang-toggle lang-toogle-ja block">{{ orchestrion_material.name.ja }}</span>
+                        <span class="lang-toggle lang-toogle-cn block">{{ orchestrion_material.name.cn }}</span>
+                        <span class="lang-toggle lang-toogle-ko block">{{ orchestrion_material.name.ko }}</span>
                     {%- endif -%}
                 {%- endfor -%}
             </h5>
