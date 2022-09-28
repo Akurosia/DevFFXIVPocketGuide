@@ -1369,9 +1369,9 @@ if __name__ == "__main__":
     logger.debug(orderedContent)
     run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
     # csgf needs also to run from posts dir
-    #csgf.run()
+    csgf.run()
     # move back to DEVPOCKETGUIDE dir
     os.chdir("..")
-    #gl.run()
-    #gp.run()
+    gl.run()
+    gp.run()
     logger.critical('STOP')
