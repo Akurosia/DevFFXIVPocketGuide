@@ -12,6 +12,7 @@ from ffxiv_aku import *
 territorytype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
 patchversions = get_any_Versiondata()
 mounts = loadDataTheQuickestWay("mount_all.json", translate=True)
+exversion = loadDataTheQuickestWay("exversion_all.json", translate=True)
 minions = loadDataTheQuickestWay("companion_all.json", translate=True)
 orchestrions = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
 ttcards = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
