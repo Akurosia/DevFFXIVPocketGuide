@@ -119,10 +119,24 @@
                 </span>
             </h5>
             {%- if page.quest_location -%}
-                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest Location: <span class="block">{{ page.quest_location }}</span></h5>
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest Location:
+                    <span class="lang-toggle lang-toogle-de block">{{ page.quest_location.de }}</span>
+                    <span class="lang-toggle lang-toogle-en block">{{ page.quest_location.en }}</span>
+                    <span class="lang-toggle lang-toogle-fr block">{{ page.quest_location.fr }}</span>
+                    <span class="lang-toggle lang-toogle-ja block">{{ page.quest_location.ja }}</span>
+                    <span class="lang-toggle lang-toogle-cn block">{{ page.quest_location.cn }}</span>
+                    <span class="lang-toggle lang-toogle-ko block">{{ page.quest_location.ko }}</span>
+                </h5>
             {%- endif -%}
             {%- if page.quest_npc -%}
-                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest NPC: <span class="block">{{ page.quest_npc }}</span></h5>
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest NPC:
+                    <span class="lang-toggle lang-toogle-de block">{{ page.quest_npc.de }}</span>
+                    <span class="lang-toggle lang-toogle-en block">{{ page.quest_npc.en }}</span>
+                    <span class="lang-toggle lang-toogle-fr block">{{ page.quest_npc.fr }}</span>
+                    <span class="lang-toggle lang-toogle-ja block">{{ page.quest_npc.ja }}</span>
+                    <span class="lang-toggle lang-toogle-cn block">{{ page.quest_npc.cn }}</span>
+                    <span class="lang-toggle lang-toogle-ko block">{{ page.quest_npc.ko }}</span>
+                </h5>
             {%- endif -%}
         {%- endif -%}
         {%- if page.partners -%}

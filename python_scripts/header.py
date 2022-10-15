@@ -21,7 +21,7 @@ contentmembertype = loadDataTheQuickestWay("ContentMemberType.json")
 
 
 def get_territorytype_from_mapid(entry):
-    for key, tt_type in territorytype.items():
+    for _, tt_type in territorytype.items():
         if tt_type["TerritoryType"].lower() == entry["mapid"].lower():
             return tt_type
     print_color_red(f"Could not find territorytype for {entry['mapid']} ({entry['title']})")
@@ -242,6 +242,7 @@ def rewrite_content_even_if_exists(entry, old_wip):
     header_data += 'plvl_sync: ' + entry["plvl_sync"] + '\n'
     header_data += 'ilvl: ' + entry["ilvl"] + '\n'
     header_data += 'ilvl_sync: ' + entry["ilvl_sync"] + '\n'
+    # quests
     x = False
     for lang in LANGUAGES:
         if not entry.get(f"quest_{lang}", "") == "":
@@ -249,10 +250,20 @@ def rewrite_content_even_if_exists(entry, old_wip):
                 x = True
                 header_data += 'quest:\n'
             header_data += f'  {lang}: "' + entry[f"quest_{lang}"] + '"\n'
-    if not entry["quest_location"] == "":
-        header_data += 'quest_location: "' + entry["quest_location"] + '"\n'
-    if not entry["quest_npc"] == "":
-        header_data += 'quest_npc: "' + entry["quest_npc"] + '"\n'
+    x = False
+    for lang in LANGUAGES:
+        if not entry.get(f"quest_location_{lang}", "") == "":
+            if not x:
+                x = True
+                header_data += 'quest_location:\n'
+            header_data += f'  {lang}: "' + entry[f"quest_location_{lang}"] + '"\n'
+    x = False
+    for lang in LANGUAGES:
+        if not entry.get(f"quest_npc_{lang}", "") == "":
+            if not x:
+                x = True
+                header_data += 'quest_npc:\n'
+            header_data += f'  {lang}: "' + entry[f"quest_npc_{lang}"] + '"\n'
     header_data += 'order: ' + get_order_id(entry) + '\n'
     # mounts
     if checkVariable(entry, "mount1") or checkVariable(entry, "mount2"):
@@ -294,7 +305,8 @@ def rewrite_content_even_if_exists(entry, old_wip):
             header_data += '  - name: "' + entry["orchestrion_material3"] + '"\n'
     # rouletts
     if entry.get("expert", None):
-        header_data += 'rouletts:\n'
+        if entry["allianceraid"] or entry["frontier"] or entry["expert"] or entry["guildhest"] or entry["level50_60_70"] or entry["level80"] or entry["leveling"] or entry["main"] or entry["mentor"] or entry["normalraid"] or entry["trial"]:
+            header_data += 'rouletts:\n'
         if entry["allianceraid"]:
             header_data += '    allianceraid: ' + entry["allianceraid"] + "\n"
         if entry["frontier"]:

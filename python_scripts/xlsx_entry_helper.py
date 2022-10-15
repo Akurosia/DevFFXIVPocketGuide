@@ -20,6 +20,7 @@ quests = loadDataTheQuickestWay("Quest.de.json")
 quests_all = loadDataTheQuickestWay("quest_all.json", translate=True)
 questss = loadDataTheQuickestWay("Quest.de.json", exd="raw-exd-all")
 enpcresidents = loadDataTheQuickestWay("Enpcresident.de.json")
+enpcresidentss = loadDataTheQuickestWay("Enpcresident", translate=True)
 contentfinderconditionX = loadDataTheQuickestWay("ContentFinderCondition.de.json")
 
 
@@ -41,43 +42,47 @@ def clean_entries_from_single_quotes(entry):
     return entry
 
 
-def make_name_readable(entry):
-    name = entry["Singular"]
-    name = name.replace("[t]", DIFFERENT_PRONOUNS[entry["Pronoun"]])
-    name = name.replace("[a]", DIFFERENT_PRONOUNSS[entry["Pronoun"]])
+def make_name_readable(entry, x):
+    name = entry
+    name = name.replace("[t]", DIFFERENT_PRONOUNS[x["Pronoun"]])
+    name = name.replace("[a]", DIFFERENT_PRONOUNSS[x["Pronoun"]])
     return name
-
-
-def getPropperQuestNPC(_id):
-    npc_id = questss[_id]['Issuer']['Start']
-    return make_name_readable(enpcresidents[npc_id])
 
 
 def workOnQuests(entry, quest_id):
     if quest_id == "":
-        entry['quest'] = ""
-        entry['quest_location'] = ""
-        entry['quest_npc'] = ""
+        for lang in LANGUAGES:
+            entry[f'quest_{lang}'] = ""
+            entry[f'quest_location_{lang}'] = ""
+            entry[f'quest_npc_{lang}'] = ""
         return entry
-    quest = quests[quest_id]
+        
+    # retriev quest from raw-exd to easily get all languages
+    quest = questss[quest_id]
     for lang in LANGUAGES:
         entry[f'quest_{lang}'] = quests_all[quest_id][f'Name_{lang}'].replace(" ", "").replace(" ", "")
-    npc = quest['Issuer']['Start']
-    if "[a]" in npc or "[t]" in npc:
-        npc = getPropperQuestNPC(quest_id)
-    entry['quest_npc'] = npc
-    try:
-        level_data = getLevel(quest['Issuer']['Location'])
-        entry['quest_location'] = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
-    except KeyError:
-        entry['quest_location'] = ""
-        print_color_red(f"[workOnQuests] Error on loading: {quest['Issuer']['Location']} ({quest_id})")
+        
+    issuer_id = quest['Issuer']['Start']
+    for lang in LANGUAGES:
+        npc = enpcresidentss[issuer_id][f"Singular_{lang}"]
+        if "[a]" in npc or "[t]" in npc:
+            npc = make_name_readable(npc, enpcresidents[issuer_id])
+        entry[f'quest_npc_{lang}'] = npc
+    
+    level_id = quest['Issuer']['Location']
+    for lang in LANGUAGES:
+        try:
+            level_data = getLevel(level_id, lang=lang)
+            entry[f'quest_location_{lang}'] = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
+        except KeyError:
+            entry['quest_location'] = ""
+            print_color_red(f"[workOnQuests] Error on loading: {quest['Issuer']['Location']} ({quest_id})")
     return entry
 
 
 def getEntriesForRouletts(entry):
     global contentfinderconditionX
-    for key, value in contentfinderconditionX.items():
+    for _, value in contentfinderconditionX.items():
         if value['Name'] == getContentName(entry["title"], "de", entry["difficulty"], entry["instanceType"]):
             entry['type'] = value['ContentType'].lower()
             entry['mapid'] = value['TerritoryType']
