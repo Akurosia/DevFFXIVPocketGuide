@@ -35,7 +35,14 @@
             {%- endif -%}
         {%- endif -%}
         {%- if page.contentname -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentname: <span class="block">{{ page.contentname.de }}</span></h5>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentname: 
+                <span class="lang-toggle lang-toogle-de block">{{ page.contentname.de }}</span>
+                <span class="lang-toggle lang-toogle-en block">{{ page.contentname.en }}</span>
+                <span class="lang-toggle lang-toogle-fr block">{{ page.contentname.fr }}</span>
+                <span class="lang-toggle lang-toogle-ja block">{{ page.contentname.ja }}</span>
+                <span class="lang-toggle lang-toogle-cn block">{{ page.contentname.cn }}</span>
+                <span class="lang-toggle lang-toogle-ko block">{{ page.contentname.ko }}</span>
+            </h5>
         {%- endif -%}
         {%- if page.mapid -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">MapID: <span class="block">{{ page.mapid }}</span></h5>
