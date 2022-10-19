@@ -104,11 +104,11 @@ def writeTags(header_data, entry, tt_type_name):
     if entry.get("guildhest", None) == "True":
         header_data += "  - term: \"guildhest\"\n"
         found_roulette = True
-    if entry.get("level50_60_70", None) == "True":
-        header_data += "  - term: \"level50_60_70\"\n"
+    if entry.get("highlevelroulette", None) == "True":
+        header_data += "  - term: \"highlevelroulette\"\n"
         found_roulette = True
-    if entry.get("level80", None) == "True":
-        header_data += "  - term: \"level80\"\n"
+    if entry.get("levelcaproulette", None) == "True":
+        header_data += "  - term: \"levelcaproulette\"\n"
         found_roulette = True
     if entry.get("leveling", None) == "True":
         header_data += "  - term: \"leveling\"\n"
@@ -305,7 +305,7 @@ def rewrite_content_even_if_exists(entry, old_wip):
             header_data += '  - name: "' + entry["orchestrion_material3"] + '"\n'
     # rouletts
     if entry.get("expert", None):
-        if entry["allianceraid"] or entry["frontier"] or entry["expert"] or entry["guildhest"] or entry["level50_60_70"] or entry["level80"] or entry["leveling"] or entry["main"] or entry["mentor"] or entry["normalraid"] or entry["trial"]:
+        if entry["allianceraid"] or entry["frontier"] or entry["expert"] or entry["guildhest"] or entry["highlevelroulette"] or entry["levelcaproulette"] or entry["leveling"] or entry["main"] or entry["mentor"] or entry["normalraid"] or entry["trial"]:
             header_data += 'rouletts:\n'
         if entry["allianceraid"]:
             header_data += '    allianceraid: ' + entry["allianceraid"] + "\n"
@@ -315,10 +315,10 @@ def rewrite_content_even_if_exists(entry, old_wip):
             header_data += '    expert: ' + entry["expert"] + "\n"
         if entry["guildhest"]:
             header_data += '    guildhest: ' + entry["guildhest"] + "\n"
-        if entry["level50_60_70"]:
-            header_data += '    level50_60_70: ' + entry["level50_60_70"] + "\n"
-        if entry["level80"]:
-            header_data += '    level80: ' + entry["level80"] + "\n"
+        if entry["highlevelroulette"]:
+            header_data += '    highlevelroulette: ' + entry["highlevelroulette"] + "\n"
+        if entry["levelcaproulette"]:
+            header_data += '    levelcaproulette: ' + entry["levelcaproulette"] + "\n"
         if entry["leveling"]:
             header_data += '    leveling: ' + entry["leveling"] + "\n"
         if entry["main"]:

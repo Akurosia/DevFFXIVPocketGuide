@@ -12,6 +12,11 @@
             {%- assign counter = counter | plus: 1 -%}
             {%- include summary.html -%}
         {%- endif -%}
+    {%- elsif page.page_category == "gewölbesuche" -%}
+        {%- if guide.instanceType == "gewölbesuche" or guide.instance_type == "Gewölbesuche" -%}
+            {%- assign counter = counter | plus: 1 -%}
+            {%- include summary.html -%}
+        {%- endif -%}
     {%- elsif page.page_category == "allianzraid" -%}
         {%- if guide.instanceType == "allianzraid" or guide.instance_type == "AllianzRaid" -%}
             {%- assign counter = counter | plus: 1 -%}

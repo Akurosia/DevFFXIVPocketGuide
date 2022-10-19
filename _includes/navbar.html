@@ -95,6 +95,14 @@
                     </a>
                 </li>
                 <li>
+                    <a target="" {%- if page.page_category == "gewölbesuche" -%}class="active"{%- endif -%}
+                        {%- if page.instanceType == "gewölbesuche" or page.instance_type == "Gewölbesuche" -%}class="active"{%- endif -%}
+                        href='{{ "/gewölbesuche/" | prepend: site.baseurl }}' title="Gewölbesuche - Guides anzeigen">
+                        <img src='{{ site.imageurl }}/{{ "/061000/061804_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
+                        Gewölbesuche
+                    </a>
+                </li>
+                <li>
                     <a target="" {%- if page.page_category == "feldexkursion" -%}class="active"{%- endif -%}
                         {%- if page.instanceType == "feldexkursion" or page.instance_type == "feldexkursion" -%}class="active"{%- endif -%}
                         href='{{ "/feldexkursion/" | prepend: site.baseurl }}' title="Feldexkursion - Guides anzeigen">

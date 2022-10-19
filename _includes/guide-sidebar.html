@@ -351,10 +351,10 @@
                     <span class="block">- Experte</span>
                 {%- elsif page.rouletts.guildhest -%}
                     <span class="block">- Gildengeheiß</span>
-                {%- elsif page.rouletts.level50_60_70 -%}
-                    <span class="block">- Level 50/60/70</span>
-                {%- elsif page.rouletts.level80 -%}
-                    <span class="block">- Level 80</span>
+                {%- elsif page.rouletts.highlevelroulette -%}
+                    <span class="block">- High Level</span>
+                {%- elsif page.rouletts.levelcaproulette -%}
+                    <span class="block">- Level Cap</span>
                 {%- elsif page.rouletts.leveling -%}
                     <span class="block">- Leveling</span>
                 {%- elsif page.rouletts.main -%}
@@ -365,6 +365,8 @@
                     <span class="block">- Normal Raid</span>
                 {%- elsif page.rouletts.trial -%}
                     <span class="block">- Prüfung</span>
+                {%- elsif page.rouletts.gewölbesuche -%}
+                    <span class="block">- Gewölbesuche</span>
                 {%- endif -%}
             </h5>
         {%- endif -%}
@@ -398,6 +400,7 @@
                         {%- if page.instanceType == "raid" -%}Raid Notizen{%- endif -%}
                         {%- if page.instanceType == "treasure" -%}Schatzdungeon Notizen{%- endif -%}
                         {%- if page.instanceType == "trial" -%}Prüfung Notizen{%- endif -%}
+                        {%- if page.instanceType == "gewölbesuche" -%}Gewölbesuche Notizen{%- endif -%}
                         {%- if page.instanceType == "ultimate" -%}Ultimate Notizen{%- endif -%}
                     </a>
                 </li>
@@ -415,6 +418,7 @@
                         {%- if page.instanceType == "raid" -%}Raid Bosse{%- endif -%}
                         {%- if page.instanceType == "treasure" -%}Schatzdungeon Bosse{%- endif -%}
                         {%- if page.instanceType == "trial" -%}Prüfung Bosse{%- endif -%}
+                        {%- if page.instanceType == "gewölbesuche" -%}Gewölbesuche Bosse{%- endif -%}
                         {%- if page.instanceType == "ultimate" -%}Ultimate Bosse{%- endif -%}
                     </a>
                     <ul class="guide-metadata__submenu">
@@ -444,6 +448,7 @@
                         {%- if page.instanceType == "raid" -%}Raid Adds{%- endif -%}
                         {%- if page.instanceType == "treasure" -%}Schatzdungeon Adds{%- endif -%}
                         {%- if page.instanceType == "trial" -%}Prüfung Adds{%- endif -%}
+                        {%- if page.instanceType == "gewölbesuche" -%}Gewölbesuche Adds{%- endif -%}
                         {%- if page.instanceType == "ultimate" -%}Ultimate Adds{%- endif -%}
                     </a>
                     <ul class="guide-metadata__submenu">
