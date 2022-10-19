@@ -9,12 +9,9 @@
         <span class="{% if debuff.damage_type == 'Magical' %} attack-is-magic
                      {% elsif debuff.damage_type && debuff.damage_type != 'None' %} attack-is-physical
                      {% endif %}">
-            <span class="lang-toggle lang-toogle-de">{{ debuff.title.de }}</span>
-            <span class="lang-toggle lang-toogle-en">{{ debuff.title.en }}</span>
-            <span class="lang-toggle lang-toogle-fr">{{ debuff.title.fr }}</span>
-            <span class="lang-toggle lang-toogle-ja">{{ debuff.title.ja }}</span>
-            <span class="lang-toggle lang-toogle-cn">{{ debuff.title.cn }}</span>
-            <span class="lang-toggle lang-toogle-ko">{{ debuff.title.ko }}</span>
+            {%- for lang in LANGUAGES -%}
+                <span class="lang-toggle lang-toogle-{{lang}}">{{ debuff.title[lang] }}</span>
+            {%- endfor -%}
         </span>
 
         {%- if debuff.title.en -%}
@@ -38,12 +35,9 @@
         {%- if debuff.description -%}
             <div class="guide__attack-notes-wrapper">
                 <h5 class="guide__attack-notes-title">Description:</h5>
-                <span class="lang-toggle lang-toogle2-de guide__debuff_description">{{ debuff.description.de }}</span>
-                <span class="lang-toggle lang-toogle2-en guide__debuff_description">{{ debuff.description.en }}</span>
-                <span class="lang-toggle lang-toogle2-fr guide__debuff_description">{{ debuff.description.fr }}</span>
-                <span class="lang-toggle lang-toogle2-ja guide__debuff_description">{{ debuff.description.ja }}</span>
-                <span class="lang-toggle lang-toogle2-cn guide__debuff_description">{{ debuff.description.cn }}</span>
-                <span class="lang-toggle lang-toogle2-ko guide__debuff_description">{{ debuff.description.ko }}</span>
+                {%- for lang in LANGUAGES -%}
+                    <span class="lang-toggle lang-toogle2-{{lang}} guide__debuff_description">{{ debuff.description[lang] }}</span>
+                {%- endfor -%}
             </div>
         {%- endif -%}
 

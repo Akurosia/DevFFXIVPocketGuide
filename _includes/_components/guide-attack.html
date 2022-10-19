@@ -11,12 +11,9 @@
         <span class="{% if attack.damage_type == 'Magical' %} attack-is-magic
                      {% elsif attack.damage_type && attack.damage_type != 'None' %} attack-is-physical
                      {% endif %}">
-            <span class="lang-toggle lang-toogle-de">{{ attack.title.de }}</span>
-            <span class="lang-toggle lang-toogle-en">{{ attack.title.en }}</span>
-            <span class="lang-toggle lang-toogle-fr">{{ attack.title.fr }}</span>
-            <span class="lang-toggle lang-toogle-ja">{{ attack.title.ja }}</span>
-            <span class="lang-toggle lang-toogle-cn">{{ attack.title.cn }}</span>
-            <span class="lang-toggle lang-toogle-ko">{{ attack.title.ko }}</span>
+            {%- for lang in LANGUAGES -%}
+                <span class="lang-toggle lang-toogle-{{lang}}">{{ attack.title[lang] }}</span>
+            {%- endfor -%}
         </span>
 
         {%- if attack.title.en -%}

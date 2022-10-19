@@ -32,7 +32,6 @@
             {%- endif -%}
         </div>
         <div class="site-header__item-a">
-
             <h1 class="{%- if page.page_type == 'index' or page.page_type == 'guide' -%}site-header__title{%- else -%}site-header__guide-title{%- endif -%}">
                 {%- if page.page_category == "all" -%}
                     The FFXIV Pocket Guide
@@ -46,6 +45,8 @@
                     Ultimate Guides
                 {%- elsif page.page_category == "allianzraid" -%}
                     Allianz Raid Guides
+                {%- elsif page.page_category == "gewölbesuche" -%}
+                    Gewölbesuche Guides
                 {%- elsif page.page_category == "pvp" -%}
                     PVP Guides
                 {%- elsif page.page_category == "potd" -%}
@@ -67,12 +68,9 @@
                 {%- elsif page.page_category == "patches" -%}
                     Patches
                 {%- else -%}
-                    <span class="lang-toggle lang-toogle-de ">{{  page.title.de }}</span>
-                    <span class="lang-toggle lang-toogle-en ">{{  page.title.en }}</span>
-                    <span class="lang-toggle lang-toogle-fr ">{{  page.title.fr }}</span>
-                    <span class="lang-toggle lang-toogle-ja ">{{  page.title.ja }}</span>
-                    <span class="lang-toggle lang-toogle-cn ">{{  page.title.cn }}</span>
-                    <span class="lang-toggle lang-toogle-ko ">{{  page.title.ko }}</span>
+                    {%- for lang in LANGUAGES -%}
+                        <span class="lang-toggle lang-toogle-{{lang}} ">{{ page.title[lang] }}</span>
+                    {%- endfor -%}
                     {%- if page.difficulty -%}
                         {%- if page.difficulty != "Normal" -%}
                             <span class
