@@ -344,6 +344,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     },
                     'title_id': tmp_attack['title_id'],
                     'damage_type': tmp_attack['damage_type'],
+                    'add_status': tmp_attack.get("add_status", []),
                     'single_or_aoe': attack['type_id']
                 }
                 if tmp_attack['title'] == "Attacke":
@@ -368,6 +369,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     tmp['notes'] = [{'note': 'Variation-note BIG'}]
                     if tmp_attack['notes'][0]['note'] == "Variation-note BIG":
                         tmp['notes'][0]['note'] = "Variation-note 1"
+
                 tmp_attack['variation'] = [tmp]
 
                 # add new attack
@@ -462,6 +464,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 },
                 'title_id': attack_id,
                 'attack_in_use': 'false',
+                'add_status': attack.get("add_status", []),
                 'disable': 'false',
                 'type': 'regular',
                 'damage_type': attack['damage_type'],
@@ -793,6 +796,7 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
             new_enemy_data_c = copy.deepcopy({**{}, **new_enemy_data})
             # create new template file to merge against
             enemy_id = new_enemy_data.get("id", "")
+
             de_and_sort_name = enemy if enemy != "" else "Unbekannte Herkunft"
             tmp = {
                 "sortname": de_and_sort_name,
@@ -807,7 +811,8 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
                 "enemy_id": enemy_id,
                 "id": f"{enemy_type[:-1]}{counter:02d}",
                 "attacks": [],
-                "debuffs": []
+                "debuffs": [],
+                "add_status": []
             }
 
             if new_enemy_data.get("minHP", None) or new_enemy_data.get("maxHP", None):
@@ -840,6 +845,7 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
         if empty_enemy and not empty_enemy_available:
             if empty_enemy.get("attacks", None) or empty_enemy.get("debuffs", None):
                 guide_data += add_Enemy(empty_enemy, "bosse", new_enemy_data_c)
+
     return guide_data
 
 
@@ -924,6 +930,15 @@ def add_regular_Attack(guide_data, attack, enemy_type):
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
     guide_data += f'        damage_type: "{attack.get("damage_type", None)}"\n'
 
+    if attack.get('add_status', None):
+        guide_data += f'        add_status:\n'
+        for e in attack['add_status']:
+            guide_data += f'          - status: {e}\n'
+            guide_data += f'            name:\n'
+            s = status[str(int(e, 16))]
+            for lang in LANGUAGES:
+                guide_data += f'               {lang}: ' + s[f"Name_{lang}"] + '\n'
+
     if attack.get('damage', None):
         guide_data += f'        damage:\n'
         try:
@@ -997,6 +1012,15 @@ def add_variation_Attack(guide_data, attack, enemy_type):
             #guide_data = setMultipleLanguageStrings(guide_data, "title", variation, "              ")
             guide_data += f'          - title_id: "{variation["title_id"]}"\n'
             guide_data += f'            damage_type: "{variation.get("damage_type", None)}"\n'
+
+            if variation.get('add_status', None):
+                guide_data += f'            add_status:\n'
+                for e in variation['add_status']:
+                    guide_data += f'              - status: {e}\n'
+                    guide_data += f'                name:\n'
+                    s = status[str(int(e, 16))]
+                    for lang in LANGUAGES:
+                        guide_data += f'                 {lang}: ' + s[f"Name_{lang}"] + '\n'
 
             # print_color_yellow(variation)
             if variation.get('damage', None):
@@ -1212,4 +1236,3 @@ def addGuide(entry, old_data, logdata_instance_content):
     guide_data += check_Enemy(entry, "bosse", logdata_instance_content, old_data.get('bosses', {}))
     guide_data += check_Enemy(entry, "adds", logdata_instance_content, old_data.get('adds', {}))
     return guide_data
-

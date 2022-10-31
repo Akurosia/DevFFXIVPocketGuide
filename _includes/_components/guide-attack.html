@@ -65,11 +65,22 @@
                 </ul>
             {%- endif -%}
         {%- else -%}
+            {%- for status in attack.add_status -%}
+                {%- for lang in LANGUAGES -%}
+                    <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status {{ status.name[lang] }} hinzu.</h5>
+                {%- endfor -%}
+                <br/>
+            {%- endfor -%}
             {%- include _components/guide-attack-notes.html -%}
         {%- endif -%}
         <!-- Combo Attacks -->
         {%- for combo in attack.combo -%}
             {%- include _components/guide-combo-tags.html -%}
+            {%- for status in combo.add_status -%}
+                {%- for lang in LANGUAGES -%}
+                    <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status {{ status.name[lang] }} hinzu.</h5><br/>
+                {%- endfor -%}
+            {%- endfor -%}
             {%- include _components/guide-attack-notes.html -%}
             <!-- Combo Images -->
             {%- if combo.images -%}
@@ -92,6 +103,12 @@
         {%- for variation in attack.variation -%}
             <div class="guide__variation-attack-seperator">
                 {%- include _components/guide-variation-tags.html -%}
+                {%- for status in variation.add_status -%}
+                    {%- for lang in LANGUAGES -%}
+                        <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status {{ status.name[lang] }} hinzu.</h5>
+                    {%- endfor -%}
+                    <br/>
+                {%- endfor -%}
                 {%- include _components/guide-attack-notes.html -%}
                 <!-- Variation Images -->
                 {%- if variation.images -%}

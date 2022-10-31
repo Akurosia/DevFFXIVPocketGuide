@@ -128,7 +128,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
         try:
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if debug_row_number not in [469]:
+            #if debug_row_number not in [468]:
             #   continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             logger.info(pretty_json(entry))
@@ -163,9 +163,9 @@ if __name__ == "__main__":
         run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
     except: pass
     # csgf needs also to run from posts dir
-    csgf.run()
-    # move back to DEVPOCKETGUIDE dir
-    os.chdir("..")
-    gl.run()
-    gp.run()
+    #csgf.run()
+    ## move back to DEVPOCKETGUIDE dir
+    #os.chdir("..")
+    #gl.run()
+    #gp.run()
     logger.critical('STOP')
