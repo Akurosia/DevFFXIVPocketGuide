@@ -45,6 +45,12 @@
             {%- else -%}--attack
             {%- endif -%}" style="{%- if attack.disable == 'true' -%}display: none;{%- endif -%}">
     <div class="guide__accordion-copy-wrapper">
+        {%- for status in attack.add_status -%}
+            {%- for lang in LANGUAGES -%}
+                <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status <img src="{{ site.imageurl }}/{{ status.icon }}" style="height: 30px; width: auto;"><u>{{ status.name[lang] }}</u> hinzu.</h5>
+            {%- endfor -%}
+            <br/>
+        {%- endfor -%}
         <!-- Standard Attacks -->
         {%- if attack.combo -%}
             {%- if attack.notes -%}
@@ -65,12 +71,6 @@
                 </ul>
             {%- endif -%}
         {%- else -%}
-            {%- for status in attack.add_status -%}
-                {%- for lang in LANGUAGES -%}
-                    <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status {{ status.name[lang] }} hinzu.</h5>
-                {%- endfor -%}
-                <br/>
-            {%- endfor -%}
             {%- include _components/guide-attack-notes.html -%}
         {%- endif -%}
         <!-- Combo Attacks -->
