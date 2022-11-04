@@ -26,6 +26,7 @@ disable_yellow_print = True
 disable_blue_print = True
 disable_red_print = True
 debug_row_number = 0
+print_debug = False
 
 
 def get_old_content_if_file_is_found(_existing_filename):
@@ -123,14 +124,17 @@ def write_content_to_file(entry, filename, old_data):
 
 def run(sheet, max_row, max_column, elements, orderedContent):
     global debug_row_number # used in debugger to verify entry
+    global print_debug
     # for every row do:
     for i in range(2, max_row):
         try:
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if debug_row_number not in [468]:
-            #   continue
+            #if debug_row_number not in [434]:
+            #    print_debug = True
+            #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
+            if print_debug: print(entry['title'])
             logger.info(pretty_json(entry))
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
@@ -146,6 +150,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                     # logger.info(pretty_json(old_data))
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_data)
+            elif entry['title'] != "":
+                print_color_green(f"Skipp {entry['title']} as its marked as {entry['exclude']}/{entry['done']}")
         except Exception as e:
             logger.critical(f"Error when handeling '{filename}' with line id '{i}' ({e})")
             traceback.print_exception(*sys.exc_info())
@@ -162,10 +168,11 @@ if __name__ == "__main__":
     try:
         run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
     except: pass
-    #csgf needs also to run from posts dir
-    csgf.run()
-    # move back to DEVPOCKETGUIDE dir
-    os.chdir("..")
-    gl.run()
-    gp.run()
+    if not print_debug:
+        #csgf needs also to run from posts dir
+        csgf.run()
+        # move back to DEVPOCKETGUIDE dir
+        os.chdir("..")
+        gl.run()
+        gp.run()
     logger.critical('STOP')
