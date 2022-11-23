@@ -146,16 +146,15 @@ def handle_add_status(attack, new_attack):
         attack['add_status'] = []
         for s in tmp: 
             if isinstance(s, dict):
-                attack['add_status'].append(s['status'])
+                attack['add_status'].append(str(s['status']))
             else:
-                attack['add_status'].append(s)
+                attack['add_status'].append(str(s))
                     
         for s in new_attack.get("add_status", []):
             if isinstance(s, str):
-                attack['add_status'].append(s)
+                attack['add_status'].append(str(s))
             else:
-                attack['add_status'].append(s['status'])
-        print_color_yellow(attack['add_status'])
+                attack['add_status'].append(str(s['status']))
         attack['add_status'] = sorted(list(set(attack['add_status'])))
     if new_attack.get("add_status", None):
         attack['add_status'] = new_attack['add_status']
