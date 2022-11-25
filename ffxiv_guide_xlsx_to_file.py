@@ -130,9 +130,9 @@ def run(sheet, max_row, max_column, elements, orderedContent):
         try:
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if debug_row_number not in [434]:
-            #    print_debug = True
-            #    continue
+            if debug_row_number not in [426]:
+                print_debug = True
+                continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             if print_debug: print(entry['title'])
             logger.info(pretty_json(entry))
@@ -155,6 +155,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
         except Exception as e:
             logger.critical(f"Error when handeling '{filename}' with line id '{i}' ({e})")
             traceback.print_exception(*sys.exc_info())
+
 
 
 if __name__ == "__main__":
