@@ -1069,7 +1069,7 @@ def add_variation_Attack(guide_data, attack, enemy_type):
                         s = status[str(int(e, 16))]
                     except:
                         s = status[str(int(str(e['status']), 16))]
-                    guide_data += f'              - status: {e}\n'
+                    guide_data += f'              - status: {s["0xID"]}\n'
                     guide_data += f'                icon: "{getImage(s["Icon"])}"\n'
                     guide_data += f'                name:\n'
                     for lang in LANGUAGES:
