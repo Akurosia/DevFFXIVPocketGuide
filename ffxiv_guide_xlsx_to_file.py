@@ -19,7 +19,6 @@ import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
 import sys
 
-
 logger = getLogger()
 disable_green_print = True
 disable_yellow_print = True
@@ -130,7 +129,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
         try:
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if debug_row_number not in [420]:
+            #if debug_row_number not in [3]:
             #    print_debug = True
             #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
