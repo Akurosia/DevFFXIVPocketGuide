@@ -142,8 +142,7 @@ def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_a
 
 def handle_add_status(attack, new_attack):
     if attack.get("add_status", None):
-        tmp = sorted(attack["add_status"], key=lambda x: int(x,16))
-        #tmp = sorted(list(attack['add_status']))
+        tmp = sorted(list(attack['add_status']))
         attack['add_status'] = []
         for s in tmp: 
             if isinstance(s, dict):
@@ -157,8 +156,12 @@ def handle_add_status(attack, new_attack):
             else:
                 attack['add_status'].append(str(s['status']))
         attack['add_status'] = sorted(list(set(attack['add_status'])))
-    if new_attack.get("add_status", None):
+    elif new_attack.get("add_status", None):
         attack['add_status'] = new_attack['add_status']
+
+    # finally sort attacks
+    if attack.get("add_status", None):
+        attack["add_status"] = sorted(attack["add_status"], key=lambda x: int(x,16))
 
 
 def remove_skills_from_list_if_found(remove_attack, new_enemy_data):
