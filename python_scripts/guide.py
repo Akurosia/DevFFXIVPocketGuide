@@ -142,7 +142,8 @@ def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_a
 
 def handle_add_status(attack, new_attack):
     if attack.get("add_status", None):
-        tmp = sorted(list(attack['add_status']))
+        tmp = sorted(attack["add_status"], key=lambda x: int(x,16))
+        #tmp = sorted(list(attack['add_status']))
         attack['add_status'] = []
         for s in tmp: 
             if isinstance(s, dict):
@@ -356,11 +357,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
             attack["name"] = "Unknown_" + attack_id
 
         if attack.get("add_status", None):
-            before = (attack["add_status"])
             attack["add_status"] = sorted(attack["add_status"], key=lambda x: int(x,16))
-            after = (attack["add_status"])
-            if not (before == after):
-                print(before, "==>", after)
         if existing_attacks.get(attack['name'], None):
             # convert regular attk to variation
             if existing_attacks[attack['name']] == "regular":
