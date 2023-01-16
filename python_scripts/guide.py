@@ -35,7 +35,14 @@ disable_red_print = True
 
 def sort_status_ids(status_list):
     if type(status_list) == list:
-        return sorted(status_list, key=lambda x: int(x,16))
+        try:
+            return sorted(status_list, key=lambda x: int(x,16))
+        except:
+            y = []
+            for x in status_list:
+                if str(x['status']) not in y:
+                    y.append(str(x['status']))
+            return sorted(y, key=lambda x: int(x,16))
     else:
         print_color_red(status_list)
     return status_list
