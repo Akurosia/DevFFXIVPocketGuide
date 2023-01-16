@@ -770,7 +770,9 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
     return guide_data, empty_enemy_available
 
 
-def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enemy_available):
+def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enemy_available, callback=None):
+    # hack to split guide and guide helper
+    add_Enemy = callback
     guide_data = ""
     if logdata_instance_content != {}:
         print_color_red(f"\t [workOnLogDataEnemies] Start looking at logdata {enemy_type}", disable_red_print)

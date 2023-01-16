@@ -464,7 +464,7 @@ def check_Enemy(entry, enemy_type, logdata_instance_content, old_enemies):
     guide_data += "bosses:\n" if enemy_type == "bosse" else "adds:\n"
     guide_data, empty_enemy_available = workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instance_content, callback=add_Enemy)
     #print_color_yellow(guide_data, disable_yellow_print)
-    guide_data += workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enemy_available)
+    guide_data += workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enemy_available, callback=add_Enemy)
     #print_color_blue(guide_data, disable_blue_print)
     return guide_data
 
