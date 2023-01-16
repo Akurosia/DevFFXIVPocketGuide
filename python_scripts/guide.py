@@ -33,6 +33,14 @@ disable_blue_print = True
 disable_red_print = True
 
 
+def sort_status_ids(status_list):
+    if type(status_list) == list:
+        return sorted(status_list, key=lambda x: int(x,16))
+    else:
+        print_color_red(status_list)
+    return status_list
+
+
 def delete_invalid_entries(tmp_attack):
     try:
         del tmp_attack['title_id']
@@ -161,7 +169,7 @@ def handle_add_status(attack, new_attack):
 
     # finally sort attacks
     if attack.get("add_status", None):
-        attack["add_status"] = sorted(attack["add_status"], key=lambda x: int(x,16))
+        attack["add_status"] = sort_status_ids(attack["add_status"])
 
 
 def remove_skills_from_list_if_found(remove_attack, new_enemy_data):
@@ -360,7 +368,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
             attack["name"] = "Unknown_" + attack_id
 
         if attack.get("add_status", None):
-            attack["add_status"] = sorted(attack["add_status"], key=lambda x: int(x,16))
+            attack["add_status"] = sort_status_ids(attack["add_status"])
         if existing_attacks.get(attack['name'], None):
             # convert regular attk to variation
             if existing_attacks[attack['name']] == "regular":
@@ -979,7 +987,8 @@ def add_regular_Attack(guide_data, attack, enemy_type):
 
     if attack.get('add_status', None):
         guide_data += f'        add_status:\n'
-        for e in attack['add_status']:
+        sort_attacks = sort_status_ids(attack["add_status"])
+        for e in sort_attacks:
             s = status[str(int(e, 16))]
             guide_data += f'          - status: {e}\n'
             guide_data += f'            icon: "{getImage(s["Icon"])}"\n'
@@ -1045,7 +1054,8 @@ def add_variation_Attack(guide_data, attack, enemy_type):
 
     if attack.get('add_status', None):
         guide_data += f'        add_status:\n'
-        for e in attack['add_status']:
+        sort_attacks = sort_status_ids(attack["add_status"])
+        for e in sort_attacks:
             s = status[str(int(e, 16))]
             guide_data += f'          - status: {e}\n'
             guide_data += f'            icon: "{getImage(s["Icon"])}"\n'
@@ -1073,7 +1083,8 @@ def add_variation_Attack(guide_data, attack, enemy_type):
 
             if variation.get('add_status', None):
                 guide_data += f'            add_status:\n'
-                for e in variation['add_status']:
+                sort_attacks = sort_status_ids(variation["add_status"])
+                for e in sort_attacks:
                     #print(e)
                     try:
                         s = status[str(int(e, 16))]
@@ -1137,7 +1148,8 @@ def add_combo_Attack(guide_data, attack, enemy_type):
 
     if attack.get('add_status', None):
         guide_data += f'        add_status:\n'
-        for e in attack['add_status']:
+        sort_attacks = sort_status_ids(attack["add_status"])
+        for e in sort_attacks:
             s = status[str(int(e, 16))]
             guide_data += f'          - status: {e}\n'
             guide_data += f'            icon: "{getImage(s["Icon"])}"\n'
