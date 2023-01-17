@@ -1,16 +1,24 @@
 <!-- Guide Metadata ======================================================== -->
 <div class="guide-metadata">
-    {%- if page.mtq_vid1 -%}
-        <a href="{{ page.mtq_vid1 }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide</a>
+    {%- if page.mtqvid -%}
+        {%- for url in page.mtqvid -%}
+            {%- assign naviIndex = {{forloop.index}} -%}
+            {%- if page.mtqvid.size == 1 -%}
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide</a>
+            {%- else -%}
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide {{naviIndex}}</a>
+            {%- endif -%}
+        {%- endfor -%}
     {%- endif -%}
-    {%- if page.mtq_vid2 -%}
-        <a href="{{ page.mtq_vid2 }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide #2</a>
-    {%- endif -%}
-    {%- if page.mrh_vid1 -%}
-        <a href="{{ page.mrh_vid1 }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide</a>
-    {%- endif -%}
-    {%- if page.mrh_vid2 -%}
-        <a href="{{ page.mrh_vid2 }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide #2</a>
+    {%- if page.mrhvid -%}
+        {%- for url in page.mrhvid -%}
+            {%- assign naviIndex = {{forloop.index}} -%}
+            {%- if page.mtqvid.size == 1 -%}
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide</a>
+            {%- else -%}
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide {{naviIndex}}</a>
+            {%- endif -%}
+        {%- endfor -%}
     {%- endif -%}
     <div class="guide-metadata__wrapper">
         <h5 class="guide-metadata__subtitle box small-1of2 med-full">Player Level: <span class="noblock">{{ page.plvl }}</span></h5>

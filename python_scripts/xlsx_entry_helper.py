@@ -121,12 +121,6 @@ def getBeforeAndAfterContentEntries(orderedContent, entry):
     return None, None
 
 
-def seperate_data_into_array(tag, entry):
-    if entry[tag]:
-        entry[tag] = entry[tag].strip("'[").strip("]'").strip("\"[").strip("]\"").strip("[").strip("]").replace("\", \"", "', '").replace("\",\"", "', '").split("', '")
-        entry[tag] = [b for b in entry[tag]]
-
-
 def getEntryData(sheet, max_column, i, elements, orderedContent):
     entry = get_data_from_xlsx(sheet, max_column, i, elements)
     entry = clean_entries_from_single_quotes(entry)

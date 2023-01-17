@@ -56,3 +56,10 @@ def getContentName(name, lang="en", difficulty=None, instanceType=None):
     if name not in ['title']:
         print_color_red("Could not translate: " + name)
     return ""
+
+
+def seperate_data_into_array(tag, entry):
+    if entry[tag]:
+        entry[tag] = entry[tag].strip("'[").strip("]'").strip("\"[").strip("]\"").strip("[").strip("]").replace("\", \"", "', '").replace("\",\"", "', '").split("', '")
+        entry[tag] = [b for b in entry[tag]]
+    return entry[tag]

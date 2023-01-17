@@ -67,22 +67,29 @@ def writeTags(header_data, entry, tt_type_name):
     for lang in LANGUAGES:
         if not entry.get(f"quest_{lang}", "") == "":
             header_data += "  - term: \"" + entry[f"quest_{lang}"] + "\"\n"
-    if checkVariable(entry, "mount1") or checkVariable(entry, "mount2"):
+
+    found, data = checkVariable(entry, "mount")
+    if found:
         header_data += "  - term: \"mounts\"\n"
         header_data += "  - term: \"Reittier\"\n"
-    if checkVariable(entry, "minion1") or checkVariable(entry, "minion2") or checkVariable(entry, "minion3"):
+    found, data = checkVariable(entry, "minion")
+    if found:
         header_data += "  - term: \"minions\"\n"
         header_data += "  - term: \"Begleiter\"\n"
-    if checkVariable(entry, "tt_card1") or checkVariable(entry, "tt_card2"):
+    found, data = checkVariable(entry, "tt_card")
+    if found:
         header_data += "  - term: \"tt_cards\"\n"
         header_data += "  - term: \"Triple Triad Karte\"\n"
-    if checkVariable(entry, "gearset_loot"):
-        for gset in entry["gearset_loot"].split(","):
-            header_data += "  - term: \"" + gset + "\"\n"
-    if checkVariable(entry, "orchestrion") or checkVariable(entry, "orchestrion2") or checkVariable(entry, "orchestrion3") or checkVariable(entry, "orchestrion4") or checkVariable(entry, "orchestrion5"):
+    found, data = checkVariable(entry, "gearset_loot")
+    if found:
+        for d in data:
+            header_data += "  - term: \"" + d + "\"\n"
+    found, data = checkVariable(entry, "orchestrion")
+    if found:
         header_data += "  - term: \"orchestrion\"\n"
         header_data += "  - term: \"Notenrolle\"\n"
-    if checkVariable(entry, "orchestrion_material1") or checkVariable(entry, "orchestrion_material2") or checkVariable(entry, "orchestrion_material3"):
+    found, data = checkVariable(entry, "orchestrion_material")
+    if found:
         header_data += "  - term: \"orchestrion_material\"\n"
     if entry["instanceType"] == "trial":
         header_data += "  - term: \"Prüfung\"\n"
@@ -140,15 +147,15 @@ def writeTags(header_data, entry, tt_type_name):
     return header_data
 
 
-def addEntries(header_data, entry, field, get_data_function):
-    if checkVariable(entry, field):
-        _id, array = get_data_function(entry[field])
+def addEntries(header_data, data, get_data_function):
+    if data:
+        _id, array = get_data_function(data)
         if _id:
             header_data += '  - name:\n'
             for lang in LANGUAGES:
                 header_data += f'      {lang}: "' + array.get(f"Singular_{lang}", array.get(f"Name_{lang}", "")) + '"\n'
         else:
-            header_data += '  - name: "' + entry[field] + '"\n'
+            header_data += '  - name: "' + data + '"\n'
         if _id:
             header_data += '    id: "' + _id + '"\n'
     return header_data
@@ -184,9 +191,16 @@ def get_order_id(entry):
 
 
 def checkVariable(element, name):
-    if element[name] and not element[name] == "###":
-        return True
-    return False
+    e = element[name]
+    if e is None or e == "" or e == [] or e == "[]" or e == "###":
+        return False, None
+    if type(e) == list:
+        return True, e
+    if e.startswith("[") and e.endswith("]") and len(e) > 2:
+        return True, seperate_data_into_array(name, element)
+    if e:
+        return True, [e]
+    return False, None
 
 
 def get_video_url(url):
@@ -265,44 +279,35 @@ def rewrite_content_even_if_exists(entry, old_wip):
                 header_data += 'quest_npc:\n'
             header_data += f'  {lang}: "' + entry[f"quest_npc_{lang}"] + '"\n'
     header_data += 'order: ' + get_order_id(entry) + '\n'
-    # mounts
-    if checkVariable(entry, "mount1") or checkVariable(entry, "mount2"):
-        header_data += 'mount:\n'
-        header_data = addEntries(header_data, entry, "mount1", getMountIDByName)
-        header_data = addEntries(header_data, entry, "mount2", getMountIDByName)
-    # minions
-    if checkVariable(entry, "minion1") or checkVariable(entry, "minion2") or checkVariable(entry, "minion3"):
-        header_data += 'minion:\n'
-        header_data = addEntries(header_data, entry, "minion1", getMinionIDByName)
-        header_data = addEntries(header_data, entry, "minion2", getMinionIDByName)
-        header_data = addEntries(header_data, entry, "minion3", getMinionIDByName)
-    # gearset_loot
-    if checkVariable(entry, "gearset_loot"):
-        header_data += 'gearset_loot:\n'
-        for gset in entry["gearset_loot"] .split(","):
-            header_data += '  - gsetname: "' + gset + '"\n'
-    # tt_cards
-    if checkVariable(entry, "tt_card1") or checkVariable(entry, "tt_card2"):
-        header_data += 'tt_card:\n'
-        header_data = addEntries(header_data, entry, "tt_card1", getTTCardIDByName)
-        header_data = addEntries(header_data, entry, "tt_card2", getTTCardIDByName)
-    # orchestrion
-    if checkVariable(entry, "orchestrion") or checkVariable(entry, "orchestrion2") or checkVariable(entry, "orchestrion3") or checkVariable(entry, "orchestrion4") or checkVariable(entry, "orchestrion5"):
-        header_data += 'orchestrion:\n'
-        header_data = addEntries(header_data, entry, "orchestrion", getOrchestrionIDByName)
-        header_data = addEntries(header_data, entry, "orchestrion2", getOrchestrionIDByName)
-        header_data = addEntries(header_data, entry, "orchestrion3", getOrchestrionIDByName)
-        header_data = addEntries(header_data, entry, "orchestrion4", getOrchestrionIDByName)
-        header_data = addEntries(header_data, entry, "orchestrion5", getOrchestrionIDByName)
-    # orchestrion material
-    if checkVariable(entry, "orchestrion_material1") or checkVariable(entry, "orchestrion_material2") or checkVariable(entry, "orchestrion_material3"):
-        header_data += 'orchestrion_material:\n'
-        if checkVariable(entry, "orchestrion_material1"):
-            header_data += '  - name: "' + entry["orchestrion_material1"] + '"\n'
-        if checkVariable(entry, "orchestrion_material2"):
-            header_data += '  - name: "' + entry["orchestrion_material2"] + '"\n'
-        if checkVariable(entry, "orchestrion_material3"):
-            header_data += '  - name: "' + entry["orchestrion_material3"] + '"\n'
+
+    category_names = {
+        'mount': getMountIDByName,
+        'minion': getMinionIDByName,
+        'gearset_loot': "gsetname",
+        'tt_card': getTTCardIDByName,
+        'orchestrion': getOrchestrionIDByName,
+        'orchestrion_material': "name",
+        'mtqvid': "url",
+        'mrhvid': "url"
+    }
+    for cat, fun in category_names.items():
+        found, data = checkVariable(entry, cat)
+        if not found:
+            continue
+        if type(fun) == str:
+            header_data += f'{cat}:\n'
+            for i, d in enumerate(data):
+                if fun == "url":
+                    header_data += f'  - {fun}: "' + get_video_url(d.strip()) + '"\n'
+                else:
+                    header_data += f'  - {fun}: "' + d.strip() + '"\n'
+        elif fun:
+            header_data += f'{cat}:\n'
+            for i, d in enumerate(data):
+                header_data = addEntries(header_data, d.strip(), fun)
+        else:
+            pass
+
     # rouletts
     if entry.get("expert", None):
         if entry["allianceraid"] or entry["frontier"] or entry["expert"] or entry["guildhest"] or entry["highlevelroulette"] or entry["levelcaproulette"] or entry["leveling"] or entry["main"] or entry["mentor"] or entry["normalraid"] or entry["trial"]:
@@ -330,23 +335,14 @@ def rewrite_content_even_if_exists(entry, old_wip):
         if entry["trial"]:
             header_data += '    trial: ' + entry["trial"] + "\n"
     # links:
+    # TODO Fix big if check
     if checkVariable(entry, "teamcraftlink") or checkVariable(entry, "garlandtoolslink") or checkVariable(entry, "gamerescapelink"):
         header_data += 'links:\n'
-        if checkVariable(entry, "teamcraftlink"):
-            header_data += f'    teamcraftlink: "' + entry["teamcraftlink"] + '"\n'
-        if checkVariable(entry, "garlandtoolslink"):
-            header_data += f'    garlandtoolslink: "' + entry["garlandtoolslink"] + '"\n'
-        if checkVariable(entry, "gamerescapelink"):
-            header_data += f'    gamerescapelink: "' + entry["gamerescapelink"] + '"\n'
-    # videos
-    if checkVariable(entry, "mtqvid1"):
-        header_data += 'mtq_vid1: "' + get_video_url(entry["mtqvid1"]) + '"\n'
-    if checkVariable(entry, "mtqvid2"):
-        header_data += 'mtq_vid2: "' + get_video_url(entry["mtqvid2"]) + '"\n'
-    if checkVariable(entry, "mrhvid1"):
-        header_data += 'mrh_vid1: "' + get_video_url(entry["mrhvid1"]) + '"\n'
-    if checkVariable(entry, "mrhvid2"):
-        header_data += 'mrh_vid2: "' + get_video_url(entry["mrhvid2"]) + '"\n'
+        for x in ["teamcraftlink", "garlandtoolslink", "gamerescapelink"]:
+            found, data = checkVariable(entry, x)
+            if found:
+                header_data += f'    {x}: "' + data[0] + '"\n'
+
     return header_data, entry
 
 
