@@ -7,12 +7,11 @@ $(document).ready(function() {
 
     // get the primary language from localstorage
     l1 = window.localStorage.getItem('primary-language');
-    l2 = l1.replace("lang-toogle", "lang-toogle2");
     // if its null or undefined replace it with german
     if (l1 == null || l1 == undefined){
         l1 = "lang-toogle-de"
-        l2 = l1.replace("lang-toogle", "lang-toogle2");
     }
+    l2 = l1.replace("lang-toogle", "lang-toogle2");
     // get the elements for the language
     setlangfields = document.getElementsByClassName(l1);
     setlangfields2 = document.getElementsByClassName(l2);
