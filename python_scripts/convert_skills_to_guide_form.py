@@ -72,6 +72,7 @@ def load_global_data():
     global chocoboitems
     global chocobochallange
     global buddyskill
+    storeFilesInTmp(True)
     skills = get_skills_for_player()
     pvpskills = get_skills_for_player(True)
     logdata = get_any_Logdata()

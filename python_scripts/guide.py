@@ -19,7 +19,7 @@ except:
 
 
 logger = getLogger()
-storeFilesInTmp(False)
+storeFilesInTmp(True)
 # storeFilesInTmp(True)
 logdata = get_any_Logdata()
 status = loadDataTheQuickestWay("status_all.json", translate=True)
@@ -242,7 +242,6 @@ def add_variation_Attack(guide_data, attack, enemy_type):
                 guide_data += f'            add_status:\n'
                 sort_attacks = sort_status_ids(variation["add_status"])
                 for e in sort_attacks:
-                    #print(e)
                     try:
                         s = status[str(int(e, 16))]
                     except:

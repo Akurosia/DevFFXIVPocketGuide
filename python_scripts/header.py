@@ -9,6 +9,7 @@ except:
     from helper import *
 from ffxiv_aku import *
 
+storeFilesInTmp(True)
 territorytype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
 patchversions = get_any_Versiondata()
 mounts = loadDataTheQuickestWay("mount_all.json", translate=True)

@@ -15,7 +15,7 @@ except:
     from constants import *
     from helper import *
 
-
+storeFilesInTmp(True)
 quests = loadDataTheQuickestWay("Quest.de.json")
 quests_all = loadDataTheQuickestWay("quest_all.json", translate=True)
 questss = loadDataTheQuickestWay("Quest.de.json", exd="raw-exd-all")

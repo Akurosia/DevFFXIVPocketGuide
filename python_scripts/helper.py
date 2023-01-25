@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # coding: utf8
 from ffxiv_aku import *
+storeFilesInTmp(True)
 contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
 placename = loadDataTheQuickestWay("placename_all.json", translate=True)
 

@@ -17,7 +17,7 @@ except:
 
 
 logger = getLogger()
-storeFilesInTmp(False)
+storeFilesInTmp(True)
 logdata = get_any_Logdata()
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
 action = loadDataTheQuickestWay("action_all.json", translate=True)
@@ -198,7 +198,7 @@ def get_fixed_status_description(_id):
         return {"de": f"Unknown_{_id}"}
 
 
-ids_to_replace = ["10742", "11399", "10744", "11402"]
+ids_to_replace = ["10742", "11399", "10744", "11402", "7635", "7695"]
 def getBnpcNameFromID(_id, aname, nname, lang="en"):
     global ids_to_replace
     bnew_name = ""
@@ -841,7 +841,7 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
         if enemy_type == 'bosse':
             for boss in entry['bosse']:
                 for e in enemies_to_add:
-                    if f'      de: "{boss}"' in e:
+                    if f'  - title:\n      de: "{boss}"' in e:
                         guide_data += e
                         break
         else:
