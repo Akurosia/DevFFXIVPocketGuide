@@ -198,7 +198,8 @@ def get_fixed_status_description(_id):
         return {"de": f"Unknown_{_id}"}
 
 
-ids_to_replace = ["10742", "11399", "10744", "11402", "7635", "7695"]
+ids_to_replace = ["10742", "11399"]
+ids_to_replace += ["10744", "11402"]
 def getBnpcNameFromID(_id, aname, nname, lang="en"):
     global ids_to_replace
     bnew_name = ""
@@ -212,7 +213,9 @@ def getBnpcNameFromID(_id, aname, nname, lang="en"):
     try:
         bnew_name = bnpcname[_id]["Singular_de"]
         if _id in ids_to_replace:
-            nname = nname.replace(" ii", "").replace(" i", "")
+            print_color_yellow(nname)
+            nname = nname.replace(" iii", "").replace(" ii", "").replace(" i", "")
+            print_color_red(nname)
         m = re.search(nname, bnew_name, re.IGNORECASE)
         n = re.search(aname, bnew_name, re.IGNORECASE)
         if m or n:
