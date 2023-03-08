@@ -129,7 +129,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
         try:
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if debug_row_number not in [441]:
+            #if debug_row_number not in [163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182]:
             #    print_debug = True
             #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
