@@ -10,29 +10,33 @@
     <div class="guide__accordion-content--01">
         <!-- Opens the Notes Loop -->
         {%- for mechanic in page.mechanics -%}
-            <div class="guide__accordion-copy-wrapper">
-                <!-- Event Title -->
-                <h3 class="guide__accordion-title">{{ mechanic.title }}</h3>
-                <!-- Opens the Step Loop -->
-                {%- if mechanic.steps -%}
-                    <div class="guide__mechanics-wrapper">
-                        {%- for step in mechanic.steps -%}
-                            <!-- Mechanics Group Title -->
-                            <h4 class="guide__mechanics-title">Schritt {{ step.step }}</h4>
-                            <!-- Stance Notes -->
-                            <ul class="guide__mechanics-list">
-                                {%- for note in step.notes -%}
-                                    <li class="guide__mechanics-item">{{ note.note }}</li>
-                                {%- endfor -%}
-                            </ul>
-                            <!-- Stance Images -->
-                            {%- include _components/guide-images-wrapper.html -%}
-                            <!-- Stance Videos -->
-                            {%- include _components/guide-videos-wrapper.html -%}
-                        {%- endfor -%}
-                    </div>
-                {%- endif -%}
-            </div>
+            {%- if mechanic.preset -%}
+                {% include presets/{{mechanic.preset}}.html instanceType=page.instanceType %}
+            {%- else -%}
+                <div class="guide__accordion-copy-wrapper">
+                    <!-- Event Title -->
+                    <h3 class="guide__accordion-title">{{ mechanic.title }}</h3>
+                    <!-- Opens the Step Loop -->
+                    {%- if mechanic.steps -%}
+                        <div class="guide__mechanics-wrapper">
+                            {%- for step in mechanic.steps -%}
+                                <!-- Mechanics Group Title -->
+                                <h4 class="guide__mechanics-title">Schritt {{ step.step }}</h4>
+                                <!-- Stance Notes -->
+                                <ul class="guide__mechanics-list">
+                                    {%- for note in step.notes -%}
+                                        <li class="guide__mechanics-item">{{ note.note }}</li>
+                                    {%- endfor -%}
+                                </ul>
+                                <!-- Stance Images -->
+                                {%- include _components/guide-images-wrapper.html -%}
+                                <!-- Stance Videos -->
+                                {%- include _components/guide-videos-wrapper.html -%}
+                            {%- endfor -%}
+                        </div>
+                    {%- endif -%}
+                </div>
+            {%- endif -%}
         {%- endfor -%}
     </div>
 </div>
