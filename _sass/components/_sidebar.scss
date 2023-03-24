@@ -89,7 +89,7 @@
         padding: 0 0 calc(#{$unit} * 4) 0;
 
         li {
-            margin: 0;
+            margin: -10px;
 
             a {
                 color: $palette--white;
@@ -122,19 +122,13 @@
     }
 
     .no-touchevents {
-
         .sidebar__menu {
-
             li {
-
                 a:hover {
                     color: $palette--red;
                 }
-
             }
-
         }
-
     }
 
 // Mobile Trigger
@@ -184,7 +178,6 @@
         }
 
         &.active {
-
             .sidebar__trigger-inactive {
                 display: none;
             }
@@ -192,7 +185,5 @@
             .sidebar__trigger-active {
                 display: block;
             }
-
         }
-
     }
