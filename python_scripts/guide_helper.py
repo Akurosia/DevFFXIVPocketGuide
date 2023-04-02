@@ -213,9 +213,7 @@ def getBnpcNameFromID(_id, aname, nname, lang="en"):
     try:
         bnew_name = bnpcname[_id]["Singular_de"]
         if _id in ids_to_replace:
-            print_color_yellow(nname)
             nname = nname.replace(" iii", "").replace(" ii", "").replace(" i", "")
-            print_color_red(nname)
         m = re.search(nname, bnew_name, re.IGNORECASE)
         n = re.search(aname, bnew_name, re.IGNORECASE)
         if m or n:

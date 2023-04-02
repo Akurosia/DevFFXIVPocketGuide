@@ -65,28 +65,32 @@ def check_Mechanics(entry, old_mechanics):
 
 def add_Mechanic(data):
     guide_data = ""
-    guide_data += f"  - title: \"{data['title']}\"\n"
-    if data.get("steps", None):
-        guide_data += "    steps:\n"
-        for step in data["steps"]:
-            guide_data += f"      - step: \"{int(step['step']):02d}\"\n"
+    if data.get("preset"):
+        print("Found preset")
+        guide_data += f"  - preset: \"{data['preset']}\"\n"
+    else:
+        guide_data += f"  - title: \"{data['title']}\"\n"
+        if data.get("steps", None):
+            guide_data += "    steps:\n"
+            for step in data["steps"]:
+                guide_data += f"      - step: \"{int(step['step']):02d}\"\n"
 
-            if step.get("notes", None):
-                guide_data += "        notes:\n"
-                for note in step["notes"]:
-                    guide_data += f"          - note: \"{note['note']}\"\n"
+                if step.get("notes", None):
+                    guide_data += "        notes:\n"
+                    for note in step["notes"]:
+                        guide_data += f"          - note: \"{note['note']}\"\n"
 
-            if step.get("images", None):
-                guide_data += "        images:\n"
-                for image in step["images"]:
-                    guide_data += f"          - url: \"{image['url']}\"\n"
-                    guide_data += f"            alt: \"{image.get('alt', image['url'])}\"\n"
-                    guide_data += f"            height: \"{image.get('height', '250px')}\"\n"
+                if step.get("images", None):
+                    guide_data += "        images:\n"
+                    for image in step["images"]:
+                        guide_data += f"          - url: \"{image['url']}\"\n"
+                        guide_data += f"            alt: \"{image.get('alt', image['url'])}\"\n"
+                        guide_data += f"            height: \"{image.get('height', '250px')}\"\n"
 
-            if step.get("videos", None):
-                guide_data += "        videos:\n"
-                for video in step["videos"]:
-                    guide_data += f"          - url: \"{video['url']}\"\n"
+                if step.get("videos", None):
+                    guide_data += "        videos:\n"
+                    for video in step["videos"]:
+                        guide_data += f"          - url: \"{video['url']}\"\n"
     return guide_data
 
 
