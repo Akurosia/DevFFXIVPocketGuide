@@ -11,13 +11,13 @@
         background-position: center;
         background-size: cover;
         height: 100%;
+        width: 100%;
         max-width: 35rem;
         position: fixed;
         top: 0;
         left: 0;
         transform: translate(0, 100%);
         transition: transform .3s ease;
-        width: 100%;
         z-index: 105;
 
         @media #{$navigation} {
@@ -85,6 +85,7 @@
 
     .sidebar__menu {
         list-style: none;
+        width: 95%;
         margin: 0;
         padding: 0 0 calc(#{$unit} * 4) 0;
 
@@ -98,10 +99,11 @@
                 font-size: $font-scale--regular;
                 font-weight: 400;
                 padding: calc(#{$unit} * 1);
-                text-align: center;
+                //text-align: center;
                 text-decoration: none;
                 transition: all .2s ease;
-                width: 100%;
+                width: 60%;
+                margin-left: 40%;
 
                 i {
                     color: $palette--red;

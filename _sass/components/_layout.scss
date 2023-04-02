@@ -125,3 +125,19 @@
     line-height: 1.5;
   }
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #343a40;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #a00;
+}

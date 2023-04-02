@@ -660,40 +660,6 @@ def addCrafterLeve(job, all_crafter_leves):
     return False, result
 
 
-#def getMaps(_map):
-#    global maps
-#    for key, value in maps.items():
-#        if value['Id'] == _map:
-#            return value
-#    sys.exit()
-#
-#
-#def truncate(f):
-#    result = math.floor(f * 10 ** 1) / 10 ** 1
-#    return result
-#
-#
-#def ToMapCoordinate(val, sizefactor):
-#    c = sizefactor / 100.0
-#    val *= c
-#    return ((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1
-#
-#
-#def getLevel(level, debugquest=None):
-#    global levels
-#    try:
-#        level = levels[level.replace('Level#', "")]
-#        map_ = getMaps(level['Map'])
-#        x = truncate(ToMapCoordinate(float(level['X'].replace(",", ".")), float(map_['SizeFactor'])))
-#        y = truncate(ToMapCoordinate(float(level['Z'].replace(",", ".")), float(map_['SizeFactor'])))
-#        return {"x": x, "y": y, "region": map_['PlaceName']['Region'], "placename": map_['PlaceName']['Value']}
-#    except Exception as e:
-#        print(f"Error in getLevel: {e}")
-#        # print(f"Error in getLevel: {e} -> {debugquest}")
-#        traceback.print_exc()
-#        return None
-
-
 def addQuestkDetails(job, pvp):
     global quests
     global questss
@@ -886,6 +852,12 @@ def addKlassJobs():
         filecontent += '    - term: "Skills"\n'
         filecontent += '    - term: "Status"\n'
         filecontent += '    - term: "Traits"\n'
+        if classDetails.get(job, {}):
+            filecontent += f'    - term: "{classDetails[job]["patchNumber"]}"\n'
+            filecontent += f'    - term: "{classDetails[job]["patchName"]}"\n'
+        else:
+            filecontent += '    - term: "2.0"\n'
+            filecontent += '    - term: "A Realm Reborn"\n'
         filecontent += f'    - term: "{job_d["Name_de"].title()}"\n'
         filecontent += f'    - term: "{job_d["Name_en"].title()}"\n'
         filecontent += f'    - term: "{job_d["Name_fr"].title()}"\n'
