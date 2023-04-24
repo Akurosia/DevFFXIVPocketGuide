@@ -40,6 +40,8 @@ def patches():
             old_date = new_date
         datediff = new_date - old_date
         old_date = new_date
+        if key.endswith("0"):
+            key = key[:-1]
 
         filecontent += f"    - name: {value['name']}\n"
         filecontent += f"      patchnumber: {key}\n"

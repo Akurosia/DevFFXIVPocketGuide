@@ -63,6 +63,9 @@ def writeTags(header_data, entry, tt_type_name):
     # write rest of the tags
     header_data += "  - term: \"" + entry["difficulty"] + "\"\n"
     header_data += "  - term: \"" + entry["patchNumber"] + "!\"\n"
+    if entry["patchNumber"].endswith("0"):
+        header_data += "  - term: \"" + entry["patchNumber"][:-1] + "!\"\n"
+    #entry["patchNumber"] = [entry["patchNumber"] if len(entry["patchNumber"].split(".")[1]) == 2 else str(entry["patchNumber"]) + "0" ][0]
     header_data += "  - term: \"" + entry["patchName"] + "\"\n"
 
     for lang in LANGUAGES:
@@ -229,6 +232,7 @@ def rewrite_content_even_if_exists(entry, old_wip):
     header_data += f'excel_line: \"{entry["line_index"]}\"\n'
     header_data += 'categories: "' + entry["categories"] + '"\n'
     header_data += 'patchNumber: "' + entry["patchNumber"].replace("'", "") + '"\n'
+    entry["patchNumber"] = [entry["patchNumber"] if len(entry["patchNumber"].split(".")[1]) == 2 else str(entry["patchNumber"]) + "0" ][0]
     if patchversions.get(entry["patchNumber"], None):
         header_data += 'patchLink: "' + patchversions[entry["patchNumber"]]['link_to_patch'] + '"\n'
     header_data += 'difficulty: "' + entry["difficulty"] + '"\n'
