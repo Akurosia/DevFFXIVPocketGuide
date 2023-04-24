@@ -44,7 +44,7 @@ def patches():
             key = key[:-1]
 
         filecontent += f"    - name: {value['name']}\n"
-        filecontent += f"      patchnumber: {key}\n"
+        filecontent += f"      patchnumber: \"{key}\"\n"
         filecontent += f"      date: {value['date']}\n"
         filecontent += f"      dslr: {datediff.days}\n"
         filecontent += f"      pname: {value['pname']}\n"
@@ -54,18 +54,18 @@ def patches():
             filecontent += f"      link_to_special_page: {value['link_to_special_page']}\n"
 
         ma_p, mi_p = key.split(".")
-        if not ma_p in major_patches:
+        if not ma_p in major_patches and not ma_p == "1":
             major_patches.append(ma_p)
         if not mi_p in minor_patches and not ma_p == "1":
             minor_patches.append(mi_p)
 
     filecontent += 'major_patches:\n'
     for patch in sorted(major_patches):
-        filecontent += '    - ' + str(patch) + "\n"
+        filecontent += f'    - "{patch}"\n'
 
     filecontent += 'minor_patches:\n'
     for patch in sorted(minor_patches):
-        filecontent += '    - ' + str(patch) + "\n"
+        filecontent += f'    - "{patch}"\n'
     filecontent += '---\n'
 
     filename = f"_pages/patches/index.html"

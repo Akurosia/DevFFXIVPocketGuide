@@ -22,7 +22,9 @@
             {%- if enemies.size > 1 -%}
                 <!-- <div class="guide__accordion-trigger--02" id="{{ enemy.id }}"> -->
                 <div class="guide__accordion-trigger--02" id="{{ enemy.id | slugify }}">
-                    <i class="material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+                    <i class="material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}">
+                        <ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon>
+                    </i>
                     <h3 class="lang-toggle lang-toogle-de guide__accordion-trigger-title">{{ enemy.title.de }}</h3>
                     <h3 class="lang-toggle lang-toogle-en guide__accordion-trigger-title">{{ enemy.title.en }}</h3>
                     <h3 class="lang-toggle lang-toogle-fr guide__accordion-trigger-title">{{ enemy.title.fr }}</h3>

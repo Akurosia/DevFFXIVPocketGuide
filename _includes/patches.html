@@ -6,27 +6,27 @@
     {%- for x in my_array -%}
         {%- case x -%}
             {%- when "ew" -%}
-    <!-- Endwalker Guide Index ============================================ -->
+            <!-- Endwalker Guide Index ============================================ -->
                 {%- assign x_id = "endwalker" -%}
                 {%- assign x_title = "6.x - Endwalker" -%}
             {%- when "shb" -%}
-    <!-- Shadowbringers Guide Index ============================================ -->
+            <!-- Shadowbringers Guide Index ============================================ -->
                 {%- assign x_id = "shadowbringers" -%}
                 {%- assign x_title = "5.x - Shadowbringers" -%}
             {%- when "sb" -%}
-    <!-- Stormblood Guide Index ============================================ -->
+            <!-- Stormblood Guide Index ============================================ -->
                 {%- assign x_id = "stormblood" -%}
                 {%- assign x_title = "4.x - Stormblood" -%}
             {%- when "hw" -%}
-    <!-- Heavensward Guide Index ============================================ -->
+            <!-- Heavensward Guide Index ============================================ -->
                 {%- assign x_id = "heavensward" -%}
                 {%- assign x_title = "3.x - Heavensward" -%}
             {%- when "arr" -%}
-    <!-- A Realm Reborn Guide Index ============================================ -->
+            <!-- A Realm Reborn Guide Index ============================================ -->
                 {%- assign x_id = "a_realm_reborn" -%}
                 {%- assign x_title = "2.x - A Realm Reborn" -%}
             {%- when "ffxiv" -%}
-    <!-- A Realm Reborn Guide Index ============================================ -->
+            <!-- A Realm Reborn Guide Index ============================================ -->
                 {%- assign x_id = "final_fantasy_1_0" -%}
                 {%- assign x_title = "1.x - Final Fantasy 14" -%}
         {%- endcase -%}
@@ -71,4 +71,75 @@
             </table>
         </div>
     {%- endfor -%}
+    <!--Patchtable-->
+    <div class="index-divider" data-expansion="Patchlist"><h2 class="index-divider__title">Patchlist</h2></div>
+    <div class="index__list_patches" data-expansion="Patchlist">
+
+        <div class="row" id="div_patch-table">
+            <!--LEFT Half-->
+            <div class="col-md">
+                <table class="table table-bordered table-dark table-striped text-light patch_table" id="tInfo" style="text-align: center">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            {%- for major in page.major_patches -%}
+                                <th>{{major}}</th>
+                            {%- endfor -%}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%- for minor in page.minor_patches -%}
+                            <tr>
+                                <td class="patch_table_1">{{minor}}</td>
+                                {%- for major in page.major_patches -%}
+                                    {% assign final_version = nil %}
+                                    {% assign version = major | append: '.' | append: minor %}
+                                    <!--<span style="color: aqua;">{{version}}</span>-->
+                                    {%- for patch in page.patches -%}
+                                        {% assign xxx = patch.patchnumber %}
+                                        {% if patch.patchnumber == version %}
+                                            {% assign final_version = patch.dslr %}
+                                        {% endif %}
+                                    {%- endfor -%}
+                                    <td scope="col">{{final_version}}</td>
+                                {%- endfor -%}
+                            </tr>
+                        {%- endfor -%}
+                    </tbody>
+                </table>
+            </div>
+            <!--RIGHT Half-->
+            <div class="col-md">
+                <table class="table table-bordered table-dark table-striped text-light patch_table" id="tInfo2" style="text-align: center">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            {%- for major in page.major_patches -%}
+                                <th>{{major}}</th>
+                            {%- endfor -%}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%- for minor in page.minor_patches -%}
+                            <tr>
+                                <td class="patch_table_1">{{minor}}</td>
+                                {%- for major in page.major_patches -%}
+                                    {% assign final_version = nil %}
+                                    {% assign version = major | append: '.' | append: minor %}
+                                    <!--<span style="color: aqua;">{{version}}</span>-->
+                                    {%- for patch in page.patches -%}
+                                        {% assign xxx = patch.patchnumber %}
+                                        {% if patch.patchnumber == version %}
+                                            {% assign final_version = patch.date %}
+                                        {% endif %}
+                                    {%- endfor -%}
+                                    <td scope="col">{{final_version}}</td>
+                                {%- endfor -%}
+                            </tr>
+                        {%- endfor -%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
