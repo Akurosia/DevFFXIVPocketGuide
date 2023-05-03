@@ -214,7 +214,6 @@ def addBlueAttackDetails(job_data):
         locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
         locations = sorted(locations, key=lambda x: x['Ort'])
 
-        print(skill_data)
         desc = ""
         if not locations == []:
             desc += "\n\n<br/>#########################################<br/>\n\nLOCATIONS:\n"
