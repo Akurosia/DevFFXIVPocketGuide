@@ -16,6 +16,7 @@ cjs = None
 actions = None
 actionss = None
 action_trans = None
+aozaction_trans = None
 lo_actions = None
 bo_actions = None
 craftactions = None
@@ -50,6 +51,7 @@ def load_global_data():
     global actions
     global actionss
     global action_trans
+    global aozaction_trans
     global lo_actions
     global bo_actions
     global craftactions
@@ -80,7 +82,8 @@ def load_global_data():
     cjs = loadDataTheQuickestWay("ClassJob")
     actions = loadDataTheQuickestWay("action")
     actionss = loadDataTheQuickestWay("action", translate=True)
-    action_trans = loadDataTheQuickestWay("actiontransient")
+    action_trans = loadDataTheQuickestWay("actiontransient", translate=True)
+    aozaction_trans = loadDataTheQuickestWay("aozactiontransient", translate=True)
     lo_actions = loadDataTheQuickestWay("eurekamagiaaction.json")
     bo_actions = loadDataTheQuickestWay("MYCTemporaryItem.json")
     craftactions = loadDataTheQuickestWay("craftaction", translate=True)
@@ -88,7 +91,7 @@ def load_global_data():
     statusss = loadDataTheQuickestWay("Status")
     traits = loadDataTheQuickestWay("Trait")
     traitss = loadDataTheQuickestWay("trait", translate=True)
-    traitstransient = loadDataTheQuickestWay("TraitTransient")
+    traitstransient = loadDataTheQuickestWay("TraitTransient", translate=True)
     aozactions = loadDataTheQuickestWay("aozaction", translate=True)
     aozactiontransient = loadDataTheQuickestWay("AozActionTransient")
     quests = loadDataTheQuickestWay("Quest")
@@ -174,7 +177,13 @@ def addBlueAttackDetails(job_data):
                     job_data[x]["Location"] = {"Ort": aozactiontransient[key]['Location'], "Gegner": "(InGame Hinweis)"}
                 job_data[x]["Number"] = job_data[x]["Level"]
                 job_data[x]["Level"] = aozactiontransient[key]['Number']
-                job_data[x]["Description"] += "\n\n#########################################\n\n" + aozactiontransient[key]['Description']
+
+                job_data[x]["Description_de"] += "\n\n<br/>#########################################<br/>\n\n" + aozaction_trans[key]['Description_de']
+                job_data[x]["Description_en"] += "\n\n<br/>#########################################<br/>\n\n" + aozaction_trans[key]['Description_en']
+                job_data[x]["Description_fr"] += "\n\n<br/>#########################################<br/>\n\n" + aozaction_trans[key]['Description_fr']
+                job_data[x]["Description_ja"] += "\n\n<br/>#########################################<br/>\n\n" + aozaction_trans[key]['Description_ja']
+                job_data[x]["Description_cn"] += "\n\n<br/>#########################################<br/>\n\n" + aozaction_trans[key]['Description_cn']
+                job_data[x]["Description_ko"] += "\n\n<br/>#########################################<br/>\n\n" + aozaction_trans[key]['Description_ko']
             elif y['Name'] == "Weißer Tod":
                 job_data[x]["Number"] = job_data[x]["Level"]
                 job_data[x]["Level"] = "84"
@@ -201,13 +210,14 @@ def addBlueAttackDetails(job_data):
         if en_name == "":
             en_name = craftactions[skill_data['id'] + ".0"]["Name_en"]
         level = skill_data['Level']
-        desc = skill_data["Description"].replace("</br></br>", "</br>")
+        #
         locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
         locations = sorted(locations, key=lambda x: x['Ort'])
 
-
+        print(skill_data)
+        desc = ""
         if not locations == []:
-            desc += "\n\n#########################################\n\nLOCATIONS:\n"
+            desc += "\n\n<br/>#########################################<br/>\n\nLOCATIONS:\n"
             #desc += "&emsp;Zone".ljust(max_zone_length) + " -> " + "Gegnername".ljust(max_enemyname_length) + ":"
             desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td></thead><tbody>"
 
@@ -251,7 +261,13 @@ def addBlueAttackDetails(job_data):
         result += f'        cast: "{skill_data["Cast"]}"\n'
         result += f'        recast: "{skill_data["Recast"]}"\n'
         result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
-        result += f'        description: "{desc}"\n'
+        result += f'        description:\n'
+        result += f'          de: "' + skill_data["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
+        result += f'          en: "' + skill_data["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
+        result += f'          fr: "' + skill_data["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
+        result += f'          ja: "' + skill_data["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
+        result += f'          cn: "' + skill_data["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
+        result += f'          ko: "' + skill_data["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
         result += f'        phases:\n'
         result += f'          - phase: "01"\n'
     return result
@@ -285,7 +301,7 @@ def addAttackDetails(job_data, pvp=False):
 
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
-        print_color_red(pretty_json(skill_data) + "\n", disable_print)
+        #print_color_red(pretty_json(skill_data) + "\n")
         en_name = actionss.get(skill_data['id'], {}).get("Name_en", "").title()
         fr_name = actionss.get(skill_data['id'], {}).get("Name_fr", "").title()
         ja_name = actionss.get(skill_data['id'], {}).get("Name_ja", "").title()
@@ -298,7 +314,9 @@ def addAttackDetails(job_data, pvp=False):
             cn_name = craftactions[skill_data['id']]["Name_cn"].title()
             ko_name = craftactions[skill_data['id']]["Name_ko"].title()
         level = "0" if skill_data['Level'] == "99999" else skill_data['Level']
-        desc = skill_data["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
+        desc = action_trans.get(skill_data["id"].split(".")[0], None)
+        if not desc:
+            desc = craftactions[skill_data["id"].split(".")[0]]
         result += f'      - title:\n'
         result += f'          de: "{skill_data["Name"]}"\n'
         result += f'          en: "{en_name}"\n'
@@ -315,7 +333,13 @@ def addAttackDetails(job_data, pvp=False):
         result += f'        cast: "{skill_data["Cast"]}"\n'
         result += f'        recast: "{skill_data["Recast"]}"\n'
         result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
-        result += f'        description: "{desc}"\n'
+        result += f'        description:\n'
+        result += f'          de: "' + desc["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          en: "' + desc["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          fr: "' + desc["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ja: "' + desc["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          cn: "' + desc["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ko: "' + desc["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
         result += f'        phases:\n'
         if pvp:
             result += f'          - phase: "04"\n'
@@ -335,7 +359,6 @@ def addStatusDetails(job):
         result += "    debuffs:\n"
         for key, status in jobstatusdata.items():
             _id = str(int(key, 16))
-            desc = statusss[_id]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
             result += f'      - title:\n'
             result += f'          de: "{status["name"].title()}"\n'
             result += f'          en: "{statuss[_id]["Name_en"].title()}"\n'
@@ -345,7 +368,13 @@ def addStatusDetails(job):
             result += f'          ko: "{statuss[_id]["Name_ko"].title()}"\n'
             result += f'        title_id: "{key}"\n'
             result += f'        icon: "{getImage(status["icon"])}"\n'
-            result += f'        description: "{desc}"\n'
+            result += f'        description:\n'
+            result += f'          de: "{statuss[_id]["Description_de"]}"\n'
+            result += f'          en: "{statuss[_id]["Description_en"]}"\n'
+            result += f'          fr: "{statuss[_id]["Description_fr"]}"\n'
+            result += f'          ja: "{statuss[_id]["Description_ja"]}"\n'
+            result += f'          cn: "{statuss[_id]["Description_cn"]}"\n'
+            result += f'          ko: "{statuss[_id]["Description_ko"]}"\n'
             result += f'        durations: {status["duration"]}\n'
             result += '        phases:\n'
             result += '          - phase: "02"\n'
@@ -368,7 +397,6 @@ def addTraitDetails(job):
         ja_name = traitss[_id]["Name_ja"].title()
         cn_name = traitss[_id]["Name_cn"].title()
         ko_name = traitss[_id]["Name_ko"].title()
-        desc = traitstransient[_id]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
         level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
         result += f'      - title:\n'
         result += f'          de: "{trait_data["Name"].title()}"\n'
@@ -380,7 +408,13 @@ def addTraitDetails(job):
         result += f'        title_id: "{_id.split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
         result += f'        icon: "{getImage(trait_data["Icon"].replace(".tex", "_hr1.png"))}"\n'
-        result += f'        description: "{desc}"\n'
+        result += f'        description:\n'
+        result += f'          de: "' + traitstransient[_id]["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          en: "' + traitstransient[_id]["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          fr: "' + traitstransient[_id]["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ja: "' + traitstransient[_id]["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          cn: "' + traitstransient[_id]["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ko: "' + traitstransient[_id]["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
         result += f'        phases:\n'
         result += f'          - phase: "03"\n'
     return result
@@ -428,7 +462,14 @@ def getEurekaActionDetails():
                             "ko": statuss[status_key]['Name_ko']
                         },
                         "status_icon": statuss[status_key]['Icon'].replace(".tex", "_hr1.png").replace(".png", "_hr1.png"),
-                        "description": action_trans[k]["Description"].replace("\n", "</br>")
+                        "description": {
+                            "de": action_trans[k]["Description_de"].replace("\n", "</br>"),
+                            "en": action_trans[k]["Description_en"].replace("\n", "</br>"),
+                            "fr": action_trans[k]["Description_fr"].replace("\n", "</br>"),
+                            "ja": action_trans[k]["Description_ja"].replace("\n", "</br>"),
+                            "cn": action_trans[k]["Description_cn"].replace("\n", "</br>"),
+                            "ko": action_trans[k]["Description_ko"].replace("\n", "</br>")
+                        },
                     }
                     break
                 else:
@@ -482,7 +523,14 @@ def getBozjaActionDetails():
             "icon": icon,
             "cj": a["ClassJobCategory"],
             "frontsplitter": getFrontsplitterEntry(action['Action'], result),
-            "description": action_trans[b]["Description"].replace("\n", "<br>"),
+            "description": {
+                "de": action_trans[b]["Description_de"].replace("\n", "<br>"),
+                "en": action_trans[b]["Description_en"].replace("\n", "<br>"),
+                "fr": action_trans[b]["Description_fr"].replace("\n", "<br>"),
+                "ja": action_trans[b]["Description_ja"].replace("\n", "<br>"),
+                "cn": action_trans[b]["Description_cn"].replace("\n", "<br>"),
+                "ko": action_trans[b]["Description_ko"].replace("\n", "<br>")
+            },
         }
         result[action['Category']][b] = tmp
     return json.loads(json.dumps(result, indent=4, sort_keys=true, ensure_ascii=false))
@@ -496,7 +544,6 @@ def addEurekaActions(job, eureka_actions):
     for k, value in eureka_actions.items():
         if _class[0] in value['cj']:
             result = True
-            desc = value["description"].replace("\n", "</br>").replace("</br></br>", "</br>")
             # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
             result_text += f'      - title:\n'
             result_text += f'          de: "{value["name"]["de"]}"\n'
@@ -516,7 +563,13 @@ def addEurekaActions(job, eureka_actions):
             result_text += f'        title_id: "{k}"\n'
             result_text += f'        level: "70"\n'
             result_text += f'        icon: "{getImage(value["icon"])}"\n'
-            result_text += f'        description: "{desc}"\n'
+            result_text += f'        description:\n'
+            result_text += f'          de: "' + value["description"]['de'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+            result_text += f'          en: "' + value["description"]['en'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+            result_text += f'          fr: "' + value["description"]['fr'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+            result_text += f'          ja: "' + value["description"]['ja'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+            result_text += f'          cn: "' + value["description"]['cn'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+            result_text += f'          ko: "' + value["description"]['ko'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
             result_text += f'        type: "{value["type"]}"\n'
             result_text += f'        phases:\n'
             result_text += f'          - phase: "06"\n'
@@ -532,7 +585,6 @@ def addBozjaActions(job, bozja_actions):
         for k, value in data.items():
             if _class[0] in value['cj']:
                 result = True
-                desc = value["description"].replace("\n", "</br>").replace("</br></br>", "</br>")
                 # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
                 result_text += f'      - title:\n'
                 result_text += f'          de: "{value["name"]["de"]}"\n'
@@ -544,7 +596,13 @@ def addBozjaActions(job, bozja_actions):
                 result_text += f'        title_id: "{k}"\n'
                 result_text += f'        level: "80"\n'
                 result_text += f'        icon: "{getImage(value["icon"])}"\n'
-                result_text += f'        description: "{desc}"\n'
+                result_text += f'        description:\n'
+                result_text += f'          de: "' + value["description"]['de'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+                result_text += f'          en: "' + value["description"]['en'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+                result_text += f'          fr: "' + value["description"]['fr'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+                result_text += f'          ja: "' + value["description"]['ja'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+                result_text += f'          cn: "' + value["description"]['cn'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+                result_text += f'          ko: "' + value["description"]['ko'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
                 result_text += f'        frontsplitter: "{value["frontsplitter"]}"\n'
                 result_text += f'        phases:\n'
                 result_text += f'          - phase: "07"\n'
@@ -798,6 +856,7 @@ def addKlassJobs():
         job_data_pvp = pvpskills.get(job, None)
         if not job_data:
             continue
+        counter += 1
         #if not job == "Rotmagier":
         #    continue
         print_color_red(job)
@@ -811,7 +870,6 @@ def addKlassJobs():
         gear = gear_get(lvl_from=1, lvl_to=int(maxlvl), ilvl_from=1, ilvl_to=999999, rarity=[1, 7, 2, 3, 4], classjob=job_d['Abbreviation_de'], category="Rumpf")
         maxilvl = str(max([int(e["Level_Item"]) for e in gear]))
 
-        counter += 1
         filecontent = ""
         filecontent += '---\n'
         filecontent += 'wip: "True"\n'
@@ -941,7 +999,6 @@ def addChocoboPartnerSkills():
     result = ""
     result += "    attacks:\n"
     for key, _ in ordered.items():
-        desc = action_trans[key]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
         t = actionss[key]
         result += f'      - title:\n'
         result += f'          de: "{t["Name_de"]}"\n'
@@ -953,7 +1010,13 @@ def addChocoboPartnerSkills():
         result += f'        icon: "{getImage(t["Icon"])}"\n'
         #result += f'        level: "{actions[key]["Level"]}"\n'
         result += f'        title_id: "{key}"\n'
-        result += f'        description: "{desc}"\n'
+        result += f'        description:\n'
+        result += f'          de: "' + action_trans[key]["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          en: "' + action_trans[key]["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          fr: "' + action_trans[key]["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ja: "' + action_trans[key]["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          cn: "' + action_trans[key]["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ko: "' + action_trans[key]["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
         result += f'        phases:\n'
         result += f'          - phase: "01"\n'
     return result
@@ -966,7 +1029,6 @@ def addRennChocoboSkills():
     for key, value in ordered.items():
         if value["Name_de"] == "":
             continue
-        desc = value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>")
         # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
         result += f'      - title:\n'
         result += f'          de: "{value["Name_de"]}"\n'
@@ -977,7 +1039,13 @@ def addRennChocoboSkills():
         result += f'          ko: "{value["Name_ko"]}"\n'
         result += f'        title_id: "{key}"\n'
         result += f'        icon: "{getImage(value["Icon"])}"\n'
-        result += f'        description: "{desc}"\n'
+        result += f'        description:\n'
+        result += f'          de: "' + value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          en: "' + value["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          fr: "' + value["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ja: "' + value["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          cn: "' + value["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ko: "' + value["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
         result += f'        phases:\n'
         result += f'          - phase: "03"\n'
     return result
@@ -998,7 +1066,6 @@ def addChocoboPartnerTraits():
     result = ""
     result += "    traits:\n"
     for key, _ in ordered.items():
-        desc = traitstransient[key]["Description"].replace("\n", "</br>").replace("</br></br>", "</br>")
         t = traitss[key]
         result += f'      - title:\n'
         result += f'          de: "{t["Name_de"]}"\n'
@@ -1010,7 +1077,13 @@ def addChocoboPartnerTraits():
         result += f'        icon: "{getImage(t["Icon"])}"\n'
         result += f'        level: "{traits[key]["Level"]}"\n'
         result += f'        title_id: "{key}"\n'
-        result += f'        description: "{desc}"\n'
+        result += f'        description:\n'
+        result += f'          de: "' + traitstransient[key]["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          en: "' + traitstransient[key]["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          fr: "' + traitstransient[key]["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ja: "' + traitstransient[key]["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          cn: "' + traitstransient[key]["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ko: "' + traitstransient[key]["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
         result += f'        phases:\n'
         result += f'          - phase: "02"\n'
     return result
@@ -1023,7 +1096,6 @@ def addRennChocoboItems():
     for key, value in ordered.items():
         if value["Name_de"] == "":
             continue
-        desc = value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>")
         # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
         result += f'      - title:\n'
         result += f'          de: "{value["Name_de"]}"\n'
@@ -1034,7 +1106,13 @@ def addRennChocoboItems():
         result += f'          ko: "{value["Name_ko"]}"\n'
         result += f'        title_id: "{key}"\n'
         result += f'        icon: "{getImage(value["Icon"])}"\n'
-        result += f'        description: "{desc}"\n'
+        result += f'        description:\n'
+        result += f'          de: "' + value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          en: "' + value["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          fr: "' + value["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ja: "' + value["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          cn: "' + value["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += f'          ko: "' + value["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
         result += f'        phases:\n'
         result += f'          - phase: "04"\n'
     return result

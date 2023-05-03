@@ -4,12 +4,9 @@
     <h4 class="guide__accordion-trigger-title">
         <img class="attack_icon" src="{{ site.imageurl }}/{{ trait.icon }}" alt="{{ trait.icon }}"/>
         <span class="">
-            <span class="lang-toggle lang-toogle-de">{{ trait.title.de }}</span>
-            <span class="lang-toggle lang-toogle-en">{{ trait.title.en }}</span>
-            <span class="lang-toggle lang-toogle-fr">{{ trait.title.fr }}</span>
-            <span class="lang-toggle lang-toogle-ja">{{ trait.title.ja }}</span>
-            <span class="lang-toggle lang-toogle-cn">{{ trait.title.cn }}</span>
-            <span class="lang-toggle lang-toogle-ko">{{ trait.title.ko }}</span>
+            {%- for lang in LANGUAGES -%}
+                <span class="lang-toggle lang-toogle-{{lang}}">{{  trait.title[lang] }}</span>
+            {%- endfor -%}
         </span>
         {%- if trait.title.en -%}
             <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ trait.title.en }}</div>
@@ -26,7 +23,11 @@
         {%- if trait.description -%}
             <div class="guide__attack-notes-wrapper">
                 <h5 class="guide__attack-notes-title">Description:</h5>
-                <span class="guide__debuff_description">{{ trait.description }}</span>
+                <span class="">
+                    {%- for lang in LANGUAGES -%}
+                        <div class="guide__debuff_description lang-toggle lang-toogle-{{lang}}">{{  trait.description[lang] }}</div>
+                    {%- endfor -%}
+                </span>
             </div>
         {%- endif -%}
         {%- include _components/guide-attack-notes.html -%}

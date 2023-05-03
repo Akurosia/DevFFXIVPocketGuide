@@ -2,12 +2,9 @@
 <div class="guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--quest">
     <h4 class="guide__accordion-trigger-title">
         <span class="">
-            <span class="lang-toggle lang-toogle-de">{{ quest.title.de }}</span>
-            <span class="lang-toggle lang-toogle-en">{{ quest.title.en }}</span>
-            <span class="lang-toggle lang-toogle-fr">{{ quest.title.fr }}</span>
-            <span class="lang-toggle lang-toogle-ja">{{ quest.title.ja }}</span>
-            <span class="lang-toggle lang-toogle-cn">{{ quest.title.cn }}</span>
-            <span class="lang-toggle lang-toogle-ko">{{ quest.title.ko }}</span>
+            {%- for lang in LANGUAGES -%}
+                <span class="lang-toggle lang-toogle-{{lang}}">{{  quest.title[lang] }}</span>
+            {%- endfor -%}
         </span>
         {%- if quest.title.en -%}
             <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ quest.title.en }}</div>
