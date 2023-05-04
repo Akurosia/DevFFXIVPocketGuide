@@ -21,7 +21,7 @@ lo_actions = None
 bo_actions = None
 craftactions = None
 statuss = None
-statusss = None
+status = None
 traits = None
 traitss = None
 traitstransient = None
@@ -40,6 +40,7 @@ chocobochallange = None
 buddyskill = None
 
 disable_print = True
+status_ncj = None
 
 
 def load_global_data():
@@ -56,7 +57,7 @@ def load_global_data():
     global bo_actions
     global craftactions
     global statuss
-    global statusss
+    global status
     global traits
     global traitss
     global traitstransient
@@ -88,7 +89,7 @@ def load_global_data():
     bo_actions = loadDataTheQuickestWay("MYCTemporaryItem.json")
     craftactions = loadDataTheQuickestWay("craftaction", translate=True)
     statuss = loadDataTheQuickestWay("status", translate=True)
-    statusss = loadDataTheQuickestWay("Status")
+    status = loadDataTheQuickestWay("Status")
     traits = loadDataTheQuickestWay("Trait")
     traitss = loadDataTheQuickestWay("trait", translate=True)
     traitstransient = loadDataTheQuickestWay("TraitTransient", translate=True)
@@ -261,12 +262,12 @@ def addBlueAttackDetails(job_data):
         result += f'        recast: "{skill_data["Recast"]}"\n'
         result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
         result += f'        description:\n'
-        result += f'          de: "' + skill_data["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
-        result += f'          en: "' + skill_data["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
-        result += f'          fr: "' + skill_data["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
-        result += f'          ja: "' + skill_data["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
-        result += f'          cn: "' + skill_data["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
-        result += f'          ko: "' + skill_data["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + f'{desc}"\n'
+        result += f'          de: "' + skill_data["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+        result += f'          en: "' + skill_data["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+        result += f'          fr: "' + skill_data["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+        result += f'          ja: "' + skill_data["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+        result += f'          cn: "' + skill_data["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+        result += f'          ko: "' + skill_data["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
         result += f'        phases:\n'
         result += f'          - phase: "01"\n'
     return result
@@ -347,26 +348,33 @@ def addAttackDetails(job_data, pvp=False):
     return result
 
 
-def addStatusDetails(job):
+def addStatusDetails(job, job_abb):
     global logdata
-    global statusss
     global statuss
+    global status_ncj
     result = ""
-    jobstatusdata = logdata["Klassen"].get(job, {}).get("status", {})
+    #jobstatusdata = logdata["Klassen"].get(job, {}).get("status", {})
+    jobstatusdata = {}
+    for key, value in status_ncj[job_abb].items():
+        if not key in jobstatusdata:
+            jobstatusdata[key] = value
     if not jobstatusdata == {}:
         jobstatusdata = OrderedDict(sorted(jobstatusdata.items(), key=lambda x: getitem(x[1], 'name')))
         result += "    debuffs:\n"
-        for key, status in jobstatusdata.items():
+        for key, s in jobstatusdata.items():
+            # skip known buffs
+            #if key in ["30", "438", "43C", "437", "32", "53E", "31", "C2A", "C2C", "C2D", "BCF", "BEE", "436", "CAA", "541", "CA9", "D92", "C82", "", "", "", "", "", "", "", "", ""]:
+            #    continue
             _id = str(int(key, 16))
             result += f'      - title:\n'
-            result += f'          de: "{status["name"].title()}"\n'
+            result += f'          de: "{s["name"].title()}"\n'
             result += f'          en: "{statuss[_id]["Name_en"].title()}"\n'
             result += f'          fr: "{statuss[_id]["Name_fr"].title()}"\n'
             result += f'          ja: "{statuss[_id]["Name_ja"].title()}"\n'
             result += f'          cn: "{statuss[_id]["Name_cn"].title()}"\n'
             result += f'          ko: "{statuss[_id]["Name_ko"].title()}"\n'
             result += f'        title_id: "{key}"\n'
-            result += f'        icon: "{getImage(status["icon"])}"\n'
+            result += f'        icon: "{getImage(s["icon"])}"\n'
             result += f'        description:\n'
             result += f'          de: "{statuss[_id]["Description_de"]}"\n'
             result += f'          en: "{statuss[_id]["Description_en"]}"\n'
@@ -374,7 +382,8 @@ def addStatusDetails(job):
             result += f'          ja: "{statuss[_id]["Description_ja"]}"\n'
             result += f'          cn: "{statuss[_id]["Description_cn"]}"\n'
             result += f'          ko: "{statuss[_id]["Description_ko"]}"\n'
-            result += f'        durations: {status["duration"]}\n'
+            if s['duration']:
+                result += f'        durations: {s["duration"]}\n'
             result += '        phases:\n'
             result += '          - phase: "02"\n'
     return result
@@ -420,7 +429,7 @@ def addTraitDetails(job):
 
 
 def getStatusKey(stat):
-    for k, v in statusss.items():
+    for k, v in status.items():
         if v["Name"] == stat:
             return k
     return "0"
@@ -835,8 +844,31 @@ def getQuestName(job):
     return ""
 
 
+def getStatusFromFile(ncj):
+    klc = [x["Abbreviation_de"] for key, x in ncj]
+    default_status = {}
+    for k in klc:
+        default_status[k] = {}
+    for key, s in status.items():
+        if s['ClassJobCategory'] in klc:
+            default_status[s['ClassJobCategory']][str(hex(int(key)))[2:].upper()] = {
+                "name": s['Name'],
+                "icon": s['Icon'],
+                "duration": None
+            }
+        elif s['ClassJobCategory'] == "Handwerker":
+            for crafter in ['ZMR', 'GRS', 'PLA', 'GLD', 'GER', 'WEB', 'ALC', 'GRM']:
+                default_status[crafter][str(hex(int(key)))[2:].upper()] = {
+                    "name": s['Name'],
+                    "icon": s['Icon'],
+                    "duration": None
+                }
+    return default_status
+
+
 def addKlassJobs():
     global cj
+    global status_ncj
     # for job, job_data in skills.items():
     all_crafter_leves = getCrafterLeves()
     all_gatherer_leves = getGathererLeves()
@@ -845,12 +877,15 @@ def addKlassJobs():
     #print_color_yellow(pretty_json(bozja_actions))
 
     ncj = sorted(cj.items(), key=lambda item: int(item[0].split(".")[0]))
+    status_ncj = getStatusFromFile(ncj)
+
     counter = 0
     # print_color_red(pretty_json(ncj))
     maxlvl = ""
     for k in ncj:
         job_d = k[1]
         job = job_d['Name_de']
+        job_abb = job_d['Abbreviation_de']
         job_data = skills.get(job, None)
         job_data_pvp = pvpskills.get(job, None)
         if not job_data:
@@ -939,7 +974,7 @@ def addKlassJobs():
         else:
             filecontent += addAttackDetails(job_data)
             filecontent += addAttackDetails(job_data_pvp, True)
-        filecontent += addStatusDetails(job)
+        filecontent += addStatusDetails(job, job_abb)
         filecontent += addTraitDetails(job)
 
         ea, ea_text = addEurekaActions(job, eureka_actions)
