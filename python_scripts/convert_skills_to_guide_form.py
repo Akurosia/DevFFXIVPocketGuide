@@ -203,13 +203,14 @@ def addBlueAttackDetails(job_data):
         locations = []
         if skill_data.get('Location', None):
             locations.append(skill_data['Location'])
-        en_name = actionss.get(skill_data['id'], {}).get("Name_en", "").title()
-        fr_name = actionss.get(skill_data['id'], {}).get("Name_fr", "").title()
-        ja_name = actionss.get(skill_data['id'], {}).get("Name_ja", "").title()
-        cn_name = actionss.get(skill_data['id'], {}).get("Name_cn", "").title()
-        ko_name = actionss.get(skill_data['id'], {}).get("Name_ko", "").title()
+        de_name = actionss.get(skill_data["id"], {}).get("Name_de", "")
+        en_name = actionss.get(skill_data["id"], {}).get("Name_en", "")
+        fr_name = actionss.get(skill_data["id"], {}).get("Name_fr", "")
+        ja_name = actionss.get(skill_data["id"], {}).get("Name_ja", "")
+        cn_name = actionss.get(skill_data["id"], {}).get("Name_cn", "")
+        ko_name = actionss.get(skill_data["id"], {}).get("Name_ko", "")
         if en_name == "":
-            en_name = craftactions[skill_data['id'] + ".0"]["Name_en"]
+            en_name = craftactions[skill_data["id"] + ".0"]["Name_en"]
         level = skill_data['Level']
         #
         locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
@@ -236,7 +237,7 @@ def addBlueAttackDetails(job_data):
         desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
         if skill_data.get("Number", None) and int(level) < 901:
             result += f'      - title:\n'
-            result += f'          de: "{level}. {skill_data["Name"]}"\n'
+            result += f'          de: "{level}. {de_name}"\n'
             result += f'          en: "{level}. {en_name}"\n'
             result += f'          fr: "{level}. {fr_name}"\n'
             result += f'          ja: "{level}. {ja_name}"\n'
@@ -244,7 +245,7 @@ def addBlueAttackDetails(job_data):
             result += f'          ko: "{level}. {ko_name}"\n'
         else:
             result += f'      - title:\n'
-            result += f'          de: "{skill_data["Name"]}"\n'
+            result += f'          de: "{de_name}"\n'
             result += f'          en: "{en_name}"\n'
             result += f'          fr: "{fr_name}"\n'
             result += f'          ja: "{ja_name}"\n'
@@ -302,23 +303,25 @@ def addAttackDetails(job_data, pvp=False):
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
         #print_color_red(pretty_json(skill_data) + "\n")
-        en_name = actionss.get(skill_data['id'], {}).get("Name_en", "").title()
-        fr_name = actionss.get(skill_data['id'], {}).get("Name_fr", "").title()
-        ja_name = actionss.get(skill_data['id'], {}).get("Name_ja", "").title()
-        cn_name = actionss.get(skill_data['id'], {}).get("Name_cn", "").title()
-        ko_name = actionss.get(skill_data['id'], {}).get("Name_ko", "").title()
+        de_name = actionss.get(skill_data["id"], {}).get("Name_de", "")
+        en_name = actionss.get(skill_data["id"], {}).get("Name_en", "")
+        fr_name = actionss.get(skill_data["id"], {}).get("Name_fr", "")
+        ja_name = actionss.get(skill_data["id"], {}).get("Name_ja", "")
+        cn_name = actionss.get(skill_data["id"], {}).get("Name_cn", "")
+        ko_name = actionss.get(skill_data["id"], {}).get("Name_ko", "")
         if en_name == "":
-            en_name = craftactions[skill_data['id']]["Name_en"].title()
-            fr_name = craftactions[skill_data['id']]["Name_fr"].title()
-            ja_name = craftactions[skill_data['id']]["Name_ja"].title()
-            cn_name = craftactions[skill_data['id']]["Name_cn"].title()
-            ko_name = craftactions[skill_data['id']]["Name_ko"].title()
+            de_name = craftactions[skill_data["id"]]["Name_de"]
+            en_name = craftactions[skill_data["id"]]["Name_en"]
+            fr_name = craftactions[skill_data["id"]]["Name_fr"]
+            ja_name = craftactions[skill_data["id"]]["Name_ja"]
+            cn_name = craftactions[skill_data["id"]]["Name_cn"]
+            ko_name = craftactions[skill_data["id"]]["Name_ko"]
         level = "0" if skill_data['Level'] == "99999" else skill_data['Level']
         desc = action_trans.get(skill_data["id"].split(".")[0], None)
         if not desc:
             desc = craftactions[skill_data["id"].split(".")[0]]
         result += f'      - title:\n'
-        result += f'          de: "{skill_data["Name"]}"\n'
+        result += f'          de: "{de_name}"\n'
         result += f'          en: "{en_name}"\n'
         result += f'          fr: "{fr_name}"\n'
         result += f'          ja: "{ja_name}"\n'
@@ -367,12 +370,12 @@ def addStatusDetails(job, job_abb):
             #    continue
             _id = str(int(key, 16))
             result += f'      - title:\n'
-            result += f'          de: "{s["name"].title()}"\n'
-            result += f'          en: "{statuss[_id]["Name_en"].title()}"\n'
-            result += f'          fr: "{statuss[_id]["Name_fr"].title()}"\n'
-            result += f'          ja: "{statuss[_id]["Name_ja"].title()}"\n'
-            result += f'          cn: "{statuss[_id]["Name_cn"].title()}"\n'
-            result += f'          ko: "{statuss[_id]["Name_ko"].title()}"\n'
+            result += f'          de: "{statuss[_id]["Name_de"]}"\n'
+            result += f'          en: "{statuss[_id]["Name_en"]}"\n'
+            result += f'          fr: "{statuss[_id]["Name_fr"]}"\n'
+            result += f'          ja: "{statuss[_id]["Name_ja"]}"\n'
+            result += f'          cn: "{statuss[_id]["Name_cn"]}"\n'
+            result += f'          ko: "{statuss[_id]["Name_ko"]}"\n'
             result += f'        title_id: "{key}"\n'
             result += f'        icon: "{getImage(s["icon"])}"\n'
             result += f'        description:\n'
@@ -400,19 +403,14 @@ def addTraitDetails(job):
     for _id, trait_data in job_trait_data.items():
         if not trait_data.get("Icon", None):
             continue
-        en_name = traitss[_id]["Name_en"].title()
-        fr_name = traitss[_id]["Name_fr"].title()
-        ja_name = traitss[_id]["Name_ja"].title()
-        cn_name = traitss[_id]["Name_cn"].title()
-        ko_name = traitss[_id]["Name_ko"].title()
         level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
         result += f'      - title:\n'
-        result += f'          de: "{trait_data["Name"].title()}"\n'
-        result += f'          en: "{en_name}"\n'
-        result += f'          fr: "{fr_name}"\n'
-        result += f'          ja: "{ja_name}"\n'
-        result += f'          cn: "{cn_name}"\n'
-        result += f'          ko: "{ko_name}"\n'
+        result += f'          de: "{traitss[_id]["Name_de"]}"\n'
+        result += f'          en: "{traitss[_id]["Name_en"]}"\n'
+        result += f'          fr: "{traitss[_id]["Name_fr"]}"\n'
+        result += f'          ja: "{traitss[_id]["Name_ja"]}"\n'
+        result += f'          cn: "{traitss[_id]["Name_cn"]}"\n'
+        result += f'          ko: "{traitss[_id]["Name_ko"]}"\n'
         result += f'        title_id: "{_id.split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
         result += f'        icon: "{getImage(trait_data["Icon"].replace(".tex", "_hr1.png"))}"\n'
@@ -621,7 +619,7 @@ def translatename(name, lang="en"):
     global trans_leves
     for y, x in trans_leves.items():
         if x["Name_de"] == name:
-            return x[f"Name_{lang}"].title()
+            return x[f"Name_{lang}"]
 
 
 def getCrafterLeves():
@@ -769,15 +767,16 @@ def addQuestkDetails(job, pvp):
     result += "    quests:\n"
     for _level in sorted(klassenquests):
         quest = klassenquests[_level]
-        en_name = questss.get(quest['id'], {}).get("Name_en", "").replace(" ", "").replace(" ", "").title()
-        fr_name = questss.get(quest['id'], {}).get("Name_fr", "").replace(" ", "").replace(" ", "").title()
-        ja_name = questss.get(quest['id'], {}).get("Name_ja", "").replace(" ", "").replace(" ", "").title()
-        cn_name = questss.get(quest['id'], {}).get("Name_cn", "").replace(" ", "").replace(" ", "").title()
-        ko_name = questss.get(quest['id'], {}).get("Name_ko", "").replace(" ", "").replace(" ", "").title()
+        de_name = questss.get(quest["id"], {}).get("Name_de", "").replace(" ", "").replace(" ", "")
+        en_name = questss.get(quest["id"], {}).get("Name_en", "").replace(" ", "").replace(" ", "")
+        fr_name = questss.get(quest["id"], {}).get("Name_fr", "").replace(" ", "").replace(" ", "")
+        ja_name = questss.get(quest["id"], {}).get("Name_ja", "").replace(" ", "").replace(" ", "")
+        cn_name = questss.get(quest["id"], {}).get("Name_cn", "").replace(" ", "").replace(" ", "")
+        ko_name = questss.get(quest["id"], {}).get("Name_ko", "").replace(" ", "").replace(" ", "")
         level = "0" if quest['level'] == "99999" else quest['level']
         # desc = skill_data["Description"].replace("\n", "</br>")
         result += f'      - title:\n'
-        result += f'          de: "{quest["name"].title().replace(" ", "").replace(" ", "")}"\n'
+        result += f'          de: "{de_name}"\n'
         result += f'          en: "{en_name}"\n'
         result += f'          fr: "{fr_name}"\n'
         result += f'          ja: "{ja_name}"\n'
@@ -1186,12 +1185,12 @@ def addChocobo():
     filecontent += '---\n'
     filecontent += 'wip: "True"\n'
     filecontent += 'title:\n'
-    filecontent += f'  de: "{job_d["Name_de"].title()}"\n'
-    filecontent += f'  en: "{job_d["Name_en"].title()}"\n'
-    filecontent += f'  fr: "{job_d["Name_fr"].title()}"\n'
-    filecontent += f'  ja: "{job_d["Name_ja"].title()}"\n'
-    filecontent += f'  cn: "{job_d["Name_cn"].title()}"\n'
-    filecontent += f'  ko: "{job_d["Name_ko"].title()}"\n'
+    filecontent += f'  de: "{job_d["Name_de"]}"\n'
+    filecontent += f'  en: "{job_d["Name_en"]}"\n'
+    filecontent += f'  fr: "{job_d["Name_fr"]}"\n'
+    filecontent += f'  ja: "{job_d["Name_ja"]}"\n'
+    filecontent += f'  cn: "{job_d["Name_cn"]}"\n'
+    filecontent += f'  ko: "{job_d["Name_ko"]}"\n'
     filecontent += 'layout: klassen\n'
     filecontent += 'page_type: guide\n'
     filecontent += 'categories: "klassenjobs"\n'
@@ -1212,23 +1211,23 @@ def addChocobo():
     filecontent += '    - term: "Skills"\n'
     filecontent += '    - term: "Status"\n'
     filecontent += '    - term: "Traits"\n'
-    filecontent += f'    - term: "{job_d["Name_de"].title()}"\n'
-    filecontent += f'    - term: "{job_d["Name_en"].title()}"\n'
-    filecontent += f'    - term: "{job_d["Name_fr"].title()}"\n'
-    filecontent += f'    - term: "{job_d["Name_ja"].title()}"\n'
-    filecontent += f'    - term: "{job_d["Name_cn"].title()}"\n'
-    filecontent += f'    - term: "{job_d["Name_ko"].title()}"\n'
+    filecontent += f'    - term: "{job_d["Name_de"]}"\n'
+    filecontent += f'    - term: "{job_d["Name_en"]}"\n'
+    filecontent += f'    - term: "{job_d["Name_fr"]}"\n'
+    filecontent += f'    - term: "{job_d["Name_ja"]}"\n'
+    filecontent += f'    - term: "{job_d["Name_cn"]}"\n'
+    filecontent += f'    - term: "{job_d["Name_ko"]}"\n'
     filecontent += f'sortid: 0\n'
     filecontent += f'order: 0\n'
     filecontent += f'plvl: 50\n'
     filecontent += "bosses:\n"
     filecontent += "  - title:\n"
-    filecontent += f'      de: "{job_d["Name_de"].title()}"\n'
-    filecontent += f'      en: "{job_d["Name_en"].title()}"\n'
-    filecontent += f'      fr: "{job_d["Name_fr"].title()}"\n'
-    filecontent += f'      ja: "{job_d["Name_ja"].title()}"\n'
-    filecontent += f'      cn: "{job_d["Name_cn"].title()}"\n'
-    filecontent += f'      ko: "{job_d["Name_ko"].title()}"\n'
+    filecontent += f'      de: "{job_d["Name_de"]}"\n'
+    filecontent += f'      en: "{job_d["Name_en"]}"\n'
+    filecontent += f'      fr: "{job_d["Name_fr"]}"\n'
+    filecontent += f'      ja: "{job_d["Name_ja"]}"\n'
+    filecontent += f'      cn: "{job_d["Name_cn"]}"\n'
+    filecontent += f'      ko: "{job_d["Name_ko"]}"\n'
     filecontent += "    id: \"" + "boss0\"\n"
     #todo add chocobo stuff
     filecontent += addChocoboPartnerSkills()
