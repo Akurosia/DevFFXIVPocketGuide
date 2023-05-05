@@ -356,8 +356,8 @@ def addStatusDetails(job, job_abb):
     global statuss
     global status_ncj
     result = ""
-    #jobstatusdata = logdata["Klassen"].get(job, {}).get("status", {})
-    jobstatusdata = {}
+    jobstatusdata = logdata["Klassen"].get(job, {}).get("status", {})
+    #jobstatusdata = {}
     for key, value in status_ncj[job_abb].items():
         if not key in jobstatusdata:
             jobstatusdata[key] = value
@@ -377,7 +377,10 @@ def addStatusDetails(job, job_abb):
             result += f'          cn: "{statuss[_id]["Name_cn"]}"\n'
             result += f'          ko: "{statuss[_id]["Name_ko"]}"\n'
             result += f'        title_id: "{key}"\n'
-            result += f'        icon: "{getImage(s["icon"])}"\n'
+            if "_hr1" in getImage(s["icon"]):
+                result += f'        icon: "{getImage(s["icon"])}"\n'
+            else:
+                result += f'        icon: "{getImage(s["icon"]).replace(".png", "_hr1.png")}"\n'
             result += f'        description:\n'
             result += f'          de: "{statuss[_id]["Description_de"]}"\n'
             result += f'          en: "{statuss[_id]["Description_en"]}"\n'
