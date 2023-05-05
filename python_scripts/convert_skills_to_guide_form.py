@@ -357,7 +357,6 @@ def addStatusDetails(job, job_abb):
     global status_ncj
     result = ""
     jobstatusdata = logdata["Klassen"].get(job, {}).get("status", {})
-    #jobstatusdata = {}
     for key, value in status_ncj[job_abb].items():
         if not key in jobstatusdata:
             jobstatusdata[key] = value
@@ -365,9 +364,6 @@ def addStatusDetails(job, job_abb):
         jobstatusdata = OrderedDict(sorted(jobstatusdata.items(), key=lambda x: getitem(x[1], 'name')))
         result += "    debuffs:\n"
         for key, s in jobstatusdata.items():
-            # skip known buffs
-            #if key in ["30", "438", "43C", "437", "32", "53E", "31", "C2A", "C2C", "C2D", "BCF", "BEE", "436", "CAA", "541", "CA9", "D92", "C82", "", "", "", "", "", "", "", "", ""]:
-            #    continue
             _id = str(int(key, 16))
             result += f'      - title:\n'
             result += f'          de: "{statuss[_id]["Name_de"]}"\n'
