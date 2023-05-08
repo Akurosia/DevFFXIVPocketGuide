@@ -9,6 +9,8 @@ try:
 except ImportError:
     from yaml import Loader
 
+file_location = os.path.dirname(os.path.realpath(__file__))
+
 quests = loadDataTheQuickestWay("Quest.de.json", translate=false)
 t_quests = loadDataTheQuickestWay("quest_all.json", translate=true)
 levels = loadDataTheQuickestWay("Level.json", translate=false)
@@ -32,10 +34,10 @@ def getQuestName(name, lang="en", color=False):
         try:
             if value["Name_de"].replace(" ", "").replace(" ", "").strip().lower() == name.replace(" ", "").replace(" ", "").strip().lower():
                 if color:
-                    return wrap_in_color_green(value['Name_en'].replace(" ", "").replace(" ", ""))
+                    return wrap_in_color_green(value)
                 else:
                     # print(value)
-                    return value[f'Name_{lang}'].replace(" ", "").replace(" ", "")
+                    return value
         except:
             pass
     return wrap_in_color_red(name)
@@ -135,10 +137,10 @@ def write(out, data):
 
 
 def getFinalData(results):
-    # print_pretty_json(results)
-    # yaml.dump(results, out, default_flow_style=False)
-    # with open("C:\Users\Akurosia\Desktop/../DevFFXIVPocketGuide/_posts/quests/2013-01-01--2.0--2--quests.md", "w", encoding="utf8") as out:
-    with open("C:/Users/kamot/OneDrive/Desktop/2013-01-01--2.0--2--quests.md", "w", encoding="utf8") as out:
+    global file_location
+    result_file = os.path.join(file_location, "..", "_posts", "quests", "2013-01-01--2.0--1--quests.md")
+    print_color_green(f"Write result to {result_file}")
+    with open(result_file, "w", encoding="utf8") as out:
         write(out, "---")
         write(out, 'wip: "True"')
         write(out, 'title: "Quests"')
@@ -148,17 +150,17 @@ def getFinalData(results):
         write(out, 'quests:')
         for key, value in results.items():
             for id, quest in value.items():
-                # print(quest["name"])
+                translated_quest_names = getQuestName(quest["name"])
                 write(out, f' - id: "{id}"')
                 write(out, f'   expansion: "{key}"')
                 write(out, f'   instanceType: "quest_{expansions[key]}"')
                 write(out, f'   name:')
                 write(out, f'     de: "{quest["name"]}"')
-                write(out, f'     en: "{getQuestName(quest["name"], "en")}"')
-                write(out, f'     fr: "{getQuestName(quest["name"], "fr")}"')
-                write(out, f'     ja: "{getQuestName(quest["name"], "ja")}"')
-                write(out, f'     cn: "{getQuestName(quest["name"], "cn")}"')
-                write(out, f'     ko: "{getQuestName(quest["name"], "ko")}"')
+                write(out, f'     en: "{translated_quest_names["Name_en"].replace(" ", "").replace(" ", "")}"')
+                write(out, f'     fr: "{translated_quest_names["Name_fr"].replace(" ", "").replace(" ", "")}"')
+                write(out, f'     ja: "{translated_quest_names["Name_ja"].replace(" ", "").replace(" ", "")}"')
+                write(out, f'     cn: "{translated_quest_names["Name_cn"].replace(" ", "").replace(" ", "")}"')
+                write(out, f'     ko: "{translated_quest_names["Name_ko"].replace(" ", "").replace(" ", "")}"')
                 write(out, f'   level: "{quest["level"]}"')
                 write(out, f'   icon: "{quest["icon"].replace("ui/icon","")}"')
                 write(out, f'   journal: "{quest["journalgenre"]}"')
