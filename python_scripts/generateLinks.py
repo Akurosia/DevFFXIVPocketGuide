@@ -43,7 +43,7 @@ def links():
         filecontent += f"    - category: {key}\n"
         filecontent += "      links: \n"
         for name, entry in value.items():
-            if entry.get('disable', False) or entry.get('url', "") == "":
+            if entry.get('disabled', False) or entry.get('url', "") == "":
                 continue
             filecontent += f"        - name: {name}\n"
             filecontent += f"          url: {entry['url']}\n"
