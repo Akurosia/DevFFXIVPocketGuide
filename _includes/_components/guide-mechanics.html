@@ -8,11 +8,23 @@
         {%- for mechanic in phase.mechanics -%}
             <hr/>
             <!-- Mechanic Title -->
-            <h5 class="guide__mechanics-title">{{ mechanic.title }}</h5>
+            {%- if mechanic.title.en -%}
+                {%- for lang in LANGUAGES -%}
+                    <h5 class="guide__mechanics-title lang-toggle lang-toogle-{{lang}}">{{ mechanic.title[lang] }}</h5>
+                {%- endfor -%}
+            {%- else -%}
+                <h5 class="guide__mechanics-title">{{ mechanic.title }}</h5>
+            {%- endif -%}
             <!-- Mechanics List -->
             <ul class="guide__mechanics-list">
                 {%- for note in mechanic.notes -%}
-                    <li class="guide__mechanics-item">{{ note.note }}</li>
+                    {%- if note.note.en -%}
+                        {%- for lang in LANGUAGES -%}
+                            <li class="guide__mechanics-item lang-toggle lang-toogle-{{lang}}">{{ note.note[lang] }}</li>
+                        {%- endfor -%}
+                    {%- else -%}
+                        <li class="guide__mechanics-item">{{ note.note }}</li>
+                    {%- endif -%}
                 {%- endfor -%}
             </ul>
         {%- endfor -%}

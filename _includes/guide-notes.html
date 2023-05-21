@@ -15,7 +15,28 @@
             {%- else -%}
                 <div class="guide__accordion-copy-wrapper">
                     <!-- Event Title -->
-                    <h3 class="guide__accordion-title">{{ mechanic.title }}</h3>
+                    {%- if mechanic.title.en -%}
+                        {%- if mechanic.title.icon -%}
+                            <div style="display: inline;">
+                                <img style="width: auto;object-fit: scale-down;" src="{%- if mechanic.title.icon contains "/assets/" -%}
+                                        {{ mechanic.title.icon | prepend: site.baseurl }}
+                                    {%- else -%}
+                                        {{ mechanic.title.icon | prepend: site.imageurl }}
+                                    {%- endif -%}
+                                    " alt="{{ mechanic.title.icon }}">
+                        {%- endif -%}
+
+                        {%- for lang in LANGUAGES -%}
+                            <h3 class="guide__accordion-title lang-toggle lang-toogle-{{lang}}">{{ mechanic.title[lang] }}</h3>
+                        {%- endfor -%}
+
+                        {%- if mechanic.title.icon -%}
+                            </div>
+                        {%- endif -%}
+                    {%- else -%}
+                        <h3 class="guide__accordion-title">{{ mechanic.title }}</h3>
+                    {%- endif -%}
+
                     <!-- Opens the Step Loop -->
                     {%- if mechanic.steps -%}
                         <div class="guide__mechanics-wrapper">
@@ -25,7 +46,13 @@
                                 <!-- Stance Notes -->
                                 <ul class="guide__mechanics-list">
                                     {%- for note in step.notes -%}
-                                        <li class="guide__mechanics-item">{{ note.note }}</li>
+                                        {%- if note.note.en -%}
+                                            {%- for lang in LANGUAGES -%}
+                                                <li class="guide__mechanics-item lang-toggle lang-toogle-{{lang}}">{{ note.note[lang] }}</li>
+                                            {%- endfor -%}
+                                        {%- else -%}
+                                            <li class="guide__mechanics-item">{{ note.note }}</li>
+                                        {%- endif -%}
                                     {%- endfor -%}
                                 </ul>
                                 <!-- Stance Images -->
