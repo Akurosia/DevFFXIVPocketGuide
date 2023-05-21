@@ -355,6 +355,7 @@ def rewrite_content_even_if_exists(entry, old_wip):
 def addContentZoneIdToHeader(header_data, contentzoneid, entry):
     global contentfinderconditionX
     cmt = None
+    working_key = ""
     if not contentzoneid == "":
         header_data += 'contentzoneids:\n'
         for zone in contentzoneid:
@@ -367,19 +368,20 @@ def addContentZoneIdToHeader(header_data, contentzoneid, entry):
             contentid = value['Content'].replace("InstanceContent#", "")
             if not contentid:
                 continue
+            working_key = key
             _id = "8003" + str(hex(int(contentid))[2:]).rjust(4, '0').upper()
+
             if "contentzoneids:" not in header_data:
                 header_data += 'contentzoneids:\n'
 
             if _id not in header_data:
                 # if _id not in contentzoneid:
                 header_data += '  - id: ' + _id + '\n'
-
-            # add transient
-            contentfinderconditiontrans
-            header_data += 'contentdescription:\n'
-            for lang in LANGUAGES:
-                header_data += f'    {lang}: ' + contentfinderconditiontrans[key][f"Description_{lang}"].replace("\n", "<br/>") + '\n'
+                # add transient on the first valid entry
+    if "contentdescription" not in header_data and not working_key == "":
+        header_data += 'contentdescription:\n'
+        for lang in LANGUAGES:
+            header_data += f'    {lang}: "' + contentfinderconditiontrans[working_key][f"Description_{lang}"].replace("\n", "<br/>").replace('"', '\\"') + '"\n'
 
     return header_data, cmt
 

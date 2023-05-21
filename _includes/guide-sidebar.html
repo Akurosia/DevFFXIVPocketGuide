@@ -49,6 +49,13 @@
                 {%- endfor -%}
             </h5>
         {%- endif -%}
+        {%- if page.contentdescription -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentbeschreibung:
+                {%- for lang in LANGUAGES -%}
+                    <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.contentdescription[lang] }}</span>
+                {%- endfor -%}
+            </h5>
+        {%- endif -%}
         {%- if page.mapid -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">MapID: <span class="block">{{ page.mapid }}</span></h5>
         {%- endif -%}
