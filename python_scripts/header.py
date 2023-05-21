@@ -18,6 +18,7 @@ minions = loadDataTheQuickestWay("companion_all.json", translate=True)
 orchestrions = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
 ttcards = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
 contentfinderconditionX = loadDataTheQuickestWay("ContentFinderCondition.de.json")
+contentfinderconditiontrans = loadDataTheQuickestWay("ContentFinderConditionTransient", translate=True)
 contentmembertype = loadDataTheQuickestWay("ContentMemberType.json")
 
 
@@ -373,6 +374,13 @@ def addContentZoneIdToHeader(header_data, contentzoneid, entry):
             if _id not in header_data:
                 # if _id not in contentzoneid:
                 header_data += '  - id: ' + _id + '\n'
+
+            # add transient
+            contentfinderconditiontrans
+            header_data += 'contentdescription:\n'
+            for lang in LANGUAGES:
+                header_data += f'    {lang}: ' + contentfinderconditiontrans[key][f"Description_{lang}"].replace("\n", "<br/>") + '\n'
+
     return header_data, cmt
 
 
