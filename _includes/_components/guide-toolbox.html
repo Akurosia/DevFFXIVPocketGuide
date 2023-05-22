@@ -7,13 +7,13 @@
     <div class="guide__accordion-content--04">
         <hr/>
         {%- for toolbox in phase.toolbox -%}
-            <a class="guide__toolbox-title" target="_blank" href="{{ toolbox.link }}" alt="{{ toolbox.name }}">{{ toolbox.name }}</a>
+            <a class="guide__toolbox-title" target="_blank" rel="noopener noreferrer" href="{{ toolbox.link }}" alt="{{ toolbox.name }}">{{ toolbox.name }}</a>
             {%- unless forloop.last -%}
                 <br/>
             {%- endunless -%}
         {%- endfor -%}
         {%- for raidplan in phase.raidplan -%}
-            <a class="guide__toolbox-title" target="_blank" href="{{ raidplan.link }}" alt="{{ raidplan.name }}">{{ raidplan.name }}</a>
+            <a class="guide__toolbox-title" target="_blank" rel="noopener noreferrer" href="{{ raidplan.link }}" alt="{{ raidplan.name }}">{{ raidplan.name }}</a>
             <embed src="{{ raidplan.link }}" width="100%" height="850px">
             {%- unless forloop.last -%}
                 <br/>

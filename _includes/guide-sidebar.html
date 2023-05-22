@@ -4,9 +4,9 @@
         {%- for url in page.mtqvid -%}
             {%- assign naviIndex = {{forloop.index}} -%}
             {%- if page.mtqvid.size == 1 -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide</a>
             {%- else -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide {{naviIndex}}</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide {{naviIndex}}</a>
             {%- endif -%}
         {%- endfor -%}
     {%- endif -%}
@@ -14,9 +14,9 @@
         {%- for url in page.mrhvid -%}
             {%- assign naviIndex = {{forloop.index}} -%}
             {%- if page.mtqvid.size == 1 -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide</a>
             {%- else -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide {{naviIndex}}</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide {{naviIndex}}</a>
             {%- endif -%}
         {%- endfor -%}
     {%- endif -%}
@@ -36,7 +36,7 @@
         {%- if page.patchNumber -%}
             {%- if page.patchLink -%}
                 <h5 class="guide-metadata__subtitle box small-1of2 med-full">Patch:
-                    <span class="block"><a target="_blank" href="{{ page.patchLink }}">{{ page.patchNumber }} - {{ page.patchName }}</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="{{ page.patchLink }}">{{ page.patchNumber }} - {{ page.patchName }}</a></span>
                 </h5>
             {%- else -%}
                 <h5 class="guide-metadata__subtitle box small-1of2 med-full">Patch:<span class="block">{{ page.patchNumber }} - {{ page.patchName }}</span></h5>
@@ -75,21 +75,21 @@
                     {%- if page.music.size > 1 -%}
                         {%- if music.id -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- else -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" >- {{ music.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" >- {{ music.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- endif -%}
                     {%- else -%}
                         {%- if music.id -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- else -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" >{{ music.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" >{{ music.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- endif -%}
                     {%- endif -%}
@@ -118,7 +118,7 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest:
                 <span class="block">
                     {%- for lang in LANGUAGES -%}
-                        <a target="_blank" class="lang-toggle lang-toogle-{{lang}}" href="https://{{lang}}.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest[lang] }}">{{ page.quest[lang] }}</a>
+                        <a target="_blank" rel="noopener noreferrer" class="lang-toggle lang-toogle-{{lang}}" href="https://{{lang}}.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest[lang] }}">{{ page.quest[lang] }}</a>
                     {%- endfor -%}
                 </span>
             </h5>
@@ -140,7 +140,7 @@
         {%- if page.partners -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Partners:
             {%- for partner in page.partners -%}
-                <span class="block"><a href="{{ partner.partner-link }}" title="Go view {{ partner.partner-title }}'s Guide" target="_blank">{{ partner.partner-title }}</a></span>
+                <span class="block"><a href="{{ partner.partner-link }}" title="Go view {{ partner.partner-title }}'s Guide" target="_blank" rel="noopener noreferrer">{{ partner.partner-title }}</a></span>
             {%- endfor -%}
             </h5>
         {%- endif -%}
@@ -150,21 +150,21 @@
                     {%- if page.mount.size > 1 -%}
                         {%- if mount.id -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">- {{ mount.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/mounts/{{ mount.id }}">- {{ mount.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- else -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank">- {{ mount.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">- {{ mount.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- endif -%}
                     {%- else -%}
                         {%- if mount.id -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- else -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank">{{ mount.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">{{ mount.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- endif -%}
                     {%- endif -%}
@@ -177,21 +177,21 @@
                     {%- if page.minion.size > 1 -%}
                         {%- if minion.id -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">- {{ minion.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/minions/{{ minion.id }}">- {{ minion.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- else -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank">- {{ minion.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">- {{ minion.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- endif -%}
                     {%- else -%}
                         {%- if minion.id -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- else -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank">{{ minion.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">{{ minion.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- endif -%}
                     {%- endif -%}
@@ -215,21 +215,21 @@
                     {%- if page.tt_card.size > 1 -%}
                         {%- if tt_card.id -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">- {{ tt_card.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards/{{ tt_card.id }}">- {{ tt_card.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- else -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" >- {{ tt_card.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" >- {{ tt_card.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- endif -%}
                     {%- else -%}
                         {%- if tt_card.id -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- else -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank">{{ tt_card.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">{{ tt_card.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- endif -%}
                     {%- endif -%}
@@ -242,21 +242,21 @@
                     {%- if page.orchestrion.size > 1 -%}
                         {%- if orchestrion.id -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">- {{ orchestrion.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">- {{ orchestrion.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- else -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank">- {{ orchestrion.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">- {{ orchestrion.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- endif -%}
                     {%- else -%}
                         {%- if orchestrion.id -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- else -%}
                             {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank">{{ orchestrion.name[lang] }}</a></span>
+                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">{{ orchestrion.name[lang] }}</a></span>
                             {%- endfor -%}
                         {%- endif -%}
                     {%- endif -%}
@@ -310,13 +310,13 @@
         {%- if page.links -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Links:
                 {%- if page.links.teamcraftlink -%}
-                    <span class="block"><a target="_blank" href="https://ffxivteamcraft.com/db/de/instance/{{ page.links.teamcraftlink }}">Teamcraft</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance/{{ page.links.teamcraftlink }}">Teamcraft</a></span>
                 {%- endif -%}
                 {%- if page.links.garlandtoolslink -%}
-                    <span class="block"><a target="_blank" href="https://garlandtools.org/db/#instance/{{ page.links.garlandtoolslink }}">Garlandtools</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance/{{ page.links.garlandtoolslink }}">Garlandtools</a></span>
                 {%- endif -%}
                 {%- if page.links.gamerescapelink -%}
-                    <span class="block"><a target="_blank" href="https://ffxiv.gamerescape.com/wiki/{{ page.links.gamerescapelink }}">Gamerscape</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki/{{ page.links.gamerescapelink }}">Gamerscape</a></span>
                 {%- endif -%}
             </h5>
         {%- endif -%}

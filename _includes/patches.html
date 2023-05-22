@@ -55,12 +55,12 @@
                                 <td class="patch_table_2">{{patch.date}}</td>
                                 <td class="patch_table_3">{{patch.dslr}}</td>
                                 {%- if patch.link_to_patch -%}
-                                    <td class="patch_table_4"><a href="{{patch.link_to_patch}}" target="_blank">Link to <b> {{patch.patchnumber}}</b> Patch notes</a></td>
+                                    <td class="patch_table_4"><a href="{{patch.link_to_patch}}" target="_blank" rel="noopener noreferrer">Link to <b> {{patch.patchnumber}}</b> Patch notes</a></td>
                                 {%- elsif x != "ffxiv" -%}
                                     <td class="patch_table_4"></td>
                                 {%- endif -%}
                                 {%- if patch.link_to_special_page -%}
-                                    <td class="patch_table_5"><a href="{{patch.link_to_special_page}}" target="_blank">Link to {{patch.patchnumber}} <b> {{patch.name}}</b> Site</a></td>
+                                    <td class="patch_table_5"><a href="{{patch.link_to_special_page}}" target="_blank" rel="noopener noreferrer">Link to {{patch.patchnumber}} <b> {{patch.name}}</b> Site</a></td>
                                 {%- elsif x != "ffxiv" -%}
                                     <td class="patch_table_5"></td>
                                 {%- endif -%}
