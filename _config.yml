@@ -60,6 +60,12 @@ exclude:
   - "convert_skills_to_guide_form.py"
   - "ffxiv_guide_xlsx_to_file.py"
   - "generateLinks.py"
+  - "build.sh"
+  - "FFXIV PocketCraft Overview_drawio.*"
+  - "rebuild_and_build.sh"
+  - "requirements.txt"
+  - "README.md"
+  - "*.bat"
 sass:
     sass_dir: _sass
     load_paths:
