@@ -66,6 +66,7 @@ exclude:
   - "requirements.txt"
   - "README.md"
   - "*.bat"
+  - "python_scripts/"
 sass:
     sass_dir: _sass
     load_paths:
