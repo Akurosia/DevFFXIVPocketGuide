@@ -286,13 +286,14 @@ def rewrite_content_even_if_exists(entry, old_wip):
             header_data += f'  {lang}: "' + entry[f"quest_npc_{lang}"] + '"\n'
     header_data += 'order: ' + get_order_id(entry) + '\n'
 
+    #TODO add funcion for Orchestrio Material
     category_names = {
         'mount': getMountIDByName,
         'minion': getMinionIDByName,
         'gearset_loot': "gsetname",
         'tt_card': getTTCardIDByName,
         'orchestrion': getOrchestrionIDByName,
-        'orchestrion_material': "name",
+        'orchestrion_material': getOrchestrionMaterialIDByName,
         'mtqvid': "url",
         'mrhvid': "url"
     }
@@ -445,6 +446,13 @@ def getTTCardIDByName(name):
 
 
 def getOrchestrionIDByName(name):
+    for _id, orchestrion in orchestrions.items():
+        if orchestrion['Name_de'].lower() == name.lower():
+            return _id, orchestrion
+    return None, None
+
+
+def getOrchestrionMaterialIDByName(name):
     for _id, orchestrion in orchestrions.items():
         if orchestrion['Name_de'].lower() == name.lower():
             return _id, orchestrion
