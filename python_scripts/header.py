@@ -317,30 +317,31 @@ def rewrite_content_even_if_exists(entry, old_wip):
 
     # rouletts
     if entry.get("expert", None):
-        if entry["allianceraid"] or entry["frontier"] or entry["expert"] or entry["guildhest"] or entry["highlevelroulette"] or entry["levelcaproulette"] or entry["leveling"] or entry["main"] or entry["mentor"] or entry["normalraid"] or entry["trial"]:
+        # first check is to see if elements are even there, this one is for the actual filter
+        if eval(entry["allianceraid"]) or eval(entry["frontier"]) or eval(entry["expert"]) or eval(entry["guildhest"]) or eval(entry["highlevelroulette"]) or eval(entry["levelcaproulette"]) or eval(entry["leveling"]) or eval(entry["main"]) or eval(entry["mentor"]) or eval(entry["normalraid"]) or eval(entry["trial"]):
             header_data += 'rouletts:\n'
-        if entry["allianceraid"]:
-            header_data += '    allianceraid: ' + entry["allianceraid"] + "\n"
-        if entry["frontier"]:
-            header_data += '    frontier: ' + entry["frontier"] + "\n"
-        if entry["expert"]:
-            header_data += '    expert: ' + entry["expert"] + "\n"
-        if entry["guildhest"]:
-            header_data += '    guildhest: ' + entry["guildhest"] + "\n"
-        if entry["highlevelroulette"]:
-            header_data += '    highlevelroulette: ' + entry["highlevelroulette"] + "\n"
-        if entry["levelcaproulette"]:
-            header_data += '    levelcaproulette: ' + entry["levelcaproulette"] + "\n"
-        if entry["leveling"]:
-            header_data += '    leveling: ' + entry["leveling"] + "\n"
-        if entry["main"]:
-            header_data += '    main: ' + entry["main"] + "\n"
-        if entry["mentor"]:
-            header_data += '    mentor: ' + entry["mentor"] + "\n"
-        if entry["normalraid"]:
-            header_data += '    normalraid: ' + entry["normalraid"] + "\n"
-        if entry["trial"]:
-            header_data += '    trial: ' + entry["trial"] + "\n"
+            if eval(entry["allianceraid"]):
+                header_data += '    allianceraid: ' + entry["allianceraid"] + "\n"
+            if eval(entry["frontier"]):
+                header_data += '    frontier: ' + entry["frontier"] + "\n"
+            if eval(entry["expert"]):
+                header_data += '    expert: ' + entry["expert"] + "\n"
+            if eval(entry["guildhest"]):
+                header_data += '    guildhest: ' + entry["guildhest"] + "\n"
+            if eval(entry["highlevelroulette"]):
+                header_data += '    highlevelroulette: ' + entry["highlevelroulette"] + "\n"
+            if eval(entry["levelcaproulette"]):
+                header_data += '    levelcaproulette: ' + entry["levelcaproulette"] + "\n"
+            if eval(entry["leveling"]):
+                header_data += '    leveling: ' + entry["leveling"] + "\n"
+            if eval(entry["main"]):
+                header_data += '    main: ' + entry["main"] + "\n"
+            if eval(entry["mentor"]):
+                header_data += '    mentor: ' + entry["mentor"] + "\n"
+            if eval(entry["normalraid"]):
+                header_data += '    normalraid: ' + entry["normalraid"] + "\n"
+            if eval(entry["trial"]):
+                header_data += '    trial: ' + entry["trial"] + "\n"
     # links:
     # TODO Fix big if check
     if checkVariable(entry, "teamcraftlink") or checkVariable(entry, "garlandtoolslink") or checkVariable(entry, "gamerescapelink"):
