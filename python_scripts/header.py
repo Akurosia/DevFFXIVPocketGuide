@@ -17,8 +17,9 @@ exversion = loadDataTheQuickestWay("exversion_all.json", translate=True)
 minions = loadDataTheQuickestWay("companion_all.json", translate=True)
 orchestrions = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
 ttcards = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
-contentfinderconditionX = loadDataTheQuickestWay("ContentFinderCondition.de.json")
-contentfinderconditiontrans = loadDataTheQuickestWay("ContentFinderConditionTransient", translate=True)
+contentfindercondition = loadDataTheQuickestWay("ContentFinderCondition.de.json")
+contentfindercondition_trans = loadDataTheQuickestWay("ContentFinderCondition", translate=True)
+contentfinderconditiontransient = loadDataTheQuickestWay("ContentFinderConditionTransient", translate=True)
 contentmembertype = loadDataTheQuickestWay("ContentMemberType.json")
 
 
@@ -232,6 +233,7 @@ def rewrite_content_even_if_exists(entry, old_wip):
         tmp = entry[f"title_{lang}"].replace(f' ({entry["difficulty"].lower()})', "")
         tmp = tmp.replace(f' ({entry["difficulty"].title()})', "")
         tmp = tmp.replace(f'Traumprüfung - ', "")
+        tmp = myCapitalize(tmp)
         header_data += f'  {lang}: "' + tmp + '"\n'
     header_data += 'layout: guide_post\n'
     header_data += 'page_type: guide\n'
@@ -360,15 +362,17 @@ def rewrite_content_even_if_exists(entry, old_wip):
 
 
 def addContentZoneIdToHeader(header_data, contentzoneid, entry):
-    global contentfinderconditionX
+    global contentfindercondition
+    global contentfindercondition_trans
     cmt = None
     working_key = ""
     if not contentzoneid == "":
         header_data += 'contentzoneids:\n'
         for zone in contentzoneid:
             header_data += '  - id: ' + zone + '\n'
-    for key, value in contentfinderconditionX.items():
-        if value['Name'] == entry['title_de']:
+    for key, value in contentfindercondition.items():
+        if contentfindercondition_trans[key]['Name_de'] == entry['title_de']:
+            working_key = key
             cmt = value['ContentMemberType']
             if not "InstanceContent" in value['Content']:
                 continue
@@ -388,7 +392,7 @@ def addContentZoneIdToHeader(header_data, contentzoneid, entry):
     if "contentdescription" not in header_data and not working_key == "":
         header_data += 'contentdescription:\n'
         for lang in LANGUAGES:
-            header_data += f'    {lang}: "' + contentfinderconditiontrans[working_key][f"Description_{lang}"].replace("\n", "<br/>").replace('"', '\\"') + '"\n'
+            header_data += f'    {lang}: "' + contentfinderconditiontransient[working_key][f"Description_{lang}"].replace("\n", "<br/>").replace('"', '\\"') + '"\n'
 
     return header_data, cmt
 
