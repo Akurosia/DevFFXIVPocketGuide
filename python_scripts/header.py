@@ -34,6 +34,11 @@ def replaceSlug(text):
     return str(text).replace("_", "-").replace(".", "-").replace(",", "").replace("'", "").replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("Ü", "Ue").replace("ß", "ss")
 
 
+def myCapitalize(string):
+    if string == "":
+        return ""
+    return string[:1].upper() + string[1:]
+
 def writeTags(header_data, entry, tt_type_name):
     # write tags per expansion
     if entry["categories"] == "arr":
@@ -59,7 +64,7 @@ def writeTags(header_data, entry, tt_type_name):
             header_data += "  - term: \"" + tt_type_name["Name_" + lang] + "\"\n"
 
     for lang in LANGUAGES:
-        header_data += "  - term: \"" + entry[f"title_{lang}"] + "\"\n"
+        header_data += "  - term: \"" + myCapitalize(entry[f"title_{lang}"]) + "\"\n"
 
     # write rest of the tags
     header_data += "  - term: \"" + entry["difficulty"] + "\"\n"
