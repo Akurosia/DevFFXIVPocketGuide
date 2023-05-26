@@ -129,7 +129,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
         try:
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if debug_row_number not in [421]:
+            #if debug_row_number not in [61]:
             #    print_debug = True
             #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
@@ -150,7 +150,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_data)
             elif entry['title'] != "":
-                print_color_green(f"Skipp {entry['title']} as its marked as {entry['exclude']}/{entry['done']}")
+                print_color_green(f"Skip {entry['title']} as its marked as {entry['exclude']}/{entry['done']}")
         except Exception as e:
             logger.critical(f"Error when handeling '{filename}' with line id '{i}' ({e})")
             traceback.print_exception(*sys.exc_info())
