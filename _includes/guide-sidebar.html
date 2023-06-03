@@ -33,6 +33,14 @@
         {%- if page.ilvl_sync > 0 -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Item Level Sync: <span class="noblock">{{ page.ilvl_sync }}</span></h5>
         {%- endif -%}
+        {%- if page.roletypeinparty -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Type:
+                {%- for lang in LANGUAGES -%}
+                    <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.roletypeinparty[lang] }}</span>
+                {%- endfor -%}
+
+        {%- endif -%}
+
         {%- if page.patchNumber -%}
             {%- if page.patchLink -%}
                 <h5 class="guide-metadata__subtitle box small-1of2 med-full">Patch:

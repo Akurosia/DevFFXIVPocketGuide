@@ -38,6 +38,7 @@ chocoboskills_trans = None
 chocoboitems_trans = None
 chocobochallange_trans = None
 buddyskill_raw = None
+addon_trans = None
 
 disable_print = True
 status_ncj = None
@@ -47,6 +48,7 @@ def load_global_data():
     global skills
     global pvpskills
     global logdata
+    global addon_trans
     global cjs_trans
     global cjs
     global actions
@@ -82,6 +84,7 @@ def load_global_data():
     cjs_trans = loadDataTheQuickestWay("classjob", translate=True)
     cjs = loadDataTheQuickestWay("ClassJob")
     actions = loadDataTheQuickestWay("action")
+    addon_trans = loadDataTheQuickestWay("addon", translate=True)
     actions_trans = loadDataTheQuickestWay("action", translate=True)
     actiontransient_trans = loadDataTheQuickestWay("actiontransient", translate=True)
     aozaction_trans = loadDataTheQuickestWay("aozactiontransient", translate=True)
@@ -797,39 +800,17 @@ def addQuestkDetails(job, pvp):
 
 
 classDetails = {
-    "Ninja": {
-        "date": "2014.10.28", "patchNumber": "2.4", "patchName": "Dreams of Ice"
-    },
-    "Maschinist": {
-        "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward"
-    },
-    "Dunkelritter": {
-        "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward"
-    },
-    "Astrologe": {
-        "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward"
-    },
-    "Samurai": {
-        "date": "2017.06.20", "patchNumber": "4.0", "patchName": "Stormblood"
-    },
-    "Rotmagier": {
-        "date": "2017.06.20", "patchNumber": "4.0", "patchName": "Stormblood"
-    },
-    "Blaumagier": {
-        "date": "2019.01.08", "patchNumber": "4.5", "patchName": "A Requiem for Heroes"
-    },
-    "Revolverklinge": {
-        "date": "2019.06.28", "patchNumber": "5.0", "patchName": "Shadowbringers"
-    },
-    "Tänzer": {
-        "date": "2019.06.28", "patchNumber": "5.0", "patchName": "Shadowbringers"
-    },
-    "Schnitter": {
-        "date": "2021.12.07", "patchNumber": "6.0", "patchName": "Endwalker"
-    },
-    "Weiser": {
-        "date": "2021.12.07", "patchNumber": "6.0", "patchName": "Endwalker"
-    },
+    "Ninja": {          "date": "2014.10.28", "patchNumber": "2.4", "patchName": "Dreams of Ice", "patchShort": "arr"},
+    "Maschinist": {     "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward", "patchShort": "hw"},
+    "Dunkelritter": {   "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward", "patchShort": "hw"},
+    "Astrologe": {      "date": "2015.06.23", "patchNumber": "3.0", "patchName": "Heavensward", "patchShort": "hw"},
+    "Samurai": {        "date": "2017.06.20", "patchNumber": "4.0", "patchName": "Stormblood", "patchShort": "sb"},
+    "Rotmagier": {      "date": "2017.06.20", "patchNumber": "4.0", "patchName": "Stormblood", "patchShort": "sb"},
+    "Blaumagier": {     "date": "2019.01.08", "patchNumber": "4.5", "patchName": "A Requiem for Heroes", "patchShort": "sb"},
+    "Revolverklinge": { "date": "2019.06.28", "patchNumber": "5.0", "patchName": "Shadowbringers", "patchShort": "shb"},
+    "Tänzer": {         "date": "2019.06.28", "patchNumber": "5.0", "patchName": "Shadowbringers", "patchShort": "shb"},
+    "Schnitter": {      "date": "2021.12.07", "patchNumber": "6.0", "patchName": "Endwalker", "patchShort": "ew"},
+    "Weiser": {         "date": "2021.12.07", "patchNumber": "6.0", "patchName": "Endwalker", "patchShort": "ew"},
 }
 
 
@@ -866,7 +847,19 @@ def getStatusFromFile(ncj):
 
 def addKlassJobs():
     global cjs_trans
+    global cjs
+    global addon_trans
     global status_ncj
+    partybonus = {
+        "0": "",
+        "1": "1082",
+        "2": "1083",
+        "3": "1084",
+        "4": "1085",
+        "5": "1086",
+        "6": "1295",
+        "7": "1294",
+    }
     # for job, job_data in skills.items():
     all_crafter_leves = getCrafterLeves()
     all_gatherer_leves = getGathererLeves()
@@ -886,6 +879,9 @@ def addKlassJobs():
         job_abb = job_d['Abbreviation_de']
         job_data = skills.get(job, None)
         job_data_pvp = pvpskills.get(job, None)
+        job_party_bonus = str(cjs[k[0]]['PartyBonus'])
+        if job == "Ninja":
+            job_party_bonus = "3"
         if not job_data:
             continue
         counter += 1
@@ -914,7 +910,15 @@ def addKlassJobs():
         filecontent += f'  ko: "{job_d["Name_ko"].title()}"\n'
         filecontent += 'layout: klassen\n'
         filecontent += 'page_type: guide\n'
+        filecontent += f'roletypeinparty:\n'
+        filecontent += f'  de: "{addon_trans[partybonus[job_party_bonus]]["Text_de"].title()}"\n'
+        filecontent += f'  en: "{addon_trans[partybonus[job_party_bonus]]["Text_en"].title()}"\n'
+        filecontent += f'  fr: "{addon_trans[partybonus[job_party_bonus]]["Text_fr"].title()}"\n'
+        filecontent += f'  ja: "{addon_trans[partybonus[job_party_bonus]]["Text_ja"].title()}"\n'
+        filecontent += f'  cn: "{addon_trans[partybonus[job_party_bonus]]["Text_cn"].title()}"\n'
+        filecontent += f'  ko: "{addon_trans[partybonus[job_party_bonus]]["Text_ko"].title()}"\n'
         filecontent += 'categories: "klassenjobs"\n'
+
         filecontent += 'difficulty: "Normal"\n'
         filecontent += 'instanceType: "klassenjobs"\n'
 
@@ -922,10 +926,12 @@ def addKlassJobs():
             filecontent += f'date: "{classDetails[job]["date"]}"\n'
             filecontent += f'patchNumber: "{classDetails[job]["patchNumber"]}"\n'
             filecontent += f'patchName: "{classDetails[job]["patchName"]}"\n'
+            filecontent += f'expac: "{classDetails[job]["patchShort"]}"\n'
         else:
             filecontent += 'date: "2013.01.01"\n'
             filecontent += 'patchNumber: "2.0"\n'
             filecontent += 'patchName: "A Realm Reborn"\n'
+            filecontent += 'expac: "arr"\n'
 
         # this will be empty for non jobs (crafter/gatherer are clases so we know if they have pvp spells)
         pvp = getQuestName(job)
@@ -1198,6 +1204,7 @@ def addChocobo():
     filecontent += 'date: "2013.01.01"\n'
     filecontent += 'patchNumber: "2.0"\n'
     filecontent += 'patchName: "A Realm Reborn"\n'
+    filecontent += 'expac: "arr"\n'
     filecontent += 'slug: "klassen_und_jobs_' + job.lower() + '"\n'
     if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
         filecontent += 'image:\n'

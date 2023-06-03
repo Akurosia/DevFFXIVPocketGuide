@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+    {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
+    <head>
     {% include head.html %}
         <!-- jQuery -->
         <script type="text/javascript" src="{{ "/assets/vendor/jquery.min.js" | prepend: site.baseurl }}"></script>

@@ -51,7 +51,9 @@
         {%- endif -%}
     {%- elsif page.page_category == "klassenjobs" -%}
         {%- if guide.instanceType == "klassenjobs" or guide.instance_type == "klassenjobs" -%}
-            {%- assign counter = counter | plus: 1 -%}
+            {%- if guide.expac == expac or guide.roletypeinparty.de == roletype -%}
+                {%- assign counter = counter | plus: 1 -%}
+            {%- endif -%}
         {%- endif -%}
     {%- endif -%}
 {%- endfor -%}
