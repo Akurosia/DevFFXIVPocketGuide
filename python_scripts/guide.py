@@ -69,7 +69,13 @@ def add_Mechanic(data):
         print("Found preset")
         guide_data += f"  - preset: \"{data['preset']}\"\n"
     else:
-        guide_data += f"  - title: \"{data['title']}\"\n"
+        guide_data += f"  - title:\n"
+        x = data['title'] if type(data['title']) == dict else {'de': data['title']}
+        for lang in LANGUAGES:
+            z = x.get(lang, x['de']).replace('"', '\\"').strip()
+            guide_data += f"      {lang}: \"{z}\"\n"
+        if x.get('icon', None):
+            guide_data += f"      icon: \"{x['icon']}\"\n"
         if data.get("steps", None):
             guide_data += "    steps:\n"
             for step in data["steps"]:
@@ -78,7 +84,11 @@ def add_Mechanic(data):
                 if step.get("notes", None):
                     guide_data += "        notes:\n"
                     for note in step["notes"]:
-                        guide_data += f"          - note: \"{note['note']}\"\n"
+                        guide_data += f"          - note:\n"
+                        y = note['note'] if type(note['note']) == dict else {'de': note['note']}
+                        for lang in LANGUAGES:
+                            w = y.get(lang, y['de']).replace('"', '\\"').strip()
+                            guide_data += f"              {lang}: \"{w}\"\n"
 
                 if step.get("images", None):
                     guide_data += "        images:\n"

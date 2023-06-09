@@ -878,9 +878,11 @@ def ugly_fix_enemy_data(enemy_data, new_enemy_data):
 
 def setMultipleLanguageStrings(guide_data, elementName, elemntArray, spaces):
     for lang in LANGUAGES:
-        if type(elemntArray[elementName]) == str or type(elemntArray[elementName]) == None:
+        if elemntArray == None:
+            guide_data += f'{spaces}{lang}: "{elemntArray[elementName][lang]}"\n'
+        elif type(elemntArray[elementName]) == str or type(elemntArray[elementName]) == None:
             continue
-        if elemntArray[elementName].get(f"{lang}", None):
+        elif elemntArray[elementName].get(f"{lang}", None):
             guide_data += f'{spaces}{lang}: "{elemntArray[elementName][lang]}"\n'
     return guide_data
 
