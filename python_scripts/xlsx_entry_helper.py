@@ -6,6 +6,7 @@ from collections import OrderedDict
 from openpyxl import load_workbook
 from io import BytesIO
 import requests
+import logging
 import os
 from ffxiv_aku import *
 try:
@@ -22,6 +23,14 @@ questss = loadDataTheQuickestWay("Quest.de.json", exd="raw-exd-all")
 enpcresidents = loadDataTheQuickestWay("Enpcresident.de.json")
 enpcresidentss = loadDataTheQuickestWay("Enpcresident", translate=True)
 contentfinderconditionX = loadDataTheQuickestWay("ContentFinderCondition.de.json")
+logger = logging.getLogger()
+
+
+def get_header_from_xlsx(sheet, max_column):
+    result = []
+    for j in range(1, max_column + 1):
+        result.append(str(sheet.cell(row=int(1), column=int(j)).value).replace("None", "").strip())
+    return result
 
 
 def get_data_from_xlsx(sheet, max_column, i, elements):
@@ -29,7 +38,8 @@ def get_data_from_xlsx(sheet, max_column, i, elements):
     # for every column in row add all elements into a dict:
     # max_column will ignore last column due to how range is working
     for j in range(1, max_column + 1):
-        entry[elements[j - 1]] = str(sheet.cell(row=int(i), column=int(j)).value).replace("None", "").strip()
+        name = str(sheet.cell(row=int(i), column=int(j)).value).replace("None", "").strip()
+        entry[elements[j - 1]] = name
     return entry
 
 

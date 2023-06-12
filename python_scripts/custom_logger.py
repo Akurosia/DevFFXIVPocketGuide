@@ -11,7 +11,7 @@ class CustomFormatter(logging.Formatter):
     red = "\x1b[31;20m"
     bold_red = "\x1b[31;1m"
     reset = "\x1b[0m"
-    format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s (%(filename)s:%(lineno)d)"
+    format = "%(levelname)s (%(asctime)s): %(message)s (Line: %(lineno)d [%(filename)s > %(funcName)s])"
     FORMATS = {
         logging.DEBUG: wrap_in_color_green(format),
         logging.INFO: wrap_in_color_blue(format),
@@ -26,11 +26,21 @@ class CustomFormatter(logging.Formatter):
         return formatter.format(record)
 
 
-def getLogger():
+def getLogger(level=50):
     logger = logging.getLogger("My_app")
-    logger.setLevel(logging.CRITICAL)
+    logger.setLevel(level)
     ch = logging.StreamHandler()
-    ch.setLevel(logging.CRITICAL)
+    ch.setLevel(level)
     ch.setFormatter(CustomFormatter())
     logger.addHandler(ch)
     return logger
+
+
+if __name__ == "__main__":
+    #print(logging.DEBUG)    #10
+    #print(logging.INFO)     #20
+    #print(logging.WARNING)  #30
+    #print(logging.ERROR)    #40
+    #print(logging.CRITICAL) #50
+    logger = getLogger(10)
+    logger.debug("hi")

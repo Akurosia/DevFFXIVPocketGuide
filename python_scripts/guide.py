@@ -17,8 +17,6 @@ except:
     from helper import *
     from guide_helper import *
 
-
-logger = getLogger()
 storeFilesInTmp(True)
 # storeFilesInTmp(True)
 logdata = get_any_Logdata()

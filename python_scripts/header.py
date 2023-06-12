@@ -8,6 +8,7 @@ except:
     from constants import *
     from helper import *
 from ffxiv_aku import *
+import logging
 
 storeFilesInTmp(True)
 territorytype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
@@ -21,6 +22,7 @@ contentfindercondition = loadDataTheQuickestWay("ContentFinderCondition.de.json"
 contentfindercondition_trans = loadDataTheQuickestWay("ContentFinderCondition", translate=True)
 contentfinderconditiontransient = loadDataTheQuickestWay("ContentFinderConditionTransient", translate=True)
 contentmembertype = loadDataTheQuickestWay("ContentMemberType.json")
+logger = logging.getLogger()
 
 
 def get_territorytype_from_mapid(entry):
@@ -39,6 +41,7 @@ def myCapitalize(string):
     if string == "":
         return ""
     return string[:1].upper() + string[1:]
+
 
 def writeTags(header_data, entry, tt_type_name):
     # write tags per expansion
@@ -486,6 +489,7 @@ def addMusic(header_data, music):
 
 
 def addHeader(entry, old_data, music, contentzoneid):
+    logger.info("test")
     header_data, entry = rewrite_content_even_if_exists(entry, old_data.get('wip', False))
     header_data, cmt = addContentZoneIdToHeader(header_data, contentzoneid, entry)
     header_data += addGroupCollections(cmt, entry)

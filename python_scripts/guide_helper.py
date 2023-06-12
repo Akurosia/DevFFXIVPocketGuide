@@ -8,15 +8,13 @@ from collections import OrderedDict
 from ffxiv_aku import *
 try:
     from python_scripts.constants import *
-    from python_scripts.custom_logger import *
     from python_scripts.helper import *
 except:
     from constants import *
-    from custom_logger import *
     from helper import *
+import logging
 
 
-logger = getLogger()
 storeFilesInTmp(True)
 logdata = get_any_Logdata()
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
@@ -25,6 +23,7 @@ status = loadDataTheQuickestWay("status_all.json", translate=True)
 bnpcname = loadDataTheQuickestWay("bnpcname_all.json", translate=True)
 eobjname = loadDataTheQuickestWay("eobjname_all.json", translate=True)
 enpcresident = loadDataTheQuickestWay("enpcresident_all.json", translate=True)
+logger = logging.getLogger()
 
 disable_green_print = True
 disable_yellow_print = True

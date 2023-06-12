@@ -19,7 +19,7 @@ import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
 import sys
 
-logger = getLogger()
+logger = getLogger(50)
 disable_green_print = True
 disable_yellow_print = True
 disable_blue_print = True
@@ -127,11 +127,12 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     # for every row do:
     for i in range(2, max_row):
         try:
+            #filename = ""
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if debug_row_number not in [449, 450]:
-                print_debug = True
-                continue
+            #if debug_row_number not in [449, 450]:
+            #    print_debug = True
+            #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             if print_debug: print(entry['title'])
             logger.info(pretty_json(entry))
@@ -160,6 +161,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
 if __name__ == "__main__":
     logger.critical('START')
     sheet, max_row, max_column = read_xlsx_file()
+    XLSXELEMENTS = get_header_from_xlsx(sheet, max_column)
     # change into _posts dir
     os.chdir("./_posts")
     # first run to create all files

@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 # coding: utf8
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
-XLSXELEMENTS = ["exclude", "date", "sortid", "title", "categories", "slug", "image", "patchNumber", "patchName", "difficulty", "plvl", "plvl_sync", "ilvl", "ilvl_sync", "quest_id", "gearset_loot", "tt_card", "orchestrion", "orchestrion_material", "mtqvid", "mrhvid", "mount", "minion", "instanceType", "mapid", "bosse", "tags", "teamcraftlink", "garlandtoolslink", "gamerescapelink", "done"]
 UNKNOWNTITLE = {'de': 'Unbekannte Herkunft', 'en': 'Unknown Source', 'fr': 'Unknown Source', 'ja': 'Unknown Source', 'cn': 'Unknown Source', 'ko': 'Unknown Source'}
 
 DIFFERENT_PRONOUNS = {'0': 'Der', '1': 'Die', '2': 'Das'}
