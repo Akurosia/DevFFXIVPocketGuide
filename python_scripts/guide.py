@@ -64,7 +64,6 @@ def check_Mechanics(entry, old_mechanics):
 def add_Mechanic(data):
     guide_data = ""
     if data.get("preset"):
-        print("Found preset")
         guide_data += f"  - preset: \"{data['preset']}\"\n"
     else:
         guide_data += f"  - title:\n"
