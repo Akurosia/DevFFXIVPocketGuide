@@ -49,6 +49,10 @@
         {%- if guide.instanceType == "bluemage" or guide.instance_type == "bluemage" -%}
             {%- assign counter = counter | plus: 1 -%}
         {%- endif -%}
+    {%- elsif page.page_category == "training" -%}
+        {%- if guide.instanceType == "training" or guide.instance_type == "training" -%}
+            {%- assign counter = counter | plus: 1 -%}
+        {%- endif -%}
     {%- elsif page.page_category == "klassenjobs" -%}
         {%- if guide.instanceType == "klassenjobs" or guide.instance_type == "klassenjobs" -%}
             {%- if guide.expac == expac or guide.roletypeinparty.de == roletype -%}
