@@ -1,5 +1,15 @@
 <!-- Guide Metadata ======================================================== -->
 <div class="guide-metadata">
+    {%- if page.hector -%}
+        {%- for url in page.hector -%}
+            {%- assign naviIndex = {{forloop.index}} -%}
+            {%- if page.hector.size == 1 -%}
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">Hector's Guide</a>
+            {%- else -%}
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">Hector's Guide {{naviIndex}}</a>
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endif -%}
     {%- if page.mtqvid -%}
         {%- for url in page.mtqvid -%}
             {%- assign naviIndex = {{forloop.index}} -%}

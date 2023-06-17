@@ -305,7 +305,8 @@ def rewrite_content_even_if_exists(entry, old_wip):
         'orchestrion': getOrchestrionIDByName,
         'orchestrion_material': getOrchestrionMaterialIDByName,
         'mtqvid': "url",
-        'mrhvid': "url"
+        'mrhvid': "url",
+        'hector': "url"
     }
     for cat, fun in category_names.items():
         found, data = checkVariable(entry, cat)
