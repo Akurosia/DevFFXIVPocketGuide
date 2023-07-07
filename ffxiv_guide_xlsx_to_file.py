@@ -157,8 +157,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             traceback.print_exception(*sys.exc_info())
 
 
-
-if __name__ == "__main__":
+def main():
     logger.critical('START')
     sheet, max_row, max_column = read_xlsx_file()
     XLSXELEMENTS = get_header_from_xlsx(sheet, max_column)
@@ -178,3 +177,7 @@ if __name__ == "__main__":
         gl.run()
         gp.run()
     logger.critical('STOP')
+
+if __name__ == "__main__":
+    print(sys.version)
+    main()
