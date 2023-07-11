@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
+import sys
+print(sys.version)
 import os
 import traceback
 # traceback.print_exc()
@@ -17,7 +19,6 @@ from python_scripts.custom_logger import *
 from python_scripts.xlsx_entry_helper import *
 import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
-import sys
 
 logger = getLogger(50)
 disable_green_print = True
