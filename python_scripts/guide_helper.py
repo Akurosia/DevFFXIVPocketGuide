@@ -96,7 +96,8 @@ def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_a
 
 def handle_add_status(attack, new_attack):
     if attack.get("add_status", None):
-        tmp = sorted(list(attack['add_status']))
+        #tmp = sorted(list(attack['add_status']))
+        tmp = attack['add_status']
         attack['add_status'] = []
         for s in tmp:
             if isinstance(s, dict):
