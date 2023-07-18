@@ -203,77 +203,80 @@ def addBlueAttackDetails(job_data):
 
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
-        locations = []
-        if skill_data.get('Location', None):
-            locations.append(skill_data['Location'])
-        de_name = actions_trans.get(skill_data["id"], {}).get("Name_de", "")
-        en_name = actions_trans.get(skill_data["id"], {}).get("Name_en", "")
-        fr_name = actions_trans.get(skill_data["id"], {}).get("Name_fr", "")
-        ja_name = actions_trans.get(skill_data["id"], {}).get("Name_ja", "")
-        cn_name = actions_trans.get(skill_data["id"], {}).get("Name_cn", "")
-        ko_name = actions_trans.get(skill_data["id"], {}).get("Name_ko", "")
-        if en_name == "":
-            en_name = craftactions_trans[skill_data["id"] + ".0"]["Name_en"]
-        level = skill_data['Level']
-        #
-        locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
-        locations = sorted(locations, key=lambda x: x['Ort'])
+        try:
+            locations = []
+            if skill_data.get('Location', None):
+                locations.append(skill_data['Location'])
+            de_name = actions_trans.get(skill_data["id"], {}).get("Name_de", "")
+            en_name = actions_trans.get(skill_data["id"], {}).get("Name_en", "")
+            fr_name = actions_trans.get(skill_data["id"], {}).get("Name_fr", "")
+            ja_name = actions_trans.get(skill_data["id"], {}).get("Name_ja", "")
+            cn_name = actions_trans.get(skill_data["id"], {}).get("Name_cn", "")
+            ko_name = actions_trans.get(skill_data["id"], {}).get("Name_ko", "")
+            if en_name == "":
+                en_name = craftactions_trans[skill_data["id"] + ".0"]["Name_en"]
+            level = skill_data['Level']
+            #
+            locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
+            locations = sorted(locations, key=lambda x: x['Ort'])
 
-        desc = ""
-        if not locations == []:
-            desc += "\n\n<br/>#########################################<br/>\n\nLOCATIONS:\n"
-            #desc += "&emsp;Zone".ljust(max_zone_length) + " -> " + "Gegnername".ljust(max_enemyname_length) + ":"
-            desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td></thead><tbody>"
+            desc = ""
+            if not locations == []:
+                desc += "\n\n<br/>#########################################<br/>\n\nLOCATIONS:\n"
+                #desc += "&emsp;Zone".ljust(max_zone_length) + " -> " + "Gegnername".ljust(max_enemyname_length) + ":"
+                desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td></thead><tbody>"
 
-        for location in locations:
-            zone_name = location["Ort"]
-            enemy_name = location["Gegner"]
-            p_zone_name = get_propper_zone_name(zone_name, files)
-            tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
-            #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
-            if p_zone_name:
-                tmp = f"<tr><td><a href='/DevFFXIVPocketGuide/{p_zone_name}' target='_blank'>{zone_name} </a></td><td> {enemy_name}</td></tr>"
-                #tmp = "\n&emsp;" + f"<a href='{p_zone_name}' target='_blank'>{zone_name}</a> -> {enemy_name}"
-            desc += tmp
-        desc += "</tbody></table>"
+            for location in locations:
+                zone_name = location["Ort"]
+                enemy_name = location["Gegner"]
+                p_zone_name = get_propper_zone_name(zone_name, files)
+                tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
+                #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
+                if p_zone_name:
+                    tmp = f"<tr><td><a href='/DevFFXIVPocketGuide/{p_zone_name}' target='_blank'>{zone_name} </a></td><td> {enemy_name}</td></tr>"
+                    #tmp = "\n&emsp;" + f"<a href='{p_zone_name}' target='_blank'>{zone_name}</a> -> {enemy_name}"
+                desc += tmp
+            desc += "</tbody></table>"
 
-        desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
-        if skill_data.get("Number", None) and int(level) < 901:
-            result += f'      - title:\n'
-            result += f'          de: "{level}. {de_name}"\n'
-            result += f'          en: "{level}. {en_name}"\n'
-            result += f'          fr: "{level}. {fr_name}"\n'
-            result += f'          ja: "{level}. {ja_name}"\n'
-            result += f'          cn: "{level}. {cn_name}"\n'
-            result += f'          ko: "{level}. {ko_name}"\n'
-        else:
-            result += f'      - title:\n'
-            result += f'          de: "{de_name}"\n'
-            result += f'          en: "{en_name}"\n'
-            result += f'          fr: "{fr_name}"\n'
-            result += f'          ja: "{ja_name}"\n'
-            result += f'          cn: "{cn_name}"\n'
-            result += f'          ko: "{ko_name}"\n'
-        result += f'        title_id: "{skill_data["id"].split(".")[0]}"\n'
-        if skill_data.get("Number", None):
-            result += f'        level: "{skill_data["Number"]}"\n'
-        else:
-            result += f'        level: "{level}"\n'
-        result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
-        result += f'        range: "{skill_data["Range"]}"\n'
-        result += f'        effectrange: "{skill_data["EffectRange"]}"\n'
-        result += f'        cast: "{skill_data["Cast"]}"\n'
-        result += f'        recast: "{skill_data["Recast"]}"\n'
-        result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
-        result += f'        description:\n'
-        result += f'          de: "' + skill_data["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-        result += f'          en: "' + skill_data["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-        result += f'          fr: "' + skill_data["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-        result += f'          ja: "' + skill_data["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-        result += f'          cn: "' + skill_data["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-        result += f'          ko: "' + skill_data["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-        result += f'        phases:\n'
-        result += f'          - phase: "01"\n'
+            desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
+            if skill_data.get("Number", None) and int(level) < 901:
+                result += f'      - title:\n'
+                result += f'          de: "{level}. {de_name}"\n'
+                result += f'          en: "{level}. {en_name}"\n'
+                result += f'          fr: "{level}. {fr_name}"\n'
+                result += f'          ja: "{level}. {ja_name}"\n'
+                result += f'          cn: "{level}. {cn_name}"\n'
+                result += f'          ko: "{level}. {ko_name}"\n'
+            else:
+                result += f'      - title:\n'
+                result += f'          de: "{de_name}"\n'
+                result += f'          en: "{en_name}"\n'
+                result += f'          fr: "{fr_name}"\n'
+                result += f'          ja: "{ja_name}"\n'
+                result += f'          cn: "{cn_name}"\n'
+                result += f'          ko: "{ko_name}"\n'
+            result += f'        title_id: "{skill_data["id"].split(".")[0]}"\n'
+            if skill_data.get("Number", None):
+                result += f'        level: "{skill_data["Number"]}"\n'
+            else:
+                result += f'        level: "{level}"\n'
+            result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
+            result += f'        range: "{skill_data["Range"]}"\n'
+            result += f'        effectrange: "{skill_data["EffectRange"]}"\n'
+            result += f'        cast: "{skill_data["Cast"]}"\n'
+            result += f'        recast: "{skill_data["Recast"]}"\n'
+            result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
+            result += f'        description:\n'
+            result += f'          de: "' + skill_data["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += f'          en: "' + skill_data["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += f'          fr: "' + skill_data["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += f'          ja: "' + skill_data["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += f'          cn: "' + skill_data["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += f'          ko: "' + skill_data["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += f'        phases:\n'
+            result += f'          - phase: "01"\n'
+        except:
+            traceback.print_exc()
     return result
 
 
@@ -1267,10 +1270,10 @@ def addChocobo():
 
 def run():
     load_global_data()
+    os.chdir("../_posts")
     addKlassJobs()
     addChocobo()
 
 
 if __name__ == "__main__":
-    os.chdir("../_posts")
     run()
