@@ -150,28 +150,31 @@ def getFinalData(results):
         write(out, 'quests:')
         for key, value in results.items():
             for id, quest in value.items():
-                translated_quest_names = getQuestName(quest["name"])
-                write(out, f' - id: "{id}"')
-                write(out, f'   expansion: "{key}"')
-                write(out, f'   instanceType: "quest_{expansions[key]}"')
-                write(out, f'   name:')
-                write(out, f'     de: "{quest["name"]}"')
-                write(out, f'     en: "{translated_quest_names["Name_en"].replace(" ", "").replace(" ", "")}"')
-                write(out, f'     fr: "{translated_quest_names["Name_fr"].replace(" ", "").replace(" ", "")}"')
-                write(out, f'     ja: "{translated_quest_names["Name_ja"].replace(" ", "").replace(" ", "")}"')
-                write(out, f'     cn: "{translated_quest_names["Name_cn"].replace(" ", "").replace(" ", "")}"')
-                write(out, f'     ko: "{translated_quest_names["Name_ko"].replace(" ", "").replace(" ", "")}"')
-                write(out, f'   level: "{quest["level"]}"')
-                write(out, f'   icon: "{quest["icon"].replace("ui/icon","")}"')
-                write(out, f'   journal: "{quest["journalgenre"]}"')
-                write(out, f'   place: "{quest["place"]}"')
-                write(out, f'   location: "X: {quest["issuer_location_"]["x"]} / Y: {quest["issuer_location_"]["y"]}"')
-                write(out, f'   issuer: "{quest["issuer_start_"]}"')
-                write(out, f'   unlocks: "{quest["unlocks"]}"')
-                if len(quest['previousquest']) > 0:
-                    write(out, f'   previousquest:')
-                    for q in quest['previousquest']:
-                        write(out, f'   - "{q}"')
+                try:
+                    translated_quest_names = getQuestName(quest["name"])
+                    write(out, f' - id: "{id}"')
+                    write(out, f'   expansion: "{key}"')
+                    write(out, f'   instanceType: "quest_{expansions[key]}"')
+                    write(out, f'   name:')
+                    write(out, f'     de: "{quest["name"]}"')
+                    write(out, f'     en: "{translated_quest_names["Name_en"].replace(" ", "").replace(" ", "")}"')
+                    write(out, f'     fr: "{translated_quest_names["Name_fr"].replace(" ", "").replace(" ", "")}"')
+                    write(out, f'     ja: "{translated_quest_names["Name_ja"].replace(" ", "").replace(" ", "")}"')
+                    write(out, f'     cn: "{translated_quest_names["Name_cn"].replace(" ", "").replace(" ", "")}"')
+                    write(out, f'     ko: "{translated_quest_names["Name_ko"].replace(" ", "").replace(" ", "")}"')
+                    write(out, f'   level: "{quest["level"]}"')
+                    write(out, f'   icon: "{quest["icon"].replace("ui/icon","")}"')
+                    write(out, f'   journal: "{quest["journalgenre"]}"')
+                    write(out, f'   place: "{quest["place"]}"')
+                    write(out, f'   location: "X: {quest["issuer_location_"]["x"]} / Y: {quest["issuer_location_"]["y"]}"')
+                    write(out, f'   issuer: "{quest["issuer_start_"]}"')
+                    write(out, f'   unlocks: "{quest["unlocks"]}"')
+                    if len(quest['previousquest']) > 0:
+                        write(out, f'   previousquest:')
+                        for q in quest['previousquest']:
+                            write(out, f'   - "{q}"')
+                except:
+                    print_color_red(translated_quest_names)
 
         write(out, "---")
 
