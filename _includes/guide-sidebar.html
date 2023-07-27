@@ -77,6 +77,9 @@
         {%- if page.mapid -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">MapID: <span class="block">{{ page.mapid }}</span></h5>
         {%- endif -%}
+        {%- if page.mappath -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">MapPath: <span class="block">{{ page.mappath }}</span></h5>
+        {%- endif -%}
         {%- if page.contentzoneids -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contenzoneids:
             {%- for zone in page.contentzoneids -%}
