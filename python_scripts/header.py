@@ -11,7 +11,8 @@ from ffxiv_aku import *
 import logging
 
 storeFilesInTmp(True)
-territorytype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
+territorytype_trans = loadDataTheQuickestWay("territorytype_all.json", translate=True)
+territorytype = loadDataTheQuickestWay("TerritoryType.json")
 patchversions = get_any_Versiondata()
 mounts = loadDataTheQuickestWay("mount_all.json", translate=True)
 exversion = loadDataTheQuickestWay("exversion_all.json", translate=True)
@@ -26,11 +27,11 @@ logger = logging.getLogger()
 
 
 def get_territorytype_from_mapid(entry):
-    for _, tt_type in territorytype.items():
+    for key, tt_type in territorytype_trans.items():
         if tt_type["TerritoryType"].lower() == entry["mapid"].lower():
-            return tt_type
+            return tt_type, territorytype[key]['Bg']
     print_color_red(f"Could not find territorytype for {entry['mapid']} ({entry['title']})")
-    return ""
+    return "", ""
 
 
 def replaceSlug(text):
@@ -225,7 +226,7 @@ def get_video_url(url):
 
 def rewrite_content_even_if_exists(entry, old_wip):
     header_data = ""
-    tt_type_name = get_territorytype_from_mapid(entry)
+    tt_type_name, tt_bg_entry = get_territorytype_from_mapid(entry)
     if old_wip in ["True", "False"]:
         header_data += 'wip: "' + str(old_wip).title() + '"\n'
     else:
@@ -262,6 +263,8 @@ def rewrite_content_even_if_exists(entry, old_wip):
     header_data += 'patchName: "' + entry["patchName"] + '"\n'
     if entry.get("mapid", None):
         header_data += 'mapid: "' + entry["mapid"] + '"\n'
+    if not tt_bg_entry == "":
+        header_data += 'mappath: "' + tt_bg_entry + '"\n'
     if not tt_type_name == "":
         #header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
         header_data += 'contentname:\n'
