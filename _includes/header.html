@@ -12,7 +12,7 @@
 
     <div class="site-header__grid"
         {%- if page.page_type == "index" or page.page_category == "about" -%}
-            style="background-image: url('{{ "/assets/img/5-5.jpg" | prepend: site.baseurl }}')"
+            style="background-image: url('{{ "/assets/img/6.4.jpg" | prepend: site.baseurl }}')"
         {%- elsif page.image[0].url -%}
             style="background-image:
             {%- if page.image[0].url contains "/assets/" -%}
@@ -58,7 +58,7 @@
                 {%- elsif page.page_category == "treasure" -%}
                     Schatzdungeon Guides
                 {%- elsif page.page_category == "about" -%}
-                    All About the Guide
+                    About
                 {%- elsif page.page_category == "links" -%}
                     Links
                 {%- elsif page.page_category == "klassenjobs" -%}
@@ -68,7 +68,7 @@
                 {%- elsif page.page_category == "patches" -%}
                     Patches
                 {%- elsif page.page_category == "airship_submarine" -%}
-                    Airship & Submarine
+                    Luftschiff & Tauchboot
                 {%- elsif page.page_category == "relics" -%}
                     Reliktwaffen
                 {%- else -%}
