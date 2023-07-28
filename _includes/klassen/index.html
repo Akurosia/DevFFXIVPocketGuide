@@ -3,7 +3,7 @@
 =============================================================== {%- endcomment -%}
 <div class="index">
     <div class="sort_by_expac" style="display: none">
-        {%- assign my_array = "ew,shb,sb,hw,arr" | split: ',' -%}
+        {%- assign my_array = site.ffxiv_expansion_list | split: ',' -%}
         {%- for x in my_array -%}
             {% include helper/handle_version_switchcase.html %}
             {%- assign categories = site.categories.klassenjobs -%}
