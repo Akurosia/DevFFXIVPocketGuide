@@ -138,7 +138,7 @@ def write(out, data):
 
 def getFinalData(results):
     global file_location
-    result_file = os.path.join(file_location, "..", "_posts", "quests", "2013-01-01--2.0--1--quests.md")
+    result_file = os.path.join(file_location, "..", "_posts", "single_page_content", "2013-01-01--2.0--1--quests.md")
     print_color_green(f"Write result to {result_file}")
     with open(result_file, "w", encoding="utf8") as out:
         write(out, "---")
