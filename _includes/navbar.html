@@ -45,12 +45,14 @@
                 <li>
                     <a target="" {%- if page.page_category == "patches" -%}class="active"{%- endif -%}
                         href='{{ "/patches/" | prepend: site.baseurl }}' title="Alle Patches anzeigen">
+                        <img src='{{ site.imageurl }}/{{ "/061000/061757_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Patches
                     </a>
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "all" -%}class="active"{%- endif -%}
                         href='{{ "/" | prepend: site.baseurl }}' title="Alle Guides anzeigen">
+                        <img src='{{ site.imageurl }}/{{ "/061000/061540_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Alle Guides
                     </a>
                 </li>
@@ -155,14 +157,14 @@
                 <li>
                     <a target="" {%- if page.page_category == "relics" or page.instanceType == "relics" or page.instance_type == "relics" -%}class="active"{%- endif -%}
                         href='{{ "/relics/" | prepend: site.baseurl }}' title="Quests anzeigen">
-                        <img src='{{ site.imageurl }}/{{ "/061000/061834_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
+                        <img src='{{ site.imageurl }}/{{ "/061000/061822_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Relics
                     </a>
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "airship_submarine" or page.instanceType == "airship_submarine" or page.instance_type == "airship_submarine" -%}class="active"{%- endif -%}
                         href='{{ "/airship_submarine/" | prepend: site.baseurl }}' title="Quests anzeigen">
-                        <img src='{{ site.imageurl }}/{{ "/061000/061834_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
+                        <img src='{{ site.imageurl }}/{{ "/061000/061821_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
                         Airship & Submarine
                     </a>
                 </li>
