@@ -11,17 +11,8 @@
             <div class="layout__wrapper">
                 <!-- Include Header -->
                 {% include header.html %}
-                <!-- Search Bar -->
-                {% if page.page_type == "index" %}
-                    <div class="search">
-                        <form class="search__form">
-                            <label for="guideFilter">Nach einem Guide suchen...</label>
-                            <input id="guideFilter" placeholder="Endwalker, P12S, Golbez, Mounts, Minions, etc..." type="text"/>
-                        </form>
-                    </div>
-                {% endif %}
                 <!-- Include Guide Index -->
-                {% include index.html %}
+                {% include airship_submarine.html %}
                 <!-- Include Footer -->
                 {% include_cached footer.html %}
             </div>

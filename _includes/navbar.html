@@ -166,6 +166,21 @@
                         Links
                     </a>
                 </li>
+
+                <li>
+                    <a target="" {%- if page.page_category == "relics" or page.instanceType == "relics" or page.instance_type == "relics" -%}class="active"{%- endif -%}
+                        href='{{ "/relics/" | prepend: site.baseurl }}' title="Quests anzeigen">
+                        <img src='{{ site.imageurl }}/{{ "/061000/061834_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
+                        Relics
+                    </a>
+                </li>
+                <li>
+                    <a target="" {%- if page.page_category == "airship_submarine" or page.instanceType == "airship_submarine" or page.instance_type == "airship_submarine" -%}class="active"{%- endif -%}
+                        href='{{ "/airship_submarine/" | prepend: site.baseurl }}' title="Quests anzeigen">
+                        <img src='{{ site.imageurl }}/{{ "/061000/061834_hr1.png" }}' alt="{{ debuff.icon }}" style="width: 1.5rem; vertical-align: middle;">
+                        Airship & Submarine
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

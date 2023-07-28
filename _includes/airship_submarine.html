@@ -1,0 +1,63 @@
+{%- comment -%} ==================================================================
+    // Index
+=============================================================== {%- endcomment -%}
+<div class="index">
+    {%- assign my_array = "Das Fliedermeer,Sirenen-See,Jademeer,Verbranntes Meer,Tiefsee,Wolkenmeer" | split: ',' -%}
+    {%- for x in my_array -%}
+        <div class="index-divider" data-expansion="{{ x }}">
+            {%- for location in page.locations reversed -%}
+                {%- if x == location.name.de -%}
+                    {%- for lang in LANGUAGES -%}
+                        <span class="lang-toggle lang-toogle-{{lang}} index-divider__title">{{ location.name[lang] }}</span>
+                    {%- endfor -%}
+                {%- endif -%}
+            {%- endfor -%}
+        </div>
+        <div class="index__list_patches" data-expansion="{{ x }}">
+            <table class="table table-bordered table-dark table-striped text-light patch_table" id="tInfo">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        {%- if x != "Wolkenmeer" -%}
+                            <th scope="col">Alias</th>
+                        {%- endif -%}
+                        <th scope="col">Unlocked_By</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">Exp</th>
+                        <th scope="col">Items</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%- for location in page.locations reversed -%}
+                        {%- if x == location.name.de -%}
+                            {%- for stop in location.stops -%}
+                                <tr>
+                                    <td class="hm_table_1">
+                                        {%- for lang in LANGUAGES -%}
+                                            <span class="lang-toggle lang-toogle-{{lang}}"> {{ stop.name[lang] }} </span>
+                                        {%- endfor -%}
+                                    </td>
+                                    {%- if x != "Wolkenmeer" -%}
+                                        <td class="hm_table_2">{{stop.alias}}</td>
+                                    {%- endif -%}
+                                    <td class="hm_table_4">
+                                        {%- for lang in LANGUAGES -%}
+                                            <span class="lang-toggle lang-toogle-{{lang}}"> {{ stop.unlocked[lang] }} </span>
+                                        {%- endfor -%}
+                                    </td>
+                                    <td class="hm_table_5">{{stop.level}}</td>
+                                    <td class="hm_table_6">{{stop.exp}}</td>
+                                    <td class="hm_table_7">
+                                        {%- for lang in LANGUAGES -%}
+                                            <span class="lang-toggle lang-toogle-{{lang}}"> {{ stop.items[lang] }} </span>
+                                        {%- endfor -%}
+                                    </td>
+                                </tr>
+                            {%- endfor -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                </tbody>
+            </table>
+        </div>
+    {%- endfor -%}
+</div>
