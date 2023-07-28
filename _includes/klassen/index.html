@@ -4,45 +4,19 @@
 <div class="index">
     <div class="sort_by_expac" style="display: none">
         {%- assign my_array = "ew,shb,sb,hw,arr" | split: ',' -%}
-        {%- for queryType in my_array -%}
-            {%- case queryType -%}
-                {%- when "ew" -%}
-        <!-- Endwalker Guide Index ============================================ -->
-                    {%- assign x_title = "6.x - Endwalker" -%}
-                    {%- assign x_id = "endwalker" -%}
-                    {%- assign categories = site.categories.klassenjobs -%}
-                {%- when "shb" -%}
-        <!-- Shadowbringers Guide Index ============================================ -->
-                    {%- assign x_title = "5.x - Shadowbringers" -%}
-                    {%- assign x_id = "shadowbringers" -%}
-                    {%- assign categories = site.categories.klassenjobs -%}
-                {%- when "sb" -%}
-        <!-- Stormblood Guide Index ============================================ -->
-                    {%- assign x_title = "4.x - Stormblood" -%}
-                    {%- assign x_id = "stormblood" -%}
-                    {%- assign categories = site.categories.klassenjobs -%}
-                {%- when "hw" -%}
-        <!-- Heavensward Guide Index ============================================ -->
-                    {%- assign x_title = "3.x - Heavensward" -%}
-                    {%- assign x_id = "heavensward" -%}
-                    {%- assign categories = site.categories.klassenjobs -%}
-                {%- when "arr" -%}
-        <!-- A Realm Reborn Guide Index ============================================ -->
-                    {%- assign x_title = "2.x - A Realm Reborn" -%}
-                    {%- assign x_id = "a_realm_reborn" -%}
-                    {%- assign categories = site.categories.klassenjobs -%}
-                {%- when "klassenjobs" -%}
-            {%- endcase -%}
+        {%- for x in my_array -%}
+            {% include helper/handle_version_switchcase.html %}
+            {%- assign categories = site.categories.klassenjobs -%}
 
-            {%- assign expac = queryType -%}
+            {%- assign expac = x -%}
             {%- assign counter = 0 -%}
             {%- include _components/index-counter.html -%}
             {%- if counter > 0 -%}
                 <a id="{{ x_id }}"></a>
-                <div onclick='$( ".sort_by_type" ).show();$( ".sort_by_expac" ).hide();' class="index-divider" data-expansion="{{ queryType }}">
+                <div onclick='$( ".sort_by_type" ).show();$( ".sort_by_expac" ).hide();' class="index-divider" data-expansion="{{ x }}">
                     <h2 class="index-divider__title">{{ x_title }}</h2>
                 </div>
-                <div class="index__list" data-expansion="{{ queryType }}">
+                <div class="index__list" data-expansion="{{ x }}">
                     {%- assign sorted = categories | sort:"order" -%}
                     {%- include _components/index-list.html -%}
                 </div>
@@ -53,16 +27,16 @@
         {%- assign my_array = "Verteidiger,Heiler,Nahkampfangreifer,Phys. Fernkämpfer,Mag. Fernkämpfer,Handwerker,Sammler,Chocobo" | split: ',' -%}
         {%- assign categories = site.categories.klassenjobs -%}
         {%- assign expac = "" -%}
-        {%- for queryType in my_array -%}
-            {%- assign roletype = queryType -%}
+        {%- for x in my_array -%}
+            {%- assign roletype = x -%}
             {%- assign counter = 0 -%}
             {%- include _components/index-counter.html -%}
             {%- if counter > 0 -%}
-                <a id="{{ queryType }}"></a>
-                <div onclick='$( ".sort_by_expac" ).show();$( ".sort_by_type" ).hide();' class="index-divider" data-expansion="{{ queryType }}">
-                    <h2 class="index-divider__title">{{ queryType }}</h2>
+                <a id="{{ x }}"></a>
+                <div onclick='$( ".sort_by_expac" ).show();$( ".sort_by_type" ).hide();' class="index-divider" data-expansion="{{ x }}">
+                    <h2 class="index-divider__title">{{ x }}</h2>
                 </div>
-                <div class="index__list" data-expansion="{{ queryType }}">
+                <div class="index__list" data-expansion="{{ x }}">
                     {%- assign sorted = categories | sort:"order" -%}
                     {%- include _components/index-list.html -%}
                 </div>

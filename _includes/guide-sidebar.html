@@ -348,14 +348,14 @@
             {%- if page.mechanics -%}
                 <li>
                     <a href="#" data-id="guideNotes" title="Go to the Guide Notes" class="guide-metadata__menu-link">
-                        {% include returnPropperName.html instanceType=page.instanceType %} Notizen
+                        {% include helper/returnPropperName.html instanceType=page.instanceType %} Notizen
                     </a>
                 </li>
             {%- endif -%}
             {%- if page.bosses.size > 1 -%}
                 <li>
                     <a href="#" data-id="guideBosse" title="Go to the Guide Bosse" class="guide-metadata__menu-link">
-                        {% include returnPropperName.html instanceType=page.instanceType %} Bosse
+                        {% include helper/returnPropperName.html instanceType=page.instanceType %} Bosse
                     </a>
                     <ul class="guide-metadata__submenu">
                         {%- for boss in page.bosses -%}
@@ -371,7 +371,7 @@
             {%- if page.adds.size > 1 -%}
                 <li>
                     <a href="#" data-id="guideAdds" title="Go to the Guide Adds" class="guide-metadata__menu-link">
-                        {% include returnPropperName.html instanceType=page.instanceType %} Adds
+                        {% include helper/returnPropperName.html instanceType=page.instanceType %} Adds
                     </a>
                     <ul class="guide-metadata__submenu">
                         {%- for add in page.adds -%}

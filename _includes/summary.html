@@ -22,12 +22,9 @@
             {%- else -%}
               data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%}"
             {%- endif -%}>
-            <span class="lang-toggle lang-toogle-de"> {{ guide.title.de }} </span>
-            <span class="lang-toggle lang-toogle-en"> {{ guide.title.en }} </span>
-            <span class="lang-toggle lang-toogle-fr"> {{ guide.title.fr }} </span>
-            <span class="lang-toggle lang-toogle-ja"> {{ guide.title.ja }} </span>
-            <span class="lang-toggle lang-toogle-cn"> {{ guide.title.cn }} </span>
-            <span class="lang-toggle lang-toogle-ko"> {{ guide.title.ko }} </span>
+            {%- for lang in LANGUAGES -%}
+                <span class="lang-toggle lang-toogle-{{lang}}"> {{ guide.title[lang] }} </span>
+            {%- endfor -%}
 
             <span class
                 {%- if guide.difficulty == "Hard" -%}

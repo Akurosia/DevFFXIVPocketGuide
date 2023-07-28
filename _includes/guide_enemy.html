@@ -4,7 +4,7 @@
         <i class="material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
         <h2 class="guide__accordion-trigger-title">
             {%- if enemies.size > 1 -%}
-                {% include returnPropperName.html instanceType=page.instanceType %} {{ x }}
+                {% include helper/returnPropperName.html instanceType=page.instanceType %} {{ x }}
             {%- else -%}
                 {%- for lang in LANGUAGES -%}
                     <h2 class="lang-toggle lang-toogle-{{lang}} guide__accordion-trigger-title">{{ enemies[0].title[lang] }}</h2>

@@ -1,0 +1,36 @@
+        {%- case x -%}
+            {%- when "ew" -%}
+            <!-- Endwalker Guide Index ============================================ -->
+                {%- assign x_id = "endwalker" -%}
+                {%- assign x_title = "6.x - Endwalker" -%}
+                {%- assign categories = site.categories.ew -%}
+            {%- when "shb" -%}
+            <!-- Shadowbringers Guide Index ============================================ -->
+                {%- assign x_id = "shadowbringers" -%}
+                {%- assign x_title = "5.x - Shadowbringers" -%}
+                {%- assign categories = site.categories.shb -%}
+            {%- when "sb" -%}
+            <!-- Stormblood Guide Index ============================================ -->
+                {%- assign x_id = "stormblood" -%}
+                {%- assign x_title = "4.x - Stormblood" -%}
+                {%- assign categories = site.categories.sb -%}
+            {%- when "hw" -%}
+            <!-- Heavensward Guide Index ============================================ -->
+                {%- assign x_id = "heavensward" -%}
+                {%- assign x_title = "3.x - Heavensward" -%}
+                {%- assign categories = site.categories.hw -%}
+            {%- when "arr" -%}
+            <!-- A Realm Reborn Guide Index ============================================ -->
+                {%- assign x_id = "a_realm_reborn" -%}
+                {%- assign x_title = "2.x - A Realm Reborn" -%}
+                {%- assign categories = site.categories.arr -%}
+            {%- when "ffxiv" -%}
+            <!-- A Realm Reborn Guide Index ============================================ -->
+                {%- assign x_id = "final_fantasy_1_0" -%}
+                {%- assign x_title = "1.x - Final Fantasy 14" -%}
+            {%- when "klassenjobs" -%}
+            <!-- Klassen Guide Index ============================================ -->
+                {%- assign x_title = "Klassen und Jobs" -%}
+                {%- assign x_id = "klassenjobs" -%}
+                {%- assign categories = site.categories.klassenjobs -%}
+        {%- endcase -%}

@@ -17,12 +17,10 @@
         </div>
         <h3 class="index-item__title"
               data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%} {{guide.name.de}}&#32;{{guide.name.en}}&#32;{{guide.name.fr}}&#32;{{guide.name.ja}}&#32;{{guide.name.cn}}&#32;{{guide.name.ko}}&#32;{{guide.place}}&#32;{{guide.unlocks}}&#32;">
-            <span class="lang-toggle lang-toogle-de"> {{ guide.name.de }} </span>
-            <span class="lang-toggle lang-toogle-en"> {{ guide.name.en }} </span>
-            <span class="lang-toggle lang-toogle-fr"> {{ guide.name.fr }} </span>
-            <span class="lang-toggle lang-toogle-ja"> {{ guide.name.ja }} </span>
-            <span class="lang-toggle lang-toogle-cn"> {{ guide.name.cn }} </span>
-            <span class="lang-toggle lang-toogle-ko"> {{ guide.name.ko }} </span>
+
+            {%- for lang in LANGUAGES -%}
+                <span class="lang-toggle lang-toogle-{{lang}}"> {{ guide.name[lang] }} </span>
+            {%- endfor -%}
             <span class="lang-toggle lang-toogle-en-sub"> ~ ({{ guide.name.en }}) </span>
             ~ [{{ guide.id }}]
         </h3>

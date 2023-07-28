@@ -4,33 +4,7 @@
 <div class="index">
     {%- assign my_array = "ew,shb,sb,hw,arr,ffxiv" | split: ',' -%}
     {%- for x in my_array -%}
-        {%- case x -%}
-            {%- when "ew" -%}
-            <!-- Endwalker Guide Index ============================================ -->
-                {%- assign x_id = "endwalker" -%}
-                {%- assign x_title = "6.x - Endwalker" -%}
-            {%- when "shb" -%}
-            <!-- Shadowbringers Guide Index ============================================ -->
-                {%- assign x_id = "shadowbringers" -%}
-                {%- assign x_title = "5.x - Shadowbringers" -%}
-            {%- when "sb" -%}
-            <!-- Stormblood Guide Index ============================================ -->
-                {%- assign x_id = "stormblood" -%}
-                {%- assign x_title = "4.x - Stormblood" -%}
-            {%- when "hw" -%}
-            <!-- Heavensward Guide Index ============================================ -->
-                {%- assign x_id = "heavensward" -%}
-                {%- assign x_title = "3.x - Heavensward" -%}
-            {%- when "arr" -%}
-            <!-- A Realm Reborn Guide Index ============================================ -->
-                {%- assign x_id = "a_realm_reborn" -%}
-                {%- assign x_title = "2.x - A Realm Reborn" -%}
-            {%- when "ffxiv" -%}
-            <!-- A Realm Reborn Guide Index ============================================ -->
-                {%- assign x_id = "final_fantasy_1_0" -%}
-                {%- assign x_title = "1.x - Final Fantasy 14" -%}
-        {%- endcase -%}
-
+        {% include helper/handle_version_switchcase.html %}
         <div class="index-divider" data-expansion="{{ x }}">
             <h2 class="index-divider__title">{{ x_title }}</h2>
         </div>

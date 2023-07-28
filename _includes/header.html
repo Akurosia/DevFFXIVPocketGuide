@@ -67,6 +67,10 @@
                     Quests
                 {%- elsif page.page_category == "patches" -%}
                     Patches
+                {%- elsif page.page_category == "airship_submarine" -%}
+                    Airship & Submarine
+                {%- elsif page.page_category == "relics" -%}
+                    Reliktwaffen
                 {%- else -%}
                     {%- for lang in LANGUAGES -%}
                         <span class="lang-toggle lang-toogle-{{lang}} ">{{ page.title[lang] }}</span>

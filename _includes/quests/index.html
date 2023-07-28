@@ -4,33 +4,8 @@
 <div class="index">
     {%- assign my_array = "ew,shb,sb,hw,arr" | split: ',' -%}
     {%- for x in my_array -%}
-        {%- case x -%}
-            {%- when "ew" -%}
-    <!-- Endwalker Guide Index ============================================ -->
-                {%- assign queryType = "quest_ew" -%}
-                {%- assign x_id = "endwalker" -%}
-                {%- assign x_title = "6.x - Endwalker" -%}
-            {%- when "shb" -%}
-    <!-- Shadowbringers Guide Index ============================================ -->
-                {%- assign queryType = "quest_shb" -%}
-                {%- assign x_id = "shadowbringers" -%}
-                {%- assign x_title = "5.x - Shadowbringers" -%}
-            {%- when "sb" -%}
-    <!-- Stormblood Guide Index ============================================ -->
-                {%- assign queryType = "quest_sb" -%}
-                {%- assign x_id = "stormblood" -%}
-                {%- assign x_title = "4.x - Stormblood" -%}
-            {%- when "hw" -%}
-    <!-- Heavensward Guide Index ============================================ -->
-                {%- assign queryType = "quest_hw" -%}
-                {%- assign x_id = "heavensward" -%}
-                {%- assign x_title = "3.x - Heavensward" -%}
-            {%- when "arr" -%}
-    <!-- A Realm Reborn Guide Index ============================================ -->
-                {%- assign queryType = "quest_arr" -%}
-                {%- assign x_id = "a_realm_reborn" -%}
-                {%- assign x_title = "2.x - A Realm Reborn" -%}
-        {%- endcase -%}
+        {% include helper/handle_version_switchcase.html %}
+        {%- assign queryType = "quest_" | append: x -%}
         {%- assign counterq = 0 -%}
         {%- include quests/_components/index-counter.html -%}
         {%- if counterq > 0 -%}

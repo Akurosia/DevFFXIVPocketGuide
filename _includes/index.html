@@ -3,47 +3,16 @@
 =============================================================== {%- endcomment -%}
 <div class="index">
     {%- assign my_array = "ew,shb,sb,hw,arr,klassenjobs" | split: ',' -%}
-    {%- for queryType in my_array -%}
-        {%- case queryType -%}
-            {%- when "ew" -%}
-    <!-- Endwalker Guide Index ============================================ -->
-                {%- assign x_title = "6.x - Endwalker" -%}
-                {%- assign x_id = "endwalker" -%}
-                {%- assign categories = site.categories.ew -%}
-            {%- when "shb" -%}
-    <!-- Shadowbringers Guide Index ============================================ -->
-                {%- assign x_title = "5.x - Shadowbringers" -%}
-                {%- assign x_id = "shadowbringers" -%}
-                {%- assign categories = site.categories.shb -%}
-            {%- when "sb" -%}
-    <!-- Stormblood Guide Index ============================================ -->
-                {%- assign x_title = "4.x - Stormblood" -%}
-                {%- assign x_id = "stormblood" -%}
-                {%- assign categories = site.categories.sb -%}
-            {%- when "hw" -%}
-    <!-- Heavensward Guide Index ============================================ -->
-                {%- assign x_title = "3.x - Heavensward" -%}
-                {%- assign x_id = "heavensward" -%}
-                {%- assign categories = site.categories.hw -%}
-            {%- when "arr" -%}
-    <!-- A Realm Reborn Guide Index ============================================ -->
-                {%- assign x_title = "2.x - A Realm Reborn" -%}
-                {%- assign x_id = "a_realm_reborn" -%}
-                {%- assign categories = site.categories.arr -%}
-            {%- when "klassenjobs" -%}
-    <!-- Klassen Guide Index ============================================ -->
-                {%- assign x_title = "Klassen und Jobs" -%}
-                {%- assign x_id = "klassenjobs" -%}
-                {%- assign categories = site.categories.klassenjobs -%}
-        {%- endcase -%}
+    {%- for x in my_array -%}
+        {% include helper/handle_version_switchcase.html %}
         {%- assign counter = 0 -%}
         {%- include _components/index-counter.html -%}
         {%- if counter > 0 -%}
             <a id="{{ x_id }}"></a>
-            <div class="index-divider" data-expansion="{{ queryType }}">
+            <div class="index-divider" data-expansion="{{ x }}">
                 <h2 class="index-divider__title">{{ x_title }}</h2>
             </div>
-            <div class="index__list" data-expansion="{{ queryType }}">
+            <div class="index__list" data-expansion="{{ x }}">
                 {%- assign sorted = categories | sort:"order" -%}
                 {%- include _components/index-list.html -%}
             </div>
