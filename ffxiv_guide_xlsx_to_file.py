@@ -132,7 +132,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             #filename = ""
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if debug_row_number not in [503]:
+            #if debug_row_number not in [504]:
             #    print_debug = True
             #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
