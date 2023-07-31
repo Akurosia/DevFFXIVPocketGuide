@@ -30,7 +30,7 @@
                 <tbody>
                     {%- for location in page.locations reversed -%}
                         {%- if x == location.name.de -%}
-                            {%- for stop in location.stops -%}
+                            {%- for stop in location.stops reversed -%}
                                 <tr>
                                     <td class="hm_table_1">
                                         {%- for lang in LANGUAGES -%}
