@@ -24,17 +24,19 @@
         {%- endfor -%}
     </div>
     <div class="sort_by_type">
-        {%- assign my_array = "Verteidiger,Heiler,Nahkampfangreifer,Phys. Fernkämpfer,Mag. Fernkämpfer,Handwerker,Sammler,Chocobo" | split: ',' -%}
+        {%- assign my_array = "verteidiger,Heiler,Nahkampfangreifer,Phys. Fernkämpfer,Mag. Fernkämpfer,Handwerker,Sammler,Chocobo" | split: ',' -%}
         {%- assign categories = site.categories.klassenjobs -%}
         {%- assign expac = "" -%}
-        {%- for x in my_array -%}
-            {%- assign roletype = x -%}
+        {%- for x_cjc in page.cjc -%}
+            {%- assign roletype = x_cjc[1].de -%}
             {%- assign counter = 0 -%}
             {%- include _components/index-counter.html -%}
             {%- if counter > 0 -%}
-                <a id="{{ x }}"></a>
-                <div onclick='$( ".sort_by_expac" ).show();$( ".sort_by_type" ).hide();' class="index-divider" data-expansion="{{ x }}">
-                    <h2 class="index-divider__title">{{ x }}</h2>
+                <a id="{{ roletype }}"></a>
+                <div onclick='$( ".sort_by_expac" ).show();$( ".sort_by_type" ).hide();' class="index-divider" data-expansion="{{ roletype }}">
+                    {%- for lang in LANGUAGES -%}
+                        <span class="lang-toggle lang-toogle-{{lang}} index-divider__title">{{ x_cjc[1][lang] }}</span>
+                    {%- endfor -%}
                 </div>
                 <div class="index__list" data-expansion="{{ x }}">
                     {%- assign sorted = categories | sort:"order" -%}
