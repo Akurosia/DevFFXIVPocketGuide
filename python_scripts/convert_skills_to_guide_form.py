@@ -293,7 +293,14 @@ def addBlueAttackDetails(job_data):
                         zone_name = location["Ort"]
                         enemy_name = location["Gegner"]
                         if location.get('player', None):
-                            terms.append(f"{location['player']}man")
+                            if f"{location['player']}man" not in terms:
+                                terms.append(f"{location['player']}man")
+                            if location['player'] == 4:
+                                if f"dungeon" not in terms:
+                                    terms.append(f"dungeon")
+                            elif location['player'] == 8:
+                                if f"raid" not in terms:
+                                    terms.append(f"raid")
                         p_zone_name = get_propper_zone_name(zone_name, files)
                         tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
                         #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
