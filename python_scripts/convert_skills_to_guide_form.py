@@ -39,6 +39,7 @@ chocoboitems_trans = None
 chocobochallange_trans = None
 buddyskill_raw = None
 addon_trans = None
+items_trans = None
 
 disable_print = True
 status_ncj = None
@@ -72,6 +73,7 @@ def load_global_data():
     global leves
     global trans_leves
     global craftleves
+    global items_trans
 
     global chocoboskills_trans
     global chocoboitems_trans
@@ -100,6 +102,7 @@ def load_global_data():
     aozactiontransient = loadDataTheQuickestWay("AozActionTransient")
     quests = loadDataTheQuickestWay("Quest")
     quests_trans = loadDataTheQuickestWay("quest", translate=True)
+    items_trans = loadDataTheQuickestWay("item", translate=True)
     levels = loadDataTheQuickestWay("Level.json")
     maps = loadDataTheQuickestWay("Map.json")
     leves = loadDataTheQuickestWay("leve")
@@ -167,6 +170,15 @@ def get_propper_zone_name(zone_name, files):
     return None
 
 
+def get_blue_totem_skills():
+    global items_trans
+    result = []
+    for key, value in items_trans.items():
+        if "Totem der Blaumagie:" in value['Name_de']:
+            result.append(value['Name_de'].replace("Totem der Blaumagie: ", ""))
+    return result
+
+
 def addBlueAttackDetails(job_data):
     global actions_trans
     global aozactions_trans
@@ -174,6 +186,7 @@ def addBlueAttackDetails(job_data):
     result = ""
     result += "    attacks:\n"
     # get special aoz action data from correct files e.g. number in blu spell book and description
+    blueTotemSpells = get_blue_totem_skills()
     for x, y in job_data.items():
         for key, value in aozactions_trans.items():
             if y['Name'] == value['Name_de']:
@@ -220,22 +233,27 @@ def addBlueAttackDetails(job_data):
             locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
             locations = sorted(locations, key=lambda x: x['Ort'])
 
+
             desc = ""
             if not locations == []:
                 desc += "\n\n<br/>#########################################<br/>\n\nLOCATIONS:\n"
                 #desc += "&emsp;Zone".ljust(max_zone_length) + " -> " + "Gegnername".ljust(max_enemyname_length) + ":"
                 desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td></thead><tbody>"
 
-            for location in locations:
-                zone_name = location["Ort"]
-                enemy_name = location["Gegner"]
-                p_zone_name = get_propper_zone_name(zone_name, files)
-                tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
-                #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
-                if p_zone_name:
-                    tmp = f"<tr><td><a href='/DevFFXIVPocketGuide/{p_zone_name}' target='_blank'>{zone_name} </a></td><td> {enemy_name}</td></tr>"
-                    #tmp = "\n&emsp;" + f"<a href='{p_zone_name}' target='_blank'>{zone_name}</a> -> {enemy_name}"
-                desc += tmp
+            # special case to add totem entries
+            if de_name in blueTotemSpells:
+                desc += f"<tr><td>Ul'dah - Thal-Kreuzgang (X:12.5 Y:12.9)</td><td> Wayward Gaheel Ja (Totem der Blaumagie: {de_name})</td></tr>"
+            else:
+                for location in locations:
+                    zone_name = location["Ort"]
+                    enemy_name = location["Gegner"]
+                    p_zone_name = get_propper_zone_name(zone_name, files)
+                    tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
+                    #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
+                    if p_zone_name:
+                        tmp = f"<tr><td><a href='/DevFFXIVPocketGuide/{p_zone_name}' target='_blank'>{zone_name} </a></td><td> {enemy_name}</td></tr>"
+                        #tmp = "\n&emsp;" + f"<a href='{p_zone_name}' target='_blank'>{zone_name}</a> -> {enemy_name}"
+                    desc += tmp
             desc += "</tbody></table>"
 
             desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
@@ -888,13 +906,13 @@ def addKlassJobs():
         if not job_data:
             continue
         counter += 1
-        #if not job == "Rotmagier":
+        #if not job == "Blaumagier":
         #    continue
         print_color_red(job)
 
         tmpmaxlvl = str(max([int(data["Level"]) for key, data in job_data.items() if int(data['Level']) < 99999]))
         if job == "Blaumagier":
-            maxlvl = "70"
+            maxlvl = "80"
         else:
             maxlvl = tmpmaxlvl if tmpmaxlvl > maxlvl else maxlvl
 
