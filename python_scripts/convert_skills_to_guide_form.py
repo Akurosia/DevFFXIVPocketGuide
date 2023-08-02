@@ -172,7 +172,7 @@ def get_propper_zone_name(zone_name, files):
 
 def get_blue_totem_skills():
     global items_trans
-    result = []
+    result = ["Wasserkanone"]
     for key, value in items_trans.items():
         if "Totem der Blaumagie:" in value['Name_de']:
             result.append(value['Name_de'].replace("Totem der Blaumagie: ", ""))
@@ -188,6 +188,7 @@ def addBlueAttackDetails(job_data):
     # get special aoz action data from correct files e.g. number in blu spell book and description
     blueTotemSpells = get_blue_totem_skills()
     blueTotemCondition = {
+        "Wasserkanone": "Blaumagier freischalten",
         "Weißer Wind": "10 Zauber gelernt",
         "Einschüchtern": "5 Zauber gelernt",
         "Assimilation": "20 Zauber gelernt",
@@ -247,7 +248,6 @@ def addBlueAttackDetails(job_data):
             #
             locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
             locations = sorted(locations, key=lambda x: x['Ort'])
-
 
             desc = ""
             if not locations == [] or de_name in blueTotemSpells:
