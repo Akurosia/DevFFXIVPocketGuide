@@ -250,17 +250,14 @@ def addBlueAttackDetails(job_data):
 
 
             desc = ""
-            if not locations == []:
+            if not locations == [] or de_name in blueTotemSpells:
                 desc += "\n\n<br/>#########################################<br/>\n\nLOCATIONS:\n"
+                # special case to add totem entries
                 if de_name in blueTotemSpells:
                     desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td><td>Bedinnung</td></thead><tbody>"
+                    desc += f"<tr><td>Ul'dah - Thal-Kreuzgang (X:12.5 Y:12.9)</td><td> Wayward Gaheel Ja (Totem der Blaumagie: {de_name})</td><td> {blueTotemCondition[de_name]} </td></tr>"
                 else:
                     desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td></thead><tbody>"
-
-            # special case to add totem entries
-            if de_name in blueTotemSpells:
-                desc += f"<tr><td>Ul'dah - Thal-Kreuzgang (X:12.5 Y:12.9)</td><td> Wayward Gaheel Ja (Totem der Blaumagie: {de_name})</td><td> {blueTotemCondition[de_name]} </td></tr>"
-
             else:
                 for location in locations:
                     zone_name = location["Ort"]
