@@ -187,6 +187,21 @@ def addBlueAttackDetails(job_data):
     result += "    attacks:\n"
     # get special aoz action data from correct files e.g. number in blu spell book and description
     blueTotemSpells = get_blue_totem_skills()
+    blueTotemCondition = {
+        "Weißer Wind": "10 Zauber gelernt",
+        "Einschüchtern": "5 Zauber gelernt",
+        "Assimilation": "20 Zauber gelernt",
+        "Totalabwehr": "10 Zauber gelernt",
+        "Mondflöte": "10 Mission der Himmlichen Arena abgeschlossen",
+        "Verhängnis": "20 Mission der Himmlichen Arena abgeschlossen",
+        "Rachestoß": "50 Zauber gelernt",
+        "Engelsflüstern": "30 Mission der Himmlichen Arena abgeschlossen",
+        "Engelspeise": "Level 70 mit dem Blaumagier erreicht",
+        "Drachenkraft": "100 Zauber gelernt",
+        "Matra-Magie": "100 Zauber gelernt",
+        "Zauberatem": "Level 80 mit dem Blaumagier erreicht",
+        "Kraftfeld": "120 Zauber gelernt"
+    }
     for x, y in job_data.items():
         for key, value in aozactions_trans.items():
             if y['Name'] == value['Name_de']:
@@ -237,12 +252,15 @@ def addBlueAttackDetails(job_data):
             desc = ""
             if not locations == []:
                 desc += "\n\n<br/>#########################################<br/>\n\nLOCATIONS:\n"
-                #desc += "&emsp;Zone".ljust(max_zone_length) + " -> " + "Gegnername".ljust(max_enemyname_length) + ":"
-                desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td></thead><tbody>"
+                if de_name in blueTotemSpells:
+                    desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td><td>Bedinnung</td></thead><tbody>"
+                else:
+                    desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td></thead><tbody>"
 
             # special case to add totem entries
             if de_name in blueTotemSpells:
-                desc += f"<tr><td>Ul'dah - Thal-Kreuzgang (X:12.5 Y:12.9)</td><td> Wayward Gaheel Ja (Totem der Blaumagie: {de_name})</td></tr>"
+                desc += f"<tr><td>Ul'dah - Thal-Kreuzgang (X:12.5 Y:12.9)</td><td> Wayward Gaheel Ja (Totem der Blaumagie: {de_name})</td><td> {blueTotemCondition[de_name]} </td></tr>"
+
             else:
                 for location in locations:
                     zone_name = location["Ort"]
