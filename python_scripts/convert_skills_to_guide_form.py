@@ -187,11 +187,15 @@ def get_play_in_locations(locations):
         player = 0
         for loc in locations:
             if value['Name'].lower() == loc['Ort'].lower():
-                x = cmt[value['ContentMemberType'].split('#')[1]]
-                player = int(x['HealersPerParty']) + int(x['MeleesPerParty']) + int(x['RangedPerParty']) + int(x['TanksPerParty'])
-                loc["player"] = 1 if player == 0 else player
-                loc["type"] = value['ContentType']
-                new_locations.append(loc)
+                if value['TerritoryType'] == "w1tz":
+                    loc["player"] = 1
+                    loc["type"] = "Große Maskerade Masked Carnivale Himmlische Arena"
+                else:
+                    x = cmt[value['ContentMemberType'].split('#')[1]]
+                    player = int(x['HealersPerParty']) + int(x['MeleesPerParty']) + int(x['RangedPerParty']) + int(x['TanksPerParty'])
+                    loc["player"] = 1 if player == 0 else player
+                    loc["type"] = value['ContentType']
+                    new_locations.append(loc)
                 #print(value)
     for loc in locations:
         found = False
