@@ -250,12 +250,14 @@ def addBlueAttackDetails(job_data):
             locations = sorted(locations, key=lambda x: x['Ort'])
 
             desc = ""
+            terms = ["test"]
             if not locations == [] or de_name in blueTotemSpells:
                 desc += "\n\n<br/>#########################################<br/>\n\nLOCATIONS:\n"
                 # special case to add totem entries
                 if de_name in blueTotemSpells:
                     desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td><td>Bedinnung</td></thead><tbody>"
                     desc += f"<tr><td>Ul'dah - Thal-Kreuzgang (X:12.5 Y:12.9)</td><td> Wayward Gaheel Ja (Totem der Blaumagie: {de_name})</td><td> {blueTotemCondition[de_name]} </td></tr>"
+                    terms.append("Totems")
                 else:
                     desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td></thead><tbody>"
                     for location in locations:
@@ -292,6 +294,10 @@ def addBlueAttackDetails(job_data):
                 result += f'        level: "{skill_data["Number"]}"\n'
             else:
                 result += f'        level: "{level}"\n'
+
+            result += f'        terms:\n'
+            for term in terms:
+                result += f'          - term: "{term}"\n'
             result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
             result += f'        range: "{skill_data["Range"]}"\n'
             result += f'        effectrange: "{skill_data["EffectRange"]}"\n'
