@@ -280,7 +280,7 @@ def addBlueAttackDetails(job_data):
             #    print_color_blue(locations)
             #    print_color_red(n_locations)
             desc = ""
-            terms = ["test"]
+            terms = []
 
             if not locations == [] or de_name in blueTotemSpells:
                 desc += "\n\n<br/>#########################################<br/>\n\nLOCATIONS:\n"
