@@ -258,17 +258,16 @@ def addBlueAttackDetails(job_data):
                     desc += f"<tr><td>Ul'dah - Thal-Kreuzgang (X:12.5 Y:12.9)</td><td> Wayward Gaheel Ja (Totem der Blaumagie: {de_name})</td><td> {blueTotemCondition[de_name]} </td></tr>"
                 else:
                     desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td></thead><tbody>"
-            else:
-                for location in locations:
-                    zone_name = location["Ort"]
-                    enemy_name = location["Gegner"]
-                    p_zone_name = get_propper_zone_name(zone_name, files)
-                    tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
-                    #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
-                    if p_zone_name:
-                        tmp = f"<tr><td><a href='/DevFFXIVPocketGuide/{p_zone_name}' target='_blank'>{zone_name} </a></td><td> {enemy_name}</td></tr>"
-                        #tmp = "\n&emsp;" + f"<a href='{p_zone_name}' target='_blank'>{zone_name}</a> -> {enemy_name}"
-                    desc += tmp
+                    for location in locations:
+                        zone_name = location["Ort"]
+                        enemy_name = location["Gegner"]
+                        p_zone_name = get_propper_zone_name(zone_name, files)
+                        tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
+                        #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
+                        if p_zone_name:
+                            tmp = f"<tr><td><a href='/DevFFXIVPocketGuide/{p_zone_name}' target='_blank'>{zone_name} </a></td><td> {enemy_name}</td></tr>"
+                            #tmp = "\n&emsp;" + f"<a href='{p_zone_name}' target='_blank'>{zone_name}</a> -> {enemy_name}"
+                        desc += tmp
             desc += "</tbody></table>"
 
             desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
