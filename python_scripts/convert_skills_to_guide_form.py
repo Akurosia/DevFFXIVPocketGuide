@@ -190,7 +190,9 @@ def get_play_in_locations(locations):
                 x = cmt[value['ContentMemberType'].split('#')[1]]
                 player = int(x['HealersPerParty']) + int(x['MeleesPerParty']) + int(x['RangedPerParty']) + int(x['TanksPerParty'])
                 loc["player"] = 1 if player == 0 else player
+                loc["type"] = value['ContentType']
                 new_locations.append(loc)
+                #print(value)
     for loc in locations:
         found = False
         for loc2 in new_locations:
@@ -295,12 +297,9 @@ def addBlueAttackDetails(job_data):
                         if location.get('player', None):
                             if f"{location['player']}man" not in terms:
                                 terms.append(f"{location['player']}man")
-                            if location['player'] == 4:
-                                if f"dungeon" not in terms:
-                                    terms.append(f"dungeon")
-                            elif location['player'] == 8:
-                                if f"raid" not in terms:
-                                    terms.append(f"raid")
+                        if location.get('type', None):
+                            if location['type'] not in terms:
+                                terms.append(location['type'])
                         p_zone_name = get_propper_zone_name(zone_name, files)
                         tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
                         #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
