@@ -17,12 +17,10 @@
         <!-- Opens the Adds Loop -->
         {%- for enemy in enemies -%}
             {%- if enemies.size > 1 -%}
-                <!-- <div class="guide__accordion-trigger--02" id="{{ enemy.id }}"> -->
                 <div class="guide__accordion-trigger--02" id="{{ enemy.id | slugify }}">
                     <i class="material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}">
                         <ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon>
                     </i>
-
                     {%- for lang in LANGUAGES -%}
                         <h3 class="lang-toggle lang-toogle-{{lang}} guide__accordion-trigger-title">{{ enemy.title[lang] }}</h3>
                     {%- endfor -%}
