@@ -166,7 +166,7 @@ def get_propper_zone_name(zone_name, files):
         if n in file:
             #print_color_green(n)
             return file.split("\\")[0].replace("_new", "") + "/" + n.replace("_", "-") + ".html"
-    #print_color_red(n)
+    print_color_red(n)
     return None
 
 
@@ -177,6 +177,28 @@ def get_blue_totem_skills():
         if "Totem der Blaumagie:" in value['Name_de']:
             result.append(value['Name_de'].replace("Totem der Blaumagie: ", ""))
     return result
+
+
+def get_play_in_locations(locations):
+    cfc = loadDataTheQuickestWay("ContentFindercondition")
+    cmt = loadDataTheQuickestWay("ContentMemberType.json")
+    new_locations = []
+    for key, value in cfc.items():
+        player = 0
+        for loc in locations:
+            if value['Name'].lower() == loc['Ort'].lower():
+                x = cmt[value['ContentMemberType'].split('#')[1]]
+                player = int(x['HealersPerParty']) + int(x['MeleesPerParty']) + int(x['RangedPerParty']) + int(x['TanksPerParty'])
+                loc["player"] = 1 if player == 0 else player
+                new_locations.append(loc)
+    for loc in locations:
+        found = False
+        for loc2 in new_locations:
+            if loc['Ort'] == loc2['Ort']:
+                found = True
+        if not found:
+            new_locations.append(loc)
+    return sorted(new_locations, key=lambda x: x['Ort'])
 
 
 def addBlueAttackDetails(job_data):
@@ -248,9 +270,16 @@ def addBlueAttackDetails(job_data):
             #
             locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
             locations = sorted(locations, key=lambda x: x['Ort'])
-
+            n_locations = get_play_in_locations(locations)
+            #if len(locations) == len(n_locations):
+            #    locations = n_locations
+            #else:
+            #    print_color_green(de_name)
+            #    print_color_blue(locations)
+            #    print_color_red(n_locations)
             desc = ""
             terms = ["test"]
+
             if not locations == [] or de_name in blueTotemSpells:
                 desc += "\n\n<br/>#########################################<br/>\n\nLOCATIONS:\n"
                 # special case to add totem entries
@@ -263,6 +292,8 @@ def addBlueAttackDetails(job_data):
                     for location in locations:
                         zone_name = location["Ort"]
                         enemy_name = location["Gegner"]
+                        if location.get('player', None):
+                            terms.append(f"{location['player']}man")
                         p_zone_name = get_propper_zone_name(zone_name, files)
                         tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
                         #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
@@ -1322,3 +1353,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+    #test([{'Ort': 'Abyssos - Fünfter Kreis', 'Gegner': 'Proto-Karfunkel'}, {'Ort': 'Abyssos - Fünfter Kreis (episch)', 'Gegner': 'Proto-Karfunkel'}, {'Ort': 'Das Fenn', 'Gegner': 'Mahisha'}, {'Ort': 'Die Nichts-Arche', 'Gegner': 'Cuchulainn'}, {'Ort': 'Die Welt der Dunkelheit', 'Gegner': 'Cerberus'}, {'Ort': 'Himmelssäule (Ebenen 61-70)', 'Gegner': 'Kenko'}, {'Ort': 'Himmelssäule (Ebenen 81-90)', 'Gegner': 'Himmelssäulen-Gozu'}, {'Ort': 'Historisches Amdapor', 'Gegner': 'Verrottender Gourmet'}, {'Ort': 'Sankt Mocianne-Arboretum (schwer)', 'Gegner': 'Nullchu'}, {'Ort': 'Thavnair', 'Gegner': 'Yilan'}, {'Ort': 'Verschlungene Schatten 1', 'Gegner': '(InGame Hinweis)'}, {'Ort': 'Verschlungene Schatten 2 - 1', 'Gegner': 'Rafflesia'}, {'Ort': 'Verschlungene Schatten 3 - 4', 'Gegner': 'Schmerz Von Meracydia'}])
