@@ -276,13 +276,8 @@ def addBlueAttackDetails(job_data):
             #
             locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
             locations = sorted(locations, key=lambda x: x['Ort'])
+            # somehow original locations got updated, just dont touch it
             n_locations = get_play_in_locations(locations)
-            #if len(locations) == len(n_locations):
-            #    locations = n_locations
-            #else:
-            #    print_color_green(de_name)
-            #    print_color_blue(locations)
-            #    print_color_red(n_locations)
             desc = ""
             terms = []
 
