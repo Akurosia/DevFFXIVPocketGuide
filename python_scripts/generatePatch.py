@@ -77,6 +77,15 @@ def patches_overview():
 
 
 def single_patch_file():
+    logos= {
+        "ff14": "title_logoonline_hr1.tex.png",
+        "arr": "title_logo_hr1.tex.png",
+        "hw": "title_logo300_hr1.tex.png",
+        "sb": "title_logo400_hr1.tex.png",
+        "shb": "title_logo500_hr1.tex.png",
+        "ew": "title_logo600_hr1.tex.png",
+        "dw": "title_logo700_hr1.tex.png"
+    }
     versions = get_any_Versiondata()
     print_pretty_json(versions)
     exversion_trans = loadDataTheQuickestWay("exversion", translate=True)
@@ -102,7 +111,7 @@ def single_patch_file():
         filecontent += f'expac: "{n_version["pname"]}"\n'
         filecontent += f'slug: "{value["Name_de"].lower().replace(" ", "_")}"\n'
         filecontent += 'image:\n'
-        filecontent += '    - url: "/assets/img/content/klassen/Chocobo.png"\n'
+        filecontent += f'    - url: "/assets/img/titel-logo/{logos[n_version["pname"]]}"\n'
         filecontent += '---\n'
 
         filename = f'_posts/patch_details/{n_version["date"].replace(".", "-")}--{str(int(key)+2)+".0"}--{key}-{value["Name_de"].lower().replace(" ", "_")}.html'

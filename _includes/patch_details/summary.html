@@ -10,10 +10,11 @@
             {%- elsif guide.image[0].url -%}
                 style="background-image:
                     {%- if guide.image[0].url contains "/assets/" -%}
-                        url('{{ guide.image[0].url | prepend: site.baseurl }}')
+                        url('{{ guide.image[0].url | prepend: site.baseurl }}');
                     {%- else -%}
-                        url('{{ guide.image[0].url | prepend: site.imageurl }}')
+                        url('{{ guide.image[0].url | prepend: site.imageurl }}');
                     {%- endif -%}
+                    background-size: contain;
             {%- endif -%}">
         </div>
         <h3 class="index-item__title"

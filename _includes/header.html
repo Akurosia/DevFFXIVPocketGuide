@@ -16,10 +16,16 @@
         {%- elsif page.image[0].url -%}
             style="background-image:
             {%- if page.image[0].url contains "/assets/" -%}
-                url('{{ page.image[0].url | prepend: site.baseurl }}')
+                url('{{ page.image[0].url | prepend: site.baseurl }}');
             {%- else -%}
-                url('{{ page.image[0].url | prepend: site.imageurl }}')
-            {%- endif -%}"
+                url('{{ page.image[0].url | prepend: site.imageurl }}');
+            {%- endif -%}
+            {%- if page.instanceType == "patch_details" -%}
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+            {%- endif -%}
+            "
         {%- endif -%}>
         <div>
             {%- if page.previous_slug -%}
