@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
+    <head>
+        {% include head.html %}
+    </head>
+    <body class="{{ page.page_type }} {{ page.page_category }}">
+        <div class="layout">
+            <!-- Include Sidebar -->
+            {% include navbar.html %}
+            <div class="layout__wrapper">
+                <!-- Include Header -->
+                {% include header.html %}
+                List Patches as usual here (copy from klass/jobs or quests)
+                <!-- Include Patch_details Index.html -->
+                {% include patch_details/index.html %}
+                <!-- Include Footer -->
+                {% include_cached footer.html %}
+            </div>
+        </div>
+        {% include_cached scripts.html %}
+    </body>
+</html>

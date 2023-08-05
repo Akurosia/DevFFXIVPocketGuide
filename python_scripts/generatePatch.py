@@ -15,7 +15,7 @@ def nextRelease(value):
     return False
 
 
-def patches():
+def patches_overview():
     versions = get_any_Versiondata()
     filecontent = ""
     filecontent += '---\n'
@@ -76,9 +76,55 @@ def patches():
             f.write(filecontent)
 
 
+def single_patch_file():
+    versions = get_any_Versiondata()
+    print_pretty_json(versions)
+    exversion_trans = loadDataTheQuickestWay("exversion", translate=True)
+    exversion = loadDataTheQuickestWay("exversion", translate=False)
+    for key, value in exversion_trans.items():
+        print(exversion[key])
+        n_version = versions[str(int(key)+2) + ".00"]
+        print(n_version)
+        filecontent = ""
+        filecontent += '---\n'
+        filecontent += 'wip: "True"\n'
+        filecontent += 'title:\n'
+        for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
+            filecontent += f'  {lang}: "{value["Name_"+lang]}"\n'
+        filecontent += 'layout: klassen\n'
+        filecontent += 'page_type: guide\n'
+        filecontent += 'categories: "patch_details"\n'
+        filecontent += 'difficulty: "Normal"\n'
+        filecontent += 'instanceType: "patch_details"\n'
+        filecontent += 'date: "2013.01.01"\n'
+        filecontent += f'patchNumber: "{int(key)+2}.0"\n'
+        filecontent += f'patchName: "{value["Name_de"]}"\n'
+        filecontent += f'expac: "{n_version["pname"]}"\n'
+        filecontent += f'slug: "{value["Name_de"].lower().replace(" ", "_")}"\n'
+        filecontent += 'image:\n'
+        filecontent += '    - url: "/assets/img/content/klassen/Chocobo.png"\n'
+        filecontent += '---\n'
+
+        filename = f'_posts/patch_details/{n_version["date"].replace(".", "-")}--{str(int(key)+2)+".0"}--{key}-{value["Name_de"].lower().replace(" ", "_")}.html'
+        try:
+            with open(filename, encoding="utf8") as f:
+                doc = f.read()
+        except:
+            doc = ""
+        if not doc == filecontent:
+            with open(filename, "w", encoding="utf8") as f:
+                f.write(filecontent)
+        print(filecontent)
+
+
 def run():
-    patches()
+    #patches_overview()
+    single_patch_file()
 
 
 if __name__ == "__main__":
+    import os
+    print(os.getcwd())
+    os.chdir("..")
+    print(os.getcwd())
     run()

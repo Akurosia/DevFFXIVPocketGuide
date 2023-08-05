@@ -1,0 +1,9 @@
+{%- for guide in categories -%}
+    {%- if page.page_category == "patch_details" -%}
+        {%- if guide.instanceType == "patch_details" or guide.instance_type == "patch_details" -%}
+            {%- if guide.expac == expac-%}
+                {%- include patch_details/summary.html -%}
+    {%- endif -%}
+        {%- endif -%}
+    {%- endif -%}
+{%- endfor -%}
