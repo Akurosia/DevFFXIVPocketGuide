@@ -105,6 +105,11 @@
                 width: 60%;
                 margin-left: 40%;
 
+                img {
+                    width: 1.5rem;
+                    vertical-align: middle;
+                }
+
                 i {
                     color: $palette--red;
                     margin: -.15rem calc(#{$unit} / 2) 0 0 !important;
@@ -119,6 +124,17 @@
 
             }
 
+        }
+
+    }
+
+    .sidebar_menu_sub_li {
+        padding-left: 2.5rem !important;
+        margin-top: -1.5rem;
+
+        img {
+            width: 1rem !important;
+            vertical-align: middle;
         }
 
     }
