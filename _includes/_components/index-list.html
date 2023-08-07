@@ -1,7 +1,10 @@
 {%- for guide in sorted reversed -%}
     {%- if page.page_category == "all" -%}
-        {%- assign counter = counter | plus: 1 -%}
-        {%- include summary.html -%}
+        {%- if guide.instanceType != "overworld" -%}
+            {%- assign counter = counter | plus: 1 -%}
+            {%- include summary.html -%}
+        {%- endif -%}
+
     {%- elsif page.page_category == "dungeons" -%}
         {%- if guide.instanceType == "dungeon" or guide.instance_type == "Dungeon" -%}
             {%- assign counter = counter | plus: 1 -%}
@@ -64,6 +67,11 @@
         {%- endif -%}
     {%- elsif page.page_category == "training" -%}
         {%- if guide.instanceType == "training" or guide.instance_type == "training" -%}
+            {%- assign counter = counter | plus: 1 -%}
+            {%- include summary.html -%}
+        {%- endif -%}
+    {%- elsif page.page_category == "overworld" -%}
+        {%- if guide.instanceType == "overworld" or guide.instance_type == "overworld" -%}
             {%- assign counter = counter | plus: 1 -%}
             {%- include summary.html -%}
         {%- endif -%}

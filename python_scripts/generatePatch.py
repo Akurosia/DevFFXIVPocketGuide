@@ -87,13 +87,13 @@ def single_patch_file():
         "dw": "title_logo700_hr1.tex.png"
     }
     versions = get_any_Versiondata()
-    print_pretty_json(versions)
+    #print_pretty_json(versions)
     exversion_trans = loadDataTheQuickestWay("exversion", translate=True)
     exversion = loadDataTheQuickestWay("exversion", translate=False)
     for key, value in exversion_trans.items():
-        print(exversion[key])
+        #print(exversion[key])
         n_version = versions[str(int(key)+2) + ".00"]
-        print(n_version)
+        #print(n_version)
         filecontent = ""
         filecontent += '---\n'
         filecontent += 'wip: "True"\n'
@@ -123,11 +123,11 @@ def single_patch_file():
         if not doc == filecontent:
             with open(filename, "w", encoding="utf8") as f:
                 f.write(filecontent)
-        print(filecontent)
+        #print(filecontent)
 
 
 def run():
-    #patches_overview()
+    patches_overview()
     single_patch_file()
 
 
