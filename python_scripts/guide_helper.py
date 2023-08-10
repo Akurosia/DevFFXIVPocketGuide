@@ -468,7 +468,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 'add_status': attack.get("add_status", []),
                 'disable': 'false',
                 'type': 'regular',
-                'damage_type': attack['damage_type'],
+                'damage_type': attack.get('damage_type', None),
                 'phases': [{'phase': '09'}],
                 'roles': [{'role': 'role'}],
                 'tags': [{'tag': 'tag'}],
