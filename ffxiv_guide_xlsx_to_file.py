@@ -133,7 +133,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             #if debug_row_number not in [722]:
-            if debug_row_number < 730 :
+            if debug_row_number < 650 :
                 print_debug = True
                 continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
@@ -179,7 +179,7 @@ def main():
         os.chdir("..")
         gl.run()
         gp.run()
-    ghm.run()
+        ghm.run()
     logger.critical('STOP')
 
 if __name__ == "__main__":
