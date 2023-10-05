@@ -83,7 +83,7 @@ def run():
                 for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
                     r_data += f'            {lang}: "{value.get("Destination_"+lang, value.get("Name_"+lang, ""))}"\n'
                 r_data += f'          unlocked:\n'
-                tmp_x = get_translated_unlocks(w_data, stop_data['unlocked_by'])
+                tmp_x = get_translated_unlocks(w_data, stop_data.get('unlocked_by', ""))
                 for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
                     r_data += f'            {lang}: "{tmp_x.get("Destination_"+lang, tmp_x.get("Name_"+lang, ""))}"\n'
                 r_data += f'          level: "{stop_data["lvl"]}"\n'
@@ -91,7 +91,7 @@ def run():
                 if stop_data.get('alias'):
                     r_data += f'          alias: "{stop_data["alias"]}"\n'
                 r_data += f'          items:\n'
-                x_items = get_x_items(stop_data["items"])
+                x_items = get_x_items(stop_data.get('items', []))
                 for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
                     r_data += f'            {lang}: "{x_items.get(lang, "")[:-5]}"\n'
     r_data += "---\n"
