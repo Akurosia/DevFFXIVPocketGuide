@@ -297,7 +297,9 @@ def rewrite_content_even_if_exists(entry, old_wip):
                 x = True
                 header_data += 'quest_npc:\n'
             header_data += f'  {lang}: "' + entry[f"quest_npc_{lang}"] + '"\n'
-    header_data += 'order: ' + get_order_id(entry) + '\n'
+
+    #header_data += 'order: ' + get_order_id(entry) + '\n'
+    header_data += 'order: ' + entry["sortid"] + '\n'
 
     #TODO add funcion for Orchestrio Material
     category_names = {
