@@ -97,7 +97,7 @@ def run():
     r_data += "---\n"
     #print(r_data)
 
-    filename = f"../_pages/airship_submarine/index.html"
+    filename = f"_pages/airship_submarine/index.html"
     with open(filename, encoding="utf8") as f:
         doc = f.read()
     if not doc == r_data:
