@@ -328,6 +328,8 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     if old_attack.get('title', {}).get('de', None) == x_attack_name:
                         attack_index = i
                         break
+                if attack_index is None:
+                    raise Exception(f"Skill {x_attack_name} ({attack_id}) wa snot found in logdata")
 
                 tmp_attack = old_enemy_data['attacks'][attack_index]
                 tmp_attack['type'] = "variation"
