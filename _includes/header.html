@@ -77,6 +77,8 @@
                     Luftschiff & Tauchboot
                 {%- elsif page.page_category == "relics" -%}
                     Reliktwaffen
+                {%- elsif page.page_category == "translate" -%}
+                    Übersetzungen
                 {%- else -%}
                     {%- for lang in LANGUAGES -%}
                         <span class="lang-toggle lang-toogle-{{lang}} ">{{ page.title[lang] }}</span>

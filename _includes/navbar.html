@@ -43,6 +43,13 @@
                     </a>
                 </li>
                 <li>
+                    <a target="" {%- if page.page_category == "translate" -%}class="active"{%- endif -%}
+                        href='{{ "/translate/" | prepend: site.baseurl }}' title="See what's new with the Pocket Guide.">
+                        <img src='{{ site.imageurl }}/{{ "/061000/061723_hr1.png" }}' alt="{{ debuff.icon }}">
+                        Übersetzungen
+                    </a>
+                </li>
+                <li>
                     <a target="" {%- if page.page_category == "patches" -%}class="active"{%- endif -%}
                         href='{{ "/patches/" | prepend: site.baseurl }}' title="Alle Patches anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061757_hr1.png" }}' alt="{{ debuff.icon }}">
