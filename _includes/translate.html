@@ -1,0 +1,30 @@
+{%- comment -%} ==================================================================
+    // Index
+=============================================================== {%- endcomment -%}
+<link rel="stylesheet" href="{{ "/assets/css/translate.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ "/assets/css/ffxiv.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
+
+<div class="index">
+    <div class="container col">
+      <div class="" id="headDiv">
+        <div class="my-4 form-inline">
+          <div class="input-group-prepend">
+            <label class="input-group-text bg-charcoal text-light" for="inputGroupSelect01">Filter</label>
+          </div>
+          <select class="form-control bg-charcoal text-light custom-select" id="filterValue">
+            <option value="all">all</option>
+          </select>
+          <input type="text" class="form-control bg-charcoal text-light col" id="searchValue" placeholder="Enter serch term here" value=""/>
+          <select id="exactSearch" class="form-control bg-charcoal text-light" name="Exact Search">
+            <option value="true">Exact</option>
+            <option value="false">Not Exact</option>
+          </select>
+          <button type="submit" class="btn bg-charcoal text-light" id="submit" onclick="translate_search();translate_SubmitToLocalStorage();">
+            <i id="search_spinner" class="fa fa-spin"></i>Search
+          </button>
+        </div>
+      </div>
+      <div class="" id="bodyDiv"></div>
+    </div>
+</div>
+<script type="text/javascript" src="{{ "/assets/js/translate.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>

@@ -123,6 +123,15 @@ def write_content_to_file(entry, filename, old_data):
     writeFileIfNoDifferent(filename, filedata)
 
 
+categories_list = {
+    "arr": "2_arr",
+    "hw": "3_hw",
+    "sb": "4_sb",
+    "shb": "5_shb",
+    "ew": "6_ew",
+    "dt": "7_dt"
+}
+
 def run(sheet, max_row, max_column, elements, orderedContent):
     global debug_row_number # used in debugger to verify entry
     global print_debug
@@ -133,9 +142,9 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             #if debug_row_number < 730 :
-            if debug_row_number not in [641]:
-                print_debug = True
-                continue
+            #if debug_row_number not in [641]:
+            #    print_debug = True
+            #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             if print_debug: print(entry['title'])
             logger.info(pretty_json(entry))
@@ -144,8 +153,9 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 print("END FLAG WAS FOUND!")
                 sys.exit(0)
             if not (entry["exclude"] or entry["done"]):
-                filename = f"{entry['categories']}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
-                existing_filename = f"{entry['categories']}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
+                categories = categories_list[entry['categories']]
+                filename = f"{categories}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
+                existing_filename = f"{categories}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 old_data = get_old_content_if_file_is_found(existing_filename)
                 # if old file was found, replace filename to save
                 if not old_data == {}:
