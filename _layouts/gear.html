@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
+    <head>
+        {% include head.html %}
+    </head>
+    <body class="{{ page.page_type }} {{ page.page_category }}">
+        <div class="layout">
+            <!-- Include Sidebar -->
+            {% include navbar.html %}
+            <div class="layout__wrapper">
+                <!-- Include Header -->
+                {% include header.html %}
+                <!-- Include Guide Index -->
+                {% include gear.html %}
+                <!-- Include Footer -->
+                {% include_cached footer.html %}
+            </div>
+        </div>
+        {% include_cached scripts.html %}
+    </body>
+</html>

@@ -1,0 +1,159 @@
+@font-face {
+    font-family: finalf;
+    src: url('https://akurosia.de/resources/font/FFXIV_Lodestone_SSF.ttf');
+}
+#gearlist > * {
+    font-family: Arial, 'finalf', Helvetica, san-serif;
+}
+
+#filterOptions {
+    justify-content: center;
+}
+
+.container {
+    width: 90%
+}
+
+#gearlist > div > table.table-bordered > thead > tr > th,
+#gearlist > div > table.table-bordered > tbody > tr > td{
+  border:1px solid black;
+}
+
+#table_stats_overview > thead > tr > th,
+#table_stats_overview > tbody > tr > td {
+  border:2px solid black;
+}
+
+#gearlist > div > table > thead > tr > th {
+    font-size: 13px;
+}
+
+#gearlist > div > table > tbody > tr > td {
+    font-size: 13px;
+    padding: 2px !important;
+    vertical-align: baseline !important;
+}
+
+#gearlist > div > table > tbody > tr > td > a > img{
+    height: 30px;
+    width: 30px;
+}
+
+#gearlist > div > table {
+    table-layout: fixed;
+}
+
+#table_stats_overview {
+    margin-left: auto;
+    margin-right: auto;
+    width: 98.7%;
+}
+
+.stat > span{
+  color: darkgoldenrod;
+}
+
+.radio, .icon, .lvl, .ilvl, .materia, .stat {
+  text-align: center;
+}
+.radio {
+    width: 1%;
+}
+.icon {
+    width: 40px;
+}
+.lvl {
+    width: 3%;
+}
+.ilvl {
+    width: 3%;
+}
+.materia {
+    width: 5%;
+}
+.stat, .loc {
+    width: 8%;
+}
+.race {
+    width: 25%;
+}
+
+/* Tooltip */
+
+.mytooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.mytooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  height: 85;
+  background-color: #111 !important;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.mytooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Checkboxes */
+
+.checkbox {
+    display: inline-flex;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox > input {
+    height: 40px;
+    width: 40px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    border: 1px solid #34495E;
+    border-radius: 4px;
+    outline: none;
+    transition-duration: 0.3s;
+    background-color: #555555;
+    cursor: pointer;
+  }
+
+.white> input:checked {
+    border: 1px solid #151515;
+    background-color: #ffffff;
+}
+.green> input:checked {
+    border: 1px solid #151515;
+    background-color: #009148;
+}
+.blue> input:checked {
+    border: 1px solid #151515;
+    background-color: #0061D3;
+}
+.purpel> input:checked {
+    border: 1px solid #151515;
+    background-color: #5400B4;
+}
+.red> input:checked {
+    border: 1px solid #151515;
+    background-color: #C11321;
+}
+
+.x_box_blah {
+    margin-left: -35px;
+    padding-right: 12px;
+    color: black;
+}
