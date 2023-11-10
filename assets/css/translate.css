@@ -88,6 +88,10 @@ table th:first-child { border-left: none; }
     cursor: pointer;
 }
 
+table > tbody > tr > td > img {
+    width: unset !important;
+}
+
 /*CODE BELOW IF FOR COLAPSEBALE DIVS*/
 /* Style the button that is used to open and close the collapsible content */
 .collapsible {
