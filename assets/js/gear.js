@@ -131,6 +131,21 @@ function copy2clipboard(text) {
   });
 }
 
+function remove_gearlist(){
+    document.getElementById("weapon_left").innerHTML = "";
+    document.getElementById("weapon_right").innerHTML = "";
+    document.getElementById("kopf").innerHTML = "";
+    document.getElementById("rumpf").innerHTML = "";
+    document.getElementById("hände").innerHTML = "";
+    document.getElementById("beine").innerHTML = "";
+    document.getElementById("füße").innerHTML = "";
+    document.getElementById("ohrring").innerHTML = "";
+    document.getElementById("halskette").innerHTML = "";
+    document.getElementById("armreif").innerHTML = "";
+    document.getElementById("ring_links").innerHTML = "";
+    document.getElementById("ring_rechts").innerHTML = "";
+}
+
 async function call_api_data(){
     sum_fields = {}
     classjob_select = document.getElementById("classjob")
@@ -151,6 +166,7 @@ async function call_api_data(){
     x = ((document.getElementById("rarity_4").checked) ? rarity.push("4") : null);
 
     set_localstorage()
+    remove_gearlist()
     lists.forEach(category => {
         table_name = category
         if (category == "Mainhand"){
