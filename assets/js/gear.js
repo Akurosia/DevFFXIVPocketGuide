@@ -37,6 +37,40 @@ weapon_dict = {
     "FIS": ["Fischerzeug"]
 }
 
+class_additions = {
+    "PLD": "Krieger",
+    "KRG": "Krieger",
+    "DKR": "Krieger",
+    "REV": "Krieger",
+    "WMA": "Magier",
+    "GLT": "Magier",
+    "AST": "Magier",
+    "WEI": "Magier",
+    "MÖN": "Krieger",
+    "DRG": "Krieger",
+    "NIN": "Krieger",
+    "SAM": "Krieger",
+    "SNT": "Krieger",
+    "BRD": "Krieger",
+    "MCH": "Krieger",
+    "TÄN": "Krieger",
+    "BSW": "Magier",
+    "SMA": "Magier",
+    "RMA": "Magier",
+    "BMA": "Magier",
+    "ZMR": "Handwerker",
+    "GRS": "Handwerker",
+    "PLA": "Handwerker",
+    "GLD": "Handwerker",
+    "GER": "Handwerker",
+    "WEB": "Handwerker",
+    "ALC": "Handwerker",
+    "GRM": "Handwerker",
+    "MIN": "Sammler",
+    "GÄR": "Sammler",
+    "FIS": "Sammler",
+}
+
 tools_dict = {
     "PLD": "Schild",
     "ZMR": "Zimmermannszeug (sekund\u00e4r)",
@@ -127,25 +161,33 @@ async function call_api_data(){
                 table_name = category
             }
         }
-        url_params = "?classjob=" + classjob +
-                     "&category=" + table_name +
+        url_params2 = "?classjob=" + classjob +
+                     "&classjobadd=" + class_additions[classjob] +
+                     "&category=" + String(table_name).replaceAll(" (", "_").replaceAll(")", "").replaceAll("-", "_").replaceAll(" ", "_") +
                      "&lvl_from=" + lvl_from +
                      "&lvl_to=" + lvl_to +
                      "&ilvl_from=" + ilvl_from +
                      "&ilvl_to=" + ilvl_to +
-                     "&rarity=" + String(rarity) +
-                     "&include_hq=" + include_hq +
-                     "&limit_to_hq=" + limit_to_hq;
-        load_data(url_params, table_name, category, classjob)
+                     "&rarity=" + String(rarity)
+        if (include_hq && limit_to_hq) {
+            url_params2 += "&hq=1"
+        } else if (include_hq && !limit_to_hq) {
+                url_params2 += "&hq=0,1"
+        } else {
+            url_params2 += "&hq=0"
+        }
+
+        load_data(url_params2, table_name, category, classjob)
     })
     console.log("Done")
 }
 
 async function load_data(params, table_name, category, classJob){
     //load treasure map json
-    url = 'https://ffxivapi.akurosia.de/ffxiv/gear' + params
+    url = 'https://ffxiv.akurosiakamo.de/queryFFXIVequipmentDB.php' + params
     console.log(url)
-    fetch(url,{mode: 'cors'}).then(r => r.json())
+    fetch(url,{mode: 'cors'})
+        .then(r => r.json())
         .then(data => {
             create_table(data, table_name, category, classJob)
         })
@@ -342,8 +384,9 @@ async function createTemplateTableHead(name, json, classJob){
 function getMaxMeld(item) {
     meldstats = 0
     for (var field in substats){
-        if (meldstats < item["Stats"][substats[field]]) {
-            meldstats = item["Stats"][substats[field]];
+        // jor api itself add item['Stats'][substats[field]]
+        if (meldstats < item[substats[field]]) {
+            meldstats = item[substats[field]];
         }
     }
     return meldstats
@@ -360,7 +403,7 @@ async function createTemplateTableBody(name, json, classJob){
         max_meld = getMaxMeld(json[key])
         var _tr = document.createElement('tr');
         _tr.appendChild(await createTHorTD("<input onclick='updateValues()' type='radio' id='" + json[key]["Name"] + "' name='" + name + "' value=''>", "td"));
-        _tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img src='https://ffxiv.akurosia.de/extras/images/" + json[key]['Icon'] + "'></img>" + "</a>", "td", "icon"));
+        _tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img src='https://xivapi.com/i/" + json[key]['Icon'].replace("ui/icon/", "") + "'></img>" + "</a>", "td", "icon"));
         _name = '<div class="mytooltip" onclick="copy2clipboard(\'' + json[key]["Name"] + '\')" id="' + json[key]["ID"] + '">' + json[key]["Name"] + '<span class="tooltiptext">'
         _name += 'Färbbar: ' + cleartext[json[key]["IsDyeable"]] + '</br>'
         _name += 'Einzigartig: ' + cleartext[json[key]["IsUnique"]] + '</br>'
