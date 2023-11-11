@@ -186,7 +186,8 @@ async function load_data(params, table_name, category, classJob){
     //load treasure map json
     url = 'https://ffxiv.akurosiakamo.de/queryFFXIVequipmentDB.php' + params
     console.log(url)
-    fetch(url,{mode: 'cors'})
+    //fetch(url,{mode: 'cors'})
+    fetch(url)
         .then(r => r.json())
         .then(data => {
             create_table(data, table_name, category, classJob)
