@@ -285,28 +285,27 @@ function createTemplateTableHead(name, json){
     _tr.appendChild(_th);
 
     header = getTableColumns(header_json)
-
     // Add all coulmn fro file
     for (var prop in header) {
         var _th = document.createElement('th');
         _th.setAttribute("role", "columnheader");
+        if (header[prop] == "_id"){
+            continue;
+        }
         var textnode_1 = document.createTextNode(header[prop]);
         _th.setAttribute("scope", "col");
         _th.setAttribute("class", getLanguageCode(header[prop]));
         _th.appendChild(textnode_1);
         _tr.appendChild(_th);
     }
-
     // Add copyRegexBtn
     var _th = document.createElement('th');
     _th.setAttribute("role", "columnheader");
-    var textnode_1 = document.createTextNode("GetRegex");
+    var textnode_1 = document.createTextNode("Get Values");
     _th.appendChild(textnode_1);
     _th.setAttribute("scope", "col");
     _tr.appendChild(_th);
-
     _head.appendChild(_tr);
-
     return _head;
 }
 
@@ -333,6 +332,9 @@ function createTemplateTableBody(name, json){
         // Add all coulmn fro file
         var e = ""
         for (var element_key in header) {
+            if (header[element_key] == "_id"){
+                continue;
+            }
             e = element[header[element_key]]
             if (e == undefined){
                 e = ""
@@ -445,13 +447,15 @@ function getRegEx(data) {
     namedElements = line.getElementsByTagName("td")
     // namedElements[id_dec, id_hex, icon, german, english, franc, japanese, button]
     numberOfEntries = namedElements.length
-    result = "("
-    for(var i = numberOfEntries-7; i<numberOfEntries-1; i++){
-        result += namedElements[i].innerHTML + "|"
+    result = ""
+    for(var i = 0; i<numberOfEntries; i++){
+        if (namedElements[i].className == ""){
+            continue;
+        }
+        result += "|" + namedElements[i].innerHTML
     }
-    result += "Unknown_" + namedElements[1].innerHTML
-    result += ")"
-    result = result.replace("(|", "(").replace("||", "|").replace("|)", ")")
+    result = "(ID_" + namedElements[0].innerHTML + "|0xID_" + parseInt(namedElements[0].innerHTML, 16) + result + ")"
+    result = result.replace("(|", "(").replace("||", "|").replace("||", "|").replace("||", "|").replace("|)", ")")
     var textarea = document.createElement("textarea");
     textarea.textContent = result;
     textarea.style.position = "fixed";
