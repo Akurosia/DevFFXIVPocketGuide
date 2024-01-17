@@ -424,7 +424,7 @@ async function createTemplateTableBody(name, json, classJob){
         _name = '<div class="mytooltip" onclick="copy2clipboard(\'' + json[key]["Name"] + '\')" id="' + json[key]["ID"] + '">' + json[key]["Name"] + '<span class="tooltiptext">'
         _name += 'Färbbar: ' + cleartext[json[key]["IsDyeable"]] + '</br>'
         _name += 'Einzigartig: ' + cleartext[json[key]["IsUnique"]] + '</br>'
-        _name += 'Handelbar: ' + cleartext[!json[key]["IsUntradable"]] + '</br>'
+        _name += 'Handelbar: ' + cleartext[(!parseInt(json[key]["IsUntradable"])).toString()] + '</br>'
         _name += 'Verkauf am MB: ' + cleartext[json[key]["ItemSearchCategory"]] + '</br>'
         _name += 'Pentameld: ' + cleartext[json[key]["IsAdvancedMeldingPermitted"]] + '</span></div>'
         _tr.appendChild(await createTHorTD(_name, "td"));
