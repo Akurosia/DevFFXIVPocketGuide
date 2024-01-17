@@ -206,7 +206,7 @@ def getBnpcNameFromID(_id, aname, nname, lang="en"):
     enew_name = ""
     ennew_name = ""
     if nname == "???":
-        nname = "\?\?\?"
+        nname = "\\?\\?\\?"
     if type(_id) == list:
         _id = _id[0]
     _id = str(_id)
@@ -263,7 +263,7 @@ def getBnpcName(name, _id, lang="en"):
         aname = name
 
     # take care of the german gender cases
-    nname = aname.replace("er ", r"(\[a\]|(e|es|er|en)) ").replace("es ", r"(\[a\]|(e|es|er|en)) ").replace("en ", r"(\[a\]|(e|es|er|en)) ").replace("e ", r"(\[a\]|(e|es|er|en)) ").replace("?", "\?")
+    nname = aname.replace("er ", r"(\[a\]|(e|es|er|en)) ").replace("es ", r"(\[a\]|(e|es|er|en)) ").replace("en ", r"(\[a\]|(e|es|er|en)) ").replace("e ", r"(\[a\]|(e|es|er|en)) ").replace("?", "\\?")
     if nname.endswith("e"):
         nname = nname[:-1] + r"(\[a\]|(e|es|er|en))"
     elif nname.endswith("en") or nname.endswith("es") or nname.endswith("er"):
@@ -275,7 +275,7 @@ def getBnpcName(name, _id, lang="en"):
             return fixCaptilaziationAndRomanNumerals(resultname)
     # check results agains bnpcname
     if nname == "???":
-        nname = "\?\?\?"
+        nname = "\\?\\?\\?"
     for _, bnpc in bnpcname.items():
         m = re.search(nname, bnpc["Singular_de"].lower())
         if m:
