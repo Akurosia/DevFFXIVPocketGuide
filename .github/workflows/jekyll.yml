@@ -17,7 +17,7 @@ jobs:
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future --config _config.yml,_githubconfig.yml"
+        jvconseil/jekyll-docker:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future --config _config.yml,_githubconfig.yml"
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
