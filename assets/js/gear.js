@@ -410,8 +410,8 @@ function getMaxMeld(item) {
 }
 
 cleartext = {
-    true: "Ja",
-    false: "Nein"
+    "1": "Ja",
+    "0": "Nein"
 }
 async function createTemplateTableBody(name, json, classJob){
     var _body = document.createElement('tbody');
