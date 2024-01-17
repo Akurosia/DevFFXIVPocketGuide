@@ -436,7 +436,7 @@ async function createTemplateTableBody(name, json, classJob){
             xfield = fields[field].replace("&shy;", "")
             if (["Blockeffekt", "Blockrate"].includes(field)){
             } else {
-                _td = await createTHorTD(get(json[key]["Stats"], xfield, 0), "td", "stat " + xfield.replace(" ", "_"))
+                _td = await createTHorTD(get(json[key], xfield, 0), "td", "stat " + xfield.replace(" ", "_"))
                 if (substats.includes(xfield)){
                     _span = document.createElement("span")
                     _span.innerHTML = " (" + max_meld + ")"
