@@ -13,8 +13,8 @@ gem 'liquid', '>= 4.0.4'
 gem "jekyll", github: "jekyll/jekyll"
 #gem "liquid-c"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
-gem "minima", "~> 2.0"
-
+#gem "minima", "~> 2.0"
+gem 'jekyll-theme-chirpy', '~> 6.4', '>= 6.4.2'
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
 # gem 'github-pages', group: :jekyll_plugins
@@ -27,6 +27,7 @@ group :jekyll_plugins do
    gem "jekyll-sitemap"
    gem "jekyll-include-cache"
    gem "jekyll-commonmark"
+   gem "jekyll-youtube"
    #gem "jekyll-admin"
 end
 gem "webrick", "~> 1.7"
