@@ -14,23 +14,6 @@ function translate_loadFromLocalStorage(){
 
 // This will get all available search categories
 function translate_getSearchCategories(){
-  //var Http = new XMLHttpRequest();
-  //url = encodeURI('https://ffxivapi.akurosia.de/ffxiv/translate/categories');
-  //Http.open("GET", url, true);
-  //Http.send();
-  //Http.onreadystatechange = (e) => {
-  //  if (Http.readyState == 4 && Http.status == 200){
-  //    _select = document.getElementById("filterValue");
-  //    let json = JSON.parse(Http.responseText)
-  //    for (var category in json){
-  //      var _element = document.createElement('option');
-  //      _element.setAttribute("value", json[category]);
-  //      _element.text = json[category];
-  //      _select.appendChild(_element);
-  //    }
-  //    translate_loadFromLocalStorage();
-  //  }
-  //}
   fetch('https://ffxiv.akurosiakamo.de/getTables.php')
     .then(response => response.json())
     .then(json => set_files(json))

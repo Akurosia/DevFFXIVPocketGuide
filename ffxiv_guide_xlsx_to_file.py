@@ -179,7 +179,7 @@ def main():
     logger.debug(orderedContent)
     try:
         run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
-    except: pass
+    except Exception: pass
     if not print_debug:
         #csgf needs also to run from posts dir
         csgf.run()
