@@ -8,13 +8,13 @@ import errno
 import yaml
 from yaml.loader import SafeLoader
 import python_scripts.generatePatch as gp
-from ffxiv_aku import *
-from python_scripts.header import *
-from python_scripts.guide import *
-from python_scripts.helper import *
-from python_scripts.constants import *
-from python_scripts.custom_logger import *
-from python_scripts.xlsx_entry_helper import *
+from ffxiv_aku import pretty_json, print_color_green, sys
+from python_scripts.header import addHeader
+from python_scripts.guide import addGuide, logdata, logdata_lower
+from python_scripts.helper import uglyContentNameFix, getContentName
+#from python_scripts.constants import *
+from python_scripts.custom_logger import getLogger
+from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file
 import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
 import python_scripts.generateHousingMissions as ghm
@@ -102,7 +102,7 @@ def writeFileIfNoDifferent(filename, filedata):
     try:
         with open(filename, "r", encoding="utf8") as f:
             x_data = f.read()
-    except:
+    except Exception:
         x_data = None
 
     if not filedata == x_data:
@@ -139,8 +139,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             #filename = ""
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            #if debug_row_number < 666 :
-            #if debug_row_number not in [697]:
+            #if debug_row_number < 20 :
+            #if debug_row_number not in [744, 748]:
             #    print_debug = True
             #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
@@ -149,7 +149,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
                 print("END FLAG WAS FOUND!")
-                sys.exit(0)
+                break
             if not (entry["exclude"] or entry["done"]):
                 categories = categories_list[entry['categories']]
                 filename = f"{categories}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"

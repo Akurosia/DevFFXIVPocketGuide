@@ -66,8 +66,8 @@ def add_Mechanic(data):
     if data.get("preset"):
         guide_data += f"  - preset: \"{data['preset']}\"\n"
     else:
-        guide_data += f"  - title:\n"
-        x = data['title'] if type(data['title']) == dict else {'de': data['title']}
+        guide_data += "  - title:\n"
+        x = data['title'] if isinstance(data['title'], dict) else {'de': data['title']}
         for lang in LANGUAGES:
             z = x.get(lang, x['de']).replace('"', '\\"').strip()
             guide_data += f"      {lang}: \"{z}\"\n"
@@ -81,7 +81,7 @@ def add_Mechanic(data):
                 if step.get("notes", None):
                     guide_data += "        notes:\n"
                     for note in step["notes"]:
-                        guide_data += f"          - note:\n"
+                        guide_data += "          - note:\n"
                         y = note['note'] if type(note['note']) == dict else {'de': note['note']}
                         for lang in LANGUAGES:
                             w = y.get(lang, y['de']).replace('"', '\\"').strip()
@@ -102,11 +102,11 @@ def add_Mechanic(data):
 
 
 def add_Debuff(guide_data, debuff, enemy_type):
-    guide_data += f'      - title:\n'
+    guide_data += '      - title:\n'
     guide_data = setMultipleLanguageStrings(guide_data, "title", debuff, "          ")
     guide_data += f'        title_id: "{debuff["title_id"]}"\n'
     guide_data += f'        icon: "{getImage(debuff["icon"])}"\n'
-    guide_data += f'        description:\n'
+    guide_data += '        description:\n'
     guide_data = setMultipleLanguageStrings(guide_data, "description", debuff, "          ")
     if debuff.get("durations", None):
         guide_data += f'        durations: {debuff["durations"]}\n'
@@ -115,7 +115,7 @@ def add_Debuff(guide_data, debuff, enemy_type):
     #guide_data += f'        damage_type: "{debuff["damage_type"] or "None"}"\n'
 
     if debuff.get('phases', None):
-        guide_data += f'        phases:\n'
+        guide_data += '        phases:\n'
         for phase in debuff.get('phases', {}):
             guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
 
@@ -123,29 +123,29 @@ def add_Debuff(guide_data, debuff, enemy_type):
         return guide_data
 
     if debuff.get('roles', None):
-        guide_data += f'        roles:\n'
+        guide_data += '        roles:\n'
         for role in debuff.get('roles', {}):
             guide_data += f'          - role: "{role["role"]}"\n'
 
     if debuff.get('tags', None):
-        guide_data += f'        tags:\n'
+        guide_data += '        tags:\n'
         for tag in debuff.get('tags', {}):
             guide_data += f'          - tag: "{tag["tag"]}"\n'
 
     if debuff.get('notes', None):
-        guide_data += f'        notes:\n'
+        guide_data += '        notes:\n'
         for note in debuff.get('notes', {}):
             guide_data += f'          - note: "{note["note"]}"\n'
 
     if debuff.get('videos', None):
-        guide_data += f'        videos:\n'
+        guide_data += '        videos:\n'
         for video in debuff.get('videos', {}):
             guide_data += f'          - url: "{video["url"]}"\n'
     return guide_data
 
 
 def add_regular_Attack(guide_data, attack, enemy_type):
-    guide_data += f'      - title:\n'
+    guide_data += '      - title:\n'
     guide_data = setMultipleLanguageStrings(guide_data, "title", attack, "          ")
     guide_data += f'        title_id: "{attack["title_id"]}"\n'
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
@@ -154,18 +154,18 @@ def add_regular_Attack(guide_data, attack, enemy_type):
     guide_data += f'        damage_type: "{attack.get("damage_type", None)}"\n'
 
     if attack.get('add_status', None):
-        guide_data += f'        add_status:\n'
+        guide_data += '        add_status:\n'
         sort_attacks = sort_status_ids(attack["add_status"])
         for e in sort_attacks:
             s = status[str(int(e, 16))]
             guide_data += f'          - status: {e}\n'
             guide_data += f'            icon: "{getImage(s["Icon"])}"\n'
-            guide_data += f'            name:\n'
+            guide_data += '            name:\n'
             for lang in LANGUAGES:
                 guide_data += f'               {lang}: "' + s[f"Name_{lang}"] + '"\n'
 
     if attack.get('damage', None):
-        guide_data += f'        damage:\n'
+        guide_data += '        damage:\n'
         try:
             guide_data += f'          - min: {attack["damage"]["min"] or "None"}\n'
             guide_data += f'          - max: {attack["damage"]["max"] or "None"}\n'
@@ -174,7 +174,7 @@ def add_regular_Attack(guide_data, attack, enemy_type):
             guide_data += f'          - max: {attack["damage"][1]["max"] or "None"}\n'
 
     if attack.get('phases', None):
-        guide_data += f'        phases:\n'
+        guide_data += '        phases:\n'
         for phase in attack.get('phases', {}):
             guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
 
@@ -182,12 +182,12 @@ def add_regular_Attack(guide_data, attack, enemy_type):
         return guide_data
 
     if attack.get('roles', None):
-        guide_data += f'        roles:\n'
+        guide_data += '        roles:\n'
         for role in attack.get('roles', {}):
             guide_data += f'          - role: "{role["role"]}"\n'
 
     if attack.get('tags', None):
-        guide_data += f'        tags:\n'
+        guide_data += '        tags:\n'
         for tag in attack.get('tags', {}):
             guide_data += f'          - tag: "{tag["tag"]}"\n'
         if attack.get('single_or_aoe', None):
@@ -195,54 +195,54 @@ def add_regular_Attack(guide_data, attack, enemy_type):
             guide_data += f'          - tag: "{x}"\n'
 
     if attack.get('notes', None):
-        guide_data += f'        notes:\n'
+        guide_data += '        notes:\n'
         for note in attack.get('notes', {}):
             guide_data += f'          - note: "{note["note"]}"\n'
 
     if attack.get('images', None):
-        guide_data += f'        images:\n'
+        guide_data += '        images:\n'
         for image in attack.get('images', {}):
             guide_data += f'          - url: "{image["url"]}"\n'
             guide_data += f'            alt: "{image.get("alt", None) or image["url"]}"\n'
             guide_data += f'            height: "{image.get("height", None) or "350px"}"\n'
 
     if attack.get('videos', None):
-        guide_data += f'        videos:\n'
+        guide_data += '        videos:\n'
         for video in attack.get('videos', {}):
             guide_data += f'          - url: "{video["url"]}"\n'
     return guide_data
 
 
 def add_variation_Attack(guide_data, attack, enemy_type):
-    guide_data += f'      - title:\n'
+    guide_data += '      - title:\n'
     guide_data = setMultipleLanguageStrings(guide_data, "title", attack, "          ")
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack.get("disable", "false")}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
 
     if attack.get('add_status', None):
-        guide_data += f'        add_status:\n'
+        guide_data += '        add_status:\n'
         sort_attacks = sort_status_ids(attack["add_status"])
         for e in sort_attacks:
             s = status[str(int(e, 16))]
             guide_data += f'          - status: {e}\n'
             guide_data += f'            icon: "{getImage(s["Icon"])}"\n'
-            guide_data += f'            name:\n'
+            guide_data += '            name:\n'
             for lang in LANGUAGES:
                 guide_data += f'               {lang}: "' + s[f"Name_{lang}"] + '"\n'
 
     if attack.get('phases', None):
-        guide_data += f'        phases:\n'
+        guide_data += '        phases:\n'
         for phase in attack.get('phases', {}):
             guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
 
     if (attack.get('notes', None) and enemy_type != "adds") or (attack.get('notes', None) and enemy_type == "adds" and attack.get('notes', [{}])[0].get("note", None) != "Variation-note BIG"):
-        guide_data += f'        notes:\n'
+        guide_data += '        notes:\n'
         for note in attack.get('notes', {}):
             guide_data += f'          - note: "{note["note"]}"\n'
 
     if attack.get('variation', None):
-        guide_data += f'        variation:\n'
+        guide_data += '        variation:\n'
         for variation in attack.get('variation', {}):
             #guide_data += f'          - title:\n'
             #guide_data = setMultipleLanguageStrings(guide_data, "title", variation, "              ")
@@ -250,22 +250,22 @@ def add_variation_Attack(guide_data, attack, enemy_type):
             guide_data += f'            damage_type: "{variation.get("damage_type", None)}"\n'
 
             if variation.get('add_status', None):
-                guide_data += f'            add_status:\n'
+                guide_data += '            add_status:\n'
                 sort_attacks = sort_status_ids(variation["add_status"])
                 for e in sort_attacks:
                     try:
                         s = status[str(int(e, 16))]
-                    except:
+                    except Exception:
                         s = status[str(int(str(e['status']), 16))]
                     guide_data += f'              - status: {s["0xID"]}\n'
                     guide_data += f'                icon: "{getImage(s["Icon"])}"\n'
-                    guide_data += f'                name:\n'
+                    guide_data += '                name:\n'
                     for lang in LANGUAGES:
                         guide_data += f'                 {lang}: "' + s[f"Name_{lang}"] + '"\n'
 
             # print_color_yellow(variation)
             if variation.get('damage', None):
-                guide_data += f'            damage:\n'
+                guide_data += '            damage:\n'
                 try:
                     guide_data += f'              - min: {variation["damage"]["min"] or "None"}\n'
                     guide_data += f'              - max: {variation["damage"]["max"] or "None"}\n'
@@ -274,12 +274,12 @@ def add_variation_Attack(guide_data, attack, enemy_type):
                     guide_data += f'              - max: {variation["damage"][1]["max"] or "None"}\n'
 
             if variation.get('roles', None):
-                guide_data += f'            roles:\n'
+                guide_data += '            roles:\n'
                 for role in variation.get('roles', {}):
                     guide_data += f'              - role: "{role["role"]}"\n'
 
             if variation.get('tags', None):
-                guide_data += f'            tags:\n'
+                guide_data += '            tags:\n'
                 for tag in variation.get('tags', {}):
                     guide_data += f'              - tag: "{tag["tag"]}"\n'
                 if variation.get('single_or_aoe', None):
@@ -287,19 +287,19 @@ def add_variation_Attack(guide_data, attack, enemy_type):
                     guide_data += f'              - tag: "{x}"\n'
 
             if variation.get('notes', None) and enemy_type != "adds":
-                guide_data += f'            notes:\n'
+                guide_data += '            notes:\n'
                 for note in variation.get('notes', {}):
                     guide_data += f'              - note: "{note["note"]}"\n'
 
     if attack.get('images', None):
-        guide_data += f'        images:\n'
+        guide_data += '        images:\n'
         for image in attack.get('images', {}):
             guide_data += f'          - url: "{image["url"]}"\n'
             guide_data += f'            alt: "{image.get("alt", None) or image["url"]}"\n'
             guide_data += f'            height: "{image.get("height", None) or "350px"}"\n'
 
     if attack.get('videos', None):
-        guide_data += f'        videos:\n'
+        guide_data += '        videos:\n'
         for video in attack.get('videos', {}):
             guide_data += f'          - url: "{video["url"]}"\n'
 
@@ -307,52 +307,52 @@ def add_variation_Attack(guide_data, attack, enemy_type):
 
 
 def add_combo_Attack(guide_data, attack, enemy_type):
-    guide_data += f'      - title:\n'
+    guide_data += '      - title:\n'
     guide_data = setMultipleLanguageStrings(guide_data, "title", attack, "          ")
     guide_data += f'        attack_in_use: "{attack["attack_in_use"] or "false"}"\n'
     guide_data += f'        disable: "{attack["disable"] or "false"}"\n'
     guide_data += f'        type: "{attack["type"] or "regular"}"\n'
 
     if attack.get('add_status', None):
-        guide_data += f'        add_status:\n'
+        guide_data += '        add_status:\n'
         sort_attacks = sort_status_ids(attack["add_status"])
         for e in sort_attacks:
             s = status[str(int(e, 16))]
             guide_data += f'          - status: {e}\n'
             guide_data += f'            icon: "{getImage(s["Icon"])}"\n'
-            guide_data += f'            name:\n'
+            guide_data += '            name:\n'
             for lang in LANGUAGES:
                 guide_data += f'               {lang}: "' + s[f"Name_{lang}"] + '"\n'
 
     if attack.get('phases', None):
-        guide_data += f'        phases:\n'
+        guide_data += '        phases:\n'
         for phase in attack.get('phases', {}):
             guide_data += f'          - phase: "{int(phase["phase"]):02d}"\n'
 
     if (attack.get('notes', None) and enemy_type != "adds") or (attack.get('notes', None) and enemy_type == "adds" and attack.get('notes', [{}])[0].get("note", None) != "Variation-note BIG"):
-        guide_data += f'        notes:\n'
+        guide_data += '        notes:\n'
         for note in attack.get('notes', {}):
             guide_data += f'          - note: "{note["note"]}"\n'
 
     if attack.get('combo', None):
-        guide_data += f'        combo:\n'
+        guide_data += '        combo:\n'
         for combo in attack.get('combo', {}):
             guide_data += f'          - title: "{combo["title"]}"\n'
             guide_data += f'            title_id: "{combo["title_id"]}"\n'
             guide_data += f'            damage_type: "{combo["damage_type"]}"\n'
 
             if combo.get('damage', None):
-                guide_data += f'            damage:\n'
+                guide_data += '            damage:\n'
                 guide_data += f'              - min: {combo["damage"]["min"] or "None"}\n'
                 guide_data += f'              - max: {combo["damage"]["max"] or "None"}\n'
 
             if combo.get('roles', None):
-                guide_data += f'            roles:\n'
+                guide_data += '            roles:\n'
                 for role in combo.get('roles', {}):
                     guide_data += f'              - role: "{role["role"]}"\n'
 
             if combo.get('tags', None):
-                guide_data += f'            tags:\n'
+                guide_data += '            tags:\n'
                 for tag in combo.get('tags', {}):
                     guide_data += f'              - tag: "{tag["tag"]}"\n'
                 if combo.get('single_or_aoe', None):
@@ -360,19 +360,19 @@ def add_combo_Attack(guide_data, attack, enemy_type):
                     guide_data += f'              - tag: "{x}"\n'
 
             if combo.get('notes', None) and enemy_type != "adds":
-                guide_data += f'            notes:\n'
+                guide_data += '            notes:\n'
                 for note in combo.get('notes', {}):
                     guide_data += f'              - note: "{note["note"]}"\n'
 
     if attack.get('images', None):
-        guide_data += f'        images:\n'
+        guide_data += '        images:\n'
         for image in attack.get('images', {}):
             guide_data += f'          - url: "{image["url"]}"\n'
             guide_data += f'            alt: "{image.get("alt", None) or image["url"]}"\n'
             guide_data += f'            height: "{image.get("height", None) or "350px"}"\n'
 
     if attack.get('videos', None):
-        guide_data += f'        videos:\n'
+        guide_data += '        videos:\n'
         for video in attack.get('videos', {}):
             guide_data += f'          - url: "{video["url"]}"\n'
 
@@ -402,7 +402,7 @@ def add_Sequence(guide_data, data):
             for mechanic in phase['mechanics']:
                 guide_data += f"          - title: \"{mechanic['title']}\"\n"
                 if mechanic.get('notes', None):
-                    guide_data += f"            notes:\n"
+                    guide_data += "            notes:\n"
                     for note in mechanic['notes']:
                         guide_data += f"              - note: \"{note['note']}\"\n"
 
@@ -428,7 +428,7 @@ def add_Sequence(guide_data, data):
 def add_Enemy(enemy_data, enemy_type, new_enemy_data):
     guide_data = ""
     enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
-    guide_data += f'  - title:\n'
+    guide_data += '  - title:\n'
     guide_data = setMultipleLanguageStrings(guide_data, "title", enemy_data, "      ")
     if type(enemy_data.get("enemy_id", "")) == list:
         guide_data += f'    enemy_id: "{", ".join(enemy_data.get("enemy_id", ""))}"\n'
@@ -437,7 +437,7 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data):
     guide_data += f'    id: "{enemy_data["id"]}"\n'
 
     if enemy_data.get('hp', None):
-        guide_data += f'    hp:\n'
+        guide_data += '    hp:\n'
         try:
             guide_data += f'      - min: {enemy_data["hp"]["min"] or "None"}\n'
             guide_data += f'      - max: {enemy_data["hp"]["max"] or "None"}\n'
