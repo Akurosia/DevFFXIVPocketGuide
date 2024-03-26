@@ -202,48 +202,55 @@ ids_to_replace = ["10742", "11399"]
 ids_to_replace += ["10744", "11402"]
 def getBnpcNameFromID(_id, aname, nname, lang="en"):
     global ids_to_replace
-    bnew_name = ""
-    enew_name = ""
-    ennew_name = ""
+    bnpc_new_name = ""
+    eobjname = ""
+    enpcresident_name = ""
     if nname == "???":
         nname = "\\?\\?\\?"
     if type(_id) == list:
         _id = _id[0]
     _id = str(_id)
     try:
-        bnew_name = bnpcname[_id]["Singular_de"]
+        bnpc_new_name = bnpcname[_id]["Singular_de"]
         if _id in ids_to_replace:
             nname = nname.replace(" iii", "").replace(" ii", "").replace(" i", "")
-        m = re.search(nname, bnew_name, re.IGNORECASE)
-        n = re.search(aname, bnew_name, re.IGNORECASE)
+        m = re.search(nname, bnpc_new_name, re.IGNORECASE)
+        n = re.search(aname, bnpc_new_name, re.IGNORECASE)
         if m or n:
             return bnpcname[_id][f"Singular_{lang}"]
     except Exception:
-        if nname == bnew_name or aname == bnew_name:
+        if nname == bnpc_new_name or aname == bnpc_new_name:
             return bnpcname[_id][f"Singular_{lang}"]
 
     try:
-        enew_name = eobjname[_id]["Singular_de"]
-        m = re.search(nname, enew_name, re.IGNORECASE)
-        n = re.search(aname, enew_name, re.IGNORECASE)
+        eobjname = eobjname[_id]["Singular_de"]
+        m = re.search(nname, eobjname, re.IGNORECASE)
+        n = re.search(aname, eobjname, re.IGNORECASE)
         if m or n:
             return eobjname[_id][f"Singular_{lang}"]
     except Exception:
-        if nname == enew_name or aname == enew_name:
+        if nname == eobjname or aname == eobjname:
             return eobjname[_id][f"Singular_{lang}"]
 
     try:
-        ennew_name = enpcresident[_id]["Singular_de"]
-        m = re.search(nname, ennew_name, re.IGNORECASE)
-        n = re.search(aname, ennew_name, re.IGNORECASE)
+        enpcresident_name = enpcresident[_id]["Singular_de"]
+        m = re.search(nname, enpcresident_name, re.IGNORECASE)
+        n = re.search(aname, enpcresident_name, re.IGNORECASE)
         if m or n:
             return enpcresident[_id][f"Singular_{lang}"]
     except Exception:
-        if nname == ennew_name or aname == ennew_name:
+        if nname == enpcresident_name or aname == enpcresident_name:
             return enpcresident[_id][f"Singular_{lang}"]
 
-    if "α" not in bnew_name and "β" not in bnew_name and "（仮）鎖" not in bnew_name:
-        print_color_red(f"'{bnew_name}', '{enew_name}', '{ennew_name}' not found {aname} ({nname}) - ({_id})")
+    if "α" not in bnpc_new_name and "β" not in bnpc_new_name and "（仮）鎖" not in bnpc_new_name:
+        final_string = ""
+        if bnpc_new_name:
+            final_string += f"{bnpc_new_name=} "
+        if eobjname:
+            final_string += f"{eobjname=} "
+        if enpcresident_name:
+            final_string += f"{enpcresident_name=} "
+        print_color_red(f"{final_string}not found '{aname}' ({nname}) - ({_id})")
     return ""
 
 

@@ -140,7 +140,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             #if debug_row_number < 20 :
-            #if debug_row_number not in [744, 748]:
+            #if debug_row_number not in [638]:
             #    print_debug = True
             #    continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
@@ -177,9 +177,9 @@ def main():
     # first run to create all files
     orderedContent = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
     logger.debug(orderedContent)
-    #try:
-    #    run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
-    #except Exception: pass
+    try:
+        run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
+    except Exception: pass
     if not print_debug:
         #csgf needs also to run from posts dir
         csgf.run()
