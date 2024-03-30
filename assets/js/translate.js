@@ -206,7 +206,9 @@ function createTemplateTable(name, json){
     _table.appendChild(_tbody);
 
     _table.setAttribute("id", "table_"+name);
-    _table.className = "table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic";
+    //_table.className = "table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic";
+    _table.className = "table table-bordered table-dark table-striped text-light patch_table";
+
     //_table.style.width = "1641px";
     _table.style["margin-bottom"] = "0px";
     return _table;

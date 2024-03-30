@@ -263,7 +263,8 @@ async function createTemplateTable(name, json, classJob){
     _table.appendChild(_thead);
     _table.appendChild(_tbody);
 
-    _table.className = "table table-bordered table-striped table-dark table-hover table-striped bg-charcoal text-light border-gold-metallic";
+    //_table.className = "table table-bordered table-striped table-dark table-hover table-striped bg-charcoal text-light border-gold-metallic";
+    _table.className = "table table-bordered table-dark table-striped text-light patch_table";
     _table.setAttribute("id", "table_"+name);
     //_table.style.width = "1641px";
     return _table;
