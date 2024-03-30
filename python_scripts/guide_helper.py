@@ -9,7 +9,7 @@ from ffxiv_aku import storeFilesInTmp, get_any_Logdata, loadDataTheQuickestWay, 
 try:
     from python_scripts.constants import LANGUAGES, UNKNOWNTITLE
     #from python_scripts.helper import *
-except:
+except Exception:
     from constants import LANGUAGES, UNKNOWNTITLE
     #from helper import *
 import logging
@@ -208,7 +208,7 @@ def getBnpcNameFromID(_id, aname, nname, lang="en"):
     enpcresident_name = ""
     if nname == "???":
         nname = "\\?\\?\\?"
-    if type(_id) == list:
+    if isinstance(_id, list):
         _id = _id[0]
     _id = str(_id)
     try:
@@ -515,7 +515,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
 def compare_status_ids(old_enemy_data, new_enemy_data, existing_debuffs, remove_debuff):
     for debuff_id in new_enemy_data.get('status', {}):
         for debuff in old_enemy_data.get('debuffs', {}):
-            if type(debuff['title']) == str:
+            if isinstance(debuff['title'], str):
                 debuff['title'] = addLanguageElements("status", debuff.get('title_id', None), debuff['title'])
             existing_debuffs[debuff['title']['de']] = ""
             if debuff_id == debuff.get('title_id', None):
@@ -533,7 +533,7 @@ def remove_status_from_list_if_found(remove_debuff, new_enemy_data):
 
 
 def fixDebuffDescription(debuff):
-    if type(debuff['description']) == str:
+    if isinstance(debuff['description'], str):
         debuff['description'] = get_fixed_status_description(debuff['title_id'])
     return debuff
 
@@ -675,7 +675,7 @@ def reorder_old_enemies(entry, enemy_type, old_enemies):
                 # if old title is empty set it to default
                 if not old_enemy_data['title']:
                     old_enemy_data['title'] = UNKNOWNTITLE
-                if type(old_enemy_data['title']) == str:
+                if isinstance(old_enemy_data['title'], str):
                     old_enemy_data['title'] = addLanguageElements("bnpc", old_enemy_data['enemy_id'], old_enemy_data['title'])
                 if old_enemy_data['title'].get('de', "").lower() == enemy.lower():
                     final_old_enemy.append(old_enemy_data)
@@ -721,7 +721,7 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
 
         saved_used_skills_to_ignore_in_last = []
         for i, old_enemy_data in enumerate(old_enemies):
-            if type(old_enemy_data['title']) == str:
+            if isinstance(old_enemy_data['title'], str):
                 old_enemy_data['title'] = addLanguageElements("bnpc", old_enemy_data['enemy_id'], old_enemy_data['title'])
             if old_enemy_data['title']['de'] == "":
                 continue

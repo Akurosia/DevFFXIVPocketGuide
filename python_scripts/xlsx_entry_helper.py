@@ -14,7 +14,7 @@ from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red, 
 try:
     from python_scripts.constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
     from python_scripts.helper import getContentName, seperate_data_into_array
-except:
+except Exception:
     from constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
     from helper import getContentName, seperate_data_into_array
 

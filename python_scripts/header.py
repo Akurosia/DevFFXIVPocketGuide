@@ -210,7 +210,7 @@ def checkVariable(element, name):
     e = element[name]
     if e is None or e == "" or e == [] or e == "[]" or e == "###":
         return False, None
-    if type(e) == list:
+    if isinstance(e, list):
         return True, e
     if e.startswith("[") and e.endswith("]") and len(e) > 2:
         return True, seperate_data_into_array(name, element)
@@ -318,7 +318,7 @@ def rewrite_content_even_if_exists(entry, old_wip):
         found, data = checkVariable(entry, cat)
         if not found:
             continue
-        if type(fun) == str:
+        if isinstance(fun, str):
             header_data += f'{cat}:\n'
             for i, d in enumerate(data):
                 if fun == "url":

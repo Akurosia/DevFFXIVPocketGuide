@@ -8,7 +8,7 @@ try:
     #from python_scripts.custom_logger import *
     from python_scripts.helper import getImage
     from python_scripts.guide_helper import setMultipleLanguageStrings, ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, logdata_lower, sort_status_ids
-except:
+except Exception:
     from constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from custom_logger import *
     from helper import getImage
@@ -79,7 +79,7 @@ def add_Mechanic(data):
                     guide_data += "        notes:\n"
                     for note in step["notes"]:
                         guide_data += "          - note:\n"
-                        y = note['note'] if type(note['note']) == dict else {'de': note['note']}
+                        y = note['note'] if isinstance(note['note'], dict) else {'de': note['note']}
                         for lang in LANGUAGES:
                             w = y.get(lang, y['de']).replace('"', '\\"').strip()
                             guide_data += f"              {lang}: \"{w}\"\n"
@@ -428,7 +428,7 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data):
     guide_data += '  - title:\n'
     guide_data = setMultipleLanguageStrings(guide_data, "title", enemy_data, "      ")
 
-    if type(enemy_data.get("enemy_id", "")) == list:
+    if isinstance(enemy_data.get("enemy_id", ""), list):
         hex_id_list = [str(hex(int(i))).replace("0x", "").upper() for i in enemy_data.get("enemy_id", [])]
         guide_data += f'    enemy_id: "{", ".join(enemy_data.get("enemy_id", ""))}"\n'
         guide_data += f'    enemy_hex_id: "{", ".join(hex_id_list)}"\n'
