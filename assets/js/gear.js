@@ -167,6 +167,7 @@ async function call_api_data(){
 
     set_localstorage()
     remove_gearlist()
+    promisses = []
     lists.forEach(category => {
         table_name = category
         if (category == "Mainhand"){
@@ -193,9 +194,14 @@ async function call_api_data(){
             url_params2 += "&hq=0"
         }
 
-        load_data(url_params2, table_name, category, classjob)
+        jsondata = load_data(url_params2, table_name, category, classjob)
+        promisses.push(jsondata)
     })
-    console.log("Done")
+    await Promise.allSettled(promisses).then((xxx) => {
+        console.log("Done")
+        // this is from handleLanguages.js
+        executeHandelingLanguages()
+    })
 }
 
 async function load_data(params, table_name, category, classJob){
@@ -203,7 +209,7 @@ async function load_data(params, table_name, category, classJob){
     url = 'https://ffxiv.akurosiakamo.de/queryFFXIVequipmentDB.php' + params
     console.log(url)
     //fetch(url,{mode: 'cors'})
-    fetch(url)
+    return fetch(url)
         .then(r => r.json())
         .then(data => {
             create_table(data, table_name, category, classJob)
@@ -421,9 +427,16 @@ async function createTemplateTableBody(name, json, classJob){
     for (var key in json){
         max_meld = getMaxMeld(json[key])
         var _tr = document.createElement('tr');
-        _tr.appendChild(await createTHorTD("<input onclick='updateValues()' type='radio' id='" + json[key]["Name"]["de"] + "' name='" + name + "' value=''>", "td"));
+        _tr.appendChild(await createTHorTD("<input onclick='updateValues()' type='radio' id='" + json[key]["Name_de"] + "' name='" + name + "' value=''>", "td"));
         _tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img src='https://xivapi.com/i/" + json[key]['Icon'].replace("ui/icon/", "") + "'></img>" + "</a>", "td", "icon"));
-        _name = '<div class="mytooltip" onclick="copy2clipboard(\'' + json[key]["Name"]["de"] + '\')" id="' + json[key]["ID"] + '">' + json[key]["Name"]["de"] + '<span class="tooltiptext">'
+        _name = '<div class="mytooltip"  id="' + json[key]["ID"] + '">'
+        _name += '<span class="lang-toggle lang-toogle-de" onclick="copy2clipboard(\'' + json[key]["Name_de"] + '\')">' + json[key]["Name_de"] + '</span>'
+        _name += '<span class="lang-toggle lang-toogle-en" onclick="copy2clipboard(\'' + json[key]["Name_en"] + '\')">' + json[key]["Name_en"] + '</span>'
+        _name += '<span class="lang-toggle lang-toogle-fr" onclick="copy2clipboard(\'' + json[key]["Name_fr"] + '\')">' + json[key]["Name_fr"] + '</span>'
+        _name += '<span class="lang-toggle lang-toogle-ja" onclick="copy2clipboard(\'' + json[key]["Name_ja"] + '\')">' + json[key]["Name_ja"] + '</span>'
+        _name += '<span class="lang-toggle lang-toogle-cn" onclick="copy2clipboard(\'' + json[key]["Name_cn"] + '\')">' + json[key]["Name_cn"] + '</span>'
+        _name += '<span class="lang-toggle lang-toogle-ko" onclick="copy2clipboard(\'' + json[key]["Name_ko"] + '\')">' + json[key]["Name_ko"] + '</span>'
+        _name += '<span class="tooltiptext">'
         _name += 'Färbbar: ' + cleartext[parseInt(json[key]["IsDyeable"])] + '</br>'
         _name += 'Einzigartig: ' + cleartext[parseInt(json[key]["IsUnique"])] + '</br>'
         _name += 'Handelbar: ' + cleartext[!parseInt(json[key]["IsUntradable"])] + '</br>'

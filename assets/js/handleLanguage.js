@@ -1,4 +1,6 @@
-$(document).ready(function() {
+$(document).ready(executeHandelingLanguages());
+
+function executeHandelingLanguages(){
     // set all language field to be not displayed
     const langfields = document.getElementsByClassName('lang-toggle');
     for (const box of langfields) {
@@ -41,9 +43,7 @@ $(document).ready(function() {
             box.style.visibility = 'hidden';
         }
     }
-
-});
-
+}
 
 function doLanguageStuff(setlangfields, adj) {
     for (const box of setlangfields) {
@@ -58,5 +58,5 @@ function doLanguageStuff(setlangfields, adj) {
 
 function changeLanguageTo(tag) {
     window.localStorage.setItem('primary-language', tag);
-    location.reload();
+    executeHandelingLanguages();
 }
