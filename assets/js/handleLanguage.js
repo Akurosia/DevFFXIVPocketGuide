@@ -35,6 +35,7 @@ function executeHandelingLanguages(){
             } else {
                 box.style.display = 'block';
             }
+            box.style.visibility = 'inherit';
         }
     } else {
         setlangfields = document.getElementsByClassName("lang-toogle-en-sub");

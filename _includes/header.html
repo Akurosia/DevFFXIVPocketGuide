@@ -39,46 +39,27 @@
         </div>
         <div class="site-header__item-a">
             <h1 class="{%- if page.page_type == 'index' or page.page_type == 'guide' -%}site-header__title{%- else -%}site-header__guide-title{%- endif -%}">
-                {%- if page.page_category == "all" -%}
-                    The FFXIV Pocket Guide
-                {%- elsif page.page_category == "dungeons" -%}
-                    Dungeon Guides
-                {%- elsif page.page_category == "trials" -%}
-                    Prüfung Guides
-                {%- elsif page.page_category == "raids" -%}
-                    Raid Guides
-                {%- elsif page.page_category == "ultimates" -%}
-                    Ultimate Guides
-                {%- elsif page.page_category == "allianzraid" -%}
-                    Allianz Raid Guides
-                {%- elsif page.page_category == "gewölbesuche" -%}
-                    Gewölbesuche Guides
-                {%- elsif page.page_category == "pvp" -%}
-                    PVP Guides
-                {%- elsif page.page_category == "potd" -%}
-                    Tiefes Gewölbe Guides
-                {%- elsif page.page_category == "feldexkursion" -%}
-                    Feldexkursion Guides
-                {%- elsif page.page_category == "guildhest" -%}
-                    Gildengeheiße Guides
-                {%- elsif page.page_category == "treasure" -%}
-                    Schatzdungeon Guides
-                {%- elsif page.page_category == "about" -%}
-                    About
-                {%- elsif page.page_category == "links" -%}
-                    Links
-                {%- elsif page.page_category == "klassenjobs" -%}
-                    Klassen und Jobs
-                {%- elsif page.page_category == "quests" -%}
-                    Quests
-                {%- elsif page.page_category == "patches" -%}
-                    Patches
-                {%- elsif page.page_category == "airship_submarine" -%}
-                    Luftschiff & Tauchboot
-                {%- elsif page.page_category == "relics" -%}
-                    Reliktwaffen
-                {%- elsif page.page_category == "translate" -%}
-                    Übersetzungen
+                {%- if page.page_category == "all" -%}                  The FFXIV Pocket Guide
+                {%- elsif page.page_category == "dungeons" -%}          Dungeon Guides
+                {%- elsif page.page_category == "trials" -%}            Prüfung Guides
+                {%- elsif page.page_category == "raids" -%}             Raid Guides
+                {%- elsif page.page_category == "ultimates" -%}         Ultimate Guides
+                {%- elsif page.page_category == "allianzraid" -%}       Allianz Raid Guides
+                {%- elsif page.page_category == "gewölbesuche" -%}      Gewölbesuche Guides
+                {%- elsif page.page_category == "pvp" -%}               PVP Guides
+                {%- elsif page.page_category == "potd" -%}              Tiefes Gewölbe Guides
+                {%- elsif page.page_category == "feldexkursion" -%}     Feldexkursion Guides
+                {%- elsif page.page_category == "guildhest" -%}         Gildengeheiße Guides
+                {%- elsif page.page_category == "treasure" -%}          Schatzdungeon Guides
+                {%- elsif page.page_category == "about" -%}             About
+                {%- elsif page.page_category == "links" -%}             Links
+                {%- elsif page.page_category == "klassenjobs" -%}       Klassen und Jobs
+                {%- elsif page.page_category == "quests" -%}            Quests
+                {%- elsif page.page_category == "patches" -%}           Patches
+                {%- elsif page.page_category == "airship_submarine" -%} Luftschiff & Tauchboot
+                {%- elsif page.page_category == "relics" -%}            Reliktwaffen
+                {%- elsif page.page_category == "translate" -%}         Übersetzungen
+                {%- elsif page.page_category == "gear" -%}              Ausrüstung
                 {%- else -%}
                     {%- for lang in LANGUAGES -%}
                         <span class="lang-toggle lang-toogle-{{lang}} ">{{ page.title[lang] }}</span>
@@ -86,26 +67,16 @@
                     {%- if page.difficulty -%}
                         {%- if page.difficulty != "Normal" -%}
                             <span class
-                                {%- if page.difficulty == "Hard" -%}
-                                    ="hard"
-                                {%- elsif page.difficulty == "Unreal" -%}
-                                    ="unreal"
-                                {%- elsif page.difficulty == "Extreme" -%}
-                                    ="extreme"
-                                {%- elsif page.difficulty == "Extrem" -%}
-                                    ="extreme"
-                                {%- elsif page.difficulty == "Savage" -%}
-                                    ="savage"
-                                {%- elsif page.difficulty == "Ultimate" -%}
-                                    ="ultimate"
-                                {%- elsif page.difficulty == "Schwer" -%}
-                                    ="hard"
-                                {%- elsif page.difficulty == "Traumprüfung" -%}
-                                    ="unreal"
-                                {%- elsif page.difficulty == "Episch" -%}
-                                    ="savage"
-                                {%- elsif page.difficulty == "Fatal" -%}
-                                    ="ultimate"
+                                {%- if page.difficulty == "Hard" -%}            ="hard"
+                                {%- elsif page.difficulty == "Unreal" -%}       ="unreal"
+                                {%- elsif page.difficulty == "Extreme" -%}      ="extreme"
+                                {%- elsif page.difficulty == "Extrem" -%}       ="extreme"
+                                {%- elsif page.difficulty == "Savage" -%}       ="savage"
+                                {%- elsif page.difficulty == "Ultimate" -%}     ="ultimate"
+                                {%- elsif page.difficulty == "Schwer" -%}       ="hard"
+                                {%- elsif page.difficulty == "Traumprüfung" -%} ="unreal"
+                                {%- elsif page.difficulty == "Episch" -%}       ="savage"
+                                {%- elsif page.difficulty == "Fatal" -%}        ="ultimate"
                                 {%- endif -%}
                             >
                             <span class="lang-toggle lang-toogle-de"> ({{ page.difficulty }})</span>
