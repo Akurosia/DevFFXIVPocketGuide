@@ -421,9 +421,9 @@ async function createTemplateTableBody(name, json, classJob){
     for (var key in json){
         max_meld = getMaxMeld(json[key])
         var _tr = document.createElement('tr');
-        _tr.appendChild(await createTHorTD("<input onclick='updateValues()' type='radio' id='" + json[key]["Name"] + "' name='" + name + "' value=''>", "td"));
+        _tr.appendChild(await createTHorTD("<input onclick='updateValues()' type='radio' id='" + json[key]["Name"]["de"] + "' name='" + name + "' value=''>", "td"));
         _tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img src='https://xivapi.com/i/" + json[key]['Icon'].replace("ui/icon/", "") + "'></img>" + "</a>", "td", "icon"));
-        _name = '<div class="mytooltip" onclick="copy2clipboard(\'' + json[key]["Name"] + '\')" id="' + json[key]["ID"] + '">' + json[key]["Name"] + '<span class="tooltiptext">'
+        _name = '<div class="mytooltip" onclick="copy2clipboard(\'' + json[key]["Name"]["de"] + '\')" id="' + json[key]["ID"] + '">' + json[key]["Name"]["de"] + '<span class="tooltiptext">'
         _name += 'Färbbar: ' + cleartext[parseInt(json[key]["IsDyeable"])] + '</br>'
         _name += 'Einzigartig: ' + cleartext[parseInt(json[key]["IsUnique"])] + '</br>'
         _name += 'Handelbar: ' + cleartext[!parseInt(json[key]["IsUntradable"])] + '</br>'
