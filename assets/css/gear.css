@@ -23,12 +23,13 @@
 
 #gearlist > div > table > thead > tr > th {
     font-size: 13px;
+    vertical-align: middle !important;
 }
 
 #gearlist > div > table > tbody > tr > td {
     font-size: 13px;
     padding: 2px !important;
-    vertical-align: baseline !important;
+    vertical-align: middle !important;
 }
 
 #gearlist > div > table > tbody > tr > td > a > img{

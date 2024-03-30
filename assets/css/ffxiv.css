@@ -284,7 +284,9 @@ caption {
   caption-side: bottom; }
 
 th {
-  text-align: inherit; }
+  text-align: inherit;
+  vertical-align: middle !important;
+}
 
 label {
   display: inline-block;
@@ -1584,10 +1586,10 @@ pre {
   .table th,
   .table td {
     padding: 0.75rem;
-    vertical-align: top;
+    vertical-align: middle;
     border-top: 1px solid #dee2e6; }
   .table thead th {
-    vertical-align: bottom;
+    vertical-align: middle;
     border-bottom: 2px solid #dee2e6; }
   .table tbody + tbody {
     border-top: 2px solid #dee2e6; }
@@ -9572,7 +9574,7 @@ input[type="button"].btn-block {
 .custom-control-label {
   position: relative;
   margin-bottom: 0;
-  vertical-align: top; }
+  vertical-align: middle; }
   .custom-control-label::before {
     position: absolute;
     top: 0.25rem;
@@ -10721,7 +10723,7 @@ input[type="button"].btn-block {
   line-height: 1;
   text-align: center;
   white-space: nowrap;
-  vertical-align: baseline;
+  vertical-align: middle;
   border-radius: 0.25rem; }
   a.badge:hover, a.badge:focus {
     text-decoration: none; }
@@ -14410,7 +14412,7 @@ a.close.disabled {
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  vertical-align: text-bottom;
+  vertical-align: middle;
   border: 0.25em solid currentColor;
   border-right-color: transparent;
   border-radius: 50%;
@@ -14449,7 +14451,7 @@ a.close.disabled {
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  vertical-align: text-bottom;
+  vertical-align: middle;
   background-color: currentColor;
   border-radius: 50%;
   opacity: 0;
