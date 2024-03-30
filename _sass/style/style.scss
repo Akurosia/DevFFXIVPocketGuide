@@ -1517,7 +1517,6 @@ html {
   flex-flow: wrap;
   font-family: Open Sans,sans-serif;
   font-weight: 700;
-  margin: 0;
   position: relative;
   width: 100%;
   z-index: 2;
@@ -1525,14 +1524,25 @@ html {
 
 .guide__accordion-trigger-title_id {
   text-align: right;
-  margin-top: -1.0rem;
   font-size: initial;
   font-weight: bold;
 }
 
+.guide__accordion-trigger-title_hex_id {
+  text-align: right;
+  font-size: initial;
+  font-weight: bold;
+}
+
+.leftside, .rightside {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .guide__accordion-trigger-title_hp {
   text-align: right;
-  margin-top: -1.0rem;
   font-size: initial;
   font-weight: bold;
 }
@@ -2141,11 +2151,15 @@ ion-icon {
 
 .enemy_id {
   text-align: right;
-  margin-top: -1.5rem;
   font-size: initial;
   font-weight: bold;
 }
 
+.enemy_hex_id {
+  text-align: right;
+  font-size: initial;
+  font-weight: bold;
+}
 
 .languages {
     display: flex;
@@ -2185,6 +2199,9 @@ ion-icon {
 .iso_KR {background-position: -27px -21px}
 .iso_US {background-position: -54px -21px}
 
+.myflexwrapper {
+  display: flex;
+}
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";
