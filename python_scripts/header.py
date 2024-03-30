@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
+from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, get_any_Versiondata, print_color_red, true
+
 try:
-    from python_scripts.constants import *
-    from python_scripts.helper import *
-except:
-    from constants import *
-    from helper import *
-from ffxiv_aku import *
+    from python_scripts.constants import LANGUAGES
+    from python_scripts.helper import seperate_data_into_array, getImage
+except Exception:
+    from constants import LANGUAGES
+    from helper import seperate_data_into_array, getImage
 import logging
 
 storeFilesInTmp(True)
@@ -236,7 +237,7 @@ def rewrite_content_even_if_exists(entry, old_wip):
     for lang in LANGUAGES:
         tmp = entry[f"title_{lang}"].replace(f' ({entry["difficulty"].lower()})', "")
         tmp = tmp.replace(f' ({entry["difficulty"].title()})', "")
-        tmp = tmp.replace(f'Traumprüfung - ', "")
+        tmp = tmp.replace('Traumprüfung - ', "")
         tmp = myCapitalize(tmp)
         header_data += f'  {lang}: "' + tmp + '"\n'
     header_data += 'layout: guide_post\n'
@@ -383,7 +384,7 @@ def addContentZoneIdToHeader(header_data, contentzoneid, entry):
         if contentfindercondition_trans[key]['Name_de'] == entry['title_de']:
             working_key = key
             cmt = value['ContentMemberType']
-            if not "InstanceContent" in value['Content']:
+            if "InstanceContent" not in value['Content']:
                 continue
             contentid = value['Content'].replace("InstanceContent#", "")
             if not contentid:

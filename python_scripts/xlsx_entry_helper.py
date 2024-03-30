@@ -8,13 +8,15 @@ from io import BytesIO
 import requests
 import logging
 import os
-from ffxiv_aku import *
+from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red, getLevel
+#getLevel?
+
 try:
-    from python_scripts.constants import *
-    from python_scripts.helper import *
+    from python_scripts.constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
+    from python_scripts.helper import getContentName, seperate_data_into_array
 except:
-    from constants import *
-    from helper import *
+    from constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
+    from helper import getContentName, seperate_data_into_array
 
 storeFilesInTmp(True)
 quests = loadDataTheQuickestWay("Quest.de.json")
@@ -121,11 +123,11 @@ def getBeforeAndAfterContentEntries(orderedContent, entry):
             if i - 1 >= 0:
                 try:
                     _previous = _type[_typeKeys[i - 1]]
-                except:
+                except Exception:
                     pass
             try:
                 _next = _type[_typeKeys[i + 1]]
-            except:
+            except Exception:
                 pass
             return _previous, _next
     return None, None

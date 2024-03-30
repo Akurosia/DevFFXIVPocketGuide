@@ -5,15 +5,16 @@ import re
 import copy
 from operator import itemgetter
 from collections import OrderedDict
-from ffxiv_aku import *
+from ffxiv_aku import storeFilesInTmp, get_any_Logdata, loadDataTheQuickestWay, print_color_red, print_color_yellow, print_color_blue
 try:
-    from python_scripts.constants import *
-    from python_scripts.helper import *
+    from python_scripts.constants import LANGUAGES, UNKNOWNTITLE
+    #from python_scripts.helper import *
 except:
-    from constants import *
-    from helper import *
+    from constants import LANGUAGES, UNKNOWNTITLE
+    #from helper import *
 import logging
-
+#
+##
 
 storeFilesInTmp(True)
 logdata = get_any_Logdata()
@@ -362,7 +363,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     try:
                         tmp["damage"]["min"] = tmp_attack['damage']['min']
                         tmp["damage"]["max"] = tmp_attack['damage']['max']
-                    except:
+                    except Exception:
                         tmp["damage"]["min"] = tmp_attack['damage'][0]['min']
                         tmp["damage"]["max"] = tmp_attack['damage'][1]['max']
                 if tmp_attack.get('roles', None):
@@ -400,7 +401,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     try:
                         tmp2["damage"]["min"] = tmp_attack['damage']['min']
                         tmp2["damage"]["max"] = tmp_attack['damage']['max']
-                    except:
+                    except Exception:
                         tmp2["damage"]["min"] = tmp_attack['damage'][0]['min']
                         tmp2["damage"]["max"] = tmp_attack['damage'][1]['max']
                 if tmp_attack.get('roles', None):
@@ -449,7 +450,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     try:
                         tmp["damage"]["min"] = tmp_attack['variation'][0].get('damage', {}).get('min', None) or tmp_attack.get('damage', {}).get('min', None)
                         tmp["damage"]["max"] = tmp_attack['variation'][0].get('damage', {}).get('max', None) or tmp_attack.get('damage', {}).get('max', None)
-                    except:
+                    except Exception:
                         tmp["damage"]["min"] = tmp_attack['variation'][0].get('damage', {})[0].get('min', None) or tmp_attack.get('damage', {})[0].get('min', None)
                         tmp["damage"]["max"] = tmp_attack['variation'][0].get('damage', {})[1].get('max', None) or tmp_attack.get('damage', {})[1].get('max', None)
                 if tmp_attack['variation'][0].get('roles', None) or tmp_attack.get('roles', None):
@@ -734,7 +735,7 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
                 new_enemy_data = logdata_instance_content[old_enemy_data['title']['de']]
                 if enemy_type == 'bosse' and len(old_enemies) == i + 1:
                     empty_enemy_data = logdata_instance_content['']
-            except Exception as e:
+            except Exception:
                 # print(logdata_instance_content)
                 if not old_enemy_data['title']['de'] == "Unbekannte Herkunft":
                     print(f" [workOnOldEnemies] Could not find {old_enemy_data['title']['de']} in logdata")
@@ -759,12 +760,12 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
                     del logdata_instance_content["Hesperos"]
                 elif old_enemy_data['title']['de'].title() == "Hephaistos I":
                     del logdata_instance_content["Hephaistos"]
-            except:
+            except Exception:
                 print_color_red(" [workOnOldEnemies] !Could not remove enemy: Hesperos", disable_red_print)
 
             try:
                 del logdata_instance_content[fixCaptilaziationAndRomanNumerals(old_enemy_data['title']['de'])]
-            except Exception as e:
+            except Exception:
                 print_color_red(" [workOnOldEnemies] Could not remove enemy: " + old_enemy_data['title']['de'], disable_red_print)
 
             # handle enemy if name is ""
@@ -788,7 +789,7 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
         print_color_red(f"\t [workOnLogDataEnemies] Start looking at logdata {enemy_type}", disable_red_print)
         counter = 0
         if logdata_instance_content is None:
-            print_color_red(f"\t [workOnLogDataEnemies] Skip because logdata_instance_content was not found", disable_red_print)
+            print_color_red("\t [workOnLogDataEnemies] Skip because logdata_instance_content was not found", disable_red_print)
             return guide_data
 
         # the array is used to sort bosses
@@ -887,9 +888,9 @@ def ugly_fix_enemy_data(enemy_data, new_enemy_data):
 
 def setMultipleLanguageStrings(guide_data, elementName, elemntArray, spaces):
     for lang in LANGUAGES:
-        if elemntArray == None:
+        if elemntArray is None:
             guide_data += f'{spaces}{lang}: "{elemntArray[elementName][lang]}"\n'
-        elif type(elemntArray[elementName]) == str or type(elemntArray[elementName]) == None:
+        elif type(elemntArray[elementName]) == str or type(elemntArray[elementName]) is None:
             continue
         elif elemntArray[elementName].get(f"{lang}", None):
             guide_data += f'{spaces}{lang}: "{elemntArray[elementName][lang]}"\n'

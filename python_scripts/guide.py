@@ -1,21 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-import re
-import copy
-from collections import OrderedDict
-from ffxiv_aku import *
+from ffxiv_aku import storeFilesInTmp, get_any_Logdata, loadDataTheQuickestWay, print_color_green
 
 try:
-    from python_scripts.constants import *
-    from python_scripts.custom_logger import *
-    from python_scripts.helper import *
-    from python_scripts.guide_helper import *
+    from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
+    #from python_scripts.custom_logger import *
+    from python_scripts.helper import getImage
+    from python_scripts.guide_helper import setMultipleLanguageStrings, ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, logdata_lower, sort_status_ids
 except:
-    from constants import *
-    from custom_logger import *
-    from helper import *
-    from guide_helper import *
+    from constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
+    #from custom_logger import *
+    from helper import getImage
+    from guide_helper import setMultipleLanguageStrings, ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, logdata_lower, sort_status_ids
 
 storeFilesInTmp(True)
 # storeFilesInTmp(True)
@@ -430,10 +427,15 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data):
     enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
     guide_data += '  - title:\n'
     guide_data = setMultipleLanguageStrings(guide_data, "title", enemy_data, "      ")
+
     if type(enemy_data.get("enemy_id", "")) == list:
+        hex_id_list = [str(hex(int(i))).replace("0x", "").upper() for i in enemy_data.get("enemy_id", [])]
         guide_data += f'    enemy_id: "{", ".join(enemy_data.get("enemy_id", ""))}"\n'
+        guide_data += f'    enemy_hex_id: "{", ".join(hex_id_list)}"\n'
     else:
+        hex_id = "" if enemy_data.get("enemy_id", "") == "" else str(hex(int(enemy_data.get("enemy_id", 0)))).replace("0x", "").upper()
         guide_data += f'    enemy_id: "{enemy_data.get("enemy_id", "")}"\n'
+        guide_data += f'    enemy_hex_id: "{hex_id}"\n'
     guide_data += f'    id: "{enemy_data["id"]}"\n'
 
     if enemy_data.get('hp', None):

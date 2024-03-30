@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # coding: utf8
 import logging
-from ffxiv_aku import *
+from ffxiv_aku import wrap_in_color_green, wrap_in_color_blue, wrap_in_color_yellow, wrap_in_color_red
 
 
 class CustomFormatter(logging.Formatter):

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import *
+from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red
+
 storeFilesInTmp(True)
 contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
 placename = loadDataTheQuickestWay("placename_all.json", translate=True)
