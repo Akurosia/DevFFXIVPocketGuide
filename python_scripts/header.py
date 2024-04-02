@@ -491,7 +491,8 @@ def addMusic(header_data, music):
                 header_data += f'      {lang}: "' + orchestrion.get(f"Name_{lang}", "") + '"\n'
         else:
             header_data += '  - name:\n'
-            header_data += '      de: "' + m + '"\n'
+            for lang in LANGUAGES:
+                header_data += f'      {lang}: "' + m + '"\n'
         if _id:
             header_data += '    id: "' + _id + '"\n'
     return header_data
