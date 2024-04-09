@@ -176,7 +176,7 @@ def main():
     os.chdir("./_posts")
     # first run to create all files
     orderedContent = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
-    logger.debug(orderedContent)
+    #logger.debug(orderedContent)
     try:
         run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
     except Exception: pass
