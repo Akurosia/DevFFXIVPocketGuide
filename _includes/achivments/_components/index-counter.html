@@ -1,0 +1,7 @@
+{%- for achivments in site.categories.achivments -%}
+    {%- for guide in achivments.achivments -%}
+        {%- if guide.main_category == queryType -%}
+            {%- assign counterq = counterq | plus: 1 -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endfor -%}

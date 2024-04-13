@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
+    <head>
+        {% include head.html %}
+    </head>
+    <body class="{{ page.page_type }} {{ page.page_category }}">
+        <div class="layout">
+            <!-- Include Sidebar -->
+            {% include navbar.html %}
+            <div class="layout__wrapper">
+                <!-- Include Header -->
+                {% include header.html %}
+                <!-- Search Bar -->
+                {% if page.page_type == "index" %}
+                    <div class="search">
+                        <form class="search__form">
+                            <label for="guideFilter">Nach einem Guide suchen...</label>
+                            <input id="guideFilter" placeholder="Test" type="text"/>
+                        </form>
+                    </div>
+                {% endif %}
+                <!-- Include Guide Index -->
+                {% include achivments/index.html %}
+                <!-- Include Footer -->
+                {% include_cached footer.html %}
+            </div>
+        </div>
+        {% include_cached scripts.html %}
+    </body>
+    <script type="text/javascript">executeHandelingLanguages()</script>
+</html>

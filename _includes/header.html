@@ -60,6 +60,7 @@
                 {%- elsif page.page_category == "relics" -%}            Reliktwaffen
                 {%- elsif page.page_category == "translate" -%}         Übersetzungen
                 {%- elsif page.page_category == "gear" -%}              Ausrüstung
+                {%- elsif page.page_category == "achivments" -%}        Errungenschaften
                 {%- else -%}
                     {%- for lang in LANGUAGES -%}
                         <span class="lang-toggle lang-toogle-{{lang}} ">{{ page.title[lang] }}</span>

@@ -322,6 +322,18 @@
                     </a>
                 </li>
                 <li>
+                    <a target="" {%- if page.page_category == "achivments" or page.instanceType == "achivments" or page.instance_type == "achivments" -%}class="active"{%- endif -%}
+                        href='{{ "/achivments/" | prepend: site.baseurl }}' title="Quests anzeigen">
+                        <img src='{{ site.imageurl }}/{{ "/061000/061723_hr1.png" }}' alt="{{ debuff.icon }}">
+                        <span class="lang-toggle lang-toogle-de">Errungenschaft</span>
+                        <span class="lang-toggle lang-toogle-en">Achievement</span>
+                        <span class="lang-toggle lang-toogle-fr">Haut fait</span>
+                        <span class="lang-toggle lang-toogle-ja">アチーブメント名</span>
+                        <span class="lang-toggle lang-toogle-cn">成就名</span>
+                        <span class="lang-toggle lang-toogle-ko">업적</span>
+                    </a>
+                </li>
+                <li>
                     <a target="" {%- if page.page_category == "links" or page.instanceType == "links" or page.instance_type == "links" -%}class="active"{%- endif -%}
                         href='{{ "/links/" | prepend: site.baseurl }}' title="Quests anzeigen">
                         <img src='{{ site.imageurl }}/{{ "/061000/061834_hr1.png" }}' alt="{{ debuff.icon }}">

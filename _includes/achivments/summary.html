@@ -1,0 +1,43 @@
+{%- comment -%} ==================================================================
+    // Guide Summary
+=============================================================== {%- endcomment -%}
+<div class="summary">
+    <span class="index-item__link" title="Go to the {{ guide.name.de }} Guide">
+        <div class="index-item__background"
+            {%- if guide.cover -%}
+                style="background-image: url('{{ guide.cover }}')"
+            {%- elsif guide.icon -%}
+                style="background-image:
+                    {%- if guide.icon contains "/assets/" -%}
+                        url('{{ guide.icon | prepend: site.baseurl }}')
+                    {%- else -%}
+                        url('{{ guide.icon | prepend: site.imageurl }}')
+                    {%- endif -%}
+            {%- endif -%}">
+        </div>
+        <h3 class="index-item__title"
+              data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%} {{guide.name.de}}&#32;{{guide.name.en}}&#32;{{guide.name.fr}}&#32;{{guide.name.ja}}&#32;{{guide.name.cn}}&#32;{{guide.name.ko}}&#32;main:{{guide.main_category}}&#32;sub:{{guide.sub_category}}&#32;
+              {%- if guide.item -%}item:{{guide.item}}&#32;{%- endif -%}{%- if guide.title -%}title:{{guide.title}}&#32;{%- endif -%}">
+
+            {%- for lang in LANGUAGES -%}
+                <span class="lang-toggle lang-toogle-{{lang}}"> {{ guide.name[lang] }} </span>
+            {%- endfor -%}
+            <span class="lang-toggle lang-toogle-en-sub index-item__title_en"> ~ ({{ guide.name.en }}) </span>
+            [{{ guide.order }}]
+        </h3>
+        {%- for lang in LANGUAGES -%}
+            <h4 class="index-item__title_en lang-toggle lang-toogle-{{lang}}">Description: {{ guide.description[lang] }} </h4>
+        {%- endfor -%}
+        <h4 class="index-item__title_en">Main Category: {{ guide.main_category }}</h4>
+        <h4 class="index-item__title_en">Sub Category: {{ guide.sub_category }}</h4>
+        <h4 class="index-item__title_en">Icon: <img class="attack_icon" src="{{ site.imageurl }}/{{ guide.icon }}" alt="{{ guide.icon }}"/></h4>
+        <h4 class="index-item__title_en">Points: {{ guide.points }}</h4>
+        {%- if guide.item -%}
+            <h4 class="index-item__title_en">Item: {{ guide.item }} </h4>
+        {%- endif -%}
+        {%- if guide.title -%}
+            <h4 class="index-item__title_en">Title: {{ guide.title }} </h4>
+        {%- endif -%}
+        <!--<h4 class="index-item__title_en">Type: {{ guide.type }}</h4>-->
+    </span>
+</div>
