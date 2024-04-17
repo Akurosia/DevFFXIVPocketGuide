@@ -225,6 +225,21 @@ def get_video_url(url):
     return "https://www.youtube.com/watch?v={}".format(url)
 
 
+def get_lvl_data(entry):
+    global contentfindercondition
+    lvl_data = ""
+    _id = entry['CFC_ID']
+    if _id.endswith(".0"):
+        _id = _id[:-2]
+    cfc_value = contentfindercondition.get(_id, None)
+    if cfc_value:
+        lvl_data += 'plvl: ' + cfc_value["ClassJobLevel"]["Required"] + '\n'
+        lvl_data += 'plvl_sync: ' + cfc_value["ClassJobLevel"]["Sync"] + '\n'
+        lvl_data += 'ilvl: ' + cfc_value["ItemLevel"]["Required"] + '\n'
+        lvl_data += 'ilvl_sync: ' + cfc_value["ItemLevel"]["Sync"] + '\n'
+    return lvl_data
+
+
 def rewrite_content_even_if_exists(entry, old_wip):
     header_data = ""
     tt_type_name, tt_bg_entry = get_territorytype_from_mapid(entry)
@@ -272,10 +287,7 @@ def rewrite_content_even_if_exists(entry, old_wip):
         for lang in LANGUAGES:
             header_data += f'  {lang}: "' + tt_type_name[f"Name_{lang}"] + '"\n'
     header_data += 'sortid: ' + entry["sortid"] + '\n'
-    header_data += 'plvl: ' + entry["plvl"] + '\n'
-    header_data += 'plvl_sync: ' + entry["plvl_sync"] + '\n'
-    header_data += 'ilvl: ' + entry["ilvl"] + '\n'
-    header_data += 'ilvl_sync: ' + entry["ilvl_sync"] + '\n'
+    header_data += get_lvl_data(entry)
     # quests
     x = False
     for lang in LANGUAGES:
