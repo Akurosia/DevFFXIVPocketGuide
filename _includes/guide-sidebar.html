@@ -74,6 +74,12 @@
                 {%- endfor -%}
             </h5>
         {%- endif -%}
+        {%- if page.cfcid -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">ContentFinderID: <span class="block">{{ page.cfcid }}</span></h5>
+        {%- endif -%}
+        {%- if page.pnid -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">PlaceNameID: <span class="block">{{ page.pnid }}</span></h5>
+        {%- endif -%}
         {%- if page.mapid -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">MapID: <span class="block">{{ page.mapid }}</span></h5>
         {%- endif -%}

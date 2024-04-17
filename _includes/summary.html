@@ -27,26 +27,16 @@
             {%- endfor -%}
 
             <span class
-                {%- if guide.difficulty == "Hard" -%}
-                    ="hard"
-                {%- elsif guide.difficulty == "Unreal" -%}
-                    ="unreal"
-                {%- elsif guide.difficulty == "Extreme" -%}
-                    ="extreme"
-                {%- elsif guide.difficulty == "Extrem" -%}
-                    ="extreme"
-                {%- elsif guide.difficulty == "Savage" -%}
-                    ="savage"
-                {%- elsif guide.difficulty == "Ultimate" -%}
-                    ="ultimate"
-                {%- elsif guide.difficulty == "Schwer" -%}
-                    ="hard"
-                {%- elsif guide.difficulty == "Traumprüfung" -%}
-                    ="unreal"
-                {%- elsif guide.difficulty == "Episch" -%}
-                    ="savage"
-                {%- elsif guide.difficulty == "Fatal" -%}
-                    ="ultimate"
+                {%- if guide.difficulty == "Hard" -%}            ="hard"
+                {%- elsif guide.difficulty == "Unreal" -%}       ="unreal"
+                {%- elsif guide.difficulty == "Extreme" -%}      ="extreme"
+                {%- elsif guide.difficulty == "Extrem" -%}       ="extreme"
+                {%- elsif guide.difficulty == "Savage" -%}       ="savage"
+                {%- elsif guide.difficulty == "Ultimate" -%}     ="ultimate"
+                {%- elsif guide.difficulty == "Schwer" -%}       ="hard"
+                {%- elsif guide.difficulty == "Traumprüfung" -%} ="unreal"
+                {%- elsif guide.difficulty == "Episch" -%}       ="savage"
+                {%- elsif guide.difficulty == "Fatal" -%}        ="ultimate"
                 {%- endif -%}
                 >
                 {%- if guide.difficulty != "Normal" -%}

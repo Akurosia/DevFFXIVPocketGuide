@@ -15,21 +15,15 @@
     <!-- Determines the current phase. -->
     {%- assign currentPhase = phase.phase -%}
     <!-- Add Search filter for bluemage skills. -->
-    {%- if phase.phase == "01" -%}
-        {%- if enemy.title.de == "Blaumagier" -%}
-            <div class="search">
-                <form class="search__form_blu">
-                    <label for="guideFilter">Nach einem Guide suchen...</label>
-                    <input id="guideFilter" placeholder="!14., Wasserkanone, 4man, 8man, dungeon, raid, overworld, alone, arena" type="text"/>
-                </form>
-            </div>
-        {%- endif -%}
-    {%- endif -%}
+    <div class="search">
+        <form class="search__form_blu">
+            <label for="guideFilter">Nach einem Guide suchen...</label>
+            <input id="guideFilter" placeholder="!14., Wasserkanone, 4man, 8man, dungeon, raid, overworld, alone, arena" type="text"/>
+        </form>
+    </div>
     <!-- Enters the enemy attack loop. -->
-    {%- if enemy.title.de == "Blaumagier" -%}
         <div class="index_blu">
             <div class="index__list_blu">
-    {%- endif -%}
                 {%- for attack in enemy.attacks -%}
                     <!-- Enters the attack's phases. -->
                     {%- for attackPhase in attack.phases -%}
@@ -40,10 +34,8 @@
                         {%- endif -%}
                     {%- endfor -%}
                 {%- endfor -%}
-    {%- if enemy.title.de == "Blaumagier" -%}
             </div>
         </div>
-    {%- endif -%}
 
     <!-- Enters the enemy debuff loop. -->
     {%- for debuff in enemy.debuffs -%}
