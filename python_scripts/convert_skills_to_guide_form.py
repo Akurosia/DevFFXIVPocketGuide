@@ -403,7 +403,7 @@ def addAttackDetails(job_data, pvp=False):
             description[lang] = deal_with_extras_in_text(desc_dict[f"Description_{lang}"])
         tpye_damage = "Schaden" if "Attacke-Wert" in description["de"] else None
         tpye_heilung = "Heilung" if "Heilpotenzial" in description["de"] else None
-        #tpye_mitigiation = True if "" in de_desc else None
+        tpye_mitigation = "Mitigation" if "Du verringerst" in description["de"] and "Schaden" in description["de"] else None
 
         result += '      - title:\n'
         for lang in LANGUAGES:
@@ -421,6 +421,8 @@ def addAttackDetails(job_data, pvp=False):
             result += f'        damage: "{tpye_damage}"\n'
         if tpye_heilung:
             result += f'        heal: "{tpye_heilung}"\n'
+        if tpye_mitigation:
+            result += f'        mitigation: "{tpye_mitigation}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "' + description[lang] + '"\n'
