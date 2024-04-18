@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # coding: utf8
 import os
-import sys
 from ffxiv_aku import *
 from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata
 from collections import OrderedDict
 from operator import getitem
 import traceback
+import re
 
 skills = None
 pvpskills = None
@@ -118,6 +118,26 @@ def getImage(image: str) -> str:
     image = image.replace(".tex", "_hr1.png")
     image = image.replace("ui/icon/", "")
     return image
+
+
+def deal_with_extras_in_text(text):
+    #print(text)
+    # filter if cases
+    regex = "(<If(.*?)>)"
+    x = re.findall(regex, text)
+    for y in x:
+        text = text.replace(y[0], "")
+
+    # handle else cases
+    regex = "(<Else/>\\d+)"
+    x = re.findall(regex, text)
+    x = list(set(x))
+    for y in x:
+    #    text = text.replace(y, y+")")
+        text = text.replace(y, "")
+    #text = text.replace("<Else/>", " (")
+    text = text.replace("\n", "</br>").replace("</br></br>", "</br>")
+    return text
 
 
 def getBLULocationsFromLogdata(name, locations):
@@ -308,7 +328,7 @@ def addBlueAttackDetails(job_data):
 
             desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
             if skill_data.get("Number", None) and int(level) < 901:
-                result += f'      - title:\n'
+                result += '      - title:\n'
                 result += f'          de: "{level}. {de_name}"\n'
                 result += f'          en: "{level}. {en_name}"\n'
                 result += f'          fr: "{level}. {fr_name}"\n'
@@ -316,7 +336,7 @@ def addBlueAttackDetails(job_data):
                 result += f'          cn: "{level}. {cn_name}"\n'
                 result += f'          ko: "{level}. {ko_name}"\n'
             else:
-                result += f'      - title:\n'
+                result += '      - title:\n'
                 result += f'          de: "{de_name}"\n'
                 result += f'          en: "{en_name}"\n'
                 result += f'          fr: "{fr_name}"\n'
@@ -329,7 +349,7 @@ def addBlueAttackDetails(job_data):
             else:
                 result += f'        level: "{level}"\n'
 
-            result += f'        terms:\n'
+            result += '        terms:\n'
             for term in terms:
                 result += f'          - term: "{term}"\n'
             result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
@@ -338,15 +358,15 @@ def addBlueAttackDetails(job_data):
             result += f'        cast: "{skill_data["Cast"]}"\n'
             result += f'        recast: "{skill_data["Recast"]}"\n'
             result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
-            result += f'        description:\n'
-            result += f'          de: "' + skill_data["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-            result += f'          en: "' + skill_data["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-            result += f'          fr: "' + skill_data["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-            result += f'          ja: "' + skill_data["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-            result += f'          cn: "' + skill_data["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-            result += f'          ko: "' + skill_data["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
-            result += f'        phases:\n'
-            result += f'          - phase: "01"\n'
+            result += '        description:\n'
+            result += '          de: "' + skill_data["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += '          en: "' + skill_data["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += '          fr: "' + skill_data["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += '          ja: "' + skill_data["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += '          cn: "' + skill_data["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += '          ko: "' + skill_data["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>").replace('"', '\\"') + f'{desc}"\n'
+            result += '        phases:\n'
+            result += '          - phase: "01"\n'
         except:
             traceback.print_exc()
     return result
@@ -421,12 +441,12 @@ def addAttackDetails(job_data, pvp=False):
         result += f'        recast: "{skill_data["Recast"]}"\n'
         result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
         result += '        description:\n'
-        result += '          de: "' + de_desc + '"\n'
-        result += '          en: "' + en_desc + '"\n'
-        result += '          fr: "' + fr_desc + '"\n'
-        result += '          ja: "' + ja_desc + '"\n'
-        result += '          cn: "' + cn_desc + '"\n'
-        result += '          ko: "' + ko_desc + '"\n'
+        result += '          de: "' + deal_with_extras_in_text(de_desc) + '"\n'
+        result += '          en: "' + deal_with_extras_in_text(en_desc) + '"\n'
+        result += '          fr: "' + deal_with_extras_in_text(fr_desc) + '"\n'
+        result += '          ja: "' + deal_with_extras_in_text(ja_desc) + '"\n'
+        result += '          cn: "' + deal_with_extras_in_text(cn_desc) + '"\n'
+        result += '          ko: "' + deal_with_extras_in_text(ko_desc) + '"\n'
         #if "Reduces damage" in desc["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>"):
         #    print(en_name)
         result += '        phases:\n'
@@ -464,12 +484,12 @@ def addStatusDetails(job, job_abb):
             else:
                 result += f'        icon: "{getImage(s["icon"]).replace(".png", "_hr1.png")}"\n'
             result += '        description:\n'
-            result += '          de: "' + status_trans[_id]["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-            result += '          en: "' + status_trans[_id]["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-            result += '          fr: "' + status_trans[_id]["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-            result += '          ja: "' + status_trans[_id]["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-            result += '          cn: "' + status_trans[_id]["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-            result += '          ko: "' + status_trans[_id]["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+            result += '          de: "' + deal_with_extras_in_text(status_trans[_id]["Description_de"]) + '"\n'
+            result += '          en: "' + deal_with_extras_in_text(status_trans[_id]["Description_en"]) + '"\n'
+            result += '          fr: "' + deal_with_extras_in_text(status_trans[_id]["Description_fr"]) + '"\n'
+            result += '          ja: "' + deal_with_extras_in_text(status_trans[_id]["Description_ja"]) + '"\n'
+            result += '          cn: "' + deal_with_extras_in_text(status_trans[_id]["Description_cn"]) + '"\n'
+            result += '          ko: "' + deal_with_extras_in_text(status_trans[_id]["Description_ko"]) + '"\n'
             if s['duration']:
                 result += f'        durations: {s["duration"]}\n'
             result += '        phases:\n'
@@ -500,12 +520,12 @@ def addTraitDetails(job):
         result += f'        level: "{level}"\n'
         result += f'        icon: "{getImage(trait_data["Icon"].replace(".tex", "_hr1.png"))}"\n'
         result += '        description:\n'
-        result += '          de: "' + traitstransient_trans[_id]["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          en: "' + traitstransient_trans[_id]["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          fr: "' + traitstransient_trans[_id]["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          ja: "' + traitstransient_trans[_id]["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          cn: "' + traitstransient_trans[_id]["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          ko: "' + traitstransient_trans[_id]["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += '          de: "' + deal_with_extras_in_text(traitstransient_trans[_id]["Description_de"]) + '"\n'
+        result += '          en: "' + deal_with_extras_in_text(traitstransient_trans[_id]["Description_en"]) + '"\n'
+        result += '          fr: "' + deal_with_extras_in_text(traitstransient_trans[_id]["Description_fr"]) + '"\n'
+        result += '          ja: "' + deal_with_extras_in_text(traitstransient_trans[_id]["Description_ja"]) + '"\n'
+        result += '          cn: "' + deal_with_extras_in_text(traitstransient_trans[_id]["Description_cn"]) + '"\n'
+        result += '          ko: "' + deal_with_extras_in_text(traitstransient_trans[_id]["Description_ko"]) + '"\n'
         result += '        phases:\n'
         result += '          - phase: "03"\n'
     return result
@@ -554,12 +574,12 @@ def getEurekaActionDetails():
                         },
                         "status_icon": status_trans[status_key]['Icon'].replace(".tex", "_hr1.png").replace(".png", "_hr1.png"),
                         "description": {
-                            "de": actiontransient_trans[k]["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>"),
-                            "en": actiontransient_trans[k]["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>"),
-                            "fr": actiontransient_trans[k]["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>"),
-                            "ja": actiontransient_trans[k]["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>"),
-                            "cn": actiontransient_trans[k]["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>"),
-                            "ko": actiontransient_trans[k]["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>")
+                            "de": deal_with_extras_in_text(actiontransient_trans[k]["Description_de"]),
+                            "en": deal_with_extras_in_text(actiontransient_trans[k]["Description_en"]),
+                            "fr": deal_with_extras_in_text(actiontransient_trans[k]["Description_fr"]),
+                            "ja": deal_with_extras_in_text(actiontransient_trans[k]["Description_ja"]),
+                            "cn": deal_with_extras_in_text(actiontransient_trans[k]["Description_cn"]),
+                            "ko": deal_with_extras_in_text(actiontransient_trans[k]["Description_ko"])
                         },
                     }
                     break
@@ -615,12 +635,12 @@ def getBozjaActionDetails():
             "cj": a["ClassJobCategory"],
             "frontsplitter": getFrontsplitterEntry(action['Action'], result),
             "description": {
-                "de": actiontransient_trans[b]["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>"),
-                "en": actiontransient_trans[b]["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>"),
-                "fr": actiontransient_trans[b]["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>"),
-                "ja": actiontransient_trans[b]["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>"),
-                "cn": actiontransient_trans[b]["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>"),
-                "ko": actiontransient_trans[b]["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>")
+                "de": deal_with_extras_in_text(actiontransient_trans[b]["Description_de"]),
+                "en": deal_with_extras_in_text(actiontransient_trans[b]["Description_en"]),
+                "fr": deal_with_extras_in_text(actiontransient_trans[b]["Description_fr"]),
+                "ja": deal_with_extras_in_text(actiontransient_trans[b]["Description_ja"]),
+                "cn": deal_with_extras_in_text(actiontransient_trans[b]["Description_cn"]),
+                "ko": deal_with_extras_in_text(actiontransient_trans[b]["Description_ko"])
             },
         }
         result[action['Category']][b] = tmp
@@ -655,12 +675,12 @@ def addEurekaActions(job, eureka_actions):
             result_text += '        level: "70"\n'
             result_text += f'        icon: "{getImage(value["icon"])}"\n'
             result_text += '        description:\n'
-            result_text += '          de: "' + value["description"]['de'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-            result_text += '          en: "' + value["description"]['en'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-            result_text += '          fr: "' + value["description"]['fr'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-            result_text += '          ja: "' + value["description"]['ja'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-            result_text += '          cn: "' + value["description"]['cn'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-            result_text += '          ko: "' + value["description"]['ko'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+            result_text += '          de: "' + deal_with_extras_in_text(value["description"]['de']) + '"\n'
+            result_text += '          en: "' + deal_with_extras_in_text(value["description"]['en']) + '"\n'
+            result_text += '          fr: "' + deal_with_extras_in_text(value["description"]['fr']) + '"\n'
+            result_text += '          ja: "' + deal_with_extras_in_text(value["description"]['ja']) + '"\n'
+            result_text += '          cn: "' + deal_with_extras_in_text(value["description"]['cn']) + '"\n'
+            result_text += '          ko: "' + deal_with_extras_in_text(value["description"]['ko']) + '"\n'
             result_text += f'        type: "{value["type"]}"\n'
             result_text += '        phases:\n'
             result_text += '          - phase: "06"\n'
@@ -688,12 +708,12 @@ def addBozjaActions(job, bozja_actions):
                 result_text += '        level: "80"\n'
                 result_text += f'        icon: "{getImage(value["icon"])}"\n'
                 result_text += '        description:\n'
-                result_text += '          de: "' + value["description"]['de'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-                result_text += '          en: "' + value["description"]['en'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-                result_text += '          fr: "' + value["description"]['fr'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-                result_text += '          ja: "' + value["description"]['ja'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-                result_text += '          cn: "' + value["description"]['cn'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-                result_text += '          ko: "' + value["description"]['ko'].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+                result_text += '          de: "' + deal_with_extras_in_text(value["description"]['de']) + '"\n'
+                result_text += '          en: "' + deal_with_extras_in_text(value["description"]['en']) + '"\n'
+                result_text += '          fr: "' + deal_with_extras_in_text(value["description"]['fr']) + '"\n'
+                result_text += '          ja: "' + deal_with_extras_in_text(value["description"]['ja']) + '"\n'
+                result_text += '          cn: "' + deal_with_extras_in_text(value["description"]['cn']) + '"\n'
+                result_text += '          ko: "' + deal_with_extras_in_text(value["description"]['ko']) + '"\n'
                 result_text += f'        frontsplitter: "{value["frontsplitter"]}"\n'
                 result_text += '        phases:\n'
                 result_text += '          - phase: "07"\n'
@@ -1134,12 +1154,12 @@ def addChocoboPartnerSkills():
         #result += f'        level: "{actions[key]["Level"]}"\n'
         result += f'        title_id: "{key}"\n'
         result += '        description:\n'
-        result += '          de: "' + actiontransient_trans[key]["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          en: "' + actiontransient_trans[key]["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          fr: "' + actiontransient_trans[key]["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          ja: "' + actiontransient_trans[key]["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          cn: "' + actiontransient_trans[key]["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          ko: "' + actiontransient_trans[key]["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += '          de: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_de"]) + '"\n'
+        result += '          en: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_en"]) + '"\n'
+        result += '          fr: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_fr"]) + '"\n'
+        result += '          ja: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_ja"]) + '"\n'
+        result += '          cn: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_cn"]) + '"\n'
+        result += '          ko: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_ko"]) + '"\n'
         result += '        phases:\n'
         result += '          - phase: "01"\n'
     return result
@@ -1163,12 +1183,12 @@ def addRennChocoboSkills_trans():
         result += f'        title_id: "{key}"\n'
         result += f'        icon: "{getImage(value["Icon"])}"\n'
         result += '        description:\n'
-        result += '          de: "' + value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          en: "' + value["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          fr: "' + value["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          ja: "' + value["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          cn: "' + value["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          ko: "' + value["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += '          de: "' + deal_with_extras_in_text(value["Description_de"]) + '"\n'
+        result += '          en: "' + deal_with_extras_in_text(value["Description_en"]) + '"\n'
+        result += '          fr: "' + deal_with_extras_in_text(value["Description_fr"]) + '"\n'
+        result += '          ja: "' + deal_with_extras_in_text(value["Description_ja"]) + '"\n'
+        result += '          cn: "' + deal_with_extras_in_text(value["Description_cn"]) + '"\n'
+        result += '          ko: "' + deal_with_extras_in_text(value["Description_ko"]) + '"\n'
         result += '        phases:\n'
         result += '          - phase: "03"\n'
     return result
@@ -1201,12 +1221,12 @@ def addChocoboPartnerTraits():
         result += f'        level: "{traits[key]["Level"]}"\n'
         result += f'        title_id: "{key}"\n'
         result += '        description:\n'
-        result += '          de: "' + traitstransient_trans[key]["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          en: "' + traitstransient_trans[key]["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          fr: "' + traitstransient_trans[key]["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          ja: "' + traitstransient_trans[key]["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          cn: "' + traitstransient_trans[key]["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          ko: "' + traitstransient_trans[key]["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += '          de: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_de"]) + '"\n'
+        result += '          en: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_en"]) + '"\n'
+        result += '          fr: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_fr"]) + '"\n'
+        result += '          ja: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_ja"]) + '"\n'
+        result += '          cn: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_cn"]) + '"\n'
+        result += '          ko: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_ko"]) + '"\n'
         result += '        phases:\n'
         result += '          - phase: "02"\n'
     return result
@@ -1230,12 +1250,12 @@ def addRennChocoboItems_trans():
         result += f'        title_id: "{key}"\n'
         result += f'        icon: "{getImage(value["Icon"])}"\n'
         result += '        description:\n'
-        result += '          de: "' + value["Description_de"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          en: "' + value["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          fr: "' + value["Description_fr"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          ja: "' + value["Description_ja"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          cn: "' + value["Description_cn"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
-        result += '          ko: "' + value["Description_ko"].replace("\n", "</br>").replace("</br></br>", "</br>") + '"\n'
+        result += '          de: "' + deal_with_extras_in_text(value["Description_de"]) + '"\n'
+        result += '          en: "' + deal_with_extras_in_text(value["Description_en"]) + '"\n'
+        result += '          fr: "' + deal_with_extras_in_text(value["Description_fr"]) + '"\n'
+        result += '          ja: "' + deal_with_extras_in_text(value["Description_ja"]) + '"\n'
+        result += '          cn: "' + deal_with_extras_in_text(value["Description_cn"]) + '"\n'
+        result += '          ko: "' + deal_with_extras_in_text(value["Description_ko"]) + '"\n'
         result += '        phases:\n'
         result += '          - phase: "04"\n'
     return result
