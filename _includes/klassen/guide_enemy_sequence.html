@@ -1,4 +1,12 @@
 <!-- Opens the Sequence Loop -->
+
+    <!-- Add Search filter for bluemage skills. -->
+    <div class="search">
+        <form class="search__form_blu">
+            <label for="guideFilter">Nach einem Guide suchen...</label>
+            <input id="guideFilter" placeholder="!14., Wasserkanone, 4man, 8man, dungeon, raid, overworld, alone, arena" type="text"/>
+        </form>
+    </div>
 {%- for phase in enemy.sequence -%}
 
     {%- if enemy.sequence.size > 1 -%}
@@ -14,16 +22,9 @@
     {%- endif -%}
     <!-- Determines the current phase. -->
     {%- assign currentPhase = phase.phase -%}
-    <!-- Add Search filter for bluemage skills. -->
-    <div class="search">
-        <form class="search__form_blu">
-            <label for="guideFilter">Nach einem Guide suchen...</label>
-            <input id="guideFilter" placeholder="!14., Wasserkanone, 4man, 8man, dungeon, raid, overworld, alone, arena" type="text"/>
-        </form>
-    </div>
     <!-- Enters the enemy attack loop. -->
-        <div class="index_blu">
-            <div class="index__list_blu">
+        <div class="index_attack">
+            <div class="index__list_attack">
                 {%- for attack in enemy.attacks -%}
                     <!-- Enters the attack's phases. -->
                     {%- for attackPhase in attack.phases -%}
@@ -38,77 +39,101 @@
         </div>
 
     <!-- Enters the enemy debuff loop. -->
-    {%- for debuff in enemy.debuffs -%}
-        <!-- Enters the attack's phases. -->
-        {%- for debuffPhase in debuff.phases -%}
-            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {%- if debuffPhase.phase == currentPhase -%}
-                <!-- Include Attack Template -->
-                {%- include klassen/_components/guide-debuff.html -%}
-            {%- endif -%}
-        {%- endfor -%}
-    {%- endfor -%}
+        <div class="index_debuff">
+            <div class="index__list_debuff">
+                {%- for debuff in enemy.debuffs -%}
+                    <!-- Enters the attack's phases. -->
+                    {%- for debuffPhase in debuff.phases -%}
+                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+                        {%- if debuffPhase.phase == currentPhase -%}
+                            <!-- Include Attack Template -->
+                            {%- include klassen/_components/guide-debuff.html -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endfor -%}
+            </div>
+        </div>
 
     <!-- Enters the enemy eureka loop. -->
-    {%- for attack in enemy.eureka -%}
-        <!-- Enters the attack's phases. -->
-        {%- for eurekaPhase in attack.phases -%}
-            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {%- if eurekaPhase.phase == currentPhase -%}
-                <!-- Include Attack Template -->
-                {%- include klassen/_components/guide-attack.html -%}
-            {%- endif -%}
-        {%- endfor -%}
-    {%- endfor -%}
+        <div class="index_eureka">
+            <div class="index__list_eureka">
+                {%- for attack in enemy.eureka -%}
+                    <!-- Enters the attack's phases. -->
+                    {%- for eurekaPhase in attack.phases -%}
+                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+                        {%- if eurekaPhase.phase == currentPhase -%}
+                            <!-- Include Attack Template -->
+                            {%- include klassen/_components/guide-attack.html -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endfor -%}
+            </div>
+        </div>
 
     <!-- Enters the enemy bozja loop. -->
-    {%- for attack in enemy.bozja -%}
-        <!-- Enters the attack's phases. -->
-        {%- for eurekaPhase in attack.phases -%}
-            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {%- if eurekaPhase.phase == currentPhase -%}
-                <!-- Include Attack Template -->
-                {%- include klassen/_components/guide-attack.html -%}
-            {%- endif -%}
-        {%- endfor -%}
-    {%- endfor -%}
+        <div class="index_bozja">
+            <div class="index__list_bozja">
+                {%- for attack in enemy.bozja -%}
+                    <!-- Enters the attack's phases. -->
+                    {%- for eurekaPhase in attack.phases -%}
+                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+                        {%- if eurekaPhase.phase == currentPhase -%}
+                            <!-- Include Attack Template -->
+                            {%- include klassen/_components/guide-attack.html -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endfor -%}
+            </div>
+        </div>
 
 
     <!-- Enters the enemy trait loop. -->
-    {%- for trait in enemy.traits -%}
-        <!-- Enters the attack's phases. -->
-        {%- for traitPhase in trait.phases -%}
-            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {%- if traitPhase.phase == currentPhase -%}
-                <!-- Include Attack Template -->
-                {%- include klassen/_components/guide-trait.html -%}
-            {%- endif -%}
-        {%- endfor -%}
-    {%- endfor -%}
+        <div class="index_trait">
+            <div class="index__list_trait">
+                {%- for trait in enemy.traits -%}
+                    <!-- Enters the attack's phases. -->
+                    {%- for traitPhase in trait.phases -%}
+                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+                        {%- if traitPhase.phase == currentPhase -%}
+                            <!-- Include Attack Template -->
+                            {%- include klassen/_components/guide-trait.html -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endfor -%}
+            </div>
+        </div>
 
     <!-- Enters the enemy leve loop. -->
-    {%- for leve in enemy.leves -%}
-        <!-- Enters the attack's phases. -->
-        {%- for levesPhase in leve.phases -%}
-            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {%- if levesPhase.phase == currentPhase -%}
-                <!-- Include Attack Template -->
-                {%- include klassen/_components/guide-leve.html -%}
-            {%- endif -%}
-        {%- endfor -%}
-    {%- endfor -%}
+        <div class="index_leve">
+            <div class="index__list_leve">
+                {%- for leve in enemy.leves -%}
+                    <!-- Enters the attack's phases. -->
+                    {%- for levesPhase in leve.phases -%}
+                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+                        {%- if levesPhase.phase == currentPhase -%}
+                            <!-- Include Attack Template -->
+                            {%- include klassen/_components/guide-leve.html -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endfor -%}
+            </div>
+        </div>
 
     <!-- Enters the enemy quest loop. -->
-    {%- for quest in enemy.quests -%}
-        <!-- Enters the attack's phases. -->
-        {%- for questsPhase in quest.phases -%}
-            <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-            {%- if questsPhase.phase == currentPhase -%}
-                <!-- Include Attack Template -->
-                {%- include klassen/_components/guide-quests.html -%}
-            {%- endif -%}
-        {%- endfor -%}
-    {%- endfor -%}
+        <div class="index_quest">
+            <div class="index__list_quest">
+                {%- for quest in enemy.quests -%}
+                    <!-- Enters the attack's phases. -->
+                    {%- for questsPhase in quest.phases -%}
+                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
+                        {%- if questsPhase.phase == currentPhase -%}
+                            <!-- Include Attack Template -->
+                            {%- include klassen/_components/guide-quests.html -%}
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endfor -%}
+            </div>
+        </div>
 
     {%- if enemy.sequence.size > 1 -%}
         </div>

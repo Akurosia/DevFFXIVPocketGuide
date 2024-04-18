@@ -1,5 +1,9 @@
-<!-- Attack Template ======================================================= -->
-<div class="guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--quest">
+<!-- klassen/_components/Guide-Quests ======================================================= -->
+<div class="summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--quest">
+    <h4 class="index-item__title"
+        data-terms="!{%- for lang in LANGUAGES -%}quest:{{ quest.title[lang] }}&#32;{%- endfor -%}&#32;
+                    {%- for term in quest.terms -%}term:{{ term.term }}&#32;{%- endfor -%}" style="display: none">
+    </h4>
     <h4 class="guide__accordion-trigger-title">
         <span class="">
             {%- for lang in LANGUAGES -%}

@@ -1,6 +1,10 @@
-<!-- Attack Template ======================================================= -->
-<div class="guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--trait">
+<!-- klassen/_components/Guide-Trait ======================================================= -->
+<div class="summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--trait">
     <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <h4 class="index-item__title"
+        data-terms="!{%- for lang in LANGUAGES -%}trait:{{ trait.title[lang] }}&#32;{%- endfor -%}&#32;
+                    {%- for term in trait.terms -%}term:{{ term.term }}&#32;{%- endfor -%}" style="display: none">
+    </h4>
     <h4 class="guide__accordion-trigger-title">
         <img class="attack_icon" src="{{ site.imageurl }}/{{ trait.icon }}" alt="{{ trait.icon }}"/>
         <span class="">
