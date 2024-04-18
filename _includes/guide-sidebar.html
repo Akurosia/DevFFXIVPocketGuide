@@ -48,7 +48,7 @@
                 {%- for lang in LANGUAGES -%}
                     <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.roletypeinparty[lang] }}</span>
                 {%- endfor -%}
-
+            </h5>
         {%- endif -%}
 
         {%- if page.patchNumber -%}
@@ -59,6 +59,29 @@
             {%- else -%}
                 <h5 class="guide-metadata__subtitle box small-1of2 med-full">Patch:<span class="block">{{ page.patchNumber }} - {{ page.patchName }}</span></h5>
             {%- endif -%}
+        {%- endif -%}
+        {%- if page.base_class -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Base-Klasse:
+                {%- for lang in LANGUAGES -%}
+                    <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.base_class[lang] }}</span>
+                {%- endfor -%}
+            </h5>
+        {%- endif -%}
+        {%- if page.abbreviations -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Base-Klasse:
+                {%- for lang in LANGUAGES -%}
+                    <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.abbreviations[lang] }}</span>
+                {%- endfor -%}
+            </h5>
+        {%- endif -%}
+        {%- if page.lodestone -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Lodestone:
+                <span class="block">
+                {%- for lang in LANGUAGES -%}
+                    <a target="_blank" rel="noopener noreferrer" class="lang-toggle lang-toogle-{{lang}}" href="{{ page.lodestone[lang] }}">{{ page.lodestone[lang] }}</a>
+                {%- endfor -%}
+                </span>
+            </h5>
         {%- endif -%}
         {%- if page.contentname -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentname: 

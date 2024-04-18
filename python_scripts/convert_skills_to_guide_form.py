@@ -868,6 +868,14 @@ def getStatusFromFile(ncj):
     return default_status
 
 
+def get_classJobKeyMapping():
+    global cjs
+    results = {}
+    for key, value in cjs.items():
+        results[value['Name']['Value']] = key
+    return results
+
+
 def addKlassJobs():
     global cjs_trans
     global cjs
@@ -889,7 +897,7 @@ def addKlassJobs():
     eureka_actions = getEurekaActionDetails()
     bozja_actions = getBozjaActionDetails()
     #print_color_yellow(pretty_json(bozja_actions))
-
+    cj_key_lookup = get_classJobKeyMapping()
     ncj = sorted(cjs_trans.items(), key=lambda item: int(item[0].split(".")[0]))
     status_ncj = getStatusFromFile(ncj)
 
@@ -910,6 +918,7 @@ def addKlassJobs():
         counter += 1
         #if not job == "Blaumagier":
         #    continue
+        base_class = cjs[k[0]]["ClassJob"]['Parent'] if not cjs[k[0]]["ClassJob"]['Parent'] == job else None
         print_color_red(job)
 
         tmpmaxlvl = str(max([int(data["Level"]) for key, data in job_data.items() if int(data['Level']) < 99999]))
@@ -925,21 +934,16 @@ def addKlassJobs():
         filecontent += '---\n'
         filecontent += 'wip: "True"\n'
         filecontent += 'title:\n'
-        filecontent += f'  de: "{job_d["Name_de"].title()}"\n'
-        filecontent += f'  en: "{job_d["Name_en"].title()}"\n'
-        filecontent += f'  fr: "{job_d["Name_fr"].title()}"\n'
-        filecontent += f'  ja: "{job_d["Name_ja"].title()}"\n'
-        filecontent += f'  cn: "{job_d["Name_cn"].title()}"\n'
-        filecontent += f'  ko: "{job_d["Name_ko"].title()}"\n'
+        for lang in LANGUAGES:
+            if base_class:
+                filecontent += f'  {lang}: "{job_d[f"Name_{lang}"].title()} ({cjs_trans[cj_key_lookup[base_class]]["Name_"+lang].title()})"\n'
+            else:
+                filecontent += f'  {lang}: "{job_d[f"Name_{lang}"].title()}"\n'
         filecontent += 'layout: klassen\n'
         filecontent += 'page_type: guide\n'
         filecontent += 'roletypeinparty:\n'
-        filecontent += f'  de: "{addon_trans[partybonus[job_party_bonus]]["Text_de"].title()}"\n'
-        filecontent += f'  en: "{addon_trans[partybonus[job_party_bonus]]["Text_en"].title()}"\n'
-        filecontent += f'  fr: "{addon_trans[partybonus[job_party_bonus]]["Text_fr"].title()}"\n'
-        filecontent += f'  ja: "{addon_trans[partybonus[job_party_bonus]]["Text_ja"].title()}"\n'
-        filecontent += f'  cn: "{addon_trans[partybonus[job_party_bonus]]["Text_cn"].title()}"\n'
-        filecontent += f'  ko: "{addon_trans[partybonus[job_party_bonus]]["Text_ko"].title()}"\n'
+        for lang in LANGUAGES:
+            filecontent += f'  {lang}: "{addon_trans[partybonus[job_party_bonus]][f"Text_{lang}"].title()}"\n'
         filecontent += 'categories: "klassenjobs"\n'
 
         filecontent += 'difficulty: "Normal"\n'
@@ -977,24 +981,39 @@ def addKlassJobs():
         else:
             filecontent += '    - term: "2.0"\n'
             filecontent += '    - term: "A Realm Reborn"\n'
-        filecontent += f'    - term: "{job_d["Name_de"].title()}"\n'
-        filecontent += f'    - term: "{job_d["Name_en"].title()}"\n'
-        filecontent += f'    - term: "{job_d["Name_fr"].title()}"\n'
-        filecontent += f'    - term: "{job_d["Name_ja"].title()}"\n'
-        filecontent += f'    - term: "{job_d["Name_cn"].title()}"\n'
-        filecontent += f'    - term: "{job_d["Name_ko"].title()}"\n'
+        for lang in LANGUAGES:
+            filecontent += f'    - term: "{job_d[f"Name_{lang}"].title()}"\n'
+            if base_class:
+                filecontent += f'    - term: "{cjs_trans[cj_key_lookup[base_class]]["Name_"+lang].title()}"\n'
         filecontent += f'sortid: {counter}\n'
         filecontent += f'order: {counter}\n'
         filecontent += f'plvl: {maxlvl}\n'
         filecontent += f'ilvl: {maxilvl}\n'
+        filecontent += f'lodestone:\n'
+        for lang in LANGUAGES:
+            n_lang = lang
+            if lang in ["en", "cn", "ko"]:
+                n_lang = "na"
+            elif lang == "ja":
+                n_lang = "jp"
+            filecontent += f'  {lang}: "https://{n_lang}.finalfantasyxiv.com/jobguide/{job_d[f"Name_en"].replace(" ", "").lower()}/"\n'
+
+        if base_class:
+            filecontent += 'base_class:\n'
+            for lang in LANGUAGES:
+                filecontent += f'  {lang}: "{cjs_trans[cj_key_lookup[base_class]]["Name_"+lang].title()}"\n'
+
+        filecontent += 'abbreviations:\n'
+        for lang in LANGUAGES:
+            if base_class:
+                filecontent += f'  {lang}: "{job_d["Abbreviation_"+lang]}, {cjs_trans[cj_key_lookup[base_class]]["Abbreviation_"+lang]}"\n'
+            else:
+                filecontent += f'  {lang}: "{job_d["Abbreviation_"+lang]}"\n'
+
         filecontent += "bosses:\n"
         filecontent += "  - title:\n"
-        filecontent += f'      de: "{job_d["Name_de"].title()}"\n'
-        filecontent += f'      en: "{job_d["Name_en"].title()}"\n'
-        filecontent += f'      fr: "{job_d["Name_fr"].title()}"\n'
-        filecontent += f'      ja: "{job_d["Name_ja"].title()}"\n'
-        filecontent += f'      cn: "{job_d["Name_cn"].title()}"\n'
-        filecontent += f'      ko: "{job_d["Name_ko"].title()}"\n'
+        for lang in LANGUAGES:
+            filecontent += f'      {lang}: "{job_d[f"Name_{lang}"].title()}"\n'
         filecontent += "    id: \"" + "boss" + str(counter) + "\"\n"
         if job == "Blaumagier":
             filecontent += addBlueAttackDetails(job_data)
