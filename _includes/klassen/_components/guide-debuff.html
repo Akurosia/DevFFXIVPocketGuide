@@ -3,7 +3,8 @@
     <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <h4 class="index-item__title"
         data-terms="!{%- for lang in LANGUAGES -%}status:{{ debuff.title[lang] }}&#32;{%- endfor -%}&#32;
-                    {%- for term in debuff.terms -%}term:{{ term.term }}&#32;{%- endfor -%}" style="display: none">
+                    {%- for term in debuff.terms -%}term:{{ term.term }}&#32;{%- endfor -%}buff:{{ debuff.buff }}&#32;"
+        style="display: none">
     </h4>
     <h4 class="guide__accordion-trigger-title">
         <img class="debuff_icon" src="{{ site.imageurl }}/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
@@ -20,9 +21,7 @@
         {%- if debuff.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'debuff')">ID: {{ debuff.title_id }}</div>
         {%- endif -%}
-
-        {%- assign attack = debuff -%}
-        {%- include _components/guide-attack-types.html -%}
+        {%- include klassen/_components/guide-attack-types.html -%}
     </h4>
 </div>
 <div class="guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--debuff">

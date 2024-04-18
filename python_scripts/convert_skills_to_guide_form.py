@@ -461,6 +461,7 @@ def addStatusDetails(job, job_abb):
     global logdata
     global status_trans
     global status_ncj
+    global status
     result = ""
     jobstatusdata = logdata["Klassen"].get(job, {}).get("status", {})
     for key, value in status_ncj[job_abb].items():
@@ -490,6 +491,12 @@ def addStatusDetails(job, job_abb):
             result += '          ja: "' + deal_with_extras_in_text(status_trans[_id]["Description_ja"]) + '"\n'
             result += '          cn: "' + deal_with_extras_in_text(status_trans[_id]["Description_cn"]) + '"\n'
             result += '          ko: "' + deal_with_extras_in_text(status_trans[_id]["Description_ko"]) + '"\n'
+            #print(s)
+            if s.get('buff', None):
+                result += f'        buff: {s["buff"]}\n'
+            else:
+                buff = "buff" if str(status[str(int(key,16))]['StatusCategory']) == "1" else "debuff"
+                result += f'        buff: {buff}\n'
             if s['duration']:
                 result += f'        durations: {s["duration"]}\n'
             result += '        phases:\n'
@@ -938,6 +945,7 @@ def getStatusFromFile(ncj):
             default_status[s['ClassJobCategory']][str(hex(int(key)))[2:].upper()] = {
                 "name": s['Name'],
                 "icon": s['Icon'],
+                "buff": "buff" if str(s['StatusCategory']) == "1" else "debuff",
                 "duration": None
             }
         elif s['ClassJobCategory'] == "Handwerker":
@@ -945,6 +953,7 @@ def getStatusFromFile(ncj):
                 default_status[crafter][str(hex(int(key)))[2:].upper()] = {
                     "name": s['Name'],
                     "icon": s['Icon'],
+                    "buff": "buff" if str(s['StatusCategory']) == "1" else "debuff",
                     "duration": None
                 }
     return default_status

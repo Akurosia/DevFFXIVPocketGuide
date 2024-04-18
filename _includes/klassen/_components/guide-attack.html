@@ -3,7 +3,9 @@
     <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <h4 class="index-item__title"
         data-terms="!{%- for lang in LANGUAGES -%}skill:{{ attack.title[lang] }}&#32;{%- endfor -%}&#32;
-                    {%- for term in attack.terms -%}term:{{ term.term }}&#32;{%- endfor -%}" style="display: none">
+                    {%- for term in attack.terms -%}term:{{ term.term }}&#32;{%- endfor -%}
+                    type:{{ attack.type }}&#32;range:{{ attack.range }}&#32;cat:{{ attack.kategorie }}&#32;"
+        style="display: none">
     </h4>
     <h4 class="guide__accordion-trigger-title">
         {%- if attack.icon -%}

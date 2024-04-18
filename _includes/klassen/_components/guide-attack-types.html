@@ -1,6 +1,6 @@
 <div class="{% if quest.title %}{% elsif leve.title %}{% else %}attack_skill_fix{% endif %} guide__accordion-tag-wrapper">
   {%- if attack.level or trait.level or quest.level or leve.level -%}
-    <span class="a guide__accordion-tag--role">Level: {{ attack.level }}{{ trait.level }}{{ quest.level }}{{ leve.level }}</span>
+    <span class="guide__accordion-tag--role">Level: {{ attack.level }}{{ trait.level }}{{ quest.level }}{{ leve.level }}</span>
   {%- endif -%}
   {%- if attack.range -%}
     <span class="guide__accordion-tag--duty-action">Range: {{ attack.range }}</span>
@@ -19,6 +19,10 @@
   {%- endif -%}
   {%- if attack.frontsplitter -%}
     <span class="guide__accordion-tag--role">Frontsplitter: {{ attack.frontsplitter }}</span>
+  {%- endif -%}
+
+  {%- if debuff.buff -%}
+    <span class="guide__accordion-tag--role">Statustyp: {{ debuff.buff }}</span>
   {%- endif -%}
 
   {%- if quest.expansion -%}
