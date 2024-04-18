@@ -1580,7 +1580,7 @@ div {
 
   &.guide__accordion-tag-wrapper {
     width: inherit;
-    display: flex;
+    //display: flex;
   }
 }
 
@@ -2076,6 +2076,10 @@ body {
 
 .attack_skill_fix {
     padding-left: 65px;
+    margin-top: -25px;
+}
+.debuff_fix {
+    padding-left: 45px;
     margin-top: -25px;
 }
 

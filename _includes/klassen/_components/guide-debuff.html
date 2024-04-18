@@ -52,5 +52,18 @@
                 </span>
             </div>
         {%- endif -%}
+
+        <!-- Debuff durations -->
+        {%- if debuff.added_by -%}
+            <div class="guide__attack-notes-wrapper">
+                <h5 class="guide__attack-notes-title">Wurde durch Folgenden Skill hinzugefügt:</h5>
+                <span class="guide__debuff_description">
+                    <img class="attack_icon" src="{{ site.imageurl }}/{{ debuff.added_by.icon }}" alt="{{ debuff.added_by.icon }}"/>
+                    {%- for lang in LANGUAGES -%}
+                        <span class="lang-toggle lang-toogle-{{lang}}">{{  debuff.added_by[lang] }}</span>
+                    {%- endfor -%}
+                </span>
+            </div>
+        {%- endif -%}
     </div>
 </div>

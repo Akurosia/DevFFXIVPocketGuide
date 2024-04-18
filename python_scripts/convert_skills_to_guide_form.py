@@ -467,6 +467,12 @@ def addStatusDetails(job, job_abb):
                 result += f'        buff: {buff}\n'
             if s['duration']:
                 result += f'        durations: {s["duration"]}\n'
+
+            if s.get('was_added_by_action', None):
+                result += '        added_by:\n'
+                result += '          icon: "' + actions_trans[str(int(s['was_added_by_action'], 16))]['Icon'].replace("ui/icon/", "") + '"\n'
+                for lang in LANGUAGES:
+                    result += f'          {lang}: "' + actions_trans[str(int(s['was_added_by_action'], 16))][f'Name_{lang}'] + '"\n'
             result += '        phases:\n'
             result += '          - phase: "02"\n'
     return result
