@@ -14,11 +14,23 @@
   {%- if attack.recast -%}
     <span class="guide__accordion-tag--attack">Recast: {{ attack.recast }}</span>
   {%- endif -%}
+  {%- if attack.type -%}
+    <span class="guide__accordion-tag--attack">Type: {{ attack.type }}</span>
+  {%- endif -%}
   {%- if attack.kategorie -%}
     <span class="guide__accordion-tag--role">Kategorie: {{ attack.kategorie }}</span>
   {%- endif -%}
   {%- if attack.frontsplitter -%}
     <span class="guide__accordion-tag--role">Frontsplitter: {{ attack.frontsplitter }}</span>
+  {%- endif -%}
+  {%- if attack.damage -%}
+    <span class="guide__accordion-tag--akurole">Schade</span>
+  {%- endif -%}
+  {%- if attack.heal -%}
+    <span class="guide__accordion-tag--akurole">Heilung</span>
+  {%- endif -%}
+  {%- if attack.mitigation -%}
+    <span class="guide__accordion-tag--akurole">Mitigation</span>
   {%- endif -%}
 
   {%- if debuff.buff -%}

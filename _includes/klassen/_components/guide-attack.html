@@ -4,7 +4,8 @@
     <h4 class="index-item__title"
         data-terms="!{%- for lang in LANGUAGES -%}skill:{{ attack.title[lang] }}&#32;{%- endfor -%}&#32;
                     {%- for term in attack.terms -%}term:{{ term.term }}&#32;{%- endfor -%}
-                    type:{{ attack.type }}&#32;range:{{ attack.range }}&#32;cat:{{ attack.kategorie }}&#32;"
+                    type:{{ attack.type }}&#32;range:{{ attack.range }}&#32;cat:{{ attack.kategorie }}&#32;
+                    type:{{ attack.damage }}&#32;type:{{ attack.heal }}&#32;type:{{ attack.mitigation }}&#32;"
         style="display: none">
     </h4>
     <h4 class="guide__accordion-trigger-title">

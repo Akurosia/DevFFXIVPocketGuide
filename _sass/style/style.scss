@@ -1619,6 +1619,10 @@ div {
   &[class*=variation] {
     color: #52e96c;
   }
+
+  &[class*=akurole] {
+    color: #eacd36;
+  }
 }
 
 [class*=guide__accordion-content] {
