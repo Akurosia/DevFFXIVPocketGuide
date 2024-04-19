@@ -10,6 +10,7 @@ from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extra
 from convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
 from convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
 
+allPartyMittigation = {}
 skills = None
 pvpskills = None
 logdata = None
@@ -115,6 +116,54 @@ def convertJobToAbrev(job):
     raise NotImplementedError
 
 
+def getMittigationValue(desc, name):
+
+    normal_mit_text = [
+        "Reduces damage taken by self and nearby party members by ",
+        "reducing magic damage taken by all nearby party members by "
+    ]
+    for t in normal_mit_text:
+        if t in desc:
+            return "g", desc.split(t)[-1].split("%")[0] + "%"
+
+    normal_mit_text = "Reduces magic damage taken by self and nearby party members by "
+    if normal_mit_text in desc:
+        return "g", desc.replace(normal_mit_text, "").split("%")[0] + "%"
+
+    normal_mit_text = "will only suffer "
+    if normal_mit_text in desc:
+        return "g", str(100 - int(desc.split(normal_mit_text)[1].split("%")[0])) + "%"
+
+    normal_mit_text = "Lowers target's physical damage dealt by "
+    if normal_mit_text in desc:
+        return "g", desc.replace(normal_mit_text, "").replace(" and magic damage dealt by ", "/")[:-1].split(".</br>")[0]
+
+    normal_mit_text = [
+        "Reduces damage taken by all party members by ",
+        "Reduces damage dealt by nearby enemies by "
+    ]
+    for t in normal_mit_text:
+        if t in desc:
+            return "g", desc.replace(t, "")[:-1].split("%")[0] + "%"
+
+    normal_mit_text = "reducing damage taken by self and all party members "
+    if normal_mit_text in desc:
+        return "g", desc.split(" by ")[-1][:-1].split("%")[0] + "%"
+
+    normal_mit_text = "Reduces target party member's damage taken by "
+    if normal_mit_text in desc:
+        return "p", desc.replace(normal_mit_text, "").split("Duration")[0][:-1].split("%")[0] + "%"
+
+    normal_mit_text = "Reduces damage taken by "
+    if normal_mit_text in desc:
+        return "p", desc.split(normal_mit_text)[1].split("Duration")[0].split(" by ")[-1].split("%")[0] + "%"
+
+    if "Reduces damage" in desc and "%" in desc:
+        return "p", desc.split("Duration")[0].split(" by ")[-1].split("%")[0] + "%"
+
+    return None, None
+
+
 def addAttackDetails(job_data, pvp=False):
     global actions_trans
     global craftactions_trans
@@ -145,8 +194,14 @@ def addAttackDetails(job_data, pvp=False):
             description[lang] = deal_with_extras_in_text(desc_dict[f"Description_{lang}"])
         tpye_damage = "Schaden" if "Attacke-Wert" in description["de"] else None
         tpye_heilung = "Heilung" if "Heilpotenzial" in description["de"] else None
-        tpye_mitigation = "Mitigation" if "Du verringerst" in description["de"] and "Schaden" in description["de"] else None
-
+        mtype, mvalue = getMittigationValue(description["en"], name["en"])
+        if mvalue:
+            if mvalue in ['10%/5%', '5%/10%']:
+                ...
+            elif len(mvalue) == 2:
+                ...
+            elif not len(mvalue) == 3:
+                print((name["en"], mvalue))
         result += '      - title:\n'
         attack_skills.append(name['de'])
         for lang in LANGUAGES:
@@ -164,11 +219,18 @@ def addAttackDetails(job_data, pvp=False):
             result += f'        damage: "{tpye_damage}"\n'
         if tpye_heilung:
             result += f'        heal: "{tpye_heilung}"\n'
-        if tpye_mitigation:
-            result += f'        mitigation: "{tpye_mitigation}"\n'
+        if mtype == "p":
+            result += '        pmitigation: "P-Mitigation"\n'
+            result += f'        pmitigation_value: "{mvalue}"\n'
+        if mtype == "g":
+            result += '        gmitigation: "G-Mitigation"\n'
+            result += f'        gmitigation_value: "{mvalue}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "' + description[lang] + '"\n'
+        #if "%" in description["en"]:
+        #    print(name["en"])
+        #    print(description["en"])
         result += '        phases:\n'
         if pvp:
             result += '          - phase: "04"\n'
@@ -561,6 +623,7 @@ def addKlassJobs():
             job_party_bonus = "3"
         if not job_data:
             continue
+        allPartyMittigation[job] = []
         counter += 1
         #if not job == "Rotmagier":
         #    continue

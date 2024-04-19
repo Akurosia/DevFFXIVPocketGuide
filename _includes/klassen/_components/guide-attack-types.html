@@ -29,8 +29,11 @@
   {%- if attack.heal -%}
     <span class="guide__accordion-tag--akurole">Heilung</span>
   {%- endif -%}
-  {%- if attack.mitigation -%}
-    <span class="guide__accordion-tag--akurole">Mitigation</span>
+  {%- if attack.pmitigation -%}
+    <span class="guide__accordion-tag--akurole">P-Mitigation ({{ attack.pmitigation_value }})</span>
+  {%- endif -%}
+  {%- if attack.gmitigation -%}
+    <span class="guide__accordion-tag--akurole">G-Mitigation ({{ attack.gmitigation_value }})</span>
   {%- endif -%}
 
   {%- if debuff.buff -%}
