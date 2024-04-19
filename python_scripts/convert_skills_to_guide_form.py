@@ -194,14 +194,9 @@ def addAttackDetails(job_data, pvp=False):
             description[lang] = deal_with_extras_in_text(desc_dict[f"Description_{lang}"])
         tpye_damage = "Schaden" if "Attacke-Wert" in description["de"] else None
         tpye_heilung = "Heilung" if "Heilpotenzial" in description["de"] else None
+        type_shield = "Schild-Mitigation" if "barrier" in description['en'] else None
         mtype, mvalue = getMittigationValue(description["en"], name["en"])
-        if mvalue:
-            if mvalue in ['10%/5%', '5%/10%']:
-                ...
-            elif len(mvalue) == 2:
-                ...
-            elif not len(mvalue) == 3:
-                print((name["en"], mvalue))
+
         result += '      - title:\n'
         attack_skills.append(name['de'])
         for lang in LANGUAGES:
@@ -219,6 +214,8 @@ def addAttackDetails(job_data, pvp=False):
             result += f'        damage: "{tpye_damage}"\n'
         if tpye_heilung:
             result += f'        heal: "{tpye_heilung}"\n'
+        if type_shield:
+            result += f'        shield: "{type_shield}"\n'
         if mtype == "p":
             result += '        pmitigation: "P-Mitigation"\n'
             result += f'        pmitigation_value: "{mvalue}"\n'

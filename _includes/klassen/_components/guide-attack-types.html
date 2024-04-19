@@ -24,10 +24,13 @@
     <span class="guide__accordion-tag--role">Frontsplitter: {{ attack.frontsplitter }}</span>
   {%- endif -%}
   {%- if attack.damage -%}
-    <span class="guide__accordion-tag--akurole">Schade</span>
+    <span class="guide__accordion-tag--akurole">Schaden</span>
   {%- endif -%}
   {%- if attack.heal -%}
     <span class="guide__accordion-tag--akurole">Heilung</span>
+  {%- endif -%}
+  {%- if attack.shield -%}
+    <span class="guide__accordion-tag--akurole">Schild</span>
   {%- endif -%}
   {%- if attack.pmitigation -%}
     <span class="guide__accordion-tag--akurole">P-Mitigation ({{ attack.pmitigation_value }})</span>
