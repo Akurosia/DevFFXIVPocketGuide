@@ -2198,7 +2198,17 @@ ion-icon {
     vertical-align: middle;
     background-position: 27px 21px;
     margin: 8px;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+    &:active {
+      filter: saturate(0);
+    }
 }
+
+
 
 .iso_CN {background-position: 0 0}
 .iso_DE {background-position: -54px 0}

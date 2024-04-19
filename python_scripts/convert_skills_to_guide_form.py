@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # coding: utf8
 import os
-from ffxiv_aku import *
+from ffxiv_aku import print_color_red, gear_get, getLevel
 from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata
 from collections import OrderedDict
 from operator import getitem
-import traceback
-import re
-
-LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
+from convert_skills_to_guide_form_helper.chocobo import addChocobo
+from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES
+from convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
+from convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
 
 skills = None
 pvpskills = None
@@ -16,19 +16,14 @@ logdata = None
 cj = None
 cjs = None
 actions = None
-actions_trans = None
 action_trans = None
-aozaction_trans = None
-lo_actions = None
-bo_actions = None
+actions_trans = None
 craftactions_trans = None
 status_trans = None
 status = None
 traits = None
 traits_trans = None
 traitstransient_trans = None
-aozactions_trans = None
-aozactiontransient = None
 quests = None
 quests_trans = None
 levels = None
@@ -36,10 +31,6 @@ maps = None
 leves = None
 trans_leves = None
 craftleves = None
-chocoboskills_trans = None
-chocoboitems_trans = None
-chocobochallange_trans = None
-buddyskill_raw = None
 addon_trans = None
 items_trans = None
 
@@ -57,17 +48,12 @@ def load_global_data():
     global actions
     global actions_trans
     global actiontransient_trans
-    global aozaction_trans
-    global lo_actions
-    global bo_actions
     global craftactions_trans
     global status_trans
     global status
     global traits
     global traits_trans
     global traitstransient_trans
-    global aozactions_trans
-    global aozactiontransient
     global quests
     global quests_trans
     global levels
@@ -91,17 +77,12 @@ def load_global_data():
     addon_trans = loadDataTheQuickestWay("addon", translate=True)
     actions_trans = loadDataTheQuickestWay("action", translate=True)
     actiontransient_trans = loadDataTheQuickestWay("actiontransient", translate=True)
-    aozaction_trans = loadDataTheQuickestWay("aozactiontransient", translate=True)
-    lo_actions = loadDataTheQuickestWay("eurekamagiaaction.json")
-    bo_actions = loadDataTheQuickestWay("MYCTemporaryItem.json")
     craftactions_trans = loadDataTheQuickestWay("craftaction", translate=True)
     status_trans = loadDataTheQuickestWay("status", translate=True)
     status = loadDataTheQuickestWay("Status")
     traits = loadDataTheQuickestWay("Trait")
     traits_trans = loadDataTheQuickestWay("trait", translate=True)
     traitstransient_trans = loadDataTheQuickestWay("TraitTransient", translate=True)
-    aozactions_trans = loadDataTheQuickestWay("aozaction", translate=True)
-    aozactiontransient = loadDataTheQuickestWay("AozActionTransient")
     quests = loadDataTheQuickestWay("Quest")
     quests_trans = loadDataTheQuickestWay("quest", translate=True)
     items_trans = loadDataTheQuickestWay("item", translate=True)
@@ -114,246 +95,6 @@ def load_global_data():
     chocoboitems_trans = loadDataTheQuickestWay("chocoboraceitem", translate=True)
     chocobochallange_trans = loadDataTheQuickestWay("chocoboracechallenge", translate=True)
     buddyskill_raw = loadDataTheQuickestWay("buddyskill.json", exd="raw-exd-all")
-
-
-def getImage(image: str) -> str:
-    image = image.replace(".tex", "_hr1.png")
-    image = image.replace("ui/icon/", "")
-    return image
-
-
-def deal_with_extras_in_text(text):
-    #print(text)
-    # filter if cases
-    regex = "(<If(.*?)>)"
-    x = re.findall(regex, text)
-    for y in x:
-        text = text.replace(y[0], "")
-
-    # handle else cases
-    regex = "(<Else/>\\d+)"
-    x = re.findall(regex, text)
-    x = list(set(x))
-    for y in x:
-    #    text = text.replace(y, y+")")
-        text = text.replace(y, "")
-    #text = text.replace("<Else/>", " (")
-    text = text.replace("\n", "</br>").replace("</br></br>", "</br>").replace("</br></br>", "</br>")
-    return text
-
-
-def getBLULocationsFromLogdata(name, locations):
-    global logdata
-    if not name:
-        return locations
-    nresult = locations
-    for location_name, location_data in logdata.items():
-        if not location_name:
-            continue
-        for enemy_name, enemy_data in location_data.items():
-            if not enemy_name or isinstance(enemy_data, list):
-                continue
-            for skill_id, skill_data in enemy_data.get("skill", {}).items():
-                if not skill_id or not skill_data:
-                    continue
-                if name.lower() == skill_data["name"].lower():
-                    tmp = {"Ort": location_name, "Gegner": enemy_name}
-                    if tmp not in nresult:
-                        nresult.append(tmp)
-    return nresult
-
-
-def fix_slug(name):
-    return (
-        name.lower()
-            .replace("ö", "oe")
-            .replace("ä", "ae")
-            .replace("ü", "ue")
-            .replace("ß", "ss")
-            .replace(" ", "_")
-            .replace(")(", "_")
-            .replace("(", "")
-            .replace(")", "")
-            .replace("-", "_")
-            .replace("'", "")
-            .replace(":", "_")
-            .replace("__", "_")
-            .replace("__", "_")
-    )
-
-
-def get_propper_zone_name(zone_name, files):
-    n = fix_slug(zone_name)
-    for file in files:
-        if n in file:
-            return file.split("\\")[0].replace("_new", "") + "/" + n.replace("_", "-") + ".html"
-    return None
-
-
-def get_blue_totem_skills():
-    global items_trans
-    result = ["Wasserkanone"]
-    for key, value in items_trans.items():
-        if "Totem der Blaumagie:" in value['Name_de']:
-            result.append(value['Name_de'].replace("Totem der Blaumagie: ", ""))
-    return result
-
-
-def get_play_in_locations(locations):
-    cfc = loadDataTheQuickestWay("ContentFindercondition")
-    cmt = loadDataTheQuickestWay("ContentMemberType.json")
-    new_locations = []
-    for key, value in cfc.items():
-        player = 0
-        for loc in locations:
-            if value['Name'].lower() == loc['Ort'].lower():
-                if value['TerritoryType'] == "w1tz":
-                    loc["player"] = 1
-                    loc["type"] = "Große Maskerade Masked Carnivale Himmlische Arena"
-                else:
-                    x = cmt[value['ContentMemberType'].split('#')[1]]
-                    player = int(x['HealersPerParty']) + int(x['MeleesPerParty']) + int(x['RangedPerParty']) + int(x['TanksPerParty'])
-                    loc["player"] = 1 if player == 0 else player
-                    loc["type"] = value['ContentType']
-                    new_locations.append(loc)
-                #print(value)
-    for loc in locations:
-        found = False
-        for loc2 in new_locations:
-            if loc['Ort'] == loc2['Ort']:
-                found = True
-        if not found:
-            new_locations.append(loc)
-    return sorted(new_locations, key=lambda x: x['Ort'])
-
-
-def addBlueAttackDetails(job_data):
-    global actions_trans
-    global aozactions_trans
-    global aozactiontransient
-    result = ""
-    result += "    attacks:\n"
-    # get special aoz action data from correct files e.g. number in blu spell book and description
-    blueTotemSpells = get_blue_totem_skills()
-    blueTotemCondition = {
-        "Wasserkanone": "Blaumagier freischalten",
-        "Weißer Wind": "10 Zauber gelernt",
-        "Einschüchtern": "5 Zauber gelernt",
-        "Assimilation": "20 Zauber gelernt",
-        "Totalabwehr": "10 Zauber gelernt",
-        "Mondflöte": "10 Mission der Himmlichen Arena abgeschlossen",
-        "Verhängnis": "20 Mission der Himmlichen Arena abgeschlossen",
-        "Rachestoß": "50 Zauber gelernt",
-        "Engelsflüstern": "30 Mission der Himmlichen Arena abgeschlossen",
-        "Engelspeise": "Level 70 mit dem Blaumagier erreicht",
-        "Drachenkraft": "100 Zauber gelernt",
-        "Matra-Magie": "100 Zauber gelernt",
-        "Zauberatem": "Level 80 mit dem Blaumagier erreicht",
-        "Kraftfeld": "120 Zauber gelernt"
-    }
-    for x, y in job_data.items():
-        for key, value in aozactions_trans.items():
-            if y['Name'] == value['Name_de']:
-                if not aozactiontransient[key]['Location'] == "":
-                    job_data[x]["Location"] = {"Ort": aozactiontransient[key]['Location'], "Gegner": "(InGame Hinweis)"}
-                job_data[x]["Number"] = job_data[x]["Level"]
-                job_data[x]["Level"] = aozactiontransient[key]['Number']
-
-                for lang in LANGUAGES:
-                    job_data[x][f"Description_{lang}"] += "\n\n<br/>#########################################<br/>\n\n" + deal_with_extras_in_text(aozaction_trans[key][f'Description_{lang}'])
-
-            elif y['Name'] == "Weißer Tod":
-                job_data[x]["Number"] = job_data[x]["Level"]
-                job_data[x]["Level"] = "84"
-            elif y['Name'] == "Göttlicher Katarakt":
-                job_data[x]["Number"] = job_data[x]["Level"]
-                job_data[x]["Level"] = "89"
-
-        if not y.get("Number", None):
-            job_data[x]["Number"] = job_data[x]["Level"]
-            job_data[x]["Level"] = "90" + job_data[x]["Level"]
-
-    files = glob("**/**/*.md")
-
-    job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
-    for _id, skill_data in job_data.items():
-        try:
-            locations = []
-            if skill_data.get('Location', None):
-                locations.append(skill_data['Location'])
-            name = {}
-            for lang in LANGUAGES:
-                name[lang] = deal_with_extras_in_text(actions_trans.get(skill_data["id"], {}).get(f"Name_{lang}", ""))
-            if name["en"] == "":
-                name["en"] = craftactions_trans[skill_data["id"] + ".0"]["Name_en"]
-            level = skill_data['Level']
-            #
-            locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
-            locations = sorted(locations, key=lambda x: x['Ort'])
-            # somehow original locations got updated, just dont touch it
-            n_locations = get_play_in_locations(locations)
-            desc = ""
-            terms = []
-
-            if not locations == [] or name['de'] in blueTotemSpells:
-                desc += "\n\n<br/>#########################################<br/>\n\nLOCATIONS:\n"
-                # special case to add totem entries
-                if name["de"] in blueTotemSpells:
-                    desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td><td>Bedinnung</td></thead><tbody>"
-                    desc += f"<tr><td>Ul'dah - Thal-Kreuzgang (X:12.5 Y:12.9)</td><td> Wayward Gaheel Ja (Totem der Blaumagie: {name['de']})</td><td> {blueTotemCondition[name['de']]} </td></tr>"
-                    terms.append("Totems")
-                else:
-                    desc += "<table class='table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic'><thead><td>Zone</td><td>Gegnername</td></thead><tbody>"
-                    for location in locations:
-                        zone_name = location["Ort"]
-                        enemy_name = location["Gegner"]
-                        if location.get('player', None):
-                            if f"{location['player']}man" not in terms:
-                                terms.append(f"{location['player']}man")
-                        if location.get('type', None):
-                            if location['type'] not in terms:
-                                terms.append(location['type'])
-                        p_zone_name = get_propper_zone_name(zone_name, files)
-                        tmp = f"<tr><td>{zone_name} </td><td> {enemy_name}</td></tr>"
-                        #tmp = "\n&emsp;" + f"{zone_name} -> {enemy_name}"
-                        if p_zone_name:
-                            tmp = f"<tr><td><a href='/DevFFXIVPocketGuide/{p_zone_name}' target='_blank'>{zone_name} </a></td><td> {enemy_name}</td></tr>"
-                            #tmp = "\n&emsp;" + f"<a href='{p_zone_name}' target='_blank'>{zone_name}</a> -> {enemy_name}"
-                        desc += tmp
-            desc += "</tbody></table>"
-
-            desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
-            if skill_data.get("Number", None) and int(level) < 901:
-                result += '      - title:\n'
-                for lang in LANGUAGES:
-                    result += f'          {lang}: "{level}. {name[lang]}"\n'
-            else:
-                result += '      - title:\n'
-                for lang in LANGUAGES:
-                    result += f'          {lang}: "{name[lang]}"\n'
-            result += f'        title_id: "{skill_data["id"].split(".")[0]}"\n'
-            if skill_data.get("Number", None):
-                result += f'        level: "{skill_data["Number"]}"\n'
-            else:
-                result += f'        level: "{level}"\n'
-
-            result += '        terms:\n'
-            for term in terms:
-                result += f'          - term: "{term}"\n'
-            result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
-            result += f'        range: "{skill_data["Range"]}"\n'
-            result += f'        effectrange: "{skill_data["EffectRange"]}"\n'
-            result += f'        cast: "{skill_data["Cast"]}"\n'
-            result += f'        recast: "{skill_data["Recast"]}"\n'
-            result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
-            result += '        description:\n'
-            for lang in LANGUAGES:
-                result += f'          {lang}: "' + deal_with_extras_in_text(skill_data[f"Description_{lang}"].replace('"', '\\"')) + f'{desc}"\n'
-            result += '        phases:\n'
-            result += '          - phase: "01"\n'
-        except:
-            traceback.print_exc()
-    return result
 
 
 def convertJobToAbrev(job):
@@ -378,6 +119,7 @@ def addAttackDetails(job_data, pvp=False):
     global actions_trans
     global craftactions_trans
     result = ""
+    attack_skills = []
     # only print for normal attacks
     if not pvp:
         result += "    attacks:\n"
@@ -406,6 +148,7 @@ def addAttackDetails(job_data, pvp=False):
         tpye_mitigation = "Mitigation" if "Du verringerst" in description["de"] and "Schaden" in description["de"] else None
 
         result += '      - title:\n'
+        attack_skills.append(name['de'])
         for lang in LANGUAGES:
             result += f'          {lang}: "{name[lang]}"\n'
         result += f'        title_id: "{skill_data["id"].split(".")[0]}"\n'
@@ -431,10 +174,10 @@ def addAttackDetails(job_data, pvp=False):
             result += '          - phase: "04"\n'
         else:
             result += '          - phase: "01"\n'
-    return result
+    return result, attack_skills
 
 
-def addStatusDetails(job, job_abb):
+def addOldStatusDetails(job, job_abb):
     global logdata
     global status_trans
     global status_ncj
@@ -478,6 +221,41 @@ def addStatusDetails(job, job_abb):
     return result
 
 
+def addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, bozja_skills):
+    global status
+    result = ""
+    result += "    debuffs:\n"
+    for key, value in status.items():
+        if job_abb not in value['ClassJobCategory']:
+            continue
+        con = False
+        # validate if skill is either a pvp skill or a normal skill
+        if value['Name'] in attack_skills:
+            con = True
+        if value['Name'] in pvp_skills:
+            con = True
+        if not con:
+            #print(value['Name'])
+            continue
+        result += '      - title:\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "' + deal_with_extras_in_text(status_trans[key][f"Name_{lang}"]) + '"\n'
+        result += f'        title_id: "{status_trans[key]['0xID']}"\n'
+        image = getImage(status_trans[key]["Icon"])
+        if "_hr1" in image:
+            result += f'        icon: "{image}"\n'
+        else:
+            result += f'        icon: "{image.replace(".png", "_hr1.png")}"\n'
+        result += '        description:\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "' + deal_with_extras_in_text(status_trans[key][f"Description_{lang}"]) + '"\n'
+        buff = "buff" if str(status[str(key)]['StatusCategory']) == "1" else "debuff"
+        result += f'        buff: {buff}\n'
+        result += '        phases:\n'
+        result += '          - phase: "02"\n'
+    return result
+
+
 def addTraitDetails(job):
     global traits
     result = ""
@@ -501,147 +279,6 @@ def addTraitDetails(job):
         result += '        phases:\n'
         result += '          - phase: "03"\n'
     return result
-
-
-def getStatusKey(stat):
-    for k, v in status.items():
-        if v["Name"] == stat:
-            return k
-    return "0"
-
-
-def getEurekaActionDetails():
-    results = {}
-    new_lo_actions = {}
-    # get all eurekamagiaaction
-    for x, v in lo_actions.items():
-        _id = int(x.split(".")[0])
-        new_lo_actions[_id] = v
-
-    for k, i in actions.items():
-        for k2, lo in new_lo_actions.items():
-            if i["Name"] == lo["Action"] and not i["Name"] == "":
-                if k2 not in results:
-                    status_key = getStatusKey(i["Status"]['GainSelf'])
-                    results[k] = {
-                        "name": {},
-                        "icon": i["Icon"].replace(".png", "_hr1.png"),
-                        "type": i["ActionCategory"],
-                        "cj": i["ClassJobCategory"],
-                        "uses": lo["MaxUses"],
-                        "status": {},
-                        "status_icon": status_trans[status_key]['Icon'].replace(".tex", "_hr1.png").replace(".png", "_hr1.png"),
-                        "description": {},
-                    }
-                    for lang in LANGUAGES:
-                        results[k]['name'][lang] = deal_with_extras_in_text(actions_trans[k][f'Name_{lang}'])
-                        results[k]['status'][lang] = deal_with_extras_in_text(status_trans[status_key][f'Name_{lang}'])
-                        results[k]['description'][lang] = deal_with_extras_in_text(actiontransient_trans[k][f"Description_{lang}"])
-                    break
-                else:
-                    print("Douplicate for " + str(k2))
-                    continue
-    return results
-
-
-def getActionDataSet(name):
-    for _ida, action in actions.items():
-        if action["Name"] == name:
-            return _ida, action
-
-
-def getFrontsplitterEntry(name, result):
-    if not name.startswith("Verschollen") and not name.startswith("Gemüt") or not name.startswith("Würfel "):
-        return name
-    if name.startswith("Gemüt") or name.startswith("Würfel "):
-        return "Frontsplitter des " + name
-    if name.startswith("Verschollen"):
-        new_name = re.split("Verschollen(?:e|es|er) (.*)", name)[1]
-        for x, x_data in result["Splitter"].items():
-            for y in x_data["Frontsplitter"]:
-                if new_name in y:
-                    return y
-    return ""
-
-
-def getBozjaActionDetails():
-    result = {}
-    for _id, action in bo_actions.items():
-        if action['Category'] == "":
-            continue
-        if action['Category'] == "Gegenstände":
-            action['Category'] = "ZGegenstände"
-        if not result.get(action['Category']):
-            result[action['Category']] = {}
-        b, a = getActionDataSet(action['Action'])
-        icon = a["Icon"].replace(".tex", "_hr1.png")
-        if action['Action'] == "Würfel des Schicksals":
-            icon = "ui/icon/064000/064690_hr1.png"
-        tmp = {
-            "name": {},
-            "icon": icon,
-            "cj": a["ClassJobCategory"],
-            "frontsplitter": getFrontsplitterEntry(action['Action'], result),
-            "description": {},
-        }
-        for lang in LANGUAGES:
-            tmp['name'][lang] = deal_with_extras_in_text(actions_trans[b][f'Name_{lang}'])
-            tmp['description'][lang] = deal_with_extras_in_text(actiontransient_trans[b][f"Description_{lang}"])
-        result[action['Category']][b] = tmp
-    return json.loads(json.dumps(result, indent=4, sort_keys=true, ensure_ascii=false))
-
-
-def addEurekaActions(job, eureka_actions):
-    result = False
-    result_text = ""
-    result_text += "    eureka:\n"
-    _class = [v['Abbreviation'] for k, v in cjs.items() if v["Name"]['Value'] == job]
-    for k, value in eureka_actions.items():
-        if _class[0] in value['cj']:
-            result = True
-            # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
-            result_text += '      - title:\n'
-            for lang in LANGUAGES:
-                result_text += f'          {lang}: "' + deal_with_extras_in_text(value["name"][lang]) + '"\n'
-            result_text += '        status:\n'
-            for lang in LANGUAGES:
-                result_text += f'          {lang}: "' + deal_with_extras_in_text(value["name"][lang]) + '"\n'
-            result_text += f'        status_icon: "{getImage(value["status_icon"])}"\n'
-            result_text += f'        title_id: "{k}"\n'
-            result_text += '        level: "70"\n'
-            result_text += f'        icon: "{getImage(value["icon"])}"\n'
-            result_text += '        description:\n'
-            for lang in LANGUAGES:
-                result_text += f'          {lang}: "' + deal_with_extras_in_text(value["description"][lang]) + '"\n'
-            result_text += f'        type: "{value["type"]}"\n'
-            result_text += '        phases:\n'
-            result_text += '          - phase: "06"\n'
-    return result, result_text
-
-
-def addBozjaActions(job, bozja_actions):
-    result = False
-    result_text = ""
-    result_text += "    bozja:\n"
-    _class = [v['Abbreviation'] for k, v in cjs.items() if v["Name"]['Value'] == job]
-    for categorie, data in bozja_actions.items():
-        for k, value in data.items():
-            if _class[0] in value['cj']:
-                result = True
-                # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
-                result_text += '      - title:\n'
-                for lang in LANGUAGES:
-                    result_text += f'          {lang}: "' + deal_with_extras_in_text(value["name"][lang]) + '"\n'
-                result_text += f'        title_id: "{k}"\n'
-                result_text += '        level: "80"\n'
-                result_text += f'        icon: "{getImage(value["icon"])}"\n'
-                result_text += '        description:\n'
-                for lang in LANGUAGES:
-                    result_text += f'          {lang}: "' + deal_with_extras_in_text(value["description"][lang]) + '"\n'
-                result_text += f'        frontsplitter: "{value["frontsplitter"]}"\n'
-                result_text += '        phases:\n'
-                result_text += '          - phase: "07"\n'
-    return result, result_text
 
 
 def translatename(name, lang="en"):
@@ -774,7 +411,7 @@ def addQuestkDetails(job, pvp):
                 print(f"Error in addQuestkDetails: {e}")
                 pass
             place = f"{level_data['region']} > {quest['PlaceName']}"
-            if not level_data['placename'] in place:
+            if level_data['placename'] not in place:
                 place + f" > {level_data['placename']}"
             newquest = {
                 "name": quest['Name'],
@@ -902,6 +539,7 @@ def addKlassJobs():
     # for job, job_data in skills.items():
     all_crafter_leves = getCrafterLeves()
     all_gatherer_leves = getGathererLeves()
+    prepare_eureka_bozja_data(actions, status, status_trans, actions_trans, actiontransient_trans, cjs)
     eureka_actions = getEurekaActionDetails()
     bozja_actions = getBozjaActionDetails()
     #print_color_yellow(pretty_json(bozja_actions))
@@ -924,7 +562,7 @@ def addKlassJobs():
         if not job_data:
             continue
         counter += 1
-        #if not job == "Blaumagier":
+        #if not job == "Rotmagier":
         #    continue
         base_class = cjs[k[0]]["ClassJob"]['Parent'] if not cjs[k[0]]["ClassJob"]['Parent'] == job else None
         print_color_red(job)
@@ -997,14 +635,14 @@ def addKlassJobs():
         filecontent += f'order: {counter}\n'
         filecontent += f'plvl: {maxlvl}\n'
         filecontent += f'ilvl: {maxilvl}\n'
-        filecontent += f'lodestone:\n'
+        filecontent += 'lodestone:\n'
         for lang in LANGUAGES:
             n_lang = lang
             if lang in ["en", "cn", "ko"]:
                 n_lang = "na"
             elif lang == "ja":
                 n_lang = "jp"
-            filecontent += f'  {lang}: "https://{n_lang}.finalfantasyxiv.com/jobguide/{job_d[f"Name_en"].replace(" ", "").lower()}/"\n'
+            filecontent += f'  {lang}: "https://{n_lang}.finalfantasyxiv.com/jobguide/{job_d["Name_en"].replace(" ", "").lower()}/"\n'
 
         if base_class:
             filecontent += 'base_class:\n'
@@ -1024,16 +662,20 @@ def addKlassJobs():
             filecontent += f'      {lang}: "{job_d[f"Name_{lang}"].title()}"\n'
         filecontent += "    id: \"" + "boss" + str(counter) + "\"\n"
         if job == "Blaumagier":
-            filecontent += addBlueAttackDetails(job_data)
+            filecontent += addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_trans, logdata)
         else:
-            filecontent += addAttackDetails(job_data)
-            filecontent += addAttackDetails(job_data_pvp, True)
-        filecontent += addStatusDetails(job, job_abb)
-        filecontent += addTraitDetails(job)
+            attack_text, attack_skills = addAttackDetails(job_data)
+            pvp_text, pvp_skills = addAttackDetails(job_data_pvp, True)
+            filecontent += attack_text
+            filecontent += pvp_text
 
-        ea, ea_text = addEurekaActions(job, eureka_actions)
+        # get eureka und bozja data here for status bt add text later to filecontent
+        ea, ea_text, eureka_skills = addEurekaActions(job, eureka_actions)
+        bz, bz_text, bozja_skills = addBozjaActions(job, bozja_actions)
+        filecontent += addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, bozja_skills)
+        #filecontent += addOldStatusDetails(job, job_abb)
+        filecontent += addTraitDetails(job)
         filecontent += ea_text
-        bz, bz_text = addBozjaActions(job, bozja_actions)
         filecontent += bz_text
         cleves, cleves_text = addCrafterLeve(job, all_crafter_leves)
         filecontent += cleves_text
@@ -1071,264 +713,18 @@ def addKlassJobs():
     return counter
 
 
-def addChocoboPartnerSkills():
-    global actions
-    global actions_trans
-    global actiontransient_trans
-
-    global buddyskill_raw
-    test = [ [ x['Attacker'], x['Defender'], x['Healer'] ] for key, x in buddyskill_raw.items() if x['IsActive'] == "True" and not key == "0" ]
-    chocobo_skills = []
-    for x in test:
-        chocobo_skills += x
-    chocobo_skillss = { key:actions[key] for key in chocobo_skills }
-    #print(chocobo_skillss)
-    ordered = OrderedDict(sorted(chocobo_skillss.items(), key=lambda x: int(x[0])))
-    result = ""
-    result += "    attacks:\n"
-    for key, _ in ordered.items():
-        t = actions_trans[key]
-        result += '      - title:\n'
-        result += f'          de: "{t["Name_de"]}"\n'
-        result += f'          en: "{t["Name_en"]}"\n'
-        result += f'          fr: "{t["Name_fr"]}"\n'
-        result += f'          ja: "{t["Name_ja"]}"\n'
-        result += f'          cn: "{t["Name_cn"]}"\n'
-        result += f'          ko: "{t["Name_ko"]}"\n'
-        result += f'        icon: "{getImage(t["Icon"])}"\n'
-        #result += f'        level: "{actions[key]["Level"]}"\n'
-        result += f'        title_id: "{key}"\n'
-        result += '        description:\n'
-        result += '          de: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_de"]) + '"\n'
-        result += '          en: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_en"]) + '"\n'
-        result += '          fr: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_fr"]) + '"\n'
-        result += '          ja: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_ja"]) + '"\n'
-        result += '          cn: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_cn"]) + '"\n'
-        result += '          ko: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_ko"]) + '"\n'
-        result += '        phases:\n'
-        result += '          - phase: "01"\n'
-    return result
-
-
-def addRennChocoboSkills_trans():
-    global chocoboskills_trans
-    ordered = OrderedDict(sorted(chocoboskills_trans.items(), key=lambda x: int(x[0])))
-    result = ""
-    for key, value in ordered.items():
-        if value["Name_de"] == "":
-            continue
-        # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
-        result += '      - title:\n'
-        result += f'          de: "{value["Name_de"]}"\n'
-        result += f'          en: "{value["Name_en"]}"\n'
-        result += f'          fr: "{value["Name_fr"]}"\n'
-        result += f'          ja: "{value["Name_ja"]}"\n'
-        result += f'          cn: "{value["Name_cn"]}"\n'
-        result += f'          ko: "{value["Name_ko"]}"\n'
-        result += f'        title_id: "{key}"\n'
-        result += f'        icon: "{getImage(value["Icon"])}"\n'
-        result += '        description:\n'
-        result += '          de: "' + deal_with_extras_in_text(value["Description_de"]) + '"\n'
-        result += '          en: "' + deal_with_extras_in_text(value["Description_en"]) + '"\n'
-        result += '          fr: "' + deal_with_extras_in_text(value["Description_fr"]) + '"\n'
-        result += '          ja: "' + deal_with_extras_in_text(value["Description_ja"]) + '"\n'
-        result += '          cn: "' + deal_with_extras_in_text(value["Description_cn"]) + '"\n'
-        result += '          ko: "' + deal_with_extras_in_text(value["Description_ko"]) + '"\n'
-        result += '        phases:\n'
-        result += '          - phase: "03"\n'
-    return result
-
-
-def addChocoboPartnerTraits():
-    global traits
-    global traits_trans
-    global traitstransient_trans
-    global buddyskill_raw
-    test = [ [x['Attacker'], x['Defender'], x['Healer']] for key, x in buddyskill_raw.items() if x['IsActive'] == "False" and not key == "0"]
-    chocobo_traits = []
-    for x in test:
-        chocobo_traits += x
-    chocobo_traits = sorted(chocobo_traits)
-    chocobo_traits_trans = { key:traits[key] for key in chocobo_traits }
-    ordered = OrderedDict(sorted(chocobo_traits_trans.items(), key=lambda x: int(getitem(x[1], 'Level'))))
-    result = ""
-    result += "    traits:\n"
-    for key, _ in ordered.items():
-        t = traits_trans[key]
-        result += '      - title:\n'
-        result += f'          de: "{t["Name_de"]}"\n'
-        result += f'          en: "{t["Name_en"]}"\n'
-        result += f'          fr: "{t["Name_fr"]}"\n'
-        result += f'          ja: "{t["Name_ja"]}"\n'
-        result += f'          cn: "{t["Name_cn"]}"\n'
-        result += f'          ko: "{t["Name_ko"]}"\n'
-        result += f'        icon: "{getImage(t["Icon"])}"\n'
-        result += f'        level: "{traits[key]["Level"]}"\n'
-        result += f'        title_id: "{key}"\n'
-        result += '        description:\n'
-        result += '          de: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_de"]) + '"\n'
-        result += '          en: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_en"]) + '"\n'
-        result += '          fr: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_fr"]) + '"\n'
-        result += '          ja: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_ja"]) + '"\n'
-        result += '          cn: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_cn"]) + '"\n'
-        result += '          ko: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_ko"]) + '"\n'
-        result += '        phases:\n'
-        result += '          - phase: "02"\n'
-    return result
-
-
-def addRennChocoboItems_trans():
-    global chocoboitems_trans
-    ordered = OrderedDict(sorted(chocoboitems_trans.items(), key=lambda x: int(x[0])))
-    result = ""
-    for key, value in ordered.items():
-        if value["Name_de"] == "":
-            continue
-        # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
-        result += '      - title:\n'
-        result += f'          de: "{value["Name_de"]}"\n'
-        result += f'          en: "{value["Name_en"]}"\n'
-        result += f'          fr: "{value["Name_fr"]}"\n'
-        result += f'          ja: "{value["Name_ja"]}"\n'
-        result += f'          cn: "{value["Name_cn"]}"\n'
-        result += f'          ko: "{value["Name_ko"]}"\n'
-        result += f'        title_id: "{key}"\n'
-        result += f'        icon: "{getImage(value["Icon"])}"\n'
-        result += '        description:\n'
-        result += '          de: "' + deal_with_extras_in_text(value["Description_de"]) + '"\n'
-        result += '          en: "' + deal_with_extras_in_text(value["Description_en"]) + '"\n'
-        result += '          fr: "' + deal_with_extras_in_text(value["Description_fr"]) + '"\n'
-        result += '          ja: "' + deal_with_extras_in_text(value["Description_ja"]) + '"\n'
-        result += '          cn: "' + deal_with_extras_in_text(value["Description_cn"]) + '"\n'
-        result += '          ko: "' + deal_with_extras_in_text(value["Description_ko"]) + '"\n'
-        result += '        phases:\n'
-        result += '          - phase: "04"\n'
-    return result
-
-
-def addRennChocoboMissions():
-    global chocobochallange_trans
-    ordered = OrderedDict(sorted(chocobochallange_trans.items(), key=lambda x: int(x[0])))
-    result = ""
-    for key, value in ordered.items():
-        if value["col_0_de"] == "":
-            continue
-        result += '      - title:\n'
-        result += f'          de: "{value["col_0_de"]}"\n'
-        result += f'          en: "{value["col_0_en"]}"\n'
-        result += f'          fr: "{value["col_0_fr"]}"\n'
-        result += f'          ja: "{value["col_0_ja"]}"\n'
-        result += f'          cn: "{value["col_0_cn"]}"\n'
-        result += f'          ko: "{value["col_0_ko"]}"\n'
-        result += f'        title_id: "{key}"\n'
-        result += '        phases:\n'
-        result += '          - phase: "05"\n'
-    return result
-
-
-def addChocobo():
-    job = "Chocobo"
-    job_d = {
-        "Name_de": "Chocobo",
-        "Name_en": "chocobo",
-        "Name_fr": "chocobo",
-        "Name_ja": "チョコボ",
-        "Name_cn": "チョコボ",
-        "Name_ko": "초코보"
-    }
-    filecontent = ""
-    filecontent += '---\n'
-    filecontent += 'wip: "True"\n'
-    filecontent += 'title:\n'
-    filecontent += f'  de: "{job_d["Name_de"]}"\n'
-    filecontent += f'  en: "{job_d["Name_en"]}"\n'
-    filecontent += f'  fr: "{job_d["Name_fr"]}"\n'
-    filecontent += f'  ja: "{job_d["Name_ja"]}"\n'
-    filecontent += f'  cn: "{job_d["Name_cn"]}"\n'
-    filecontent += f'  ko: "{job_d["Name_ko"]}"\n'
-    filecontent += 'layout: klassen\n'
-    filecontent += 'page_type: guide\n'
-    filecontent += 'roletypeinparty:\n'
-    filecontent += f'  de: "{job_d["Name_de"]}"\n'
-    filecontent += f'  en: "{job_d["Name_en"]}"\n'
-    filecontent += f'  fr: "{job_d["Name_fr"]}"\n'
-    filecontent += f'  ja: "{job_d["Name_ja"]}"\n'
-    filecontent += f'  cn: "{job_d["Name_cn"]}"\n'
-    filecontent += f'  ko: "{job_d["Name_ko"]}"\n'
-    filecontent += 'categories: "klassenjobs"\n'
-    filecontent += 'difficulty: "Normal"\n'
-    filecontent += 'instanceType: "klassenjobs"\n'
-    filecontent += 'date: "2013.01.01"\n'
-    filecontent += 'patchNumber: "2.0"\n'
-    filecontent += 'patchName: "A Realm Reborn"\n'
-    filecontent += 'expac: "arr"\n'
-    filecontent += 'slug: "klassen_und_jobs_' + job.lower() + '"\n'
-    if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
-        filecontent += 'image:\n'
-        filecontent += f'    - url: "/assets/img/content/klassen/{job}.png"\n'
-    else:
-        print(f"Missing img: {job}.png")
-    filecontent += 'terms:\n'
-    filecontent += '    - term: "Klassen"\n'
-    filecontent += '    - term: "Jobs"\n'
-    filecontent += '    - term: "Skills"\n'
-    filecontent += '    - term: "Status"\n'
-    filecontent += '    - term: "Traits"\n'
-    filecontent += f'    - term: "{job_d["Name_de"]}"\n'
-    filecontent += f'    - term: "{job_d["Name_en"]}"\n'
-    filecontent += f'    - term: "{job_d["Name_fr"]}"\n'
-    filecontent += f'    - term: "{job_d["Name_ja"]}"\n'
-    filecontent += f'    - term: "{job_d["Name_cn"]}"\n'
-    filecontent += f'    - term: "{job_d["Name_ko"]}"\n'
-    filecontent += 'sortid: 0\n'
-    filecontent += 'order: 0\n'
-    filecontent += 'plvl: 50\n'
-    filecontent += "bosses:\n"
-    filecontent += "  - title:\n"
-    filecontent += f'      de: "{job_d["Name_de"]}"\n'
-    filecontent += f'      en: "{job_d["Name_en"]}"\n'
-    filecontent += f'      fr: "{job_d["Name_fr"]}"\n'
-    filecontent += f'      ja: "{job_d["Name_ja"]}"\n'
-    filecontent += f'      cn: "{job_d["Name_cn"]}"\n'
-    filecontent += f'      ko: "{job_d["Name_ko"]}"\n'
-    filecontent += "    id: \"" + "boss0\"\n"
-    #todo add chocobo stuff
-    filecontent += addChocoboPartnerSkills()
-    filecontent += addRennChocoboSkills_trans()
-    #addRennChocoboStatus()
-    filecontent += addRennChocoboItems_trans()
-    filecontent += addRennChocoboMissions()
-    filecontent += addChocoboPartnerTraits()
-    filecontent += "    sequence:" + "\n"
-    filecontent += "      - phase: \"01\"\n"
-    filecontent += "        name: \"Chocobo-Partner-Skills\"\n"
-    filecontent += "      - phase: \"02\"\n"
-    filecontent += "        name: \"Chocobo-Partner-Traits\"\n"
-    filecontent += "      - phase: \"03\"\n"
-    filecontent += "        name: \"Renn-Chocobo-Skills\"\n"
-    #filecontent += "      - phase: \"04\"\n"
-    #filecontent += "        name: \"Renn-Chocobo-Status\"\n"
-    filecontent += "      - phase: \"04\"\n"
-    filecontent += "        name: \"Renn-Chocobo-Items\"\n"
-    filecontent += "      - phase: \"05\"\n"
-    filecontent += "        name: \"Renn-Chocobo-Missions\"\n"
-    filecontent += '---\n'
-
-    filename = f"klassen_und_jobs/2013-01-01--2.0--0--{job}.md"
-    with open(filename, encoding="utf8") as f:
-        doc = f.read()
-    if not doc == filecontent:
-        with open(filename, "w", encoding="utf8") as f:
-            f.write(filecontent)
-
-
 def run():
     load_global_data()
     os.chdir("../_posts")
     addKlassJobs()
-    addChocobo()
+    addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans)
 
 
 if __name__ == "__main__":
     run()
     #test([{'Ort': 'Abyssos - Fünfter Kreis', 'Gegner': 'Proto-Karfunkel'}, {'Ort': 'Abyssos - Fünfter Kreis (episch)', 'Gegner': 'Proto-Karfunkel'}, {'Ort': 'Das Fenn', 'Gegner': 'Mahisha'}, {'Ort': 'Die Nichts-Arche', 'Gegner': 'Cuchulainn'}, {'Ort': 'Die Welt der Dunkelheit', 'Gegner': 'Cerberus'}, {'Ort': 'Himmelssäule (Ebenen 61-70)', 'Gegner': 'Kenko'}, {'Ort': 'Himmelssäule (Ebenen 81-90)', 'Gegner': 'Himmelssäulen-Gozu'}, {'Ort': 'Historisches Amdapor', 'Gegner': 'Verrottender Gourmet'}, {'Ort': 'Sankt Mocianne-Arboretum (schwer)', 'Gegner': 'Nullchu'}, {'Ort': 'Thavnair', 'Gegner': 'Yilan'}, {'Ort': 'Verschlungene Schatten 1', 'Gegner': '(InGame Hinweis)'}, {'Ort': 'Verschlungene Schatten 2 - 1', 'Gegner': 'Rafflesia'}, {'Ort': 'Verschlungene Schatten 3 - 4', 'Gegner': 'Schmerz Von Meracydia'}])
+
+
+
+
+
