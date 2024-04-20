@@ -5,10 +5,10 @@ from ffxiv_aku import print_color_red, gear_get, getLevel
 from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata
 from collections import OrderedDict
 from operator import getitem
-from convert_skills_to_guide_form_helper.chocobo import addChocobo
-from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES
-from convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
-from convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
+from .convert_skills_to_guide_form_helper.chocobo import addChocobo
+from .convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES
+from .convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
+from .convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
 
 allPartyMittigation = {}
 skills = None
@@ -776,13 +776,13 @@ def addKlassJobs():
 
 
 def run():
-    load_global_data()
     os.chdir("../_posts")
     addKlassJobs()
     addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans)
 
 
 if __name__ == "__main__":
+    load_global_data()
     run()
     #test([{'Ort': 'Abyssos - Fünfter Kreis', 'Gegner': 'Proto-Karfunkel'}, {'Ort': 'Abyssos - Fünfter Kreis (episch)', 'Gegner': 'Proto-Karfunkel'}, {'Ort': 'Das Fenn', 'Gegner': 'Mahisha'}, {'Ort': 'Die Nichts-Arche', 'Gegner': 'Cuchulainn'}, {'Ort': 'Die Welt der Dunkelheit', 'Gegner': 'Cerberus'}, {'Ort': 'Himmelssäule (Ebenen 61-70)', 'Gegner': 'Kenko'}, {'Ort': 'Himmelssäule (Ebenen 81-90)', 'Gegner': 'Himmelssäulen-Gozu'}, {'Ort': 'Historisches Amdapor', 'Gegner': 'Verrottender Gourmet'}, {'Ort': 'Sankt Mocianne-Arboretum (schwer)', 'Gegner': 'Nullchu'}, {'Ort': 'Thavnair', 'Gegner': 'Yilan'}, {'Ort': 'Verschlungene Schatten 1', 'Gegner': '(InGame Hinweis)'}, {'Ort': 'Verschlungene Schatten 2 - 1', 'Gegner': 'Rafflesia'}, {'Ort': 'Verschlungene Schatten 3 - 4', 'Gegner': 'Schmerz Von Meracydia'}])
 

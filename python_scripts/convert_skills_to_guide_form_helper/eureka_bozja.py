@@ -1,4 +1,4 @@
-from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, getStatusKey
+from .helper import getImage, deal_with_extras_in_text, LANGUAGES, getStatusKey
 import re
 import json
 from ffxiv_aku import loadDataTheQuickestWay

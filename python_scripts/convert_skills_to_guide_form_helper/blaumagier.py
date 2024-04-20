@@ -1,5 +1,5 @@
 from collections import OrderedDict
-from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, get_propper_zone_name, LANGUAGES
+from .helper import getImage, deal_with_extras_in_text, get_propper_zone_name, LANGUAGES
 import traceback
 from operator import getitem
 from glob import glob

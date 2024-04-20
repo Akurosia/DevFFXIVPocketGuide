@@ -1,6 +1,6 @@
 import os
 from collections import OrderedDict
-from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text
+from .helper import getImage, deal_with_extras_in_text
 from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay
 from operator import getitem
 
