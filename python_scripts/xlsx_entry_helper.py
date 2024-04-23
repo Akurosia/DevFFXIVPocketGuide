@@ -4,10 +4,10 @@
 import natsort
 from collections import OrderedDict
 from openpyxl import load_workbook
+import os
 from io import BytesIO
 import requests
 import logging
-import os
 from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red, getLevel
 #getLevel?
 

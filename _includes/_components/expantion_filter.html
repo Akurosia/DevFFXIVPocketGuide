@@ -1,0 +1,15 @@
+{%- if x == "ffxiv" -%}    {%- assign expacicon = "061000/061533_hr1.png" -%}
+{%- elsif x == "arr" -%}  {%- assign expacicon = "061000/061875_hr1.png" -%}
+{%- elsif x == "hw" -%}  {%- assign expacicon = "061000/061876_hr1.png" -%}
+{%- elsif x == "sb" -%}  {%- assign expacicon = "061000/061877_hr1.png" -%}
+{%- elsif x == "shb" -%} {%- assign expacicon = "061000/061878_hr1.png" -%}
+{%- elsif x == "ew" -%}  {%- assign expacicon = "061000/061879_hr1.png" -%}
+{%- elsif x == "dt" -%}  {%- assign expacicon = "" -%}
+{%- else -%}                    {%- assign expacicon = "" -%}
+{%- endif -%}
+<h2 class="index-divider__title">
+    {%- if expacicon != "" -%}
+        <image class="role-icon" src="{{site.imageurl}}/{{expacicon}}"/>
+    {%- endif -%}
+    {{ x_title }}
+</h2>

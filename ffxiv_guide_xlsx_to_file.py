@@ -174,6 +174,7 @@ def main():
     logger.critical('START')
     sheet, max_row, max_column = read_xlsx_file()
     XLSXELEMENTS = get_header_from_xlsx(sheet, max_column)
+    csgf.load_global_data()
     # change into _posts dir
     os.chdir("./_posts")
     # first run to create all files
@@ -181,6 +182,7 @@ def main():
     #logger.debug(orderedContent)
     try:
         run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
+        pass
     except Exception: pass
     if not print_debug:
         #csgf needs also to run from posts dir

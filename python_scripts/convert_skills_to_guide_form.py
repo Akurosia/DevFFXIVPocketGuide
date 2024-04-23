@@ -5,10 +5,10 @@ from ffxiv_aku import print_color_red, gear_get, getLevel
 from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata
 from collections import OrderedDict
 from operator import getitem
-from .convert_skills_to_guide_form_helper.chocobo import addChocobo
-from .convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES
-from .convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
-from .convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
+from convert_skills_to_guide_form_helper.chocobo import addChocobo
+from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES
+from convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
+from convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
 
 allPartyMittigation = {}
 skills = None
@@ -34,6 +34,7 @@ trans_leves = None
 craftleves = None
 addon_trans = None
 items_trans = None
+bannertimeline = None
 
 disable_print = True
 status_ncj = None
@@ -63,11 +64,8 @@ def load_global_data():
     global trans_leves
     global craftleves
     global items_trans
+    global bannertimeline
 
-    global chocoboskills_trans
-    global chocoboitems_trans
-    global chocobochallange_trans
-    global buddyskill_raw
     storeFilesInTmp(True)
     skills = get_skills_for_player()
     pvpskills = get_skills_for_player(True)
@@ -92,10 +90,7 @@ def load_global_data():
     leves = loadDataTheQuickestWay("leve")
     trans_leves = loadDataTheQuickestWay("leve", translate=True)
     craftleves = loadDataTheQuickestWay("craftleve.json")
-    chocoboskills_trans = loadDataTheQuickestWay("chocoboraceability", translate=True)
-    chocoboitems_trans = loadDataTheQuickestWay("chocoboraceitem", translate=True)
-    chocobochallange_trans = loadDataTheQuickestWay("chocoboracechallenge", translate=True)
-    buddyskill_raw = loadDataTheQuickestWay("buddyskill.json", exd="raw-exd-all")
+    bannertimeline = loadDataTheQuickestWay("BannerTimeline")
 
 
 def convertJobToAbrev(job):
@@ -582,6 +577,31 @@ def get_classJobKeyMapping():
     return results
 
 
+def getIconForJob(job_abb):
+    global bannertimeline
+    global additionalIcons
+    icon = ""
+    for key, value in bannertimeline.items():
+        if value["AcceptClassJobCategory"] == job_abb:
+            return getImage(value["Icon"])
+    if additionalIcons.get(job_abb, None):
+        return "062000/" + additionalIcons[job_abb] + ".png"
+    return icon
+
+
+additionalIcons = {
+    "MIN": "062116_hr1",
+    "GÄR": "062117_hr1",
+    "GRM": "062115_hr1",
+    "ALC": "062114_hr1",
+    "WEB": "062113_hr1",
+    "GER": "062112_hr1",
+    "ZMR": "062108_hr1",
+    "GRS": "062109_hr1",
+    "PLA": "062110_hr1",
+    "GLD": "062111_hr1",
+    "BMA": "062136_hr1"
+}
 def addKlassJobs():
     global cjs_trans
     global cjs
@@ -677,6 +697,7 @@ def addKlassJobs():
             filecontent += f'    - url: "/assets/img/content/klassen/{job}.png"\n'
         else:
             print(f"Missing img: {job}.png")
+        filecontent += f'icon: "{getIconForJob(job_abb)}"\n'
         filecontent += 'terms:\n'
         filecontent += '    - term: "Klassen"\n'
         filecontent += '    - term: "Jobs"\n'

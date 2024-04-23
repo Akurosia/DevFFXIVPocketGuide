@@ -14,7 +14,7 @@
             {%- if counter > 0 -%}
                 <a id="{{ x_id }}"></a>
                 <div onclick='$( ".sort_by_type" ).show();$( ".sort_by_expac" ).hide();' class="index-divider" data-expansion="{{ x }}">
-                    <h2 class="index-divider__title">{{ x_title }}</h2>
+                    {%- include _components/expantion_filter.html -%}
                 </div>
                 <div class="index__list" data-expansion="{{ x }}">
                     {%- assign sorted = categories | sort:"order" -%}
@@ -34,8 +34,20 @@
             {%- if counter > 0 -%}
                 <a id="{{ roletype }}"></a>
                 <div onclick='$( ".sort_by_expac" ).show();$( ".sort_by_type" ).hide();' class="index-divider" data-expansion="{{ roletype }}">
+                    {%- if roletype == "Verteidiger" -%}            {%- assign classicon = "062000/062581_hr1.png" -%}
+                    {%- elsif roletype == "Heiler" -%}              {%- assign classicon = "062000/062582_hr1.png" -%}
+                    {%- elsif roletype == "Nahkampfangreifer" -%}   {%- assign classicon = "062000/062584_hr1.png" -%}
+                    {%- elsif roletype == "Phys. Fernkämpfer" -%}   {%- assign classicon = "062000/062586_hr1.png" -%}
+                    {%- elsif roletype == "Mag. Fernkämpfer" -%}    {%- assign classicon = "062000/062587_hr1.png" -%}
+                    {%- else -%}                                    {%- assign classicon = "" -%}
+                    {%- endif -%}
                     {%- for lang in LANGUAGES -%}
-                        <span class="lang-toggle lang-toogle-{{lang}} index-divider__title">{{ x_cjc[1][lang] }}</span>
+                        <span class="lang-toggle lang-toogle-{{lang}} index-divider__title">
+                            {%- if classicon != "" -%}
+                                <image class="role-icon" src="{{site.imageurl}}/{{classicon}}"/>
+                            {%- endif -%}
+                            {{ x_cjc[1][lang] }}
+                        </span>
                     {%- endfor -%}
                 </div>
                 <div class="index__list" data-expansion="{{ x }}">

@@ -11,7 +11,7 @@
         {%- if counterq > 0 -%}
            <a id="{{ x_id }}"></a>
            <div class="index-divider" data-expansion="{{ x }}">
-               <h2 class="index-divider__title">{{ x_title }}</h2>
+                {%- include _components/expantion_filter.html -%}
            </div>
            <div class="index__list_quests" data-expansion="{{ x }}">
                {%- include quests/_components/index-list.html -%}

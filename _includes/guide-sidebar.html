@@ -67,6 +67,15 @@
                 {%- endfor -%}
             </h5>
         {%- endif -%}
+
+        {%- if page.icon -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Icon:
+                <span class="block group-icon">
+                    <image src="{{site.imageurl}}/{{page.icon}}"/>
+                </span>
+            </h5>
+        {%- endif -%}
+
         {%- if page.abbreviations -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Klassen-Kürzel:
                 {%- for lang in LANGUAGES -%}

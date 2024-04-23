@@ -1,4 +1,5 @@
 import re
+from ffxiv_aku import fix_slug
 
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
 
@@ -39,25 +40,6 @@ def deal_with_extras_in_text(text):
         text = text.replace(y, "/")
     text = text.replace("\n", "</br>").replace("</br></br>", "</br>").replace("</br></br>", "</br>")
     return text
-
-
-def fix_slug(name):
-    return (
-        name.lower()
-            .replace("ö", "oe")
-            .replace("ä", "ae")
-            .replace("ü", "ue")
-            .replace("ß", "ss")
-            .replace(" ", "_")
-            .replace(")(", "_")
-            .replace("(", "")
-            .replace(")", "")
-            .replace("-", "_")
-            .replace("'", "")
-            .replace(":", "_")
-            .replace("__", "_")
-            .replace("__", "_")
-    )
 
 
 def get_propper_zone_name(zone_name, files):
