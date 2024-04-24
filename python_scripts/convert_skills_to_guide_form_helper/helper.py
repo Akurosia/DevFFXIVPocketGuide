@@ -1,5 +1,5 @@
 import re
-from ffxiv_aku import fix_slug
+from ffxiv_aku import fix_slug, print_color_red, print_color_yellow, print_color_blue
 
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
 
@@ -18,6 +18,7 @@ def getImage(image: str) -> str:
 
 
 def deal_with_extras_in_text(text):
+    text = text.replace("\n", "</br>").replace("</br></br>", "</br>").replace("</br></br>", "</br>")
     #print(text)
     # filter if cases
     regex = "(<If(.*?)>)"
@@ -28,17 +29,19 @@ def deal_with_extras_in_text(text):
     # handle else cases
     regex = "(<Else/>\\d+)"
     x = re.findall(regex, text)
-    x = list(set(x))
+    #x = list(set(x))
     for y in x:
         text = text.replace(y, "")
-
     # handle else cases
     regex = "(<Else/>)"
     x = re.findall(regex, text)
     x = list(set(x))
     for y in x:
         text = text.replace(y, "/")
-    text = text.replace("\n", "</br>").replace("</br></br>", "</br>").replace("</br></br>", "</br>")
+    if text.endswith(".//"):
+        text = text[:-2]
+    elif text.endswith("./"):
+        text = text[:-1]
     return text
 
 

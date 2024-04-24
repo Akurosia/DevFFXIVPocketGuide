@@ -577,19 +577,7 @@ def get_classJobKeyMapping():
     return results
 
 
-def getIconForJob(job_abb):
-    global bannertimeline
-    global additionalIcons
-    icon = ""
-    for key, value in bannertimeline.items():
-        if value["AcceptClassJobCategory"] == job_abb:
-            return getImage(value["Icon"])
-    if additionalIcons.get(job_abb, None):
-        return "062000/" + additionalIcons[job_abb] + ".png"
-    return icon
-
-
-additionalIcons = {
+additionalJobIcons = {
     "MIN": "062116_hr1",
     "GÄR": "062117_hr1",
     "GRM": "062115_hr1",
@@ -602,11 +590,35 @@ additionalIcons = {
     "GLD": "062111_hr1",
     "BMA": "062136_hr1"
 }
+def getIconForJob(job_abb):
+    global bannertimeline
+    global additionalJobIcons
+    icon = ""
+    for key, value in bannertimeline.items():
+        if value["AcceptClassJobCategory"] == job_abb:
+            return getImage(value["Icon"])
+    if additionalJobIcons.get(job_abb, None):
+        return "062000/" + additionalJobIcons[job_abb] + ".png"
+    return icon
+
+additionalClassIcons = {
+    "PLD": "062101_hr1",
+    "MÖN": "062102_hr1",
+    "KRG": "062103_hr1",
+    "DRG": "062104_hr1",
+    "BRD": "062105_hr1",
+    "WMA": "062106_hr1",
+    "SMA": "062107_hr1",
+    "BSW": "062126_hr1",
+    "GLT": "062126_hr1",
+    "NIN": "062129_hr1"
+}
 def addKlassJobs():
     global cjs_trans
     global cjs
     global addon_trans
     global status_ncj
+    global additionalClassIcons
     partybonus = {
         "0": "",
         "1": "1082",
@@ -644,7 +656,7 @@ def addKlassJobs():
             continue
         allPartyMittigation[job] = []
         counter += 1
-        #if not job == "Rotmagier":
+        #if not job == "Ninja":
         #    continue
         base_class = cjs[k[0]]["ClassJob"]['Parent'] if not cjs[k[0]]["ClassJob"]['Parent'] == job else None
         print_color_red(job)
@@ -697,7 +709,12 @@ def addKlassJobs():
             filecontent += f'    - url: "/assets/img/content/klassen/{job}.png"\n'
         else:
             print(f"Missing img: {job}.png")
-        filecontent += f'icon: "{getIconForJob(job_abb)}"\n'
+        jobicon = getIconForJob(job_abb)
+        if jobicon:
+            filecontent += f'jobicon: "{jobicon}"\n'
+        classicon = additionalClassIcons.get(job_abb, None)
+        if classicon:
+            filecontent += f'classicon: "062000/{classicon}.png"\n'
         filecontent += 'terms:\n'
         filecontent += '    - term: "Klassen"\n'
         filecontent += '    - term: "Jobs"\n'
@@ -735,7 +752,7 @@ def addKlassJobs():
         filecontent += 'abbreviations:\n'
         for lang in LANGUAGES:
             if base_class:
-                filecontent += f'  {lang}: "{job_d["Abbreviation_"+lang]}, {cjs_trans[cj_key_lookup[base_class]]["Abbreviation_"+lang]}"\n'
+                filecontent += f'  {lang}: "{cjs_trans[cj_key_lookup[base_class]]["Abbreviation_"+lang]}, {job_d["Abbreviation_"+lang]}"\n'
             else:
                 filecontent += f'  {lang}: "{job_d["Abbreviation_"+lang]}"\n'
 

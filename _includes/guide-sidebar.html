@@ -31,12 +31,16 @@
         {%- endfor -%}
     {%- endif -%}
     <div class="guide-metadata__wrapper">
-        <h5 class="guide-metadata__subtitle box small-1of2 med-full">Player Level: <span class="noblock">{{ page.plvl }}</span></h5>
+        <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            {%- if page.instanceType == "klassenjobs" -%}Max-{%- endif -%}Player Level: <span class="noblock">{{ page.plvl }}</span>
+        </h5>
         {%- if page.plvl_sync > 0 -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Player Level Sync: <span class="noblock">{{ page.plvl_sync }}</span></h5>
         {%- endif -%}
         {%- if page.ilvl > 0 -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Item Level: <span class="noblock">{{ page.ilvl }}</span></h5>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                {%- if page.instanceType == "klassenjobs" -%}Max-{%- endif -%}Item Level: <span class="noblock">{{ page.ilvl }}</span>
+            </h5>
         {%- else -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Item Level: <span class="noblock">N/A</span></h5>
         {%- endif -%}
@@ -68,10 +72,15 @@
             </h5>
         {%- endif -%}
 
-        {%- if page.icon -%}
+        {%- if page.classicon or page.jobicon -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Icon:
                 <span class="block group-icon">
-                    <image src="{{site.imageurl}}/{{page.icon}}"/>
+                    {%- if page.classicon -%}
+                        <image title="Class" src="{{site.imageurl}}/{{page.classicon}}"/>
+                    {%- endif -%}
+                    {%- if page.jobicon-%}
+                        <image title="Job" src="{{site.imageurl}}/{{page.jobicon}}"/>
+                    {%- endif -%}
                 </span>
             </h5>
         {%- endif -%}
