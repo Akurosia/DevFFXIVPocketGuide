@@ -206,6 +206,7 @@ def addAttackDetails(job_data, pvp=False):
         result += f'        effectrange: "{skill_data["EffectRange"]}"\n'
         result += f'        cast: "{skill_data["Cast"]}"\n'
         result += f'        recast: "{skill_data["Recast"]}"\n'
+        result += f'        secondarycost: "{skill_data.get("SecondaryCostType", 0)}"\n'
         result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
         if tpye_damage:
             result += f'        damage: "{tpye_damage}"\n'

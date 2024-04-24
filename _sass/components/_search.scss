@@ -58,6 +58,9 @@
 }
 
 .search__form_blu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0 calc(#{$unit} * 1) calc(#{$unit} * 1) 0;
 
     label {
@@ -70,7 +73,7 @@
         width: 100%;
     }
 
-    input {
+    input[type=text] {
         border: 1px solid $palette--black;
         border-radius: 3px;
         color: $font-black;
@@ -82,13 +85,33 @@
         outline: none;
         padding: $unit;
         transition: all .2s ease;
-        width: 100%;
+        min-width: calc(100% - 40px);
+        width: calc(100% - 40px);
 
         &:focus {
             border: 1px solid $palette--red;
             transition: all .2s ease;
         }
 
+    }
+
+    input[type=checkbox] {
+        height: 40px;
+        width: 40px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+        border: 1px solid #34495E;
+        border-radius: 4px;
+        outline: none;
+        transition-duration: 0.3s;
+        background-color: #555555;
+        cursor: pointer;
+        &:checked {
+            border: 1px solid #151515;
+            background-color: #009148;
+        }
     }
 
 }

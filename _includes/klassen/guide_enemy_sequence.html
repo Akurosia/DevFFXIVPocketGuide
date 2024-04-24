@@ -3,16 +3,15 @@
     <!-- Add Search filter for bluemage skills. -->
     <div class="search">
         <form class="search__form_blu">
-            <label for="guideFilter">Nach einem Guide suchen...</label>
             <input id="guideFilter" placeholder="
                 {%- if enemy.title.de == "Blaumagier" -%}!14., Wasserkanone, 4man, 8man, dungeon, raid, overworld, alone, arena
                 {%- else -%}Stumpfsinn, skill:Addle, status:Ehrfurcht, trait:Meister, leve:Haltbar, quest:Einfach, cat:Talent, buff:debuff, type:Schaden
                 {%- endif -%}
             " type="text"/>
+            <input type="checkbox" id="onlyfinalskills" value="onlyfinalskills">
         </form>
     </div>
 {%- for phase in enemy.sequence -%}
-
     {%- if enemy.sequence.size > 1 -%}
         <div class="guide__accordion-trigger--03" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
             <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>

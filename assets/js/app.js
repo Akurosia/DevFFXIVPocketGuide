@@ -245,6 +245,23 @@
             }
         });
 
+        // Guide Only display final skills ====================================================
+        $("#onlyfinalskills").on("click", function(e) {
+            let state = $("#onlyfinalskills").is(':checked')
+            $(".summary").each(function(e) {
+                var headingText  =  $(this).find(".index-item__title").data("terms").toLowerCase();
+                if (headingText.includes("finalcast:63")){
+                    if (state) {
+                        $(this).hide()
+                    } else {
+                        $(this).show()
+                    }
+                }
+            });
+        });
+
+
+
     });
 
 })(jQuery);
