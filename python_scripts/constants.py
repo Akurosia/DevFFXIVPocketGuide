@@ -36,6 +36,12 @@ _enemy = {
 EXAMPLE_SEQUENCE = {
     "sequence": [{
         "phase": "09",
+        "name": "phase_name"
+    }]
+}
+EXAMPLE_SEQUENCE_FULL = {
+    "sequence": [{
+        "phase": "09",
         "name": "phase_name",
         "alerts": [{
             "alert": "Die folgenden Angriffe haben sind entweder unbekannt oder haben keine klare Herkunft",

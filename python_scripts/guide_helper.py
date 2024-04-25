@@ -341,7 +341,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
 
                 tmp_attack = old_enemy_data['attacks'][attack_index]
                 tmp_attack['type'] = "variation"
-                tmp_attack['notes'] = [{'note': 'Variation-note BIG'}]
+                #tmp_attack['notes'] = [{'note': 'Variation-note BIG'}]
                 tmp = {
                     'title': {
                         'en': translateAttack(tmp_attack['title_id'], lang="en"),
@@ -482,7 +482,7 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 'phases': [{'phase': '09'}],
                 'roles': [{'role': 'role'}],
                 'tags': [{'tag': 'tag'}],
-                'notes': [{'note': 'note'}],
+                #'notes': [{'note': 'note'}],
                 'single_or_aoe': attack['type_id']
             }
             if attack.get('damage', None):
@@ -495,7 +495,9 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 tmp['disable'] = 'true'
                 tmp['roles'][0]['role'] = 'Tank'
                 tmp['tags'][0]['tag'] = 'Auto-Angriff'
-                del tmp['notes']
+                try:
+                    del tmp['notes']
+                except: ...
 
             if tmp['title']['de'].startswith("Unknown_"):
                 tmp['disable'] = 'true'
@@ -623,7 +625,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
                 'phases': [{'phase': '09'}],
                 'roles': [{'role': 'role'}],
                 'tags': [{'tag': 'tag'}],
-                'notes': [{'note': 'note'}]
+                #'notes': [{'note': 'note'}]
             }
             if status_data.get('duration', None):
                 tmp_status["durations"] = status_data['duration']

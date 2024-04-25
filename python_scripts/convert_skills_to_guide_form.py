@@ -5,10 +5,22 @@ from ffxiv_aku import print_color_red, gear_get, getLevel
 from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata
 from collections import OrderedDict
 from operator import getitem
-from convert_skills_to_guide_form_helper.chocobo import addChocobo
-from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES
-from convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
-from convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
+try:
+    from .convert_skills_to_guide_form_helper.chocobo import addChocobo
+except:
+    from convert_skills_to_guide_form_helper.chocobo import addChocobo
+try:
+    from .convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES
+except:
+    from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES
+try:
+    from .convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
+except:
+    from convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
+try:
+    from .convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
+except:
+    from convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
 
 allPartyMittigation = {}
 skills = None
@@ -737,7 +749,6 @@ def addKlassJobs():
         filecontent += f'plvl: {maxlvl}\n'
         filecontent += f'ilvl: {maxilvl}\n'
         if pvp:
-            print(job.lower())
             filecontent += f'deepdungeon: {job.lower()}\n'
         filecontent += 'lodestone:\n'
         for lang in LANGUAGES:

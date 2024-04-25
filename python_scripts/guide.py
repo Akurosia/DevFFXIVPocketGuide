@@ -25,7 +25,6 @@ disable_blue_print = True
 disable_red_print = True
 
 
-
 def check_Mechanics(entry, old_mechanics):
     guide_data = ""
     # this contruct looks ugly but it forbidds the recreation of empty mechanics
