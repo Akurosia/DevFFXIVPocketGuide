@@ -736,6 +736,9 @@ def addKlassJobs():
         filecontent += f'order: {counter}\n'
         filecontent += f'plvl: {maxlvl}\n'
         filecontent += f'ilvl: {maxilvl}\n'
+        if pvp:
+            print(job.lower())
+            filecontent += f'deepdungeon: {job.lower()}\n'
         filecontent += 'lodestone:\n'
         for lang in LANGUAGES:
             n_lang = lang
