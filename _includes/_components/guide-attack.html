@@ -1,4 +1,4 @@
-<!-- _components/Guide-Attack ======================================================= -->
+<!-- _components/Guide-Attack "Button"======================================================= -->
 <div class="guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}
             {%- if attack.attack_in_use == 'false' -%}--ignore
             {%- elsif attack.dutyActions -%}--dutyAction
@@ -6,8 +6,9 @@
             {%- elsif attack.variation -%}--variation
             {%- else -%}--attack
             {%- endif -%}">
-    <i class="material-icons" style="{%- if attack.disable == 'true' -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
-    <h4 class="guide__accordion-trigger-title">
+    <i class="Dropdown material-icons" style="{%- if attack.disable == 'true' -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Icon"></div>
+    <div class="Names">
         <span class="{% if attack.damage_type == 'Magical' %} attack-is-magic
                      {% elsif attack.damage_type && attack.damage_type != 'None' %} attack-is-physical
                      {% endif %}">
@@ -15,16 +16,17 @@
                 <span class="lang-toggle lang-toogle-{{lang}}">{{ attack.title[lang] }}</span>
             {%- endfor -%}
         </span>
-
         {%- if attack.title.en -%}
-            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ attack.title.en }}</div>
+            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ attack.title.en }}</div>
         {%- endif -%}
+    </div>
+    <div class="Attributes">
+        {%- include _components/guide-attack-types.html -%}
+    </div>
+    <div class="IdsHps">
         {%- if attack.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'attack')">ID: {{ attack.title_id }}</div>
         {%- endif -%}
-
-        {%- assign isDebuff = "False" -%}
-        {%- include _components/guide-attack-types.html -%}
         {%- if attack.damage -%}
             <div class="guide__accordion-trigger-id">DMG:
                 {%- if attack.damage[0].min == attack.damage[1].max -%}
@@ -34,9 +36,10 @@
                 {%- endif -%}
             </div>
         {%- endif -%}
-        <div>
-    </h4>
+    </div>
 </div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
 <div class="guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}
             {%- if attack.attack_in_use == 'false' -%}--ignore
             {%- elsif attack.dutyActions -%}--dutyAction

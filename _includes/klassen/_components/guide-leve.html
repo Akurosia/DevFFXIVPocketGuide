@@ -4,18 +4,21 @@
         data-terms="!{%- for lang in LANGUAGES -%}leve:{{ leve.title[lang] }}&#32;{%- endfor -%}&#32;
                     {%- for term in leve.terms -%}term:{{ term.term }}&#32;{%- endfor -%}" style="display: none">
     </h4>
-    <h4 class="guide__accordion-trigger-title">
+    <div class="Names">
         <span class="">
             {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}">{{  leve.title[lang] }}</span>
+                <span class="lang-toggle lang-toogle-{{lang}}">{{  leve.title[lang] }} </span>
             {%- endfor -%}
         </span>
         {%- if leve.title.en -%}
             <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ leve.title.en }}</div>
         {%- endif -%}
+    </div>
+
+    <div class="IdsHps">
         {%- if leve.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ leve.title_id }}', '{{ enemy.title.de }}', 'attack')">ID: {{ leve.title_id }}</div>
         {%- endif -%}
-        {%- include klassen/_components/guide-attack-types.html -%}
-    </h4>
+    </div>
+    {%- include klassen/_components/guide-attack-types.html -%}
 </div>

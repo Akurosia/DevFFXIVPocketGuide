@@ -40,7 +40,7 @@ function executeHandelingLanguages(){
     } else {
         setlangfields = document.getElementsByClassName("lang-toogle-en-sub");
         for (const box of setlangfields) {
-            box.style.display = 'block';
+            box.style.display = 'none';
             box.style.visibility = 'hidden';
         }
     }

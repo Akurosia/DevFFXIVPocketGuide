@@ -1,11 +1,12 @@
-<!-- _components/Guide-Debuff ======================================================= -->
+<!-- _components/Guide-Debuff "Button"======================================================= -->
 <div class="guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}
             {%- if debuff.debuff_in_use == 'false' -%}--ignore
             {%- else -%}--debuff
             {%- endif -%}">
-    <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
-    <h4 class="guide__accordion-trigger-title">
-        <img class="debuff_icon" src="{{ site.imageurl }}/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
+    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+
+    <img class="Icon debuff_icon" src="{{ site.imageurl }}/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
+    <div class="Names">
         <span class="{% if debuff.damage_type == 'Magical' %} attack-is-magic
                      {% elsif debuff.damage_type && debuff.damage_type != 'None' %} attack-is-physical
                      {% endif %}">
@@ -15,17 +16,21 @@
         </span>
 
         {%- if debuff.title.en -%}
-            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ debuff.title.en }}</div>
+            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ debuff.title.en }}</div>
         {%- endif -%}
+    </div>
+    {%- include _components/guide-attack-types.html -%}
+    <div class="IdsHps">
         {%- if debuff.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'debuff')">Skill-ID: {{ debuff.title_id }}</div>
         {%- endif -%}
 
         {%- assign attack = debuff -%}
         {%- assign isDebuff = "True" -%}
-        {%- include _components/guide-attack-types.html -%}
-    </h4>
+    </div>
 </div>
+
+<!-- _components/Guide-Debuff "Content"======================================================= -->
 <div class="guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}
             {%- if debuff.attack_in_use == 'false' -%}--ignore
             {%- else -%}--debuff

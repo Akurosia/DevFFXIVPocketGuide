@@ -1,28 +1,29 @@
 <!-- klassen/_components/Guide-Debuff ======================================================= -->
 <div class="summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--debuff">
-    <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <h4 class="index-item__title"
         data-terms="!{%- for lang in LANGUAGES -%}status:{{ debuff.title[lang] }}&#32;{%- endfor -%}&#32;
                     {%- for term in debuff.terms -%}term:{{ term.term }}&#32;{%- endfor -%}buff:{{ debuff.buff }}&#32;"
         style="display: none">
     </h4>
-    <h4 class="guide__accordion-trigger-title">
-        <img class="debuff_icon" src="{{ site.imageurl }}/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
-        <span class="{%- if debuff.damage_type == 'Magical' -%}attack-is-magic
-                     {%- elsif debuff.damage_type && debuff.damage_type != 'None' -%}attack-is-physical
-                     {%- endif -%}">
+
+    <img class="Icon debuff_icon" src="{{ site.imageurl }}/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
+    <div class="Names">
+        <span>
             {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}">{{  debuff.title[lang] }}</span>
+                <span class="lang-toggle lang-toogle-{{lang}}">{{ debuff.title[lang] }} </span>
             {%- endfor -%}
         </span>
         {%- if debuff.title.en -%}
-            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ debuff.title.en }}</div>
+            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ debuff.title.en }}</div>
         {%- endif -%}
+    </div>
+    <div class="IdsHps">
         {%- if debuff.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'debuff')">ID: {{ debuff.title_id }}</div>
         {%- endif -%}
-        {%- include klassen/_components/guide-attack-types.html -%}
-    </h4>
+    </div>
+    {%- include klassen/_components/guide-attack-types.html -%}
 </div>
 <div class="guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--debuff">
     <div class="guide__accordion-copy-wrapper">

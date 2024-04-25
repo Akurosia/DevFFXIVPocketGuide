@@ -4,18 +4,20 @@
         data-terms="!{%- for lang in LANGUAGES -%}quest:{{ quest.title[lang] }}&#32;{%- endfor -%}&#32;
                     {%- for term in quest.terms -%}term:{{ term.term }}&#32;{%- endfor -%}" style="display: none">
     </h4>
-    <h4 class="guide__accordion-trigger-title">
+    <div class="Names">
         <span class="">
             {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}">{{  quest.title[lang] }}</span>
+                <span class="lang-toggle lang-toogle-{{lang}}">{{  quest.title[lang] }} </span>
             {%- endfor -%}
         </span>
         {%- if quest.title.en -%}
-            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ quest.title.en }}</div>
+            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ quest.title.en }}</div>
         {%- endif -%}
+    </div>
+    <div class="IdsHps">
         {%- if quest.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ quest.title_id }}', '{{ enemy.title.de }}', 'attack')">ID: {{ quest.title_id }}</div>
         {%- endif -%}
-        {%- include klassen/_components/guide-attack-types.html -%}
-    </h4>
+    </div>
+    {%- include klassen/_components/guide-attack-types.html -%}
 </div>

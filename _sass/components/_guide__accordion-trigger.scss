@@ -1,0 +1,356 @@
+.Dropdown {
+  z-index: 1;
+  justify-self: center;
+  align-self: center;
+  grid-area: Dropdown;
+}
+
+.Icon {
+  z-index: 1;
+  justify-self: center;
+  align-self: center;
+  grid-area: Icon;
+  display: flex;
+}
+
+.Names {
+  z-index: 1;
+  justify-self: start;
+  align-self: center;
+  grid-area: Names;
+  display: flex;
+}
+
+.EnemyNames {
+  z-index: 1;
+  justify-self: start;
+  align-self: center;
+  grid-area: Names;
+}
+
+.Attributes {
+  z-index: 1;
+  justify-self: start;
+  align-self: center;
+  grid-area: Attributes;
+}
+
+.IdsHps {
+  z-index: 1;
+  justify-self: end;
+  text-align: end;
+  align-self: center;
+  grid-area: IdsHps;
+}
+
+
+[class*=guide__accordion-trigger--] {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 4.5fr 1.5fr;
+  grid-template-rows: 0.5fr 0.5fr;
+  grid-template-areas:
+    "Dropdown Icon Names IdsHps"
+    "Dropdown Icon Attributes IdsHps";
+  gap: 0px 0px;
+  //grid-auto-flow: row;
+  padding: 1rem;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+
+  border-bottom: 1px solid #fff;
+  cursor: pointer;
+  position: relative;
+
+  &[class*="01"] {
+    color: $palette-aku-greyText;
+    background: $palette-aku-verydarkBG;
+    padding: 1.5rem;
+    font-size: xx-large;
+    &[class*=grid] {
+      grid-template-columns: 0.5fr 3fr 0.5fr 3fr;
+      grid-template-rows: 1fr ;
+      grid-template-areas:
+        "Dropdown Names None MoreNone"
+    }
+  }
+
+  &[class*="02"] {
+    color: $palette-aku-greyText;
+    background: $palette-aku-notsoverydarkBG;
+    padding: 1.5rem;
+    font-size: x-large;
+    &[class*=combo],
+    &[class*=variation],
+    &[class*=attack],
+    &[class*=ignore],
+    &[class*=debuff],
+    &[class*=trait],
+    &[class*=leve],
+    &[class*=quest],
+    &[class*=dutyAction] {
+      &:before {
+        background: #323232;
+        content: " ";
+        display: block;
+        height: 100%;
+        opacity: .7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 0;
+      }
+    }
+    &[class*=grid] {
+      grid-template-columns: 0.5fr 3fr 0.5fr 3fr;
+      grid-template-rows: 0.5fr ;
+      grid-template-areas:
+        "Dropdown Names None IdsHps"
+    }
+    &[class*=combo] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #fec34e);
+      padding: 1.5rem;
+    }
+
+    &[class*=variation] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #52e96c);
+      padding: 1.5rem;
+    }
+
+    &[class*=attack] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #ff575c);
+      padding: 1.5rem;
+    }
+
+    &[class*=debuff] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #476cff);
+      padding: 1.5rem;
+    }
+
+    &[class*=trait] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #efff00);
+      padding: 1.5rem;
+    }
+
+    &[class*=quest] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #00ff00);
+      padding: 1.5rem;
+    }
+
+    &[class*=leve] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #f96700);
+      padding: 1.5rem;
+    }
+
+    &[class*=dutyAction] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #9b40bf);
+      padding: 1.5rem;
+    }
+  }
+
+  &[class*="03"] {
+    background: #323232;
+    padding: 1.5rem;
+    position: relative;
+    &[class*=combo],
+    &[class*=variation],
+    &[class*=attack],
+    &[class*=ignore],
+    &[class*=debuff],
+    &[class*=trait],
+    &[class*=leve],
+    &[class*=quest],
+    &[class*=dutyAction] {
+      &:before {
+        background: #323232;
+        content: " ";
+        display: block;
+        height: 100%;
+        opacity: .7;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 0;
+      }
+    }
+    &[class*=grid] {
+      grid-template-columns: 0.5fr 3fr 0.5fr 3fr;
+      grid-template-rows: 0.5fr ;
+      grid-template-areas:
+        "Dropdown Names None MoreNone"
+    }
+
+    &[class*=combo] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #fec34e);
+    }
+
+    &[class*=variation] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #52e96c);
+    }
+
+    &[class*=ignore] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #999999);
+    }
+
+    &[class*=attack] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #ff575c);
+    }
+
+    &[class*=debuff] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #476cff);
+    }
+
+    &[class*=trait] {
+      background: #efff00;
+      background: linear-gradient(90deg, #000 5%, #efff00);
+    }
+
+    &[class*=leve] {
+      background: #00ff00;
+      background: linear-gradient(90deg, #000 5%, #f96700);
+    }
+
+    &[class*=quest] {
+      background: #00ff00;
+      background: linear-gradient(90deg, #000 5%, #00ff00);
+    }
+
+    &[class*=dutyAction] {
+      background: #000;
+      background: linear-gradient(90deg, #000 5%, #9b40bf);
+    }
+  }
+
+  &[class*="04"] {
+    border-bottom: 1px solid red;
+    background: #323232;
+    padding: 0.5rem 0.5rem 0.5rem 4.5rem;
+    position: relative;
+    border-radius: 10px;
+    margin-bottom: -1rem;
+
+    &[class*=grid] {
+      grid-template-columns: 0.5fr 3fr 0.5fr 3fr;
+      grid-template-rows: 0.5fr ;
+      grid-template-areas:
+        "Dropdown Names None IdsHps"
+    }
+  }
+
+  &.active i {
+    color: #ff575c;
+    transform: rotate(180deg);
+    transition: all 0.2s ease;
+  }
+
+  i {
+    color: #fff;
+    transition: all .2s ease;
+    z-index: 2;
+  }
+}
+
+.guide__accordion-trigger-title {
+  color: #fff;
+  display: flex;
+  flex-flow: wrap;
+  font-family: Open Sans,sans-serif;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.guide__accordion-trigger-title_en {
+  color: #aaa;
+  display: flex;
+  flex-flow: wrap;
+  font-family: Open Sans,sans-serif;
+  font-weight: 700;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+.guide__accordion-trigger-vartitle {
+  text-align: right;
+  font-size: initial;
+  font-weight: bold;
+  color: #fff;
+}
+
+.guide__accordion-trigger-title_id {
+  text-align: right;
+  font-size: initial;
+  font-weight: bold;
+}
+
+.guide__accordion-trigger-title_hex_id {
+  text-align: right;
+  font-size: initial;
+  font-weight: bold;
+}
+
+.guide__accordion-trigger-title_hp {
+  text-align: right;
+  font-size: initial;
+  font-weight: bold;
+}
+
+h2.guide__accordion-trigger-title {
+  font-size: 1.95313rem;
+}
+
+h3.guide__accordion-trigger-title {
+  font-size: 1.5625rem;
+}
+
+h4.guide__accordion-trigger-title {
+  font-size: 1.25rem;
+}
+
+h5.guide__accordion-trigger-title {
+  font-size: 1rem;
+}
+
+div {
+  &.guide__accordion-trigger-hp,
+  &.guide__accordion-trigger-id {
+    color: fff;
+    font-size: smaller;
+    padding-left: 5px;
+  }
+
+  &.guide__accordion-trigger-hp,
+  &.guide__accordion-trigger-id {
+    margin-left: auto;
+  }
+
+  &.guide__accordion-trigger-subtitle {
+    color: grey;
+    &:before {
+      content: " | ";
+      padding-left: 0.4rem;
+    }
+  }
+}
+
+.accordion-trigger {
+  cursor: pointer;
+}

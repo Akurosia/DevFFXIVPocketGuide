@@ -1,6 +1,6 @@
 <!-- klassen/_components/Guide-Attack ======================================================= -->
 <div class="summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--attack">
-    <i class="material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <h4 class="index-item__title"
         data-terms="!{%- for lang in LANGUAGES -%}skill:{{ attack.title[lang] }}&#32;{%- endfor -%}&#32;
                     {%- for term in attack.terms -%}term:{{ term.term }}&#32;{%- endfor -%}
@@ -9,27 +9,29 @@
                     type:{{ attack.gmitigation }}&#32;type:{{ attack.shield }}&#32;time:{{ attack.recast }}&#32;finalcast:{{ attack.secondarycost }}&#32;"
         style="display: none">
     </h4>
-    <h4 class="guide__accordion-trigger-title">
-        {%- if attack.icon -%}
-            <img class="attack_icon" src="{{ site.imageurl }}/{{ attack.icon }}" alt="{{ attack.icon }}"/>
-        {%- endif -%}
+    {%- if attack.icon -%}
+        <img class="Icon attack_icon" src="{{ site.imageurl }}/{{ attack.icon }}" alt="{{ attack.icon }}"/>
+    {%- endif -%}
+    <div class="Names">
         <span class="{%- if attack.damage_type == 'Magical' -%}attack-is-magic
-                     {%- elsif attack.damage_type && attack.damage_type != 'None' -%}attack-is-physical
-                     {%- endif -%}">
+                     {%- elsif attack.damage_type && attack.damage_type != 'None' -%}attack-is-physical{%- endif -%}">
             {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}">{{  attack.title[lang] }}</span>
+                <span class="lang-toggle lang-toogle-{{lang}}">{{  attack.title[lang] }} </span>
             {%- endfor -%}
         </span>
         {%- if attack.title.en -%}
-            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle"> | {{ attack.title.en }}</div>
+            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ attack.title.en }}</div>
         {%- endif -%}
+    </div>
+    <div class="IdsHps">
         {%- if attack.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'attack')">ID: {{ attack.title_id }}</div>
         {%- endif -%}
-        {%- include klassen/_components/guide-attack-types.html -%}
-    </h4>
+    </div>
+    {%- include klassen/_components/guide-attack-types.html -%}
 </div>
-<div class="guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--attack"">
+
+<div class="guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--attack">
     <div class="guide__accordion-copy-wrapper">
         <!-- Standard Attacks -->
         {%- if attack.description -%}
