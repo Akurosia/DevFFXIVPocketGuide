@@ -71,7 +71,7 @@
       grid-template-columns: 0.5fr 3fr 0.5fr 3fr;
       grid-template-rows: 1fr ;
       grid-template-areas:
-        "Dropdown Names None MoreNone"
+        "Dropdown Names None IdsHps"
     }
   }
 
@@ -108,6 +108,7 @@
       grid-template-areas:
         "Dropdown Names None IdsHps"
     }
+
     &[class*=combo] {
       background: #000;
       background: linear-gradient(90deg, #000 5%, #fec34e);
@@ -187,7 +188,14 @@
       grid-template-columns: 0.5fr 3fr 0.5fr 3fr;
       grid-template-rows: 0.5fr ;
       grid-template-areas:
-        "Dropdown Names None MoreNone"
+        "Dropdown Names None IdsHps"
+    }
+    &[class*=grid_attack] {
+      grid-template-columns: 0.5fr 5fr 1.5fr;
+      grid-template-rows: 0.5fr 0.5fr;
+      grid-template-areas:
+        "Dropdown Names IdsHps"
+        "Dropdown Attributes IdsHps";
     }
 
     &[class*=combo] {
@@ -223,11 +231,21 @@
     &[class*=leve] {
       background: #00ff00;
       background: linear-gradient(90deg, #000 5%, #f96700);
+      grid-template-columns: 0.5fr 5fr 1.5fr;
+      grid-template-rows: 0.5fr 0.5fr;
+      grid-template-areas:
+        "Dropdown Names IdsHps"
+        "Dropdown Attributes IdsHps";
     }
 
     &[class*=quest] {
       background: #00ff00;
       background: linear-gradient(90deg, #000 5%, #00ff00);
+      grid-template-columns: 0.5fr 5fr 1.5fr;
+      grid-template-rows: 0.5fr 0.5fr;
+      grid-template-areas:
+        "Dropdown Names IdsHps"
+        "Dropdown Attributes IdsHps";
     }
 
     &[class*=dutyAction] {
