@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf8
 import os
-from ffxiv_aku import print_color_red, gear_get, getLevel
+from ffxiv_aku import print_color_red, gear_get, getLevel, deal_with_extras_in_text
 from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata
 from collections import OrderedDict
 from operator import getitem
@@ -123,54 +123,6 @@ def convertJobToAbrev(job):
     raise NotImplementedError
 
 
-def getMittigationValue(desc, name):
-
-    normal_mit_text = [
-        "Reduces damage taken by self and nearby party members by ",
-        "reducing magic damage taken by all nearby party members by "
-    ]
-    for t in normal_mit_text:
-        if t in desc:
-            return "g", desc.split(t)[-1].split("%")[0] + "%"
-
-    normal_mit_text = "Reduces magic damage taken by self and nearby party members by "
-    if normal_mit_text in desc:
-        return "g", desc.replace(normal_mit_text, "").split("%")[0] + "%"
-
-    normal_mit_text = "will only suffer "
-    if normal_mit_text in desc:
-        return "g", str(100 - int(desc.split(normal_mit_text)[1].split("%")[0])) + "%"
-
-    normal_mit_text = "Lowers target's physical damage dealt by "
-    if normal_mit_text in desc:
-        return "g", desc.replace(normal_mit_text, "").replace(" and magic damage dealt by ", "/")[:-1].split(".</br>")[0]
-
-    normal_mit_text = [
-        "Reduces damage taken by all party members by ",
-        "Reduces damage dealt by nearby enemies by "
-    ]
-    for t in normal_mit_text:
-        if t in desc:
-            return "g", desc.replace(t, "")[:-1].split("%")[0] + "%"
-
-    normal_mit_text = "reducing damage taken by self and all party members "
-    if normal_mit_text in desc:
-        return "g", desc.split(" by ")[-1][:-1].split("%")[0] + "%"
-
-    normal_mit_text = "Reduces target party member's damage taken by "
-    if normal_mit_text in desc:
-        return "p", desc.replace(normal_mit_text, "").split("Duration")[0][:-1].split("%")[0] + "%"
-
-    normal_mit_text = "Reduces damage taken by "
-    if normal_mit_text in desc:
-        return "p", desc.split(normal_mit_text)[1].split("Duration")[0].split(" by ")[-1].split("%")[0] + "%"
-
-    if "Reduces damage" in desc and "%" in desc:
-        return "p", desc.split("Duration")[0].split(" by ")[-1].split("%")[0] + "%"
-
-    return None, None
-
-
 def addAttackDetails(job_data, pvp=False):
     global actions_trans
     global craftactions_trans
@@ -184,33 +136,27 @@ def addAttackDetails(job_data, pvp=False):
     for _id, skill_data in job_data.items():
         #print_color_red(pretty_json(skill_data) + "\n")
         name = {}
-        description = {}
         for lang in LANGUAGES:
-            name[lang] = actions_trans.get(skill_data["id"], {}).get(f"Name_{lang}", "").replace("\n", "</br>").replace("</br></br>", "</br>")
+            name[lang] = actions_trans.get(skill_data["Id"], {}).get(f"Name_{lang}", "").replace("\n", "</br>").replace("</br></br>", "</br>")
         if name["en"] == "":
             for lang in LANGUAGES:
-                name[lang] = craftactions_trans[skill_data["id"]][f"Name_{lang}"].replace("\n", "</br>").replace("</br></br>", "</br>")
+                name[lang] = craftactions_trans[skill_data["Id"]][f"Name_{lang}"].replace("\n", "</br>").replace("</br></br>", "</br>")
         level = "0" if skill_data['Level'] == "99999" else skill_data['Level']
-        desc_dict = actiontransient_trans.get(skill_data["id"].split(".")[0], None)
-        if not desc_dict:
-            desc_dict = craftactions_trans[skill_data["id"].split(".")[0]]
 
-        #if "Reduces damage" in desc["Description_en"].replace("\n", "</br>").replace("</br></br>", "</br>"):
-        #    print(en_name)
-        for lang in LANGUAGES:
-            description[lang] = deal_with_extras_in_text(desc_dict[f"Description_{lang}"])
-        tpye_damage = "Schaden" if "Attacke-Wert" in description["de"] else None
-        tpye_heilung = "Heilung" if "Heilpotenzial" in description["de"] else None
-        type_shield = "P-Schild-Mitigation" if "barrier" in description['en'] else None
-        mtype, mvalue = getMittigationValue(description["en"], name["en"])
+        tpye_damage = "Schaden" if skill_data["IsDamageSkill"] else None
+        tpye_heilung = "Heilung" if skill_data["IsHealingSkill"] else None
+        type_shield = "P-Schild-Mitigation" if skill_data["IsShieldSkill"] else None
+        mtype  = skill_data["MitigationType"]
+        mvalue = skill_data["MitigationValue"]
+
         if type_shield and not pvp:
-            if "all party" in description["en"] or "nearby party" in description["en"]:
+            if "all party" in skill_data["Description"]["en"] or "nearby party" in skill_data["Description"]["en"]:
                 type_shield = "G-Schild-Mitigation"
         result += '      - title:\n'
         attack_skills.append(name['de'])
         for lang in LANGUAGES:
             result += f'          {lang}: "{name[lang]}"\n'
-        result += f'        title_id: "{skill_data["id"].split(".")[0]}"\n'
+        result += f'        title_id: "{skill_data["Id"].split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
         result += f'        type: "{skill_data["Type"]}"\n'
         result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
@@ -219,22 +165,22 @@ def addAttackDetails(job_data, pvp=False):
         result += f'        cast: "{skill_data["Cast"]}"\n'
         result += f'        recast: "{skill_data["Recast"]}"\n'
         result += f'        secondarycost: "{skill_data.get("SecondaryCostType", 0)}"\n'
-        result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
+        result += f'        kategorie: "{skill_data["Kategorie"]['de']}"\n'
         if tpye_damage:
             result += f'        damage: "{tpye_damage}"\n'
         if tpye_heilung:
             result += f'        heal: "{tpye_heilung}"\n'
         if type_shield:
             result += f'        shield: "{type_shield}"\n'
-        if mtype == "p":
+        if mtype == "personal":
             result += '        pmitigation: "P-Mitigation"\n'
             result += f'        pmitigation_value: "{mvalue}"\n'
-        if mtype == "g":
+        if mtype == "group":
             result += '        gmitigation: "G-Mitigation"\n'
             result += f'        gmitigation_value: "{mvalue}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
-            result += f'          {lang}: "' + description[lang] + '"\n'
+            result += f'          {lang}: "' + skill_data["Description"][lang] + '"\n'
         #if "%" in description["en"]:
         #    print(name["en"])
         #    print(description["en"])

@@ -82,19 +82,19 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
     }
     for x, y in job_data.items():
         for key, value in aozactions_trans.items():
-            if y['Name'] == value['Name_de']:
+            if y['Name']['de'] == value['Name_de']:
                 if not aozactiontransient[key]['Location'] == "":
                     job_data[x]["Location"] = {"Ort": aozactiontransient[key]['Location'], "Gegner": "(InGame Hinweis)"}
                 job_data[x]["Number"] = job_data[x]["Level"]
                 job_data[x]["Level"] = aozactiontransient[key]['Number']
 
                 for lang in LANGUAGES:
-                    job_data[x][f"Description_{lang}"] += "\n\n<br/>#########################################<br/>\n\n" + deal_with_extras_in_text(aozaction_trans[key][f'Description_{lang}'])
-
-            elif y['Name'] == "Weißer Tod":
+                    job_data[x]["Description"][lang] += "\n\n<br/>#########################################<br/>\n\n" + deal_with_extras_in_text(aozaction_trans[key][f'Description_{lang}'])
+            #Special cases to sort in these 2 skills
+            elif y['Name']['de'] == "Weißer Tod":
                 job_data[x]["Number"] = job_data[x]["Level"]
                 job_data[x]["Level"] = "84"
-            elif y['Name'] == "Göttlicher Katarakt":
+            elif y['Name']['de'] == "Göttlicher Katarakt":
                 job_data[x]["Number"] = job_data[x]["Level"]
                 job_data[x]["Level"] = "89"
 
@@ -112,12 +112,12 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
                 locations.append(skill_data['Location'])
             name = {}
             for lang in LANGUAGES:
-                name[lang] = deal_with_extras_in_text(actions_trans.get(skill_data["id"], {}).get(f"Name_{lang}", ""))
+                name[lang] = deal_with_extras_in_text(actions_trans.get(skill_data["Id"], {}).get(f"Name_{lang}", ""))
             if name["en"] == "":
-                name["en"] = craftactions_trans[skill_data["id"] + ".0"]["Name_en"]
+                name["en"] = craftactions_trans[skill_data["Id"] + ".0"]["Name_en"]
             level = skill_data['Level']
             #
-            locations = getBLULocationsFromLogdata(skill_data["Name"], locations)
+            locations = getBLULocationsFromLogdata(skill_data["Name"]['de'], locations)
             locations = sorted(locations, key=lambda x: x['Ort'])
             # somehow original locations got updated, just dont touch it
             #n_locations = get_play_in_locations(locations)
@@ -151,6 +151,13 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
                         desc += tmp
             desc += "</tbody></table>"
 
+
+            tpye_damage = "Schaden" if skill_data["IsDamageSkill"] else None
+            tpye_heilung = "Heilung" if skill_data["IsHealingSkill"] else None
+            type_shield = "P-Schild-Mitigation" if skill_data["IsShieldSkill"] else None
+            mtype  = skill_data["MitigationType"]
+            mvalue = skill_data["MitigationValue"]
+
             desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
             if skill_data.get("Number", None) and int(level) < 901:
                 result += '      - title:\n'
@@ -160,7 +167,7 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
                 result += '      - title:\n'
                 for lang in LANGUAGES:
                     result += f'          {lang}: "{name[lang]}"\n'
-            result += f'        title_id: "{skill_data["id"].split(".")[0]}"\n'
+            result += f'        title_id: "{skill_data["Id"].split(".")[0]}"\n'
             if skill_data.get("Number", None):
                 result += f'        level: "{skill_data["Number"]}"\n'
             else:
@@ -174,10 +181,22 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
             result += f'        effectrange: "{skill_data["EffectRange"]}"\n'
             result += f'        cast: "{skill_data["Cast"]}"\n'
             result += f'        recast: "{skill_data["Recast"]}"\n'
-            result += f'        kategorie: "{skill_data["Kategorie"]}"\n'
+            result += f'        kategorie: "{skill_data["Kategorie"]['de']}"\n'
+            if tpye_damage:
+                result += f'        damage: "{tpye_damage}"\n'
+            if tpye_heilung:
+                result += f'        heal: "{tpye_heilung}"\n'
+            if type_shield:
+                result += f'        shield: "{type_shield}"\n'
+            if mtype == "personal":
+                result += '        pmitigation: "P-Mitigation"\n'
+                result += f'        pmitigation_value: "{mvalue}"\n'
+            if mtype == "group":
+                result += '        gmitigation: "G-Mitigation"\n'
+                result += f'        gmitigation_value: "{mvalue}"\n'
             result += '        description:\n'
             for lang in LANGUAGES:
-                result += f'          {lang}: "' + deal_with_extras_in_text(skill_data[f"Description_{lang}"].replace('"', '\\"')) + f'{desc}"\n'
+                result += f'          {lang}: "' + deal_with_extras_in_text(skill_data["Description"][lang].replace('"', '\\"')) + f'{desc}"\n'
             result += '        phases:\n'
             result += '          - phase: "01"\n'
         except Exception:
