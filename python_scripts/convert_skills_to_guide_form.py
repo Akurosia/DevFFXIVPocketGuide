@@ -174,10 +174,10 @@ def addAttackDetails(job_data, pvp=False):
             result += f'        shield: "{type_shield}"\n'
         if mtype == "personal":
             result += '        pmitigation: "P-Mitigation"\n'
-            result += f'        pmitigation_value: "{mvalue}"\n'
+            result += f'        pmitigation_value: "M:{mvalue['magic']}/P:{mvalue['physical']}"\n'
         if mtype == "group":
             result += '        gmitigation: "G-Mitigation"\n'
-            result += f'        gmitigation_value: "{mvalue}"\n'
+            result += f'        gmitigation_value: "M:{mvalue['magic']}/P:{mvalue['physical']}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "' + skill_data["Description"][lang] + '"\n'
