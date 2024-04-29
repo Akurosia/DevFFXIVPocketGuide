@@ -153,6 +153,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 print("END FLAG WAS FOUND!")
                 break
             if not (entry["exclude"] or entry["done"]):
+                #print(f"{entry['instanceType']}: {entry['title']}")
                 categories = categories_list[entry['categories']]
                 filename = f"{categories}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 existing_filename = f"{categories}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
