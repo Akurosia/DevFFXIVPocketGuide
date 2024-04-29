@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, get_any_Versiondata, print_color_red, true
-
+from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, get_any_Versiondata, print_color_red, true, readJsonFile, print_pretty_json
+from copy import deepcopy
 try:
     from python_scripts.constants import LANGUAGES
     from python_scripts.helper import seperate_data_into_array, getImage
@@ -24,7 +24,31 @@ contentfindercondition = loadDataTheQuickestWay("ContentFinderCondition.de.json"
 contentfindercondition_trans = loadDataTheQuickestWay("ContentFinderCondition", translate=True)
 contentfinderconditiontransient = loadDataTheQuickestWay("ContentFinderConditionTransient", translate=True)
 contentmembertype = loadDataTheQuickestWay("ContentMemberType.json")
+classjob = loadDataTheQuickestWay("Classjob.de.json")
+items = loadDataTheQuickestWay("Item.en.json")
+gamerscape_items = readJsonFile("python_scripts/gamerscape_items/after_item_scan.json")
 logger = logging.getLogger()
+
+
+def getClassJobDict():
+    final_array = {}
+    for key, value in classjob.items():
+        if not int(value['JobIndex']) == 0:
+            final_array[value['Abbreviation']] = {
+                "Waffe": [],
+                "Schild": [],
+                "Kopf": [],
+                "Rumpf": [],
+                "Hände": [],
+                "Beine": [],
+                "Füße": [],
+                "Ohrring": [],
+                "Halskette": [],
+                "Armreif": [],
+                "Ring": []
+            }
+    return final_array
+class_job_item_array = getClassJobDict()
 
 
 def get_territorytype_from_mapid(entry):
@@ -380,7 +404,21 @@ def rewrite_content_even_if_exists(entry, old_wip):
             if found:
                 header_data += f'    {x}: "' + data[0] + '"\n'
 
+    if gamerscape_items.get(entry["gamerescapelink"], None):
+        header_data += 'gamerscape_items:\n'
+        header_data += getItemsList(gamerscape_items[entry["gamerescapelink"]])
     return header_data, entry
+
+
+
+
+
+def getItemsList(gs_items):
+    final_array = deepcopy(class_job_item_array)
+    item_list = ""
+    for gs_item in gs_items:
+        item_list += f'  - item: "' + items[gs_item]['Name'] + '"\n'
+    return item_list
 
 
 def addContentZoneIdToHeader(header_data, contentzoneid, entry):

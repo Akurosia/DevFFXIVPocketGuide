@@ -6,6 +6,10 @@
         </div>
     {%- endif -%}
     <!-- Duty Notes ======================================================== -->
+    {%- if page.gamerscape_items -%}
+        {%- include presets/ItemsPerClass.html -%}
+    {%- endif -%}
+    <!-- Duty Notes ======================================================== -->
     {%- if page.mechanics -%}
         {%- include guide-notes.html -%}
     {%- endif -%}
