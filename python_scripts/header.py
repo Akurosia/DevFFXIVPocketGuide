@@ -25,7 +25,7 @@ contentfindercondition_trans = loadDataTheQuickestWay("ContentFinderCondition", 
 contentfinderconditiontransient = loadDataTheQuickestWay("ContentFinderConditionTransient", translate=True)
 contentmembertype = loadDataTheQuickestWay("ContentMemberType.json")
 classjob = loadDataTheQuickestWay("Classjob.de.json")
-items = loadDataTheQuickestWay("Item.en.json")
+items = loadDataTheQuickestWay("Item.de.json")
 gamerscape_items = readJsonFile("python_scripts/gamerscape_items/after_item_scan.json")
 logger = logging.getLogger()
 
@@ -45,7 +45,8 @@ def getClassJobDict():
                 "Ohrring": [],
                 "Halskette": [],
                 "Armreif": [],
-                "Ring": []
+                "Ring": [],
+                "Verschiedenes": []
             }
     return final_array
 class_job_item_array = getClassJobDict()
@@ -410,14 +411,24 @@ def rewrite_content_even_if_exists(entry, old_wip):
     return header_data, entry
 
 
-
-
-
 def getItemsList(gs_items):
     final_array = deepcopy(class_job_item_array)
     item_list = ""
     for gs_item in gs_items:
+        #print(items[gs_item])
+        found = False
+        for _class, class_data in final_array.items():
+            if _class in items[gs_item]['ClassJobCategory']:
+                found = True
+                cat = "Waffe" if "waffe" in items[gs_item]['ItemUICategory'].lower() else items[gs_item]['ItemUICategory']
+                cat = "Waffe" if cat == "Grimoire" else cat
+
+                if not items[gs_item]['Name'] in final_array[_class][cat]:
+                    final_array[_class][cat].append(items[gs_item]['Name'])
+        if not found:
+            print(items[gs_item])
         item_list += f'  - item: "' + items[gs_item]['Name'] + '"\n'
+    print(final_array)
     return item_list
 
 
