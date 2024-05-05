@@ -19,10 +19,12 @@
             <a href="https://www.ffxivpocketguide.com" title="Original Page Link" target="_blank" rel="noopener noreferrer">https://www.ffxivpocketguide.com</a>
             <br><span data-translate="Footer_LastUpdated">Last updated: </span>{{ page.last_modified_at }}</span>
             {%- if site.my_external_url != "" -%}
-                <br><span data-translate="Footer_ExternalPage">My external main page: <a href="{{ site.my_external_url }}" target="_blank" rel="noopener noreferrer">{{ site.my_external_url }}</a></span>
+                <br><span data-translate="Footer_ExternalPage">My external main page: </span>
+                <a href="{{ site.my_external_url }}" target="_blank" rel="noopener noreferrer">{{ site.my_external_url }}</a>
             {%- endif -%}
             {%- if site.github_url != "" -%}
-                <br><span data-translate="Footer_GithubHostet">Github hosted version of this page: <a href="{{ site.github_url }}" target="_blank" rel="noopener noreferrer">{{ site.github_url }}</a></span>
+                <br><span data-translate="Footer_GithubHostet">Github hosted version of this page: </span>
+                <a href="{{ site.github_url }}" target="_blank" rel="noopener noreferrer">{{ site.github_url }}</a>
             {%- endif -%}
             <br><a href="https://github.com/Akurosia/DevFFXIVPocketGuide" target="_blank" rel="noopener noreferrer" title="Pocket Guide Development Repo!">
                 <ion-icon name="logo-github"></ion-icon>
