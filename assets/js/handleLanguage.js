@@ -1,3 +1,6 @@
+---
+---
+
 $(document).ready(() => {
     getTranslations();
     executeHandelingLanguages();
@@ -67,7 +70,7 @@ function getTranslations() {
             lang = navigator.language
             window.localStorage.setItem('translation-language', lang);
         }
-        fetch(`assets/translations/${lang}.json`)
+        fetch(`{{site.baseurl}}/assets/translations/${lang}.json`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("HTTP error " + response.status);
