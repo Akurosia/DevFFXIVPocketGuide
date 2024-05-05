@@ -1,6 +1,9 @@
+---
+---
+
 function getTranslations() {
         // load data using navigator.language e.g. de-DE.json
-        fetch(`assets/translations/${navigator.language}.json`)
+        fetch(`{{site.baseurl}}/assets/translations/${navigator.language}.json`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("HTTP error " + response.status);
