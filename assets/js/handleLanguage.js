@@ -1,4 +1,7 @@
-$(document).ready(executeHandelingLanguages());
+$(document).ready(() => {
+    getTranslations();
+    executeHandelingLanguages();
+});
 
 function executeHandelingLanguages(){
     // set all language field to be not displayed
@@ -57,7 +60,34 @@ function doLanguageStuff(setlangfields, adj) {
 }
 
 
-function changeLanguageTo(tag) {
+function getTranslations() {
+        // load data using navigator.language e.g. de-DE.json
+        lang = window.localStorage.getItem('translation-language');
+        if (lang == null || lang == undefined){
+            lang = navigator.language
+            window.localStorage.setItem('translation-language', lang);
+        }
+        fetch(`assets/translations/${lang}.json`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("HTTP error " + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                elements = document.querySelectorAll('[data-translate]');
+                for (var element of elements) {
+                    element.textContent = data[element.getAttribute('data-translate')]
+                }
+            })
+            .catch(function () {this.dataError = true;})
+    }
+
+function changeLanguageTo(tag, languageCode) {
+    window.localStorage.setItem('translation-language', languageCode);
     window.localStorage.setItem('primary-language', tag);
+    getTranslations()
     executeHandelingLanguages();
 }
+
+
