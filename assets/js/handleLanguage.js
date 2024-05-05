@@ -3,8 +3,44 @@
 
 $(document).ready(() => {
     getTranslations();
-    executeHandelingLanguages();
 });
+
+
+function getTranslations() {
+    // load data using navigator.language e.g. de-DE.json
+    lang = window.localStorage.getItem('translation-language');
+    if (lang == null || lang == undefined){
+        lang = navigator.language
+        window.localStorage.setItem('translation-language', lang);
+    }
+    fetch(`{{site.baseurl}}/assets/translations/${lang}.json`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            elements = document.querySelectorAll('[data-translate]');
+            for (var element of elements) {
+                if (data[element.getAttribute('data-translate')] == "" || data[element.getAttribute('data-translate')] == undefined || data[element.getAttribute('data-translate')] == null) {
+                    continue;
+                }
+                //console.log(`Replace Value '${element.getAttribute('data-translate')}' with '${data[element.getAttribute('data-translate')]}'`)
+                element.textContent = data[element.getAttribute('data-translate')]
+            }
+        })
+        .catch(function () {this.dataError = true;})
+    executeHandelingLanguages();
+}
+
+
+function changeLanguageTo(tag, languageCode) {
+    window.localStorage.setItem('translation-language', languageCode);
+    window.localStorage.setItem('primary-language', tag);
+    getTranslations()
+}
+
 
 function executeHandelingLanguages(){
     // set all language field to be not displayed
@@ -52,6 +88,7 @@ function executeHandelingLanguages(){
     }
 }
 
+
 function doLanguageStuff(setlangfields, adj) {
     for (const box of setlangfields) {
         if (box.tagName == "SPAN"){
@@ -61,40 +98,3 @@ function doLanguageStuff(setlangfields, adj) {
         }
     }
 }
-
-
-function getTranslations() {
-        // load data using navigator.language e.g. de-DE.json
-        lang = window.localStorage.getItem('translation-language');
-        if (lang == null || lang == undefined){
-            lang = navigator.language
-            window.localStorage.setItem('translation-language', lang);
-        }
-        fetch(`{{site.baseurl}}/assets/translations/${lang}.json`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("HTTP error " + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                elements = document.querySelectorAll('[data-translate]');
-                for (var element of elements) {
-                    if (data[element.getAttribute('data-translate')] == "" || data[element.getAttribute('data-translate')] == undefined || data[element.getAttribute('data-translate')] == null) {
-                        continue;
-                    }
-                    //console.log(`Replace Value '${element.getAttribute('data-translate')}' with '${data[element.getAttribute('data-translate')]}'`)
-                    element.textContent = data[element.getAttribute('data-translate')]
-                }
-            })
-            .catch(function () {this.dataError = true;})
-    }
-
-function changeLanguageTo(tag, languageCode) {
-    window.localStorage.setItem('translation-language', languageCode);
-    window.localStorage.setItem('primary-language', tag);
-    getTranslations()
-    executeHandelingLanguages();
-}
-
-
