@@ -80,6 +80,9 @@ function getTranslations() {
             .then(data => {
                 elements = document.querySelectorAll('[data-translate]');
                 for (var element of elements) {
+                    if (data[element.getAttribute('data-translate')] === "") {
+                        continue;
+                    }
                     element.textContent = data[element.getAttribute('data-translate')]
                 }
             })
