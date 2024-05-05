@@ -80,9 +80,10 @@ function getTranslations() {
             .then(data => {
                 elements = document.querySelectorAll('[data-translate]');
                 for (var element of elements) {
-                    if (data[element.getAttribute('data-translate')] === "") {
+                    if (data[element.getAttribute('data-translate')] == "" || data[element.getAttribute('data-translate')] == undefined || data[element.getAttribute('data-translate')] == null) {
                         continue;
                     }
+                    //console.log(`Replace Value '${element.getAttribute('data-translate')}' with '${data[element.getAttribute('data-translate')]}'`)
                     element.textContent = data[element.getAttribute('data-translate')]
                 }
             })
