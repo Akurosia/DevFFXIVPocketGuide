@@ -21,13 +21,25 @@ function getTranslations() {
             return response.json();
         })
         .then(data => {
+            //for normal translations
             elements = document.querySelectorAll('[data-translate]');
             for (var element of elements) {
-                if (data[element.getAttribute('data-translate')] == "" || data[element.getAttribute('data-translate')] == undefined || data[element.getAttribute('data-translate')] == null) {
+                value = data[element.getAttribute('data-translate')]
+                if (value == "" || value == undefined || value == null) {
                     console.log(`No Replace Value '${element.getAttribute('data-translate')}'`)
                     continue;
                 }
-                element.textContent = data[element.getAttribute('data-translate')]
+                element.textContent = value
+            }
+            //for urls as hrefs
+            elements = document.querySelectorAll('[data-href-translate]');
+            for (var element of elements) {
+                value = data[element.getAttribute('data-href-translate')]
+                if (value == "" || value == undefined || value == null) {
+                    console.log(`No Replace Value '${element.getAttribute('data-translate')}'`)
+                    continue;
+                }
+                element.href = value
             }
         })
         .catch(function () {this.dataError = true;})

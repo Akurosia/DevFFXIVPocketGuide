@@ -61,7 +61,8 @@ def get_class_translation_data():
     global klass_translations
     klass_translations = {}
     for lang in LANGUAGES:
-        klass_translations[lang] = readJsonFile(f'assets/translations/klassen/{LANGUAGES_MAPPING[lang]}.json')
+        #klass_translations[lang] = readJsonFile(f'assets/translations/klassen/{LANGUAGES_MAPPING[lang]}.json')
+        klass_translations[lang] = {}
 
 
 def write_class_translation_data(data):
@@ -652,15 +653,15 @@ def addKlassJobs():
         filecontent = ""
         filecontent += '---\n'
         filecontent += 'wip: "True"\n'
+        full_title_en = f'{job_d["Name_en"].title()} ({cjs_trans[cj_key_lookup[base_class]]["Name_en"].title()})' if base_class else job_d["Name_en"].title()
         filecontent += 'title:\n'
         for lang in LANGUAGES:
-            if base_class:
-                filecontent += f'  {lang}: "{job_d[f"Name_{lang}"].title()} ({cjs_trans[cj_key_lookup[base_class]]["Name_"+lang].title()})"\n'
-            else:
-                filecontent += f'  {lang}: "{job_d[f"Name_{lang}"].title()}"\n'
+            full_title = f'{job_d[f"Name_{lang}"].title()} ({cjs_trans[cj_key_lookup[base_class]]["Name_"+lang].title()})' if base_class else job_d[f"Name_{lang}"].title()
+            filecontent += f'  {lang}: "{full_title}"\n'
+            klass_translations[lang][f'Sidebar_Title_Full_{full_title_en}'] = full_title
+
         filecontent += 'layout: klassen\n'
         filecontent += 'page_type: guide\n'
-
         roletypeinparty_en_name_key = f'{addon_trans[partybonus[job_party_bonus]][f"Text_en"].title()}'
         #roletypeinparty_de_name_key = f'{addon_trans[partybonus[job_party_bonus]][f"Text_de"].title()}'
         filecontent += f'roletypeinparty: "{roletypeinparty_en_name_key}"\n'
@@ -686,8 +687,7 @@ def addKlassJobs():
 
         filecontent += 'slug: "klassen_und_jobs_' + job.lower() + '"\n'
         if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
-            filecontent += 'image:\n'
-            filecontent += f'    - url: "/assets/img/content/klassen/{job}.png"\n'
+            filecontent += f'image: "/assets/img/content/klassen/{job}.png"\n'
         else:
             print(f"Missing img: {job}.png")
         jobicon = getIconForJob(job_abb)
@@ -718,14 +718,14 @@ def addKlassJobs():
         filecontent += f'ilvl: {maxilvl}\n'
         if pvp:
             filecontent += f'deepdungeon: {job.lower()}\n'
-        filecontent += 'lodestone:\n'
+        filecontent += f'lodestone: "https://na.finalfantasyxiv.com/jobguide/{job_d["Name_en"].replace(" ", "").lower()}/"\n'
         for lang in LANGUAGES:
             n_lang = lang
             if lang in ["en", "cn", "ko"]:
                 n_lang = "na"
             elif lang == "ja":
                 n_lang = "jp"
-            filecontent += f'  {lang}: "https://{n_lang}.finalfantasyxiv.com/jobguide/{job_d["Name_en"].replace(" ", "").lower()}/"\n'
+            klass_translations[lang][f'Sidebar_LodestoneURL_{full_title_en}'] = f'https://{n_lang}.finalfantasyxiv.com/jobguide/{job_d["Name_en"].replace(" ", "").lower()}/'
 
         if base_class:
             filecontent += f'base_class: "{cjs_trans[cj_key_lookup[base_class]]["Name_en"].title()}"\n'
@@ -742,9 +742,11 @@ def addKlassJobs():
             klass_translations[lang][f'Sidebar_ClassShort_{abbreviations}'] = abbreviations_v
 
         filecontent += "bosses:\n"
-        filecontent += "  - title:\n"
+        title_en = job_d[f"Name_en"].title()
+        filecontent += f'  - title: "{title_en}"\n'
         for lang in LANGUAGES:
-            filecontent += f'      {lang}: "{job_d[f"Name_{lang}"].title()}"\n'
+            #filecontent += f'      {lang}: ""\n'
+            klass_translations[lang][f'Content_Title_{title_en}'] = job_d[f"Name_{lang}"].title()
         filecontent += "    id: \"" + "boss" + str(counter) + "\"\n"
         if job == "Blaumagier":
             filecontent += addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_trans, logdata)

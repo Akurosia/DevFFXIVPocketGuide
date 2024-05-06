@@ -1,53 +1,16 @@
 <!-- Guide Adds ========================================================== -->
 <div class="guide__accordion">
-    <div class="guide__accordion-trigger--01 myflexwrapper active" id="guide{{ x }}">
-        <i class="material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
-        <div class="leftside">
-            {%- for lang in LANGUAGES -%}
-                <h2 class="lang-toggle lang-toogle-{{lang}} guide__accordion-trigger-title">{{ enemies[0].title[lang] }}</h2>
-            {%- endfor -%}
-            <h3 class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemies[0].title.en }}</h3>
+    <div class="guide__accordion-trigger--01-grid active" id="guide{{ x }}">
+        <div class="Names">
+            <h2 class="guide__accordion-trigger-title" data-translate="Content_Title_{{ enemies[0].title }}">{{ enemies[0].title }}</h2>
+            <h2 class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">⠀({{ enemies[0].title }})</h2>
         </div>
-
-        {%- if enemies.size == 1 -%}
-            <div class="rightside">
-                {%- if enemies[0].enemy_id and enemies[0].enemy_id != "" -%}
-                    <div class="guide__accordion-trigger-id enemy_id">Enemy-ID: {{ enemies[0].enemy_id }}</div>
-                {%- endif -%}
-                {%- if enemies[0].enemy_hex_id and enemies[0].enemy_hex_id != "" -%}
-                    <div class="guide__accordion-trigger-id enemy_hex_id">Enemy-Hex-ID: {{ enemies[0].enemy_hex_id }}</div>
-                {%- endif -%}
-            </div>
-        {%- endif -%}
     </div>
     <!-- Guide Event Accordion Content -->
     <div class="guide__accordion-content--01 active">
         <!-- Opens the Adds Loop -->
         {%- for enemy in enemies -%}
-            {%- if enemies.size > 1 -%}
-                <div class="guide__accordion-trigger--02 myflexwrapper" id="{{ enemy.id | slugify }}">
-                    <i class="material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}">
-                        <ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon>
-                    </i>
-                    <div class="leftside">
-                        {%- for lang in LANGUAGES -%}
-                            <h3 class="lang-toggle lang-toogle-{{lang}} guide__accordion-trigger-title">{{ enemy.title[lang] }}</h3>
-                        {%- endfor -%}
-                        <h4 class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemy.title.en }}</h4>
-                    </div>
-                    <div class="rightside">
-                        {%- if enemy.enemy_id and enemy.enemy_id != "" -%}
-                            <div class="guide__accordion-trigger-id enemy_id">Enemy-ID: {{ enemy.enemy_id }}</div>
-                        {%- endif -%}
-                        {%- if enemy.enemy_hex_id and enemy.enemy_hex_id != "" -%}
-                            <div class="guide__accordion-trigger-id enemy_hex_id">Enemy-Hex-ID: {{ enemy.enemy_hex_id }}</div>
-                        {%- endif -%}
-                    </div>
-                </div>
-                <div class="guide__accordion-content--02">
-            {%- endif -%}
             {%- include klassen/guide_enemy_sequence.html -%}
-            {%- if enemies.size > 1 -%}</div>{%- endif -%}
         {%- endfor -%}
     </div>
 </div>

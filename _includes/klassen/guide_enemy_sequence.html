@@ -16,11 +16,8 @@
         <div class="guide__accordion-trigger--03--grid" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
             <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
             <div class="Names">
-                {%- if phase.name -%}
-                    <h3 class="guide__accordion-trigger-title">{{ phase.phase }}. {{ phase.name }}</h3>
-                {%- else -%}
-                    <h3 class="guide__accordion-trigger-title">Phase {{ phase.phase }}</h3>
-                {%- endif -%}
+                <h3 class="guide__accordion-trigger-title" >{{ phase.phase }}.⠀</h3>
+                <h3 class="guide__accordion-trigger-title" data-translate="Content_Section_{{ phase.name }}"> {{ phase.name }}</h3>
             </div>
         </div>
         <div class="guide__accordion-content--03">
