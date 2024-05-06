@@ -1,7 +1,7 @@
 import os
 from collections import OrderedDict
-from .helper import getImage, deal_with_extras_in_text
-from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay
+from .helper import getImage, deal_with_extras_in_text, LANGUAGES
+from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, os
 from operator import getitem
 
 chocoboskills_trans = None
@@ -27,6 +27,8 @@ def cb_load_global_data(cb_actions, cb_actions_trans, cb_actiontransient_trans, 
     global traits
     global traits_trans
     global traitstransient_trans
+    origin = os.getcwd()
+    os.chdir("..")
     storeFilesInTmp(True)
 
     actions = cb_actions
@@ -39,6 +41,7 @@ def cb_load_global_data(cb_actions, cb_actions_trans, cb_actiontransient_trans, 
     chocoboitems_trans = loadDataTheQuickestWay("chocoboraceitem", translate=True)
     chocobochallange_trans = loadDataTheQuickestWay("chocoboracechallenge", translate=True)
     buddyskill_raw = loadDataTheQuickestWay("buddyskill.json", exd="raw-exd-all")
+    os.chdir(origin)
 
 
 def addChocoboPartnerSkills():
@@ -196,7 +199,7 @@ def addRennChocoboMissions():
     return result
 
 
-def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans):
+def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations):
     cb_load_global_data(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans)
     job = "Chocobo"
     job_d = {
@@ -219,13 +222,9 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     filecontent += f'  ko: "{job_d["Name_ko"]}"\n'
     filecontent += 'layout: klassen\n'
     filecontent += 'page_type: guide\n'
-    filecontent += 'roletypeinparty:\n'
-    filecontent += f'  de: "{job_d["Name_de"]}"\n'
-    filecontent += f'  en: "{job_d["Name_en"]}"\n'
-    filecontent += f'  fr: "{job_d["Name_fr"]}"\n'
-    filecontent += f'  ja: "{job_d["Name_ja"]}"\n'
-    filecontent += f'  cn: "{job_d["Name_cn"]}"\n'
-    filecontent += f'  ko: "{job_d["Name_ko"]}"\n'
+    filecontent += f'roletypeinparty: "{job_d["Name_en"]}"\n'
+    for lang in LANGUAGES:
+        klass_translations[lang][f'Sidebar_Role_{job_d["Name_en"]}'] = job_d[f"Name_{lang}"]
     filecontent += 'categories: "klassenjobs"\n'
     filecontent += 'difficulty: "Normal"\n'
     filecontent += 'instanceType: "klassenjobs"\n'

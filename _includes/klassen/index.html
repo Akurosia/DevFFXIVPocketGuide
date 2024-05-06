@@ -24,32 +24,29 @@
         {%- endfor -%}
     </div>
     <div class="sort_by_type">
-        {%- assign my_array = "verteidiger,Heiler,Nahkampfangreifer,Phys. Fernkämpfer,Mag. Fernkämpfer,Handwerker,Sammler,Chocobo" | split: ',' -%}
         {%- assign categories = site.categories.klassenjobs -%}
         {%- assign expac = "" -%}
         {%- for x_cjc in page.cjc -%}
-            {%- assign roletype = x_cjc[1].de -%}
+            {%- assign roletype = x_cjc[1] -%}
             {%- assign counter = 0 -%}
             {%- include _components/index-counter.html -%}
             {%- if counter > 0 -%}
                 <a id="{{ roletype }}"></a>
                 <div onclick='$( ".sort_by_expac" ).show();$( ".sort_by_type" ).hide();' class="index-divider" data-expansion="{{ roletype }}">
-                    {%- if roletype == "Verteidiger" -%}            {%- assign classicon = "062000/062581_hr1.png" -%}
-                    {%- elsif roletype == "Heiler" -%}              {%- assign classicon = "062000/062582_hr1.png" -%}
-                    {%- elsif roletype == "Nahkampfangreifer" -%}   {%- assign classicon = "062000/062584_hr1.png" -%}
-                    {%- elsif roletype == "Phys. Fernkämpfer" -%}   {%- assign classicon = "062000/062586_hr1.png" -%}
-                    {%- elsif roletype == "Mag. Fernkämpfer" -%}    {%- assign classicon = "062000/062587_hr1.png" -%}
+                    {%- if roletype == "Tank" -%}                   {%- assign classicon = "062000/062581_hr1.png" -%}
+                    {%- elsif roletype == "Healer" -%}              {%- assign classicon = "062000/062582_hr1.png" -%}
+                    {%- elsif roletype == "Melee Dps" -%}           {%- assign classicon = "062000/062584_hr1.png" -%}
+                    {%- elsif roletype == "Physical Ranged Dps" -%} {%- assign classicon = "062000/062586_hr1.png" -%}
+                    {%- elsif roletype == "Magical Ranged Dps" -%}  {%- assign classicon = "062000/062587_hr1.png" -%}
                     {%- elsif roletype == "Chocobo" -%}             {%- assign classicon = "062000/062141_hr1.png" -%}
                     {%- else -%}                                    {%- assign classicon = "" -%}
                     {%- endif -%}
-                    {%- for lang in LANGUAGES -%}
-                        <span class="lang-toggle lang-toogle-{{lang}} index-divider__title">
-                            {%- if classicon != "" -%}
-                                <image class="role-icon" src="{{site.imageurl}}/{{classicon}}"/>
-                            {%- endif -%}
-                            {{ x_cjc[1][lang] }}
-                        </span>
-                    {%- endfor -%}
+                    <span class="index-divider__title">
+                        {%- if classicon != "" -%}
+                            <image class="role-icon" src="{{site.imageurl}}/{{classicon}}"/>
+                        {%- endif -%}
+                        <div style="display: inline" data-translate="Sidebar_Role_{{ x_cjc[1] }}">{{ x_cjc[1] }}</div>
+                    </span>
                 </div>
                 <div class="index__list" data-expansion="{{ x }}">
                     {%- assign sorted = categories | sort:"order" -%}

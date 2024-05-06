@@ -77,7 +77,7 @@
         {%- endif -%}
     {%- elsif page.page_category == "klassenjobs" -%}
         {%- if guide.instanceType == "klassenjobs" or guide.instance_type == "klassenjobs" -%}
-            {%- if guide.expac == expac or guide.roletypeinparty.de == roletype -%}
+            {%- if guide.expac == expac or guide.roletypeinparty == roletype -%}
                 {%- assign counter = counter | plus: 1 -%}
                 {%- include summary.html -%}
             {%- endif -%}

@@ -1,7 +1,7 @@
 from .helper import getImage, deal_with_extras_in_text, LANGUAGES, getStatusKey
 import re
 import json
-from ffxiv_aku import loadDataTheQuickestWay
+from ffxiv_aku import loadDataTheQuickestWay, os, storeFilesInTmp
 
 actions = None
 lo_actions = None
@@ -21,6 +21,9 @@ def prepare_eureka_bozja_data(eb_actions, eb_status, eb_status_trans, eb_actions
     global actions_trans
     global actiontransient_trans
     global cjs
+    origin = os.getcwd()
+    os.chdir("..")
+    storeFilesInTmp(True)
 
     actions = eb_actions
     lo_actions = loadDataTheQuickestWay("eurekamagiaaction.json")
@@ -30,6 +33,7 @@ def prepare_eureka_bozja_data(eb_actions, eb_status, eb_status_trans, eb_actions
     actions_trans = eb_actions_trans
     actiontransient_trans = eb_actiontransient_trans
     cjs = eb_cjs
+    os.chdir(origin)
 
 
 def getActionDataSet(name):

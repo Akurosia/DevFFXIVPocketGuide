@@ -84,13 +84,13 @@
         <!-- Only on Classes -->
         {%- if page.roletypeinparty -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Type:
-                <span class="block" data-translate="Sidebar_Role_{{ page.roletypeinparty.en }}">{{ page.roletypeinparty.en }}</span>
+                <span class="block" data-translate="Sidebar_Role_{{ page.roletypeinparty }}">{{ page.roletypeinparty }}</span>
             </h5>
         {%- endif -%}
         {%- if page.base_class -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_BaseClass">Base-Klasse:</div>
-                <span class="block" data-translate="Sidebar_BaseClass_{{ page.base_class.en }}">{{ page.base_class.en }}</span>
+                <span class="block" data-translate="Sidebar_BaseClass_{{ page.base_class }}">{{ page.base_class }}</span>
             </h5>
         {%- endif -%}
         {%- if page.classicon or page.jobicon -%}
@@ -108,7 +108,7 @@
         {%- if page.abbreviations -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_ClassShort">Klassen-Kürzel:</div>
-                <span class="block" data-translate="Sidebar_ClassShort_{{ page.abbreviations.en }}">{{ page.abbreviations.en }}</span>
+                <span class="block" data-translate="Sidebar_ClassShort_{{ page.abbreviations }}">{{ page.abbreviations }}</span>
             </h5>
         {%- endif -%}
         {%- if page.lodestone -%}

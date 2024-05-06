@@ -3,7 +3,7 @@ from .helper import getImage, deal_with_extras_in_text, get_propper_zone_name, L
 import traceback
 from operator import getitem
 from glob import glob
-from ffxiv_aku import loadDataTheQuickestWay
+from ffxiv_aku import loadDataTheQuickestWay, os, storeFilesInTmp
 
 logdata = None
 craftactions_trans = None
@@ -22,6 +22,9 @@ def blu_load_global_data(blu_craftactions_trans, blu_actions_trans, blu_items_tr
     global aozactiontransient
     global craftactions_trans
     global items_trans
+    origin = os.getcwd()
+    os.chdir("..")
+    storeFilesInTmp(True)
     actions_trans = blu_actions_trans
     aozaction_trans = loadDataTheQuickestWay("aozactiontransient", translate=True)
     aozactions_trans = loadDataTheQuickestWay("aozaction", translate=True)
@@ -29,6 +32,8 @@ def blu_load_global_data(blu_craftactions_trans, blu_actions_trans, blu_items_tr
     craftactions_trans = blu_craftactions_trans
     items_trans = blu_items_trans
     logdata = blu_logdata
+    os.chdir(origin)
+
 
 def get_play_in_locations(locations):
     cfc = loadDataTheQuickestWay("ContentFindercondition")

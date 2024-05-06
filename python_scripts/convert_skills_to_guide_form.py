@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf8
 import os
-from ffxiv_aku import print_color_red, gear_get, getLevel, deal_with_extras_in_text
+from ffxiv_aku import print_color_red, gear_get, getLevel, deal_with_extras_in_text, readJsonFile, print_pretty_json, writeJsonFile
 from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata
 from collections import OrderedDict
 from operator import getitem
@@ -10,9 +10,9 @@ try:
 except:
     from convert_skills_to_guide_form_helper.chocobo import addChocobo
 try:
-    from .convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES
+    from .convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, LANGUAGES_MAPPING
 except:
-    from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES
+    from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, LANGUAGES_MAPPING
 try:
     from .convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
 except:
@@ -50,6 +50,22 @@ bannertimeline = None
 
 disable_print = True
 status_ncj = None
+
+klass_translations = None
+
+def get_class_translation_data():
+    global klass_translations
+    klass_translations = {}
+    for lang in LANGUAGES:
+        klass_translations[lang] = readJsonFile(f'assets/translations/klassen/{LANGUAGES_MAPPING[lang]}.json')
+
+
+def write_class_translation_data(data):
+    origin = os.getcwd()
+    os.chdir("..")
+    for lang in LANGUAGES:
+        klass_translations[lang] = writeJsonFile(f'assets/translations/klassen/{LANGUAGES_MAPPING[lang]}.json', data[lang])
+    os.chdir(origin)
 
 
 def load_global_data():
@@ -640,11 +656,13 @@ def addKlassJobs():
                 filecontent += f'  {lang}: "{job_d[f"Name_{lang}"].title()}"\n'
         filecontent += 'layout: klassen\n'
         filecontent += 'page_type: guide\n'
-        filecontent += 'roletypeinparty:\n'
-        for lang in LANGUAGES:
-            filecontent += f'  {lang}: "{addon_trans[partybonus[job_party_bonus]][f"Text_{lang}"].title()}"\n'
-        filecontent += 'categories: "klassenjobs"\n'
 
+        roletypeinparty_en_name_key = f'{addon_trans[partybonus[job_party_bonus]][f"Text_en"].title()}'
+        #roletypeinparty_de_name_key = f'{addon_trans[partybonus[job_party_bonus]][f"Text_de"].title()}'
+        filecontent += f'roletypeinparty: "{roletypeinparty_en_name_key}"\n'
+        for lang in LANGUAGES:
+            klass_translations[lang][f'Sidebar_Role_{roletypeinparty_en_name_key}'] = f'{addon_trans[partybonus[job_party_bonus]][f"Text_{lang}"].title()}'
+        filecontent += 'categories: "klassenjobs"\n'
         filecontent += 'difficulty: "Normal"\n'
         filecontent += 'instanceType: "klassenjobs"\n'
 
@@ -706,16 +724,18 @@ def addKlassJobs():
             filecontent += f'  {lang}: "https://{n_lang}.finalfantasyxiv.com/jobguide/{job_d["Name_en"].replace(" ", "").lower()}/"\n'
 
         if base_class:
-            filecontent += 'base_class:\n'
+            filecontent += f'base_class: "{cjs_trans[cj_key_lookup[base_class]]["Name_en"].title()}"\n'
+            baseclass_en_name_key = cjs_trans[cj_key_lookup[base_class]]["Name_en"].title()
             for lang in LANGUAGES:
-                filecontent += f'  {lang}: "{cjs_trans[cj_key_lookup[base_class]]["Name_"+lang].title()}"\n'
+                klass_translations[lang][f'Sidebar_BaseClass_{baseclass_en_name_key}'] = cjs_trans[cj_key_lookup[base_class]]["Name_"+lang].title()
 
-        filecontent += 'abbreviations:\n'
+        # ugly step to create translation file for abbreviations
+
+        abbreviations = f"{cjs_trans[cj_key_lookup[base_class]]["Abbreviation_en"]}, {job_d["Abbreviation_en"]}" if base_class else job_d["Abbreviation_en"]
+        filecontent += f'abbreviations: "{abbreviations}"\n'
         for lang in LANGUAGES:
-            if base_class:
-                filecontent += f'  {lang}: "{cjs_trans[cj_key_lookup[base_class]]["Abbreviation_"+lang]}, {job_d["Abbreviation_"+lang]}"\n'
-            else:
-                filecontent += f'  {lang}: "{job_d["Abbreviation_"+lang]}"\n'
+            abbreviations_v = f"{cjs_trans[cj_key_lookup[base_class]]["Abbreviation_"+lang]}, {job_d["Abbreviation_"+lang]}" if base_class else job_d["Abbreviation_"+lang]
+            klass_translations[lang][f'Sidebar_ClassShort_{abbreviations}'] = abbreviations_v
 
         filecontent += "bosses:\n"
         filecontent += "  - title:\n"
@@ -775,13 +795,16 @@ def addKlassJobs():
 
 
 def run():
-    os.chdir("../_posts")
+    os.chdir("..")
+    get_class_translation_data()
+    load_global_data()
+    os.chdir("_posts")
     addKlassJobs()
-    addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans)
+    addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations)
+    write_class_translation_data(klass_translations)
 
 
 if __name__ == "__main__":
-    load_global_data()
     run()
     #test([{'Ort': 'Abyssos - Fünfter Kreis', 'Gegner': 'Proto-Karfunkel'}, {'Ort': 'Abyssos - Fünfter Kreis (episch)', 'Gegner': 'Proto-Karfunkel'}, {'Ort': 'Das Fenn', 'Gegner': 'Mahisha'}, {'Ort': 'Die Nichts-Arche', 'Gegner': 'Cuchulainn'}, {'Ort': 'Die Welt der Dunkelheit', 'Gegner': 'Cerberus'}, {'Ort': 'Himmelssäule (Ebenen 61-70)', 'Gegner': 'Kenko'}, {'Ort': 'Himmelssäule (Ebenen 81-90)', 'Gegner': 'Himmelssäulen-Gozu'}, {'Ort': 'Historisches Amdapor', 'Gegner': 'Verrottender Gourmet'}, {'Ort': 'Sankt Mocianne-Arboretum (schwer)', 'Gegner': 'Nullchu'}, {'Ort': 'Thavnair', 'Gegner': 'Yilan'}, {'Ort': 'Verschlungene Schatten 1', 'Gegner': '(InGame Hinweis)'}, {'Ort': 'Verschlungene Schatten 2 - 1', 'Gegner': 'Rafflesia'}, {'Ort': 'Verschlungene Schatten 3 - 4', 'Gegner': 'Schmerz Von Meracydia'}])
 

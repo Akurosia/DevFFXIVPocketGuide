@@ -2,7 +2,14 @@ import re
 from ffxiv_aku import fix_slug, print_color_red, print_color_yellow, print_color_blue
 
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
-
+LANGUAGES_MAPPING = {
+    "de": "de-DE",
+    "en": "en-US",
+    "fr": "fr-FR",
+    "ja": "ja-JP",
+    "cn": "cn-CN",
+    "ko": "ko-KR"
+}
 
 def getStatusKey(stat, status):
     for k, v in status.items():
