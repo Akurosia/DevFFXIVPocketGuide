@@ -3,7 +3,7 @@
 =============================================================== {%- endcomment -%}
 <div class="summary">
     <a class="index-item__link" href="{{ guide.url | prepend: site.baseurl }}" title="Go to the {{ guide.title.de }} Guide">
-        <div
+        <div loading="lazy"
             class="index-item__background"
             {%- if guide.cover -%}
                 style="background-image: url('{{ guide.cover }}')"

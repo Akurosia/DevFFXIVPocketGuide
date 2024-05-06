@@ -234,8 +234,7 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     filecontent += 'expac: "arr"\n'
     filecontent += 'slug: "klassen_und_jobs_' + job.lower() + '"\n'
     if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
-        filecontent += 'image:\n'
-        filecontent += f'    - url: "/assets/img/content/klassen/{job}.png"\n'
+        filecontent += f'image: "/assets/img/content/klassen/{job}.png"\n'
     else:
         print(f"Missing img: {job}.png")
     filecontent += 'terms:\n'
