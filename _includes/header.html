@@ -39,48 +39,48 @@
         </div>
         <div class="site-header__item-a">
             <h1 class="{%- if page.page_type == 'index' or page.page_type == 'guide' -%}site-header__title{%- else -%}site-header__guide-title{%- endif -%}">
-                {%- if page.page_category == "all" -%}                  The FFXIV Pocket Guide
-                {%- elsif page.page_category == "dungeons" -%}          Dungeon Guides
-                {%- elsif page.page_category == "trials" -%}            Prüfung Guides
-                {%- elsif page.page_category == "raids" -%}             Raid Guides
-                {%- elsif page.page_category == "ultimates" -%}         Ultimate Guides
-                {%- elsif page.page_category == "allianzraid" -%}       Allianz Raid Guides
-                {%- elsif page.page_category == "gewölbesuche" -%}      Gewölbesuche Guides
-                {%- elsif page.page_category == "pvp" -%}               PVP Guides
-                {%- elsif page.page_category == "potd" -%}              Tiefes Gewölbe Guides
-                {%- elsif page.page_category == "feldexkursion" -%}     Feldexkursion Guides
-                {%- elsif page.page_category == "guildhest" -%}         Gildengeheiße Guides
-                {%- elsif page.page_category == "treasure" -%}          Schatzdungeon Guides
-                {%- elsif page.page_category == "about" -%}             About
-                {%- elsif page.page_category == "links" -%}             Links
-                {%- elsif page.page_category == "klassenjobs" -%}       Klassen und Jobs
-                {%- elsif page.page_category == "quests" -%}            Quests
-                {%- elsif page.page_category == "patches" -%}           Patches
-                {%- elsif page.page_category == "airship_submarine" -%} Luftschiff & Tauchboot
-                {%- elsif page.page_category == "relics" -%}            Reliktwaffen
-                {%- elsif page.page_category == "translate" -%}         Übersetzungen
-                {%- elsif page.page_category == "gear" -%}              Ausrüstung
-                {%- elsif page.page_category == "achivments" -%}        Errungenschaften
+                <span data-translate="Header_CatTitle_{{page.page_category}}">
+                    {%- if page.page_category == "all" -%}                  The FFXIV Pocket Guide
+                    {%- elsif page.page_category == "dungeons" -%}          Dungeon Guides
+                    {%- elsif page.page_category == "trials" -%}            Prüfung Guides
+                    {%- elsif page.page_category == "raids" -%}             Raid Guides
+                    {%- elsif page.page_category == "ultimates" -%}         Ultimate Guides
+                    {%- elsif page.page_category == "allianzraid" -%}       Allianz Raid Guides
+                    {%- elsif page.page_category == "gewölbesuche" -%}      Gewölbesuche Guides
+                    {%- elsif page.page_category == "pvp" -%}               PVP Guides
+                    {%- elsif page.page_category == "potd" -%}              Tiefes Gewölbe Guides
+                    {%- elsif page.page_category == "feldexkursion" -%}     Feldexkursion Guides
+                    {%- elsif page.page_category == "guildhest" -%}         Gildengeheiße Guides
+                    {%- elsif page.page_category == "treasure" -%}          Schatzdungeon Guides
+                    {%- elsif page.page_category == "about" -%}             About
+                    {%- elsif page.page_category == "links" -%}             Links
+                    {%- elsif page.page_category == "klassenjobs" -%}       Klassen und Jobs
+                    {%- elsif page.page_category == "quests" -%}            Quests
+                    {%- elsif page.page_category == "patches" -%}           Patches
+                    {%- elsif page.page_category == "airship_submarine" -%} Luftschiff & Tauchboot
+                    {%- elsif page.page_category == "relics" -%}            Reliktwaffen
+                    {%- elsif page.page_category == "translate" -%}         Übersetzungen
+                    {%- elsif page.page_category == "gear" -%}              Ausrüstung
+                    {%- elsif page.page_category == "achivments" -%}        Errungenschaften
+                    {%- endif -%}
+                </span>
+                {%- if page.page_category -%}
                 {%- else -%}
                     {%- for lang in LANGUAGES -%}
-                        <span class="lang-toggle lang-toogle-{{lang}} ">{{ page.title[lang] }}</span>
+                        <span class="lang-toggle lang-toogle-{{lang}}">{{ page.title[lang] }}</span>
                     {%- endfor -%}
                     {%- if page.difficulty -%}
                         {%- if page.difficulty != "Normal" -%}
                             <span class
-                                {%- if page.difficulty == "Hard" -%}            ="hard"
-                                {%- elsif page.difficulty == "Unreal" -%}       ="unreal"
-                                {%- elsif page.difficulty == "Extreme" -%}      ="extreme"
-                                {%- elsif page.difficulty == "Extrem" -%}       ="extreme"
-                                {%- elsif page.difficulty == "Savage" -%}       ="savage"
-                                {%- elsif page.difficulty == "Ultimate" -%}     ="ultimate"
+                                {%- if page.difficulty == "Extrem" -%}          ="extreme"
                                 {%- elsif page.difficulty == "Schwer" -%}       ="hard"
                                 {%- elsif page.difficulty == "Traumprüfung" -%} ="unreal"
                                 {%- elsif page.difficulty == "Episch" -%}       ="savage"
+                                {%- elsif page.difficulty == "Normal" -%}       ="normal"
                                 {%- elsif page.difficulty == "Fatal" -%}        ="ultimate"
                                 {%- endif -%}
                             >
-                            <span class="lang-toggle lang-toogle-de"> ({{ page.difficulty }})</span>
+                            <span class="lang-toggle lang-toogle-de" data-translate="Header_{{ page.difficulty }}"> ({{ page.difficulty }})</span>
                         </span>
                         {%- endif -%}
                     {%- endif -%}
@@ -95,25 +95,25 @@
                 <li>
                     <a href="https://twitter.com/Akurosia" target="_blank" rel="noopener noreferrer" title="Folge mir auf Twitter um auf dem aktuellsten Stand zu bleiben!">
                         <ion-icon name="logo-twitter"></ion-icon>
-                        Twitter
+                        <span data-translate="Header_Twitter">Twitter</span>
                     </a>
                 </li>
                 <li>
                     <a href="https://github.com/Akurosia/DevFFXIVPocketGuide" target="_blank" rel="noopener noreferrer" title="Pocket Guide Development Repo!">
                         <ion-icon name="logo-github"></ion-icon>
-                        Github
+                        <span data-translate="Header_Github">Github</span>
                     </a>
                 </li>
                 <li>
                     <a href="https://www.youtube.com/user/MTQcapture" target="_blank" rel="noopener noreferrer" title="MTQcapture's YouTube Channel.">
                         <ion-icon name="logo-youtube"></ion-icon>
-                        MTQcapture
+                        <span data-translate="Header_MTQcapture">MTQcapture</span>
                     </a>
                 </li>
                 <li>
                     <a href="https://www.youtube.com/user/Xehanort1227" target="_blank" rel="noopener noreferrer" title="Mrhappy1227's YouTube Channel.">
                         <ion-icon name="logo-youtube"></ion-icon>
-                        Mrhappy1227
+                        <span data-translate="Header_Mrhappy1227">Mrhappy1227</span>
                     </a>
                 </li>
             </ul>
@@ -124,32 +124,32 @@
                 <li>
                     <a href="https://twitter.com/intent/tweet?via=Akurosia&url={{ site.url }}{{ page.url | url_encode }}&text=I%20want%20to%20submit%20feedback%20on%20{{ page.title | url_encode }}%2E&related=Akurosia, ffxiv_pocket_guide" target="_blank" rel="noopener noreferrer" title="Sende Feedback für {{ page.title.de }}.">
                         <ion-icon name="logo-twitter"></ion-icon>
-                        Sende Feedback
+                        <span data-translate="Header_SendFeedback">Send Feedback</span>
                     </a>
                 </li>
                 <li>
                     {%- if page.mtq_vid1 -%}
                         <a href="{{ page.mtq_vid1 }}" target="_blank" rel="noopener noreferrer" title="Schau dir den Video Guide von MTQcapture an.">
                             <ion-icon name="logo-youtube"></ion-icon>
-                            MTQcapture Video Guide
+                            <span data-translate="Header_MTQcapture1">MTQcapture Video Guide</span>
                         </a>
                     {%- endif -%}
                     {%- if page.mtq_vid2 -%}
                         <a href="{{ page.mtq_vid2 }}" target="_blank" rel="noopener noreferrer" title="Schau dir den 2. Teil des Video Guides von MTQcapture an.">
                             <ion-icon name="logo-youtube"></ion-icon>
-                            MTQcapture Video Guide #2
+                            <span data-translate="Header_MTQcapture2">MTQcapture Video Guide #2</span>
                         </a>
                     {%- endif -%}
                     {%- if page.mrh_vid1 -%}
                         <a href="{{ page.mrh_vid1 }}" target="_blank" rel="noopener noreferrer" title="Schau dir den Video Guide von MrHappy an.">
                             <ion-icon name="logo-youtube"></ion-icon>
-                            MrHappy Video Guide
+                            <span data-translate="Header_MrHappy1">MrHappy Video Guide</span>
                         </a>
                     {%- endif -%}
                     {%- if page.mrh_vid2 -%}
                         <a href="{{ page.mrh_vid2 }}" target="_blank" rel="noopener noreferrer" title="Schau dir den 2. Teil des Video Guides von MrHappy an.">
                             <ion-icon name="logo-youtube"></ion-icon>
-                            MrHappy Video Guide #2
+                            <span data-translate="Header_MrHappy2">MrHappy Video Guide #2</span>
                         </a>
                     {%- endif -%}
                 </li>

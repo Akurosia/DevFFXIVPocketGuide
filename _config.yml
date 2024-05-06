@@ -71,8 +71,7 @@ exclude:
   - "README.md"
   - "*.bat"
   - "python_scripts/"
-  - "assets/translations/sidebar"
-  - "assets/translations/footer"
+  - "assets/translations/*/"
 sass:
     sass_dir: _sass
     load_paths:
