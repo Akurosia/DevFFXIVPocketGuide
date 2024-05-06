@@ -4,9 +4,9 @@
         {%- for url in page.hector -%}
             {%- assign naviIndex = {{forloop.index}} -%}
             {%- if page.hector.size == 1 -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">Hector's Guide</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_HectorsGuide">Hector's Guide</a>
             {%- else -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">Hector's Guide {{naviIndex}}</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_HectorsGuide2">Hector's Guide {{naviIndex}}</a>
             {%- endif -%}
         {%- endfor -%}
     {%- endif -%}
@@ -14,9 +14,9 @@
         {%- for url in page.mtqvid -%}
             {%- assign naviIndex = {{forloop.index}} -%}
             {%- if page.mtqvid.size == 1 -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_MTQcapturesGuide">MTQcapture's Guide</a>
             {%- else -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">MTQcapture's Guide {{naviIndex}}</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_MTQcapturesGuide2">MTQcapture's Guide {{naviIndex}}</a>
             {%- endif -%}
         {%- endfor -%}
     {%- endif -%}
@@ -24,54 +24,75 @@
         {%- for url in page.mrhvid -%}
             {%- assign naviIndex = {{forloop.index}} -%}
             {%- if page.mtqvid.size == 1 -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_MrHappysGuide">MrHappy's Guide</a>
             {%- else -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link">MrHappy's Guide {{naviIndex}}</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_MrHappysGuide2">MrHappy's Guide {{naviIndex}}</a>
             {%- endif -%}
         {%- endfor -%}
     {%- endif -%}
     <div class="guide-metadata__wrapper">
         <h5 class="guide-metadata__subtitle box small-1of2 med-full">
-            {%- if page.instanceType == "klassenjobs" -%}Max-{%- endif -%}Player Level: <span class="noblock">{{ page.plvl }}</span>
+            {%- if page.instanceType == "klassenjobs" -%}
+                <div data-translate="Sidebar_MaxPlayerLevel">Max-Player Level: </div>
+            {%- else -%}
+                <div data-translate="Sidebar_PlayerLevel">Player Level: </div>
+            {%- endif -%}
+            <span class="noblock">{{ page.plvl }}</span>
         </h5>
         {%- if page.plvl_sync > 0 -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Player Level Sync: <span class="noblock">{{ page.plvl_sync }}</span></h5>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_PlayerLevelSync">Player Level Sync: </div>
+                <span class="noblock">{{ page.plvl_sync }}</span>
+            </h5>
         {%- endif -%}
         {%- if page.ilvl > 0 -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
-                {%- if page.instanceType == "klassenjobs" -%}Max-{%- endif -%}Item Level: <span class="noblock">{{ page.ilvl }}</span>
+                {%- if page.instanceType == "klassenjobs" -%}
+                    <div data-translate="Sidebar_MaxItemLevel">Max-Item Level: </div>
+                {%- else -%}
+                    <div data-translate="Sidebar_ItemLevel">Item Level: </div>
+                {%- endif -%}
+                <span class="noblock">{{ page.ilvl }}</span>
             </h5>
         {%- else -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Item Level: <span class="noblock">N/A</span></h5>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_ItemLevel">Item Level: </div>
+                <span class="noblock">N/A</span
+            ></h5>
         {%- endif -%}
         {%- if page.ilvl_sync > 0 -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Item Level Sync: <span class="noblock">{{ page.ilvl_sync }}</span></h5>
-        {%- endif -%}
-        {%- if page.roletypeinparty -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Type:
-                {%- for lang in LANGUAGES -%}
-                    <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.roletypeinparty[lang] }}</span>
-                {%- endfor -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_ItemLevelSync">Item Level Sync: </div>
+                <span class="noblock">{{ page.ilvl_sync }}</span>
             </h5>
         {%- endif -%}
-
         {%- if page.patchNumber -%}
             {%- if page.patchLink -%}
-                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Patch:
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="{{ page.patchLink }}">{{ page.patchNumber }} - {{ page.patchName }}</a></span>
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                    <div data-translate="Sidebar_Patch">Patch:</div>
+                    <span class="block">
+                        <a target="_blank" rel="noopener noreferrer" href="{{ page.patchLink }}">{{ page.patchNumber }} - {{ page.patchName }}</a>
+                    </span>
                 </h5>
             {%- else -%}
-                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Patch:<span class="block">{{ page.patchNumber }} - {{ page.patchName }}</span></h5>
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                    <div data-translate="Sidebar_Patch">Patch:</div>
+                    <span class="block">{{ page.patchNumber }} - {{ page.patchName }}</span>
+                </h5>
             {%- endif -%}
         {%- endif -%}
-        {%- if page.base_class -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Base-Klasse:
-                {%- for lang in LANGUAGES -%}
-                    <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.base_class[lang] }}</span>
-                {%- endfor -%}
+        <!-- Only on Classes -->
+        {%- if page.roletypeinparty -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Type:
+                <span class="block" data-translate="Sidebar_Role_{{ page.roletypeinparty.en }}">{{ page.roletypeinparty.en }}</span>
             </h5>
         {%- endif -%}
-
+        {%- if page.base_class -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_BaseClass">Base-Klasse:</div>
+                <span class="block" data-translate="Sidebar_BaseClass_{{ page.base_class.en }}">{{ page.base_class.en }}</span>
+            </h5>
+        {%- endif -%}
         {%- if page.classicon or page.jobicon -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Icon:
                 <span class="block group-icon">
@@ -84,16 +105,15 @@
                 </span>
             </h5>
         {%- endif -%}
-
         {%- if page.abbreviations -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Klassen-Kürzel:
-                {%- for lang in LANGUAGES -%}
-                    <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.abbreviations[lang] }}</span>
-                {%- endfor -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_ClassShort">Klassen-Kürzel:</div>
+                <span class="block" data-translate="Sidebar_ClassShort_{{ page.abbreviations.en }}">{{ page.abbreviations.en }}</span>
             </h5>
         {%- endif -%}
         {%- if page.lodestone -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Lodestone:
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Lodestone">Lodestone:</div>
                 <span class="block">
                 {%- for lang in LANGUAGES -%}
                     <a target="_blank" rel="noopener noreferrer" class="lang-toggle lang-toogle-{{lang}}" href="{{ page.lodestone[lang] }}">{{ page.title[lang] }}</a>
@@ -102,47 +122,66 @@
             </h5>
         {%- endif -%}
         {%- if page.deepdungeon -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Deep Dungeon Icon:</h5>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full" data-translate="Sidebar_DeepDungeonIcon">Deep Dungeon Icon:</h5>
             <div class="sprite-sheet sprite-podt-{{page.deepdungeon}}"></div>
         {%- endif -%}
+        <!-- END Only on Classes -->
+        <!-- Only on Content -->
         {%- if page.contentname -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentname: 
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_ContentName">Contentname: </div>
                 {%- for lang in LANGUAGES -%}
                     <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.contentname[lang] }}</span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
         {%- if page.contentdescription -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contentbeschreibung:
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_ContentDesc">Contentbeschreibung: </div>
                 {%- for lang in LANGUAGES -%}
                     <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.contentdescription[lang] }}</span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
         {%- if page.cfcid -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">ContentFinderID: <span class="block">{{ page.cfcid }}</span></h5>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_ContentFinderID">ContentFinderID: </div>
+                <span class="block">{{ page.cfcid }}</span>
+            </h5>
         {%- endif -%}
         {%- if page.pnid -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">PlaceNameID: <span class="block">{{ page.pnid }}</span></h5>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_PlaceNameID">PlaceNameID: </div>
+                <span class="block">{{ page.pnid }}</span>
+            </h5>
         {%- endif -%}
         {%- if page.mapid -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">MapID: <span class="block">{{ page.mapid }}</span></h5>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_MapID">MapID: </div>
+                <span class="block">{{ page.mapid }}</span>
+            </h5>
         {%- endif -%}
         {%- if page.mappath -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">MapPath: <span class="block">{{ page.mappath }}</span></h5>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_MapPath">MapPath: </div>
+                <span class="block">{{ page.mappath }}</span>
+            </h5>
         {%- endif -%}
         {%- if page.contentzoneids -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Contenzoneids:
-            {%- for zone in page.contentzoneids -%}
-                {%- if page.contentzoneids.size > 1 -%}
-                    <span class="block">- {{ zone.id }}</span>
-                {%- else -%}
-                    <span class="block">{{ zone.id }}</span>
-                {%- endif -%}
-            {%- endfor -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Contenzoneids">Contenzoneids: </div>
+                {%- for zone in page.contentzoneids -%}
+                    {%- if page.contentzoneids.size > 1 -%}
+                        <span class="block">- {{ zone.id }}</span>
+                    {%- else -%}
+                        <span class="block">{{ zone.id }}</span>
+                    {%- endif -%}
+                {%- endfor -%}
+            </h5>
         {%- endif -%}
         {%- if page.music -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Content Music:
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_ContentMusic">Content Music:</div>
                 {%- for music in page.music -%}
                     {%- if page.music.size > 1 -%}
                         {%- if music.id -%}
@@ -169,7 +208,8 @@
             </h5>
         {%- endif -%}
         {%- if page.group -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Guppenaufstellung:
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Guppenaufstellung">Guppenaufstellung: </div>
                 <span class="block group-icon">
                     {%- if page.group.tank -%}
                         {{ page.group.tank }}x<image src="{{site.imageurl}}/062000/062581_hr1.png"/>
@@ -187,7 +227,8 @@
             </h5>
         {%- endif -%}
         {%- if page.quest -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest:
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Quest">Quest: </div>
                 <span class="block">
                     {%- for lang in LANGUAGES -%}
                         <a target="_blank" rel="noopener noreferrer" class="lang-toggle lang-toogle-{{lang}}" href="https://{{lang}}.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest[lang] }}">{{ page.quest[lang] }}</a>
@@ -195,29 +236,25 @@
                 </span>
             </h5>
             {%- if page.quest_location -%}
-                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest Location:
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                    <div data-translate="Sidebar_QuestLocation">Quest Location: </div>
                     {%- for lang in LANGUAGES -%}
                         <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.quest_location[lang] }}</span>
                     {%- endfor -%}
                 </h5>
             {%- endif -%}
             {%- if page.quest_npc -%}
-                <h5 class="guide-metadata__subtitle box small-1of2 med-full">Quest NPC:
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                    <div data-translate="Sidebar_QuestNPC">Quest NPC: </div>
                     {%- for lang in LANGUAGES -%}
                         <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.quest_npc[lang] }}</span>
                     {%- endfor -%}
                 </h5>
             {%- endif -%}
         {%- endif -%}
-        {%- if page.partners -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Partners:
-            {%- for partner in page.partners -%}
-                <span class="block"><a href="{{ partner.partner-link }}" title="Go view {{ partner.partner-title }}'s Guide" target="_blank" rel="noopener noreferrer">{{ partner.partner-title }}</a></span>
-            {%- endfor -%}
-            </h5>
-        {%- endif -%}
         {%- if page.mount -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Mount(s):
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Mounts">Mount(s): </div>
                 {%- for mount in page.mount -%}
                     {%- if page.mount.size > 1 -%}
                         {%- if mount.id -%}
@@ -244,7 +281,8 @@
             </h5>
         {%- endif -%}
         {%- if page.minion -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Minion(s):
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Minions">Minion(s): </div>
                 {%- for minion in page.minion -%}
                     {%- if page.minion.size > 1 -%}
                         {%- if minion.id -%}
@@ -272,6 +310,7 @@
         {%- endif -%}
         {%- if page.gearset_loot -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Gearset(s):
+                <div data-translate="Sidebar_Gearsets">Gearset(s): </div>
                 {%- for gearset in page.gearset_loot -%}
                     {%- if page.gearset_loot.size > 1 -%}
                         <span class="block">- {{ gearset.gsetname }}</span>
@@ -282,7 +321,8 @@
             </h5>
         {%- endif -%}
         {%- if page.tt_card -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">TT_Karte(n):
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_TT_Karten">TT_Karte(n): </div>
                 {%- for tt_card in page.tt_card -%}
                     {%- if page.tt_card.size > 1 -%}
                         {%- if tt_card.id -%}
@@ -309,7 +349,8 @@
             </h5>
         {%- endif -%}
         {%- if page.orchestrion -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Orchestrion Roll:
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_OrchestrionRoll">Orchestrion Roll: </div>
                 {%- for orchestrion in page.orchestrion -%}
                     {%- if page.orchestrion.size > 1 -%}
                         {%- if orchestrion.id -%}
@@ -336,7 +377,8 @@
             </h5>
         {%- endif -%}
         {%- if page.orchestrion_material -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Orchestrion Roll Material:
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_OrchestrionRollMaterial">Orchestrion Roll Material: </div>
                 {%- for orchestrion_material in page.orchestrion_material -%}
                     {%- if page.orchestrion_material.size > 1 -%}
                         {%- for lang in LANGUAGES -%}
@@ -351,36 +393,38 @@
             </h5>
         {%- endif -%}
         {%- if page.rouletts -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Rouletts:
-                {%- if page.rouletts.allianceraid -%}
-                    <span class="block">- Allianz Raid</span>
-                {%- elsif page.rouletts.frontier -%}
-                    <span class="block">- PvP</span>
-                {%- elsif page.rouletts.expert -%}
-                    <span class="block">- Experte</span>
-                {%- elsif page.rouletts.guildhest -%}
-                    <span class="block">- Gildengeheiß</span>
-                {%- elsif page.rouletts.highlevelroulette -%}
-                    <span class="block">- High Level</span>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-origin="contentroulette" data-translate="Sidebar_Rouletts">Duty Roulette: </div>
+                {%- if page.rouletts.expert -%}
+                    <span class="block" data-translate="Sidebar_Rouletts_Experte">- Expert</span>
                 {%- elsif page.rouletts.levelcaproulette -%}
-                    <span class="block">- Level Cap</span>
+                    <span class="block" data-translate="Sidebar_Rouletts_LevelCap">- Level 90 Dungeons</span>
+                {%- elsif page.rouletts.highlevelroulette -%}
+                    <span class="block" data-translate="Sidebar_Rouletts_HighLevel">- Level 50/60/70/80 Dungeons</span>
                 {%- elsif page.rouletts.leveling -%}
-                    <span class="block">- Leveling</span>
-                {%- elsif page.rouletts.main -%}
-                    <span class="block">- Hauptszenario</span>
-                {%- elsif page.rouletts.mentor -%}
-                    <span class="block">- Mentor</span>
-                {%- elsif page.rouletts.normalraid -%}
-                    <span class="block">- Normal Raid</span>
+                    <span class="block" data-translate="Sidebar_Rouletts_Leveling">- Leveling</span>
                 {%- elsif page.rouletts.trial -%}
-                    <span class="block">- Prüfung</span>
+                    <span class="block" data-translate="Sidebar_Rouletts_Prüfung">- Trials</span>
+                {%- elsif page.rouletts.main -%}
+                    <span class="block" data-translate="Sidebar_Rouletts_Hauptszenario">- Main Scenario</span>
+                {%- elsif page.rouletts.guildhest -%}
+                    <span class="block" data-translate="Sidebar_Rouletts_Gildengeheiß">- Guildhests</span>
+                {%- elsif page.rouletts.allianceraid -%}
+                    <span class="block" data-translate="Sidebar_Rouletts_AllianzRaid">- Alliance Raids</span>
+                {%- elsif page.rouletts.normalraid -%}
+                    <span class="block" data-translate="Sidebar_Rouletts_NormalRaid">- Normal Raids</span>
+                {%- elsif page.rouletts.mentor -%}
+                    <span class="block" data-translate="Sidebar_Rouletts_Mentor">- Mentor</span>
+                {%- elsif page.rouletts.frontier -%}
+                    <span class="block" data-translate="Sidebar_Rouletts_PvP">- Frontline</span>
                 {%- elsif page.rouletts.gewölbesuche -%}
-                    <span class="block">- Gewölbesuche</span>
+                    <span class="block" data-translate="Sidebar_Rouletts_Gewölbesuche">- V&C Dungeon Finder</span>
                 {%- endif -%}
             </h5>
         {%- endif -%}
         {%- if page.links -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Links:
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Links">Links: </div>
                 {%- if page.links.teamcraftlink -%}
                     <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance/{{ page.links.teamcraftlink }}">Teamcraft</a></span>
                 {%- endif -%}
@@ -395,18 +439,18 @@
     </div>
     {%- if page.mechanics || page.bosses.size > 1 || page.adds.size > 1 -%}
         <ul class="guide-metadata__menu">
-            <h5 class="guide-metadata__subtitle">In This Guide:</h5>
+            <h5 class="guide-metadata__subtitle" data-translate="Sidebar_InThisGuide">In This Guide:</h5>
             {%- if page.mechanics -%}
                 <li>
                     <a href="#" data-id="guideNotes" title="Go to the Guide Notes" class="guide-metadata__menu-link">
-                        {% include helper/returnPropperName.html instanceType=page.instanceType %} Notizen
+                         <div data-translate="Sidebar_Notizen">Notes</div>
                     </a>
                 </li>
             {%- endif -%}
             {%- if page.bosses.size > 1 -%}
                 <li>
                     <a href="#" data-id="guideBosse" title="Go to the Guide Bosse" class="guide-metadata__menu-link">
-                        {% include helper/returnPropperName.html instanceType=page.instanceType %} Bosse
+                         <div data-translate="Sidebar_Bosse">Bosses</div>
                     </a>
                     <ul class="guide-metadata__submenu">
                         {%- for boss in page.bosses -%}
@@ -422,7 +466,7 @@
             {%- if page.adds.size > 1 -%}
                 <li>
                     <a href="#" data-id="guideAdds" title="Go to the Guide Adds" class="guide-metadata__menu-link">
-                        {% include helper/returnPropperName.html instanceType=page.instanceType %} Adds
+                        <div data-translate="Sidebar_Adds">Adds</div>
                     </a>
                     <ul class="guide-metadata__submenu">
                         {%- for add in page.adds -%}
