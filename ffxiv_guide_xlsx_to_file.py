@@ -188,8 +188,6 @@ def main():
     if not print_debug:
         #csgf needs also to run from posts dir
         csgf.run()
-        # move back to DEVPOCKETGUIDE dir
-        os.chdir("..")
         gl.run()
         gp.run()
         ghm.run()
