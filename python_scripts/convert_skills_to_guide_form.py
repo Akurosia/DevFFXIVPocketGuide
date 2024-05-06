@@ -21,6 +21,10 @@ try:
     from .convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
 except:
     from convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
+try:
+    import convertTranslationJsons as ctj
+except:
+    import convertTranslationJsons as ctj
 
 allPartyMittigation = {}
 skills = None
@@ -802,6 +806,7 @@ def run():
     addKlassJobs()
     addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations)
     write_class_translation_data(klass_translations)
+    ctj.run()
 
 
 if __name__ == "__main__":

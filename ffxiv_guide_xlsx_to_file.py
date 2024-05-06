@@ -142,7 +142,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             if True:
                 #if debug_row_number > 10 :
                 if debug_row_number not in [103]:
-                    print_debug = True
+                    #print_debug = True
                     continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             if print_debug:

@@ -27,10 +27,6 @@ function getTranslations() {
                     console.log(`No Replace Value '${element.getAttribute('data-translate')}'`)
                     continue;
                 }
-                //console.log(`Replace Value '${element.getAttribute('data-translate')}' with '${data[element.getAttribute('data-translate')]}'`)
-                if (element.hasAttribute("href")){
-                    element.href = data[element.getAttribute('data-translate')+"Url"]
-                }
                 element.textContent = data[element.getAttribute('data-translate')]
             }
         })
