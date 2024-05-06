@@ -24,7 +24,7 @@ except:
 try:
     import convertTranslationJsons as ctj
 except:
-    import convertTranslationJsons as ctj
+    import python_scripts.convertTranslationJsons as ctj
 
 allPartyMittigation = {}
 skills = None

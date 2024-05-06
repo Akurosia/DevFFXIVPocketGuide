@@ -405,9 +405,9 @@ def rewrite_content_even_if_exists(entry, old_wip):
             if found:
                 header_data += f'    {x}: "' + data[0] + '"\n'
 
-    if gamerscape_items.get(entry["gamerescapelink"], None):
-        header_data += 'gamerscape_items:\n'
-        header_data += getItemsList(gamerscape_items[entry["gamerescapelink"]])
+    #if gamerscape_items.get(entry["gamerescapelink"], None):
+    #    header_data += 'gamerscape_items:\n'
+    #    header_data += getItemsList(gamerscape_items[entry["gamerescapelink"]])
     return header_data, entry
 
 

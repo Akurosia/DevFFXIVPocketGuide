@@ -13,12 +13,12 @@
     <div class="site-header__grid"
         {%- if page.page_type == "index" or page.page_category == "about" -%}
             style="background-image: url('{{ "/assets/img/6.4.jpg" | prepend: site.baseurl }}')"
-        {%- elsif page.image[0].url -%}
+        {%- elsif page.image -%}
             style="background-image:
-            {%- if page.image[0].url contains "/assets/" -%}
-                url('{{ page.image[0].url | prepend: site.baseurl }}');
+            {%- if page.image contains "/assets/" -%}
+                url('{{ page.image | prepend: site.baseurl }}');
             {%- else -%}
-                url('{{ page.image[0].url | prepend: site.imageurl }}');
+                url('{{ page.image | prepend: site.imageurl }}');
             {%- endif -%}
             {%- if page.instanceType == "patch_details" -%}
                 background-size: contain;
