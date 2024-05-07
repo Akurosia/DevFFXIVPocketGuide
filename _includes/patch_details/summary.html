@@ -7,41 +7,18 @@
             class="index-item__background"
             {%- if guide.cover -%}
                 style="background-image: url('{{ guide.cover }}')"
-            {%- elsif guide.image[0].url -%}
+            {%- elsif guide.image -%}
                 style="background-image:
-                    {%- if guide.image[0].url contains "/assets/" -%} url('{{ guide.image[0].url | prepend: site.baseurl }}');
-                    {%- else -%}                                      url('{{ guide.image[0].url | prepend: site.imageurl }}');
+                    {%- if guide.image contains "/assets/" -%} url('{{ guide.image | prepend: site.baseurl }}');
+                    {%- else -%}                               url('{{ guide.image | prepend: site.imageurl }}');
                     {%- endif -%}
                     background-size: contain;
             {%- endif -%}">
         </div>
-        <h3 class="index-item__title"
-            {%- if guide.layout == "new-guide" -%}
-              data-terms="{{ guide.title.de }}&#32;{{ guide.title.en }}&#32;{{ guide.title.fr }}&#32;{{ guide.title.ja }}&#32;{{ guide.title.cn }}&#32;{{ guide.title.ko }}&#32;{{ guide.guide-type }}&#32;{{ guide.categories }}&#32;{%- for term in guide.search-terms -%}{{ term }}&#32;{%- endfor -%}"
-            {%- else -%}
-              data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%}"
-            {%- endif -%}>
+        <h3 class="index-item__title">
             {%- for lang in LANGUAGES -%}
                 <span class="lang-toggle lang-toogle-{{lang}}"> {{ guide.title[lang] }} </span>
             {%- endfor -%}
-
-            <span class
-                {%- if guide.difficulty == "Hard" -%}            ="hard"
-                {%- elsif guide.difficulty == "Unreal" -%}       ="unreal"
-                {%- elsif guide.difficulty == "Extreme" -%}      ="extreme"
-                {%- elsif guide.difficulty == "Extrem" -%}       ="extreme"
-                {%- elsif guide.difficulty == "Savage" -%}       ="savage"
-                {%- elsif guide.difficulty == "Ultimate" -%}     ="ultimate"
-                {%- elsif guide.difficulty == "Schwer" -%}       ="hard"
-                {%- elsif guide.difficulty == "Traumprüfung" -%} ="unreal"
-                {%- elsif guide.difficulty == "Episch" -%}       ="savage"
-                {%- elsif guide.difficulty == "Fatal" -%}        ="ultimate"
-                {%- endif -%}
-                >
-                {%- if guide.difficulty != "Normal" -%}
-                    <span class="lang-toggle lang-toogle-de">({{ guide.difficulty }})</span>
-                {%- endif -%}
-            </span>
         </h3>
         <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
             {{ guide.title.en }}

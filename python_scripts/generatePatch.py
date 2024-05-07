@@ -1,6 +1,38 @@
 import json
+import os
 from ffxiv_aku import *
 from datetime import datetime, date
+try:
+    import convertTranslationJsons as ctj
+except:
+    import python_scripts.convertTranslationJsons as ctj
+
+
+LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES_MAPPING = {
+    "de": "de-DE",
+    "en": "en-US",
+    "fr": "fr-FR",
+    "ja": "ja-JP",
+    "cn": "cn-CN",
+    "ko": "ko-KR"
+}
+klass_translations = None
+def get_class_translation_data():
+    global klass_translations
+    klass_translations = {}
+    for lang in LANGUAGES:
+        klass_translations[lang] = readJsonFile(f'assets/translations/patches/{LANGUAGES_MAPPING[lang]}.json')
+        #klass_translations[lang] = {}
+
+
+def write_class_translation_data(data):
+    origin = os.getcwd()
+    os.chdir("..")
+    print(os.getcwd())
+    for lang in LANGUAGES:
+        klass_translations[lang] = writeJsonFile(f'assets/translations/patches/{LANGUAGES_MAPPING[lang]}.json', data[lang])
+    os.chdir(origin)
 
 
 def nextRelease(value):
@@ -97,9 +129,10 @@ def single_patch_file():
         filecontent = ""
         filecontent += '---\n'
         filecontent += 'wip: "True"\n'
-        filecontent += 'title:\n'
-        for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
-            filecontent += f'  {lang}: "{value["Name_"+lang]}"\n'
+        filecontent += f'title: "{value["Name_en"]}"\n'
+        for lang in LANGUAGES:
+            klass_translations[lang][f'Patches_{int(key)+2}.x - {value["Name_en"]}'] = f'{int(key)+2}.x - {value["Name_"+lang]}'
+            #filecontent += f'  {lang}: "{value["Name_"+lang]}"\n'
         filecontent += 'layout: klassen\n'
         filecontent += 'page_type: guide\n'
         filecontent += 'categories: "patch_details"\n'
@@ -110,8 +143,7 @@ def single_patch_file():
         filecontent += f'patchName: "{value["Name_de"]}"\n'
         filecontent += f'expac: "{n_version["pname"]}"\n'
         filecontent += f'slug: "{value["Name_de"].lower().replace(" ", "_")}"\n'
-        filecontent += 'image:\n'
-        filecontent += f'    - url: "/assets/img/titel-logo/{logos[n_version["pname"]]}"\n'
+        filecontent += f'image: "/assets/img/titel-logo/{logos[n_version["pname"]]}"\n'
         filecontent += '---\n'
 
         filename = f'_posts/patch_details/{n_version["date"].replace(".", "-")}--{str(int(key)+2)+".0"}--{key}-{value["Name_de"].lower().replace(" ", "_")}.html'
@@ -127,13 +159,14 @@ def single_patch_file():
 
 
 def run():
+    get_class_translation_data()
     patches_overview()
     single_patch_file()
+    os.chdir("_posts")
+    write_class_translation_data(klass_translations)
 
 
 if __name__ == "__main__":
-    import os
-    print(os.getcwd())
     os.chdir("..")
-    print(os.getcwd())
     run()
+    ctj.run()
