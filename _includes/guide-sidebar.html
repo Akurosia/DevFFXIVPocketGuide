@@ -67,19 +67,16 @@
             </h5>
         {%- endif -%}
         {%- if page.patchNumber -%}
-            {%- if page.patchLink -%}
-                <h5 class="guide-metadata__subtitle box small-1of2 med-full">
-                    <div data-translate="Sidebar_Patch">Patch:</div>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Patch">Patch:</div>
+                {%- if page.patchLink -%}
                     <span class="block">
-                        <a target="_blank" rel="noopener noreferrer" href="{{ page.patchLink }}">{{ page.patchNumber }} - {{ page.patchName }}</a>
+                        <a target="_blank" rel="noopener noreferrer" href="{{ page.patchLink }}" data-translate="Patch_{{ page.patchNumber }} - {{ page.patchName }}">{{ page.patchNumber }} - {{ page.patchName }}</a>
                     </span>
-                </h5>
-            {%- else -%}
-                <h5 class="guide-metadata__subtitle box small-1of2 med-full">
-                    <div data-translate="Sidebar_Patch">Patch:</div>
-                    <span class="block">{{ page.patchNumber }} - {{ page.patchName }}</span>
-                </h5>
-            {%- endif -%}
+                {%- else -%}
+                    <span class="block"  data-translate="Patch_{{ page.patchNumber }} - {{ page.patchName }}">{{ page.patchNumber }} - {{ page.patchName }}</span>
+                {%- endif -%}
+            </h5>
         {%- endif -%}
         <!-- Only on Classes -->
         {%- if page.roletypeinparty -%}
