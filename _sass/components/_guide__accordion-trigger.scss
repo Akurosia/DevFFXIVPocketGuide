@@ -291,8 +291,10 @@
   font-weight: 700;
   margin: 0;
   position: relative;
-  //width: 100%;
   z-index: 2;
+  &[class*=class] {
+    width: 100%;
+  }
 }
 
 .guide__accordion-trigger-title_en {
