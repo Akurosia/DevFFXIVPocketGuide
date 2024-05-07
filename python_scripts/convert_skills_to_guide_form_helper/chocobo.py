@@ -253,13 +253,9 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     filecontent += 'order: 0\n'
     filecontent += 'plvl: 50\n'
     filecontent += "bosses:\n"
-    filecontent += "  - title:\n"
-    filecontent += f'      de: "{job_d["Name_de"]}"\n'
-    filecontent += f'      en: "{job_d["Name_en"]}"\n'
-    filecontent += f'      fr: "{job_d["Name_fr"]}"\n'
-    filecontent += f'      ja: "{job_d["Name_ja"]}"\n'
-    filecontent += f'      cn: "{job_d["Name_cn"]}"\n'
-    filecontent += f'      ko: "{job_d["Name_ko"]}"\n'
+    filecontent += f'  - title: "{job_d["Name_en"]}"\n'
+    for lang in LANGUAGES:
+        klass_translations[lang][f'Content_Title_{job_d["Name_en"]}'] = job_d[f"Name_{lang}"]
     filecontent += "    id: \"" + "boss0\"\n"
     #todo add chocobo stuff
     filecontent += addChocoboPartnerSkills()
