@@ -6,14 +6,14 @@ $(document).ready(() => {
 });
 
 
-function getTranslations() {
+function getTranslations(path = "/assets/translations") {
     // load data using navigator.language e.g. de-DE.json
     lang = window.localStorage.getItem('translation-language');
     if (lang == null || lang == undefined){
         lang = navigator.language
         window.localStorage.setItem('translation-language', lang);
     }
-    fetch(`{{site.baseurl}}/assets/translations/${lang}.json`)
+    fetch(`{{site.baseurl}}${path}/${lang}.json`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("HTTP error " + response.status);
