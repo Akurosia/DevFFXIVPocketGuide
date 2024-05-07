@@ -36,10 +36,22 @@ function getTranslations() {
             for (var element of elements) {
                 value = data[element.getAttribute('data-href-translate')]
                 if (value == "" || value == undefined || value == null) {
-                    console.log(`No Replace Value '${element.getAttribute('data-translate')}'`)
+                    console.log(`No Replace Value '${element.getAttribute('data-href-translate')}'`)
                     continue;
                 }
                 element.href = value
+            }
+
+            //for buttons
+            elements = document.querySelectorAll('[data-value-translate]');
+            for (var element of elements) {
+                value = data[element.getAttribute('data-value-translate')]
+                if (value == "" || value == undefined || value == null) {
+                    console.log(`No Replace Value '${element.getAttribute('data-value-translate')}'`)
+                    continue;
+                }
+                element.value = value
+                element.name = value
             }
         })
         .catch(function () {this.dataError = true;})
