@@ -1,4 +1,9 @@
 from ffxiv_aku import *
+from ffxiv_aku import loadDataTheQuickestWay, readJsonFile, writeJsonFile, os
+try:
+    import convertTranslationJsons as ctj
+except:
+    import python_scripts.convertTranslationJsons as ctj
 
 items_trans = loadDataTheQuickestWay("item_all.json", translate=True)
 airshipexplorationpoint_trans = loadDataTheQuickestWay("airshipexplorationpoint_all.json", translate=True)
@@ -6,6 +11,29 @@ submarineexploration_trans = loadDataTheQuickestWay("submarineexploration_all.js
 submarinemap_trans = loadDataTheQuickestWay("submarinemap_all.json", translate=True)
 data = readJsonFile(r"T:\var\www\ffxiv\front\housing_missions\data2.json")
 #data = readJsonFile(r"P:\var\www\ffxiv\front\housing_missions\data2.json")
+
+LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES_MAPPING = {
+    "de": "de-DE",
+    "en": "en-US",
+    "fr": "fr-FR",
+    "ja": "ja-JP",
+    "cn": "cn-CN",
+    "ko": "ko-KR"
+}
+klass_translations = None
+def get_class_translation_data():
+    global klass_translations
+    klass_translations = {}
+    for lang in LANGUAGES:
+        #klass_translations[lang] = readJsonFile(f'assets/translations/housing_missions/{LANGUAGES_MAPPING[lang]}.json')
+        klass_translations[lang] = {}
+
+
+def write_class_translation_data(data):
+    for lang in LANGUAGES:
+        klass_translations[lang] = writeJsonFile(f'assets/translations/housing_missions/{LANGUAGES_MAPPING[lang]}.json', data[lang])
+
 
 
 locations_translator = {
@@ -53,6 +81,7 @@ def get_submarine_map(name):
 
 
 def run():
+    get_class_translation_data()
     r_data = ""
     r_data += "---\n"
     r_data += 'layout: airship_submarine\n'
@@ -72,43 +101,51 @@ def run():
 
         smm = get_submarine_map(location)
         r_data += f'    - name: "{smm["Name_en"]}" \n'
-        for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
+        for lang in LANGUAGES:
+            klass_translations[lang][f'Housing_Location_{smm["Name_en"]}'] = smm[f"Name_{lang}"]
             #r_data += f'        {lang}: "{smm["Name_"+lang]}"\n'
             pass
-        r_data += f'      stops:\n'
+        r_data += '      stops:\n'
         for key in sorted([int(x) for x in w_data]):
             value = w_data[str(key)]
             for name, stop_data in stops.items():
                 if not name.lower() == value.get("Destination_en", value.get("Name_en", "")).lower():
                     continue
-                r_data += f'        - name: "{value.get("Destination_en", value.get("Name_en", ""))}"\n'
-                for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
-                    #r_data += f'            {lang}: "{value.get("Destination_"+lang, value.get("Name_"+lang, ""))}"\n'
-                    pass
+                v_en = value.get("Destination_en", value.get("Name_en", ""))
+                r_data += f'        - name: "{v_en}"\n'
+                for lang in LANGUAGES:
+                    v = value.get("Destination_"+lang, value.get("Name_"+lang, ""))
+                    klass_translations[lang][f'Housing_Location_{v_en}'] = v
                 tmp_x = get_translated_unlocks(w_data, stop_data.get('unlocked_by', ""))
-                r_data += f'          unlocked: "{tmp_x.get("Destination_en", tmp_x.get("Name_en", ""))}"\n'
-                for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
-                    #r_data += f'            {lang}: "{tmp_x.get("Destination_"+lang, tmp_x.get("Name_"+lang, ""))}"\n'
-                    pass
+
+                v_en = tmp_x.get("Destination_en", tmp_x.get("Name_en", ""))
+                r_data += f'          unlocked: "{v_en}"\n'
+                for lang in LANGUAGES:
+                    v = tmp_x.get("Destination_"+lang, tmp_x.get("Name_"+lang, ""))
+                    klass_translations[lang][f'Housing_Location_{v_en}'] = v
+
                 r_data += f'          level: "{stop_data["lvl"]}"\n'
                 r_data += f'          exp: "{stop_data["exp"]}"\n'
                 if stop_data.get('alias'):
                     r_data += f'          alias: "{stop_data["alias"]}"\n'
-                r_data += f'          items:\n'
+                r_data += '          items:\n'
                 x_items = get_x_items(stop_data.get('items', []))
-                for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
+                for lang in LANGUAGES:
                     r_data += f'            {lang}: "{x_items.get(lang, "")[:-5]}"\n'
     r_data += "---\n"
     #print(r_data)
 
-    filename = f"_pages/airship_submarine/index.html"
+    filename = "_pages/airship_submarine/index.html"
     os.chdir("..")
-    print(os.getcwd())
     with open(filename, encoding="utf8") as f:
         doc = f.read()
     if not doc == r_data:
         with open(filename, "w", encoding="utf8") as f:
             f.write(r_data)
+    write_class_translation_data(klass_translations)
+
 
 if __name__ == "__main__":
     run()
+    os.chdir("_posts")
+    ctj.run()

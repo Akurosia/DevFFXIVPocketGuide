@@ -2,14 +2,12 @@
     // Index
 =============================================================== {%- endcomment -%}
 <div class="index">
-    {%- assign my_array = "Das Fliedermeer,Sirenen-See,Jademeer,Verbranntes Meer,Tiefsee,Wolkenmeer" | split: ',' -%}
+    {%- assign my_array = "Lilac Sea,Sirensong Sea,Sea of Jade,Sea of Ash,Deep-sea Site,Sea of Clouds" | split: ',' -%}
     {%- for x in my_array -%}
         <div class="index-divider" data-expansion="{{ x }}">
             {%- for location in page.locations reversed -%}
-                {%- if x == location.name.de -%}
-                    {%- for lang in LANGUAGES -%}
-                        <span class="lang-toggle lang-toogle-{{lang}} index-divider__title">{{ location.name[lang] }}</span>
-                    {%- endfor -%}
+                {%- if x == location.name -%}
+                    <span class="index-divider__title" data-translate="Housing_Location_{{location.name}}">{{ location.name }}</span>
                 {%- endif -%}
             {%- endfor -%}
         </div>
@@ -18,7 +16,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        {%- if x != "Wolkenmeer" -%}
+                        {%- if x != "Sea of Clouds" -%}
                             <th scope="col">Alias</th>
                         {%- endif -%}
                         <th scope="col">Unlocked_By</th>
@@ -29,21 +27,17 @@
                 </thead>
                 <tbody>
                     {%- for location in page.locations reversed -%}
-                        {%- if x == location.name.de -%}
+                        {%- if x == location.name -%}
                             {%- for stop in location.stops reversed -%}
                                 <tr>
                                     <td class="hm_table_1">
-                                        {%- for lang in LANGUAGES -%}
-                                            <span class="lang-toggle lang-toogle-{{lang}}"> {{ stop.name[lang] }} </span>
-                                        {%- endfor -%}
+                                        <span data-translate="Housing_Location_{{stop.name}}"> {{ stop.name }} </span>
                                     </td>
-                                    {%- if x != "Wolkenmeer" -%}
+                                    {%- if x != "Sea of Clouds" -%}
                                         <td class="hm_table_2">{{stop.alias}}</td>
                                     {%- endif -%}
                                     <td class="hm_table_4">
-                                        {%- for lang in LANGUAGES -%}
-                                            <span class="lang-toggle lang-toogle-{{lang}}"> {{ stop.unlocked[lang] }} </span>
-                                        {%- endfor -%}
+                                        <span data-translate="Housing_Location_{{stop.unlocked}}"> {{ stop.unlocked }} </span>
                                     </td>
                                     <td class="hm_table_5">{{stop.level}}</td>
                                     <td class="hm_table_6">{{stop.exp}}</td>
