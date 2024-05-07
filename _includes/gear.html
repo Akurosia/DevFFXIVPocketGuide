@@ -8,43 +8,43 @@
   <div class="container col">
       <div id="filterOptions" class="my-4 form-inline">
           <select class="form-control bg-charcoal text-light mx-1" id="classjob" size="1">
-              <option value="PLD">Paladin</option>
-              <option value="KRG">Krieger</option>
-              <option value="DKR">Dunkelritter</option>
-              <option value="REV">Revolverklinge</option>
+              <option data-translate="Content_Title_Paladin"       value="PLD">Paladin</option>
+              <option data-translate="Content_Title_Warrior"       value="KRG">Krieger</option>
+              <option data-translate="Content_Title_Dark Knight"   value="DKR">Dunkelritter</option>
+              <option data-translate="Content_Title_Gunbreaker"    value="REV">Revolverklinge</option>
 
-              <option value="WMA">Weißmagier</option>
-              <option value="GLT">Gelehrter</option>
-              <option value="AST">Astrologe</option>
-              <option value="WEI">Weiser</option>
+              <option data-translate="Content_Title_White Mage"    value="WMA">Weißmagier</option>
+              <option data-translate="Content_Title_Scholar"       value="GLT">Gelehrter</option>
+              <option data-translate="Content_Title_Astrologian"   value="AST">Astrologe</option>
+              <option data-translate="Content_Title_Sage"          value="WEI">Weiser</option>
 
-              <option value="MÖN">Mönch</option>
-              <option value="DRG">Dragoon</option>
-              <option value="NIN">Ninja</option>
-              <option value="SAM">Samurai</option>
-              <option value="SNT">Schnitter</option>
+              <option data-translate="Content_Title_Monk"          value="MÖN">Mönch</option>
+              <option data-translate="Content_Title_Dragoon"       value="DRG">Dragoon</option>
+              <option data-translate="Content_Title_Ninja"         value="NIN">Ninja</option>
+              <option data-translate="Content_Title_Samurai"       value="SAM">Samurai</option>
+              <option data-translate="Content_Title_Reaper"        value="SNT">Schnitter</option>
 
-              <option value="BRD">Barde</option>
-              <option value="MCH">Maschinist</option>
-              <option value="TÄN">Tänzer</option>
+              <option data-translate="Content_Title_Bard"          value="BRD">Barde</option>
+              <option data-translate="Content_Title_Machinist"     value="MCH">Maschinist</option>
+              <option data-translate="Content_Title_Dancer"        value="TÄN">Tänzer</option>
 
-              <option value="BSW">Beschwörer</option>
-              <option value="SMA">Schwarzmagier</option>
-              <option value="RMA" selected>Rotmagier</option>
-              <option value="BMA">Blaumagier</option>
+              <option data-translate="Content_Title_Summoner"      value="BSW">Beschwörer</option>
+              <option data-translate="Content_Title_Black Mage"    value="SMA">Schwarzmagier</option>
+              <option data-translate="Content_Title_Red Mage"      value="RMA" selected>Rotmagier</option>
+              <option data-translate="Content_Title_Blue Mage"     value="BMA">Blaumagier</option>
 
-              <option value="ZMR">Zimmerer</option>
-              <option value="GRS">Grobschmied</option>
-              <option value="PLA">Plattner</option>
-              <option value="GLD">Goldschmied</option>
-              <option value="GER">Gerber</option>
-              <option value="WEB">Weber</option>
-              <option value="ALC">Alchemist</option>
-              <option value="GRM">Gourmet</option>
+              <option data-translate="Content_Title_Carpenter"     value="ZMR">Zimmerer</option>
+              <option data-translate="Content_Title_Blacksmith"    value="GRS">Grobschmied</option>
+              <option data-translate="Content_Title_Armorer"       value="PLA">Plattner</option>
+              <option data-translate="Content_Title_Goldsmith"     value="GLD">Goldschmied</option>
+              <option data-translate="Content_Title_Leatherworker" value="GER">Gerber</option>
+              <option data-translate="Content_Title_Weaver"        value="WEB">Weber</option>
+              <option data-translate="Content_Title_Alchemist"     value="ALC">Alchemist</option>
+              <option data-translate="Content_Title_Culinarian"    value="GRM">Gourmet</option>
 
-              <option value="MIN">Minenarbeiter</option>
-              <option value="GÄR">Gärtner</option>
-              <option value="FIS">Fischer</option>
+              <option data-translate="Content_Title_Miner"         value="MIN">Minenarbeiter</option>
+              <option data-translate="Content_Title_Botanist"      value="GÄR">Gärtner</option>
+              <option data-translate="Content_Title_Fisher"        value="FIS">Fischer</option>
           </select>
           <input class="form-control bg-charcoal text-light mx-1" type="number" id="lvl_from" value="" min="1" max = "90" placeholder="">
           <input class="form-control bg-charcoal text-light mx-1" type="number" id="lvl_to" value="" min="1" max = "90" placeholder="">
@@ -61,7 +61,7 @@
          <label style="display: flex;" class="checkbox white"><input class=" mx-1" type="checkbox" id="include_hq" checked/><span class="x_box_blah">HQ</span></label>
          <label style="display: flex;" class="checkbox white"><input class="" type="checkbox" id="limit_to_hq" /><span class="x_box_blah">HQ2</span></label>
 
-          <input class="form-control bg-charcoal text-light mx-1" type="button" name="Search" value="Search" onclick="call_api_data()">
+          <input class="form-control bg-charcoal text-light mx-1" type="button" name="Search" value="Search" onclick="call_api_data()" data-translate="Gear_Search">
       </div>
       <div class="my-4" id="gearlist">
           <div class="my-1" id="weapon_left"></div>

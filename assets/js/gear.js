@@ -87,8 +87,8 @@ tools_dict = {
 }
 
 mainstats = [
-    "Phys._Basiswert",
-    "Mag._Basiswert",
+    "Phys. Basiswert",
+    "Mag. Basiswert",
     "Verteidigung",
     "Magieabwehr",
     "Stärke",
@@ -200,7 +200,8 @@ async function call_api_data(){
     await Promise.allSettled(promisses).then((xxx) => {
         console.log("Done")
         // this is from handleLanguages.js
-        executeHandelingLanguages()
+        getTranslations();
+        setTimeout(() => {  getTranslations(); }, 300);
     })
 }
 
@@ -272,6 +273,9 @@ async function createTemplateTable(name, json, classJob){
 
 async function createTHorTD(field, _type, classname){
     var _th = document.createElement(_type);
+    if (_type == "th" && field) {
+        _th.setAttribute("data-translate", `Gear_${field}`)
+    }
     _th.innerHTML = field;
     if (classname !== undefined){
         _th.className = classname
@@ -282,25 +286,25 @@ async function createTHorTD(field, _type, classname){
 function get_stats_for_class(classJob, removeshy=false){
     x = []
     if (["BSW","SMA","RMA","BMA"].includes(classJob)){
-        x = ["Mag. Basiswert", "Magie&shy;abwehr", "Intelligenz", "Kritischer Treffer", "Direkter Treffer", "Entschlossen&shy;heit","Zauber&shy;tempo","Konstitution"]
+        x = ["Mag. Basiswert", "Magieabwehr", "Intelligenz", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit","Zaubertempo","Konstitution"]
     }
     if (["WMA","GLT","AST", "WEI"].includes(classJob)){
-        x = ["Mag. Basiswert", "Magie&shy;abwehr", "Willens&shy;kraft", "Frömmig&shy;keit", "Kritischer Treffer", "Direkter Treffer", "Entschlossen&shy;heit","Zauber&shy;tempo","Konstitution"]
+        x = ["Mag. Basiswert", "Magieabwehr", "Willenskraft", "Frömmigkeit", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit","Zaubertempo","Konstitution"]
     }
     if (["ZMR","GRS","PLA","GLD","GER","WEB","ALC","GRM"].includes(classJob)){
-        x = ["Kunst&shy;fertig&shy;keit", "Kontrolle", "HP","Konstitution"]
+        x = ["Kunstfertigkeit", "Kontrolle", "HP","Konstitution"]
     }
     if (["MIN","GÄR","FIS"].includes(classJob)){
-        x = ["Sammel&shy;geschick", "Expertise", "SP","Konstitution"]
+        x = ["Sammelgeschick", "Expertise", "SP","Konstitution"]
     }
     if (["PLD","KRG","DKR","REV"].includes(classJob)){
-        x = ["Phys. Basiswert", "Verteidigung", "Stärke", "Kritischer Treffer", "Direkter Treffer", "Entschlossen&shy;heit", "Schnellig&shy;keit", "Unbeugsam&shy;keit", "Konstitution"]
+        x = ["Phys. Basiswert", "Verteidigung", "Stärke", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit", "Unbeugsamkeit", "Konstitution"]
     }
     if (["NIN","BRD","MCH","TÄN"].includes(classJob)){
-        x = ["Phys. Basiswert", "Verteidigung", "Geschick", "Kritischer Treffer", "Direkter Treffer", "Entschlossen&shy;heit", "Schnellig&shy;keit","Konstitution"]
+        x = ["Phys. Basiswert", "Verteidigung", "Geschick", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit","Konstitution"]
     }
     if (["MÖN","DRG","SAM", "SNT"].includes(classJob)){
-        x = ["Phys. Basiswert", "Verteidigung", "Stärke", "Kritischer Treffer", "Direkter Treffer", "Entschlossen&shy;heit", "Schnellig&shy;keit","Konstitution"]
+        x = ["Phys. Basiswert", "Verteidigung", "Stärke", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit","Konstitution"]
     }
     if (removeshy){
         for (e in x){
@@ -333,6 +337,7 @@ function get_race_select(){
     select = document.createElement("select")
     for (var race in races) {
         option = document.createElement("option")
+        option.setAttribute("data-translate", `Gear_Race_${races[race]}`)
         option.value = races[race]
         option.innerHTML = races[race]
         select.appendChild(option)
@@ -350,9 +355,9 @@ async function createSummaryTable(fields){
     _head.id = "thead_stats_overview"
     var _tr = document.createElement('tr');
     _tr.appendChild(await createTHorTD("Race", "th", "race"));
-    _tr.appendChild(await createTHorTD("", "th", "lvl"));
+    //_tr.appendChild(await createTHorTD("lvl", "th", "lvl"));
     _tr.appendChild(await createTHorTD("ilvl", "th", "ilvl"));
-    _tr.appendChild(await createTHorTD("", "th", "materia"));
+    //_tr.appendChild(await createTHorTD("Materia", "th", "materia"));
     for (var field in fields){
         _tr.appendChild(await createTHorTD(field, "th", "stat"));
     }
@@ -365,11 +370,11 @@ async function createSummaryTable(fields){
     _body.id = "tbody_stats_overview"
     var _tr = document.createElement('tr');
     _tr.appendChild(get_race_select());
-    _tr.appendChild(await createTHorTD("", "td", "lvl"));
+    //_tr.appendChild(await createTHorTD("", "td", "lvl"));
     _tr.appendChild(await createTHorTD("0", "td", "ilvl"));
-    _tr.appendChild(await createTHorTD("", "td", "materia"));
+    //_tr.appendChild(await createTHorTD("", "td", "materia"));
     for (var field in fields){
-        _tr.appendChild(await createTHorTD(fields[field], "td", "stat " + field.replace(" ", "_")));
+        _tr.appendChild(await createTHorTD(fields[field], "td", "stat " + field));
     }
     //place holder to allign get from column
     //_tr.appendChild(await createTHorTD("", "td", "stat "));
@@ -396,7 +401,8 @@ async function createTemplateTableHead(name, json, classJob){
         } else if (fields[field] == []){
         } else {
             _tr.appendChild(await createTHorTD(fields[field], "th", "stat"));
-            xfield = fields[field].replace(" ", "_").replace("&shy;", "")
+            xfield = fields[field].replace("&shy;", "")
+            //xfield = fields[field].replace(" ", "_").replace("&shy;", "")
             sum_fields[xfield] = 0
         }
     }
@@ -452,7 +458,7 @@ async function createTemplateTableBody(name, json, classJob){
             xfield = fields[field].replace("&shy;", "")
             if (["Blockeffekt", "Blockrate"].includes(field)){
             } else {
-                _td = await createTHorTD(get(json[key], xfield, 0), "td", "stat " + xfield.replace(" ", "_"))
+                _td = await createTHorTD(get(json[key], xfield, 0), "td", "stat " + xfield)
                 if (substats.includes(xfield)){
                     _span = document.createElement("span")
                     _span.innerHTML = " (" + max_meld + ")"
@@ -521,16 +527,16 @@ function get_localstorage() {
 }
 
 defaultSatst = {
-    "Phys._Basiswert":       0,
-    "Mag._Basiswert":        0,
+    "Phys. Basiswert":       0,
+    "Mag. Basiswert":        0,
     "Verteidigung":          0,
     "Magieabwehr":          0,
     "Stärke":              422,
     "Intelligenz":         439,
     "Willenskraft":        437,
     "Geschick":            439,
-    "Direkter_Treffer":    380,
-    "Kritischer_Treffer":  380,
+    "Direkter Treffer":    380,
+    "Kritischer Treffer":  380,
     "Entschlossenheit":    340,
     "Schnelligkeit":       380,
     "Zaubertempo":         380,
@@ -541,8 +547,8 @@ defaultSatst = {
 
 // following list is ordered by the above races list
 baseStatModifier= {
-    "Phys._Basiswert":     [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-    "Mag._Basiswert":      [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+    "Phys. Basiswert":     [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+    "Mag. Basiswert":      [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
     "Verteidigung":        [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
     "Magieabwehr":         [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
     "Stärke":              [ 2,  3,  2, -1, -1, -1,  0,  0,  0,  2,  3, -1,  0, -1,  3,  3],
@@ -551,8 +557,8 @@ baseStatModifier= {
     "Geschick":            [-1,  0,  3,  2,  3,  1,  3,  0, -2, -1,  0,  2,  3,  0, -3, -3],
     "Frömmigkeit":         [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
     "Konstitution":        [ 0,  2,  0, -2, -1, -2, -1, -1,  3,  3,  2, -1, -2, -1,  3,  3],
-    "Direkter_Treffer":    [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
-    "Kritischer_Treffer":  [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+    "Direkter Treffer":    [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
+    "Kritischer Treffer":  [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
     "Entschlossenheit":    [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
     "Schnelligkeit":       [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
     "Zaubertempo":         [ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],
