@@ -70,23 +70,26 @@ def run():
         if location == "Wolkenmeer":
             w_data = airshipexplorationpoint_trans
 
-        r_data += f'    - name:\n'
         smm = get_submarine_map(location)
+        r_data += f'    - name: "{smm["Name_en"]}" \n'
         for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
-            r_data += f'        {lang}: "{smm["Name_"+lang]}"\n'
+            #r_data += f'        {lang}: "{smm["Name_"+lang]}"\n'
+            pass
         r_data += f'      stops:\n'
         for key in sorted([int(x) for x in w_data]):
             value = w_data[str(key)]
             for name, stop_data in stops.items():
                 if not name.lower() == value.get("Destination_en", value.get("Name_en", "")).lower():
                     continue
-                r_data += f'        - name:\n'
+                r_data += f'        - name: "{value.get("Destination_en", value.get("Name_en", ""))}"\n'
                 for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
-                    r_data += f'            {lang}: "{value.get("Destination_"+lang, value.get("Name_"+lang, ""))}"\n'
-                r_data += f'          unlocked:\n'
+                    #r_data += f'            {lang}: "{value.get("Destination_"+lang, value.get("Name_"+lang, ""))}"\n'
+                    pass
                 tmp_x = get_translated_unlocks(w_data, stop_data.get('unlocked_by', ""))
+                r_data += f'          unlocked: "{tmp_x.get("Destination_en", tmp_x.get("Name_en", ""))}"\n'
                 for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
-                    r_data += f'            {lang}: "{tmp_x.get("Destination_"+lang, tmp_x.get("Name_"+lang, ""))}"\n'
+                    #r_data += f'            {lang}: "{tmp_x.get("Destination_"+lang, tmp_x.get("Name_"+lang, ""))}"\n'
+                    pass
                 r_data += f'          level: "{stop_data["lvl"]}"\n'
                 r_data += f'          exp: "{stop_data["exp"]}"\n'
                 if stop_data.get('alias'):
@@ -99,6 +102,8 @@ def run():
     #print(r_data)
 
     filename = f"_pages/airship_submarine/index.html"
+    os.chdir("..")
+    print(os.getcwd())
     with open(filename, encoding="utf8") as f:
         doc = f.read()
     if not doc == r_data:
