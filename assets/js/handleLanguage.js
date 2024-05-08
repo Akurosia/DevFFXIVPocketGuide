@@ -6,7 +6,7 @@ $(document).ready(() => {
 });
 
 
-function getTranslations(path = "/assets/translations") {
+function getTranslations(path = "/assets/translations", olddata = {}) {
     // load data using navigator.language e.g. de-DE.json
     lang = window.localStorage.getItem('translation-language');
     if (lang == null || lang == undefined){
@@ -20,7 +20,8 @@ function getTranslations(path = "/assets/translations") {
             }
             return response.json();
         })
-        .then(data => {
+        .then(newdata => {
+            data = Object.assign({}, olddata, newdata);
             //for normal translations
             elements = document.querySelectorAll('[data-translate]');
             for (var element of elements) {
@@ -41,7 +42,6 @@ function getTranslations(path = "/assets/translations") {
                 }
                 element.href = value
             }
-
             //for buttons
             elements = document.querySelectorAll('[data-value-translate]');
             for (var element of elements) {
@@ -52,6 +52,20 @@ function getTranslations(path = "/assets/translations") {
                 }
                 element.value = value
                 element.name = value
+            }
+
+            //for buttons
+            if ( path != "/assets/translations" ){
+                return;
+            }
+            elements = document.querySelectorAll('[data-extra-translate]');
+            for (var element of elements) {
+                value = element.getAttribute('data-extra-translate')
+                if (value === undefined) {
+                    continue
+                }
+                console.log("Load extra: " + value)
+                getTranslations(value, data)
             }
         })
         .catch(function () {this.dataError = true;})
