@@ -56,6 +56,7 @@ disable_print = True
 status_ncj = None
 
 klass_translations = None
+job_translations = None
 
 def get_class_translation_data():
     global klass_translations
@@ -599,6 +600,7 @@ def addKlassJobs():
     global addon_trans
     global status_ncj
     global additionalClassIcons
+    global job_translations
     partybonus = {
         "0": "",
         "1": "1082",
@@ -641,6 +643,11 @@ def addKlassJobs():
         base_class = cjs[k[0]]["ClassJob"]['Parent'] if not cjs[k[0]]["ClassJob"]['Parent'] == job else None
         print_color_red(job)
 
+        # prepare translation elements
+        job_translations = {}
+        for lang in LANGUAGES:
+            job_translations[lang] = {}
+
         tmpmaxlvl = str(max([int(data["Level"]) for key, data in job_data.items() if int(data['Level']) < 99999]))
         if job == "Blaumagier":
             maxlvl = "80"
@@ -662,7 +669,7 @@ def addKlassJobs():
 
         filecontent += 'layout: klassen\n'
         filecontent += 'page_type: guide\n'
-        roletypeinparty_en_name_key = f'{addon_trans[partybonus[job_party_bonus]][f"Text_en"].title()}'
+        roletypeinparty_en_name_key = f'{addon_trans[partybonus[job_party_bonus]]["Text_en"].title()}'
         #roletypeinparty_de_name_key = f'{addon_trans[partybonus[job_party_bonus]][f"Text_de"].title()}'
         filecontent += f'roletypeinparty: "{roletypeinparty_en_name_key}"\n'
         for lang in LANGUAGES:
@@ -791,6 +798,13 @@ def addKlassJobs():
             filecontent += "      - phase: \"07\"\n"
             filecontent += "        name: \"Bozja Skills\"\n"
         filecontent += '---\n'
+
+        filename_translation_location = f"../assets/translations/klassen/{job_d['Name_en']}"
+        if not os.path.exists(filename_translation_location):
+            os.makedirs(filename_translation_location)
+        for lang in LANGUAGES:
+            writeJsonFile(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json", job_translations[lang])
+
         filename = f"klassen_und_jobs/2013-01-01--2.0--{counter}--{job}.md"
         with open(filename, encoding="utf8") as f:
             doc = f.read()

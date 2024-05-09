@@ -112,13 +112,16 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_Lodestone">Lodestone:</div>
                 <span class="block">
-                <a target="_blank" rel="noopener noreferrer" href="{{ page.lodestone[lang] }}" data-href-translate="Sidebar_LodestoneURL_{{page.title.en}}" data-translate="Sidebar_Title_Full_{{page.title.en}}">{{ page.title.en }}</a>
+                    <a target="_blank" rel="noopener noreferrer" href="{{ page.lodestone.en }}" data-href-translate="Sidebar_LodestoneURL_{{page.title.en}}" data-translate="Sidebar_Title_Full_{{page.title.en}}">{{ page.title.en }}</a>
                 </span>
             </h5>
         {%- endif -%}
         {%- if page.deepdungeon -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full" data-translate="Sidebar_DeepDungeonIcon">Deep Dungeon Icon:</h5>
-            <div class="sprite-sheet sprite-podt-{{page.deepdungeon}}"></div>
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_DeepDungeonIcon">Deep Dungeon Icon:</div>
+                <div class="sprite-sheet sprite-podt-{{page.deepdungeon}}"></div>
+            </h5>
+
         {%- endif -%}
         <!-- END Only on Classes -->
         <!-- Only on Content -->
@@ -476,4 +479,5 @@
             {%- endif -%}
         </ul>
     {%- endif -%}
+    <div style="display: none" data-extra-translate="/assets/translations/sidebar"></div>
 </div>

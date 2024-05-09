@@ -8,7 +8,7 @@ import errno
 import yaml
 from yaml.loader import SafeLoader
 import python_scripts.generatePatch as gp
-from ffxiv_aku import pretty_json, print_color_green, sys
+from ffxiv_aku import pretty_json, print_color_green, sys, writeJsonFile
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide, logdata, logdata_lower
 from python_scripts.helper import uglyContentNameFix, getContentName
@@ -27,6 +27,15 @@ disable_red_print = True
 debug_row_number = 0
 print_debug = False
 
+LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES_MAPPING = {
+    "de": "de-DE",
+    "en": "en-US",
+    "fr": "fr-FR",
+    "ja": "ja-JP",
+    "cn": "cn-CN",
+    "ko": "ko-KR"
+}
 
 def get_old_content_if_file_is_found(_existing_filename):
     if os.path.exists(_existing_filename):
@@ -153,6 +162,9 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 print("END FLAG WAS FOUND!")
                 break
             if not (entry["exclude"] or entry["done"]):
+                content_translations = {}
+                for lang in LANGUAGES:
+                    content_translations[lang] = {}
                 #print(f"{entry['instanceType']}: {entry['title']}")
                 categories = categories_list[entry['categories']]
                 filename = f"{categories}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
@@ -164,6 +176,13 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                     # logger.info(pretty_json(old_data))
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_data)
+                # write translation file
+                filename_translation_location = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '')}"
+                if not os.path.exists(filename_translation_location):
+                    os.makedirs(filename_translation_location)
+                for lang in LANGUAGES:
+                    writeJsonFile(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json", content_translations[lang])
+
             elif entry['title'] != "":
                 print_color_green(f"Skip {entry['title']} as its marked as {entry['exclude']}/{entry['done']}")
         except Exception as e:

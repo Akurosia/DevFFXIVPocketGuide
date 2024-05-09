@@ -5,13 +5,21 @@ $(document).ready(() => {
     getTranslations();
 });
 
+var elements = undefined
 
-function getTranslations(path = "/assets/translations", olddata = {}) {
+function getTranslations(path = "/assets/translations/navbar", olddata = {}) {
     // load data using navigator.language e.g. de-DE.json
     lang = window.localStorage.getItem('translation-language');
     if (lang == null || lang == undefined){
         lang = navigator.language
         window.localStorage.setItem('translation-language', lang);
+    }
+    if (path == "/assets/translations/navbar") {
+        elements = {}
+        elements['translate'] = Array.from(document.querySelectorAll('[data-translate]'));
+        elements['href'] = Array.from(document.querySelectorAll('[data-href-translate]'));
+        elements['value'] = Array.from(document.querySelectorAll('[data-value-translate]'));
+        elements['extra'] = Array.from(document.querySelectorAll('[data-extra-translate]'));
     }
     fetch(`{{site.baseurl}}${path}/${lang}.json`)
         .then(response => {
@@ -22,32 +30,32 @@ function getTranslations(path = "/assets/translations", olddata = {}) {
         })
         .then(newdata => {
             data = Object.assign({}, olddata, newdata);
+
             //for normal translations
-            elements = document.querySelectorAll('[data-translate]');
-            for (var element of elements) {
+            for (var element of elements['translate']) {
                 value = data[element.getAttribute('data-translate')]
                 if (value == "" || value == undefined || value == null) {
-                    console.log(`No Replace Value '${element.getAttribute('data-translate')}'`)
+                    //console.log(`No Replace Value '${element.getAttribute('data-translate')}'`)
                     continue;
                 }
                 element.textContent = value
             }
+
             //for urls as hrefs
-            elements = document.querySelectorAll('[data-href-translate]');
-            for (var element of elements) {
+            for (var element of elements['href']) {
                 value = data[element.getAttribute('data-href-translate')]
                 if (value == "" || value == undefined || value == null) {
-                    console.log(`No Replace Value '${element.getAttribute('data-href-translate')}'`)
+                    //console.log(`No Replace Value '${element.getAttribute('data-href-translate')}'`)
                     continue;
                 }
                 element.href = value
             }
+
             //for buttons
-            elements = document.querySelectorAll('[data-value-translate]');
-            for (var element of elements) {
+            for (var element of elements['value']) {
                 value = data[element.getAttribute('data-value-translate')]
                 if (value == "" || value == undefined || value == null) {
-                    console.log(`No Replace Value '${element.getAttribute('data-value-translate')}'`)
+                    //console.log(`No Replace Value '${element.getAttribute('data-value-translate')}'`)
                     continue;
                 }
                 element.value = value
@@ -55,11 +63,11 @@ function getTranslations(path = "/assets/translations", olddata = {}) {
             }
 
             //for buttons
-            if ( path != "/assets/translations" ){
+            if ( path != "/assets/translations/navbar" ){
                 return;
             }
-            elements = document.querySelectorAll('[data-extra-translate]');
-            for (var element of elements) {
+
+            for (var element of elements['extra']) {
                 value = element.getAttribute('data-extra-translate')
                 if (value === undefined) {
                     continue
@@ -67,8 +75,14 @@ function getTranslations(path = "/assets/translations", olddata = {}) {
                 console.log("Load extra: " + value)
                 getTranslations(value, data)
             }
+            if ( path == "/assets/translations/navbar" ){
+                console.log(elements)
+            }
+
         })
-        .catch(function () {this.dataError = true;})
+        .catch(e => {
+            console.log(e)
+        })
     executeHandelingLanguages();
 }
 
