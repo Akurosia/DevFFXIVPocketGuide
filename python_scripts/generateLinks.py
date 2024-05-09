@@ -1,4 +1,5 @@
 import json
+import os
 
 
 def writeline(f, data):
@@ -27,7 +28,7 @@ def createShortURL(url):
 
 
 def links():
-    with open(f"T:/var/www/ffxiv/links.json", "r", encoding="utf-8") as f:
+    with open("T:/var/www/ffxiv/links.json", "r", encoding="utf-8") as f:
         links = json.load(f)
     filecontent = ""
     filecontent += '---\n'
@@ -51,7 +52,7 @@ def links():
             filecontent += f"          favicon: {entry['favicon']}\n"
     filecontent += '---\n'
 
-    filename = f"_pages/links/index.html"
+    filename = "_pages/links/index.html"
     with open(filename, encoding="utf8") as f:
         doc = f.read()
     if not doc == filecontent:
@@ -60,6 +61,7 @@ def links():
 
 
 def run():
+    print(os.chdir(".."))
     links()
 
 

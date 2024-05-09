@@ -2,11 +2,6 @@ import json
 import os
 from ffxiv_aku import *
 from datetime import datetime, date
-try:
-    import convertTranslationJsons as ctj
-except:
-    import python_scripts.convertTranslationJsons as ctj
-
 
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
 LANGUAGES_MAPPING = {
@@ -169,4 +164,3 @@ def run():
 if __name__ == "__main__":
     os.chdir("..")
     run()
-    ctj.run()

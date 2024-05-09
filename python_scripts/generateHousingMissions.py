@@ -1,9 +1,5 @@
 from ffxiv_aku import *
 from ffxiv_aku import loadDataTheQuickestWay, readJsonFile, writeJsonFile, os
-try:
-    import convertTranslationJsons as ctj
-except:
-    import python_scripts.convertTranslationJsons as ctj
 
 items_trans = loadDataTheQuickestWay("item_all.json", translate=True)
 airshipexplorationpoint_trans = loadDataTheQuickestWay("airshipexplorationpoint_all.json", translate=True)
@@ -148,4 +144,3 @@ def run():
 if __name__ == "__main__":
     run()
     os.chdir("_posts")
-    ctj.run()
