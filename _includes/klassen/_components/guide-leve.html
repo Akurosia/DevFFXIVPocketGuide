@@ -6,9 +6,7 @@
     </h4>
     <div class="Names">
         <span class="">
-            {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}">{{  leve.title[lang] }} </span>
-            {%- endfor -%}
+            <span data-translate="Class_Leve_Name_{{leve.title.en}}">{{  leve.title.en }} </span>
         </span>
         {%- if leve.title.en -%}
             <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ leve.title.en }}</div>

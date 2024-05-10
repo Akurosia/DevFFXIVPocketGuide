@@ -10,9 +10,7 @@
     <img class="Icon debuff_icon" src="{{ site.imageurl }}/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
     <div class="Names">
         <span>
-            {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}">{{ debuff.title[lang] }} </span>
-            {%- endfor -%}
+            <span data-translate="Class_Status_Name_{{  debuff.title.en }}">{{ debuff.title.en }} </span>
         </span>
         {%- if debuff.title.en -%}
             <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ debuff.title.en }}</div>
@@ -30,11 +28,9 @@
         <!-- Standard Attacks -->
         {%- if debuff.description -%}
             <div class="guide__attack-notes-wrapper">
-                <h5 class="guide__attack-notes-title">Description:</h5>
+                <h5 class="guide__attack-notes-title" data-translate="Class_Status_Desc_Title">Description:</h5>
                 <span class="">
-                    {%- for lang in LANGUAGES -%}
-                        <div class="guide__debuff_description lang-toggle lang-toogle-{{lang}}">{{  debuff.description[lang] }}</div>
-                    {%- endfor -%}
+                    <div class="guide__debuff_description" data-translate="Class_Status_Name_{{  debuff.title.en }}">{{  debuff.description.en }}</div>
                 </span>
             </div>
         {%- endif -%}
@@ -42,7 +38,7 @@
         <!-- Debuff durations -->
         {%- if debuff.durations -%}
             <div class="guide__attack-notes-wrapper">
-                <h5 class="guide__attack-notes-title">Folgende Zeiten wurden für diesen Debuff gefunden (kann Rundungsfehler enthalten):</h5>
+                <h5 class="guide__attack-notes-title" data-translate="Class_Status_Time_Title">Folgende Zeiten wurden für diesen Debuff gefunden (kann Rundungsfehler enthalten):</h5>
                 <span class="guide__debuff_description">
                 {%- for duration in debuff.durations -%}
                     {{ duration }} sek
@@ -57,12 +53,10 @@
         <!-- Debuff durations -->
         {%- if debuff.added_by -%}
             <div class="guide__attack-notes-wrapper">
-                <h5 class="guide__attack-notes-title">Wurde durch Folgenden Skill hinzugefügt:</h5>
+                <h5 class="guide__attack-notes-title" data-translate="Class_Status_Skill_Title">Wurde durch Folgenden Skill hinzugefügt:</h5>
                 <span class="guide__debuff_description">
                     <img class="attack_icon" src="{{ site.imageurl }}/{{ debuff.added_by.icon }}" alt="{{ debuff.added_by.icon }}"/>
-                    {%- for lang in LANGUAGES -%}
-                        <span class="lang-toggle lang-toogle-{{lang}}">{{  debuff.added_by[lang] }}</span>
-                    {%- endfor -%}
+                    <span data-translate="Class_Skill_Name_{{  debuff.added_by.en }}">{{  debuff.added_by.en }}</span>
                 </span>
             </div>
         {%- endif -%}

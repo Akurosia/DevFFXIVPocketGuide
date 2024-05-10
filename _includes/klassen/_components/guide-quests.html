@@ -6,9 +6,7 @@
     </h4>
     <div class="Names">
         <span class="">
-            {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}">{{  quest.title[lang] }} </span>
-            {%- endfor -%}
+            <span data-translate="Class_Quest_Name_{{  quest.title.en }}">{{  quest.title.en }} </span>
         </span>
         {%- if quest.title.en -%}
             <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ quest.title.en }}</div>

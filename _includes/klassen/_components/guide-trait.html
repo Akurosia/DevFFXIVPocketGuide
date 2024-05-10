@@ -8,9 +8,7 @@
     <img class="Icon attack_icon" src="{{ site.imageurl }}/{{ trait.icon }}" alt="{{ trait.icon }}"/>
     <div class="Names">
         <span class="">
-            {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}">{{ trait.title[lang] }} </span>
-            {%- endfor -%}
+            <span data-translate="Class_Trait_Name_{{  trait.title.en }}">{{ trait.title.en }} </span>
         </span>
         {%- if trait.title.en -%}
             <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ trait.title.en }}</div>
@@ -28,11 +26,9 @@
         <!-- Standard Trait -->
         {%- if trait.description -%}
             <div class="guide__attack-notes-wrapper">
-                <h5 class="guide__attack-notes-title">Description:</h5>
+                <h5 class="guide__attack-notes-title" data-translate="Class_Trait_Desc_Title">Description:</h5>
                 <span class="">
-                    {%- for lang in LANGUAGES -%}
-                        <div class="guide__debuff_description lang-toggle lang-toogle-{{lang}}">{{  trait.description[lang] }}</div>
-                    {%- endfor -%}
+                    <div class="guide__debuff_description" data-translate="Class_Trait_Name_{{  trait.description.en }}">{{  trait.description.en }}</div>
                 </span>
             </div>
         {%- endif -%}

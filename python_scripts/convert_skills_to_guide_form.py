@@ -144,6 +144,7 @@ def convertJobToAbrev(job):
 def addAttackDetails(job_data, pvp=False):
     global actions_trans
     global craftactions_trans
+    global job_translations
     result = ""
     attack_skills = []
     # only print for normal attacks
@@ -171,9 +172,11 @@ def addAttackDetails(job_data, pvp=False):
             if "all party" in skill_data["Description"]["en"] or "nearby party" in skill_data["Description"]["en"]:
                 type_shield = "G-Schild-Mitigation"
         result += '      - title:\n'
+
         attack_skills.append(name['de'])
         for lang in LANGUAGES:
             result += f'          {lang}: "{name[lang]}"\n'
+            job_translations[lang][f'Class_Skill_Name_{name["en"]}'] = name[lang]
         result += f'        title_id: "{skill_data["Id"].split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
         result += f'        type: "{skill_data["Type"]}"\n'
@@ -199,6 +202,7 @@ def addAttackDetails(job_data, pvp=False):
         result += '        description:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "' + skill_data["Description"][lang] + '"\n'
+            job_translations[lang][f'Class_Skill_Desc_{name["en"]}'] = skill_data["Description"][lang]
         #if "%" in description["en"]:
         #    print(name["en"])
         #    print(description["en"])
@@ -256,6 +260,7 @@ def addOldStatusDetails(job, job_abb):
 
 def addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, bozja_skills):
     global status
+    global job_translations
     result = ""
     result += "    debuffs:\n"
     for key, value in status.items():
@@ -272,7 +277,9 @@ def addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, boz
             continue
         result += '      - title:\n'
         for lang in LANGUAGES:
-            result += f'          {lang}: "' + deal_with_extras_in_text(status_trans[key][f"Name_{lang}"]) + '"\n'
+            tmp_name = deal_with_extras_in_text(status_trans[key][f"Name_{lang}"])
+            result += f'          {lang}: "' + tmp_name + '"\n'
+            job_translations[lang][f'Class_Status_Name_{deal_with_extras_in_text(status_trans[key][f"Name_en"])}'] = tmp_name
         result += f'        title_id: "{status_trans[key]['0xID']}"\n'
         image = getImage(status_trans[key]["Icon"])
         if "_hr1" in image:
@@ -281,7 +288,9 @@ def addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, boz
             result += f'        icon: "{image.replace(".png", "_hr1.png")}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
-            result += f'          {lang}: "' + deal_with_extras_in_text(status_trans[key][f"Description_{lang}"]) + '"\n'
+            tmp_desc = deal_with_extras_in_text(status_trans[key][f"Description_{lang}"])
+            result += f'          {lang}: "' + tmp_desc + '"\n'
+            job_translations[lang][f'Class_Status_Desc_{deal_with_extras_in_text(status_trans[key][f"Name_en"])}'] = tmp_desc
         buff = "buff" if str(status[str(key)]['StatusCategory']) == "1" else "debuff"
         result += f'        buff: {buff}\n'
         result += '        phases:\n'
@@ -291,6 +300,8 @@ def addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, boz
 
 def addTraitDetails(job):
     global traits
+    global job_translations
+
     result = ""
     result += "    traits:\n"
     _class = [v['ClassJob']['Parent'] for k, v in cjs.items() if v["Name"]['Value'] == job]
@@ -302,13 +313,18 @@ def addTraitDetails(job):
         level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
         result += '      - title:\n'
         for lang in LANGUAGES:
-            result += f'          {lang}: "' + deal_with_extras_in_text(traits_trans[_id][f"Name_{lang}"]) + '"\n'
+            tmp_trait = deal_with_extras_in_text(traits_trans[_id][f"Name_{lang}"])
+            result += f'          {lang}: "' + tmp_trait + '"\n'
+            job_translations[lang][f'Class_Trait_Name_{deal_with_extras_in_text(traits_trans[_id][f"Name_en"]) }'] = tmp_trait
         result += f'        title_id: "{_id.split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
         result += f'        icon: "{getImage(trait_data["Icon"].replace(".tex", "_hr1.png"))}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
-            result += f'          {lang}: "' + deal_with_extras_in_text(traitstransient_trans[_id][f"Description_{lang}"]) + '"\n'
+            tmp_trait = deal_with_extras_in_text(traitstransient_trans[_id][f"Description_{lang}"])
+            result += f'          {lang}: "' + tmp_trait + '"\n'
+            job_translations[lang][f'Class_Trait_Desc_{deal_with_extras_in_text(traits_trans[_id][f"Name_en"]) }'] = tmp_trait
+
         result += '        phases:\n'
         result += '          - phase: "03"\n'
     return result
@@ -393,6 +409,7 @@ def getGathererLeves():
 
 
 def addCrafterLeve(job, all_crafter_leves):
+    global job_translations
     result = ""
     for key, value in all_crafter_leves.items():
         if job not in key:
@@ -402,12 +419,9 @@ def addCrafterLeve(job, all_crafter_leves):
         for _id, leve_data in job_leve_data.items():
             level = "0" if leve_data['level'] == "99999" else leve_data['level']
             result += '      - title:\n'
-            result += f'          de: "{leve_data["Name_DE"]}"\n'
-            result += f'          en: "{leve_data["Name_EN"]}"\n'
-            result += f'          fr: "{leve_data["Name_FR"]}"\n'
-            result += f'          ja: "{leve_data["Name_JA"]}"\n'
-            result += f'          cn: "{leve_data["Name_CN"]}"\n'
-            result += f'          ko: "{leve_data["Name_KO"]}"\n'
+            for lang in LANGUAGES:
+                job_translations[lang][f'Class_Leve_Name_{leve_data[f"Name_EN"]}'] = leve_data[f"Name_{lang.upper()}"]
+                result += f'          {lang}: "{leve_data[f"Name_{lang.upper()}"]}"\n'
             result += f'        title_id: "{leve_data["0xID"]}"\n'
             result += f'        level: "{level}"\n'
             result += f'        leveamount: "{leve_data["Freibriefanzahl"]}"\n'
@@ -426,6 +440,8 @@ def addCrafterLeve(job, all_crafter_leves):
 def addQuestkDetails(job, pvp):
     global quests
     global quests_trans
+    global job_translations
+
     newjob, newclass = convertJobToAbrev(job)
     klassenquests = {}
     for key, quest in quests.items():
@@ -466,21 +482,22 @@ def addQuestkDetails(job, pvp):
     result += "    quests:\n"
     for _level in sorted(klassenquests):
         quest = klassenquests[_level]
-        de_name = quests_trans.get(quest["id"], {}).get("Name_de", "").replace(" ", "").replace(" ", "")
-        en_name = quests_trans.get(quest["id"], {}).get("Name_en", "").replace(" ", "").replace(" ", "")
-        fr_name = quests_trans.get(quest["id"], {}).get("Name_fr", "").replace(" ", "").replace(" ", "")
-        ja_name = quests_trans.get(quest["id"], {}).get("Name_ja", "").replace(" ", "").replace(" ", "")
-        cn_name = quests_trans.get(quest["id"], {}).get("Name_cn", "").replace(" ", "").replace(" ", "")
-        ko_name = quests_trans.get(quest["id"], {}).get("Name_ko", "").replace(" ", "").replace(" ", "")
+        for lang in LANGUAGES:
+            name = {
+                "de": quests_trans.get(quest["id"], {}).get("Name_de", "").replace(" ", "").replace(" ", ""),
+                "en": quests_trans.get(quest["id"], {}).get("Name_en", "").replace(" ", "").replace(" ", ""),
+                "fr": quests_trans.get(quest["id"], {}).get("Name_fr", "").replace(" ", "").replace(" ", ""),
+                "ja": quests_trans.get(quest["id"], {}).get("Name_ja", "").replace(" ", "").replace(" ", ""),
+                "cn": quests_trans.get(quest["id"], {}).get("Name_cn", "").replace(" ", "").replace(" ", ""),
+                "ko": quests_trans.get(quest["id"], {}).get("Name_ko", "").replace(" ", "").replace(" ", "")
+            }
         level = "0" if quest['level'] == "99999" else quest['level']
         # desc = skill_data["Description"].replace("\n", "</br>")
         result += '      - title:\n'
-        result += f'          de: "{de_name}"\n'
-        result += f'          en: "{en_name}"\n'
-        result += f'          fr: "{fr_name}"\n'
-        result += f'          ja: "{ja_name}"\n'
-        result += f'          cn: "{cn_name}"\n'
-        result += f'          ko: "{ko_name}"\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "{name[lang]}"\n'
+            job_translations[lang][f'Class_Quest_Name_{name["en"]}'] = name[lang]
+
         result += f'        title_id: "{quest["id"].split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
         result += f'        expansion: "{quest["expansion"]}"\n'

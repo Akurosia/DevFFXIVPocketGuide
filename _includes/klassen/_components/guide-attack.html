@@ -15,9 +15,7 @@
     <div class="Names">
         <span class="{%- if attack.damage_type == 'Magical' -%}attack-is-magic
                      {%- elsif attack.damage_type && attack.damage_type != 'None' -%}attack-is-physical{%- endif -%}">
-            {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}">{{  attack.title[lang] }} </span>
-            {%- endfor -%}
+            <span data-translate="Class_Skill_Name_{{  attack.title.en }}">{{  attack.title.en }} </span>
         </span>
         {%- if attack.title.en -%}
             <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ attack.title.en }}</div>
@@ -36,11 +34,9 @@
         <!-- Standard Attacks -->
         {%- if attack.description -%}
             <div class="guide__attack-notes-wrapper">
-                <h5 class="guide__attack-notes-title">Description:</h5>
+                <h5 class="guide__attack-notes-title" data-translate="Class_Skill_Desc_Title">Description:</h5>
                 <span class="">
-                    {%- for lang in LANGUAGES -%}
-                        <div class="guide__debuff_description lang-toggle lang-toogle-{{lang}}">{{  attack.description[lang] }}</div>
-                    {%- endfor -%}
+                    <div class="guide__debuff_description" data-translate="Class_Skill_Desc_{{  attack.description.en }}">{{  attack.description.en }}</div>
                 </span>
                 {%- if attack.status_icon -%}
                     {%- unless attack.status_icon == "" -%}
