@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import storeFilesInTmp, get_any_Logdata, loadDataTheQuickestWay, print_color_green
+from ffxiv_aku import storeFilesInTmp, get_any_Logdata, loadDataTheQuickestWay, print_color_green, os, writeJsonFile, readJsonFile
 
 try:
     from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
@@ -17,6 +17,11 @@ except Exception:
 storeFilesInTmp(True)
 # storeFilesInTmp(True)
 logdata = get_any_Logdata()
+#if os.path.exists("tmp/19/logdata_de.json"):
+#    logdata = readJsonFile("tmp/19/logdata_de.json")
+#else:
+#    logdata = get_any_Logdata()
+#    writeJsonFile("tmp/19/logdata_de.json", logdata)
 status = loadDataTheQuickestWay("status_all.json", translate=True)
 
 disable_green_print = True
@@ -421,10 +426,13 @@ def add_Sequence(guide_data, data):
     return guide_data
 
 
-def add_Enemy(enemy_data, enemy_type, new_enemy_data):
+def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
     guide_data = ""
     enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
     guide_data += '  - title:\n'
+    for lang in LANGUAGES:
+        #content_translations[lang]
+        print(f"{enemy_data['title']} -> {enemy_type} -> ")
     guide_data = setMultipleLanguageStrings(guide_data, "title", enemy_data, "      ")
 
     if isinstance(enemy_data.get("enemy_id", ""), list):
@@ -468,26 +476,26 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data):
     return guide_data
 
 
-def check_Enemy(entry, enemy_type, logdata_instance_content, old_enemies):
+def check_Enemy(entry, enemy_type, logdata_instance_content, old_enemies, content_translations):
     guide_data = ""
     if old_enemies == {} and logdata == {}:
         return guide_data
     guide_data += "bosses:\n" if enemy_type == "bosse" else "adds:\n"
-    guide_data, empty_enemy_available = workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instance_content, callback=add_Enemy)
+    guide_data, empty_enemy_available = workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instance_content, content_translations, callback=add_Enemy)
     #print_color_yellow(guide_data, disable_yellow_print)
-    guide_data += workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enemy_available, callback=add_Enemy)
+    guide_data += workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enemy_available, content_translations, callback=add_Enemy)
     #print_color_blue(guide_data, disable_blue_print)
     return guide_data
 
 
 # Notizen, Bosse und Adds
-def addGuide(entry, old_data, logdata_instance_content):
+def addGuide(entry, old_data, logdata_instance_content, content_translations):
     guide_data = ""
     # add mechanics
     guide_data += check_Mechanics(entry, old_data.get('mechanics', None))
     print_color_green(f"Work on '{entry['title_de']}'", disable_green_print)
-    guide_data += check_Enemy(entry, "bosse", logdata_instance_content, old_data.get('bosses', {}))
-    guide_data += check_Enemy(entry, "adds", logdata_instance_content, old_data.get('adds', {}))
+    guide_data += check_Enemy(entry, "bosse", logdata_instance_content, old_data.get('bosses', {}), content_translations)
+    guide_data += check_Enemy(entry, "adds", logdata_instance_content, old_data.get('adds', {}), content_translations)
     return guide_data
 
 

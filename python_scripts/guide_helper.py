@@ -5,7 +5,7 @@ import re
 import copy
 from operator import itemgetter
 from collections import OrderedDict
-from ffxiv_aku import storeFilesInTmp, get_any_Logdata, loadDataTheQuickestWay, print_color_red, print_color_yellow, print_color_blue
+from ffxiv_aku import storeFilesInTmp, get_any_Logdata, loadDataTheQuickestWay, print_color_red, print_color_yellow, print_color_blue, os, writeJsonFile, readJsonFile
 try:
     from python_scripts.constants import LANGUAGES, UNKNOWNTITLE
     #from python_scripts.helper import *
@@ -18,6 +18,11 @@ import logging
 
 storeFilesInTmp(True)
 logdata = get_any_Logdata()
+#if os.path.exists("tmp/19/logdata_de.json"):
+#    logdata = readJsonFile("tmp/19/logdata_de.json")
+#else:
+#    logdata = get_any_Logdata()
+#    writeJsonFile("tmp/19/logdata_de.json", logdata)
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
 action = loadDataTheQuickestWay("action_all.json", translate=True)
 status = loadDataTheQuickestWay("status_all.json", translate=True)
@@ -713,7 +718,7 @@ def addLanguageElements(_type, _id, ori_value):
     return UNKNOWNTITLE
 
 
-def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instance_content, callback=None):
+def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instance_content, content_translations, callback=None):
     # hack to split guide and guide helper
     add_Enemy = callback
     empty_enemy_available = False
@@ -754,7 +759,7 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
             old_enemy_data = merge_attacks(old_enemy_data, new_enemy_data, enemy_type)
             old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
 
-            guide_data += add_Enemy(old_enemy_data, enemy_type, new_enemy_data_c)
+            guide_data += add_Enemy(old_enemy_data, enemy_type, new_enemy_data_c, content_translations)
 
             # this try catch will remove enemy from logdata, so it wont be readded later on
             try:
@@ -779,11 +784,11 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
                 old_enemy_data, saved_used_skills_to_ignore_in_last = merge_debuffs(old_enemy_data, empty_enemy_data, enemy_type, saved_used_skills_to_ignore_in_last)
 
                 if not old_enemy_data == base_data:
-                    guide_data += add_Enemy(old_enemy_data, enemy_type, new_enemy_data_c)
+                    guide_data += add_Enemy(old_enemy_data, enemy_type, new_enemy_data_c, content_translations)
     return guide_data, empty_enemy_available
 
 
-def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enemy_available, callback=None):
+def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enemy_available, content_translations, callback=None):
     # hack to split guide and guide helper
     add_Enemy = callback
     guide_data = ""
@@ -847,7 +852,7 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
             if enemy == "":
                 empty_enemy = enemy_data
             else:
-                tmp_guide_data_from_enemy = add_Enemy(enemy_data, enemy_type, new_enemy_data_c)
+                tmp_guide_data_from_enemy = add_Enemy(enemy_data, enemy_type, new_enemy_data_c, content_translations)
                 enemies_to_add.append(tmp_guide_data_from_enemy)
 
         # this will add bosses in order as specified and add adds in order they were added to the array
@@ -863,7 +868,7 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
 
         if empty_enemy and not empty_enemy_available:
             if empty_enemy.get("attacks", None) or empty_enemy.get("debuffs", None):
-                guide_data += add_Enemy(empty_enemy, "bosse", new_enemy_data_c)
+                guide_data += add_Enemy(empty_enemy, "bosse", new_enemy_data_c, content_translations)
 
     return guide_data
 

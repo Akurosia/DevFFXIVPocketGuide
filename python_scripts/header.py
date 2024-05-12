@@ -559,7 +559,7 @@ def addMusic(header_data, music):
     return header_data
 
 
-def addHeader(entry, old_data, music, contentzoneid):
+def addHeader(entry, old_data, music, contentzoneid, content_translations):
     logger.info("test")
     header_data, entry = rewrite_content_even_if_exists(entry, old_data.get('wip', False))
     header_data, cmt = addContentZoneIdToHeader(header_data, contentzoneid, entry)

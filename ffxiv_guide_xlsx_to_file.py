@@ -120,11 +120,11 @@ def writeFileIfNoDifferent(filename, filedata):
         print(f"Wrote new data to file {filename}")
 
 
-def write_content_to_file(entry, filename, old_data):
+def write_content_to_file(entry, filename, old_data, content_translations):
     logdata_instance_content, music, contentzoneid = getDataFromLogfile(entry)
     filedata = '---\n'
-    filedata += addHeader(entry, old_data, music, contentzoneid)
-    filedata += addGuide(entry, old_data, logdata_instance_content)
+    filedata += addHeader(entry, old_data, music, contentzoneid, content_translations)
+    filedata += addGuide(entry, old_data, logdata_instance_content, content_translations)
     filedata += '---'
     filedata += '\n'
     writeFileIfNoDifferent(filename, filedata)
@@ -151,7 +151,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             if True:
                 #if debug_row_number > 10 :
                 if debug_row_number not in [103]:
-                    #print_debug = True
+                    print_debug = True
                     continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             if print_debug:
@@ -175,7 +175,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                     filename = existing_filename
                     # logger.info(pretty_json(old_data))
                 try_to_create_file(filename)
-                write_content_to_file(entry, filename, old_data)
+                write_content_to_file(entry, filename, old_data, content_translations)
                 # write translation file
                 filename_translation_location = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '')}"
                 if not os.path.exists(filename_translation_location):
@@ -214,4 +214,5 @@ def main():
 
 if __name__ == "__main__":
     print(sys.version)
+    print(os.environ.get("GDRIVE_APIKEY"))
     main()
