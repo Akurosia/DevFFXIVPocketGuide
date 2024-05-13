@@ -10,13 +10,11 @@
         <span class="{% if debuff.damage_type == 'Magical' %} attack-is-magic
                      {% elsif debuff.damage_type && debuff.damage_type != 'None' %} attack-is-physical
                      {% endif %}">
-            {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}">{{ debuff.title[lang] }}</span>
-            {%- endfor -%}
+            <span data-translate="{{x}}_{{enemy_name_en}}_Status_{{debuff.title}}_Name">{{ debuff.title }}</span>
         </span>
 
         {%- if debuff.title.en -%}
-            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ debuff.title.en }}</div>
+            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ debuff.title }}</div>
         {%- endif -%}
     </div>
     {%- include _components/guide-attack-types.html -%}
@@ -40,9 +38,7 @@
         {%- if debuff.description -%}
             <div class="guide__attack-notes-wrapper">
                 <h5 class="guide__attack-notes-title">Description:</h5>
-                {%- for lang in LANGUAGES -%}
-                    <span class="lang-toggle lang-toogle2-{{lang}} guide__debuff_description">{{ debuff.description[lang] }}</span>
-                {%- endfor -%}
+                <span class="guide__debuff_description" data-translate="{{x}}_{{enemy_name_en}}_Status_{{debuff.title}}_Desc">{{ debuff.description }}</span>
             </div>
         {%- endif -%}
 

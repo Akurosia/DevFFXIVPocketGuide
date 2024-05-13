@@ -1,16 +1,15 @@
 <!-- Guide Adds ========================================================== -->
 <div class="guide__accordion">
+    <!-- Guide Section -->
     <div class="guide__accordion-trigger--01-grid active" id="guide{{ x }}">
         <i class="Dropdown material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
-
         <div class="Names">
             {%- if enemies.size > 1 -%}
                 {% include helper/returnPropperName.html instanceType=page.instanceType %} {{ x }}
             {%- else -%}
-                {%- for lang in LANGUAGES -%}
-                    <h2 class="lang-toggle lang-toogle-{{lang}} guide__accordion-trigger-title">{{ enemies[0].title[lang] }}</h2>
-                {%- endfor -%}
-                <h2 class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemies[0].title.en }}</h2>
+                {%- assign enemy_name_en = enemies[0].title.en -%}
+                <h2 data-translate="{{x}}_{{enemy_name_en}}_Name">{{ enemy_name_en }}</h2>
+                <h2 class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemy_name_en }}</h2>
             {%- endif -%}
         </div>
         <div class="IdsHps">
@@ -24,19 +23,17 @@
             {%- endif -%}
         </div>
     </div>
-    <!-- Guide Event Accordion Content -->
+    <!-- Guide Enemy -->
     <div class="guide__accordion-content--01-grid active">
         <!-- Opens the Adds Loop -->
         {%- for enemy in enemies -%}
             {%- if enemies.size > 1 -%}
                 <div class="guide__accordion-trigger--02-grid" id="{{ enemy.id | slugify }}">
                     <i class="Dropdown material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
-
                     <div class="EnemyNames">
-                        {%- for lang in LANGUAGES -%}
-                            <h3 class="lang-toggle lang-toogle-{{lang}} guide__accordion-trigger-title"> {{ enemy.title[lang] }} </h3>
-                        {%- endfor -%}
-                        <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemy.title.en }}</span>
+                        {%- assign enemy_name_en = enemy.title.en -%}
+                        <h3 data-translate="{{x}}_{{enemy_name_en}}_Name"> {{ enemy_name_en }} </h3>
+                        <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemy_name_en }}</span>
                     </div>
                     <div class="IdsHps">
                         {%- if enemy.enemy_id and enemy.enemy_id != "" -%}

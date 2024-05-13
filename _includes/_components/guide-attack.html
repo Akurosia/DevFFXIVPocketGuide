@@ -11,12 +11,10 @@
         <span class="{% if attack.damage_type == 'Magical' %} attack-is-magic
                      {% elsif attack.damage_type && attack.damage_type != 'None' %} attack-is-physical
                      {% endif %}">
-            {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}">{{ attack.title[lang] }}</span>
-            {%- endfor -%}
+            <span data-translate="{{x}}_{{enemy_name_en}}_Attack_{{attack.title}}">{{ attack.title }}</span>
         </span>
         {%- if attack.title.en -%}
-            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ attack.title.en }}</div>
+            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ attack.title }}</div>
         {%- endif -%}
     </div>
     <div class="Attributes">
