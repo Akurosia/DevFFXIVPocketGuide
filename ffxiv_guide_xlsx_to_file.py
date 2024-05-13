@@ -130,7 +130,7 @@ def write_content_to_file(entry, filename, old_data, content_translations):
     writeFileIfNoDifferent(filename, filedata)
 
 
-categories_list = {
+expansion_list = {
     "arr": "2_arr",
     "hw": "3_hw",
     "sb": "4_sb",
@@ -148,9 +148,9 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             #filename = ""
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if True:
+            if not True:
                 #if debug_row_number > 10 :
-                if debug_row_number not in [103]:
+                if debug_row_number not in [103, 544]:
                     print_debug = True
                     continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
@@ -166,9 +166,12 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 for lang in LANGUAGES:
                     content_translations[lang] = {}
                 #print(f"{entry['instanceType']}: {entry['title']}")
-                categories = categories_list[entry['categories']]
-                filename = f"{categories}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
-                existing_filename = f"{categories}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
+                if entry['categories'] == "":
+                    print("Skipped due to no expansion specified")
+                    continue
+                expansion = expansion_list[entry['categories']]
+                filename = f"{expansion}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
+                existing_filename = f"{expansion}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 old_data = get_old_content_if_file_is_found(existing_filename)
                 # if old file was found, replace filename to save
                 if not old_data == {}:
@@ -203,7 +206,9 @@ def main():
     try:
         run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
         pass
-    except Exception: pass
+    except Exception:
+        traceback.print_exception(*sys.exc_info())
+
     if not print_debug:
         #csgf needs also to run from posts dir
         csgf.run()
@@ -214,5 +219,4 @@ def main():
 
 if __name__ == "__main__":
     print(sys.version)
-    print(os.environ.get("GDRIVE_APIKEY"))
     main()
