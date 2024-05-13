@@ -709,7 +709,7 @@ def addLanguageElements(_type, _id, ori_value):
     if _id:
         return {
             'en': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_en']),
-            'de': fixCaptilaziationAndRomanNumerals(ori_value),
+            'de': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_de']),
             'fr': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_fr']),
             'ja': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_ja']),
             'cn': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_cn']),
