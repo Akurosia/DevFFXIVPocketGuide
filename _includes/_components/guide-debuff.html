@@ -12,10 +12,7 @@
                      {% endif %}">
             <span data-translate="{{x}}_{{enemy_name_en}}_Status_{{debuff.title}}_Name">{{ debuff.title }}</span>
         </span>
-
-        {%- if debuff.title.en -%}
-            <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ debuff.title }}</div>
-        {%- endif -%}
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ debuff.title }}</div>
     </div>
     {%- include _components/guide-attack-types.html -%}
     <div class="IdsHps">

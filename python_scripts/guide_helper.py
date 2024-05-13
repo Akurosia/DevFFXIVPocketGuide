@@ -201,7 +201,7 @@ def get_fixed_status_description(_id):
             description[lang] = tmp
         return description
     except KeyError:
-        return {"de": f"Unknown_{_id}"}
+        return {"en": f"Unknown_{_id}"}
 
 
 ids_to_replace = ["10742", "11399"]
