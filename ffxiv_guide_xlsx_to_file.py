@@ -180,7 +180,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_data, content_translations)
                 # write translation file
-                filename_translation_location = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '')}"
+                filename_translation_location = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '').replace('_', '-')}"
                 if not os.path.exists(filename_translation_location):
                     os.makedirs(filename_translation_location)
                 for lang in LANGUAGES:
