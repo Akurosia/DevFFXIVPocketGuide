@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+        <!-- Charset -->
+    <meta charset="utf-8" />
+<!-- Compatibility -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Page Title --><title>Sturmkommando (Normal) | FFXIV Pocket Guide - Final Fantasy XIV - Endwalker</title><!-- Page Description -->
+    <meta name="description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV.A collection of mobile friendly guides to help players navigate group content in Final Fantasy XIV. Guide content has been compiled from video guides produced by MTQCapture.
+" />
+<!-- Open Graph & Twitter Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content="/arr/sturmkommando.html" />
+    <meta property="og:title" content="Sturmkommando(Normal)| FFXIV Pocket Guide - Final Fantasy XIV - Endwalker" />
+    <meta property="og:description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV.A collection of mobile friendly guides to help players navigate group content in Final Fantasy XIV. Guide content has been compiled from video guides produced by MTQCapture.
+" /><meta property="og:image" content="" /><!-- Google Fonts -->
+    <link href="/DevFFXIVPocketGuide/assets/fonts/fonts.css" rel="stylesheet" />
+<!--  Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/DevFFXIVPocketGuide/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/DevFFXIVPocketGuide/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff575c" />
+    <meta name="theme-color" content="#ffffff" />
+<!-- Google Search Structured Pages --><script type="application/ld+json">
+            {
+              "@context": "http://schema.org",
+              "@type": "NewsArticle",
+              "headline": "Sturmkommando(Normal)",
+              "image": [
+                ""
+              ]
+            }
+        </script><!-- Twitter Intents -->
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+<!-- jQuery -->
+    <script type="text/javascript" src="/DevFFXIVPocketGuide/assets/vendor/jquery.min.js?1715795821595533579"></script>
+<!-- Modernizr -->
+    <script type="text/javascript" src="/DevFFXIVPocketGuide/assets/vendor/modernizr.js?1715795821595533579"></script>
+<!-- Ionicons -->
+    <link rel="stylesheet" href="/DevFFXIVPocketGuide/assets/vendor/ionicons.min.css?1715795821595533579" type="text/css" media="all" />
+<!-- Normalize -->
+    <link rel="stylesheet" href="/DevFFXIVPocketGuide/assets/vendor/normalize.css?1715795821595533579" type="text/css" media="all" />
+<!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="/DevFFXIVPocketGuide/css/core.css?1715795821595533579" />
+    <script type="text/javascript" src="/DevFFXIVPocketGuide/assets/js/copy2clipboard.js?1715795821595533579"></script>
+    <script type="text/javascript" src="/DevFFXIVPocketGuide/assets/js/handleLanguage.js?1715795821595533579"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="/DevFFXIVPocketGuide/css/ffxiv.css">
+    <script type="text/javascript" src="/DevFFXIVPocketGuide/assets/js/tablesort.min.js?1715795821595533579"></script>
+    <script type="text/javascript" src="/DevFFXIVPocketGuide/assets/js/tablesort.number.min.js?1715795821595533579"></script>
+    <style>
+        @font-face {
+            font-family: finalf;
+            src: url('/DevFFXIVPocketGuide/assets/fonts/FFXIV_Lodestone_SSF.ttf');
+        }
+    </style>
+
+    </head>
+    <body class="guide ">
+        <div class="layout">
+            <!-- Include Sidebar -->
+            <!-- Mobile Menu Trigger -->
+    <button class="sidebar__trigger">
+        <span class="sidebar__trigger-inactive" data-translate="Navbar_Menu">
+            <ion-icon name="chevron-down-outline" style="color: white !important"></ion-icon>
+            Menu
+        </span>
+        <span class="sidebar__trigger-active" data-translate="Navbar_Close">
+            <ion-icon name="chevron-up-outline" style="color: white !important"></ion-icon>
+            Close
+        </span>
+    </button>
+<!-- Mobile Overlay -->
+    <div
+        class="site-grid__sidebar-overlay">
+    </div>
+<!-- Menu -->
+    <div
+        class="sidebar"
+        style="background-image: url('/DevFFXIVPocketGuide/assets/img/guide_index_default.jpg');">
+        <div class="sidebar__wrapper">
+            <div class="languages">
+                <a style="background-image: url('/DevFFXIVPocketGuide/assets/img/flags.png')" class="flags_img iso_US" onclick="changeLanguageTo('lang-toogle-en', 'en-US')" alt="en"></a>
+                <a style="background-image: url('/DevFFXIVPocketGuide/assets/img/flags.png')" class="flags_img iso_DE" onclick="changeLanguageTo('lang-toogle-de', 'de-DE')" alt="de"></a>
+                <a style="background-image: url('/DevFFXIVPocketGuide/assets/img/flags.png')" class="flags_img iso_FR" onclick="changeLanguageTo('lang-toogle-fr', 'fr-FR')" alt="fr"></a>
+                <a style="background-image: url('/DevFFXIVPocketGuide/assets/img/flags.png')" class="flags_img iso_JP" onclick="changeLanguageTo('lang-toogle-ja', 'ja-JP')" alt="ja"></a>
+                <a style="background-image: url('/DevFFXIVPocketGuide/assets/img/flags.png')" class="flags_img iso_CN" onclick="changeLanguageTo('lang-toogle-cn', 'cn-CN')" alt="cn"></a>
+                <a style="background-image: url('/DevFFXIVPocketGuide/assets/img/flags.png')" class="flags_img iso_KR" onclick="changeLanguageTo('lang-toogle-ko', 'ko-KR')" alt="ko"></a>
+            </div>
+            <h1 class="sidebar__title">
+                <a href='/DevFFXIVPocketGuide/' title="Return to the Pocket Guide Home Page.">
+                    <img alt="FFXIV Icon" src='/DevFFXIVPocketGuide/assets/img/icon.svg'>
+                </a>
+            </h1>
+            <ul class="sidebar__menu">
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/about.html' title="See what's new with the Pocket Guide.">
+                        <img src='/DevFFXIVPocketGuide/assets/img/new.png' alt="A new icon." style="width: 1.5rem; vertical-align: middle; margin-bottom: .2rem; margin-right: .5rem;">
+                        <span data-translate="Navbar_About">About</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/translate/' title="See what's new with the Pocket Guide.">
+                        <img src='https://xivapi.com/i//061000/061723_hr1.png' alt="">
+                        <span data-translate="Navbar_Translations">Translations</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/gear/' title="See what's new with the Pocket Guide.">
+                        <img src='https://xivapi.com/i//061000/061723_hr1.png' alt="">
+                        <span data-translate="Navbar_Equipment">Equipment</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/patches/' title="Alle Patches anzeigen">
+                        <img src='https://xivapi.com/i//061000/061757_hr1.png' alt="">
+                        <span data-translate="Navbar_Patches">Patches</span>
+                    </a>
+                    <!-- Future functionality-->
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/' title="Alle Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061540_hr1.png' alt="">
+                        <span data-translate="Navbar_All Guides">All Guides</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/dungeons/' title="Dungeon - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061801_hr1.png' alt="">
+                        <span data-translate="Navbar_Dungeons">Dungeons</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/trials/' title="Prüfung - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061804_hr1.png' alt="">
+                        <span data-translate="Navbar_Trials">Trials</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/raids/' title="Raid - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061802_hr1.png' alt="">
+                        <span data-translate="Navbar_Raids">Raids</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/ultimates/' title="Ultimate - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061832_hr1.png' alt="">
+                        <span data-translate="Navbar_Ultimate Raids">Ultimate Raids</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/allianzraid/' title="Allianz Raid - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061844_hr1.png' alt="">
+                        <span data-translate="Navbar_Alliance Raids">Alliance Raids</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/gewölbesuche/' title="Gewölbesuche - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061846_hr1.png' alt="">
+                        <span data-translate="Navbar_Varient & Criterion Dungeon">Varient & Criterion Dungeon</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/feldexkursion/' title="Feldexkursion - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061837_hr1.png' alt="">
+                        <span data-translate="Navbar_Field Operations">Field Operations</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/bluemage/' title="Bluemage - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061836_hr1.png' alt="">
+                        <span data-translate="Navbar_Blue Mage">Blue Mage</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/potd/' title="Tiefes Gewöbe - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061824_hr1.png' alt="">
+                        <span data-translate="Navbar_Deep Dungeon">Deep Dungeon</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""class="active"href='/DevFFXIVPocketGuide/guildhest/' title="Gildengeheiße - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061803_hr1.png' alt="">
+                        <span data-translate="Navbar_Guildhests">Guildhests</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/treasure/' title="Schatzdungeon - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061808_hr1.png' alt="">
+                        <span data-translate="Navbar_Treasure Dungeon">Treasure Dungeon</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/pvp/' title="PVP - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061806_hr1.png' alt="">
+                        <span data-translate="Navbar_PVP">PVP</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/training/' title="Training - Guides anzeigen">
+                        <img src='https://xivapi.com/i//061000/061823_hr1.png' alt="">
+                        <span data-translate="Navbar_Training">Training</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/klassenjobs/' title="Klassen/Jobs anzeigen">
+                        <img src='https://xivapi.com/i//061000/061828_hr1.png' alt="">
+                        <span data-translate="Navbar_Classes/Jobs">Classes/Jobs</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/relics/' title="Quests anzeigen">
+                        <img src='https://xivapi.com/i//061000/061822_hr1.png' alt="">
+                        <span data-translate="Navbar_Relic Weapons">Relic Weapons</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/airship_submarine/' title="Quests anzeigen">
+                        <img src='https://xivapi.com/i//061000/061821_hr1.png' alt="">
+                        <span data-translate="Navbar_Company Airship & Submersible">Company Airship & Submersible</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/quests/' title="Quests anzeigen">
+                        <img src='https://xivapi.com/i//061000/061723_hr1.png' alt="">
+                        <span data-translate="Navbar_Quests">Quests</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/achivments/' title="Quests anzeigen">
+                        <img src='https://xivapi.com/i//061000/061723_hr1.png' alt="">
+                        <span data-translate="Navbar_Achievement">Achievement</span>
+                    </a>
+                </li>
+                <li>
+                    <a target=""href='/DevFFXIVPocketGuide/links/' title="Quests anzeigen">
+                        <img src='https://xivapi.com/i//061000/061834_hr1.png' alt="">
+                        <span data-translate="Navbar_Links">Links</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+            <div class="layout__wrapper">
+                <!-- Include Header -->
+                <header><div class="site-header__grid"style="background-image:url('https://xivapi.com/i/111000/111007_hr1.png');">
+        <div><a id="pref_slug" href="/DevFFXIVPocketGuide/arr/bockmanns-gefolge.html" style="display: none;"></a>
+                <button class="content_btn content_btn_prev" onclick="document.getElementById('pref_slug').click()" title="/arr/bockmanns-gefolge"> < </button><a id="next_slug" href="/DevFFXIVPocketGuide/arr/gil-oder-leben.html" style="display: none;"/></a>
+                <button class="content_btn content_btn_next" onclick="document.getElementById('next_slug').click()" title="/arr/gil-oder-leben"> > </button></div>
+        <div class="site-header__item-a">
+            <h1 class="site-header__title">
+                <span data-translate="Header_CatTitle_"></span><span class="lang-toggle lang-toogle-en">Basic Training: Enemy Strongholds</span><span class="lang-toggle lang-toogle-de">Sturmkommando</span><span class="lang-toggle lang-toogle-fr">Entraînement : infiltration en base ennemie</span><span class="lang-toggle lang-toogle-ja">全関門を突破し、最深部の敵を討て！</span><span class="lang-toggle lang-toogle-cn">突破所有关门，讨伐最深处的敌人！</span><span class="lang-toggle lang-toogle-ko">관문을 돌파하고 최심부의 적을 쓰러뜨려라!</span></h1>
+            <h2 class="lang-toggle lang-toogle-en-sub site-header__guide-title_en">Basic Training: Enemy Strongholds</h2>
+
+        </div><ul
+                class="site-header__links">
+                <li>
+                    <a href="https://twitter.com/intent/tweet?via=Akurosia&url=%2Farr%2Fsturmkommando.html&text=I%20want%20to%20submit%20feedback%20on%20%7B%22de%22%3D%3E%22Sturmkommando%22%2C+%22en%22%3D%3E%22Basic+Training%3A+Enemy+Strongholds%22%2C+%22fr%22%3D%3E%22Entra%C3%AEnement+%3A+infiltration+en+base+ennemie%22%2C+%22ja%22%3D%3E%22%E5%85%A8%E9%96%A2%E9%96%80%E3%82%92%E7%AA%81%E7%A0%B4%E3%81%97%E3%80%81%E6%9C%80%E6%B7%B1%E9%83%A8%E3%81%AE%E6%95%B5%E3%82%92%E8%A8%8E%E3%81%A6%EF%BC%81%22%2C+%22cn%22%3D%3E%22%E7%AA%81%E7%A0%B4%E6%89%80%E6%9C%89%E5%85%B3%E9%97%A8%EF%BC%8C%E8%AE%A8%E4%BC%90%E6%9C%80%E6%B7%B1%E5%A4%84%E7%9A%84%E6%95%8C%E4%BA%BA%EF%BC%81%22%2C+%22ko%22%3D%3E%22%EA%B4%80%EB%AC%B8%EC%9D%84+%EB%8F%8C%ED%8C%8C%ED%95%98%EA%B3%A0+%EC%B5%9C%EC%8B%AC%EB%B6%80%EC%9D%98+%EC%A0%81%EC%9D%84+%EC%93%B0%EB%9F%AC%EB%9C%A8%EB%A0%A4%EB%9D%BC%21%22%7D%2E&related=Akurosia, ffxiv_pocket_guide" target="_blank" rel="noopener noreferrer" title="Sende Feedback für Sturmkommando.">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                        <span data-translate="Header_SendFeedback">Send Feedback</span>
+                    </a>
+                </li>
+                <li></li>
+            </ul></div>
+    <div style="display: none" data-extra-translate="/assets/translations/header"></div>
+</header>
+
+                <!-- Include Guide Layout -->
+                
+<!-- Guide Layout ========================================================== -->
+<div class="guide-layout"><!-- Guide Metadata ======================================================== -->
+<div class="guide-metadata"><div class="guide-metadata__wrapper">
+        <h5 class="guide-metadata__subtitle box small-1of2 med-full"><div data-translate="Sidebar_PlayerLevel">Player Level: </div><span class="noblock">15</span>
+        </h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_PlayerLevelSync">Player Level Sync: </div>
+                <span class="noblock">16</span>
+            </h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_ItemLevel">Item Level: </div>
+                <span class="noblock">N/A</span
+            ></h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Patch">Patch:</div><span class="block">
+                        <a target="_blank" rel="noopener noreferrer" href="https://de.finalfantasyxiv.com/a_realm_reborn/" data-translate="Patch_2.0 - A Realm Reborn">2.0 - A Realm Reborn</a>
+                    </span></h5><!-- Only on Classes --><!-- END Only on Classes -->
+        <!-- Only on Content --><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_ContentName">Contentname: </div><span class="lang-toggle lang-toogle-en block">Western Thanalan</span><span class="lang-toggle lang-toogle-de block">Westliches Thanalan</span><span class="lang-toggle lang-toogle-fr block">Thanalan occidental</span><span class="lang-toggle lang-toogle-ja block">西ザナラーン</span><span class="lang-toggle lang-toogle-cn block">西萨纳兰</span><span class="lang-toggle lang-toogle-ko block">서부 다날란</span></h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_ContentDesc">Contentbeschreibung: </div><span class="lang-toggle lang-toogle-en block">This battle exercise will test your ability to breach enemy stronghold defenses.<br/><br/><br/><br/>Eliminate targets in each of the three antechambers before infiltrating the final chamber and engaging the cyclopean toad who makes the cave its den. Making quick work of the creature is key, for the yarzons who lurk behind the chamber's boulders will emerge once they smell blood.</span><span class="lang-toggle lang-toogle-de block">Bei dieser militärischen Übung wird die Erstürmung feindlicher Befestigungsanlagen erprobt. Bahnt euch einen Weg durch die von Monstern bewachten Tore und erschlagt die Kröte Kliffspringer, die hinter dem dritten Tor hockt! Verliert euer Ziel nicht aus den Augen und beeilt euch, bevor sich die an den Felswänden lauernden Yarzons auf euch stürzen!</span><span class="lang-toggle lang-toogle-fr block">Cet exercice de bataille testera votre aptitude à percer les défenses ennemies pour vous introduire dans leur camp.<br/><br/><br/><br/>Éliminez les unités ennemies dans chacune des trois antichambres pour progresser vers la dernière salle et affronter le crapaud saute-saillie qui en a fait sa tanière. Il est important d'en finir au plus vite avec la créature pour éviter les yarzons tapis derrière les rochers qui sortiront dès qu'ils sentiront l'odeur du sang.</span><span class="lang-toggle lang-toogle-ja block">敵拠点の攻略を想定した、実戦形式の訓練を行う。<br/><br/>魔物を排除しつつ3つの扉を突破して進み、<br/><br/>最深部で待ち受けるレッジリーパーを討伐せよ。<br/><br/><br/><br/>なお、最深部では岩壁の内側にヤーゾンを放っている。<br/><br/>目標の討伐に手こずると、岩壁を打ち破って<br/><br/>ヤーゾンがなだれ込んでくるだろう。速攻を心がけよ。</span><span class="lang-toggle lang-toogle-cn block">我们即将进行一场模拟攻占敌方据点的实战演习。清理掉沿路魔物的同时冲破三道防御关门，最终消灭最深处的强力敌人——越壁蟾蜍。<br/><br/>要注意，最深处地区的岩壁内部还有着大量的盲头蟹。如果战斗拖得时间过长，它们会打破岩壁冲出来，这会令战况陷入更加不利的局面。一定要速战速决。</span><span class="lang-toggle lang-toogle-ko block">적 거점 공략을 상정한 실전 형식의 훈련을 진행한다.<br/>마물을 제거하며 3개의 문을 돌파한 다음<br/>최심부에서 기다리는 '절벽껑충이'를 토벌하라.<br/><br/>단 최심부 암벽 뒤에는 긴다리거미를 풀어놓았다.<br/>목표 처치가 늦어지면 암벽을 뚫고<br/>긴다리거미가 쏟아져나올 것이다. 속공이 생명임을 명심해라.</span></h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_MapID">MapID: </div>
+                <span class="block">go003</span>
+            </h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_MapPath">MapPath: </div>
+                <span class="block">ffxiv/wil_w1/fld/w1f1/level/w1f1</span>
+            </h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Contenzoneids">Contenzoneids: </div><span class="block">80032713</span></h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Guppenaufstellung">Guppenaufstellung: </div>
+                <span class="block group-icon">1x<image src="https://xivapi.com/i/062000/062581_hr1.png"/>1x<image src="https://xivapi.com/i/062000/062582_hr1.png"/>1x<image src="https://xivapi.com/i/062000/062584_hr1.png"/>1x<image src="https://xivapi.com/i/062000/062585_hr1.png"/></span>
+            </h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Quest">Quest: </div>
+                <span class="block"><a target="_blank" rel="noopener noreferrer" class="lang-toggle lang-toogle-en" href="https://en.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q=Simply the Hest">Simply the Hest</a><a target="_blank" rel="noopener noreferrer" class="lang-toggle lang-toogle-de" href="https://de.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q=Auf Geheiß der Gilde">Auf Geheiß der Gilde</a><a target="_blank" rel="noopener noreferrer" class="lang-toggle lang-toogle-fr" href="https://fr.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q=Opérations de guilde (Ul'dah)">Opérations de guilde (Ul'dah)</a><a target="_blank" rel="noopener noreferrer" class="lang-toggle lang-toogle-ja" href="https://ja.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q=発令ギルドオーダー（ウルダハ）">発令ギルドオーダー（ウルダハ）</a><a target="_blank" rel="noopener noreferrer" class="lang-toggle lang-toogle-cn" href="https://cn.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q=行会特令">行会特令</a><a target="_blank" rel="noopener noreferrer" class="lang-toggle lang-toogle-ko" href="https://ko.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q=길드 작전 발령 (울다하)">길드 작전 발령 (울다하)</a></span>
+            </h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                    <div data-translate="Sidebar_QuestLocation">Quest Location: </div><span class="lang-toggle lang-toogle-en block">Western Thanalan (23.2, 16.5)</span><span class="lang-toggle lang-toogle-de block">Westliches Thanalan (23.2, 16.5)</span><span class="lang-toggle lang-toogle-fr block">Thanalan occidental (23.2, 16.5)</span><span class="lang-toggle lang-toogle-ja block">西ザナラーン (23.2, 16.5)</span><span class="lang-toggle lang-toogle-cn block">西萨纳兰 (23.2, 16.5)</span><span class="lang-toggle lang-toogle-ko block">서부 다날란 (23.2, 16.5)</span></h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                    <div data-translate="Sidebar_QuestNPC">Quest NPC: </div><span class="lang-toggle lang-toogle-en block">Totonowa</span><span class="lang-toggle lang-toogle-de block">Totonawa</span><span class="lang-toggle lang-toogle-fr block">Totonowa</span><span class="lang-toggle lang-toogle-ja block">トトノワ</span><span class="lang-toggle lang-toogle-cn block">托托诺瓦</span><span class="lang-toggle lang-toogle-ko block">토토노와</span></h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-origin="contentroulette" data-translate="Sidebar_Rouletts">Duty Roulette: </div><span class="block" data-translate="Sidebar_Rouletts_Gildengeheiß">- Guildhests</span></h5><h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_Links">Links: </div><span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance/10003">Teamcraft</a></span><span class="block"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance/10003">Garlandtools</a></span><span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki/Basic_Training:_Enemy_Strongholds">Gamerscape</a></span></h5></div><ul class="guide-metadata__menu">
+            <h5 class="guide-metadata__subtitle" data-translate="Sidebar_InThisGuide">In This Guide:</h5><li>
+                    <a href="#" data-id="guideNotes" title="Go to the Guide Notes" class="guide-metadata__menu-link">
+                         <div data-translate="Sidebar_Notizen">Notes</div>
+                    </a>
+                </li><li>
+                    <a href="#" data-id="guideAdds" title="Go to the Guide Adds" class="guide-metadata__menu-link">
+                        <div data-translate="Sidebar_Adds">Adds</div>
+                    </a>
+                    <ul class="guide-metadata__submenu"><li><a href="#" data-id="add01" title="Go to Boulder" class="lang-toggle lang-toogle-en guide-metadata__menu-link">Boulder</a><a href="#" data-id="add01" title="Go to Fels" class="lang-toggle lang-toogle-de guide-metadata__menu-link">Fels</a><a href="#" data-id="add01" title="Go to Rocher" class="lang-toggle lang-toogle-fr guide-metadata__menu-link">Rocher</a><a href="#" data-id="add01" title="Go to 岩壁" class="lang-toggle lang-toogle-ja guide-metadata__menu-link">岩壁</a><a href="#" data-id="add01" title="Go to 岩壁" class="lang-toggle lang-toogle-cn guide-metadata__menu-link">岩壁</a><a href="#" data-id="add01" title="Go to 암벽" class="lang-toggle lang-toogle-ko guide-metadata__menu-link">암벽</a></li><li><a href="#" data-id="add02" title="Go to Tamed Spriggan" class="lang-toggle lang-toogle-en guide-metadata__menu-link">Tamed Spriggan</a><a href="#" data-id="add02" title="Go to Gezähmter Spriggan" class="lang-toggle lang-toogle-de guide-metadata__menu-link">Gezähmter Spriggan</a><a href="#" data-id="add02" title="Go to Spriggan Dompté" class="lang-toggle lang-toogle-fr guide-metadata__menu-link">Spriggan Dompté</a><a href="#" data-id="add02" title="Go to テイムド・スプリガン" class="lang-toggle lang-toogle-ja guide-metadata__menu-link">テイムド・スプリガン</a><a href="#" data-id="add02" title="Go to 驯服魔石精" class="lang-toggle lang-toogle-cn guide-metadata__menu-link">驯服魔石精</a><a href="#" data-id="add02" title="Go to 길들여진 스프리건" class="lang-toggle lang-toogle-ko guide-metadata__menu-link">길들여진 스프리건</a></li><li><a href="#" data-id="add03" title="Go to Yarzon Lurker" class="lang-toggle lang-toogle-en guide-metadata__menu-link">Yarzon Lurker</a><a href="#" data-id="add03" title="Go to Lauernder Yarzon" class="lang-toggle lang-toogle-de guide-metadata__menu-link">Lauernder Yarzon</a><a href="#" data-id="add03" title="Go to Yarzon Rôdeur" class="lang-toggle lang-toogle-fr guide-metadata__menu-link">Yarzon Rôdeur</a><a href="#" data-id="add03" title="Go to ヤーゾン・ラーカー" class="lang-toggle lang-toogle-ja guide-metadata__menu-link">ヤーゾン・ラーカー</a><a href="#" data-id="add03" title="Go to 潜伏盲头蟹" class="lang-toggle lang-toogle-cn guide-metadata__menu-link">潜伏盲头蟹</a><a href="#" data-id="add03" title="Go to 긴다리거미 잠복자" class="lang-toggle lang-toogle-ko guide-metadata__menu-link">긴다리거미 잠복자</a></li><li><a href="#" data-id="add04" title="Go to Lemur" class="lang-toggle lang-toogle-en guide-metadata__menu-link">Lemur</a><a href="#" data-id="add04" title="Go to Lori" class="lang-toggle lang-toogle-de guide-metadata__menu-link">Lori</a><a href="#" data-id="add04" title="Go to Lémur" class="lang-toggle lang-toogle-fr guide-metadata__menu-link">Lémur</a><a href="#" data-id="add04" title="Go to レミュー" class="lang-toggle lang-toogle-ja guide-metadata__menu-link">レミュー</a><a href="#" data-id="add04" title="Go to 狐猴" class="lang-toggle lang-toogle-cn guide-metadata__menu-link">狐猴</a><a href="#" data-id="add04" title="Go to 여우원숭이" class="lang-toggle lang-toogle-ko guide-metadata__menu-link">여우원숭이</a></li><li><a href="#" data-id="add05" title="Go to Puk Hatchling" class="lang-toggle lang-toogle-en guide-metadata__menu-link">Puk Hatchling</a><a href="#" data-id="add05" title="Go to Puk" class="lang-toggle lang-toogle-de guide-metadata__menu-link">Puk</a><a href="#" data-id="add05" title="Go to Puk" class="lang-toggle lang-toogle-fr guide-metadata__menu-link">Puk</a><a href="#" data-id="add05" title="Go to プーク" class="lang-toggle lang-toogle-ja guide-metadata__menu-link">プーク</a><a href="#" data-id="add05" title="Go to 跳蜥" class="lang-toggle lang-toogle-cn guide-metadata__menu-link">跳蜥</a><a href="#" data-id="add05" title="Go to 푸크" class="lang-toggle lang-toogle-ko guide-metadata__menu-link">푸크</a></li><li><a href="#" data-id="add06" title="Go to Rasher Hog" class="lang-toggle lang-toogle-en guide-metadata__menu-link">Rasher Hog</a><a href="#" data-id="add06" title="Go to Rasendes Schwein" class="lang-toggle lang-toogle-de guide-metadata__menu-link">Rasendes Schwein</a><a href="#" data-id="add06" title="Go to Verrat À Lard" class="lang-toggle lang-toogle-fr guide-metadata__menu-link">Verrat À Lard</a><a href="#" data-id="add06" title="Go to ラッシャー・ホッグ" class="lang-toggle lang-toogle-ja guide-metadata__menu-link">ラッシャー・ホッグ</a><a href="#" data-id="add06" title="Go to 鲁莽野猪" class="lang-toggle lang-toogle-cn guide-metadata__menu-link">鲁莽野猪</a><a href="#" data-id="add06" title="Go to 돌진하는 수퇘지" class="lang-toggle lang-toogle-ko guide-metadata__menu-link">돌진하는 수퇘지</a></li></ul>
+                </li></ul><div style="display: none" data-extra-translate="/assets/translations/sidebar"></div>
+</div>
+<!-- Guide Content ========================================================= -->
+<div class="guide-content"><div class="guide__content__wip" id="wip">
+            <h2 class="guide__accordion-trigger-title guide__content__wip__title">WORK IN PROGRESS !!!</h2>
+        </div><!-- Duty Notes ======================================================== --><!-- Duty Notes ======================================================== --><!-- Guide Notes =========================================================== -->
+<div class="guide__accordion">
+    <div class="guide__accordion-trigger--01-grid" id="guideNotes">
+        <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+        <span class="Names">
+            Gildengeheiß Notizen
+        </span>
+    </div>
+    <!-- Guide Event Accordion Content -->
+    <div class="guide__accordion-content--01">
+        <!-- Opens the Notes Loop --><div class="guide__accordion-copy-wrapper">
+                    <!-- Event Title --><h3 class="guide__accordion-title lang-toggle lang-toogle-en">Mechanic-Title 1</h3><h3 class="guide__accordion-title lang-toggle lang-toogle-de">Mechanic-Title 1</h3><h3 class="guide__accordion-title lang-toggle lang-toogle-fr">Mechanic-Title 1</h3><h3 class="guide__accordion-title lang-toggle lang-toogle-ja">Mechanic-Title 1</h3><h3 class="guide__accordion-title lang-toggle lang-toogle-cn">Mechanic-Title 1</h3><h3 class="guide__accordion-title lang-toggle lang-toogle-ko">Mechanic-Title 1</h3><!-- Opens the Step Loop --><div class="guide__mechanics-wrapper"><!-- Mechanics Group Title -->
+                                <h4 class="guide__mechanics-title">Schritt 09</h4>
+                                <!-- Stance Notes -->
+                                <ul class="guide__mechanics-list"><li class="guide__mechanics-item lang-toggle lang-toogle-en">Mechanics-note 1</li><li class="guide__mechanics-item lang-toggle lang-toogle-de">Mechanics-note 1</li><li class="guide__mechanics-item lang-toggle lang-toogle-fr">Mechanics-note 1</li><li class="guide__mechanics-item lang-toggle lang-toogle-ja">Mechanics-note 1</li><li class="guide__mechanics-item lang-toggle lang-toogle-cn">Mechanics-note 1</li><li class="guide__mechanics-item lang-toggle lang-toogle-ko">Mechanics-note 1</li></ul>
+                                <!-- Stance Images --><!-- Event Skill Script -->
+<div class="guide__script-wrapper">
+    <!-- Boss Image Loop Wrapper-->
+    <ul class="guide__image-list">
+        <!-- Handler for Mechanics --><!-- Boss Image -->
+<div class="guide__attack-image-item">
+    <img style="object-fit: scale-down; height:250px" src="/DevFFXIVPocketGuide/assets/img/test.jpg" alt="/assets/img/test.jpg"/>
+</div>
+<!-- Handler for Attacks --></ul>
+</div>
+<!-- Stance Videos --><!-- Event Skill Script -->
+<div class="guide__script-wrapper">
+    <!-- Boss Video Loop -->
+    <ul class="guide__script-list">
+        <!-- Handler for Mechanics --><video src="https&#58;//akurosia.de/upload/test.mp4" type="video/mp4" controls>
+      Ihr Browser kann dieses Video nicht wiedergeben.<br/>
+      Sie können ihn unter <a href="https&#58;//akurosia.de/upload/test.mp4">https&#58;//akurosia.de/upload/test.mp4</a> abrufen.
+    </video><!-- Handler for Attacks --></ul>
+</div>
+</div></div></div>
+</div>
+<!-- Duty Bosses ======================================================= --><!-- Guide Adds ========================================================== -->
+<div class="guide__accordion">
+    <!-- Guide Section -->
+    <div class="guide__accordion-trigger--01-grid active" id="guideBosse">
+        <i class="Dropdown material-icons" style="display: none;"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+        <div class="Names"><h2 data-translate="Bosse_Ledgeleaper_Name">Ledgeleaper</h2>
+                <h2 class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">Ledgeleaper</h2></div>
+        <div class="IdsHps"><div class="guide__accordion-trigger-id enemy_id">Enemy-ID: 1261</div><div class="guide__accordion-trigger-id enemy_hex_id">Enemy-Hex-ID: 4ED</div></div>
+    </div>
+    <!-- Guide Enemy -->
+    <div class="guide__accordion-content--01-grid active">
+        <!-- Opens the Adds Loop --><!-- Opens the Sequence Loop --><div class="guide__accordion-copy-wrapper" id="phase09"><h1 class="guide__accordion-title">phase_name - Phase 09</h1><!-- Phase Title -->
+                <!-- Opens the Alerts Loop --><!-- Opens the toolbox Loops --><!-- Opens the Mechanics Loops --><!-- Opens the Attack Loop --><!-- Opens the Image Loop --><!-- Opens the Video Loop --></div><!-- Determines the current phase. --><!-- Enters the enemy attack loop. --><!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--attack">
+    <i class="Dropdown material-icons" style="display: none;"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Bosse_Ledgeleaper_Attack_Attack">Attack</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Attack</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_Tank">Tank</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Auto-Angriff">Auto-Angriff</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('368', 'Kliffspringer', 'attack')">ID: 368</div><div class="guide__accordion-trigger-id">DMG:10</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--attack" style="display: none;">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--ignore">
+    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Bosse_Ledgeleaper_Attack_Lap">Lap</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Lap</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_role">role</span><span class="guide__accordion-tag--attack" data-translate="AttackType_tag">tag</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('3D0', 'Kliffspringer', 'attack')">ID: 3D0</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--ignore" style="">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--ignore">
+    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-magic
+                     ">
+            <span data-translate="Bosse_Ledgeleaper_Attack_Labored Leap">Labored Leap</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Labored Leap</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_role">role</span><span class="guide__accordion-tag--attack" data-translate="AttackType_tag">tag</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('3EE', 'Kliffspringer', 'attack')">ID: 3EE</div><div class="guide__accordion-trigger-id">DMG:56-115</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--ignore" style="">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--ignore">
+    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Bosse_Ledgeleaper_Attack_Sticky Tongue">Sticky Tongue</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Sticky Tongue</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_role">role</span><span class="guide__accordion-tag--attack" data-translate="AttackType_tag">tag</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('15B', 'Kliffspringer', 'attack')">ID: 15B</div><div class="guide__accordion-trigger-id">DMG:10</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--ignore" style="">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the enemy debuff loop. --></div>
+</div>
+<!-- Duty Adds ======================================================= --><!-- Guide Adds ========================================================== -->
+<div class="guide__accordion">
+    <!-- Guide Section -->
+    <div class="guide__accordion-trigger--01-grid active" id="guideAdds">
+        <i class="Dropdown material-icons" style="display: none;"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+        <div class="Names">Gildengeheiß Adds</div>
+        <div class="IdsHps"></div>
+    </div>
+    <!-- Guide Enemy -->
+    <div class="guide__accordion-content--01-grid active">
+        <!-- Opens the Adds Loop --><div class="guide__accordion-trigger--02-grid" id="add01">
+                    <i class="Dropdown material-icons" style="display: none;"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+                    <div class="EnemyNames"><h3 data-translate="Adds_Boulder_Name"> Boulder </h3>
+                        <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">Boulder</span>
+                    </div>
+                    <div class="IdsHps"><div class="guide__accordion-trigger-title_id">Enemy-ID: 1262</div><div class="guide__accordion-trigger-title_hex_id">Enemy-Hex-ID: 4EE</div><div class="guide__accordion-trigger-title_hp">HP:478</div></div>
+                </div>
+                <div class="guide__accordion-content--02"><!-- Opens the Sequence Loop --><!-- Determines the current phase. --><!-- Enters the enemy attack loop. --><!-- Enters the enemy debuff loop. --></div><div class="guide__accordion-trigger--02-grid" id="add02">
+                    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+                    <div class="EnemyNames"><h3 data-translate="Adds_Tamed Spriggan_Name"> Tamed Spriggan </h3>
+                        <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">Tamed Spriggan</span>
+                    </div>
+                    <div class="IdsHps"><div class="guide__accordion-trigger-title_id">Enemy-ID: 1260</div><div class="guide__accordion-trigger-title_hex_id">Enemy-Hex-ID: 4EC</div><div class="guide__accordion-trigger-title_hp">HP:268-319</div></div>
+                </div>
+                <div class="guide__accordion-content--02"><!-- Opens the Sequence Loop --><!-- Determines the current phase. --><!-- Enters the enemy attack loop. --><!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--ignore">
+    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-magic
+                     ">
+            <span data-translate="Adds_Tamed Spriggan_Attack_Thunder">Thunder</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Thunder</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_role">role</span><span class="guide__accordion-tag--attack" data-translate="AttackType_tag">tag</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('3C8', 'Gezähmter Spriggan', 'attack')">ID: 3C8</div><div class="guide__accordion-trigger-id">DMG:8-85</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--ignore" style="">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--ignore">
+    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Adds_Tamed Spriggan_Attack_Paralyze">Paralyze</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Paralyze</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_role">role</span><span class="guide__accordion-tag--attack" data-translate="AttackType_tag">tag</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('134', 'Gezähmter Spriggan', 'attack')">ID: 134</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--ignore" style="">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the enemy debuff loop. --><!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Debuff "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--debuff">
+    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+
+    <img class="Icon debuff_icon" src="https://xivapi.com/i/015000/015006_hr1.png" alt="015000/015006_hr1.png"/>
+    <div class="Names">
+        <span class="">
+            <span data-translate="Adds_Tamed Spriggan_Status_Paralysis_Name">Paralysis</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Paralysis</div>
+    </div>  <div class="Attributes guide__accordion-tag-wrapper"></div>
+<div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('', 'Gezähmter Spriggan', 'debuff')">Skill-ID: 11</div></div>
+</div>
+
+<!-- _components/Guide-Debuff "Content"======================================================= -->
+<div class="guide__accordion-content--03--debuff" style="">
+    <div class="guide__accordion-copy-wrapper">
+        <!-- Standard Attacks --><div class="guide__attack-notes-wrapper">
+                <h5 class="guide__attack-notes-title">Description:</h5>
+                <span class="guide__debuff_description" data-translate="Adds_Tamed Spriggan_Status_Paralysis_Desc">Deadened nerves are sometimes preventing the execution of actions.</span>
+            </div><!-- Debuff durations --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Debuff Videos --></div>
+</div>
+</div><div class="guide__accordion-trigger--02-grid" id="add03">
+                    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+                    <div class="EnemyNames"><h3 data-translate="Adds_Yarzon Lurker_Name"> Yarzon Lurker </h3>
+                        <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">Yarzon Lurker</span>
+                    </div>
+                    <div class="IdsHps"><div class="guide__accordion-trigger-title_id">Enemy-ID: 1043</div><div class="guide__accordion-trigger-title_hex_id">Enemy-Hex-ID: 413</div><div class="guide__accordion-trigger-title_hp">HP:319</div></div>
+                </div>
+                <div class="guide__accordion-content--02"><!-- Opens the Sequence Loop --><!-- Determines the current phase. --><!-- Enters the enemy attack loop. --><!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--attack">
+    <i class="Dropdown material-icons" style="display: none;"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Adds_Yarzon Lurker_Attack_Attack">Attack</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Attack</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_Tank">Tank</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Auto-Angriff">Auto-Angriff</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('366', 'Lauernder Yarzon', 'attack')">ID: 366</div><div class="guide__accordion-trigger-id">DMG:11-113</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--attack" style="display: none;">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--ignore">
+    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Adds_Yarzon Lurker_Attack_Snap Jaw">Snap Jaw</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Snap Jaw</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_role">role</span><span class="guide__accordion-tag--attack" data-translate="AttackType_tag">tag</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('183', 'Lauernder Yarzon', 'attack')">ID: 183</div><div class="guide__accordion-trigger-id">DMG:14-15</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--ignore" style="">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the enemy debuff loop. --></div><div class="guide__accordion-trigger--02-grid" id="add04">
+                    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+                    <div class="EnemyNames"><h3 data-translate="Adds_Lemur_Name"> Lemur </h3>
+                        <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">Lemur</span>
+                    </div>
+                    <div class="IdsHps"><div class="guide__accordion-trigger-title_id">Enemy-ID: 6</div><div class="guide__accordion-trigger-title_hex_id">Enemy-Hex-ID: 6</div><div class="guide__accordion-trigger-title_hp">HP:319</div></div>
+                </div>
+                <div class="guide__accordion-content--02"><!-- Opens the Sequence Loop --><!-- Determines the current phase. --><!-- Enters the enemy attack loop. --><!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--attack">
+    <i class="Dropdown material-icons" style="display: none;"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Adds_Lemur_Attack_Attack">Attack</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Attack</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_Tank">Tank</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Auto-Angriff">Auto-Angriff</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('368', 'Lori', 'attack')">ID: 368</div><div class="guide__accordion-trigger-id">DMG:12-115</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--attack" style="display: none;">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--ignore">
+    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Adds_Lemur_Attack_Stone Throw">Stone Throw</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Stone Throw</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_role">role</span><span class="guide__accordion-tag--attack" data-translate="AttackType_tag">tag</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('142', 'Lori', 'attack')">ID: 142</div><div class="guide__accordion-trigger-id">DMG:20-21</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--ignore" style="">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the enemy debuff loop. --></div><div class="guide__accordion-trigger--02-grid" id="add05">
+                    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+                    <div class="EnemyNames"><h3 data-translate="Adds_Puk Hatchling_Name"> Puk Hatchling </h3>
+                        <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">Puk Hatchling</span>
+                    </div>
+                    <div class="IdsHps"><div class="guide__accordion-trigger-title_id">Enemy-ID: 402</div><div class="guide__accordion-trigger-title_hex_id">Enemy-Hex-ID: 192</div><div class="guide__accordion-trigger-title_hp">HP:268-293</div></div>
+                </div>
+                <div class="guide__accordion-content--02"><!-- Opens the Sequence Loop --><!-- Determines the current phase. --><!-- Enters the enemy attack loop. --><!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--attack">
+    <i class="Dropdown material-icons" style="display: none;"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Adds_Puk Hatchling_Attack_Attack">Attack</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Attack</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_Tank">Tank</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Auto-Angriff">Auto-Angriff</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('368', 'Puk', 'attack')">ID: 368</div><div class="guide__accordion-trigger-id">DMG:8-115</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--attack" style="display: none;">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--ignore">
+    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Adds_Puk Hatchling_Attack_Fireball">Fireball</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Fireball</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_role">role</span><span class="guide__accordion-tag--attack" data-translate="AttackType_tag">tag</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('19D', 'Puk', 'attack')">ID: 19D</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--ignore" style="">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--ignore">
+    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Adds_Puk Hatchling_Attack_Backflip">Backflip</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Backflip</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_role">role</span><span class="guide__accordion-tag--attack" data-translate="AttackType_tag">tag</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('19B', 'Puk', 'attack')">ID: 19B</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--ignore" style="">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the enemy debuff loop. --></div><div class="guide__accordion-trigger--02-grid" id="add06">
+                    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+                    <div class="EnemyNames"><h3 data-translate="Adds_Rasher Hog_Name"> Rasher Hog </h3>
+                        <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">Rasher Hog</span>
+                    </div>
+                    <div class="IdsHps"><div class="guide__accordion-trigger-title_id">Enemy-ID: 1259</div><div class="guide__accordion-trigger-title_hex_id">Enemy-Hex-ID: 4EB</div><div class="guide__accordion-trigger-title_hp">HP:1.107</div></div>
+                </div>
+                <div class="guide__accordion-content--02"><!-- Opens the Sequence Loop --><!-- Determines the current phase. --><!-- Enters the enemy attack loop. --><!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--attack">
+    <i class="Dropdown material-icons" style="display: none;"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Adds_Rasher Hog_Attack_Attack">Attack</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Attack</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_Tank">Tank</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Auto-Angriff">Auto-Angriff</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('368', 'Rasendes Schwein', 'attack')">ID: 368</div><div class="guide__accordion-trigger-id">DMG:3-115</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--attack" style="display: none;">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the attack's phases. --><!-- Checks to see if any of the attack's phases are equal to the current phase. --><!-- Include Attack Template --><!-- _components/Guide-Attack "Button"======================================================= -->
+<div class="guide__accordion-trigger--03--grid_attack--ignore">
+    <i class="Dropdown material-icons" style=""><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <div class="Names">
+        <span class=" attack-is-physical
+                     ">
+            <span data-translate="Adds_Rasher Hog_Attack_Reckless Charge">Reckless Charge</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">Reckless Charge</div>
+    </div>
+    <div class="Attributes">  <div class="Attributes guide__accordion-tag-wrapper"><span class="guide__accordion-tag--role" data-translate="AttackType_role">role</span><span class="guide__accordion-tag--attack" data-translate="AttackType_tag">tag</span><span class="guide__accordion-tag--attack" data-translate="AttackType_Single">Single</span></div>
+</div>
+    <div class="IdsHps"><div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('14E', 'Rasendes Schwein', 'attack')">ID: 14E</div></div>
+</div>
+
+<!-- _components/Guide-Attack "Content"======================================================= -->
+<div class="guide__accordion-content--03--ignore" style="">
+    <div class="guide__accordion-copy-wrapper"><!-- Standard Attacks --><!-- Standard Attack Notes -->
+<div class="guide__attack-notes-wrapper"><!-- Combo Attack Notes --><!-- Variation Attack Notes --></div>
+<!-- Combo Attacks --><!-- Variation Attacks --><!-- Attack Images --><!-- Attack Videos --></div>
+</div>
+<!-- Enters the enemy debuff loop. --></div></div>
+</div>
+<div style="display: none" data-extra-translate="/assets/translations/content/arr/guildhest/sturmkommando"></div>
+</div>
+</div>
+
+                <!-- Include Footer -->
+                <footer>
+    <div class="content-container">
+        <p class="footer__copy">
+            <span data-translate="Footer_ProducedBy">This site is produced by </span>
+            <a href="https://de.finalfantasyxiv.com/lodestone/character/7944237/" target="_blank" rel="noopener noreferrer" title="Visit Akurosia Kamo on the Lodestone.">Akurosia Kamo</a>
+            <span data-translate="Footer_WithHelp">with the help of video guides created by </span>
+            <a href="https://twitter.com/MTQcapture" title="Go to MTQcapture's Twitter." target="_blank" rel="noopener noreferrer">@MTQcapture</a>
+            <span data-translate="Footer_And"> and </span>
+            <a href="https://twitter.com/mrhappy1227" title="Go to MrHappy1227's Twitter." target="_blank" rel="noopener noreferrer">@MrHappy1227</a>.
+            </br></br>
+            <span data-translate="Footer_ProducedByOriginal">The original Page was created by </span>
+            <a href="https://twitter.com/lionsliege" target="_blank" rel="noopener noreferrer" title="Visit Liege on Twitter.">@LionsLiege</a>,
+            <a href="https://na.finalfantasyxiv.com/lodestone/character/12774809/" target="_blank" rel="noopener noreferrer" title="Visit Demosthenes on the Lodestone.">Demosthenes Lorelai</a>,
+            <a href="https://na.finalfantasyxiv.com/lodestone/character/14514962/" target="_blank" rel="noopener noreferrer" title="Visit Divine on the Lodestone.">Divine Angel</a>,
+            <span data-translate="Footer_And"> and </span>
+            <a href="https://na.finalfantasyxiv.com/lodestone/character/3758032/" target="_blank" rel="noopener noreferrer" title="Visit Shiro on the Lodestone.">Shiro Astral</a>
+            </br>
+            <span data-translate="Footer_OriginalPageLinks">Original Page Link: </span>
+            <a href="https://www.ffxivpocketguide.com" title="Original Page Link" target="_blank" rel="noopener noreferrer">https://www.ffxivpocketguide.com</a>
+            <br><span data-translate="Footer_LastUpdated">Last updated: </span>2024-05-15 12:56:12 -0500</span><br><a href="https://github.com/Akurosia/DevFFXIVPocketGuide" target="_blank" rel="noopener noreferrer" title="Pocket Guide Development Repo!">
+                <ion-icon name="logo-github"></ion-icon>
+                <span data-translate="Footer_ViewOnGithub">View Project on Github</span>
+            </a>
+        </p>
+    </div>
+    <div style="display: none" data-extra-translate="/assets/translations/footer"></div>
+</footer>
+
+            </div>
+        </div>
+        <!-- Match Media -->
+<script type="text/javascript" src="/DevFFXIVPocketGuide/assets/vendor/matchMedia.js"></script>
+<!-- Custom Scripts -->
+<script type="text/javascript" src="/DevFFXIVPocketGuide/assets/js/core.js"></script>
+<script type="text/javascript" src="/DevFFXIVPocketGuide/assets/js/app.js"></script>
+<script type="text/javascript" src="/DevFFXIVPocketGuide/assets/js/openEnemy.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    </body>
+    <script type="text/javascript">executeHandelingLanguages()</script>
+</html>
