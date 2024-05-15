@@ -1,84 +1,131 @@
 <div class="Attributes guide__accordion-tag-wrapper">
   {%- if attack.level or trait.level or quest.level or leve.level -%}
-    <span class="guide__accordion-tag--role">Level: {{ attack.level }}{{ trait.level }}{{ quest.level }}{{ leve.level }}</span>
+    <span class="guide__accordion-tag--role">
+      <span data-translate="Tag_Name_Level">Level:</span>&nbsp;{{ attack.level }}{{ trait.level }}{{ quest.level }}{{ leve.level }}
+    </span>
   {%- endif -%}
   {%- if attack.range -%}
-    <span class="guide__accordion-tag--duty-action">Range: {{ attack.range }}</span>
+    <span class="guide__accordion-tag--duty-action">
+      <span data-translate="Tag_Name_Range">Range:</span>&nbsp;{{ attack.range }}
+    </span>
   {%- endif -%}
   {%- if attack.effectrange -%}
-    <span class="guide__accordion-tag--duty-action">EffectRange: {{ attack.effectrange }}</span>
+    <span class="guide__accordion-tag--duty-action">
+      <span data-translate="Tag_Name_EffectRange">EffectRange:</span>&nbsp;{{ attack.effectrange }}</span>
   {%- endif -%}
   {%- if attack.cast -%}
-    <span class="guide__accordion-tag--attack">Cast: {{ attack.cast }}</span>
+    <span class="guide__accordion-tag--attack">
+      <span data-translate="Tag_Name_Cast">Cast:</span>&nbsp;{{ attack.cast }}
+    </span>
   {%- endif -%}
   {%- if attack.recast -%}
-    <span class="guide__accordion-tag--attack">Recast: {{ attack.recast }}</span>
+    <span class="guide__accordion-tag--attack">
+      <span data-translate="Tag_Name_Recast">Recast:</span>&nbsp;{{ attack.recast }}
+    </span>
   {%- endif -%}
   {%- if attack.type -%}
-    <span class="guide__accordion-tag--attack">Type: {{ attack.type }}</span>
+    <span class="guide__accordion-tag--attack">
+      <span data-translate="Tag_Name_Type">Type:</span>&nbsp;
+      <span data-translate="Tag_Type_{{ attack.type }}">{{ attack.type }}</span>
+    </span>
   {%- endif -%}
   {%- if attack.kategorie -%}
-    <span class="guide__accordion-tag--role">Kategorie: {{ attack.kategorie }}</span>
+    <span class="guide__accordion-tag--role">
+      <span data-translate="Tag_Name_Kategorie">Kategorie:</span>&nbsp;
+      <span data-translate="Tag_Kategory_{{ attack.kategorie }}">{{ attack.kategorie }}</span>
+    </span>
   {%- endif -%}
   {%- if attack.frontsplitter -%}
-    <span class="guide__accordion-tag--role">Frontsplitter: {{ attack.frontsplitter }}</span>
+    <span class="guide__accordion-tag--role">
+      <span data-translate="Tag_Name_Frontsplitter">Frontsplitter:</span>&nbsp;
+      <span data-translate="Tag_Frontsplitter_{{ attack.frontsplitter }}">{{ attack.frontsplitter }}</span>
+    </span>
   {%- endif -%}
   {%- if attack.damage -%}
-    <span class="guide__accordion-tag--akurole">Schaden</span>
+    <span class="guide__accordion-tag--akurole" data-translate="Tag_Name_Schaden">Schaden</span>
   {%- endif -%}
   {%- if attack.heal -%}
-    <span class="guide__accordion-tag--akurole">Heilung</span>
+    <span class="guide__accordion-tag--akurole" data-translate="Tag_Name_Heilung">Heilung</span>
   {%- endif -%}
   {%- if attack.shield -%}
-    <span class="guide__accordion-tag--akurole">Schild</span>
+    <span class="guide__accordion-tag--akurole" data-translate="Tag_Name_Schild">Schild</span>
   {%- endif -%}
   {%- if attack.pmitigation -%}
-    <span class="guide__accordion-tag--akurole">P-Mitigation ({{ attack.pmitigation_value }})</span>
+    <span class="guide__accordion-tag--akurole">
+      <span>P-Mitigation</span>&nbsp;({{ attack.pmitigation_value }})
+    </span>
   {%- endif -%}
   {%- if attack.gmitigation -%}
-    <span class="guide__accordion-tag--akurole">G-Mitigation ({{ attack.gmitigation_value }})</span>
+    <span class="guide__accordion-tag--akurole">
+      <span>G-Mitigation</span>&nbsp;({{ attack.gmitigation_value }})
+    </span>
   {%- endif -%}
-
   {%- if debuff.buff -%}
-    <span class="guide__accordion-tag--role">Statustyp: {{ debuff.buff }}</span>
+    <span class="guide__accordion-tag--role">
+      <span data-translate="Tag_Name_Statustyp">Statustyp:</span>&nbsp;
+      <span data-translate="Tag_Statustyp_{{ debuff.buff }}">{{ debuff.buff }}</span>
+    </span>
   {%- endif -%}
-
   {%- if quest.expansion -%}
-    <span class="guide__accordion-tag--role">Expansion: {{ quest.expansion }}</span>
+    <span class="guide__accordion-tag--role">
+      <span data-translate="Tag_Name_Expansion">Expansion:</span>&nbsp;
+      <span data-translate="Tag_Expansion_{{ quest.expansion }}">{{ quest.expansion }}</span>
+    </span>
   {%- endif -%}
   {%- if quest.journalgenre -%}
-    <span class="guide__accordion-tag--role">Kategorie: {{ quest.journalgenre }}</span>
+    <span class="guide__accordion-tag--role">
+      <span data-translate="Tag_Name_Kategorie">Kategorie:</span>&nbsp;
+      <span data-translate="Tag_Kategorie_{{ quest.journalgenre }}">{{ quest.journalgenre }}</span>
+    </span>
   {%- endif -%}
   {%- if quest.issuer_start -%}
-    <span class="guide__accordion-tag--role">NPC: {{ quest.issuer_start }}</span>
+    <span class="guide__accordion-tag--role">
+      <span data-translate="Tag_Name_NPC">NPC:</span>&nbsp;
+      <span data-translate="Tag_NPC_{{ quest.issuer_start }}">{{ quest.issuer_start }}</span>
+    </span>
   {%- endif -%}
   {%- if quest.place -%}
-    <span class="guide__accordion-tag--role">Ort: {{ quest.place }}</span>
+    <span class="guide__accordion-tag--role">
+      <span data-translate="Tag_Name_Ort">Ort:</span>&nbsp;{{ quest.place }}
+    </span>
   {%- endif -%}
   {%- if quest.issuer_location -%}
-    <span class="guide__accordion-tag--role">Position: {{ quest.issuer_location }}</span>
+    <span class="guide__accordion-tag--role">
+      <span data-translate="Tag_Name_Position">Position:</span>&nbsp;{{ quest.issuer_location }}
+    </span>
   {%- endif -%}
-
   {%- if leve.leveamount -%}
-    <span class="guide__accordion-tag--role">Vollmachten: {{ leve.leveamount }}</span>
+    <span class="guide__accordion-tag--role">
+      <span data-translate="Tag_Name_Vollmachten">Vollmachten:</span>&nbsp;{{ leve.leveamount }}
+    </span>
   {%- endif -%}
   {%- if leve.item -%}
-    <span class="guide__accordion-tag--role">Item: {{ leve.item }}</span>
+    <span class="guide__accordion-tag--role">
+      <span data-translate="Tag_Name_Item">Item:</span>&nbsp;
+      <span data-translate="Tag_Item_{{ leve.item }}">{{ leve.item }}</span>
+    </span>
     {%- if leve.itemamount -%}
-      <span class="guide__accordion-tag--role">Anzahl: {{ leve.itemamount }}
+      <span class="guide__accordion-tag--role">
+        <span data-translate="Tag_Name_Anzahl">Anzahl:</span>&nbsp;{{ leve.itemamount }}
         {%- if leve.repeat != "1" -%}
           ({{ leve.itemamount | times: leve.repeat }})
         {%- endif -%}
       </span>
     {%- endif -%}
     {%- if leve.repeat != "1" -%}
-      <span class="guide__accordion-tag--role">Wiederholbar: {{ leve.repeat }}</span>
+      <span class="guide__accordion-tag--role">
+        <span data-translate="Tag_Name_Wiederholbar">Wiederholbar:</span>&nbsp;{{ leve.repeat }}
+      </span>
     {%- endif -%}
     {%- if leve.exphq -%}
-      <span class="guide__accordion-tag--role">Total HQ EXP: {{ leve.exphq | intcomma: '.' }}</span>
+      <span class="guide__accordion-tag--role">
+        <span data-translate="Tag_Name_TotalHqExp">Total HQ EXP:</span>&nbsp;{{ leve.exphq | intcomma: '.' }}
+      </span>
     {%- endif -%}
     {%- if leve.gilhq -%}
-      <span class="guide__accordion-tag--role">Total HQ Gil: {{ leve.gilhq |  intcomma: '.' }}</span>
+      <span class="guide__accordion-tag--role">
+        <span data-translate="Tag_Name_TotalHqGil">Total HQ Gil:</span>&nbsp;{{ leve.gilhq |  intcomma: '.' }}
+      </span>
     {%- endif -%}
   {%- endif -%}
 </div>

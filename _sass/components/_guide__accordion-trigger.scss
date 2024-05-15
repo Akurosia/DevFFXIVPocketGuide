@@ -365,8 +365,7 @@ div {
   &.guide__accordion-trigger-subtitle {
     color: grey;
     &:before {
-      content: " | ";
-      padding-left: 0.4rem;
+      content: "\00a0|\00a0";
     }
   }
 }
