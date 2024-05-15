@@ -762,14 +762,14 @@ def addKlassJobs():
             klass_translations[lang][f'Sidebar_ClassShort_{abbreviations}'] = abbreviations_v
 
         filecontent += "bosses:\n"
-        title_en = job_d[f"Name_en"].title()
+        title_en = job_d["Name_en"].title()
         filecontent += f'  - title: "{title_en}"\n'
         for lang in LANGUAGES:
             #filecontent += f'      {lang}: ""\n'
             klass_translations[lang][f'Content_Title_{title_en}'] = job_d[f"Name_{lang}"].title()
         filecontent += "    id: \"" + "boss" + str(counter) + "\"\n"
         if job == "Blaumagier":
-            filecontent += addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_trans, logdata)
+            filecontent += addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_trans, logdata, klass_translations)
         else:
             attack_text, attack_skills = addAttackDetails(job_data)
             pvp_text, pvp_skills = addAttackDetails(job_data_pvp, True)

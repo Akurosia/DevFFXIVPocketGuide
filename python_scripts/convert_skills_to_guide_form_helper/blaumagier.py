@@ -63,7 +63,7 @@ def get_play_in_locations(locations):
     return sorted(new_locations, key=lambda x: x['Ort'])
 
 
-def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_trans, logdata):
+def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_trans, logdata, klass_translations):
     blu_load_global_data(craftactions_trans, actions_trans, items_trans, logdata)
     result = ""
     result += "    attacks:\n"
@@ -165,13 +165,15 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
 
             desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
             if skill_data.get("Number", None) and int(level) < 901:
-                result += '      - title:\n'
+                result += f'      - title: "{level}. {name["en"]}"\n'
                 for lang in LANGUAGES:
-                    result += f'          {lang}: "{level}. {name[lang]}"\n'
+                    #result += f'          {lang}: "{level}. {name[lang]}"\n'
+                    klass_translations[lang][f"Class_Skill_Name_{level}. {name['en']}"] = f"{level}. {name[lang]}"
             else:
-                result += '      - title:\n'
+                result += f'      - title: "{name["en"]}"\n'
                 for lang in LANGUAGES:
-                    result += f'          {lang}: "{name[lang]}"\n'
+                    #result += f'          {lang}: "{name[lang]}"\n'
+                    klass_translations[lang][f"Class_Skill_Name_{name['en']}"] = f"{name[lang]}"
             result += f'        title_id: "{skill_data["Id"].split(".")[0]}"\n'
             if skill_data.get("Number", None):
                 result += f'        level: "{skill_data["Number"]}"\n'
@@ -202,6 +204,7 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
             result += '        description:\n'
             for lang in LANGUAGES:
                 result += f'          {lang}: "' + deal_with_extras_in_text(skill_data["Description"][lang].replace('"', '\\"')) + f'{desc}"\n'
+                klass_translations[lang][f"Class_Skill_Desc_{level}. {name['en']}"] = deal_with_extras_in_text(skill_data["Description"][lang].replace('"', '\\"')) + f'{desc}'
             result += '        phases:\n'
             result += '          - phase: "01"\n'
         except Exception:
