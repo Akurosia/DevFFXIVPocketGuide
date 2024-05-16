@@ -38,7 +38,7 @@ function getTranslations(path = "/assets/translations/navbar", olddata = {}) {
                     //console.log(`No Replace Value '${element.getAttribute('data-translate')}'`)
                     continue;
                 }
-                element.textContent = value
+                element.innerHTML  = value
             }
 
             //for urls as hrefs

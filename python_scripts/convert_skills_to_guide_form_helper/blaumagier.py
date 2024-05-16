@@ -165,14 +165,14 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
 
             desc = desc.replace("\n", "</br>").replace("</br></br>", "</br>")
             if skill_data.get("Number", None) and int(level) < 901:
-                result += f'      - title: "{level}. {name["en"]}"\n'
+                result += '      - title:\n'
                 for lang in LANGUAGES:
-                    #result += f'          {lang}: "{level}. {name[lang]}"\n'
+                    result += f'          {lang}: "{level}. {name[lang]}"\n'
                     klass_translations[lang][f"Class_Skill_Name_{level}. {name['en']}"] = f"{level}. {name[lang]}"
             else:
-                result += f'      - title: "{name["en"]}"\n'
+                result += '      - title:\n'
                 for lang in LANGUAGES:
-                    #result += f'          {lang}: "{name[lang]}"\n'
+                    result += f'          {lang}: "{name[lang]}"\n'
                     klass_translations[lang][f"Class_Skill_Name_{name['en']}"] = f"{name[lang]}"
             result += f'        title_id: "{skill_data["Id"].split(".")[0]}"\n'
             if skill_data.get("Number", None):
@@ -209,7 +209,7 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
             result += '          - phase: "01"\n'
         except Exception:
             traceback.print_exc()
-    return result
+    return result, klass_translations
 
 
 def getBLULocationsFromLogdata(name, locations):

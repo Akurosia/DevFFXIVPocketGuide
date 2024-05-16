@@ -14,6 +14,7 @@ actiontransient_trans = None
 traits = None
 traits_trans = None
 traitstransient_trans = None
+job_translations = None
 
 
 def cb_load_global_data(cb_actions, cb_actions_trans, cb_actiontransient_trans, cb_traits, cb_traits_trans, cb_traitstransient_trans):
@@ -62,22 +63,16 @@ def addChocoboPartnerSkills():
     for key, _ in ordered.items():
         t = actions_trans[key]
         result += '      - title:\n'
-        result += f'          de: "{t["Name_de"]}"\n'
-        result += f'          en: "{t["Name_en"]}"\n'
-        result += f'          fr: "{t["Name_fr"]}"\n'
-        result += f'          ja: "{t["Name_ja"]}"\n'
-        result += f'          cn: "{t["Name_cn"]}"\n'
-        result += f'          ko: "{t["Name_ko"]}"\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "{t[f"Name_{lang}"]}"\n'
+            job_translations[lang][f'Class_Skill_Name_{t["Name_en"]}'] = t[f"Name_{lang}"]
         result += f'        icon: "{getImage(t["Icon"])}"\n'
         #result += f'        level: "{actions[key]["Level"]}"\n'
         result += f'        title_id: "{key}"\n'
         result += '        description:\n'
-        result += '          de: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_de"]) + '"\n'
-        result += '          en: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_en"]) + '"\n'
-        result += '          fr: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_fr"]) + '"\n'
-        result += '          ja: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_ja"]) + '"\n'
-        result += '          cn: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_cn"]) + '"\n'
-        result += '          ko: "' + deal_with_extras_in_text(actiontransient_trans[key]["Description_ko"]) + '"\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "{deal_with_extras_in_text(actiontransient_trans[key][f"Description_{lang}"])}"\n'
+            job_translations[lang][f'Class_Skill_Desc_{t["Name_en"]}'] = deal_with_extras_in_text(actiontransient_trans[key][f"Description_{lang}"])
         result += '        phases:\n'
         result += '          - phase: "01"\n'
     return result
@@ -92,21 +87,15 @@ def addRennChocoboSkills_trans():
             continue
         # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
         result += '      - title:\n'
-        result += f'          de: "{value["Name_de"]}"\n'
-        result += f'          en: "{value["Name_en"]}"\n'
-        result += f'          fr: "{value["Name_fr"]}"\n'
-        result += f'          ja: "{value["Name_ja"]}"\n'
-        result += f'          cn: "{value["Name_cn"]}"\n'
-        result += f'          ko: "{value["Name_ko"]}"\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "{value[f"Name_{lang}"]}"\n'
+            job_translations[lang][f'Class_Skill_Name_{value["Name_en"]}'] = value[f"Name_{lang}"]
         result += f'        title_id: "{key}"\n'
         result += f'        icon: "{getImage(value["Icon"])}"\n'
         result += '        description:\n'
-        result += '          de: "' + deal_with_extras_in_text(value["Description_de"]) + '"\n'
-        result += '          en: "' + deal_with_extras_in_text(value["Description_en"]) + '"\n'
-        result += '          fr: "' + deal_with_extras_in_text(value["Description_fr"]) + '"\n'
-        result += '          ja: "' + deal_with_extras_in_text(value["Description_ja"]) + '"\n'
-        result += '          cn: "' + deal_with_extras_in_text(value["Description_cn"]) + '"\n'
-        result += '          ko: "' + deal_with_extras_in_text(value["Description_ko"]) + '"\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "{deal_with_extras_in_text(value[f"Description_{lang}"])}"\n'
+            job_translations[lang][f'Class_Skill_Desc_{value["Name_en"]}'] = deal_with_extras_in_text(actiontransient_trans[key][f"Description_{lang}"])
         result += '        phases:\n'
         result += '          - phase: "03"\n'
     return result
@@ -129,22 +118,16 @@ def addChocoboPartnerTraits():
     for key, _ in ordered.items():
         t = traits_trans[key]
         result += '      - title:\n'
-        result += f'          de: "{t["Name_de"]}"\n'
-        result += f'          en: "{t["Name_en"]}"\n'
-        result += f'          fr: "{t["Name_fr"]}"\n'
-        result += f'          ja: "{t["Name_ja"]}"\n'
-        result += f'          cn: "{t["Name_cn"]}"\n'
-        result += f'          ko: "{t["Name_ko"]}"\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "{t[f"Name_{lang}"]}"\n'
+            job_translations[lang][f'Class_Trait_Name_{t["Name_en"]}'] = t[f"Name_{lang}"]
         result += f'        icon: "{getImage(t["Icon"])}"\n'
         result += f'        level: "{traits[key]["Level"]}"\n'
         result += f'        title_id: "{key}"\n'
         result += '        description:\n'
-        result += '          de: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_de"]) + '"\n'
-        result += '          en: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_en"]) + '"\n'
-        result += '          fr: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_fr"]) + '"\n'
-        result += '          ja: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_ja"]) + '"\n'
-        result += '          cn: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_cn"]) + '"\n'
-        result += '          ko: "' + deal_with_extras_in_text(traitstransient_trans[key]["Description_ko"]) + '"\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "{deal_with_extras_in_text(traitstransient_trans[key][f"Description_{lang}"])}"\n'
+            job_translations[lang][f'Class_Trait_Desc_{t["Name_en"]}'] = deal_with_extras_in_text(traitstransient_trans[key][f"Description_{lang}"])
         result += '        phases:\n'
         result += '          - phase: "02"\n'
     return result
@@ -159,21 +142,15 @@ def addRennChocoboItems_trans():
             continue
         # level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
         result += '      - title:\n'
-        result += f'          de: "{value["Name_de"]}"\n'
-        result += f'          en: "{value["Name_en"]}"\n'
-        result += f'          fr: "{value["Name_fr"]}"\n'
-        result += f'          ja: "{value["Name_ja"]}"\n'
-        result += f'          cn: "{value["Name_cn"]}"\n'
-        result += f'          ko: "{value["Name_ko"]}"\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "{value[f"Name_{lang}"]}"\n'
+            job_translations[lang][f'Class_Skill_Name_{value["Name_en"]}'] = value[f"Name_{lang}"]
         result += f'        title_id: "{key}"\n'
         result += f'        icon: "{getImage(value["Icon"])}"\n'
         result += '        description:\n'
-        result += '          de: "' + deal_with_extras_in_text(value["Description_de"]) + '"\n'
-        result += '          en: "' + deal_with_extras_in_text(value["Description_en"]) + '"\n'
-        result += '          fr: "' + deal_with_extras_in_text(value["Description_fr"]) + '"\n'
-        result += '          ja: "' + deal_with_extras_in_text(value["Description_ja"]) + '"\n'
-        result += '          cn: "' + deal_with_extras_in_text(value["Description_cn"]) + '"\n'
-        result += '          ko: "' + deal_with_extras_in_text(value["Description_ko"]) + '"\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "{deal_with_extras_in_text(value[f"Description_{lang}"])}"\n'
+            job_translations[lang][f'Class_Skill_Desc_{value["Name_en"]}'] = deal_with_extras_in_text(value[f"Description_{lang}"])
         result += '        phases:\n'
         result += '          - phase: "04"\n'
     return result
@@ -187,20 +164,24 @@ def addRennChocoboMissions():
         if value["col_0_de"] == "":
             continue
         result += '      - title:\n'
-        result += f'          de: "{value["col_0_de"]}"\n'
-        result += f'          en: "{value["col_0_en"]}"\n'
-        result += f'          fr: "{value["col_0_fr"]}"\n'
-        result += f'          ja: "{value["col_0_ja"]}"\n'
-        result += f'          cn: "{value["col_0_cn"]}"\n'
-        result += f'          ko: "{value["col_0_ko"]}"\n'
+        for lang in LANGUAGES:
+            result += f'          {lang}: "{value[f"col_0_{lang}"]}"\n'
+            job_translations[lang][f'Class_Skill_Name_{value["col_0_en"]}'] = value[f"col_0_{lang}"]
         result += f'        title_id: "{key}"\n'
         result += '        phases:\n'
         result += '          - phase: "05"\n'
     return result
 
 
-def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations):
+def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations, callback_function):
+    global job_translations
     cb_load_global_data(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans)
+
+    # prepare translation elements
+    job_translations = {}
+    for lang in LANGUAGES:
+        job_translations[lang] = {}
+
     job = "Chocobo"
     job_d = {
         "Name_de": "Chocobo",
@@ -278,6 +259,8 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     filecontent += "      - phase: \"05\"\n"
     filecontent += "        name: \"Renn-Chocobo-Missions\"\n"
     filecontent += '---\n'
+
+    callback_function(job_translations, "chocobo")
 
     filename = f"klassen_und_jobs/2013-01-01--2.0--0--{job}.md"
     with open(filename, encoding="utf8") as f:

@@ -2,7 +2,7 @@
 # coding: utf8
 import os
 from ffxiv_aku import print_color_red, gear_get, getLevel, deal_with_extras_in_text, readJsonFile, print_pretty_json, writeJsonFile
-from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata
+from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata, print_color_green
 from collections import OrderedDict
 from operator import getitem
 try:
@@ -279,7 +279,7 @@ def addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, boz
         for lang in LANGUAGES:
             tmp_name = deal_with_extras_in_text(status_trans[key][f"Name_{lang}"])
             result += f'          {lang}: "' + tmp_name + '"\n'
-            job_translations[lang][f'Class_Status_Name_{deal_with_extras_in_text(status_trans[key][f"Name_en"])}'] = tmp_name
+            job_translations[lang][f'Class_Status_Name_{deal_with_extras_in_text(status_trans[key]["Name_en"])}'] = tmp_name
         result += f'        title_id: "{status_trans[key]['0xID']}"\n'
         image = getImage(status_trans[key]["Icon"])
         if "_hr1" in image:
@@ -290,7 +290,7 @@ def addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, boz
         for lang in LANGUAGES:
             tmp_desc = deal_with_extras_in_text(status_trans[key][f"Description_{lang}"])
             result += f'          {lang}: "' + tmp_desc + '"\n'
-            job_translations[lang][f'Class_Status_Desc_{deal_with_extras_in_text(status_trans[key][f"Name_en"])}'] = tmp_desc
+            job_translations[lang][f'Class_Status_Desc_{deal_with_extras_in_text(status_trans[key]["Name_en"])}'] = tmp_desc
         buff = "buff" if str(status[str(key)]['StatusCategory']) == "1" else "debuff"
         result += f'        buff: {buff}\n'
         result += '        phases:\n'
@@ -315,7 +315,7 @@ def addTraitDetails(job):
         for lang in LANGUAGES:
             tmp_trait = deal_with_extras_in_text(traits_trans[_id][f"Name_{lang}"])
             result += f'          {lang}: "' + tmp_trait + '"\n'
-            job_translations[lang][f'Class_Trait_Name_{deal_with_extras_in_text(traits_trans[_id][f"Name_en"]) }'] = tmp_trait
+            job_translations[lang][f'Class_Trait_Name_{deal_with_extras_in_text(traits_trans[_id]["Name_en"]) }'] = tmp_trait
         result += f'        title_id: "{_id.split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
         result += f'        icon: "{getImage(trait_data["Icon"].replace(".tex", "_hr1.png"))}"\n'
@@ -323,7 +323,7 @@ def addTraitDetails(job):
         for lang in LANGUAGES:
             tmp_trait = deal_with_extras_in_text(traitstransient_trans[_id][f"Description_{lang}"])
             result += f'          {lang}: "' + tmp_trait + '"\n'
-            job_translations[lang][f'Class_Trait_Desc_{deal_with_extras_in_text(traits_trans[_id][f"Name_en"]) }'] = tmp_trait
+            job_translations[lang][f'Class_Trait_Desc_{deal_with_extras_in_text(traits_trans[_id]["Name_en"]) }'] = tmp_trait
 
         result += '        phases:\n'
         result += '          - phase: "03"\n'
@@ -420,7 +420,7 @@ def addCrafterLeve(job, all_crafter_leves):
             level = "0" if leve_data['level'] == "99999" else leve_data['level']
             result += '      - title:\n'
             for lang in LANGUAGES:
-                job_translations[lang][f'Class_Leve_Name_{leve_data[f"Name_EN"]}'] = leve_data[f"Name_{lang.upper()}"]
+                job_translations[lang][f'Class_Leve_Name_{leve_data["Name_EN"]}'] = leve_data[f"Name_{lang.upper()}"]
                 result += f'          {lang}: "{leve_data[f"Name_{lang.upper()}"]}"\n'
             result += f'        title_id: "{leve_data["0xID"]}"\n'
             result += f'        level: "{level}"\n'
@@ -614,6 +614,7 @@ def addKlassJobs():
     global status_ncj
     global additionalClassIcons
     global job_translations
+    global klass_translations
     partybonus = {
         "0": "",
         "1": "1082",
@@ -769,7 +770,8 @@ def addKlassJobs():
             klass_translations[lang][f'Content_Title_{title_en}'] = job_d[f"Name_{lang}"].title()
         filecontent += "    id: \"" + "boss" + str(counter) + "\"\n"
         if job == "Blaumagier":
-            filecontent += addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_trans, logdata, klass_translations)
+            x, job_translations = addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_trans, logdata, job_translations)
+            filecontent += x
         else:
             attack_text, attack_skills = addAttackDetails(job_data)
             pvp_text, pvp_skills = addAttackDetails(job_data_pvp, True)
@@ -812,12 +814,7 @@ def addKlassJobs():
             filecontent += "        name: \"Bozja Skills\"\n"
         filecontent += '---\n'
 
-        filename_translation_location = f"../assets/translations/klassen/{job_d['Name_en']}"
-        if not os.path.exists(filename_translation_location):
-            os.makedirs(filename_translation_location)
-        for lang in LANGUAGES:
-            writeJsonFile(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json", job_translations[lang])
-
+        write_class_translation_file(job_translations, job_d['Name_en'])
         filename = f"klassen_und_jobs/2013-01-01--2.0--{counter}--{job}.md"
         with open(filename, encoding="utf8") as f:
             doc = f.read()
@@ -827,13 +824,27 @@ def addKlassJobs():
     return counter
 
 
+def write_class_translation_file(job_translations, classname):
+    filename_translation_location = f"../assets/translations/klassen/{classname}"
+    if not os.path.exists(filename_translation_location):
+        os.makedirs(filename_translation_location)
+    for lang in LANGUAGES:
+        # if case is used to save recompilation time if no file needs to be changed when running liveserver
+        if os.path.exists(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json"):
+            old_data_json = readJsonFile(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json")
+            if not old_data_json == job_translations[lang]:
+                writeJsonFile(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json", job_translations[lang])
+        else:
+            writeJsonFile(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json", job_translations[lang])
+
+
 def run():
     os.chdir("..")
     get_class_translation_data()
     load_global_data()
     os.chdir("_posts")
-    addKlassJobs()
-    addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations)
+    #addKlassJobs()
+    addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations, write_class_translation_file)
     write_class_translation_data(klass_translations)
 
 
