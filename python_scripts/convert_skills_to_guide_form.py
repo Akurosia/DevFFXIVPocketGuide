@@ -843,7 +843,7 @@ def run():
     get_class_translation_data()
     load_global_data()
     os.chdir("_posts")
-    #addKlassJobs()
+    addKlassJobs()
     addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations, write_class_translation_file)
     write_class_translation_data(klass_translations)
 
