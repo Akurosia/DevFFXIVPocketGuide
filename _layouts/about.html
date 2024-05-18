@@ -20,8 +20,9 @@
 
                 <!-- Content -->
                 <div class="about__wrapper">
+                    <!-- Welcome Area -->
                     <div class="about__intro">
-                        <h2 class="heading--02">Welcome</h2>
+                        <h2 class="heading--02" data-translate="About_Text_Welcome">Welcome</h2>
                         <p>Welcome to the fork of FFXIV Pocket Guide, an ongoing project created by
                             <a href="https://joshbeveridge.ca" title="Check out Josh's portfolio." target="_blank" rel="noreferrer">Josh Beveridge</a>to support the FFXIV community by enabling a space where guide content can be consumed in a mobile-friendly, ad-free environment.
                         </p>
@@ -34,8 +35,11 @@
                             {% endfor %}
                         </ul>
                     </div>
+                    <!-- END Welcome Area -->
+
+                    <!-- Announcements Area -->
                     <div class="about__announcements">
-                        <h2 class="heading--02">Announcements</h2>
+                        <h2 class="heading--02" data-translate="About_Text_Announcement">Announcements</h2>
                         <ul class="announcement__list">
                             {% for i in site.data.announcements %}
                                 {% if i.pinned == true %}
@@ -57,8 +61,11 @@
                             {% endfor %}
                         </ul>
                     </div>
+                    <!-- END Announcements Area -->
+
+                    <!-- Roadmap Area -->
                     <div class="about__roadmap">
-                        <h2 class="heading--02" style="margin-top: 3rem; margin-bottom: 1rem;">Roadmap</h2>
+                        <h2 class="heading--02" style="margin-top: 3rem; margin-bottom: 1rem;" data-translate="About_Text_Roadmap">Roadmap</h2>
                         <div class="roadmap__wrapper">
                             {% for i in site.data.roadmap %}
                                 {% if i.pinned == true %}
@@ -84,12 +91,16 @@
                             {% endfor %}
                         </div>
                     </div>
+                    <!-- END Roadmap Area -->
                 </div>
+                <!-- END Content -->
+
                 <!-- Include from _includes/footer -->
                 {% include_cached footer.html %}
                 <!-- END Include from _includes/footer -->
             </div>
         </div>
+        <div style="display: none" data-extra-translate="/assets/translations/about"></div>
         <!-- Include from _includes/scripts -->
         {% include_cached scripts.html %}
         <!-- END Include from _includes/scripts -->

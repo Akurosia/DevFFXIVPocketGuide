@@ -1,6 +1,3 @@
-{%- comment -%} ==================================================================
-    // Header
-=============================================================== {%- endcomment -%}
 <header>
     {%- comment -%}
     <div
@@ -80,7 +77,7 @@
                                 {%- elsif page.difficulty == "Fatal" -%}        ="ultimate"
                                 {%- endif -%}
                             >
-                            <span class="lang-toggle lang-toogle-de" data-translate="Header_{{ page.difficulty }}"> ({{ page.difficulty }})</span>
+                            <span data-translate="Header_{{ page.difficulty }}"> ({{ page.difficulty }})</span>
                         </span>
                         {%- endif -%}
                     {%- endif -%}

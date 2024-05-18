@@ -1,15 +1,12 @@
-{%- comment -%} ==================================================================
-    // Sidebar
-=============================================================== {%- endcomment -%}
 <!-- Mobile Menu Trigger -->
     <button class="sidebar__trigger">
-        <span class="sidebar__trigger-inactive" data-translate="Navbar_Menu">
+        <span class="sidebar__trigger-inactive">
             <ion-icon name="chevron-down-outline" style="color: white !important"></ion-icon>
-            Menu
+            <div data-translate="Navbar_Mobile_Menu">Menu</div>
         </span>
-        <span class="sidebar__trigger-active" data-translate="Navbar_Close">
+        <span class="sidebar__trigger-active">
             <ion-icon name="chevron-up-outline" style="color: white !important"></ion-icon>
-            Close
+            <div data-translate="Navbar_Mobile_Close">Close</div>
         </span>
     </button>
 <!-- Mobile Overlay -->
@@ -44,14 +41,14 @@
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "translate" -%}class="active"{%- endif -%}
-                        href='{{ "/translate/" | prepend: site.baseurl }}' title="See what's new with the Pocket Guide.">
+                        href='{{ "/translate/" | prepend: site.baseurl }}' title="See Translations">
                         <img src='{{ site.imageurl }}/{{ "/061000/061723_hr1.png" }}' alt="{{ debuff.icon }}">
                         <span data-translate="Navbar_Translations">Translations</span>
                     </a>
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "gear" -%}class="active"{%- endif -%}
-                        href='{{ "/gear/" | prepend: site.baseurl }}' title="See what's new with the Pocket Guide.">
+                        href='{{ "/gear/" | prepend: site.baseurl }}' title="See Gear">
                         <img src='{{ site.imageurl }}/{{ "/061000/061723_hr1.png" }}' alt="{{ debuff.icon }}">
                         <span data-translate="Navbar_Equipment">Equipment</span>
                     </a>

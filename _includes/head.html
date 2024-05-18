@@ -1,6 +1,3 @@
-{%- comment -%} ==================================================================
-    // Head
-=============================================================== {%- endcomment -%}
 <!-- Charset -->
     <meta charset="utf-8" />
 <!-- Compatibility -->
@@ -9,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- Page Title -->
     {%- if page.page_category == "all" -%}
-        <title>FFXIV Pocket Guide - Final Fantasy XIV - Endwalker</title>
-    {%- elsif page.title.de -%}
-        <title>{{ page.title.de }}{% if page.difficulty %} ({{ page.difficulty }}){% endif %} | FFXIV Pocket Guide - Final Fantasy XIV - Endwalker</title>
+        <title>FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail</title>
+    {%- elsif page.title.en -%}
+        <title>{{ page.title.en }}{% if page.difficulty %} ({{ page.difficulty }}){% endif %} | FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail</title>
     {%- else -%}
-        <title>{{ page.title }} | FFXIV Pocket Guide - Final Fantasy XIV - Endwalker</title>
+        <title>{{ page.title }} | FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail</title>
     {%- endif -%}
 <!-- Page Description -->
     <meta name="description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV. {%- if page.description -%}{{ page.description | strip_html | strip_newlines | truncate: 300 }}{%- else -%}{{ site.description }}{%- endif -%}" />
 <!-- Open Graph & Twitter Tags -->
     <meta name="twitter:card" content="summary" />
     <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
-    <meta property="og:title" content="{{ page.title.de }}{%- if page.difficulty -%} ({{ page.difficulty }}){%- endif -%} | FFXIV Pocket Guide - Final Fantasy XIV - Endwalker" />
+    <meta property="og:title" content="{{ page.title.en }}{%- if page.difficulty -%} ({{ page.difficulty }}){%- endif -%} | FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail" />
     <meta property="og:description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV. {%- if page.description -%}{{ page.description | strip_html | strip_newlines | truncate: 300 }}{%- else -%}{{ site.description }}{%- endif -%}" />
     {%- if page.page_category == "all" or page.page_category == "dungeons" or page.page_category == "trials" or page.page_category == "raids" -%}
         <meta property="og:image" content="{{ site.url }}/assets/img/guide_social.jpg" />
@@ -50,7 +47,7 @@
             {
               "@context": "http://schema.org",
               "@type": "NewsArticle",
-              "headline": "{{ page.title.de }}{%- if page.difficulty -%} ({{ page.difficulty }}){%- endif -%}",
+              "headline": "{{ page.title.en }}{%- if page.difficulty -%} ({{ page.difficulty }}){%- endif -%}",
               "image": [
                 "{{ site.url }}{%- if page.cover -%}{{ page.cover }}{%- elsif page.image.urlSmall -%}{{ page.image.urlSmall }}{%- elsif page.image -%}{%- for image in page.image -%}{{ image.urlSmall }}{%- endfor -%}{%- endif -%}"
               ]
