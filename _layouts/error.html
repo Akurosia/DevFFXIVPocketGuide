@@ -2,7 +2,9 @@
 <html lang="en">
     {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
     <head>
-    {% include head.html %}
+        <!-- Include from _includes/head -->
+        {% include head.html %}
+        <!-- Include from _includes/head -->
         <!-- jQuery -->
         <script type="text/javascript" src="{{ "/assets/vendor/jquery.min.js" | prepend: site.baseurl }}"></script>
         <!-- Modernizr -->
@@ -14,37 +16,36 @@
         <!-- Custom Stylesheet -->
         <link rel="stylesheet" href="{{ "/css/core.css" | prepend: site.baseurl }}">
     </head>
+    <!-- ORIGIN: _layout/error -->
     <body class="{{ page.pageClass }}">
-        <!-- Google Tag Manager (noscript) -->
-        <noscript>
-            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5MRL2GS" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-        </noscript>
-        <!-- End Google Tag Manager (noscript) -->
         <section class="section--error" style="background-image: url('{{ "/assets/img/guide_error.jpg" | prepend: site.baseurl }}');">
             <div class="error__content-wrapper">
                 <h1 class="error__title heading--01">404</h1>
-                <h3 class="error__subtitle heading--03">Uh oh! The Sylphs stole the page you were looking for!</h3>
+                <h3 class="error__subtitle heading--03" data-translate="Error_Text_Header">Uh oh! The Sylphs stole the page you were looking for!</h3>
                 <div class="error__notice">
-                    <h5 class="error__notice-title heading--05">Please Note: permalinks for our guides have recently changed.</h5>
-                    <p class="error__notice-copy">If you arrived here through a bookmark, don't fear! Finding your guide on the homepage and updating your bookmark should resolve the issue.</p>
-                    <p class="error__notice-copy"><strong>Common Guides:</strong><br>
-                        <a href="/sb/the-royal-city-of-rabanastre" title="Visit Rabanastre">The Royal City of Rabanastre</a><br>
-                        <a href="/hw/a12s" title="Visit A12S">Alexander: A12S</a><br>
-                        <a href="/sb/o1s" title="Visit A12S">Omega: O1S</a><br>
-                        <a href="/sb/o2s" title="Visit A12S">Omega: O2S</a><br>
-                        <a href="/sb/ala-mhigo" title="Visit A12S">Ala Mhigo</a><br>
-                        <a href="/sb/the-drowned-city-of-skalla" title="Visit A12S">The Drowned City of Skalla</a><br>
+                    <h5 class="error__notice-title heading--05" data-translate="Error_Text_Info">Please Note: permalinks for our guides have recently changed.</h5>
+                    <p class="error__notice-copy" data-translate="Error_Text_Main">If you arrived here through a bookmark, don't fear! Finding your guide on the homepage and updating your bookmark should resolve the issue.</p>
+                    <p class="error__notice-copy"><strong data-translate="Error_Text_Common">Common Guides:</strong><br>
+                        <a href="/ew/thaleia" title="Visit Thaleia" data-translate="Error_Text_ContentName_AliRaid">Thaleia</a><br>
+                        <a href="/ew/anabaseios-zwoelfter-kreis-episch" title="Visit P12S" data-translate="Error_Text_ContentName_Savage3">Anabaseios: The Twelfth Circle (Savage): P12S</a><br>
+                        <a href="/ew/abyssos-achter-kreis-episch" title="Visit P8S" data-translate="Error_Text_ContentName_Savage2">Abyssos: The Eighth Circle (Savage): P8S</a><br>
+                        <a href="/ew/asphodelos-vierter-kreis-episch" title="Visit P4S" data-translate="Error_Text_ContentName_Savage1">Asphodelos: The Fourth Circle (Savage): P4S</a><br>
+                        <a href="/ew/monduntergrund" title="Visit The Lunar Subterrane" data-translate="Error_Text_ContentName_Dungeon">The Lunar Subterrane</a><br>
+                        <a href="/ew/eschatos-zeromus" title="Visit The Abyssal Fracture (Extreme)" data-translate="Error_Text_ContentName_ExPrimal">The Abyssal Fracture (Extreme)</a><br>
                     </p>
                     <p class="error__notice-copy">
-                        <strong>We apologize for any inconvenience or confusion.</strong>
+                        <strong data-translate="Error_Text_Apology">We apologize for any inconvenience or confusion.</strong>
                     </p>
                 </div>
                 <div class="error__button-wrapper">
-                    <a href="/" title="Return to the Pocket Guide homepage." class="error__button button--small--white">Return Home</a>
+                    <a href="{{ "/" | prepend: site.baseurl }}" title="Return to the Pocket Guide homepage." class="error__button button--small--white" data-translate="Error_Text_ReturnHome">Return Home</a>
                 </div>
             </div>
         </section>
+        <div style="display: none" data-extra-translate="/assets/translations/error"></div>
+        <!-- Include from _includes/scripts -->
         {% include_cached scripts.html %}
+        <!-- END Include from _includes/scripts -->
     </body>
     <script type="text/javascript">executeHandelingLanguages()</script>
 </html>

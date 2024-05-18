@@ -2,22 +2,34 @@
 <html lang="en">
     {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
     <head>
+        <!-- Include from _includes/head -->
         {% include head.html %}
+        <!-- Include from _includes/head -->
     </head>
+    <!-- ORIGIN: _layout/patches -->
     <body class="{{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
-            <!-- Include Sidebar -->
+            <!-- Include from _includes/navbar -->
             {% include navbar.html %}
+            <!-- END Include from _includes/navbar -->
             <div class="layout__wrapper">
-                <!-- Include Header -->
+                <!-- Include from _includes/header -->
                 {% include header.html %}
-                <!-- Include Guide Index -->
+                <!-- END Include from _includes/header -->
+
+                <!-- Include from _includes/patches -->
                 {% include patches.html %}
-                <!-- Include Footer -->
+                <!-- END Include from _includes/patches -->
+
+                <!-- Include from _includes/footer -->
                 {% include_cached footer.html %}
+                <!-- END Include from _includes/footer -->
             </div>
         </div>
+        <div style="display: none" data-extra-translate="/assets/translations/patches"></div>
+        <!-- Include from _includes/scripts -->
         {% include_cached scripts.html %}
+        <!-- END Include from _includes/scripts -->
     </body>
     <script type="text/javascript">executeHandelingLanguages()</script>
 </html>
