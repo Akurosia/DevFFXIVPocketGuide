@@ -1197,7 +1197,6 @@ div {
   color: $palette-aku-greyText;
   font-family: Open Sans,sans-serif;
   font-weight: 800;
-  margin: 0 0 2rem 0;
 }
 
 h4.guide__accordion-title {
@@ -1685,6 +1684,7 @@ body {
 
 ion-icon {
   color: #FF575C;
+  margin-top: 2px;
 }
 
 .flex-box {

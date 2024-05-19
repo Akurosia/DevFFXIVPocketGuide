@@ -5,10 +5,12 @@
         <i class="Dropdown material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
         <div class="Names">
             {%- if enemies.size > 1 -%}
+                <!-- Include from _includes/helper/returnPropperName -->
                 {% include helper/returnPropperName.html instanceType=page.instanceType %} {{ x }}
+                <!-- END Include from _includes/helper/returnPropperName -->
             {%- else -%}
                 {%- assign enemy_name_en = enemies[0].title.en -%}
-                <h2 data-translate="{{x}}_{{enemy_name_en}}_Name">{{ enemy_name_en }}</h2>
+                <h2 class="guide__accordion-trigger-title" data-translate="{{x}}_{{enemy_name_en}}_Name">{{ enemy_name_en }}</h2>
                 <h2 class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemy_name_en }}</h2>
             {%- endif -%}
         </div>
@@ -32,7 +34,7 @@
                     <i class="Dropdown material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
                     <div class="EnemyNames">
                         {%- assign enemy_name_en = enemy.title.en -%}
-                        <h3 data-translate="{{x}}_{{enemy_name_en}}_Name"> {{ enemy_name_en }} </h3>
+                        <h3 class="guide__accordion-trigger-title" data-translate="{{x}}_{{enemy_name_en}}_Name"> {{ enemy_name_en }} </h3>
                         <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemy_name_en }}</span>
                     </div>
                     <div class="IdsHps">
@@ -55,7 +57,9 @@
                 </div>
                 <div class="guide__accordion-content--02">
             {%- endif -%}
+            <!-- Include from _includes/guide_enemy_sequence -->
             {%- include guide_enemy_sequence.html -%}
+            <!-- END Include from _includes/guide_enemy_sequence -->
             {%- if enemies.size > 1 -%}
             </div>
             {%- endif -%}

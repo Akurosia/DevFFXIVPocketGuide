@@ -19,6 +19,7 @@
   align-self: center;
   grid-area: Names;
   display: flex;
+  align-items: center;
 }
 
 .EnemyNames {
@@ -292,9 +293,7 @@
   margin: 0;
   position: relative;
   z-index: 2;
-  &[class*=class] {
-    width: 100%;
-  }
+  flex-shrink: 0;
 }
 
 .guide__accordion-trigger-title_en {
@@ -304,7 +303,7 @@
   font-family: Open Sans,sans-serif;
   font-weight: 700;
   position: relative;
-  width: 100%;
+  flex-shrink: 0;
   z-index: 2;
 }
 

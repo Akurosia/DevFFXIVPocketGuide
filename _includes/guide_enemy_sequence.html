@@ -23,49 +23,48 @@
                         <h1 class="guide__accordion-title">Phase {{ phase.phase }}</h4>
                     {%- endif -%}
                 {%- endif -%}
-                <!-- Phase Title -->
-                <!-- Opens the Alerts Loop -->
+
                 {%- if phase.alerts -%}
-                    <!-- Include Guide Alerts -->
+                    <!-- Include from _includes/_components/guide-alerts -->
                     {%- include _components/guide-alerts.html -%}
+                    <!-- END Include from _includes/_components/guide-alerts -->
                 {%- endif -%}
-                <!-- Opens the toolbox Loops -->
                 {%- if phase.toolbox -%}
-                    <!-- Include Guide toolbox -->
+                    <!-- Include from _includes/_components/guide-toolbox -->
                     {%- include _components/guide-toolbox.html -%}
+                    <!-- END Include from _includes/_components/guide-toolbox -->
                 {%- endif -%}
-                <!-- Opens the Mechanics Loops -->
                 {%- if phase.mechanics -%}
-                    <!-- Include Guide Mechanics -->
+                    <!-- Include from _includes/_components/guide-mechanics -->
                     {%- include _components/guide-mechanics.html -%}
+                    <!-- END Include from _includes/_components/guide-mechanics -->
                 {%- endif -%}
-                <!-- Opens the Attack Loop -->
                 {%- if phase.attacks -%}
-                    <!-- Include Guide Skill Script -->
+                    <!-- Include from _includes/_components/guide-script -->
                     {%- include _components/guide-script.html -%}
+                    <!-- END Include from _includes/_components/guide-script -->
                 {%- endif -%}
-                <!-- Opens the Image Loop -->
                 {%- if phase.images -%}
-                    <!-- Include Guide Image Script -->
+                    <!-- Include from _includes/_components/guide-images-wrapper -->
                     {%- include _components/guide-images-wrapper.html -%}
+                    <!-- END Include from _includes/_components/guide-images-wrapper -->
                 {%- endif -%}
-                <!-- Opens the Video Loop -->
                 {%- if phase.videos -%}
-                    <!-- Include Guide video Script -->
+                    <!-- Include from _includes/_components/guide-videos-wrapper -->
                     {%- include _components/guide-videos-wrapper.html -%}
+                    <!-- END Include from _includes/_components/guide-videos-wrapper -->
                 {%- endif -%}
             </div>
         {%- endif -%}
-        <!-- Determines the current phase. -->
         {%- assign currentPhase = phase.phase -%}
         <!-- Enters the enemy attack loop. -->
         {%- for attack in enemy.attacks -%}
             <!-- Enters the attack's phases. -->
             {%- for attackPhase in attack.phases -%}
-                <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
                 {%- if attackPhase.phase == currentPhase -%}
-                    <!-- Include Attack Template -->
+                    <!-- Include from _includes/_components/guide-attack -->
                     {%- include _components/guide-attack.html -%}
+                    <!-- END Include from _includes/_components/guide-attack -->
                 {%- endif -%}
             {%- endfor -%}
         {%- endfor -%}
@@ -73,10 +72,10 @@
         {%- for debuff in enemy.debuffs -%}
             <!-- Enters the attack's phases. -->
             {%- for debuffPhase in debuff.phases -%}
-                <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
                 {%- if debuffPhase.phase == currentPhase -%}
-                    <!-- Include Attack Template -->
+                    <!-- Include from _includes/_components/guide-debuff -->
                     {%- include _components/guide-debuff.html -%}
+                    <!-- END Include from _includes/_components/guide-debuff -->
                 {%- endif -%}
             {%- endfor -%}
         {%- endfor -%}

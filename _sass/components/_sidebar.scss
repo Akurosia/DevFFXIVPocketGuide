@@ -85,7 +85,7 @@
 
     .sidebar__menu {
         list-style: none;
-        width: 95%;
+        width: 80%;
         margin: 0;
         padding: 0 0 calc(#{$unit} * 8) 0;
 
@@ -181,7 +181,8 @@
 
         .sidebar__trigger-inactive {
             color: $palette--white;
-            display: block;
+            display: flex;
+            justify-content: center;
             font-family: $font-aktiv;
             font-size: $font-scale--regular;
             font-weight: 400;
@@ -201,7 +202,8 @@
             }
 
             .sidebar__trigger-active {
-                display: block;
+                display: flex;
+                justify-content: center;
             }
         }
     }

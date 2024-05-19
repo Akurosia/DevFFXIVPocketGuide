@@ -4,11 +4,15 @@
     <ul class="guide__script-list">
         <!-- Handler for Mechanics -->
         {%- for video in step.videos -%}
+            <!-- Include from _includes/_components/guide-videos -->
             {%- include _components/guide-videos.html -%}
+            <!-- END Include from _includes/_components/guide-videos -->
         {%- endfor -%}
         <!-- Handler for Attacks -->
         {%- for video in phase.videos -%}
+            <!-- Include from _includes/_components/guide-videos -->
             {%- include _components/guide-videos.html -%}
+            <!-- END Include from _includes/_components/guide-videos -->
         {%- endfor -%}
     </ul>
 </div>

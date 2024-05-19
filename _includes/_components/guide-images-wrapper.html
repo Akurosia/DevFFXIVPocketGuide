@@ -4,11 +4,15 @@
     <ul class="guide__image-list">
         <!-- Handler for Mechanics -->
         {%- for image in step.images -%}
+            <!-- Include from _includes/_components/guide-images -->
             {%- include _components/guide-images.html -%}
+            <!-- END Include from _includes/_components/guide-images -->
         {%- endfor -%}
         <!-- Handler for Attacks -->
         {%- for image in phase.images -%}
+            <!-- Include from _includes/_components/guide-images -->
             {%- include _components/guide-images.html -%}
+            <!-- END Include from _includes/_components/guide-images -->
         {%- endfor -%}
     </ul>
 </div>

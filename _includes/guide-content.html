@@ -2,28 +2,32 @@
 <div class="guide-content">
     {%- if page.wip == "True" -%}
         <div class="guide__content__wip" id="wip">
-            <h2 class="guide__accordion-trigger-title guide__content__wip__title">WORK IN PROGRESS !!!</h2>
+            <h2 class="guide__accordion-trigger-title guide__content__wip__title" data-translate="GuideContent_WIP_Title">WORK IN PROGRESS !!!</h2>
         </div>
     {%- endif -%}
-    <!-- Duty Notes ======================================================== -->
     {%- if page.gamerscape_items -%}
+        <!-- Include from _includes/presets/ItemsPerClass -->
         {%- include presets/ItemsPerClass.html -%}
+        <!-- END Include from _includes/presets/ItemsPerClass -->
     {%- endif -%}
-    <!-- Duty Notes ======================================================== -->
     {%- if page.mechanics -%}
+        <!-- Include from _includes/guide-notes -->
         {%- include guide-notes.html -%}
+        <!-- END Include from _includes/guide-notes -->
     {%- endif -%}
-    <!-- Duty Bosses ======================================================= -->
     {%- if page.bosses -%}
         {%- assign enemies = page.bosses -%}
         {%- assign x = "Bosse" -%}
+        <!-- Include from _includes/guide_enemy as Boss -->
         {%- include guide_enemy.html -%}
+        <!-- END Include from _includes/guide_enemy as Boss -->
     {%- endif -%}
-    <!-- Duty Adds ======================================================= -->
     {%- if page.adds -%}
         {%- assign enemies = page.adds -%}
         {%- assign x = "Adds" -%}
+        <!-- Include from _includes/guide_enemy as Adds -->
         {%- include guide_enemy.html -%}
+        <!-- END Include from _includes/guide_enemy as Adds -->
     {%- endif -%}
     <div style="display: none" data-extra-translate="/assets/translations/content/{{page.categories}}/{{page.instanceType}}/{{page.slug}}"></div>
 </div>

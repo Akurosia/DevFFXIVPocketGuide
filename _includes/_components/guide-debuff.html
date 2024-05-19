@@ -14,7 +14,9 @@
         </span>
         <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ debuff.title }}</div>
     </div>
+    <!-- Include from _includes/_components/guide-attack-types -->
     {%- include _components/guide-attack-types.html -%}
+    <!-- END Include from _includes/_components/guide-attack-types -->
     <div class="IdsHps">
         {%- if debuff.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'debuff')">Skill-ID: {{ debuff.title_id }}</div>
@@ -54,12 +56,16 @@
             </div>
         {%- endif -%}
 
+        <!-- Include from _includes/_components/guide-attack-notes -->
         {%- include _components/guide-attack-notes.html -%}
+        <!-- END Include from _includes/_components/guide-attack-notes -->
         <!-- Debuff Videos -->
         {%- if debuff.videos -%}
             <div class="guide__attack-video-list">
                 {%- for video in debuff.videos -%}
+                    <!-- Include from _includes/_components/guide-videos -->
                     {%- include _components/guide-videos.html -%}
+                    <!-- END Include from _includes/_components/guide-videos -->
                 {%- endfor -%}
             </div>
         {%- endif -%}
