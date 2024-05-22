@@ -17,7 +17,7 @@
         </div>
         <h3 class="index-item__title"
               data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%} {{guide.name.de}}&#32;{{guide.name.en}}&#32;{{guide.name.fr}}&#32;{{guide.name.ja}}&#32;{{guide.name.cn}}&#32;{{guide.name.ko}}&#32;main:{{guide.main_category}}&#32;sub:{{guide.sub_category}}&#32;
-              {%- if guide.item -%}item:{{guide.item}}&#32;{%- endif -%}{%- if guide.title -%}title:{{guide.title}}&#32;{%- endif -%}">
+              {%- if guide.item -%}item:{{guide.item}}&#32;{%- endif -%}{%- if guide.title -%}title:{{guide.title}}&#32;{%- endif -%}{%- if guide.description -%}description:{{guide.description.en}}&#32;description:{{guide.description.de}}&#32;description:{{guide.description.fr}}&#32;description:{{guide.description.jp}}&#32;description:{{guide.description.cn}}&#32;description:{{guide.description.ko}}&#32;{%- endif -%}">
 
             {%- for lang in LANGUAGES -%}
                 <span class="lang-toggle lang-toogle-{{lang}}"> {{ guide.name[lang] }} </span>
