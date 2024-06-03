@@ -17,7 +17,7 @@ from python_scripts.custom_logger import getLogger
 from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file
 import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
-import python_scripts.generateHousingMissions as ghm
+#import python_scripts.generateHousingMissions as ghm
 
 logger = getLogger(50)
 disable_green_print = True
@@ -214,7 +214,7 @@ def main():
         csgf.run()
         gl.run()
         gp.run()
-        ghm.run()
+        #ghm.run()
     logger.critical('STOP')
 
 if __name__ == "__main__":

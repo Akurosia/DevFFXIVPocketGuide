@@ -16,8 +16,9 @@ import logging
 #
 ##
 
-storeFilesInTmp(True)
+storeFilesInTmp(False)
 logdata = get_any_Logdata()
+storeFilesInTmp(True)
 #if os.path.exists("tmp/19/logdata_de.json"):
 #    logdata = readJsonFile("tmp/19/logdata_de.json")
 #else:
