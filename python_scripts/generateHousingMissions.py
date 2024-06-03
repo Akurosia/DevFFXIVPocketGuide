@@ -5,8 +5,8 @@ items_trans = loadDataTheQuickestWay("item_all.json", translate=True)
 airshipexplorationpoint_trans = loadDataTheQuickestWay("airshipexplorationpoint_all.json", translate=True)
 submarineexploration_trans = loadDataTheQuickestWay("submarineexploration_all.json", translate=True)
 submarinemap_trans = loadDataTheQuickestWay("submarinemap_all.json", translate=True)
-data = readJsonFile(r"T:\var\www\ffxiv\front\housing_missions\data2.json")
-#data = readJsonFile(r"P:\var\www\ffxiv\front\housing_missions\data2.json")
+#data = readJsonFile(r"T:\var\www\ffxiv\front\housing_missions\data2.json")
+data = readJsonFile(r"C:\Users\kamot\Desktop\data2.json")
 
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
 LANGUAGES_MAPPING = {
@@ -31,14 +31,13 @@ def write_class_translation_data(data):
         klass_translations[lang] = writeJsonFile(f'assets/translations/housing_missions/{LANGUAGES_MAPPING[lang]}.json', data[lang])
 
 
-
 locations_translator = {
-    "Wolkenmeer": "Wolkenmeer",
-    "Deep-sea Site (Lv. 1-50) ":"Tiefsee",
-    "Sea of Ash (Lv. 50-70) ": "Verbranntes Meer",
-    "Sea of Jade (Lv. 70-90) ": "Jademeer",
-    "Sirensong Sea (Lv. 90-105) ": "Sirenen-See",
-    "The Lilac Sea (Lv. 105-) ": "Das Fliedermeer"
+    "Sea of Clouds": "Wolkenmeer",
+    "Deep-sea Site (Lv. 1-50)":"Tiefsee",
+    "Sea of Ash (Lv. 50-70)": "Verbranntes Meer",
+    "Sea of Jade (Lv. 70-90)": "Jademeer",
+    "Sirensong Sea (Lv. 90-105)": "Sirenen-See",
+    "The Lilac Sea (Lv. 105-)": "Das Fliedermeer"
 }
 
 def get_translated_unlocks(asd, search):
@@ -51,9 +50,10 @@ def get_translated_unlocks(asd, search):
 
 
 def get_x_items(items):
+    sorted(items)
     result = {'de': "", 'en': "", 'fr': "", 'ja': "", 'cn': "", 'ko': ""}
     itemnames = [x for x in items]
-    for item in itemnames:
+    for item in sorted(itemnames):
         for key, value in items_trans.items():
             if item == value['Name_en']:
                 for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
@@ -121,7 +121,7 @@ def run():
                     klass_translations[lang][f'Housing_Location_{v_en}'] = v
 
                 r_data += f'          level: "{stop_data["lvl"]}"\n'
-                r_data += f'          exp: "{stop_data["exp"]}"\n'
+                r_data += f'          exp: "{stop_data["exp"].replace(",", "")}"\n'
                 if stop_data.get('alias'):
                     r_data += f'          alias: "{stop_data["alias"]}"\n'
                 r_data += '          items:\n'
