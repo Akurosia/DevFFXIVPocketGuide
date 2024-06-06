@@ -60,11 +60,5 @@
         {%- if guide.instanceType == "overworld" or guide.instance_type == "overworld" -%}
             {%- assign counter = counter | plus: 1 -%}
         {%- endif -%}
-    {%- elsif page.page_category == "klassenjobs" -%}
-        {%- if guide.instanceType == "klassenjobs" or guide.instance_type == "klassenjobs" -%}
-            {%- if guide.expac == expac or guide.roletypeinparty == roletype -%}
-                {%- assign counter = counter | plus: 1 -%}
-            {%- endif -%}
-        {%- endif -%}
     {%- endif -%}
 {%- endfor -%}
