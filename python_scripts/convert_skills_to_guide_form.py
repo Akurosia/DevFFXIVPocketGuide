@@ -147,9 +147,14 @@ def addAttackDetails(job_data, pvp=False):
     global job_translations
     result = ""
     attack_skills = []
+    pvp_text_field = ""
     # only print for normal attacks
     if not pvp:
         result += "    attacks:\n"
+    else:
+        pvp_text_field = "PVP_"
+
+    #print_pretty_json(job_data.get('7429', ""))
 
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
@@ -161,6 +166,9 @@ def addAttackDetails(job_data, pvp=False):
             for lang in LANGUAGES:
                 name[lang] = craftactions_trans[skill_data["Id"]][f"Name_{lang}"].replace("\n", "</br>").replace("</br></br>", "</br>")
         level = "0" if skill_data['Level'] == "99999" else skill_data['Level']
+
+        #if _id == "7429":
+        #    print_pretty_json(skill_data)
 
         tpye_damage = "Schaden" if skill_data["IsDamageSkill"] else None
         tpye_heilung = "Heilung" if skill_data["IsHealingSkill"] else None
@@ -176,7 +184,7 @@ def addAttackDetails(job_data, pvp=False):
         attack_skills.append(name['de'])
         for lang in LANGUAGES:
             result += f'          {lang}: "{name[lang]}"\n'
-            job_translations[lang][f'Class_Skill_Name_{name["en"]}'] = name[lang]
+            job_translations[lang][f'Class_Skill_Name_{pvp_text_field}{name["en"]}'] = name[lang]
         result += f'        title_id: "{skill_data["Id"].split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
         result += f'        type: "{skill_data["Type"]}"\n'
@@ -202,7 +210,7 @@ def addAttackDetails(job_data, pvp=False):
         result += '        description:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "' + skill_data["Description"][lang] + '"\n'
-            job_translations[lang][f'Class_Skill_Desc_{name["en"]}'] = skill_data["Description"][lang]
+            job_translations[lang][f'Class_Skill_Desc_{pvp_text_field}{name["en"]}'] = skill_data["Description"][lang]
         #if "%" in description["en"]:
         #    print(name["en"])
         #    print(description["en"])
@@ -652,7 +660,7 @@ def addKlassJobs():
             continue
         allPartyMittigation[job] = []
         counter += 1
-        #if not job == "Ninja":
+        #if not job == "Beschwörer":
         #    continue
         base_class = cjs[k[0]]["ClassJob"]['Parent'] if not cjs[k[0]]["ClassJob"]['Parent'] == job else None
         print_color_red(job)

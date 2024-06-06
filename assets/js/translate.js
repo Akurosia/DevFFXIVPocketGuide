@@ -139,8 +139,9 @@ async function getDataViaXMLHTTP(name, filefilter="", exact=false){
     if (exact){
         urlparams = urlparams + "&exactSearch=" + exact
     }
-    //console.log('https://ffxiv.akurosiakamo.de/queryFFXIVtranslateDB.php' + urlparams)
-    return fetch('https://ffxiv.akurosiakamo.de/queryFFXIVtranslateDB.php' + urlparams)
+    newurl = 'https://ffxiv.akurosiakamo.de/queryFFXIVtranslateDB.php' + urlparams
+    console.log(newurl)
+    return fetch(newurl)
         .then(handleErrors)
         .then(response => response.json())
         .then(json => addToBody(json, filefilter))
