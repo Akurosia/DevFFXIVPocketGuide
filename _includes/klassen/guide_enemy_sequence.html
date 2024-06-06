@@ -1,5 +1,4 @@
 <!-- Opens the Sequence Loop -->
-
     <!-- Add Search filter for bluemage skills. -->
     <div class="search">
         <form class="search__form_blu">
@@ -12,6 +11,11 @@
         </form>
     </div>
 {%- for phase in enemy.sequence -%}
+    {%- assign extra = "" -%}
+    {%- if phase.name == "PVP" -%}
+        {%- assign extra = "PVP_" -%}
+    {%- endif -%}
+
     {%- if enemy.sequence.size > 1 -%}
         <div class="guide__accordion-trigger--03--grid" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
             <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
