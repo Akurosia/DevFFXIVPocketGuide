@@ -473,6 +473,8 @@ def addGroupCollections(cmt, entry):
     header_data = ""
     if entry['instanceType'] == "overworld":
         return header_data
+    if entry['instanceType'] == "overworlds":
+        return header_data
     skip_lookoup = False
     if not cmt:
         if "Traumprüfung" in entry['title'] or "Dalriada" in entry['title'] or "Castrum Lacus Litore" in entry['title']:

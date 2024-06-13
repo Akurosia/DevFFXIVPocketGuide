@@ -8,6 +8,7 @@
     padding: calc(#{$unit} * 3) 0;
     position: relative;
     text-align: center;
+    display: flex;
 
     @media #{$l-tablet} {
         text-align: left;
@@ -31,7 +32,9 @@
     background: darken($palette--white, 60%);
     border-radius: 25px;
     color: $font-black;
-    display: inline-block;
+    //display: inline-block;
+    align-items: center;
+    display: flex;
     font-family: $font-cinzel;
     font-size: $font-scale--h2;
     margin: 0;
