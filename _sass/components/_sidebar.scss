@@ -88,11 +88,18 @@
         width: 80%;
         margin: 0;
         padding: 0 0 calc(#{$unit} * 8) 0;
+        ul {
+            list-style-type: none;
+        }
+
+        ul > ul {
+            display: none;
+        }
 
         li {
             margin: -10px;
 
-            a {
+            > span, > a {
                 color: $palette--white;
                 display: block;
                 font-family: $font-aktiv;
