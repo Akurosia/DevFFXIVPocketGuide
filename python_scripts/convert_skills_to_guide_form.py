@@ -788,8 +788,8 @@ def addKlassJobs():
             filecontent += pvp_text
 
         # get eureka und bozja data here for status bt add text later to filecontent
-        ea, ea_text, eureka_skills = addEurekaActions(job, eureka_actions)
-        bz, bz_text, bozja_skills = addBozjaActions(job, bozja_actions)
+        ea, ea_text, eureka_skills = addEurekaActions(job, eureka_actions, job_translations)
+        bz, bz_text, bozja_skills = addBozjaActions(job, bozja_actions, job_translations)
         filecontent += addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, bozja_skills)
         #filecontent += addOldStatusDetails(job, job_abb)
         filecontent += addTraitDetails(job)

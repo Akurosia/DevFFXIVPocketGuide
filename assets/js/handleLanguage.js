@@ -2,8 +2,8 @@
 ---
 
 var elements = undefined
-var elements_translates = []
-var found_elements_translates = []
+var elements_translates = new Set();
+var found_elements_translates = new Set();
 
 async function getTranslations(path = "/assets/translations/navbar", olddata = {}) {
     // load data using navigator.language e.g. de-DE.json
@@ -16,7 +16,7 @@ async function getTranslations(path = "/assets/translations/navbar", olddata = {
         elements = {}
         elements['translate'] = Array.from(document.querySelectorAll('[data-translate]'));
         for (var ele of elements['translate']) {
-            elements_translates.push(ele.getAttribute('data-translate'))
+            elements_translates.add(ele.getAttribute('data-translate'))
         }
         elements['href'] = Array.from(document.querySelectorAll('[data-href-translate]'));
         elements['value'] = Array.from(document.querySelectorAll('[data-value-translate]'));
@@ -39,7 +39,7 @@ async function getTranslations(path = "/assets/translations/navbar", olddata = {
                     continue;
                 }
                 element.innerHTML  = value
-                found_elements_translates.push(element.getAttribute('data-translate'))
+                found_elements_translates.add(element.getAttribute('data-translate'))
             }
 
             //for urls as hrefs
@@ -89,13 +89,15 @@ async function getTranslations(path = "/assets/translations/navbar", olddata = {
 }
 
 function validateArrays() {
-    for (k of found_elements_translates){
-        const index = elements_translates.indexOf(k);
+    normal1 = Array.from(elements_translates)
+    found1 = Array.from(found_elements_translates)
+    for (k of found1){
+        const index = normal1.indexOf(k);
         if (index > -1) { // only splice array when item is found
-          elements_translates.splice(index, 1); // 2nd parameter means remove one item only
+          normal1.splice(index, 1); // 2nd parameter means remove one item only
         }
     }
-    console.log(elements_translates)
+    console.log(normal1)
 }
 
 function changeLanguageTo(tag, languageCode) {

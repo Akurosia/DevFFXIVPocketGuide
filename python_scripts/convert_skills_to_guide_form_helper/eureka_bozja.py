@@ -76,7 +76,7 @@ def getEurekaActionDetails():
     return results
 
 
-def addEurekaActions(job, eureka_actions):
+def addEurekaActions(job, eureka_actions, job_translations):
     global cjs
     result = False
     eureka_skills = []
@@ -91,6 +91,7 @@ def addEurekaActions(job, eureka_actions):
             result_text += '      - title:\n'
             for lang in LANGUAGES:
                 result_text += f'          {lang}: "' + deal_with_extras_in_text(value["name"][lang]) + '"\n'
+                job_translations[lang][f'Class_Skill_Name_{value["name"]["en"]}'] = value["name"][lang]
             result_text += '        status:\n'
             for lang in LANGUAGES:
                 result_text += f'          {lang}: "' + deal_with_extras_in_text(value["name"][lang]) + '"\n'
@@ -101,6 +102,7 @@ def addEurekaActions(job, eureka_actions):
             result_text += '        description:\n'
             for lang in LANGUAGES:
                 result_text += f'          {lang}: "' + deal_with_extras_in_text(value["description"][lang]) + '"\n'
+                job_translations[lang][f'Class_Skill_Desc_{value["name"]["en"]}'] = value['description'][lang]
             result_text += f'        type: "{value["type"]}"\n'
             result_text += '        phases:\n'
             result_text += '          - phase: "06"\n'
@@ -148,7 +150,7 @@ def getBozjaActionDetails():
     return json.loads(json.dumps(result, indent=4, sort_keys=True, ensure_ascii=False))
 
 
-def addBozjaActions(job, bozja_actions):
+def addBozjaActions(job, bozja_actions, job_translations):
     result = False
     bozja_skills = []
     result_text = ""
@@ -163,12 +165,14 @@ def addBozjaActions(job, bozja_actions):
                 result_text += '      - title:\n'
                 for lang in LANGUAGES:
                     result_text += f'          {lang}: "' + deal_with_extras_in_text(value["name"][lang]) + '"\n'
+                    job_translations[lang][f'Class_Skill_Name_{value["name"]["en"]}'] = value["name"][lang]
                 result_text += f'        title_id: "{k}"\n'
                 result_text += '        level: "80"\n'
                 result_text += f'        icon: "{getImage(value["icon"])}"\n'
                 result_text += '        description:\n'
                 for lang in LANGUAGES:
                     result_text += f'          {lang}: "' + deal_with_extras_in_text(value["description"][lang]) + '"\n'
+                    job_translations[lang][f'Class_Skill_Desc_{value["name"]["en"]}'] = value['description'][lang]
                 result_text += f'        frontsplitter: "{value["frontsplitter"]}"\n'
                 result_text += '        phases:\n'
                 result_text += '          - phase: "07"\n'
