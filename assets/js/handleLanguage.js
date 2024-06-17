@@ -22,7 +22,7 @@ async function getTranslations(path = "/assets/translations/navbar", olddata = {
         elements['value'] = Array.from(document.querySelectorAll('[data-value-translate]'));
         elements['extra'] = Array.from(document.querySelectorAll('[data-extra-translate]'));
     }
-    await fetch(`${path}/${lang}.json`)
+    await fetch(`{{site.baseurl}}${path}/${lang}.json`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("HTTP error " + response.status);
