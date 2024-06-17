@@ -90,9 +90,6 @@
         padding: 0 0 calc(#{$unit} * 8) 0;
         ul {
             list-style-type: none;
-        }
-
-        ul > ul {
             display: none;
         }
 
