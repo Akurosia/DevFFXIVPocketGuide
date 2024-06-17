@@ -49,21 +49,19 @@ def translate_content_files(entry):
     global translations
     if entry['categories'] == "":
         return
-    exp = expansion_list[entry['categories']]
+    #exp = expansion_list[entry['categories']]
 
     _type = entry['instanceType']
     for lang in LANGUAGES:
         if not translations[lang].get(_type, None):
             translations[lang][_type] = {}
         name = entry[f'title_{lang}']
-        if name not in translations[lang][_type]:
-            translations[lang][_type][entry['title_en']] = name
-        else:
-            print(f"Douplicat found {name}")
+        translations[lang][_type][f"Summary_{_type}_{entry['title_en'].lower()}"] = uglyContentNameFix(name, instanceType=entry['instanceType'], difficulty=entry['difficulty']).replace(f' ({entry["difficulty"].lower()})', "")
+
 
 def create_translation_files():
     global translations
-    print_pretty_json(translations)
+    #print_pretty_json(translations)
     for lang, cat_data in translations.items():
         for cat, data in cat_data.items():
             writeJsonFile(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json", data)
@@ -171,6 +169,7 @@ expansion_list = {
     "dt": "7_dt"
 }
 
+
 def run(sheet, max_row, max_column, elements, orderedContent):
     global debug_row_number # used in debugger to verify entry
     global print_debug
@@ -250,6 +249,7 @@ def main():
         gp.run()
         #ghm.run()
     logger.critical('STOP')
+
 
 if __name__ == "__main__":
     print(sys.version)

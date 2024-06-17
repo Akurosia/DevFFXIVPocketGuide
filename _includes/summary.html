@@ -22,9 +22,8 @@
             {%- else -%}
               data-terms="{%- for term in guide.terms -%}term:{{ term.term }}&#32;{%- endfor -%}"
             {%- endif -%}>
-            {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}"> {{ guide.title[lang] }} </span>
-            {%- endfor -%}
+
+            <span data-translate="Summary_{{guide.instanceType}}_{{guide.title.en | downcase}}"> {{ guide.title.en }} </span>
 
             <span class
                 {%- if guide.difficulty == "Hard" -%}            ="hard"
