@@ -31,6 +31,10 @@
                     <img alt="FFXIV Icon" src='{{ "/assets/img/icon.svg" | prepend: site.baseurl }}'>
                 </a>
             </h1>
+            {%- assign expand_category = "false" -%}
+            {%- if "translate,gear" contains page.page_category -%}
+                {%- assign expand_category = "true" -%}
+            {%- endif -%}
             <ul class="sidebar__menu">
                 <li>
                     <a target="" {%- if page.page_category == "about" -%}class="active"{%- endif -%}
@@ -46,8 +50,8 @@
                         <span data-translate="Navbar_Patches">Patches</span>
                     </a>
                 </li>
-                <li><span><span>&#9654;</span> Extra Tools</span></li>
-                <ul>
+                <li><span><span>{%- if expand_category == "true" -%}&#9660;{%- else -%}&#9654;{%- endif -%}</span> Extra Tools</span></li>
+                <ul {% if expand_category == "true" -%}style="display: inherit;"{%- endif %}>
                     <li>
                         <a target="" {%- if page.page_category == "translate" -%}class="active"{%- endif -%}
                             href='{{ "/translate/" | prepend: site.baseurl }}' title="See Translations">
