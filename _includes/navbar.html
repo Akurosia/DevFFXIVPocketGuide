@@ -50,7 +50,7 @@
                         <span data-translate="Navbar_Patches">Patches</span>
                     </a>
                 </li>
-                <li><span><span>{%- if expand_category == "true" -%}&#9660;{%- else -%}&#9654;{%- endif -%}</span> Extra Tools</span></li>
+                <li style="cursor: pointer;"><span><span>{%- if expand_category == "true" -%}&#9660;{%- else -%}&#9654;{%- endif -%}</span> Extra Tools</span></li>
                 <ul {% if expand_category == "true" -%}style="display: inherit;"{%- endif %}>
                     <li>
                         <a target="" {%- if page.page_category == "translate" -%}class="active"{%- endif -%}
@@ -67,7 +67,7 @@
                         </a>
                     </li>
                 </ul>
-                <li><span><span>&#9660;</span> Instance Content</span></li>
+                <li style="cursor: pointer;"><span><span>&#9660;</span> Instance Content</span></li>
                 <ul style="display: inherit;">
                     <li>
                         <a target="" {%- if page.page_category == "all" -%}class="active"{%- endif -%}
