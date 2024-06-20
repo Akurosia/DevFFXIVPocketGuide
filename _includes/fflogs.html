@@ -1,0 +1,44 @@
+
+<link rel="stylesheet" href="{{ "/assets/css/translate.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ "/assets/css/ffxiv.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
+
+<div class="bg-jet my-2 mx-2">
+    <div  class="my-4 form-inline">
+        <input class="form-control bg-charcoal text-light col" type="text" id="bearer" name="bearer" value="" placeholder="bearer">
+        <input class="btn bg-charcoal text-light"  style="width: 10%;" type="button" name="getToken" value="getToken" onclick="setNewAccessToken()">
+        <input class="form-control bg-charcoal text-light col" type="text" id="token" name="token" value="" placeholder="token">
+    </div>
+    <div id="addEntries" class="my-4 form-inline">
+        <input class="form-control bg-charcoal text-light col" type="text" id="Name" name="Name" value="" placeholder="Name">
+        <select class="form-control bg-charcoal text-light" id="Server" name="">
+            <option value="Alpha">Alpha</option>
+            <option value="Cerberus">Cerberus</option>
+            <option value="Louisoix">Louisoix</option>
+            <option value="Moogle">Moogle</option>
+            <option value="Omega">Omega</option>
+            <option value="Ragnarok">Ragnarok</option>
+            <option value="Spriggan">Spriggan</option>
+            <option value="Lich">Lich</option>
+            <option value="Odin">Odin</option>
+            <option value="Phoenix">Phoenix</option>
+            <option value="Raiden">Raiden</option>
+            <option value="Shiva" selected>Shiva</option>
+            <option value="Twintania">Twintania</option>
+            <option value="Zodiark">Zodiark</option>
+        </select>
+        <select class="form-control bg-charcoal text-light" id="Region" name="">
+            <option value="EU">EU</option>
+            <option value="US">US</option>
+            <option value="ASIA">ASIA</option>
+        </select>
+        <input class="btn bg-charcoal text-light"  style="width: 10%;" type="button" name="addEntry" value="addEntry" onclick="addEntryToTable(true)">
+    </div>
+    <div id="table"></div>
+    <script type="text/javascript" src="{{ "/assets/js/fflogs.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
+</div>
+<style type="text/css">
+    table > tbody > tr > td:nth-child(1) {
+        text-align: left;
+        padding-left: 5%;
+    }
+</style>

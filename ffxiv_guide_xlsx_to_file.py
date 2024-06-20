@@ -193,7 +193,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 print("END FLAG WAS FOUND!")
                 break
             translate_content_files(entry)
-            continue
+            #continue
             if not (entry["exclude"] or entry["done"]):
                 content_translations = {}
                 for lang in LANGUAGES:

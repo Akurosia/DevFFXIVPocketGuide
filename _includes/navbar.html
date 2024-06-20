@@ -66,6 +66,13 @@
                             <span data-translate="Navbar_Equipment">Equipment</span>
                         </a>
                     </li>
+                    <li>
+                        <a target="" {%- if page.page_category == "fflogs" -%}class="active"{%- endif -%}
+                            href='{{ "/fflogs/" | prepend: site.baseurl }}' title="See fflogs">
+                            <img src='{{ site.imageurl }}/{{ "/061000/061723_hr1.png" }}'">
+                            <span data-translate="Navbar_FFLogs">FFLogs</span>
+                        </a>
+                    </li>
                 </ul>
                 <li style="cursor: pointer;"><span><span>&#9660;</span> Instance Content</span></li>
                 <ul style="display: inherit;">
