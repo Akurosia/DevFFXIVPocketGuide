@@ -201,7 +201,7 @@ async function call_api_data(){
         console.log("Done")
         // this is from handleLanguages.js
         getTranslations();
-        setTimeout(() => {  getTranslations(); }, 300);
+        setTimeout(() => {  getTranslations(); }, 700);
     })
 }
 
