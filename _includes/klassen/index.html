@@ -10,7 +10,7 @@
 
             {%- assign expac = x -%}
             {%- assign counter = 0 -%}
-            {%- include _components/index-counter.html -%}
+            {%- include klassen/_components/index-counter.html -%}
             {%- if counter > 0 -%}
                 <a id="{{ x_id }}"></a>
                 <div onclick='$( ".sort_by_type" ).show();$( ".sort_by_expac" ).hide();' class="index-divider" data-expansion="{{ x }}">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="index__list" data-expansion="{{ x }}">
                     {%- assign sorted = categories | sort:"order" -%}
-                    {%- include _components/index-list.html -%}
+                    {%- include klassen/_components/index-list.html -%}
                 </div>
             {%- endif -%}
         {%- endfor -%}
@@ -29,7 +29,7 @@
         {%- for x_cjc in page.cjc -%}
             {%- assign roletype = x_cjc[1] -%}
             {%- assign counter = 0 -%}
-            {%- include _components/index-counter.html -%}
+            {%- include klassen/_components/index-counter.html -%}
             {%- if counter > 0 -%}
                 <a id="{{ roletype }}"></a>
                 <div onclick='$( ".sort_by_expac" ).show();$( ".sort_by_type" ).hide();' class="index-divider" data-expansion="{{ roletype }}">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="index__list" data-expansion="{{ x }}">
                     {%- assign sorted = categories | sort:"order" -%}
-                    {%- include _components/index-list.html -%}
+                    {%- include klassen/_components/index-list.html -%}
                 </div>
             {%- endif -%}
         {%- endfor -%}

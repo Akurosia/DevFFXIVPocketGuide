@@ -688,6 +688,7 @@ def addKlassJobs():
             full_title = f'{job_d[f"Name_{lang}"].title()} ({cjs_trans[cj_key_lookup[base_class]]["Name_"+lang].title()})' if base_class else job_d[f"Name_{lang}"].title()
             filecontent += f'  {lang}: "{full_title}"\n'
             klass_translations[lang][f'Sidebar_Title_Full_{full_title_en}'] = full_title
+            klass_translations[lang][f'Content_Title_{full_title_en}'] = full_title
 
         filecontent += 'layout: klassen\n'
         filecontent += 'page_type: guide\n'
@@ -787,8 +788,8 @@ def addKlassJobs():
             filecontent += pvp_text
 
         # get eureka und bozja data here for status bt add text later to filecontent
-        ea, ea_text, eureka_skills = addEurekaActions(job, eureka_actions)
-        bz, bz_text, bozja_skills = addBozjaActions(job, bozja_actions)
+        ea, ea_text, eureka_skills = addEurekaActions(job, eureka_actions, job_translations)
+        bz, bz_text, bozja_skills = addBozjaActions(job, bozja_actions, job_translations)
         filecontent += addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, bozja_skills)
         #filecontent += addOldStatusDetails(job, job_abb)
         filecontent += addTraitDetails(job)

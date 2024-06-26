@@ -22,4 +22,22 @@
 
     <!-- Include Null State -->
     {%- include guide-index-null-state.html -%}
+
+    <!-- Include correct translation files -->
+    {%- if page.page_category == "all" or page.page_category == "allianzraid" -%}       <div style="display: none" data-extra-translate="/assets/translations/summary/allianzraid">       </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "bluemage" -%}          <div style="display: none" data-extra-translate="/assets/translations/summary/bluemage">          </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "dungeons" -%}          <div style="display: none" data-extra-translate="/assets/translations/summary/dungeon">           </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "feldexkursion" -%}     <div style="display: none" data-extra-translate="/assets/translations/summary/feldexkursion">     </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "gewölbesuche" -%}      <div style="display: none" data-extra-translate="/assets/translations/summary/gewölbesuche">      </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "guildhest" -%}         <div style="display: none" data-extra-translate="/assets/translations/summary/guildhest">         </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "overworld" -%}         <div style="display: none" data-extra-translate="/assets/translations/summary/overworld">         </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "overworlds" -%}        <div style="display: none" data-extra-translate="/assets/translations/summary/overworlds">        </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "potd" -%}              <div style="display: none" data-extra-translate="/assets/translations/summary/potd">              </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "pvp" -%}               <div style="display: none" data-extra-translate="/assets/translations/summary/pvp">               </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "raids" -%}             <div style="display: none" data-extra-translate="/assets/translations/summary/raid">              </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "training" -%}          <div style="display: none" data-extra-translate="/assets/translations/summary/training">          </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "treasure" -%}          <div style="display: none" data-extra-translate="/assets/translations/summary/treasure">          </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "trials" -%}            <div style="display: none" data-extra-translate="/assets/translations/summary/trial">             </div> {%- endif -%}
+    {%- if page.page_category == "all" or page.page_category == "ultimates" -%}         <div style="display: none" data-extra-translate="/assets/translations/summary/ultimate">          </div> {%- endif -%}
+
 </div>

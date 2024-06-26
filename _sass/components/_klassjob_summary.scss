@@ -1,0 +1,24 @@
+.klassenjobgrid {
+    display: grid;
+    grid-template-columns: .5fr 4.5fr ;
+    grid-template-areas:
+        "SummaryIcon SummaryName";
+    color: #fff;
+    font-size: large;
+    font-weight: bold;
+    column-gap: 5px;
+    cursor: pointer;
+    position: relative;
+}
+.SummaryIcon {
+    z-index: 7;
+    justify-self: center;
+    align-self: center;
+    grid-area: SummaryIcon;
+    display: flex;
+}
+
+.SummaryName{
+    align-self: center;
+    grid-area: SummaryName;
+}

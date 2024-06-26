@@ -193,15 +193,14 @@ async function call_api_data(){
         } else {
             url_params2 += "&hq=0"
         }
-
         jsondata = load_data(url_params2, table_name, category, classjob)
         promisses.push(jsondata)
     })
     await Promise.allSettled(promisses).then((xxx) => {
         console.log("Done")
         // this is from handleLanguages.js
-        getTranslations();
-        setTimeout(() => {  getTranslations(); }, 300);
+        executeHandelingLanguages();
+        setTimeout(() => {  executeHandelingLanguages(); }, 700);
     })
 }
 

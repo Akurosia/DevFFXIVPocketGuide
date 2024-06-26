@@ -8,7 +8,7 @@ import errno
 import yaml
 from yaml.loader import SafeLoader
 import python_scripts.generatePatch as gp
-from ffxiv_aku import pretty_json, print_color_green, sys, writeJsonFile
+from ffxiv_aku import pretty_json, print_color_green, sys, writeJsonFile, print_pretty_json
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide, logdata, logdata_lower
 from python_scripts.helper import uglyContentNameFix, getContentName
@@ -36,6 +36,36 @@ LANGUAGES_MAPPING = {
     "cn": "cn-CN",
     "ko": "ko-KR"
 }
+
+translations = {
+    "de": {},
+    "en": {},
+    "fr": {},
+    "ja": {},
+    "cn": {},
+    "ko": {}
+}
+def translate_content_files(entry):
+    global translations
+    if entry['categories'] == "":
+        return
+    #exp = expansion_list[entry['categories']]
+
+    _type = entry['instanceType']
+    for lang in LANGUAGES:
+        if not translations[lang].get(_type, None):
+            translations[lang][_type] = {}
+        name = entry[f'title_{lang}']
+        translations[lang][_type][f"Summary_{_type}_{entry['title_en'].lower()}"] = uglyContentNameFix(name, instanceType=entry['instanceType'], difficulty=entry['difficulty']).replace(f' ({entry["difficulty"].lower()})', "")
+
+
+def create_translation_files():
+    global translations
+    #print_pretty_json(translations)
+    for lang, cat_data in translations.items():
+        for cat, data in cat_data.items():
+            writeJsonFile(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json", data)
+
 
 def get_old_content_if_file_is_found(_existing_filename):
     if os.path.exists(_existing_filename):
@@ -139,6 +169,7 @@ expansion_list = {
     "dt": "7_dt"
 }
 
+
 def run(sheet, max_row, max_column, elements, orderedContent):
     global debug_row_number # used in debugger to verify entry
     global print_debug
@@ -161,6 +192,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             if entry["exclude"] == "end":
                 print("END FLAG WAS FOUND!")
                 break
+            translate_content_files(entry)
+            #continue
             if not (entry["exclude"] or entry["done"]):
                 content_translations = {}
                 for lang in LANGUAGES:
@@ -208,7 +241,7 @@ def main():
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
-
+    create_translation_files()
     if not print_debug:
         #csgf needs also to run from posts dir
         csgf.run()
@@ -216,6 +249,7 @@ def main():
         gp.run()
         #ghm.run()
     logger.critical('STOP')
+
 
 if __name__ == "__main__":
     print(sys.version)

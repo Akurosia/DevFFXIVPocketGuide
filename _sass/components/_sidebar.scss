@@ -30,7 +30,7 @@
         }
 
         @media screen and (orientation: landscape) and (min-width: 70em) {
-            width: 20vw;
+            width: 15vw;
         }
 
         &.active {
@@ -50,7 +50,6 @@
             width: 100%;
             z-index: 5;
         }
-
     }
 
     .sidebar__wrapper {
@@ -76,23 +75,24 @@
                 @media #{$l-tablet} {
                     width: 40%;
                 }
-
             }
-
         }
-
     }
 
     .sidebar__menu {
         list-style: none;
-        width: 80%;
+        width: 85%;
         margin: 0;
         padding: 0 0 calc(#{$unit} * 8) 0;
+        ul {
+            list-style-type: none;
+            display: none;
+        }
 
         li {
-            margin: -10px;
+            margin: -15px;
 
-            a {
+            > span, > a {
                 color: $palette--white;
                 display: block;
                 font-family: $font-aktiv;
@@ -102,8 +102,8 @@
                 //text-align: center;
                 text-decoration: none;
                 transition: all .2s ease;
-                width: 60%;
-                margin-left: 40%;
+                width: 70%;
+                margin-left: 30%;
 
                 img {
                     width: 1.5rem;
@@ -121,11 +121,8 @@
                     font-weight: 700;
                     text-decoration: underline;
                 }
-
             }
-
         }
-
     }
 
     .sidebar_menu_sub_li {
@@ -136,7 +133,6 @@
             width: 1rem !important;
             vertical-align: middle;
         }
-
     }
 
     .no-touchevents {

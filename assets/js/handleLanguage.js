@@ -1,13 +1,11 @@
 ---
 ---
 
-$(document).ready(() => {
-    getTranslations();
-});
-
 var elements = undefined
+var elements_translates = new Set();
+var found_elements_translates = new Set();
 
-function getTranslations(path = "/assets/translations/navbar", olddata = {}) {
+async function getTranslations(path = "/assets/translations/navbar", olddata = {}) {
     // load data using navigator.language e.g. de-DE.json
     lang = window.localStorage.getItem('translation-language');
     if (lang == null || lang == undefined){
@@ -17,11 +15,14 @@ function getTranslations(path = "/assets/translations/navbar", olddata = {}) {
     if (path == "/assets/translations/navbar") {
         elements = {}
         elements['translate'] = Array.from(document.querySelectorAll('[data-translate]'));
+        for (var ele of elements['translate']) {
+            elements_translates.add(ele.getAttribute('data-translate'))
+        }
         elements['href'] = Array.from(document.querySelectorAll('[data-href-translate]'));
         elements['value'] = Array.from(document.querySelectorAll('[data-value-translate]'));
         elements['extra'] = Array.from(document.querySelectorAll('[data-extra-translate]'));
     }
-    fetch(`{{site.baseurl}}${path}/${lang}.json`)
+    await fetch(`{{site.baseurl}}${path}/${lang}.json`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("HTTP error " + response.status);
@@ -35,10 +36,10 @@ function getTranslations(path = "/assets/translations/navbar", olddata = {}) {
             for (var element of elements['translate']) {
                 value = data[element.getAttribute('data-translate')]
                 if (value == "" || value == undefined || value == null) {
-                    //console.log(`No Replace Value '${element.getAttribute('data-translate')}'`)
                     continue;
                 }
                 element.innerHTML  = value
+                found_elements_translates.add(element.getAttribute('data-translate'))
             }
 
             //for urls as hrefs
@@ -82,18 +83,39 @@ function getTranslations(path = "/assets/translations/navbar", olddata = {}) {
         })
         .catch(e => {
             console.log(e)
-        })
-    executeHandelingLanguages();
+        }
+    )
+    return
 }
 
+function validateArrays() {
+    normal1 = Array.from(elements_translates)
+    found1 = Array.from(found_elements_translates)
+    for (k of found1){
+        const index = normal1.indexOf(k);
+        if (index > -1) { // only splice array when item is found
+          normal1.splice(index, 1); // 2nd parameter means remove one item only
+        }
+    }
+    console.log(normal1)
+}
 
 function changeLanguageTo(tag, languageCode) {
     window.localStorage.setItem('translation-language', languageCode);
     window.localStorage.setItem('primary-language', tag);
-    getTranslations()
+    executeHandelingLanguages();
+    getTranslationsWrapper()
+}
+
+async function getTranslationsWrapper() {
+    prom = await getTranslations()
+    Promise.all([prom]).then(() => {
+        validateArrays()
+    });
 }
 
 
+// is is only needed for a few things and is mostly way to overdone now...
 function executeHandelingLanguages(){
     // set all language field to be not displayed
     const langfields = document.getElementsByClassName('lang-toggle');
@@ -112,7 +134,7 @@ function executeHandelingLanguages(){
     setlangfields = document.getElementsByClassName(l1);
     setlangfields2 = document.getElementsByClassName(l2);
     // in case no elements can be found from localstorage
-    if (setlangfields.length == 0){
+    if (setlangfields == undefined){
         setlangfields = document.getElementsByClassName("lang-toogle-de");
         setlangfields2 = document.getElementsByClassName("lang-toogle2-de");
     }
@@ -150,3 +172,8 @@ function doLanguageStuff(setlangfields, adj) {
         }
     }
 }
+
+
+$(document).ready(() => {
+    getTranslationsWrapper()
+});
