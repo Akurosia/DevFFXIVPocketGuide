@@ -6,7 +6,7 @@
     {%- for x in my_array -%}
         {% include helper/handle_version_switchcase.html %}
         <div class="index-divider" data-expansion="{{ x }}">
-            <h2 class="index-divider__title">{{ x_title }}</h2>
+            {%- include _components/expantion_filter.html -%}
         </div>
         <div class="index__list_patches" data-expansion="{{ x }}">
             <table class="table table-bordered table-dark table-striped text-light patch_table" id="tInfo">
