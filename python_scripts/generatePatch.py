@@ -111,7 +111,7 @@ def single_patch_file():
         "sb": "title_logo400_hr1.tex.png",
         "shb": "title_logo500_hr1.tex.png",
         "ew": "title_logo600_hr1.tex.png",
-        "dw": "title_logo700_hr1.tex.png"
+        "dt": "title_logo700_hr1.tex.png"
     }
     versions = get_any_Versiondata()
     #print_pretty_json(versions)

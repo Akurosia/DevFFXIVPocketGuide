@@ -446,6 +446,7 @@ def addCrafterLeve(job, all_crafter_leves):
 
 
 def addQuestkDetails(job, pvp):
+    return ""
     global quests
     global quests_trans
     global job_translations
@@ -462,11 +463,12 @@ def addQuestkDetails(job, pvp):
             level_data = {}
             try:
                 level_data = getLevel(quest['Issuer']['Location'])
-                if level_data is None:
+                if level_data is None or level_data == "{}":
                     continue
             except Exception as e:
                 print(f"Error in addQuestkDetails: {e}")
                 pass
+            print(level_data)
             place = f"{level_data['region']} > {quest['PlaceName']}"
             if level_data['placename'] not in place:
                 place + f" > {level_data['placename']}"

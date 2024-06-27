@@ -17,7 +17,7 @@ from python_scripts.custom_logger import getLogger
 from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file
 import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
-#import python_scripts.generateHousingMissions as ghm
+import python_scripts.generateHousingMissions as ghm
 
 logger = getLogger(50)
 disable_green_print = True
@@ -237,7 +237,7 @@ def main():
     orderedContent = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
     #logger.debug(orderedContent)
     try:
-        run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
+        #run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
@@ -247,7 +247,7 @@ def main():
         csgf.run()
         gl.run()
         gp.run()
-        #ghm.run()
+        ghm.run()
     logger.critical('STOP')
 
 
