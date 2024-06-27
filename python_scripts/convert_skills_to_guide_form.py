@@ -656,7 +656,7 @@ def addKlassJobs():
         job_data = skills.get(job, None)
         job_data_pvp = pvpskills.get(job, None)
         job_party_bonus = str(cjs[k[0]]['PartyBonus'])
-        if job == "Ninja":
+        if job in ["Ninja", "Viper"]:
             job_party_bonus = "3"
         if not job_data:
             continue

@@ -17,6 +17,7 @@ weapon_dict = {
     "NIN": ["Hauptwaffe der Schurken"],
     "SAM": ["Hauptwaffe der Samurai"],
     "SNT": ["Hauptwaffe der Schnitter"],
+    "VPR": ["Hauptwaffe der Vipern"],
     "BRD": ["Hauptwaffe der Waldl\u00e4ufer"],
     "MCH": ["Hauptwaffe der Maschinisten"],
     "TÄN": ["Hauptwaffe der T\u00e4nzer"],
@@ -24,6 +25,7 @@ weapon_dict = {
     "SMA": ["Thaumaturgen-Waffe", "Thaumaturgen-Zweihandwaffe"],
     "RMA": ["Hauptwaffe der Rotmagier"],
     "BMA": ["Blaumagier-Waffe"],
+    "PKT": ["Hauptwaffe der Piktomanten"],
     "ZMR": ["Zimmermannszeug"],
     "GRS": ["Schmiedezeug"],
     "PLA": ["Plattnerzeug"],
@@ -51,6 +53,7 @@ class_additions = {
     "NIN": "Krieger",
     "SAM": "Krieger",
     "SNT": "Krieger",
+    "VPR": "Krieger",
     "BRD": "Krieger",
     "MCH": "Krieger",
     "TÄN": "Krieger",
@@ -58,6 +61,7 @@ class_additions = {
     "SMA": "Magier",
     "RMA": "Magier",
     "BMA": "Magier",
+    "PKT": "Magier",
     "ZMR": "Handwerker",
     "GRS": "Handwerker",
     "PLA": "Handwerker",
@@ -284,7 +288,7 @@ async function createTHorTD(field, _type, classname){
 
 function get_stats_for_class(classJob, removeshy=false){
     x = []
-    if (["BSW","SMA","RMA","BMA"].includes(classJob)){
+    if (["BSW","SMA","RMA","BMA", "PKT"].includes(classJob)){
         x = ["Mag. Basiswert", "Magieabwehr", "Intelligenz", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit","Zaubertempo","Konstitution"]
     }
     if (["WMA","GLT","AST", "WEI"].includes(classJob)){
@@ -302,7 +306,7 @@ function get_stats_for_class(classJob, removeshy=false){
     if (["NIN","BRD","MCH","TÄN"].includes(classJob)){
         x = ["Phys. Basiswert", "Verteidigung", "Geschick", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit","Konstitution"]
     }
-    if (["MÖN","DRG","SAM", "SNT"].includes(classJob)){
+    if (["MÖN","DRG","SAM", "SNT", "VPR"].includes(classJob)){
         x = ["Phys. Basiswert", "Verteidigung", "Stärke", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit","Konstitution"]
     }
     if (removeshy){

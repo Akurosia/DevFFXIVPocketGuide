@@ -180,8 +180,8 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             if not True:
-                #if debug_row_number > 10 :
-                if debug_row_number not in [737]:
+                #if debug_row_number < 710 :
+                if debug_row_number not in [515]:
                     print_debug = True
                     continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
@@ -209,7 +209,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 # if old file was found, replace filename to save
                 if not old_data == {}:
                     filename = existing_filename
-                    # logger.info(pretty_json(old_data))
+                    #logger.info(pretty_json(old_data))
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_data, content_translations)
                 # write translation file
@@ -237,7 +237,7 @@ def main():
     orderedContent = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
     #logger.debug(orderedContent)
     try:
-        #run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
+        run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
