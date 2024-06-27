@@ -5,7 +5,7 @@ import re
 import copy
 from operator import itemgetter
 from collections import OrderedDict
-from ffxiv_aku import storeFilesInTmp, get_any_Logdata, loadDataTheQuickestWay, print_color_red, print_color_yellow, print_color_blue, os, writeJsonFile, readJsonFile
+from ffxiv_aku import storeFilesInTmp, get_any_Logdata, loadDataTheQuickestWay, print_color_red, print_color_yellow, print_color_blue, os, writeJsonFile, readJsonFile, print_color_green
 try:
     from python_scripts.constants import LANGUAGES, UNKNOWNTITLE
     #from python_scripts.helper import *
