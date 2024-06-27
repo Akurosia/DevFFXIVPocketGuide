@@ -1,7 +1,7 @@
 const minilvl = 650
-const maxilvl = 665
-const minlvl = 80
-const maxlvl = 90
+const maxilvl = 800
+const minlvl = 90
+const maxlvl = 100
 
 weapon_dict = {
     "PLD": ["Hauptwaffe der Gladiatoren"],
