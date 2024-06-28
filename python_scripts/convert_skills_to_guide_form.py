@@ -578,6 +578,17 @@ def get_classJobKeyMapping():
         results[value['Name']['Value']] = key
     return results
 
+kristall_list = {}
+def getJobKristall(job):
+    global kristall_list
+    if kristall_list == {}:
+        for key, item in items_trans.items():
+            if item['Name_de'].endswith("-Kristall"):
+                kristall_list[item['Name_de'].replace("-Kristall", "")] = item['Icon'].replace("ui/icon/", "").replace(".png", "_hr1.png")
+    if kristall_list.get(job, kristall_list.get(job+'n', kristall_list.get(job+'en', kristall_list.get(job[:-1]+'n', None)))):
+        return f'jobkristall: "{kristall_list.get(job, kristall_list.get(job+'n', kristall_list.get(job+'en', kristall_list.get(job[:-1]+'n', None))))}"\n'
+    print(job[:-1])
+    return ""
 
 additionalJobIcons = {
     "MIN": "062116_hr1",
@@ -603,6 +614,7 @@ def getIconForJob(job_abb):
         return "062000/" + additionalJobIcons[job_abb] + ".png"
     return icon
 
+# these are the classes before they are job and usually dont need change
 additionalClassIcons = {
     "PLD": "062101_hr1",
     "MÖN": "062102_hr1",
@@ -726,6 +738,7 @@ def addKlassJobs():
         classicon = additionalClassIcons.get(job_abb, None)
         if classicon:
             filecontent += f'classicon: "062000/{classicon}.png"\n'
+        filecontent += getJobKristall(job)
         filecontent += 'terms:\n'
         filecontent += '    - term: "Klassen"\n'
         filecontent += '    - term: "Jobs"\n'
