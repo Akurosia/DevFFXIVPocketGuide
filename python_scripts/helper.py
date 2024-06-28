@@ -3,6 +3,7 @@
 # coding: utf8
 from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red
 import os
+import shutil
 
 storeFilesInTmp(True)
 contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
@@ -22,10 +23,10 @@ def copy_and_return_image_as_hr(img):
         img = img.replace(".png", "_hr1.png")
     if os.path.exists("P:\\extras\\images\\ui\\icon\\" + img):
         #print(os.getcwd())
-        if not os.path.exists("..\\assets\\img\\content_assets\\" + img):
-            if not os.path.exists(os.path.dirname("..\\assets\\img\\content_assets\\" + img)):
-                os.makedirs(os.path.dirname("..\\assets\\img\\content_assets\\" + img))
-            shutil.copyfile("P:\\extras\\images\\ui\\icon\\" + img, "..\\assets\\img\\content_assets\\" + img)
+        if not os.path.exists("..\\assets\\img\\game_assets\\" + img):
+            if not os.path.exists(os.path.dirname("..\\assets\\img\\game_assets\\" + img)):
+                os.makedirs(os.path.dirname("..\\assets\\img\\game_assets\\" + img))
+            shutil.copyfile("P:\\extras\\images\\ui\\icon\\" + img, "..\\assets\\img\\game_assets\\" + img)
     else:
         print_color_red(img)
     return img

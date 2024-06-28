@@ -1,15 +1,15 @@
-{%- if x == "ffxiv" -%}    {%- assign expacicon = "061000/061533_hr1.png" -%}
-{%- elsif x == "arr" -%}  {%- assign expacicon = "061000/061875_hr1.png" -%}
+{%- if x == "ffxiv" -%}  {%- assign expacicon = "061000/061533_hr1.png" -%}
+{%- elsif x == "arr" -%} {%- assign expacicon = "061000/061875_hr1.png" -%}
 {%- elsif x == "hw" -%}  {%- assign expacicon = "061000/061876_hr1.png" -%}
 {%- elsif x == "sb" -%}  {%- assign expacicon = "061000/061877_hr1.png" -%}
 {%- elsif x == "shb" -%} {%- assign expacicon = "061000/061878_hr1.png" -%}
 {%- elsif x == "ew" -%}  {%- assign expacicon = "061000/061879_hr1.png" -%}
 {%- elsif x == "dt" -%}  {%- assign expacicon = "061000/061880_hr1.png" -%}
-{%- else -%}                    {%- assign expacicon = "" -%}
+{%- else -%}             {%- assign expacicon = "" -%}
 {%- endif -%}
 <h2 class="index-divider__title">
     {%- if expacicon != "" -%}
-        <image class="role-icon" src="{{site.baseurl}}/assets/img/content_assets/{{expacicon}}"/>
+        <image class="role-icon" src="{{site.baseurl}}/assets/img/game_assets/{{expacicon}}"/>
     {%- endif -%}
     <span data-translate="Patches_{{x_title}}">{{ x_title }}</span>
 </h2>

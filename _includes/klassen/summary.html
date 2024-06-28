@@ -1,6 +1,7 @@
 {%- comment -%} ==================================================================
     // Guide Summary
 =============================================================== {%- endcomment -%}
+<!-- Include _include/klassen/summary.html -->
 <div class="summary">
     <a class="index-item__link" href="{{ guide.url | prepend: site.baseurl }}" title="Go to the {{ guide.title.de }} Guide">
         <div loading="lazy"
@@ -18,7 +19,7 @@
         </div>
         <div class="klassenjobgrid">
             {%- if guide.jobicon -%}
-            <image class="SummaryIcon Icon" title="Job" src="{{site.baseurl}}/assets/img/klassenjobs/{{guide.jobicon}}"/>
+            <image class="SummaryIcon Icon" title="Job" src="{{site.baseurl}}/assets/img/game_content/{{guide.jobicon}}"/>
             {%- endif -%}
             <div class="SummaryName">
                 <h3 class="index-item__title"
@@ -36,3 +37,4 @@
         </div>
     </a>
 </div>
+<!-- END Include _include/klassen/summary.html -->
