@@ -1,139 +1,77 @@
 .sprite-sheet {
   background: url('/DevFFXIVPocketGuide/assets/img/deepdungeonclassjob_hr1.tex.png');
-  //background: url('/assets/img/deepdungeonclassjob_hr1.tex.png');
+  background: url('/assets/img/deepdungeonclassjob_hr1.tex.png');
 }
-.sprite-podt-paladin{
+
+.sprite-podt-common{
   height: 88px;
   width: 74px;
-  background-position: 0px 0px;
   background-size: 296px 528px;
+}
+
+.sprite-podt-paladin{
+  background-position: 0px 0px;
 }
 .sprite-podt-mönch{
-  height: 88px;
-  width: 74px;
   background-position: -74px 0px;
-  background-size: 296px 528px;
 }
 .sprite-podt-krieger{
-  height: 88px;
-  width: 74px;
   background-position: -148px 0px;
-  background-size: 296px 528px;
 }
 .sprite-podt-dragoon{
-  height: 88px;
-  width: 74px;
   background-position: -222px 0px;
-  background-size: 296px 528px;
 }
 .sprite-podt-barde{
-  height: 88px;
-  width: 74px;
   background-position: -74px -88px;
-  background-size: 296px 528px;
 }
 .sprite-podt-weißmagier{
-  height: 88px;
-  width: 74px;
   background-position: -148px -88px;
-  background-size: 296px 528px;
 }
 .sprite-podt-schwarzmagier{
-  height: 88px;
-  width: 74px;
   background-position: -222px -88px;
-  background-size: 296px 528px;
 }
-
 .sprite-podt-beschwörer{
-  height: 88px;
-  width: 74px;
   background-position: -74px -176px;
-  background-size: 296px 528px;
 }
 .sprite-podt-gelehrter{
-  height: 88px;
-  width: 74px;
   background-position: -148px -176px;
-  background-size: 296px 528px;
 }
 .sprite-podt-ninja{
-  height: 88px;
-  width: 74px;
   background-position: -222px -176px;
-  background-size: 296px 528px;
 }
 .sprite-podt-maschinist{
-  height: 88px;
-  width: 74px;
   background-position: 0px -264px;
-  background-size: 296px 528px;
 }
 .sprite-podt-dunkelritter{
-  height: 88px;
-  width: 74px;
   background-position: -74px -264px;
-  background-size: 296px 528px;
 }
 .sprite-podt-astrologe{
-  height: 88px;
-  width: 74px;
   background-position: -148px -264px;
-  background-size: 296px 528px;
 }
 .sprite-podt-samurai{
-  height: 88px;
-  width: 74px;
   background-position: -222px -264px;
-  background-size: 296px 528px;
 }
 .sprite-podt-rotmagier{
-  height: 88px;
-  width: 74px;
   background-position: 0px -352px;
-  background-size: 296px 528px;
 }
 .sprite-podt-blaumagier{
-  height: 88px;
-  width: 74px;
   background-position: -74px -352px;
-  background-size: 296px 528px;
 }
 .sprite-podt-revolverklinge{
-  height: 88px;
-  width: 74px;
   background-position: -148px -352px;
-  background-size: 296px 528px;
 }
 .sprite-podt-tänzer{
-  height: 88px;
-  width: 74px;
   background-position: -222px -352px;
-  background-size: 296px 528px;
 }
 .sprite-podt-schnitter{
-  height: 88px;
-  width: 74px;
   background-position: 0px -440px;
-  background-size: 296px 528px;
 }
 .sprite-podt-weiser{
-  height: 88px;
-  width: 74px;
   background-position: -74px -440px;
-  background-size: 296px 528px;
 }
-
-.sprite-podt-piktomant{
-  height: 88px;
-  width: 74px;
-  background-position: -148px 440px;
-  background-size: 296px 528px;
-}
-
 .sprite-podt-viper{
-  height: 88px;
-  width: 74px;
-  background-position: -222px 440px;
-  background-size: 296px 528px;
+  background-position: -148px -440px;
+}
+.sprite-podt-piktomant{
+  background-position: -222px -440px;
 }
