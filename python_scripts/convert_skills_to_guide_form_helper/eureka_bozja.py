@@ -57,12 +57,12 @@ def getEurekaActionDetails():
                     status_key = getStatusKey(i["Status"]['GainSelf'], status)
                     results[k] = {
                         "name": {},
-                        "icon": i["Icon"].replace(".png", "_hr1.png"),
+                        "icon": getImage(i["Icon"]),
                         "type": i["ActionCategory"],
                         "cj": i["ClassJobCategory"],
                         "uses": lo["MaxUses"],
                         "status": {},
-                        "status_icon": status_trans[status_key]['Icon'].replace(".tex", "_hr1.png").replace(".png", "_hr1.png"),
+                        "status_icon": getImage(status_trans[status_key]['Icon']),
                         "description": {},
                     }
                     for lang in LANGUAGES:
@@ -138,7 +138,7 @@ def getBozjaActionDetails():
             icon = "ui/icon/064000/064690_hr1.png"
         tmp = {
             "name": {},
-            "icon": icon,
+            "icon": getImage(icon),
             "cj": a["ClassJobCategory"],
             "frontsplitter": getFrontsplitterEntry(action['Action'], result),
             "description": {},

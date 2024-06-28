@@ -94,14 +94,14 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Icon:
                 <span class="block group-icon">
                     {%- if page.classicon -%}
-                        <image title="Class" src="{{site.imageurl}}/{{page.classicon}}"/>
+                        <image title="Class" src="{{ site.baseurl }}/assets/img/klassenjobs/{{page.classicon}}"/>
                     {%- endif -%}
                     {%- if page.jobicon-%}
-                        <image title="Job" src="{{site.imageurl}}/{{page.jobicon}}"/>
+                        <image title="Job" src="{{ site.baseurl }}/assets/img/klassenjobs/{{page.jobicon}}"/>
                     {%- endif -%}
 
                     {%- if page.jobkristall -%}
-                        <image title="Jobkristall" src="{{site.imageurl}}/{{page.jobkristall}}"/>
+                        <image title="Jobkristall" src="{{ site.baseurl }}/assets/img/klassenjobs/{{page.jobkristall}}"/>
                     {%- endif -%}
                 </span>
             </h5>
@@ -123,7 +123,7 @@
         {%- if page.deepdungeon -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_DeepDungeonIcon">Deep Dungeon Icon:</div>
-                <div class="sprite-sheet sprite-podt-common sprite-podt-{{page.deepdungeon}}"></div>
+                <div style="background-image: url('{{ site.baseurl }}/assets/img/deepdungeonclassjob_hr1.tex.png')" class="xsprite-sheet sprite-podt-common sprite-podt-{{page.deepdungeon}}"></div>
             </h5>
 
         {%- endif -%}

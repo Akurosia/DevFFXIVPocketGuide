@@ -43,7 +43,7 @@
                     {%- unless attack.status_icon == "" -%}
                         <br/>
                         <h5 class="guide__attack-notes-title">Status: {{ attack.status.de }}</h5><br>
-                        <img class="debuff_icon" src="{{ site.imageurl }}/{{ attack.status_icon }}" alt="{{ attack.status_icon }}"/>
+                        <img class="debuff_icon" src="{{ site.baseurl }}/assets/img/klassenjobs/{{ attack.status_icon }}" alt="{{ attack.status_icon }}"/>
                     {%- endunless -%}
                 {%- endif -%}
             </div>

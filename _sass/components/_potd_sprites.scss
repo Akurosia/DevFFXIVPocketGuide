@@ -1,5 +1,6 @@
 .sprite-sheet {
-  background: url('/DevFFXIVPocketGuide/assets/img/deepdungeonclassjob_hr1.tex.png');
+  //this was inlines to avoide issues with local and online
+  background: attr(data-image url);
   //background: url('/assets/img/deepdungeonclassjob_hr1.tex.png');
 }
 
