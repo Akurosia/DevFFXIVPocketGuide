@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # coding: utf8
 from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red
+import os
 
 storeFilesInTmp(True)
 contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
@@ -9,9 +10,21 @@ placename = loadDataTheQuickestWay("placename_all.json", translate=True)
 
 
 def getImage(image):
+    if image is None:
+        return None
     image = image.replace(".tex", "_hr1.png\"")
     image = image.replace("ui/icon/", "")
+    image = copy_and_return_image_as_hr(image)
     return image
+
+def copy_and_return_image_as_hr(img):
+    if "_hr1" not in img:
+        img = img.replace(".png", "_hr1.png")
+    if os.path.exists("P:\\extras\\images\\ui\\icon\\" + img):
+        print(img)
+    else:
+        print_color_red(img)
+    return img
 
 
 def uglyContentNameFix(name, instanceType=None, difficulty=None):

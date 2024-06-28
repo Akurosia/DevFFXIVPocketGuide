@@ -5,6 +5,7 @@ from ffxiv_aku import print_color_red, gear_get, getLevel, deal_with_extras_in_t
 from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata, print_color_green
 from collections import OrderedDict
 from operator import getitem
+
 try:
     from .convert_skills_to_guide_form_helper.chocobo import addChocobo
 except:
@@ -584,11 +585,13 @@ def getJobKristall(job):
     if kristall_list == {}:
         for key, item in items_trans.items():
             if item['Name_de'].endswith("-Kristall"):
-                kristall_list[item['Name_de'].replace("-Kristall", "")] = item['Icon'].replace("ui/icon/", "").replace(".png", "_hr1.png")
+                kristall_list[item['Name_de'].replace("-Kristall", "")] = item['Icon']
     if kristall_list.get(job, kristall_list.get(job+'n', kristall_list.get(job+'en', kristall_list.get(job[:-1]+'n', None)))):
-        return f'jobkristall: "{kristall_list.get(job, kristall_list.get(job+'n', kristall_list.get(job+'en', kristall_list.get(job[:-1]+'n', None))))}"\n'
-    print(job[:-1])
+        image = getImage(kristall_list.get(job, kristall_list.get(job+'n', kristall_list.get(job+'en', kristall_list.get(job[:-1]+'n', None)))))
+        return f'jobkristall: "{image}"\n'
+    print(f"No Jobkristall for {job[:-1]}")
     return ""
+
 
 additionalJobIcons = {
     "MIN": "062116_hr1",
@@ -611,7 +614,7 @@ def getIconForJob(job_abb):
         if value["AcceptClassJobCategory"] == job_abb:
             return getImage(value["Icon"])
     if additionalJobIcons.get(job_abb, None):
-        return "062000/" + additionalJobIcons[job_abb] + ".png"
+        return getImage("062000/" + additionalJobIcons[job_abb] + ".png")
     return icon
 
 # these are the classes before they are job and usually dont need change
@@ -737,7 +740,8 @@ def addKlassJobs():
             filecontent += f'jobicon: "{jobicon}"\n'
         classicon = additionalClassIcons.get(job_abb, None)
         if classicon:
-            filecontent += f'classicon: "062000/{classicon}.png"\n'
+            classicon = getImage(f"062000/{classicon}.png")
+            filecontent += f'classicon: "{classicon}"\n'
         filecontent += getJobKristall(job)
         filecontent += 'terms:\n'
         filecontent += '    - term: "Klassen"\n'

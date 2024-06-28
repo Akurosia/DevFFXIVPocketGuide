@@ -1,5 +1,7 @@
 import re
+import os
 from ffxiv_aku import fix_slug, print_color_red, print_color_yellow, print_color_blue
+import shutil
 
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
 LANGUAGES_MAPPING = {
@@ -11,17 +13,36 @@ LANGUAGES_MAPPING = {
     "ko": "ko-KR"
 }
 
+
+def getImage(image):
+    if image is None:
+        return None
+    image = image.replace(".tex", "_hr1.png")
+    image = image.replace("ui/icon/", "")
+    image = copy_and_return_image_as_hr(image)
+    return image
+
+def copy_and_return_image_as_hr(img):
+    if "_hr1" not in img:
+        img = img.replace(".png", "_hr1.png")
+    if os.path.exists("P:\\extras\\images\\ui\\icon\\" + img):
+        #print(os.getcwd())
+        if not os.path.exists("..\\assets\\img\\klassenjobs\\" + img):
+            if not os.path.exists(os.path.dirname("..\\assets\\img\\klassenjobs\\" + img)):
+                os.makedirs(os.path.dirname("..\\assets\\img\\klassenjobs\\" + img))
+            shutil.copyfile("P:\\extras\\images\\ui\\icon\\" + img, "..\\assets\\img\\klassenjobs\\" + img)
+        #TODO check if file exists locally and if not copy it here
+        ...
+    else:
+        print_color_red(img)
+    return img
+
+
 def getStatusKey(stat, status):
     for k, v in status.items():
         if v["Name"] == stat:
             return k
     return "0"
-
-
-def getImage(image: str) -> str:
-    image = image.replace(".tex", "_hr1.png")
-    image = image.replace("ui/icon/", "")
-    return image
 
 
 def deal_with_extras_in_text(text):
