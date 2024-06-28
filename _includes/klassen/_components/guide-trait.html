@@ -5,7 +5,7 @@
         data-terms="!{%- for lang in LANGUAGES -%}trait:{{ trait.title[lang] }}&#32;{%- endfor -%}&#32;
                     {%- for term in trait.terms -%}term:{{ term.term }}&#32;{%- endfor -%}" style="display: none">
     </h4>
-    <img class="Icon attack_icon" src="{{ site.imageurl }}/{{ trait.icon }}" alt="{{ trait.icon }}"/>
+    <img class="Icon attack_icon" src="{{ site.baseurl }}/assets/img/klassenjobs/{{ trait.icon }}" alt="{{ trait.icon }}"/>
     <div class="Names">
         <span class="">
             <span data-translate="Class_Trait_Name_{{  trait.title.en }}">{{ trait.title.en }} </span>

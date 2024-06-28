@@ -31,8 +31,6 @@ def copy_and_return_image_as_hr(img):
             if not os.path.exists(os.path.dirname("..\\assets\\img\\klassenjobs\\" + img)):
                 os.makedirs(os.path.dirname("..\\assets\\img\\klassenjobs\\" + img))
             shutil.copyfile("P:\\extras\\images\\ui\\icon\\" + img, "..\\assets\\img\\klassenjobs\\" + img)
-        #TODO check if file exists locally and if not copy it here
-        ...
     else:
         print_color_red(img)
     return img
