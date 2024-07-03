@@ -97,10 +97,11 @@ def load_global_data():
     global items_trans
     global bannertimeline
 
+    storeFilesInTmp(False)
+    logdata = get_any_Logdata()
     storeFilesInTmp(True)
     skills = get_skills_for_player()
     pvpskills = get_skills_for_player(True)
-    logdata = get_any_Logdata()
     cjs_trans = loadDataTheQuickestWay("classjob", translate=True)
     cjs = loadDataTheQuickestWay("ClassJob")
     actions = loadDataTheQuickestWay("action")

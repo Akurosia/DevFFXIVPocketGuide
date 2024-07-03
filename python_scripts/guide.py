@@ -14,14 +14,9 @@ except Exception:
     from helper import getImage
     from guide_helper import setMultipleLanguageStrings, ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, logdata_lower, sort_status_ids
 
-storeFilesInTmp(True)
-# storeFilesInTmp(True)
+storeFilesInTmp(False)
 logdata = get_any_Logdata()
-#if os.path.exists("tmp/19/logdata_de.json"):
-#    logdata = readJsonFile("tmp/19/logdata_de.json")
-#else:
-#    logdata = get_any_Logdata()
-#    writeJsonFile("tmp/19/logdata_de.json", logdata)
+storeFilesInTmp(True)
 status = loadDataTheQuickestWay("status_all.json", translate=True)
 
 disable_green_print = True
