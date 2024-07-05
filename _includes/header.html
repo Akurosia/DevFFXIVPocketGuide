@@ -13,9 +13,9 @@
         {%- elsif page.image -%}
             style="background-image:
             {%- if page.image contains "/assets/" -%}
-                url('{{ page.image | prepend: site.baseurl }}');
+                url('{{site.baseurl}}/{{ page.image }}');
             {%- else -%}
-                url('{{ page.image | prepend: site.imageurl }}');
+                url('{{site.imageurl}}/{{ page.image }}');
             {%- endif -%}
             {%- if page.instanceType == "patch_details" -%}
                 background-size: contain;
