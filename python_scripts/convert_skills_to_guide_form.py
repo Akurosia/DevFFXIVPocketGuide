@@ -662,7 +662,7 @@ def addKlassJobs():
 
     counter = 0
     # print_color_red(pretty_json(ncj))
-    maxlvl = ""
+    maxlvl = "0"
     for k in ncj:
         job_d = k[1]
         job = job_d['Name_de']
@@ -676,7 +676,7 @@ def addKlassJobs():
             continue
         allPartyMittigation[job] = []
         counter += 1
-        #if not job == "Beschwörer":
+        #if not job == "Dragoon":
         #    continue
         base_class = cjs[k[0]]["ClassJob"]['Parent'] if not cjs[k[0]]["ClassJob"]['Parent'] == job else None
         print_color_red(job)
@@ -690,7 +690,7 @@ def addKlassJobs():
         if job == "Blaumagier":
             maxlvl = "80"
         else:
-            maxlvl = tmpmaxlvl if tmpmaxlvl > maxlvl else maxlvl
+            maxlvl = tmpmaxlvl if int(tmpmaxlvl) > int(maxlvl) else maxlvl
 
         gear = gear_get(lvl_from=1, lvl_to=int(maxlvl), ilvl_from=1, ilvl_to=999999, rarity=[1, 7, 2, 3, 4], classjob=job_d['Abbreviation_de'], category="Rumpf")
         maxilvl = str(max([int(e["Level_Item"]) for e in gear]))
