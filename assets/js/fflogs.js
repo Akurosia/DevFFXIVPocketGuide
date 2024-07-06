@@ -53,16 +53,37 @@ figths = {
     1062: ["TEA"],
     1065: ["DSU"],
     1068: ["TOP"],
-    88: ["P9S"],
-    89: ["P10S"],
-    90: ["P11S"],
-    91: ["P12S_P1"],
-    92: ["P12S_P2"],
-    3008: ["Thordan"],
-    1070: ["Zeromus"],
-}
-fight_ids = [1060,1061,1062,1065,1068,88,89,90,91,92,3008,1070]
 
+    //88: ["P9S"],
+    //89: ["P10S"],
+    //90: ["P11S"],
+    //91: ["P12S_P1"],
+    //92: ["P12S_P2"],
+
+    //3008: ["Thordan"],
+    1071: ["Valigarmanda"],
+    1072: ["Zoraal Ja"],
+}
+fight_ids = [1060,1061,1062,1065,1068,88,89,90,91,92,1071,1072]
+
+function fixIDs(_id) {
+    if (["1039", "1047", "1060", "1073"].includes(_id)) { // 1039=SB 1047=SHB 1060=EW   FIX OLD UCoB
+        _id = "1060"
+    }
+    if (["1042", "1048", "1061", "1074"].includes(_id)) { // 1042=SB 1048=SHB 1061=EW   FIX OLD UWU
+        _id = "1061"
+    }
+    if (["1050", "1062", "1075"].includes(_id)) { // 1050=SHB 1062=EW FIX OLD TEA
+        _id = "1062"
+    }
+    if (["1065", "1076"].includes(_id)) { // 1065=EW FIX OLD DSU
+        _id = "1065"
+    }
+    if (["1068", "1077"].includes(_id)) { // 1068=EW FIX OLD TOP
+        _id = "1068"
+    }
+    return _id
+}
 
 const currentDate = new Date();
 function gSFZ_getDataViaFetch(user, state){
@@ -80,7 +101,7 @@ function gSFZ_getDataViaFetch(user, state){
         printTable(JSON.parse(localStorage.getItem('player_data')))
     } else {
         console.log("Get New Data")
-        prom = getFFLOGSapiPlayerData(player = user, customTextblock = "", includeName = false, latestRaid = "54", unrealId = "46", latestPrimal = "55")
+        prom = getFFLOGSapiPlayerData(player = user, customTextblock = "", includeName = false)
         Promise.all([prom]).then((values) => {
             next5min = new Date(currentDate.getTime() + 5 * 60000).getTime()
             localStorage.setItem('player_data', JSON.stringify(values[0]))
@@ -193,6 +214,7 @@ function addTbody(result){
         tr.appendChild(addUserNameStuff(result[i], i))
         for (var j of fight_ids){
             if (figths[j] != undefined) {
+                console.log(result)
                 tr = addRow(tr, result, i, j)
             }
         }
@@ -270,6 +292,8 @@ function addJobImage(job){
 
 function addRow(tr, result, name, encounterID){
     td = document.createElement("td")
+    console.log(result[name][encounterID])
+    console.log(encounterID)
     if (parseInt(result[name][encounterID]['historical']) !== -1) {
         td.innerHTML = addJobImage(result[name][encounterID]['job']) + parseInt(result[name][encounterID]['historical'])
     }
@@ -316,15 +340,13 @@ function addEntryToTable(state){
     gSFZ_getDataViaFetch(player_list, state)
 }
 
-//gSFZ_getDataViaFetch(JSON.stringify(player_list))
 
-
-async function getFFLOGSapiPlayerData(player = "", customTextblock = "", includeName = false, latestRaid = "54", unrealId = "46", latestPrimal = "55", rerun = false) {
+async function getFFLOGSapiPlayerData(player = "", customTextblock = "", includeName = false, latestRaid = null, unrealId = null, latestPrimal = null, rerun = false) {
     access_key = localStorage.getItem('fflogs_token')
     if (access_key === undefined) {
       access_key = getNewAccessKey();
     }
-
+    // get ids by api https://www.fflogs.com:443/v1/zones?api_key={KEY} and looking for bossid e.g. 1071
     if (latestRaid === null) {
       latestRaid = "54";
     }
@@ -332,7 +354,7 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
       unrealId = "46";
     }
     if (latestPrimal === null) {
-      latestPrimal = "55";
+      latestPrimal = "58";
     }
 
     let query_player = "";
@@ -354,8 +376,9 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
             textblock += `Ultimates_Legacy_6: zoneRankings(zoneID: 43, metric: rdps),`
             textblock += `DSU_6: zoneRankings(zoneID: 45, metric: rdps),`
             textblock += `TOP_6: zoneRankings(zoneID: 53, metric: rdps),`
+            textblock += `Ultimates_Legacy_7: zoneRankings(zoneID: 59, metric: rdps),`
             textblock += `LATEST_RAID: zoneRankings(zoneID: ${latestRaid}, metric: rdps, difficulty: 101),`
-            textblock += `UNREAL_Primals: zoneRankings(zoneID: ${unrealId}, metric: rdps),`
+            //textblock += `UNREAL_Primals: zoneRankings(zoneID: ${unrealId}, metric: rdps),`
             textblock += `LATEST_Primals: zoneRankings(zoneID: ${latestPrimal}, metric: rdps)`
             textblock += `},`;
         } else {
@@ -366,6 +389,7 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
     let payload = `{"query":"query char_to_id { characterData { ${query_player} } }","variables":{} }`;
     payload = payload.replace(/\s+/, " ")
     payload = `${payload}`;
+    console.log(payload)
 
     const headers = {
       'Authorization': `Bearer ${access_key}`,
@@ -414,23 +438,7 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
                 for (entry_key in category_data['rankings']){
                     entry = category_data['rankings'][entry_key]
                     _id = String(entry['encounter']['id'])
-                    console.log(_id)
-                    console.log(_id in ["1050", "1062"])
-                    if (["1039", "1047", "1060"].includes(_id)) { // 1039=SB 1047=SHB 1060=EW   FIX OLD UCoB
-                        _id = "1060"
-                    }
-                    if (["1042", "1048", "1061"].includes(_id)) { // 1042=SB 1048=SHB 1061=EW   FIX OLD UWU
-                        _id = "1061"
-                    }
-                    if (["1050", "1062"].includes(_id)) { // 1050=SHB 1062=EW FIX OLD TEA
-                        _id = "1062"
-                    }
-                    if (["1065"].includes(_id)) { // 1065=EW FIX OLD DSU
-                        _id = "1065"
-                    }
-                    if (["1068"].includes(_id)) { // 1068=EW FIX OLD TOP
-                        _id = "1068"
-                    }
+                    _id = fixIDs(_id)
                     if (entry['rankPercent'] == null) {
                         entry['rankPercent'] = -1
                     }
