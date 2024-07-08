@@ -51,7 +51,7 @@
   color: darkgoldenrod;
 }
 
-.radio, .icon, .lvl, .ilvl, .materia, .stat {
+.radio, .icon, .lvl, .ilvl, .patch, .materia, .stat {
   text-align: center;
 }
 .radio {
@@ -64,6 +64,9 @@
     width: 3%;
 }
 .ilvl {
+    width: 3%;
+}
+.patch {
     width: 3%;
 }
 .materia {

@@ -396,6 +396,7 @@ async function createTemplateTableHead(name, json, classJob){
     _tr.appendChild(await createTHorTD(name, "th"));
     _tr.appendChild(await createTHorTD("lvl", "th", "lvl"));
     _tr.appendChild(await createTHorTD("ilvl", "th", "ilvl"));
+    _tr.appendChild(await createTHorTD("patch", "th", "patch"));
     _tr.appendChild(await createTHorTD("Materia", "th", "materia"));
 
     fields = get_stats_for_class(classJob)
@@ -455,6 +456,7 @@ async function createTemplateTableBody(name, json, classJob){
         _tr.appendChild(await createTHorTD(_name, "td"));
         _tr.appendChild(await createTHorTD(json[key]["Level_Equip"], "td", "lvl"));
         _tr.appendChild(await createTHorTD(json[key]["Level_Item"], "td", "ilvl"));
+        _tr.appendChild(await createTHorTD(json[key]["Patch"], "td", "patch"));
         _tr.appendChild(await createTHorTD(json[key]["MateriaSlotCount"], "td", "materia"));
         fields = get_stats_for_class(classJob, true)
         for (var field in fields){
