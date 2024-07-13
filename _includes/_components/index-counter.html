@@ -1,6 +1,6 @@
 {%- for guide in categories -%}
     {%- if page.page_category == "all" -%}
-        {%- if guide.instanceType != "overworld" -%}
+        {%- if guide.instanceType != "overworlds" -%}
             {%- assign counter = counter | plus: 1 -%}
         {%- endif -%}
 
