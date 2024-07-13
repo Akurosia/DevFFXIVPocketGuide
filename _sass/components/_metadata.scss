@@ -27,12 +27,8 @@
 
     .guide-metadata__wrapper {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         grid-row-gap: $unit;
-
-        @media #{$desktop} {
-            grid-template-columns: 1fr;
-        }
 
         >h5 {
             margin: 0;

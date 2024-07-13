@@ -25,13 +25,13 @@
             "
         {%- endif -%}>
         <div>
-            {%- if page.previous_slug -%}
-                <a id="pref_slug" href="{{ page.previous_slug | prepend: site.baseurl }}.html" style="display: none;"></a>
-                <button class="content_btn content_btn_prev" onclick="document.getElementById('pref_slug').click()" title="{{ page.previous_slug }}"> < </button>
-            {%- endif -%}
             {%- if page.next_slug -%}
                 <a id="next_slug" href="{{ page.next_slug | prepend: site.baseurl }}.html" style="display: none;"/></a>
-                <button class="content_btn content_btn_next" onclick="document.getElementById('next_slug').click()" title="{{ page.next_slug }}"> > </button>
+                <button class="content_btn content_btn_next" onclick="document.getElementById('next_slug').click()" title="{{ page.next_slug }}"> < </button>
+            {%- endif -%}
+            {%- if page.previous_slug -%}
+                <a id="pref_slug" href="{{ page.previous_slug | prepend: site.baseurl }}.html" style="display: none;"></a>
+                <button class="content_btn content_btn_prev" onclick="document.getElementById('pref_slug').click()" title="{{ page.previous_slug }}"> > </button>
             {%- endif -%}
         </div>
         <div class="site-header__item-a">

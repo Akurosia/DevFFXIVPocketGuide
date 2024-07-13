@@ -71,8 +71,8 @@
     &[class*=grid] {
       grid-template-columns: 0.5fr 3fr 0.5fr 3fr;
       grid-template-rows: 1fr ;
-      grid-template-areas:
-        "Dropdown Names None IdsHps"
+      grid-template-areas: "Dropdown Names None IdsHps";
+      grid-column-gap: 1rem;
     }
   }
 
@@ -106,8 +106,8 @@
     &[class*=grid] {
       grid-template-columns: 0.5fr 3fr 0.5fr 3fr;
       grid-template-rows: 0.5fr ;
-      grid-template-areas:
-        "Dropdown Names None IdsHps"
+      grid-template-areas: "Dropdown Names None IdsHps";
+      grid-column-gap: 1rem;
     }
 
     &[class*=combo] {
@@ -188,8 +188,8 @@
     &[class*=grid] {
       grid-template-columns: 0.5fr 3fr 0.5fr 3fr;
       grid-template-rows: 0.5fr ;
-      grid-template-areas:
-        "Dropdown Names None IdsHps"
+      grid-template-areas: "Dropdown Names None IdsHps";
+      grid-column-gap: 1rem;
     }
     &[class*=grid_attack] {
       grid-template-columns: 0.5fr 5fr 1.5fr;

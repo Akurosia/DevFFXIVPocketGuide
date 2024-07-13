@@ -8,10 +8,12 @@
     padding: calc(#{$unit} * 3) 0;
     position: relative;
     text-align: center;
+    justify-content: center;
     display: flex;
 
     @media #{$l-tablet} {
         text-align: left;
+        justify-content: left;
     }
 
     &::before {
