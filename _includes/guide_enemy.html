@@ -45,7 +45,7 @@
                             <div class="guide__accordion-trigger-title_hex_id">Enemy-Hex-ID: {{ enemy.enemy_hex_id }}</div>
                         {%- endif -%}
                         {%- if enemy.hp -%}
-                            <div class="guide__accordion-trigger-title_hp">HP:
+                            <div class="guide__accordion-trigger-title_hp">HP:&nbsp;
                                 {%- if enemy.hp[0].min == enemy.hp[1].max -%}
                                     {{ enemy.hp[0].min | intcomma: '.' }}
                                 {%- else -%}

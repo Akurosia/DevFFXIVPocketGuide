@@ -264,8 +264,32 @@ def get_lvl_data(entry):
         lvl_data += 'ilvl_sync: ' + cfc_value["ItemLevel"]["Sync"] + '\n'
     return lvl_data
 
+cat_to_instance_image = {
+    "dungeon": "/061000/061801_hr1.png",
+    "trial": "/061000/061804_hr1.png",
+    "raid": "/061000/061802_hr1.png",
+    "ultimate": "/061000/061832_hr1.png",
+    "allianzraid": "/061000/061844_hr1.png",
+    "gewölbesuche": "/061000/061846_hr1.png",
+    "feldexkursion": "/061000/061837_hr1.png",
+    "bluemage": "/061000/061836_hr1.png",
+    "potd": "/061000/061824_hr1.png",
+    "guildhest": "/061000/061803_hr1.png",
+    "treasure": "/061000/061808_hr1.png",
+    "pvp": "/061000/061806_hr1.png",
+    "training": "/061000/061823_hr1.png",
+    "overworld": "/052000/052474_hr1.png"
+}
+def get_cat_image(instancetype, cfc_key):
+    global cat_to_instance_image
+    global contentfindercondition
+    # this case handels latest primals and savage content as they are always classified as hardcore content
+    if contentfindercondition.get(cfc_key, {}).get("HighEndDuty", None) == "True":
+        return cat_to_instance_image['ultimate']
+    return cat_to_instance_image.get(instancetype, None)
 
-def rewrite_content_even_if_exists(entry, old_wip):
+
+def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
     header_data = ""
     tt_type_name, tt_bg_entry = get_territorytype_from_mapid(entry)
     if old_wip in ["True", "False"]:
@@ -299,6 +323,9 @@ def rewrite_content_even_if_exists(entry, old_wip):
     if entry["image"]:
         header_data += f'image: "{getImage(entry["image"])}"\n'
         #header_data += '  - url: \"/' +  + '\n'
+    cat_image = get_cat_image(entry["instanceType"], cfc_key)
+    if cat_image:
+        header_data += f'jobicon: "{getImage(cat_image)}"\n'
     header_data += 'terms:\n'
     header_data = writeTags(header_data, entry, tt_type_name)
     header_data += 'patchName: "' + entry["patchName"] + '"\n'
@@ -432,10 +459,11 @@ def getItemsList(gs_items):
     return item_list
 
 
-def addContentZoneIdToHeader(header_data, contentzoneid, entry):
+def addContentZoneIdToHeader(contentzoneid, entry):
     global contentfindercondition
     global contentfindercondition_trans
     cmt = None
+    header_data = ""
     working_key = ""
     if not contentzoneid == "":
         header_data += 'contentzoneids:\n'
@@ -465,7 +493,7 @@ def addContentZoneIdToHeader(header_data, contentzoneid, entry):
         for lang in LANGUAGES:
             header_data += f'    {lang}: "' + contentfinderconditiontransient[working_key][f"Description_{lang}"].replace("\n", "<br/>").replace('"', '\\"') + '"\n'
 
-    return header_data, cmt
+    return header_data, cmt, working_key
 
 
 def addGroupCollections(cmt, entry):
@@ -563,8 +591,10 @@ def addMusic(header_data, music):
 
 def addHeader(entry, old_data, music, contentzoneid, content_translations):
     logger.info("test")
-    header_data, entry = rewrite_content_even_if_exists(entry, old_data.get('wip', False))
-    header_data, cmt = addContentZoneIdToHeader(header_data, contentzoneid, entry)
+    # the order was changed so that we have the cfc_key to retrief the correct icon for the content (latest ex primals and savage raids)
+    content_data, cmt, cfc_key = addContentZoneIdToHeader(contentzoneid, entry)
+    header_data, entry = rewrite_content_even_if_exists(entry, old_data.get('wip', False), cfc_key)
+    header_data += content_data
     header_data += addGroupCollections(cmt, entry)
     if music:
         header_data = addMusic(header_data, music)
