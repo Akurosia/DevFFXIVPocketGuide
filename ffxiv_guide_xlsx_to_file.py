@@ -18,6 +18,9 @@ from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData,
 import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
 import python_scripts.generateHousingMissions as ghm
+import python_scripts.get_achivments as ga
+import python_scripts.getBlueSideQuestData as gbsq
+
 
 logger = getLogger(50)
 disable_green_print = True
@@ -237,7 +240,7 @@ def main():
     orderedContent = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
     #logger.debug(orderedContent)
     try:
-        run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
+        #run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
@@ -245,9 +248,11 @@ def main():
     if not print_debug:
         #csgf needs also to run from posts dir
         csgf.run()
-        gl.run()
+        #gl.run()
         gp.run()
         ghm.run()
+        ga.run()
+        gbsq.run()
     logger.critical('STOP')
 
 

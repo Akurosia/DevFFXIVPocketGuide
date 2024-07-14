@@ -1,9 +1,7 @@
-import math
-
 import os
-import sys
+import json
 from ffxiv_aku import *
-import yaml
+from ffxiv_aku import loadDataTheQuickestWay, false, true, wrap_in_color_green, wrap_in_color_red
 try:
     from yaml import CLoader as Loader
 except ImportError:
@@ -17,7 +15,12 @@ levels = loadDataTheQuickestWay("Level.json", translate=false)
 maps = loadDataTheQuickestWay("Map.json", translate=false)
 cfc = loadDataTheQuickestWay("ContentFindercondition.de.json", translate=false)
 ac = loadDataTheQuickestWay("AetherCurrent.json", translate=false)
+patched_data = None
 
+# test()
+results = {}
+mresults = {}
+error = []
 expansions = {
     "A Realm Reborn": "arr",
     "Heavensward": "hw",
@@ -199,82 +202,88 @@ def getPatchedData(_id):
     return None
 
 
-with open("patchedBlueQuestData.json", "r", encoding="utf8") as f:
-    patched_data = json.load(f)
-# this will sort the file
-with open("patchedBlueQuestData.json", "w", encoding="utf8") as f:
-    json.dump(patched_data, f, sort_keys=True, indent=4, ensure_ascii=False)
+def main():
+    for key, quest in quests.items():
+        _id = key
+        if checkPatchedData(_id):
+            # continue
+            pass
+        elif not quest['EventIconType'] in ["EventIconType#8", "EventIconType#10"] and not checkPatchedData(str(_id)):
+            continue
+        elif not (quest['ClassJobCategory']["0"] in ["Alle Klassen", "Krieger, Magier", "Handwerker", "Handwerker, Sammler", "Krieger oder Magier (außer beschränkte Jobs)", "Sammler"] or quest['ClassJobCategory']["1"] in ["Alle Klassen", "Krieger, Magier", "Krieger oder Magier (außer beschränkte Jobs)", "Handwerker, Sammler", "Handwerker", "Sammler"]):
+            continue
+        # remove repeatables aas they never can unlock anything
+        elif quest["IsRepeatable"] == "True":
+            continue
 
-# test()
-results = {}
-mresults = {}
-error = []
-for key, quest in quests.items():
-    _id = key
-    if checkPatchedData(_id):
-        # continue
-        pass
-    elif not quest['EventIconType'] in ["EventIconType#8", "EventIconType#10"] and not checkPatchedData(str(_id)):
-        continue
-    elif not (quest['ClassJobCategory']["0"] in ["Alle Klassen", "Krieger, Magier", "Handwerker", "Handwerker, Sammler", "Krieger oder Magier (außer beschränkte Jobs)", "Sammler"] or quest['ClassJobCategory']["1"] in ["Alle Klassen", "Krieger, Magier", "Krieger oder Magier (außer beschränkte Jobs)", "Handwerker, Sammler", "Handwerker", "Sammler"]):
-        continue
-    # remove repeatables aas they never can unlock anything
-    elif quest["IsRepeatable"] == "True":
-        continue
+        name = quest['Name'].replace(" ", "").replace(" ", "")
+        try:
+            level_data = getLevel(quest['Issuer']['Location'])
+        except Exception as e:
+            print((e, name))
+            error.append(name)
 
-    name = quest['Name'].replace(" ", "").replace(" ", "")
-    try:
-        level_data = getLevel(quest['Issuer']['Location'])
-    except Exception as e:
-        print((e, name))
-        error.append(name)
+        if name in error:
+            error.remove(name)
+        new_element = {
+            "name": name,
+            "level": quest['ClassJobLevel']["0"],
+            "icon": quest['Icon']['Value'].replace('.tex', "_hr1.png"),
+            "place": f"{level_data['region']}",
+            "previousquest": [quest['PreviousQuest']["0"], quest['PreviousQuest']["1"], quest['PreviousQuest']["2"]],
+            "journalgenre": quest['JournalGenre'],
+            "issuer_location_": {"x": level_data['x'], "y": level_data['y'], },
+            "issuer_start_": quest['Issuer']['Start'],
+        }
+        if quest['PlaceName']:
+            new_element["place"] += f" > {quest['PlaceName']}"
+        if level_data['placename'] and level_data['placename'] not in new_element["place"]:
+            new_element["place"] += f" > {level_data['placename']}"
+        try:
+            new_element["unlocks"] = findContentForQuest(quest, key)
+        except Exception as e:
+            print(e)
+            asdfasdf
+            pass
 
-    if name in error:
-        error.remove(name)
-    new_element = {
-        "name": name,
-        "level": quest['ClassJobLevel']["0"],
-        "icon": quest['Icon']['Value'].replace('.tex', "_hr1.png"),
-        "place": f"{level_data['region']}",
-        "previousquest": [quest['PreviousQuest']["0"], quest['PreviousQuest']["1"], quest['PreviousQuest']["2"]],
-        "journalgenre": quest['JournalGenre'],
-        "issuer_location_": {"x": level_data['x'], "y": level_data['y'], },
-        "issuer_start_": quest['Issuer']['Start'],
-    }
-    if quest['PlaceName']:
-        new_element["place"] += f" > {quest['PlaceName']}"
-    if level_data['placename'] and level_data['placename'] not in new_element["place"]:
-        new_element["place"] += f" > {level_data['placename']}"
-    try:
-        new_element["unlocks"] = findContentForQuest(quest, key)
-    except Exception as e:
-        print(e)
-        asdfasdf
-        pass
+        if checkPatchedData(str(_id)):
+            new_element["unlocks"] = getPatchedData(_id)
 
-    if checkPatchedData(str(_id)):
-        new_element["unlocks"] = getPatchedData(_id)
+        try:
+            new_element['previousquest'].remove("")
+            new_element['previousquest'].remove("")
+        except:
+            pass
 
-    try:
-        new_element['previousquest'].remove("")
-        new_element['previousquest'].remove("")
-    except:
-        pass
+        exp = quest['Expansion']
+        if not results.get(exp, None):
+            results[exp] = {}
+            mresults[exp] = {}
 
-    exp = quest['Expansion']
-    if not results.get(exp, None):
-        results[exp] = {}
-        mresults[exp] = {}
-
-    # change this for both stuff
-    if new_element.get("unlocks", None):
-        results[exp][_id] = new_element
-    else:
-        mresults[exp][_id] = new_element
+        # change this for both stuff
+        if new_element.get("unlocks", None):
+            results[exp][_id] = new_element
+        else:
+            mresults[exp][_id] = new_element
 
 
-getListOfMissingSideQuests(mresults)
-getFinalData(results)
+def run():
+    global patched_data
+    if "python_scripts" not in os.getcwd():
+        os.chdir("python_scripts")
+
+    with open("patchedBlueQuestData.json", "r", encoding="utf8") as f:
+        patched_data = json.load(f)
+    main()
+    getListOfMissingSideQuests(mresults)
+    getFinalData(results)
+
+    # this will sort the file
+    with open("patchedBlueQuestData.json", "w", encoding="utf8") as f:
+        json.dump(patched_data, f, sort_keys=True, indent=4, ensure_ascii=False)
 # if not error == []:
 #    print_pretty_json(error)
 #    # sys.exit(0)
+
+if __name__ == "__main__":
+    run()

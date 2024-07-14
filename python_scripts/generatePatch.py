@@ -154,6 +154,8 @@ def single_patch_file():
 
 
 def run():
+    if "_posts" in os.getcwd():
+        os.chdir("..")
     get_class_translation_data()
     patches_overview()
     single_patch_file()

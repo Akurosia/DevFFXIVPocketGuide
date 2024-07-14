@@ -1,5 +1,10 @@
 from ffxiv_aku import get_any_Logdata, print_color_yellow, loadDataTheQuickestWay, print_color_red, pretty_json, print_pretty_json
 import copy
+import os
+try:
+    from .convert_skills_to_guide_form_helper.helper import getImage
+except:
+    from convert_skills_to_guide_form_helper.helper import getImage
 
 
 def get_achivment_kind():
@@ -62,7 +67,7 @@ def get_achivment_per_categorie(basic_cat):
                             'ko': trans_achivment[key]['Description_ko']
                         },
                         "order": order_id,
-                        "icon": value['Icon'],
+                        "icon": getImage(value['Icon']),
                         "item": value['Item'],
                         "key": value['Key'],
                         "points": value['Points'],
@@ -102,7 +107,7 @@ def write_yaml_data_for_guide(kind, a_data):
                     doc_data += f'     ja: "{v["name"]["ja"]}"\n'
                     doc_data += f'     cn: "{v["name"]["cn"]}"\n'
                     doc_data += f'     ko: "{v["name"]["ko"]}"\n'
-                    doc_data += f'   description:\n'
+                    doc_data += '   description:\n'
                     doc_data += f'     de: "{v["description"]["de"]}"\n'
                     doc_data += f'     en: "{v["description"]["en"]}"\n'
                     doc_data += f'     fr: "{v["description"]["fr"]}"\n'
@@ -111,7 +116,7 @@ def write_yaml_data_for_guide(kind, a_data):
                     doc_data += f'     ko: "{v["description"]["ko"]}"\n'
                     doc_data += f'   main_category: "{main_category}"\n'
                     doc_data += f'   sub_category: "{sub_category}"\n'
-                    doc_data += f'   icon: "{icon}"\n'
+                    doc_data += f'   icon: "{getImage(icon)}"\n'
                     doc_data += f'   order: "{order}"\n'
                     if not v['item'] == "":
                         doc_data += f'   item: "{v["item"]}"\n'
@@ -128,17 +133,21 @@ def write_yaml_data_for_guide(kind, a_data):
             pass
     doc_data += '---\n'
 
-    with open("../_posts/single_page_content/2013-01-01--2.0--1--achivments.md", "w", encoding="utf8") as f:
+    with open("_posts/single_page_content/2013-01-01--2.0--1--achivments.md", "w", encoding="utf8") as f:
         f.write(doc_data)
 
 
-if __name__ == "__main__":
+def run():
     kind = get_achivment_kind()
     cat = get_achivment_categories()
     a_data = get_achivment_per_categorie(cat)
     #print_pretty_json(a_data)
     write_yaml_data_for_guide(kind, a_data)
 
+
+if __name__ == "__main__":
+    os.chdir("..")
+    run()
 
 #{
 #    'AchievementCategory': 'Saisonale Ereignisse',
