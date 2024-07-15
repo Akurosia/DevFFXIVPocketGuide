@@ -619,6 +619,18 @@ def getIconForJob(job_abb):
     return icon
 
 # these are the classes before they are job and usually dont need change
+
+roleicons = {
+    "Tank":                "062000/062581_hr1.png",
+    "Melee Dps":           "062000/062584_hr1.png",
+    "Physical Ranged Dps": "062000/062586_hr1.png",
+    "Healer":              "062000/062582_hr1.png",
+    "Magical Ranged Dps":  "062000/062587_hr1.png"
+}
+roleiconsextra = {
+    "2": ("uld/pure-healer.png", "Primärheiler"),
+    "6": ("uld/barrier-healer.png", "Barriereheiler")
+}
 additionalClassIcons = {
     "PLD": "062101_hr1",
     "MÖN": "062102_hr1",
@@ -743,6 +755,14 @@ def addKlassJobs():
         if classicon:
             classicon = getImage(f"062000/{classicon}.png")
             filecontent += f'classicon: "{classicon}"\n'
+        if roletypeinparty_en_name_key:
+            if roleicons.get(roletypeinparty_en_name_key, None):
+                filecontent += f'roleicon: "{getImage(roleicons[roletypeinparty_en_name_key])}"\n'
+                if roletypeinparty_en_name_key == "Healer":
+                    healicon, healname = roleiconsextra[cjs[k[0]]["col_46"]]
+                    filecontent += f'roleiconextra:\n'
+                    filecontent += f'    - name: "{healname}"\n'
+                    filecontent += f'      icon: "{healicon}"\n'
         filecontent += getJobKristall(job)
         filecontent += 'terms:\n'
         filecontent += '    - term: "Klassen"\n'

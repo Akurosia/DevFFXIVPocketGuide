@@ -90,6 +90,18 @@
                 <span class="block" data-translate="Sidebar_BaseClass_{{ page.base_class }}">{{ page.base_class }}</span>
             </h5>
         {%- endif -%}
+        {%- if page.roleicon -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Role-Icon:
+                <span class="block group-icon">
+                    {%- if page.roleicon -%}
+                        <image title="{{ page.roletypeinparty }}" src="{{ site.baseurl }}/assets/img/game_assets/{{page.roleicon}}"/>
+                    {%- endif -%}
+                    {%- if page.roleiconextra-%}
+                        <image title="{{page.roleiconextra[0].name}}" src="{{ site.baseurl }}/assets/img/game_assets/{{page.roleiconextra[0].icon}}"/>
+                    {%- endif -%}
+                </span>
+            </h5>
+        {%- endif -%}
         {%- if page.classicon or page.jobicon -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Icon:
                 <span class="block group-icon">
