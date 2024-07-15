@@ -1,15 +1,18 @@
-{%- if x == "ffxiv" -%}  {%- assign expacicon = "061000/061533_hr1.png" -%}
-{%- elsif x == "arr" -%} {%- assign expacicon = "061000/061875_hr1.png" -%}
-{%- elsif x == "hw" -%}  {%- assign expacicon = "061000/061876_hr1.png" -%}
-{%- elsif x == "sb" -%}  {%- assign expacicon = "061000/061877_hr1.png" -%}
-{%- elsif x == "shb" -%} {%- assign expacicon = "061000/061878_hr1.png" -%}
-{%- elsif x == "ew" -%}  {%- assign expacicon = "061000/061879_hr1.png" -%}
-{%- elsif x == "dt" -%}  {%- assign expacicon = "061000/061880_hr1.png" -%}
-{%- else -%}             {%- assign expacicon = "" -%}
+{%- if x == "ffxiv" -%}  {%- assign expacicon = "061000/061533_hr1.png" -%} {%- assign expacimage = "uld/title_logoonline_hr1.tex.png" -%}
+{%- elsif x == "arr" -%} {%- assign expacicon = "061000/061875_hr1.png" -%} {%- assign expacimage = "uld/title_logo_hr1.tex.png" -%}
+{%- elsif x == "hw" -%}  {%- assign expacicon = "061000/061876_hr1.png" -%} {%- assign expacimage = "uld/title_logo300_hr1.tex.png" -%}
+{%- elsif x == "sb" -%}  {%- assign expacicon = "061000/061877_hr1.png" -%} {%- assign expacimage = "uld/title_logo400_hr1.tex.png" -%}
+{%- elsif x == "shb" -%} {%- assign expacicon = "061000/061878_hr1.png" -%} {%- assign expacimage = "uld/title_logo500_hr1.tex.png" -%}
+{%- elsif x == "ew" -%}  {%- assign expacicon = "061000/061879_hr1.png" -%} {%- assign expacimage = "uld/title_logo600_hr1.tex.png" -%}
+{%- elsif x == "dt" -%}  {%- assign expacicon = "061000/061880_hr1.png" -%} {%- assign expacimage = "uld/title_logo700_hr1.tex.png" -%}
+{%- else -%}             {%- assign expacicon = "" -%} {%- assign expacimage = "" -%}
 {%- endif -%}
 <h2 class="index-divider__title">
     {%- if expacicon != "" -%}
         <image class="role-icon" src="{{site.baseurl}}/assets/img/game_assets/{{expacicon}}"/>
     {%- endif -%}
-    <span data-translate="Patches_{{x_title}}">{{ x_title }}</span>
+    {%- if expacimage != "" -%}
+        <img class="ex-icon" src="{{site.baseurl}}/assets/img/game_assets/{{expacimage}}">
+    {%- endif -%}
+    <!-- <span data-translate="Patches_{{x_title}}">{{ x_title }}</span> -->
 </h2>

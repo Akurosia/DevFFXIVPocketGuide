@@ -32,6 +32,7 @@
 
 .index-divider__title {
     background: darken($palette--white, 60%);
+    background: #1e2021;
     border-radius: 25px;
     color: $font-black;
     //display: inline-block;
@@ -44,6 +45,8 @@
     position: relative;
     text-transform: uppercase;
     z-index: 10;
+    //settings for ex image
+    overflow: hidden;
 
     @media #{$l-tablet} {
         margin: 0 0 0 calc(#{$unit} * 2);
