@@ -248,7 +248,7 @@ def main():
     if not print_debug:
         #csgf needs also to run from posts dir
         csgf.run()
-        #gl.run()
+        gl.run()
         gp.run()
         ghm.run()
         ga.run()

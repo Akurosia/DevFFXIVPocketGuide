@@ -260,9 +260,9 @@ def addOldStatusDetails(job, job_abb):
 
             if s.get('was_added_by_action', None):
                 result += '        added_by:\n'
-                result += '          icon: "' + actions_trans[str(int(s['was_added_by_action'], 16))]['Icon'].replace("ui/icon/", "") + '"\n'
+                result += '          icon: "' + getImage(actions_trans[str(int(s['was_added_by_action'], 16))]['Icon'].replace("ui/icon/", "")) + '"\n'
                 for lang in LANGUAGES:
-                    result += f'          {lang}: "' + actions_trans[str(int(s['was_added_by_action'], 16))][f'Name_{lang}'] + '"\n'
+                    result += f'          {lang}: "' + getImage(actions_trans[str(int(s['was_added_by_action'], 16))][f'Name_{lang}']) + '"\n'
             result += '        phases:\n'
             result += '          - phase: "02"\n'
     return result

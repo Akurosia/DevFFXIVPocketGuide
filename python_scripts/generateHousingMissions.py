@@ -108,6 +108,8 @@ def run():
             for name, stop_data in stops.items():
                 if not name.lower() == value.get("Destination_en", value.get("Name_en", "")).lower():
                     continue
+                if name == "":
+                    continue
                 v_en = value.get("Destination_en", value.get("Name_en", ""))
                 r_data += f'        - name: "{v_en}"\n'
                 for lang in LANGUAGES:
