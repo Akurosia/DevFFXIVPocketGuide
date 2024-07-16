@@ -163,10 +163,10 @@ def addAttackDetails(job_data, pvp=False):
         #print_color_red(pretty_json(skill_data) + "\n")
         name = {}
         for lang in LANGUAGES:
-            name[lang] = actions_trans.get(skill_data["Id"], {}).get(f"Name_{lang}", "").replace("\n", "</br>").replace("</br></br>", "</br>")
+            name[lang] = deal_with_extras_in_text(actions_trans.get(skill_data["Id"], {}).get(f"Name_{lang}", "").replace("\n", "</br>").replace("</br></br>", "</br>"))
         if name["en"] == "":
             for lang in LANGUAGES:
-                name[lang] = craftactions_trans[skill_data["Id"]][f"Name_{lang}"].replace("\n", "</br>").replace("</br></br>", "</br>")
+                name[lang] = deal_with_extras_in_text(craftactions_trans[skill_data["Id"]][f"Name_{lang}"].replace("\n", "</br>").replace("</br></br>", "</br>"))
         level = "0" if skill_data['Level'] == "99999" else skill_data['Level']
 
         #if _id == "7429":
@@ -212,7 +212,7 @@ def addAttackDetails(job_data, pvp=False):
         result += '        description:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "' + skill_data["Description"][lang] + '"\n'
-            job_translations[lang][f'Class_Skill_Desc_{pvp_text_field}{name["en"]}'] = skill_data["Description"][lang]
+            job_translations[lang][f'Class_Skill_Desc_{pvp_text_field}{name["en"]}'] = deal_with_extras_in_text(skill_data["Description"][lang])
         #if "%" in description["en"]:
         #    print(name["en"])
         #    print(description["en"])
