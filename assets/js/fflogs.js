@@ -253,14 +253,14 @@ jobs = {
     "Ninja":       "062130_hr1.png",
     "Samurai":     "062134_hr1.png",
     "Reaper":      "062139_hr1.png",
-    "Viper":       "",
+    "Viper":       "062141_hr1.png",
     "Bard":        "062123_hr1.png",
     "Machinist":   "062131_hr1.png",
     "Dancer":      "062138_hr1.png",
     "BlackMage":   "062125_hr1.png",
     "Summoner":    "062127_hr1.png",
     "RedMage":     "062135_hr1.png",
-    "Pictomancer": ""
+    "Pictomancer": "062142_hr1.png"
 }
 //golden icons
 jobs = {
