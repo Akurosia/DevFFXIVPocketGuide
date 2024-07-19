@@ -54,17 +54,18 @@ figths = {
     1065: ["DSU"],
     1068: ["TOP"],
 
-    //88: ["P9S"],
-    //89: ["P10S"],
-    //90: ["P11S"],
-    //91: ["P12S_P1"],
+    93: ["R1N"],
+    94: ["R2N"],
+    95: ["R3N"],
+    96: ["R4N"],
     //92: ["P12S_P2"],
 
     //3008: ["Thordan"],
     1071: ["Valigarmanda"],
     1072: ["Zoraal Ja"],
 }
-fight_ids = [1060,1061,1062,1065,1068,88,89,90,91,92,1071,1072]
+
+fight_ids = [1060,1061,1062,1065,1068,93,94,95,96,1071,1072]
 
 function fixIDs(_id) {
     if (["1039", "1047", "1060", "1073"].includes(_id)) { // 1039=SB 1047=SHB 1060=EW   FIX OLD UCoB
@@ -348,7 +349,7 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
     }
     // get ids by api https://www.fflogs.com:443/v1/zones?api_key={KEY} and looking for bossid e.g. 1071
     if (latestRaid === null) {
-      latestRaid = "54";
+      latestRaid = "62";
     }
     if (unrealId === null) {
       unrealId = "46";
@@ -377,7 +378,7 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
             textblock += `DSU_6: zoneRankings(zoneID: 45, metric: rdps),`
             textblock += `TOP_6: zoneRankings(zoneID: 53, metric: rdps),`
             textblock += `Ultimates_Legacy_7: zoneRankings(zoneID: 59, metric: rdps),`
-            textblock += `LATEST_RAID: zoneRankings(zoneID: ${latestRaid}, metric: rdps, difficulty: 101),`
+            textblock += `LATEST_RAID: zoneRankings(zoneID: ${latestRaid}, metric: rdps, difficulty: 100),`
             //textblock += `UNREAL_Primals: zoneRankings(zoneID: ${unrealId}, metric: rdps),`
             textblock += `LATEST_Primals: zoneRankings(zoneID: ${latestPrimal}, metric: rdps)`
             textblock += `},`;
