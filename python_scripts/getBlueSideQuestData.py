@@ -3,6 +3,10 @@ import json
 from ffxiv_aku import *
 from ffxiv_aku import loadDataTheQuickestWay, false, true, wrap_in_color_green, wrap_in_color_red
 try:
+    from .convert_skills_to_guide_form_helper.helper import getImage
+except:
+    from convert_skills_to_guide_form_helper.helper import getImage
+try:
     from yaml import CLoader as Loader
 except ImportError:
     from yaml import Loader
@@ -27,6 +31,7 @@ expansions = {
     "Stormblood": "sb",
     "Shadowbringers": "shb",
     "Endwalker": "ew",
+    "Dawntrail": "dt",
 }
 
 categories = ['dungeon', 'klasse', 'prüfung', 'gewoelbesuche', 'gildengeheiß', 'freibrief', "raid", "araid", "wilderstamm", "windäther", "hohejagd", "feldexkursion", "achivment", "relik", "hildi"]
@@ -166,7 +171,7 @@ def getFinalData(results):
                     write(out, f'     cn: "{translated_quest_names["Name_cn"].replace(" ", "").replace(" ", "")}"')
                     write(out, f'     ko: "{translated_quest_names["Name_ko"].replace(" ", "").replace(" ", "")}"')
                     write(out, f'   level: "{quest["level"]}"')
-                    write(out, f'   icon: "{quest["icon"].replace("ui/icon","")}"')
+                    write(out, f'   icon: "{getImage(quest["icon"])}"')
                     write(out, f'   journal: "{quest["journalgenre"]}"')
                     write(out, f'   place: "{quest["place"]}"')
                     write(out, f'   location: "X: {quest["issuer_location_"]["x"]} / Y: {quest["issuer_location_"]["y"]}"')
@@ -228,7 +233,7 @@ def main():
         new_element = {
             "name": name,
             "level": quest['ClassJobLevel']["0"],
-            "icon": quest['Icon']['Value'].replace('.tex', "_hr1.png"),
+            "icon": getImage(quest['Icon']['Value'].replace('.tex', "_hr1.png")),
             "place": f"{level_data['region']}",
             "previousquest": [quest['PreviousQuest']["0"], quest['PreviousQuest']["1"], quest['PreviousQuest']["2"]],
             "journalgenre": quest['JournalGenre'],

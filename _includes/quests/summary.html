@@ -9,9 +9,9 @@
             {%- elsif guide.icon -%}
                 style="background-image:
                     {%- if guide.icon contains "/assets/" -%}
-                        url('{{ guide.icon | prepend: site.baseurl }}')
-                    {%- else -%}
                         url('{{ guide.icon | prepend: site.imageurl }}')
+                    {%- else -%}
+                        url('{{site.baseurl}}/assets/img/game_assets/{{ guide.icon }}')
                     {%- endif -%}
             {%- endif -%}">
         </div>
