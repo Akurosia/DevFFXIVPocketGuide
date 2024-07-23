@@ -1,13 +1,56 @@
 <!-- Include from _includes/dalamud/index -->
 <div class="index">
-    {%- for plugin in site.categories.dalamud -%}
-                <span style="color: white">{{plugin}}</span>
-        {%- for guide in plugin.plugins -%}
-                <span style="color: green">{{guide}}</span>
-            {%- if guide.instanceType == queryType -%}
-                <span style="color: yellow;">{{guide.name.de}}</span>
-            {%- endif -%}
+    <div class="index__list_quests" data-expansion="{{ x }}">
+        {%- for plugin in site.categories.dalamud -%}
+            {%- for guide in plugin.plugins -%}
+                <div class="summary">
+                    <span class="index-item__link" title="Go to the {{ guide.name.de }} Guide">
+                        {%- assign official = false -%}
+                        {%- for version in guide.versions -%}
+                            {%- if version.url == "https://kamori.goats.dev/Plugin/PluginMaster" -%}
+                                {%- assign official = true -%}
+                            {%- endif -%}
+                        {%- endfor -%}
+                        <div class="index-item__background"
+                                style="background-color: {%- if official == true -%} green; {%- else -%} yellow; {%- endif -%}">
+                        </div>
+                        <h3 class="index-item__title"
+                            data-terms="{%- for tag in guide.tags -%}tag:{{ tag.tag }}&#32;{%- endfor -%}
+                                &#32;desc:{{guide.description}}&#32;punch:{{guide.punchline}}&#32;name:{{guide.name}}&#32;
+                                {%- for version in guide.versions -%}
+                                    author:{{ version.author }}&#32;url:{{ version.url }}&#32;version:{{ version.version }}&#32;
+                                    {%- if version.url == "https://kamori.goats.dev/Plugin/PluginMaster" -%}official&#32;firstparty&#32;{%- endif -%}
+                                {%- endfor -%}
+                            ">
+                            <span class=""> {{ guide.name }} </span>
+                        </h3>
+                        {%- if guide.description != "" -%}
+                            <h4 class="index-item__title_en">Description: {{ guide.description }}</h4>
+                        {%- endif -%}
+                        {%- if guide.punchline -%}
+                            <h4 class="index-item__title_en">Punchline: {{ guide.punchline }}</h4>
+                        {%- endif -%}
+                        {%- if guide.tags -%}
+                            <h4 class="index-item__title_en">Tags:&nbsp;{%- for tag in guide.tags -%}{{ tag.tag }}&nbsp;{%- endfor -%}</h4>
+                        {%- endif -%}
+                        {%- if guide.versions -%}
+                            <table style="z-index: 9" class="table-bordered table-dark table-striped text-light patch_table">
+                                <thead><tr><th>Author</th><th>URL</th><th>Version</th></tr></thead>
+                                <tbody>
+                                    {%- for version in guide.versions -%}
+                                        <tr>
+                                            <th>{{version.author}}</th>
+                                            <th>{{version.url}}</th>
+                                            <th>{{version.version}}</th>
+                                        </tr>
+                                    {%- endfor -%}
+                                </tbody>
+                            </table>
+                        {%- endif -%}
+                    </span>
+                </div>
+            {%- endfor -%}
         {%- endfor -%}
-    {%- endfor -%}
+    </div>
 </div>
 <!-- END Include from _includes/dalamud/index -->

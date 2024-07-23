@@ -1,6 +1,5 @@
 from ffxiv_aku import *
 
-content = readJsonFile(r"C:\Users\kamot\AppData\Roaming\XIVLauncher\dalamudConfig.json")
 
 
 # this is to fix some of the broken json files
@@ -20,6 +19,7 @@ def clean_json(string):
         x = [x]
     return x
 
+
 def sanatizeURL(url):
     #return ncorreect urls early
     if url.startswith("https://github.com/"):
@@ -33,13 +33,55 @@ def sanatizeURL(url):
     return newURL
 
 
-skip_urls = []
-completed_repos = []
-repos_with_load_errors = []
-result = readJsonFile("dalamud_repos.json")
+def write(out, data):
+    out.write(str(data) + "\n")
+
+
+def getFinalData():
+    file_location = os.path.dirname(os.path.realpath(__file__))
+    result_file = os.path.join(file_location, "..", "_posts", "single_page_content", "2013-01-01--2.0--1--dalamud.md")
+    dalamud_data = readJsonFile("dalamud_repos.json")
+    print_color_green(f"Write result to {result_file}")
+    with open(result_file, "w", encoding="utf8") as out:
+        write(out, "---")
+        write(out, 'wip: "True"')
+        write(out, 'title: "Plugins"')
+        write(out, 'layout: index')
+        write(out, 'page_type: guide')
+        write(out, 'categories: "dalamud"')
+        write(out, 'plugins:')
+        for key, value in dalamud_data.items():
+            print(key)
+            print(value)
+            desc = value.get("description", "").replace("\n", "<br>").replace("<br><br>", "<br>").replace('"', "'")
+            try:
+                write(out, f' - name: "{key}"')
+                write(out, f'   description: "{desc}"')
+                if value.get("punchline", None):
+                    pun = value["punchline"][0].replace('"', "'")
+                    write(out, f'   punchline: "{pun}"')
+                if value.get("tags", None):
+                    write(out, f'   tags:')
+                    for tag in value["tags"][0]:
+                        write(out, f'     - tag: "{tag}"')
+                write(out, f'   versions:')
+                for v in value["versions"]:
+                    author, url, version = v
+                    write(out, f'     - author: "{author}"')
+                    write(out, f'       url: "{url}"')
+                    write(out, f'       version: "{version}"')
+            except Exception as e:
+                print_color_red(e)
+
+        write(out, "---")
+
+
 def run():
-    global result
-    global completed_repos
+    skip_urls = []
+    completed_repos = []
+    repos_with_load_errors = []
+    content = readJsonFile(r"C:\Users\kamot\AppData\Roaming\XIVLauncher\dalamudConfig.json")
+    result = readJsonFile("dalamud_repos.json")
     # collect all urls from local dalamud file
     repo_urls = []
     for key in content["ThirdRepoList"]['$values']:
@@ -88,12 +130,15 @@ def run():
             print(f"Error on: {url}")
             repos_with_load_errors.append(url)
         completed_repos.append(url)
+    writeJsonFile("dalamud_repos.json", result)
+    print_pretty_json(completed_repos)
+    print_pretty_json(repos_with_load_errors)
+
 
 if __name__ == "__main__":
     try:
-        run()
+        #run()
+        getFinalData()
     except Exception as e:
         print(e)
-    print_pretty_json(completed_repos)
-    print_pretty_json(repos_with_load_errors)
-    writeJsonFile("dalamud_repos.json", result)
+    #print debug things
