@@ -439,7 +439,7 @@ async function createTemplateTableBody(name, json, classJob){
         max_meld = getMaxMeld(json[key])
         var _tr = document.createElement('tr');
         _tr.appendChild(await createTHorTD("<input onclick='updateValues()' type='radio' id='" + json[key]["Name_de"] + "' name='" + name + "' value=''>", "td"));
-        _tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img src='https://xivapi.com/i/" + json[key]['Icon'].replace("ui/icon/", "") + "'></img>" + "</a>", "td", "icon"));
+        _tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img loading='lazy' src='https://xivapi.com/i/" + json[key]['Icon'].replace("ui/icon/", "") + "'></img>" + "</a>", "td", "icon"));
         _name = '<div class="mytooltip"  id="' + json[key]["ID"] + '">'
         _name += '<span class="lang-toggle lang-toogle-de" onclick="copy2clipboard(\'' + json[key]["Name_de"] + '\')">' + json[key]["Name_de"] + '</span>'
         _name += '<span class="lang-toggle lang-toogle-en" onclick="copy2clipboard(\'' + json[key]["Name_en"] + '\')">' + json[key]["Name_en"] + '</span>'

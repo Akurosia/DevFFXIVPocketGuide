@@ -45,7 +45,7 @@
     <div class="guide__accordion-copy-wrapper">
         {%- for status in attack.add_status -%}
             {%- for lang in LANGUAGES -%}
-                <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status <img src="{{ site.baseurl }}/{{ status.icon }}" style="height: 30px; width: auto;"><u>{{ status.name[lang] }}</u> hinzu.</h5>
+                <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status <img loading="lazy" src="{{ site.baseurl }}/{{ status.icon }}" style="height: 30px; width: auto;"><u>{{ status.name[lang] }}</u> hinzu.</h5>
             {%- endfor -%}
             <br/>
         {%- endfor -%}

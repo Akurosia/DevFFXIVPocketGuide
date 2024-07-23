@@ -288,7 +288,7 @@ jobs = {
     "Pictomancer": "062042_hr1.png"
 }
 function addJobImage(job){
-    return '<img src="https://xivapi.com/i/062000/' + jobs[job] + '" style="height: 30px; padding-right: 5px;">'
+    return '<img loading="lazy" src="https://xivapi.com/i/062000/' + jobs[job] + '" style="height: 30px; padding-right: 5px;">'
 }
 
 function addRow(tr, result, name, encounterID){
