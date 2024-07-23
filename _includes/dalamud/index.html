@@ -4,7 +4,7 @@
         {%- for plugin in site.categories.dalamud -%}
             {%- for guide in plugin.plugins -%}
                 <div class="summary">
-                    <span class="index-item__link" title="Go to the {{ guide.name.de }} Guide">
+                    <span class="index-item__link">
                         {%- assign official = false -%}
                         {%- for version in guide.versions -%}
                             {%- if version.url == "https://kamori.goats.dev/Plugin/PluginMaster" -%}
@@ -12,7 +12,7 @@
                             {%- endif -%}
                         {%- endfor -%}
                         <div class="index-item__background"
-                                style="background-color: {%- if official == true -%} green; {%- else -%} yellow; {%- endif -%}">
+                                style="background-color: {%- if guide.DalamudApiLevel < 10 -%} red; {%- elsif official == true -%} green; {%- else -%} yellow; {%- endif -%}">
                         </div>
                         <h3 class="index-item__title"
                             data-terms="{%- for tag in guide.tags -%}tag:{{ tag.tag }}&#32;{%- endfor -%}
@@ -22,7 +22,7 @@
                                     {%- if version.url == "https://kamori.goats.dev/Plugin/PluginMaster" -%}official&#32;firstparty&#32;{%- endif -%}
                                 {%- endfor -%}
                             ">
-                            <span class=""> {{ guide.name }} </span>
+                            <span class=""> {{ guide.name }}&nbsp;{%- if guide.DalamudApiLevel > 0 -%} ({{guide.DalamudApiLevel}}) {%- endif -%}</span>
                         </h3>
                         {%- if guide.description != "" -%}
                             <h4 class="index-item__title_en">Description: {{ guide.description }}</h4>
@@ -39,7 +39,7 @@
                                 <tbody>
                                     {%- for version in guide.versions -%}
                                         <tr>
-                                            <th>{{version.author}}</th>
+                                            <th><a target="_blank" rel="noopener noreferrer" style="color:white" href="{{version.repo}}">{{version.author}}</a></th>
                                             <th>{{version.url}}</th>
                                             <th>{{version.version}}</th>
                                         </tr>
