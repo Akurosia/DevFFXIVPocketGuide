@@ -47,7 +47,7 @@ def run():
         url = sanatizeURL(url)
         repo_urls.append(url)
 
-    repo_urls = ["https://kamori.goats.dev/Plugin/PluginMaster"]
+    repo_urls += ["https://kamori.goats.dev/Plugin/PluginMaster"]
 
     print(len(repo_urls))
     print(len(list(set([x.lower() for x in repo_urls]))))
