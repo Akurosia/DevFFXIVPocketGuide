@@ -240,7 +240,7 @@ def main():
     orderedContent = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
     #logger.debug(orderedContent)
     try:
-        #run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
+        run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
