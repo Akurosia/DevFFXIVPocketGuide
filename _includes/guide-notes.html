@@ -19,7 +19,7 @@
                     {%- if mechanic.title.en -%}
                         {%- if mechanic.title.icon -%}
                             <div style="display: inline;">
-                                <img style="width: auto;object-fit: scale-down;" src="{%- if mechanic.title.icon contains "/assets/" -%}
+                                <img loading="lazy" style="width: auto;object-fit: scale-down;" src="{%- if mechanic.title.icon contains "/assets/" -%}
                                         {{ mechanic.title.icon | prepend: site.baseurl }}
                                     {%- else -%}
                                         {{ mechanic.title.icon | prepend: site.imageurl }}

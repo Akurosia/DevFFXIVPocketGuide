@@ -98,7 +98,7 @@ def write_yaml_data_for_guide(kind, a_data):
                 #print(value)
                 for k in sorted(value['achievements']):
                     v = value['achievements'][k]
-                    icon = v["icon"].replace(".tex", ".png").replace("ui/icon/", "")
+                    icon = getImage(v["icon"].replace(".tex", ".png"))
                     order = round(v["order"], 1)
                     doc_data += ' - name:\n'
                     doc_data += f'     de: "{v["name"]["de"]}"\n'
@@ -148,6 +148,7 @@ def run():
 if __name__ == "__main__":
     os.chdir("..")
     run()
+    print("Done Achivments!")
 
 #{
 #    'AchievementCategory': 'Saisonale Ereignisse',

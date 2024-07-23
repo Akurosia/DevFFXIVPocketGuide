@@ -16,7 +16,7 @@
 
         <div class="klassenjobgrid{%- if guide.jobicon -%}{%- else -%}-onlyname{%- endif -%}">
             {%- if guide.jobicon -%}
-                <image class="SummaryIcon Icon" title="{{guide.instanceType}}" src="{{site.baseurl}}/assets/img/game_assets/{{guide.jobicon}}"/>
+                <image loading="lazy" class="SummaryIcon Icon" title="{{guide.instanceType}}" src="{{site.baseurl}}/assets/img/game_assets/{{guide.jobicon}}"/>
             {%- endif -%}
             <div class="SummaryName">
                 <h3 class="index-item__title"

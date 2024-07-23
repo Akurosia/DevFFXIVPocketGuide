@@ -16,16 +16,16 @@
     </div>
     <!-- Menu -->
     <div
-        class="sidebar"
+        class="sidebar" loading="lazy"
         style="background-image: url('{{ "/assets/img/guide_index_default.jpg" | prepend: site.baseurl }}');">
         <div class="sidebar__wrapper">
             <div class="languages">
-                <a style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_US" onclick="changeLanguageTo('lang-toogle-en', 'en-US')" alt="en"></a>
-                <a style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_DE" onclick="changeLanguageTo('lang-toogle-de', 'de-DE')" alt="de"></a>
-                <a style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_FR" onclick="changeLanguageTo('lang-toogle-fr', 'fr-FR')" alt="fr"></a>
-                <a style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_JP" onclick="changeLanguageTo('lang-toogle-ja', 'ja-JP')" alt="ja"></a>
-                <a style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_CN" onclick="changeLanguageTo('lang-toogle-cn', 'cn-CN')" alt="cn"></a>
-                <a style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_KR" onclick="changeLanguageTo('lang-toogle-ko', 'ko-KR')" alt="ko"></a>
+                <a loading="lazy" style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_US" onclick="changeLanguageTo('lang-toogle-en', 'en-US')" alt="en"></a>
+                <a loading="lazy" style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_DE" onclick="changeLanguageTo('lang-toogle-de', 'de-DE')" alt="de"></a>
+                <a loading="lazy" style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_FR" onclick="changeLanguageTo('lang-toogle-fr', 'fr-FR')" alt="fr"></a>
+                <a loading="lazy" style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_JP" onclick="changeLanguageTo('lang-toogle-ja', 'ja-JP')" alt="ja"></a>
+                <a loading="lazy" style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_CN" onclick="changeLanguageTo('lang-toogle-cn', 'cn-CN')" alt="cn"></a>
+                <a loading="lazy" style="background-image: url('{{ "/assets/img/flags.png" | prepend: site.baseurl }}')" class="flags_img iso_KR" onclick="changeLanguageTo('lang-toogle-ko', 'ko-KR')" alt="ko"></a>
             </div>
             <h1 class="sidebar__title">
                 <a href='{{ "/" | prepend: site.baseurl }}' title="Return to the Pocket Guide Home Page.">
@@ -40,14 +40,14 @@
                 <li>
                     <a target="" {%- if page.page_category == "about" -%}class="active"{%- endif -%}
                         href='{{ "/about.html" | prepend: site.baseurl }}' title="See what's new with the Pocket Guide.">
-                        <img src='{{ "/assets/img/new.png" | prepend: site.baseurl }}' alt="A new icon." style="width: 1.5rem; vertical-align: middle; margin-bottom: .2rem; margin-right: .5rem;">
+                        <img loading="lazy" src='{{ "/assets/img/new.png" | prepend: site.baseurl }}' alt="A new icon." style="width: 1.5rem; vertical-align: middle; margin-bottom: .2rem; margin-right: .5rem;">
                         <span data-translate="Navbar_About">About</span>
                     </a>
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "patches" -%}class="active"{%- endif -%}
                         href='{{ "/patches/" | prepend: site.baseurl }}' title="Alle Patches anzeigen">
-                        <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061757_hr1.png" }}'">
+                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061757_hr1.png" }}'">
                         <span data-translate="Navbar_Patches">Patches</span>
                     </a>
                 </li>
@@ -56,21 +56,21 @@
                     <li>
                         <a target="" {%- if page.page_category == "translate" -%}class="active"{%- endif -%}
                             href='{{ "/translate/" | prepend: site.baseurl }}' title="See Translations">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
                             <span data-translate="Navbar_Translations">Translations</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "gear" -%}class="active"{%- endif -%}
                             href='{{ "/gear/" | prepend: site.baseurl }}' title="See Gear">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
                             <span data-translate="Navbar_Equipment">Equipment</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "fflogs" -%}class="active"{%- endif -%}
                             href='{{ "/fflogs/" | prepend: site.baseurl }}' title="See fflogs">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
                             <span data-translate="Navbar_FFLogs">FFLogs</span>
                         </a>
                     </li>
@@ -80,105 +80,105 @@
                     <li>
                         <a target="" {%- if page.page_category == "all" -%}class="active"{%- endif -%}
                             href='{{ "/" | prepend: site.baseurl }}' title="Alle Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061540_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061540_hr1.png" }}'">
                             <span data-translate="Navbar_All Guides">All Guides</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "dungeons" or page.instanceType == "dungeon" or page.instance_type == "Dungeon" -%}class="active"{%- endif -%}
                             href='{{ "/dungeons/" | prepend: site.baseurl }}' title="Dungeon - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061801_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061801_hr1.png" }}'">
                             <span data-translate="Navbar_Dungeons">Dungeons</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "trials" or page.instanceType == "trial" or page.instance_type == "Trial" -%}class="active"{%- endif -%}
                             href='{{ "/trials/" | prepend: site.baseurl }}' title="Prüfung - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061804_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061804_hr1.png" }}'">
                             <span data-translate="Navbar_Trials">Trials</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "raids" or page.instanceType == "raid" or page.instance_type == "Raid" -%}class="active"{%- endif -%}
                             href='{{ "/raids/" | prepend: site.baseurl }}' title="Raid - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061802_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061802_hr1.png" }}'">
                             <span data-translate="Navbar_Raids">Raids</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "ultimates" or page.instanceType == "ultimate" or page.instance_type == "ultimate" -%}class="active"{%- endif -%}
                             href='{{ "/ultimates/" | prepend: site.baseurl }}' title="Ultimate - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061832_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061832_hr1.png" }}'">
                             <span data-translate="Navbar_Ultimate Raids">Ultimate Raids</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "allianzraid" or page.instanceType == "allianzraid" or page.instance_type == "AllianzRaid" -%}class="active"{%- endif -%}
                             href='{{ "/allianzraid/" | prepend: site.baseurl }}' title="Allianz Raid - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061844_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061844_hr1.png" }}'">
                             <span data-translate="Navbar_Alliance Raids">Alliance Raids</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "gewölbesuche" or page.instanceType == "gewölbesuche" or page.instance_type == "Gewölbesuche" -%}class="active"{%- endif -%}
                             href='{{ "/gewölbesuche/" | prepend: site.baseurl }}' title="Gewölbesuche - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061846_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061846_hr1.png" }}'">
                             <span data-translate="Navbar_Varient & Criterion Dungeon">Varient & Criterion Dungeon</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "feldexkursion" or page.instanceType == "feldexkursion" or page.instance_type == "feldexkursion" -%}class="active"{%- endif -%}
                             href='{{ "/feldexkursion/" | prepend: site.baseurl }}' title="Feldexkursion - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061837_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061837_hr1.png" }}'">
                             <span data-translate="Navbar_Field Operations">Field Operations</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "bluemage" or page.instanceType == "bluemage" or page.instance_type == "Bluemage" -%}class="active"{%- endif -%}
                             href='{{ "/bluemage/" | prepend: site.baseurl }}' title="Bluemage - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061836_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061836_hr1.png" }}'">
                             <span data-translate="Navbar_Blue Mage">Blue Mage</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "potd" or page.instanceType == "potd" or page.instance_type == "potd" -%}class="active"{%- endif -%}
                             href='{{ "/potd/" | prepend: site.baseurl }}' title="Tiefes Gewöbe - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061824_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061824_hr1.png" }}'">
                             <span data-translate="Navbar_Deep Dungeon">Deep Dungeon</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "guildhest" or page.instanceType == "guildhest" or page.instance_type == "guildhest" -%}class="active"{%- endif -%}
                             href='{{ "/guildhest/" | prepend: site.baseurl }}' title="Gildengeheiße - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061803_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061803_hr1.png" }}'">
                             <span data-translate="Navbar_Guildhests">Guildhests</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "treasure" or page.instanceType == "treasure" or page.instance_type == "treasure" -%}class="active"{%- endif -%}
                             href='{{ "/treasure/" | prepend: site.baseurl }}' title="Schatzdungeon - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061808_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061808_hr1.png" }}'">
                             <span data-translate="Navbar_Treasure Dungeon">Treasure Dungeon</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "pvp" or page.instanceType == "pvp" or page.instance_type == "pvp" -%}class="active"{%- endif -%}
                             href='{{ "/pvp/" | prepend: site.baseurl }}' title="PVP - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061806_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061806_hr1.png" }}'">
                             <span data-translate="Navbar_PVP">PVP</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "training" or page.instanceType == "training" or page.instance_type == "training" -%}class="active"{%- endif -%}
                             href='{{ "/training/" | prepend: site.baseurl }}' title="Training - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061823_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061823_hr1.png" }}'">
                             <span data-translate="Navbar_Training">Training</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "overworld" or page.instanceType == "overworld" or page.instance_type == "overworld" -%}class="active"{%- endif -%}
                             href='{{ "/overworld/" | prepend: site.baseurl }}' title="Overworld - Guides anzeigen">
-                            <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/052000/052474_hr1.png" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/052000/052474_hr1.png" }}'">
                             <span data-translate="Navbar_Overworld">Overworld</span>
                         </a>
                     </li>
@@ -186,49 +186,49 @@
                 <li>
                     <a target="" {%- if page.page_category == "klassenjobs" or page.instanceType == "klassenjobs" or page.instance_type == "klassenjobs" -%}class="active"{%- endif -%}
                         href='{{ "/klassenjobs/" | prepend: site.baseurl }}' title="Klassen/Jobs anzeigen">
-                        <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061828_hr1.png" }}'">
+                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061828_hr1.png" }}'">
                         <span data-translate="Navbar_Classes/Jobs">Classes/Jobs</span>
                     </a>
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "relics" or page.instanceType == "relics" or page.instance_type == "relics" -%}class="active"{%- endif -%}
-                        href='{{ "/relics/" | prepend: site.baseurl }}' title="Quests anzeigen">
-                        <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061822_hr1.png" }}'">
+                        href='{{ "/relics/" | prepend: site.baseurl }}' title="Relic Weapons anzeigen">
+                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061822_hr1.png" }}'">
                         <span data-translate="Navbar_Relic Weapons">Relic Weapons</span>
                     </a>
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "airship_submarine" or page.instanceType == "airship_submarine" or page.instance_type == "airship_submarine" -%}class="active"{%- endif -%}
                         href='{{ "/airship_submarine/" | prepend: site.baseurl }}' title="Company Airship & Submersible anzeigen">
-                        <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061821_hr1.png" }}'">
+                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061821_hr1.png" }}'">
                         <span data-translate="Navbar_Company Airship & Submersible">Company Airship & Submersible</span>
                     </a>
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "quests" or page.instanceType == "quests" or page.instance_type == "quests" -%}class="active"{%- endif -%}
                         href='{{ "/quests/" | prepend: site.baseurl }}' title="Quests anzeigen">
-                        <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
+                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
                         <span data-translate="Navbar_Quests">Quests</span>
                     </a>
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "achivments" or page.instanceType == "achivments" or page.instance_type == "achivments" -%}class="active"{%- endif -%}
                         href='{{ "/achivments/" | prepend: site.baseurl }}' title="Achivments anzeigen">
-                        <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
+                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
                         <span data-translate="Navbar_Achievement">Achievement</span>
                     </a>
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "dalamud" or page.instanceType == "dalamud" or page.instance_type == "dalamud" -%}class="active"{%- endif -%}
                         href='{{ "/dalamud/" | prepend: site.baseurl }}' title="Dalamud anzeigen">
-                        <img src='{{ site.imageurl }}/{{ "/061000/061723_hr1.png" }}' alt="{{ debuff.icon }}">
+                        <img loading="lazy" src='{{ site.imageurl }}/{{ "/061000/061723_hr1.png" }}' alt="{{ debuff.icon }}">
                         <span data-translate="Navbar_Dalamud">Dalamud</span>
                     </a>
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "links" or page.instanceType == "links" or page.instance_type == "links" -%}class="active"{%- endif -%}
                         href='{{ "/links/" | prepend: site.baseurl }}' title="Links anzeigen">
-                        <img src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061834_hr1.png" }}'">
+                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061834_hr1.png" }}'">
                         <span data-translate="Navbar_Links">Links</span>
                     </a>
                 </li>

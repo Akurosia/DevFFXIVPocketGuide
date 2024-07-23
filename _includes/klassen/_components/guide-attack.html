@@ -11,7 +11,7 @@
         style="display: none">
     </h4>
     {%- if attack.icon -%}
-        <img class="Icon attack_icon" src="{{ site.baseurl }}/assets/img/game_assets/{{ attack.icon }}" alt="{{ attack.icon }}"/>
+        <img class="Icon attack_icon" loading="lazy" src="{{ site.baseurl }}/assets/img/game_assets/{{ attack.icon }}" alt="{{ attack.icon }}"/>
     {%- endif -%}
     <div class="Names">
         <span class="{%- if attack.damage_type == 'Magical' -%}attack-is-magic
@@ -43,7 +43,7 @@
                     {%- unless attack.status_icon == "" -%}
                         <br/>
                         <h5 class="guide__attack-notes-title">Status: {{ attack.status.de }}</h5><br>
-                        <img class="debuff_icon" src="{{ site.baseurl }}/assets/img/game_assets/{{ attack.status_icon }}" alt="{{ attack.status_icon }}"/>
+                        <img loading="lazy" class="debuff_icon" src="{{ site.baseurl }}/assets/img/game_assets/{{ attack.status_icon }}" alt="{{ attack.status_icon }}"/>
                     {%- endunless -%}
                 {%- endif -%}
             </div>

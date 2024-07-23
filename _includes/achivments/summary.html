@@ -1,7 +1,7 @@
 <!-- Include from _includes/achivments/summary -->
 <div class="summary">
     <span class="index-item__link" title="Go to the {{ guide.name.de }} Guide">
-        <div class="index-item__background"
+        <div class="index-item__background" loading="lazy"
             {%- if guide.cover -%}
                 style="background-image: url('{{ guide.cover }}')"
             {%- elsif guide.icon -%}
@@ -23,13 +23,11 @@
             <span class="lang-toggle lang-toogle-en-sub index-item__title_en"> ~ ({{ guide.name.en }}) </span>
             [{{ guide.order }}]
         </h3>
+        <h4 class="index-item__title_en"><span>{{ guide.main_category }}</span> > <span>{{ guide.sub_category }}</span></h4>
+        <h4 class="index-item__title_en"><img loading="lazy" class="attack_icon" src="{{site.baseurl}}/assets/img/game_assets/{{ guide.icon }}" alt="{{ guide.icon }}"/> <span>{{ guide.points }} Punkte</span></h4>
         {%- for lang in LANGUAGES -%}
             <h4 class="index-item__title_en lang-toggle lang-toogle-{{lang}}">Description: {{ guide.description[lang] }} </h4>
         {%- endfor -%}
-        <h4 class="index-item__title_en">Main Category: {{ guide.main_category }}</h4>
-        <h4 class="index-item__title_en">Sub Category: {{ guide.sub_category }}</h4>
-        <h4 class="index-item__title_en">Icon: <img class="attack_icon" src="{{site.baseurl}}/assets/img/game_assets/{{ guide.icon }}" alt="{{ guide.icon }}"/></h4>
-        <h4 class="index-item__title_en">Points: {{ guide.points }}</h4>
         {%- if guide.item -%}
             <h4 class="index-item__title_en">Item: {{ guide.item }} </h4>
         {%- endif -%}
