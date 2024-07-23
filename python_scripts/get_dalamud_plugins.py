@@ -1,6 +1,6 @@
 from ffxiv_aku import *
-
-
+from distutils.version import StrictVersion
+from natsort import natsorted
 
 # this is to fix some of the broken json files
 def clean_json(string):
@@ -65,11 +65,21 @@ def getFinalData():
                     for tag in value["tags"][0]:
                         write(out, f'     - tag: "{tag}"')
                 write(out, f'   versions:')
+                tmp = {}
                 for v in value["versions"]:
                     author, url, version = v
-                    write(out, f'     - author: "{author}"')
-                    write(out, f'       url: "{url}"')
-                    write(out, f'       version: "{version}"')
+                    if not tmp.get(version, None):
+                        tmp[version] = []
+                    _tuple = (author, url)
+                    tmp[version].append(_tuple)
+                #versions = [k for k in tmp].sort(key=StrictVersion)
+                versions = natsorted([k for k in tmp],reverse=True)
+                for version in versions:
+                    for x in tmp[version]:
+                        author, url = x
+                        write(out, f'     - author: "{author}"')
+                        write(out, f'       url: "{url}"')
+                        write(out, f'       version: "{version}"')
             except Exception as e:
                 print_color_red(e)
 
