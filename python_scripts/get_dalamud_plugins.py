@@ -51,8 +51,8 @@ def getFinalData():
         write(out, 'categories: "dalamud"')
         write(out, 'plugins:')
         for key, value in dalamud_data.items():
-            print(key)
-            print(value)
+            #print(key)
+            #print(value)
             desc = value.get("description", "").replace("\n", "<br>").replace("<br><br>", "<br>").replace('"', "'")
             try:
                 write(out, f' - name: "{key}"')
@@ -116,8 +116,8 @@ def run():
 
     repo_urls += ["https://kamori.goats.dev/Plugin/PluginMaster"]
 
-    print(len(repo_urls))
-    print(len(list(set([x.lower() for x in repo_urls]))))
+    #print(len(repo_urls))
+    #print(len(list(set([x.lower() for x in repo_urls]))))
 
     #print_pretty_json(sorted(repo_urls))
     for url in sorted(repo_urls):
@@ -162,13 +162,13 @@ def run():
             repos_with_load_errors.append(url)
         completed_repos.append(url)
     writeJsonFile("dalamud_repos.json", result)
-    print_pretty_json(completed_repos)
-    print_pretty_json(repos_with_load_errors)
+    #print_pretty_json(completed_repos)
+    #print_pretty_json(repos_with_load_errors)
 
 
 if __name__ == "__main__":
     try:
-        #run()
+        run()
         getFinalData()
     except Exception as e:
         print(e)
