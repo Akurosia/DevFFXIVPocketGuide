@@ -25,12 +25,16 @@ def getImage(image):
 def copy_and_return_image_as_hr(img):
     if "_hr1" not in img:
         img = img.replace(".png", "_hr1.png")
+
     if os.path.exists("P:\\extras\\images\\ui\\icon\\" + img):
         #print(os.getcwd())
-        if not os.path.exists("..\\assets\\img\\game_assets\\" + img):
-            if not os.path.exists(os.path.dirname("..\\assets\\img\\game_assets\\" + img)):
-                os.makedirs(os.path.dirname("..\\assets\\img\\game_assets\\" + img))
-            shutil.copyfile("P:\\extras\\images\\ui\\icon\\" + img, "..\\assets\\img\\game_assets\\" + img)
+        new_path = "..\\assets\\img\\game_assets\\"
+        if os.getcwd().endswith("DevFFXIVPocketGuide"):
+            new_path = "assets\\img\\game_assets\\"
+        if not os.path.exists(new_path + img):
+            if not os.path.exists(os.path.dirname(new_path + img)):
+                os.makedirs(os.path.dirname(new_path + img))
+            shutil.copyfile("P:\\extras\\images\\ui\\icon\\" + img, new_path + img)
     else:
         print_color_red(img)
     return img
