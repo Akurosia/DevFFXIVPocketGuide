@@ -1,4 +1,4 @@
-<!-- _components/Guide-Attack "Button"======================================================= -->
+<!-- Include from _includes/_components/guide-attack -->
 <div class="guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--grid_attack
             {%- if attack.attack_in_use == 'false' -%}--ignore
             {%- elsif attack.dutyActions -%}--dutyAction
@@ -16,9 +16,7 @@
         <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ attack.title }}</div>
     </div>
     <div class="Attributes">
-        <!-- Include from _includes/_components/guide-attack-types -->
         {%- include _components/guide-attack-types.html -%}
-        <!-- END Include from _includes/_components/guide-attack-types -->
     </div>
     <div class="IdsHps">
         {%- if attack.title_id -%}
@@ -71,30 +69,22 @@
                 </ul>
             {%- endif -%}
         {%- else -%}
-            <!-- Include from _includes/_components/guide-attack-notes -->
             {%- include _components/guide-attack-notes.html -%}
-            <!-- END Include from _includes/_components/guide-attack-notes -->
         {%- endif -%}
         <!-- Combo Attacks -->
         {%- for combo in attack.combo -%}
-            <!-- Include from _includes/_components/guide-combo-tags -->
             {%- include _components/guide-combo-tags.html -%}
-            <!-- END Include from _includes/_components/guide-combo-tags -->
             {%- for status in combo.add_status -%}
                 {%- for lang in LANGUAGES -%}
                     <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status {{ status.name[lang] }} hinzu.</h5><br/>
                 {%- endfor -%}
             {%- endfor -%}
-            <!-- Include from _includes/_components/guide-attack-notes -->
             {%- include _components/guide-attack-notes.html -%}
-            <!-- END Include from _includes/_components/guide-attack-notes -->
             <!-- Combo Images -->
             {%- if combo.images -%}
                 <div class="guide__attack-image-list">
                     {%- for image in combo.images -%}
-                        <!-- Include from _includes/_components/guide-images -->
                         {%- include _components/guide-images.html -%}
-                        <!-- END Include from _includes/_components/guide-images -->
                     {%- endfor -%}
                 </div>
             {%- endif -%}
@@ -102,9 +92,7 @@
             {%- if combo.videos -%}
                 <div class="guide__attack-video-list">
                     {%- for video in combo.videos -%}
-                        <!-- Include from _includes/_components/guide-videos -->
                         {%- include _components/guide-videos.html -%}
-                        <!-- END Include from _includes/_components/guide-videos -->
                     {%- endfor -%}
                 </div>
             {%- endif -%}
@@ -112,25 +100,19 @@
         <!-- Variation Attacks -->
         {%- for variation in attack.variation -%}
             <div class="guide__variation-attack-seperator">
-                <!-- Include from _includes/_components/guide-variation-tags -->
                 {%- include _components/guide-variation-tags.html -%}
-                <!-- END Include from _includes/_components/guide-variation-tags -->
                 {%- for status in variation.add_status -%}
                     {%- for lang in LANGUAGES -%}
                         <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status {{ status.name[lang] }} hinzu.</h5>
                     {%- endfor -%}
                     <br/>
                 {%- endfor -%}
-                <!-- Include from _includes/_components/guide-attack-notes -->
                 {%- include _components/guide-attack-notes.html -%}
-                <!-- END Include from _includes/_components/guide-attack-notes -->
                 <!-- Variation Images -->
                 {%- if variation.images -%}
                     <div class="guide__attack-image-list">
                         {%- for image in variation.images -%}
-                            <!-- Include from _includes/_components/guide-images -->
                             {%- include _components/guide-images.html -%}
-                            <!-- END Include from _includes/_components/guide-images -->
                         {%- endfor -%}
                     </div>
                 {%- endif -%}
@@ -138,9 +120,7 @@
                 {%- if variation.videos -%}
                     <div class="guide__attack-video-list">
                         {%- for video in variation.videos -%}
-                            <!-- Include from _includes/_components/guide-videos -->
                             {%- include _components/guide-videos.html -%}
-                            <!-- END Include from _includes/_components/guide-videos -->
                         {%- endfor -%}
                     </div>
                 {%- endif -%}
@@ -150,9 +130,7 @@
         {%- if attack.images -%}
             <div class="guide__attack-image-list">
                 {%- for image in attack.images -%}
-                    <!-- Include from _includes/_components/guide-images -->
                     {%- include _components/guide-images.html -%}
-                    <!-- END Include from _includes/_components/guide-images -->
                 {%- endfor -%}
             </div>
         {%- endif -%}
@@ -160,11 +138,10 @@
         {%- if attack.videos -%}
             <div class="guide__attack-video-list">
                 {%- for video in attack.videos -%}
-                    <!-- Include from _includes/_components/guide-videos -->
                     {%- include _components/guide-videos.html -%}
-                    <!-- END Include from _includes/_components/guide-videos -->
                 {%- endfor -%}
             </div>
         {%- endif -%}
     </div>
 </div>
+<!-- END Include from _includes/_components/guide-attack -->

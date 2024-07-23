@@ -1,11 +1,10 @@
+<!-- Include from _includes/guide-notes -->
 <!-- Guide Notes =========================================================== -->
 <div class="guide__accordion">
     <div class="guide__accordion-trigger--01-grid" id="guideNotes">
         <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
         <span class="Names">
-            <!-- Include from _includes/helper/returnPropperName -->
             {% include helper/returnPropperName.html instanceType=page.instanceType %} Notizen
-            <!-- END Include from _includes/helper/returnPropperName -->
         </span>
     </div>
     <!-- Guide Event Accordion Content -->
@@ -13,9 +12,7 @@
         <!-- Opens the Notes Loop -->
         {%- for mechanic in page.mechanics -%}
             {%- if mechanic.preset -%}
-                <!-- Include from _includes/presets/{{mechanic.preset}} -->
                 {% include presets/{{mechanic.preset}}.html instanceType=page.instanceType %}
-                <!-- END Include from _includes/presets/{{mechanic.preset}} -->
             {%- else -%}
                 <div class="guide__accordion-copy-wrapper">
                     <!-- Event Title -->
@@ -59,12 +56,8 @@
                                         {%- endif -%}
                                     {%- endfor -%}
                                 </ul>
-                                <!-- Include from _includes/_components/guide-images-wrapper -->
                                 {%- include _components/guide-images-wrapper.html -%}
-                                <!-- END Include from _includes/_components/guide-images-wrapper -->
-                                <!-- Include from _includes/_components/guide-videos-wrapper -->
                                 {%- include _components/guide-videos-wrapper.html -%}
-                                <!-- END Include from _includes/_components/guide-videos-wrapper -->
                             {%- endfor -%}
                         </div>
                     {%- endif -%}
@@ -73,3 +66,4 @@
         {%- endfor -%}
     </div>
 </div>
+<!-- END Include from _includes/guide-notes -->

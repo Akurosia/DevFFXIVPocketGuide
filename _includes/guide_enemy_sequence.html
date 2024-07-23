@@ -1,3 +1,4 @@
+<!-- Include from _includes/guide_enemy_sequence -->
 <!-- Opens the Sequence Loop -->
 {%- for phase in enemy.sequence -%}
 
@@ -25,34 +26,22 @@
                 {%- endif -%}
 
                 {%- if phase.alerts -%}
-                    <!-- Include from _includes/_components/guide-alerts -->
                     {%- include _components/guide-alerts.html -%}
-                    <!-- END Include from _includes/_components/guide-alerts -->
                 {%- endif -%}
                 {%- if phase.toolbox -%}
-                    <!-- Include from _includes/_components/guide-toolbox -->
                     {%- include _components/guide-toolbox.html -%}
-                    <!-- END Include from _includes/_components/guide-toolbox -->
                 {%- endif -%}
                 {%- if phase.mechanics -%}
-                    <!-- Include from _includes/_components/guide-mechanics -->
                     {%- include _components/guide-mechanics.html -%}
-                    <!-- END Include from _includes/_components/guide-mechanics -->
                 {%- endif -%}
                 {%- if phase.attacks -%}
-                    <!-- Include from _includes/_components/guide-script -->
                     {%- include _components/guide-script.html -%}
-                    <!-- END Include from _includes/_components/guide-script -->
                 {%- endif -%}
                 {%- if phase.images -%}
-                    <!-- Include from _includes/_components/guide-images-wrapper -->
                     {%- include _components/guide-images-wrapper.html -%}
-                    <!-- END Include from _includes/_components/guide-images-wrapper -->
                 {%- endif -%}
                 {%- if phase.videos -%}
-                    <!-- Include from _includes/_components/guide-videos-wrapper -->
                     {%- include _components/guide-videos-wrapper.html -%}
-                    <!-- END Include from _includes/_components/guide-videos-wrapper -->
                 {%- endif -%}
             </div>
         {%- endif -%}
@@ -62,20 +51,16 @@
             <!-- Enters the attack's phases. -->
             {%- for attackPhase in attack.phases -%}
                 {%- if attackPhase.phase == currentPhase -%}
-                    <!-- Include from _includes/_components/guide-attack -->
                     {%- include _components/guide-attack.html -%}
-                    <!-- END Include from _includes/_components/guide-attack -->
                 {%- endif -%}
             {%- endfor -%}
         {%- endfor -%}
         <!-- Enters the enemy debuff loop. -->
         {%- for debuff in enemy.debuffs -%}
-            <!-- Enters the attack's phases. -->
+            <!-- Enters the debuff's phases. -->
             {%- for debuffPhase in debuff.phases -%}
                 {%- if debuffPhase.phase == currentPhase -%}
-                    <!-- Include from _includes/_components/guide-debuff -->
                     {%- include _components/guide-debuff.html -%}
-                    <!-- END Include from _includes/_components/guide-debuff -->
                 {%- endif -%}
             {%- endfor -%}
         {%- endfor -%}
@@ -84,3 +69,4 @@
         </div>
     {%- endif -%}
 {%- endfor -%}
+<!-- END Include from _includes/guide_enemy_sequence -->

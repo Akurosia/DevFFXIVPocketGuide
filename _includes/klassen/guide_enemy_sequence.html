@@ -1,3 +1,4 @@
+<!-- Include from _includes/klassen/guide_enemy_sequence -->
 <!-- Opens the Sequence Loop -->
     <!-- Add Search filter for bluemage skills. -->
     <div class="search">
@@ -36,7 +37,6 @@
                     {%- for attackPhase in attack.phases -%}
                         <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
                         {%- if attackPhase.phase == currentPhase -%}
-                            <!-- Include Attack Template -->
                             {%- include klassen/_components/guide-attack.html -%}
                         {%- endif -%}
                     {%- endfor -%}
@@ -52,7 +52,6 @@
                     {%- for debuffPhase in debuff.phases -%}
                         <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
                         {%- if debuffPhase.phase == currentPhase -%}
-                            <!-- Include Attack Template -->
                             {%- include klassen/_components/guide-debuff.html -%}
                         {%- endif -%}
                     {%- endfor -%}
@@ -68,7 +67,6 @@
                     {%- for eurekaPhase in attack.phases -%}
                         <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
                         {%- if eurekaPhase.phase == currentPhase -%}
-                            <!-- Include Attack Template -->
                             {%- include klassen/_components/guide-attack.html -%}
                         {%- endif -%}
                     {%- endfor -%}
@@ -84,7 +82,6 @@
                     {%- for eurekaPhase in attack.phases -%}
                         <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
                         {%- if eurekaPhase.phase == currentPhase -%}
-                            <!-- Include Attack Template -->
                             {%- include klassen/_components/guide-attack.html -%}
                         {%- endif -%}
                     {%- endfor -%}
@@ -101,7 +98,6 @@
                     {%- for traitPhase in trait.phases -%}
                         <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
                         {%- if traitPhase.phase == currentPhase -%}
-                            <!-- Include Attack Template -->
                             {%- include klassen/_components/guide-trait.html -%}
                         {%- endif -%}
                     {%- endfor -%}
@@ -117,7 +113,6 @@
                     {%- for levesPhase in leve.phases -%}
                         <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
                         {%- if levesPhase.phase == currentPhase -%}
-                            <!-- Include Attack Template -->
                             {%- include klassen/_components/guide-leve.html -%}
                         {%- endif -%}
                     {%- endfor -%}
@@ -133,7 +128,6 @@
                     {%- for questsPhase in quest.phases -%}
                         <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
                         {%- if questsPhase.phase == currentPhase -%}
-                            <!-- Include Attack Template -->
                             {%- include klassen/_components/guide-quests.html -%}
                         {%- endif -%}
                     {%- endfor -%}
@@ -145,3 +139,4 @@
         </div>
     {%- endif -%}
 {%- endfor -%}
+<!-- END Include from _includes/klassen/guide_enemy_sequence -->

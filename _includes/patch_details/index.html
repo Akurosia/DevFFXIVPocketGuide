@@ -1,6 +1,4 @@
-{%- comment -%} ==================================================================
-    // Index
-=============================================================== {%- endcomment -%}
+<!-- Include from _includes/patch_details/index -->
 <div class="index">
     {%- assign my_array = site.ffxiv_expansion_list | append: ",ffxiv" | split: ',' -%}
     {%- for x in my_array -%}
@@ -17,3 +15,4 @@
         {%- endif -%}
     {%- endfor -%}
 </div>
+<!-- END Include from _includes/patch_details/index -->

@@ -1,4 +1,4 @@
-<!-- Include from _includes/quests/summary -->
+<!-- Include from _includes/dalamud/summary -->
 <div class="summary">
     <span class="index-item__link" title="Go to the {{ guide.name.de }} Guide">
         <div class="index-item__background"
@@ -10,8 +10,6 @@
                         url('{{ guide.icon | prepend: site.baseurl }}')
                     {%- else -%}
                         url('{{ guide.icon | prepend: site.imageurl }}')
-                    {%- else -%}
-                        url('{{site.baseurl}}/assets/img/game_assets/{{ guide.icon }}')
                     {%- endif -%}
             {%- endif -%}">
         </div>
@@ -31,4 +29,4 @@
         <h4 class="index-item__title_en">Unlockable: {{ guide.unlocks }}</h4>
     </span>
 </div>
-<!-- END Include from _includes/quests/summary -->
+<!-- END Include from _includes/dalamud/summary -->

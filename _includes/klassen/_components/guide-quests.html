@@ -1,4 +1,4 @@
-<!-- klassen/_components/Guide-Quests ======================================================= -->
+<!-- Include from _includes/klassen/_component/guide-quests -->
 <div class="summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--quest">
     <h4 class="index-item__title"
         data-terms="!{%- for lang in LANGUAGES -%}quest:{{ quest.title[lang] }}&#32;{%- endfor -%}&#32;
@@ -19,3 +19,4 @@
     </div>
     {%- include klassen/_components/guide-attack-types.html -%}
 </div>
+<!-- END Include from _includes/klassen/_component/guide-quests -->

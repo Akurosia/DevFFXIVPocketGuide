@@ -1,6 +1,4 @@
-{%- comment -%} ==================================================================
-    // Index
-=============================================================== {%- endcomment -%}
+<!-- Include from _includes/klassen/index -->
 <div class="index">
     <div class="sort_by_expac" style="display: none">
         {%- assign my_array = site.ffxiv_expansion_list | split: ',' -%}
@@ -55,9 +53,7 @@
             {%- endif -%}
         {%- endfor -%}
     </div>
-
-
-    <!-- Include Null State -->
     {%- include guide-index-null-state.html -%}
     <div style="display: none" data-extra-translate="/assets/translations/klassen"></div>
 </div>
+<!-- END Include from _includes/klassen/index -->
