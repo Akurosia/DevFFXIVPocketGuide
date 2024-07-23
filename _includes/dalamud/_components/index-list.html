@@ -1,9 +1,0 @@
-<!-- Include from _includes/dalamud/_components/index-list -->
-{%- for quests in site.categories.quests -%}
-    {%- for guide in quests.quests reversed -%}
-        {%- if guide.instanceType == queryType -%}
-            {%- include quests/summary.html -%}
-        {%- endif -%}
-    {%- endfor -%}
-{%- endfor -%}
-<!-- END Include from _includes/dalamud/_components/index-list -->

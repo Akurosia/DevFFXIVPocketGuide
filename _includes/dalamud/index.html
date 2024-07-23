@@ -1,20 +1,13 @@
 <!-- Include from _includes/dalamud/index -->
 <div class="index">
-    {%- assign my_array = site.ffxiv_expansion_list | split: ',' -%}
-    {%- for x in my_array -%}
-        {% include helper/handle_version_switchcase.html %}
-        {%- assign queryType = "quest_" | append: x -%}
-        {%- assign counterq = 0 -%}
-        {%- include quests/_components/index-counter.html -%}
-        {%- if counterq > 0 -%}
-           <a id="{{ x_id }}"></a>
-           <div class="index-divider" data-expansion="{{ x }}">
-                {%- include _components/expantion_filter.html -%}
-           </div>
-           <div class="index__list_quests" data-expansion="{{ x }}">
-               {%- include quests/_components/index-list.html -%}
-           </div>
-        {%- endif -%}
+    {%- for plugin in site.categories.dalamud -%}
+                <span style="color: white">{{plugin}}</span>
+        {%- for guide in plugin.plugins -%}
+                <span style="color: green">{{guide}}</span>
+            {%- if guide.instanceType == queryType -%}
+                <span style="color: yellow;">{{guide.name.de}}</span>
+            {%- endif -%}
+        {%- endfor -%}
     {%- endfor -%}
 </div>
 <!-- END Include from _includes/dalamud/index -->
