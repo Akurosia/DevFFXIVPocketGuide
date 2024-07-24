@@ -39,17 +39,21 @@
             <h1 class="{%- if page.page_type == 'index' or page.page_type == 'guide' -%}site-header__title{%- else -%}site-header__guide-title{%- endif -%}">
                 <span data-translate="Header_CatTitle_{{page.page_category}}">
                     {%- if page.page_category == "all" -%}                  The FFXIV Pocket Guide
-                    {%- elsif page.page_category == "dungeons" -%}          Dungeon Guides
-                    {%- elsif page.page_category == "trials" -%}            Prüfung Guides
-                    {%- elsif page.page_category == "raids" -%}             Raid Guides
-                    {%- elsif page.page_category == "ultimates" -%}         Ultimate Guides
-                    {%- elsif page.page_category == "allianzraid" -%}       Allianz Raid Guides
-                    {%- elsif page.page_category == "gewölbesuche" -%}      Gewölbesuche Guides
-                    {%- elsif page.page_category == "pvp" -%}               PVP Guides
-                    {%- elsif page.page_category == "potd" -%}              Tiefes Gewölbe Guides
-                    {%- elsif page.page_category == "feldexkursion" -%}     Feldexkursion Guides
-                    {%- elsif page.page_category == "guildhest" -%}         Gildengeheiße Guides
-                    {%- elsif page.page_category == "treasure" -%}          Schatzdungeon Guides
+                    {%- elsif page.page_category == "dungeons" -%}          Dungeons
+                    {%- elsif page.page_category == "trials" -%}            Prüfungen
+                    {%- elsif page.page_category == "raids" -%}             Raids
+                    {%- elsif page.page_category == "ultimates" -%}         Ultimates
+                    {%- elsif page.page_category == "allianzraid" -%}       Allianz Raids
+                    {%- elsif page.page_category == "gewölbesuche" -%}      Gewölbesuche
+                    {%- elsif page.page_category == "pvp" -%}               PVP
+                    {%- elsif page.page_category == "potd" -%}              Tiefes Gewölbe
+                    {%- elsif page.page_category == "feldexkursion" -%}     Feldexkursion
+                    {%- elsif page.page_category == "guildhest" -%}         Gildengeheiße
+                    {%- elsif page.page_category == "treasure" -%}          Schatzdungeons
+                    {%- elsif page.page_category == "bluemage" -%}          Blau Magier
+                    {%- elsif page.page_category == "training" -%}          Trainings
+                    {%- elsif page.page_category == "overworlds" -%}        Overworlds
+                    {%- elsif page.page_category == "overworld" -%}         Overworld
                     {%- elsif page.page_category == "about" -%}             About
                     {%- elsif page.page_category == "links" -%}             Links
                     {%- elsif page.page_category == "klassenjobs" -%}       Klassen und Jobs
@@ -61,6 +65,7 @@
                     {%- elsif page.page_category == "gear" -%}              Ausrüstung
                     {%- elsif page.page_category == "achivments" -%}        Errungenschaften
                     {%- elsif page.page_category == "fflogs" -%}            FFLogs
+                    {%- elsif page.page_category == "dalamud" -%}           Dalamud-Plugins
                     {%- endif -%}
                 </span>
                 {%- if page.page_category -%}
