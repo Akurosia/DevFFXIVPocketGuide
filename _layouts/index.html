@@ -2,21 +2,14 @@
 <html lang="en">
     {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
     <head>
-        <!-- Include from _includes/head -->
         {% include head.html %}
-        <!-- Include from _includes/head -->
     </head>
     <!-- ORIGIN: _layout/index -->
     <body class="{{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
-            <!-- Include from _includes/navbar -->
             {% include navbar.html %}
-            <!-- END Include from _includes/navbar -->
             <div class="layout__wrapper">
-                <!-- Include from _includes/header -->
                 {% include header.html %}
-                <!-- END Include from _includes/header -->
-
                 {% if page.page_type == "index" %}
                     <!-- Search Bar -->
                     <div class="search">
@@ -27,20 +20,13 @@
                     </div>
                     <!-- END Search Bar -->
                 {% endif %}
-
-                <!-- Include from _includes/index -->
                 {% include index.html %}
-                <!-- END Include from _includes/index -->
-
-                <!-- Include from _includes/footer -->
                 {% include_cached footer.html %}
-                <!-- END Include from _includes/footer -->
             </div>
         </div>
         <div style="display: none" data-extra-translate="/assets/translations/index"></div>
-        <!-- Include from _includes/scripts -->
         {% include_cached scripts.html %}
-        <!-- END Include from _includes/scripts -->
     </body>
+    <!-- END ORIGIN: _layout/index -->
     <script type="text/javascript">executeHandelingLanguages()</script>
 </html>

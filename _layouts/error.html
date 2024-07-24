@@ -2,9 +2,7 @@
 <html lang="en">
     {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
     <head>
-        <!-- Include from _includes/head -->
         {% include head.html %}
-        <!-- Include from _includes/head -->
         <!-- jQuery -->
         <script type="text/javascript" src="{{ "/assets/vendor/jquery.min.js" | prepend: site.baseurl }}"></script>
         <!-- Modernizr -->
@@ -43,9 +41,8 @@
             </div>
         </section>
         <div style="display: none" data-extra-translate="/assets/translations/error"></div>
-        <!-- Include from _includes/scripts -->
         {% include_cached scripts.html %}
-        <!-- END Include from _includes/scripts -->
     </body>
+    <!-- END ORIGIN: _layout/error -->
     <script type="text/javascript">executeHandelingLanguages()</script>
 </html>

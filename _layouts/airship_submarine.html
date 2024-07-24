@@ -2,34 +2,21 @@
 <html lang="en">
     {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
     <head>
-        <!-- Include from _includes/head -->
         {% include head.html %}
-        <!-- Include from _includes/head -->
     </head>
     <!-- ORIGIN: _layout/airship_submarine -->
     <body class="{{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
-            <!-- Include from _includes/navbar -->
             {% include navbar.html %}
-            <!-- END Include from _includes/navbar -->
             <div class="layout__wrapper">
-                <!-- Include from _includes/header -->
                 {% include header.html %}
-                <!-- END Include from _includes/header -->
-
-                <!-- Include from _includes/airship_submarine -->
                 {% include airship_submarine.html %}
-                <!-- END Include from _includes/airship_submarine -->
-
-                <!-- Include from _includes/footer -->
                 {% include_cached footer.html %}
-                <!-- END Include from _includes/footer -->
             </div>
         </div>
         <div style="display: none" data-extra-translate="/assets/translations/housing_missions"></div>
-        <!-- Include from _includes/scripts -->
         {% include_cached scripts.html %}
-        <!-- END Include from _includes/scripts -->
     </body>
+    <!-- END ORIGIN: _layout/airship_submarine -->
     <script type="text/javascript">executeHandelingLanguages()</script>
 </html>

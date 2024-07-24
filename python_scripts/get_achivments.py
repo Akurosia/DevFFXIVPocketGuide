@@ -1,11 +1,49 @@
-from ffxiv_aku import get_any_Logdata, print_color_yellow, loadDataTheQuickestWay, print_color_red, pretty_json, print_pretty_json
+from ffxiv_aku import get_any_Logdata, print_color_yellow, loadDataTheQuickestWay, print_color_red, pretty_json, print_pretty_json, writeJsonFile
 import copy
 import os
+import traceback
 try:
     from .convert_skills_to_guide_form_helper.helper import getImage
 except:
     from convert_skills_to_guide_form_helper.helper import getImage
 
+LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES_MAPPING = {
+    "de": "de-DE",
+    "en": "en-US",
+    "fr": "fr-FR",
+    "ja": "ja-JP",
+    "cn": "cn-CN",
+    "ko": "ko-KR"
+}
+
+translations = {
+    "de": {},
+    "en": {},
+    "fr": {},
+    "ja": {},
+    "cn": {},
+    "ko": {}
+}
+
+def translate_content_files(entry):
+    global translations
+    #exp = expansion_list[entry['categories']]
+    #print(entry)
+    for lang in LANGUAGES:
+        if not translations[lang].get("achievments", None):
+            translations[lang]["achievments"] = {}
+        #name = entry[f'title_{lang}']
+        translations[lang]["achievments"][f"Summary_Achievment_{entry['name']['en']}_Name"] = entry['name'][lang]
+        translations[lang]["achievments"][f"Summary_Achievment_{entry['name']['en']}_Desc"] = entry['description'][lang]
+    #print(translations)
+
+def create_translation_files():
+    global translations
+    #print_pretty_json(translations)
+    for lang, cat_data in translations.items():
+        for cat, data in cat_data.items():
+            writeJsonFile(f"assets/translations/achiements/{LANGUAGES_MAPPING[lang]}.json", data)
 
 def get_achivment_kind():
     achivmentkind = loadDataTheQuickestWay("AchievementKind", translate=False)
@@ -14,8 +52,8 @@ def get_achivment_kind():
         if not value['Name'] == "":
             kind[int(key)] = value['Name']
 
-    for x in kind:
-        print(kind[x])
+    #for x in kind:
+    #    print(kind[x])
 
     return kind
 
@@ -46,7 +84,7 @@ def get_achivment_per_categorie(basic_cat):
                         continue
                     while cat[cat_name][sub_category_id]['achievements'].get(order_id, None):
                         if cat[cat_name][sub_category_id]['achievements'].get(order_id, None):
-                            print(f"Douplicate ID found: {order_id}")
+                            #print(f"Douplicate ID found: {order_id}")
                             order_id += 0.1
 
                     cat[cat_name][sub_category_id]['achievements'][order_id] = {
@@ -91,6 +129,8 @@ def write_yaml_data_for_guide(kind, a_data):
             main_category = kind[_id]
             if main_category == "Legacy":
                 continue
+            if main_category == "Sammeln":
+                main_category = "Synthese und Sammeln"
             data = a_data[main_category]
             for key in sorted(data):
                 value = data[key]
@@ -100,6 +140,7 @@ def write_yaml_data_for_guide(kind, a_data):
                     v = value['achievements'][k]
                     icon = getImage(v["icon"].replace(".tex", ".png"))
                     order = round(v["order"], 1)
+                    translate_content_files(v)
                     doc_data += ' - name:\n'
                     doc_data += f'     de: "{v["name"]["de"]}"\n'
                     doc_data += f'     en: "{v["name"]["en"]}"\n'
@@ -129,26 +170,27 @@ def write_yaml_data_for_guide(kind, a_data):
                     if not v['type'] == "":
                         doc_data += f'   type: "{v["type"]}"\n'
             #print_pretty_json(data)
-        except Exception:
+        except Exception as e:
+            print(traceback.format_exc())
             pass
     doc_data += '---\n'
-
+    create_translation_files()
     with open("_posts/single_page_content/2013-01-01--2.0--1--achivments.md", "w", encoding="utf8") as f:
         f.write(doc_data)
 
 
 def run():
+    print(f"[ACHIEVMENTS] Script runs from: {os.getcwd()}")
     kind = get_achivment_kind()
     cat = get_achivment_categories()
     a_data = get_achivment_per_categorie(cat)
-    #print_pretty_json(a_data)
     write_yaml_data_for_guide(kind, a_data)
+    print("[ACHIEVMENTS] Done Achivments!")
 
 
 if __name__ == "__main__":
     os.chdir("..")
     run()
-    print("Done Achivments!")
 
 #{
 #    'AchievementCategory': 'Saisonale Ereignisse',
