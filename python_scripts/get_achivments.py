@@ -46,20 +46,27 @@ def create_translation_files():
             writeJsonFile(f"assets/translations/achiements/{LANGUAGES_MAPPING[lang]}.json", data)
 
 def get_achivment_kind():
+    global translations
     achivmentkind = loadDataTheQuickestWay("AchievementKind", translate=False)
+    achivmentkind_trans = loadDataTheQuickestWay("AchievementKind", translate=True)
     kind = {}
     for key, value in achivmentkind.items():
         if not value['Name'] == "":
             kind[int(key)] = value['Name']
 
-    #for x in kind:
-    #    print(kind[x])
-
+    for x in kind:
+        for lang in LANGUAGES:
+            if not translations[lang].get("achievments", None):
+                translations[lang]["achievments"] = {}
+            translations[lang]["achievments"][f"Summary_Achievment_{achivmentkind_trans[str(x)]['Name_de']}_MainCat"] = achivmentkind_trans[str(x)][f'Name_{lang}']
+            translations[lang]["achievments"][f"Summary_Achievment_{achivmentkind_trans[str(x)]['Name_de']}_MainCat"] = achivmentkind_trans[str(x)][f'Name_{lang}']
     return kind
 
 
 def get_achivment_categories():
+    global translations
     achivmentcategory = loadDataTheQuickestWay("AchievementCategory", translate=False)
+    achivmentcategory_trans = loadDataTheQuickestWay("AchievementCategory", translate=True)
     cat = {}
     for key, value in achivmentcategory.items():
         if value['AchievementKind'] == "":
@@ -67,6 +74,11 @@ def get_achivment_categories():
         if not cat.get(value['AchievementKind'], None):
             cat[value['AchievementKind']] = {}
         cat[value['AchievementKind']][int(value['Order'])] = { "Name": value['Name'], "achievements": {} }
+        for lang in LANGUAGES:
+            if not translations[lang].get("achievments", None):
+                translations[lang]["achievments"] = {}
+            translations[lang]["achievments"][f"Summary_Achievment_{achivmentcategory_trans[key]['Name_de']}_SubCat"] = achivmentcategory_trans[key][f'Name_{lang}']
+            translations[lang]["achievments"][f"Summary_Achievment_{achivmentcategory_trans[key]['Name_de']}_SubCat"] = achivmentcategory_trans[key][f'Name_{lang}']
     return cat
 
 

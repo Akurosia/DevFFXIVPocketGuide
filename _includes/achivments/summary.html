@@ -16,12 +16,10 @@
         <h3 class="index-item__title"
               data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%} {{guide.name.de}}&#32;{{guide.name.en}}&#32;{{guide.name.fr}}&#32;{{guide.name.ja}}&#32;{{guide.name.cn}}&#32;{{guide.name.ko}}&#32;main:{{guide.main_category}}&#32;sub:{{guide.sub_category}}&#32;
               {%- if guide.item -%}item:{{guide.item}}&#32;{%- endif -%}{%- if guide.title -%}title:{{guide.title}}&#32;{%- endif -%}{%- if guide.description -%}description:{{guide.description.en}}&#32;description:{{guide.description.de}}&#32;description:{{guide.description.fr}}&#32;description:{{guide.description.jp}}&#32;description:{{guide.description.cn}}&#32;description:{{guide.description.ko}}&#32;{%- endif -%}">
-
-            <span data-translate="Summary_Achievment_{{ guide.name.en }}_Name" class=""> {{ guide.name.en }} </span>
-            <span class="lang-toggle lang-toogle-en-sub index-item__title_en"> ~ ({{ guide.name.en }}) </span>
-            [{{ guide.order }}]
+            <span data-translate="Summary_Achievment_{{ guide.name.en }}_Name" class=""> {{ guide.name.en }} </span> [{{ guide.order }}]
         </h3>
-        <h4 class="index-item__title_en"><span>{{ guide.main_category }}</span> > <span>{{ guide.sub_category }}</span></h4>
+        <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">{{ guide.name.en }}</h4>
+        <h4 class="index-item__title_en"><span data-translate="Summary_Achievment_{{ x }}_MainCat">{{ guide.main_category }}</span> > <span data-translate="Summary_Achievment_{{ x }}_SubCat">{{ guide.sub_category }}</span></h4>
         <h4 class="index-item__title_en"><img loading="lazy" class="attack_icon" src="{{site.baseurl}}/assets/img/game_assets/{{ guide.icon }}" alt="{{ guide.icon }}"/> <span>{{ guide.points }} Punkte</span></h4>
         <h4 data-translate="Summary_Achievment_{{ guide.name.en }}_Desc" class="index-item__title_en">Description: {{ guide.description.en }} </h4>
         {%- if guide.item -%}
