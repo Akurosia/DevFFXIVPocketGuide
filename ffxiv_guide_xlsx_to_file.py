@@ -184,7 +184,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             if not True:
                 #if debug_row_number < 710 :
-                if debug_row_number not in [773, 774]:
+                if debug_row_number not in [782]:
                     print_debug = True
                     continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
