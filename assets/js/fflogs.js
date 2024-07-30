@@ -54,15 +54,16 @@ figths = {
     1065: ["DSU"],
     1068: ["TOP"],
 
-    93: ["R1N"],
-    94: ["R2N"],
-    95: ["R3N"],
-    96: ["R4N"],
+    93: ["R1S"],
+    94: ["R2S"],
+    95: ["R3S"],
+    96: ["R4S"],
     //92: ["P12S_P2"],
 
-    //3008: ["Thordan"],
+    //3009: ["Thordan"],
     1071: ["Valigarmanda"],
     1072: ["Zoraal Ja"],
+    //1073: ["Ewige Königin"],
 }
 
 fight_ids = [1060,1061,1062,1065,1068,93,94,95,96,1071,1072]
@@ -378,7 +379,7 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
             textblock += `DSU_6: zoneRankings(zoneID: 45, metric: rdps),`
             textblock += `TOP_6: zoneRankings(zoneID: 53, metric: rdps),`
             textblock += `Ultimates_Legacy_7: zoneRankings(zoneID: 59, metric: rdps),`
-            textblock += `LATEST_RAID: zoneRankings(zoneID: ${latestRaid}, metric: rdps, difficulty: 100),`
+            textblock += `LATEST_RAID: zoneRankings(zoneID: ${latestRaid}, metric: rdps, difficulty: 101),`
             //textblock += `UNREAL_Primals: zoneRankings(zoneID: ${unrealId}, metric: rdps),`
             textblock += `LATEST_Primals: zoneRankings(zoneID: ${latestPrimal}, metric: rdps)`
             textblock += `},`;
