@@ -1,0 +1,19 @@
+<!-- Include from _includes/checkFileData -->
+<link rel="stylesheet" href="{{ "/assets/css/gear.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ "/assets/css/ffxiv.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
+
+<div class="index">
+  <div class="container col">
+    <div id="filterOptions" class="my-4 form-inline">
+        <select class="form-control bg-charcoal text-light mx-1" id="filterValue" name=""></select>
+        <input class="form-control bg-charcoal text-light mx-1" id="fieldfilter" type="text" name="" value="" placeholder="Komma separierte list and werten">
+        <input class="form-control bg-charcoal text-light mx-1" id="filterterm" type="text" name="" value="" placeholder="filterterm">
+        <button class="form-control bg-charcoal text-light mx-1" type="" onclick="UserAction2('data')">Show Data</button>
+        <button class="form-control bg-charcoal text-light mx-1" type="" onclick="UserAction2('example')">Show Field example</button>
+    </div>
+    <div id="workspace"></div>
+  </div>
+</div>
+
+<script type="text/javascript" src="{{ "/assets/js/checkFileData.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
+<!-- END Include from _includes/checkFileData -->
