@@ -218,6 +218,12 @@
                 {%- endfor -%}
             </h5>
         {%- endif -%}
+        {%- if page.bgmusic -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_BGM">BGM: </div>
+                <span class="block">{{ page.bgmusic }}</span>
+            </h5>
+        {%- endif -%}
         {%- if page.group -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_Guppenaufstellung">Guppenaufstellung: </div>
