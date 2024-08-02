@@ -19,10 +19,12 @@ mounts = loadDataTheQuickestWay("mount_all.json", translate=True)
 exversion = loadDataTheQuickestWay("exversion_all.json", translate=True)
 minions = loadDataTheQuickestWay("companion_all.json", translate=True)
 orchestrions = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
+orchestrionpath = loadDataTheQuickestWay("OrchestrionPath.json", translate=False)
 ttcards = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
 contentfindercondition = loadDataTheQuickestWay("ContentFinderCondition.de.json")
 contentfindercondition_trans = loadDataTheQuickestWay("ContentFinderCondition", translate=True)
 contentfinderconditiontransient = loadDataTheQuickestWay("ContentFinderConditionTransient", translate=True)
+instancecontent = loadDataTheQuickestWay("InstanceContent.json")
 contentmembertype = loadDataTheQuickestWay("ContentMemberType.json")
 classjob = loadDataTheQuickestWay("Classjob.de.json")
 items = loadDataTheQuickestWay("Item.de.json")
@@ -290,6 +292,8 @@ def get_cat_image(instancetype, cfc_key):
 
 
 def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
+    global contentfindercondition
+    global instancecontent
     header_data = ""
     tt_type_name, tt_bg_entry = get_territorytype_from_mapid(entry)
     if old_wip in ["True", "False"]:
@@ -431,10 +435,13 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
             found, data = checkVariable(entry, x)
             if found:
                 header_data += f'    {x}: "' + data[0] + '"\n'
-
-    #if gamerscape_items.get(entry["gamerescapelink"], None):
-    #    header_data += 'gamerscape_items:\n'
-    #    header_data += getItemsList(gamerscape_items[entry["gamerescapelink"]])
+    #get bgmusic
+    instancecontent_id = contentfindercondition.get(cfc_key, {}).get('Content', "").replace("InstanceContent#", "")
+    if instancecontent_id not in  ["0", "", None]:
+        instancecontent_entry = instancecontent[instancecontent_id]
+        bgm = instancecontent_entry["BGM"].replace(".scd", ".ogg")
+        if not bgm == "":
+            header_data += f'bgmusic: "{bgm}"\n'
     return header_data, entry
 
 
@@ -450,11 +457,11 @@ def getItemsList(gs_items):
                 cat = "Waffe" if "waffe" in items[gs_item]['ItemUICategory'].lower() else items[gs_item]['ItemUICategory']
                 cat = "Waffe" if cat == "Grimoire" else cat
 
-                if not items[gs_item]['Name'] in final_array[_class][cat]:
+                if items[gs_item]['Name'] not in final_array[_class][cat]:
                     final_array[_class][cat].append(items[gs_item]['Name'])
         if not found:
             print(items[gs_item])
-        item_list += f'  - item: "' + items[gs_item]['Name'] + '"\n'
+        item_list += f'  - item: "{items[gs_item]["Name"]}"\n'
     print(final_array)
     return item_list
 
@@ -572,20 +579,32 @@ def getOrchestrionMaterialIDByName(name):
     return None, None
 
 
+def getBGMPath(_id: str, name: str) -> str:
+    global orchestrionpath
+    return orchestrionpath[_id]['File'].replace(".scd", f"-{name}.ogg")
+
+
 def addMusic(header_data, music):
     header_data += "music:\n"
     for m in music:
         _id, orchestrion = getOrchestrionIDByName(m)
+        name = None
         if _id:
             header_data += '  - name:\n'
             for lang in LANGUAGES:
-                header_data += f'      {lang}: "' + orchestrion.get(f"Name_{lang}", "") + '"\n'
+                name = orchestrion.get(f"Name_{lang}", "")
+                if name == "":
+                    name = f'{orchestrion.get("Name_de", "")} (no official translation)'
+                header_data += f'      {lang}: "{name}"\n'
+            name = orchestrion.get("Name_de", "")
         else:
             header_data += '  - name:\n'
+            name = m
             for lang in LANGUAGES:
-                header_data += f'      {lang}: "' + m + '"\n'
+                header_data += f'      {lang}: "{name}"\n'
         if _id:
             header_data += '    id: "' + _id + '"\n'
+            header_data += '    bgm_path: "' + getBGMPath(_id, name) + '"\n'
     return header_data
 
 

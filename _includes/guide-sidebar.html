@@ -143,20 +143,24 @@
         <!-- END Only on Classes -->
         <!-- Only on Content -->
         {%- if page.contentname -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
-                <div data-translate="Sidebar_ContentName">Contentname: </div>
-                {%- for lang in LANGUAGES -%}
-                    <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.contentname[lang] }}</span>
-                {%- endfor -%}
+            {%- if page.contentname.de != "0" and page.contentname.de != "" -%}
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                    <div data-translate="Sidebar_ContentName">Contentname: </div>
+                    {%- for lang in LANGUAGES -%}
+                        <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.contentname[lang] }}</span>
+                    {%- endfor -%}
+                {%- endif -%}
             </h5>
         {%- endif -%}
         {%- if page.contentdescription -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
-                <div data-translate="Sidebar_ContentDesc">Contentbeschreibung: </div>
-                {%- for lang in LANGUAGES -%}
-                    <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.contentdescription[lang] }}</span>
-                {%- endfor -%}
-            </h5>
+            {%- if page.contentdescription.de != "0" and page.contentdescription.de != "" -%}
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                    <div data-translate="Sidebar_ContentDesc">Contentbeschreibung: </div>
+                    {%- for lang in LANGUAGES -%}
+                        <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.contentdescription[lang] }}</span>
+                    {%- endfor -%}
+                </h5>
+            {%- endif -%}
         {%- endif -%}
         {%- if page.cfcid -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
@@ -198,26 +202,18 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_ContentMusic">Content Music:</div>
                 {%- for music in page.music -%}
-                    {%- if page.music.size > 1 -%}
-                        {%- if music.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" >- {{ music.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- endif -%}
+                    {%- if music.id -%}
+                        {%- for lang in LANGUAGES -%}
+                            <span class="lang-toggle lang-toogle-{{lang}} block">
+                                <a target="_blank" rel="noopener noreferrer" title="{{music.bgm_path}}" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{% if page.music.size > 1 %}- {% endif %}{{ music.name[lang] }}</a>
+                            </span>
+                        {%- endfor -%}
                     {%- else -%}
-                        {%- if music.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" >{{ music.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- endif -%}
+                        {%- for lang in LANGUAGES -%}
+                            <span class="lang-toggle lang-toogle-{{lang}} block">
+                                <a target="_blank" rel="noopener noreferrer" title="{{music.bgm_path}}">- {{ music.name[lang] }}</a>
+                            </span>
+                        {%- endfor -%}
                     {%- endif -%}
                 {%- endfor -%}
             </h5>
