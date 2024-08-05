@@ -19,7 +19,12 @@
   align-self: center;
   grid-area: Names;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  @media screen and (min-width: 70em) {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .EnemyNames {
@@ -47,12 +52,18 @@
 
 [class*=guide__accordion-trigger--] {
   display: grid;
-  grid-template-columns: 0.5fr 0.5fr 4.5fr 1.5fr;
+  grid-template-columns: .5fr .5fr 1.5fr 1.0fr;
   grid-template-rows: 0.5fr 0.5fr;
   grid-template-areas:
     "Dropdown Icon Names IdsHps"
     "Dropdown Icon Attributes IdsHps";
   gap: 0px 0px;
+
+
+  @media screen and (min-width: 70em) {
+      grid-template-columns: 0.5fr 0.5fr 4.5fr 1.5fr;
+  }
+
   //grid-auto-flow: row;
   padding: 1rem;
   color: white;
@@ -364,7 +375,10 @@ div {
   &.guide__accordion-trigger-subtitle {
     color: grey;
     &:before {
-      content: "\00a0|\00a0";
+      content: "";
+      @media screen and (min-width: 70em) {
+        content: "\00a0|\00a0";
+      }
     }
   }
 }
