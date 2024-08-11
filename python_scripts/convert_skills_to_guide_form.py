@@ -688,7 +688,7 @@ def addKlassJobs():
             continue
         allPartyMittigation[job] = []
         counter += 1
-        #if not job == "Dragoon":
+        #if not job == "Rotmagier":
         #    continue
         base_class = cjs[k[0]]["ClassJob"]['Parent'] if not cjs[k[0]]["ClassJob"]['Parent'] == job else None
         print_color_red(job)
