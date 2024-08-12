@@ -150,7 +150,7 @@ def writeFileIfNoDifferent(filename, filedata):
     if not filedata == x_data:
         with open(filename, "w", encoding="utf8") as fi:
             fi.write(filedata)
-        print(f"Wrote new data to file {filename}")
+        print(f"[MAIN:writeFileIfNoDifferent] Wrote new data to file {filename}")
 
 
 def write_content_to_file(entry, filename, old_data, content_translations):
@@ -182,18 +182,18 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             #filename = ""
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if not True:
+            if True:
                 #if debug_row_number < 710 :
-                if debug_row_number not in [779]:
+                if debug_row_number not in [104]:
                     print_debug = True
                     continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             if print_debug:
-                print(entry['title'])
+                print(f"[MAIN:run] {entry['title']}")
             logger.info(pretty_json(entry))
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
-                print("END FLAG WAS FOUND!")
+                print("[MAIN:run] END FLAG WAS FOUND!")
                 break
             translate_content_files(entry)
             #continue
@@ -203,7 +203,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                     content_translations[lang] = {}
                 #print(f"{entry['instanceType']}: {entry['title']}")
                 if entry['categories'] == "":
-                    print("Skipped due to no expansion specified")
+                    print("[MAIN:run] Skipped due to no expansion specified")
                     continue
                 expansion = expansion_list[entry['categories']]
                 filename = f"{expansion}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
@@ -223,7 +223,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                     writeJsonFile(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json", content_translations[lang])
 
             elif entry['title'] != "":
-                print_color_green(f"Skip {entry['title']} as its marked as {entry['exclude']}/{entry['done']}")
+                print_color_green(f"[MAIN:run] Skip {entry['title']} as its marked as {entry['exclude']}/{entry['done']}")
         except Exception as e:
             logger.critical(f"Error when handeling '{filename}' with line id '{i}' ({e})")
             traceback.print_exception(*sys.exc_info())
@@ -257,5 +257,5 @@ def main():
 
 
 if __name__ == "__main__":
-    print(sys.version)
+    print(f"[MAIN:if] {sys.version}")
     main()
