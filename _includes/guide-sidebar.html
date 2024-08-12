@@ -324,9 +324,9 @@
                 <div data-translate="Sidebar_OrchestrionRollMaterial">Orchestrion Roll Material: </div>
                 {%- for orchestrion_material in page.orchestrion_material -%}
                     {%- if page.orchestrion_material.size > 1 -%}
-                        <span data-translate="orchestrion__material{{orchestrion_material.name}}" class="block">- {{ orchestrion_material.name }}</span>
+                        <span data-translate="orchestrion__material_{{orchestrion_material.name}}" class="block">- {{ orchestrion_material.name }}</span>
                     {%- else -%}
-                        <span data-translate="orchestrion__material{{orchestrion_material.name}}" class="block">{{ orchestrion_material.name }}</span>
+                        <span data-translate="orchestrion__material_{{orchestrion_material.name}}" class="block">{{ orchestrion_material.name }}</span>
                     {%- endif -%}
                 {%- endfor -%}
             </h5>
