@@ -184,7 +184,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             if not True:
                 #if debug_row_number < 710 :
-                if debug_row_number not in [104]:
+                if debug_row_number not in [770]:
                     print_debug = True
                     continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
@@ -216,6 +216,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_data, content_translations)
                 # write translation file
+                #print_pretty_json(content_translations)
                 filename_translation_location = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '').replace('_', '-')}"
                 if not os.path.exists(filename_translation_location):
                     os.makedirs(filename_translation_location)

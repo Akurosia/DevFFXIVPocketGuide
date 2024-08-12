@@ -190,13 +190,14 @@ def writeTags(header_data, entry, tt_type_name):
     return header_data
 
 
-def addEntries(header_data, data, get_data_function):
+def addEntries(header_data, data, get_data_function, content_translations, cat):
     if data:
         _id, array = get_data_function(data)
         if _id:
-            header_data += '  - name:\n'
+            header_data += f'  - name: "{array.get("Singular_en", array.get("Name_en", ""))}"\n'
             for lang in LANGUAGES:
-                header_data += f'      {lang}: "' + array.get(f"Singular_{lang}", array.get(f"Name_{lang}", "")) + '"\n'
+                #header_data += f'      {lang}: "' + array.get(f"Singular_{lang}", array.get(f"Name_{lang}", "")) + '"\n'
+                content_translations[lang][f'{cat}_{array.get("Singular_en", array.get("Name_en", ""))}'] = array.get(f"Singular_{lang}", array.get(f"Name_{lang}", ""))
         else:
             header_data += '  - name: "' + data + '"\n'
         if _id:
@@ -291,7 +292,7 @@ def get_cat_image(instancetype, cfc_key):
     return cat_to_instance_image.get(instancetype, None)
 
 
-def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
+def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations):
     global contentfindercondition
     global instancecontent
     header_data = ""
@@ -301,13 +302,20 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
     else:
         header_data += 'wip: "True"\n'
     #header_data += 'title: "' + entry["title"] + '"\n'
+
     header_data += 'title:\n'
+    en_title = ""
     for lang in LANGUAGES:
-        tmp = entry[f"title_{lang}"].replace(f' ({entry["difficulty"].lower()})', "")
+        tmp = entry[f"title_{lang}"]
+        tmp = tmp.replace(f' ({entry["difficulty"].lower()})', "")
         tmp = tmp.replace(f' ({entry["difficulty"].title()})', "")
         tmp = tmp.replace('Traumprüfung - ', "")
         tmp = myCapitalize(tmp)
+        if lang == "en":
+            en_title = tmp
+        content_translations[lang][f'Title_{en_title}'] = tmp
         header_data += f'  {lang}: "' + tmp + '"\n'
+    #header_data += f'title: "{en_title}"\n'
     header_data += 'layout: guide_post\n'
     header_data += 'page_type: guide\n'
     header_data += f'excel_line: \"{entry["line_index"]}\"\n'
@@ -339,9 +347,10 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
         header_data += 'mappath: "' + tt_bg_entry + '"\n'
     if not tt_type_name == "":
         #header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
-        header_data += 'contentname:\n'
+        header_data += f'contentname: "{tt_type_name["Name_en"]}"\n'
         for lang in LANGUAGES:
-            header_data += f'  {lang}: "' + tt_type_name[f"Name_{lang}"] + '"\n'
+            content_translations[lang][f'ContentName_{tt_type_name["Name_en"]}'] = tt_type_name[f"Name_{lang}"]
+            #header_data += f'  {lang}: "' + tt_type_name[f"Name_{lang}"] + '"\n'
     header_data += 'sortid: ' + entry["sortid"] + '\n'
     header_data += get_lvl_data(entry)
     # quests
@@ -350,22 +359,22 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
         if not entry.get(f"quest_{lang}", "") == "":
             if not x:
                 x = True
-                header_data += 'quest:\n'
-            header_data += f'  {lang}: "' + entry[f"quest_{lang}"] + '"\n'
+                header_data += f'quest: "{entry["quest_en"]}"\n'
+            content_translations[lang][f'QuestName_{entry["quest_en"]}'] = entry[f"quest_{lang}"]
     x = False
     for lang in LANGUAGES:
         if not entry.get(f"quest_location_{lang}", "") == "":
             if not x:
                 x = True
-                header_data += 'quest_location:\n'
-            header_data += f'  {lang}: "' + entry[f"quest_location_{lang}"] + '"\n'
+                header_data += f'quest_location: "{entry["quest_location_en"]}"\n'
+            content_translations[lang][f'QuestLocation_{entry["quest_location_en"]}'] = entry[f"quest_location_{lang}"]
     x = False
     for lang in LANGUAGES:
         if not entry.get(f"quest_npc_{lang}", "") == "":
             if not x:
                 x = True
-                header_data += 'quest_npc:\n'
-            header_data += f'  {lang}: "' + entry[f"quest_npc_{lang}"] + '"\n'
+                header_data += f'quest_npc: "{entry["quest_npc_en"]}"\n'
+            content_translations[lang][f'QuestNPC_{entry["quest_npc_en"]}'] = entry[f"quest_npc_{lang}"]
 
     #header_data += 'order: ' + get_order_id(entry) + '\n'
     header_data += 'order: ' + entry["sortid"] + '\n'
@@ -396,7 +405,7 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
         elif fun:
             header_data += f'{cat}:\n'
             for i, d in enumerate(data):
-                header_data = addEntries(header_data, d.strip(), fun)
+                header_data = addEntries(header_data, d.strip(), fun, content_translations, cat)
         else:
             pass
 
@@ -466,7 +475,7 @@ def getItemsList(gs_items):
     return item_list
 
 
-def addContentZoneIdToHeader(contentzoneid, entry):
+def addContentZoneIdToHeader(contentzoneid, entry, content_translations):
     global contentfindercondition
     global contentfindercondition_trans
     cmt = None
@@ -496,9 +505,16 @@ def addContentZoneIdToHeader(contentzoneid, entry):
                 header_data += '  - id: ' + _id + '\n'
                 # add transient on the first valid entry
     if "contentdescription" not in header_data and not working_key == "":
-        header_data += 'contentdescription:\n'
+        content_en_desc = contentfinderconditiontransient[working_key]["Description_en"].replace("\n", "<br/>").replace('"', '\\"')
+        header_data += f'contentdescription: "{content_en_desc}"\n'
+        tmp = entry["title"]
+        tmp = tmp.replace(f' ({entry["difficulty"].lower()})', "")
+        tmp = tmp.replace(f' ({entry["difficulty"].title()})', "")
+        tmp = tmp.replace('Traumprüfung - ', "")
+        tmp = myCapitalize(tmp)
         for lang in LANGUAGES:
-            header_data += f'    {lang}: "' + contentfinderconditiontransient[working_key][f"Description_{lang}"].replace("\n", "<br/>").replace('"', '\\"') + '"\n'
+            content_translations[lang][f'ContentDesc_{tmp}'] = contentfinderconditiontransient[working_key][f"Description_{lang}"].replace("\n", "<br/>").replace('"', '\\"')
+            #header_data += f'    {lang}: "' + contentfinderconditiontransient[working_key][f"Description_{lang}"].replace("\n", "<br/>").replace('"', '\\"') + '"\n'
 
     return header_data, cmt, working_key
 
@@ -584,24 +600,24 @@ def getBGMPath(_id: str, name: str) -> str:
     return orchestrionpath[_id]['File'].replace(".scd", f"-{name}.ogg")
 
 
-def addMusic(header_data, music):
+def addMusic(header_data, music, content_translations):
     header_data += "music:\n"
     for m in music:
         _id, orchestrion = getOrchestrionIDByName(m)
         name = None
         if _id:
-            header_data += '  - name:\n'
+            header_data += f'  - name: "{orchestrion.get("Name_en", "")}"\n'
             for lang in LANGUAGES:
                 name = orchestrion.get(f"Name_{lang}", "")
                 if name == "":
                     name = f'{orchestrion.get("Name_de", "")} (no official translation)'
-                header_data += f'      {lang}: "{name}"\n'
+                content_translations[lang][f'music_{orchestrion.get("Name_en", "")}'] = name
             name = orchestrion.get("Name_de", "")
         else:
-            header_data += '  - name:\n'
+            header_data += f'  - name: {m}\n'
             name = m
             for lang in LANGUAGES:
-                header_data += f'      {lang}: "{name}"\n'
+                content_translations[lang][f'music_{name}'] = name
         if _id:
             header_data += '    id: "' + _id + '"\n'
             header_data += '    bgm_path: "' + getBGMPath(_id, name) + '"\n'
@@ -611,12 +627,12 @@ def addMusic(header_data, music):
 def addHeader(entry, old_data, music, contentzoneid, content_translations):
     logger.info("test")
     # the order was changed so that we have the cfc_key to retrief the correct icon for the content (latest ex primals and savage raids)
-    content_data, cmt, cfc_key = addContentZoneIdToHeader(contentzoneid, entry)
-    header_data, entry = rewrite_content_even_if_exists(entry, old_data.get('wip', False), cfc_key)
+    content_data, cmt, cfc_key = addContentZoneIdToHeader(contentzoneid, entry, content_translations)
+    header_data, entry = rewrite_content_even_if_exists(entry, old_data.get('wip', False), cfc_key, content_translations)
     header_data += content_data
     header_data += addGroupCollections(cmt, entry)
     if music:
-        header_data = addMusic(header_data, music)
+        header_data = addMusic(header_data, music, content_translations)
     return header_data
 
 if __name__ == "__main__":
