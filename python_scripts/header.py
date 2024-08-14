@@ -3,6 +3,7 @@
 # coding: utf8
 from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, get_any_Versiondata, print_color_red, true, readJsonFile, print_pretty_json
 from copy import deepcopy
+from typing import Any
 try:
     from python_scripts.constants import LANGUAGES
     from python_scripts.helper import seperate_data_into_array, getImage
@@ -32,10 +33,10 @@ gamerscape_items = readJsonFile("python_scripts/gamerscape_items/after_item_scan
 logger = logging.getLogger()
 
 
-def getClassJobDict():
-    final_array = {}
-    for key, value in classjob.items():
-        if not int(value['JobIndex']) == 0:
+def getClassJobDict() -> dict[Any, Any]:
+    final_array: dict[Any, Any] = {}
+    for _, value in classjob.items():
+        if int(value['JobIndex']) != 0:
             final_array[value['Abbreviation']] = {
                 "Waffe": [],
                 "Schild": [],
@@ -51,7 +52,7 @@ def getClassJobDict():
                 "Verschiedenes": []
             }
     return final_array
-class_job_item_array = getClassJobDict()
+class_job_item_array: dict[Any, Any] = getClassJobDict()
 
 
 def get_territorytype_from_mapid(entry):
@@ -62,11 +63,14 @@ def get_territorytype_from_mapid(entry):
     return "", ""
 
 
-def replaceSlug(text):
-    return str(text).replace("_", "-").replace(".", "-").replace(",", "").replace("'", "").replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("Ü", "Ue").replace("ß", "ss")
+def replaceSlug(text: Any) -> str:
+    text = str(text).replace("_", "-").replace(".", "-").replace(",", "").replace("'", "")
+    text = text.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("Ä", "Ae")
+    text = text.replace("Ö", "Oe").replace("Ü", "Ue").replace("ß", "ss")
+    return text
 
 
-def myCapitalize(string):
+def myCapitalize(string: str) -> str:
     if string == "":
         return ""
     return string[:1].upper() + string[1:]
@@ -190,7 +194,7 @@ def writeTags(header_data, entry, tt_type_name):
     return header_data
 
 
-def addEntries(header_data, data, get_data_function, content_translations, cat):
+def addEntries(header_data: str, data, get_data_function, content_translations, cat) -> str:
     if data:
         _id, array = get_data_function(data)
         if _id:
@@ -205,7 +209,7 @@ def addEntries(header_data, data, get_data_function, content_translations, cat):
     return header_data
 
 
-def get_order_id(entry):
+def get_order_id(entry) -> str:
     patch = "0000"
     plvl = "00"
     sortid = "0000"
@@ -267,21 +271,21 @@ def get_lvl_data(entry):
         lvl_data += 'ilvl_sync: ' + cfc_value["ItemLevel"]["Sync"] + '\n'
     return lvl_data
 
-cat_to_instance_image = {
-    "dungeon": "/061000/061801_hr1.png",
-    "trial": "/061000/061804_hr1.png",
-    "raid": "/061000/061802_hr1.png",
-    "ultimate": "/061000/061832_hr1.png",
-    "allianzraid": "/061000/061844_hr1.png",
+cat_to_instance_image: dict[str, str] = {
+    "dungeon":      "/061000/061801_hr1.png",
+    "trial":        "/061000/061804_hr1.png",
+    "raid":         "/061000/061802_hr1.png",
+    "ultimate":     "/061000/061832_hr1.png",
+    "allianzraid":  "/061000/061844_hr1.png",
     "gewölbesuche": "/061000/061846_hr1.png",
-    "feldexkursion": "/061000/061837_hr1.png",
-    "bluemage": "/061000/061836_hr1.png",
-    "potd": "/061000/061824_hr1.png",
-    "guildhest": "/061000/061803_hr1.png",
-    "treasure": "/061000/061808_hr1.png",
-    "pvp": "/061000/061806_hr1.png",
-    "training": "/061000/061823_hr1.png",
-    "overworld": "/052000/052474_hr1.png"
+    "feldexkursion":"/061000/061837_hr1.png",
+    "bluemage":     "/061000/061836_hr1.png",
+    "potd":         "/061000/061824_hr1.png",
+    "guildhest":    "/061000/061803_hr1.png",
+    "treasure":     "/061000/061808_hr1.png",
+    "pvp":          "/061000/061806_hr1.png",
+    "training":     "/061000/061823_hr1.png",
+    "overworld":    "/052000/052474_hr1.png"
 }
 def get_cat_image(instancetype, cfc_key):
     global cat_to_instance_image
@@ -301,21 +305,16 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations
         header_data += 'wip: "' + str(old_wip).title() + '"\n'
     else:
         header_data += 'wip: "True"\n'
-    #header_data += 'title: "' + entry["title"] + '"\n'
-
+    # header_data += 'title: "' + entry["title"] + '"\n'
+    #! DO NOT TOUCH TITLE HERE AS IT IS NEEDED FOR TAGS
     header_data += 'title:\n'
-    en_title = ""
     for lang in LANGUAGES:
         tmp = entry[f"title_{lang}"]
         tmp = tmp.replace(f' ({entry["difficulty"].lower()})', "")
         tmp = tmp.replace(f' ({entry["difficulty"].title()})', "")
         tmp = tmp.replace('Traumprüfung - ', "")
         tmp = myCapitalize(tmp)
-        if lang == "en":
-            en_title = tmp
-        content_translations[lang][f'Title_{en_title}'] = tmp
         header_data += f'  {lang}: "' + tmp + '"\n'
-    #header_data += f'title: "{en_title}"\n'
     header_data += 'layout: guide_post\n'
     header_data += 'page_type: guide\n'
     header_data += f'excel_line: \"{entry["line_index"]}\"\n'
@@ -334,7 +333,7 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations
         header_data += 'next_slug: "' + replaceSlug(entry["next_content"]) + '"\n'
     if entry["image"]:
         header_data += f'image: "{getImage(entry["image"])}"\n'
-        #header_data += '  - url: \"/' +  + '\n'
+        # header_data += '  - url: \"/' +  + '\n'
     cat_image = get_cat_image(entry["instanceType"], cfc_key)
     if cat_image:
         header_data += f'jobicon: "{getImage(cat_image)}"\n'
@@ -346,11 +345,11 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations
     if not tt_bg_entry == "":
         header_data += 'mappath: "' + tt_bg_entry + '"\n'
     if not tt_type_name == "":
-        #header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
+        # header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
         header_data += f'contentname: "{tt_type_name["Name_en"]}"\n'
         for lang in LANGUAGES:
             content_translations[lang][f'ContentName_{tt_type_name["Name_en"]}'] = tt_type_name[f"Name_{lang}"]
-            #header_data += f'  {lang}: "' + tt_type_name[f"Name_{lang}"] + '"\n'
+            # header_data += f'  {lang}: "' + tt_type_name[f"Name_{lang}"] + '"\n'
     header_data += 'sortid: ' + entry["sortid"] + '\n'
     header_data += get_lvl_data(entry)
     # quests
@@ -376,10 +375,10 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations
                 header_data += f'quest_npc: "{entry["quest_npc_en"]}"\n'
             content_translations[lang][f'QuestNPC_{entry["quest_npc_en"]}'] = entry[f"quest_npc_{lang}"]
 
-    #header_data += 'order: ' + get_order_id(entry) + '\n'
+    # header_data += 'order: ' + get_order_id(entry) + '\n'
     header_data += 'order: ' + entry["sortid"] + '\n'
 
-    #TODO add funcion for Orchestrio Material
+    # TODO add funcion for Orchestrio Material
     category_names = {
         'mount': getMountIDByName,
         'minion': getMinionIDByName,
@@ -444,7 +443,7 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations
             found, data = checkVariable(entry, x)
             if found:
                 header_data += f'    {x}: "' + data[0] + '"\n'
-    #get bgmusic
+    # get bgmusic
     instancecontent_id = contentfindercondition.get(cfc_key, {}).get('Content', "").replace("InstanceContent#", "")
     if instancecontent_id not in  ["0", "", None]:
         instancecontent_entry = instancecontent[instancecontent_id]

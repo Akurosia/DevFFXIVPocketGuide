@@ -72,12 +72,12 @@ def create_translation_files() -> None:
             writeJsonFile(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json", data)
 
 
-def get_old_content_if_file_is_found(_existing_filename: str) -> list[str]:
+def get_old_content_if_file_is_found(_existing_filename: str) -> dict[Any, Any]:
     if os.path.exists(_existing_filename):
         with open(_existing_filename, encoding="utf8") as f:
             doc = list(yaml.load_all(f, Loader=SafeLoader))[0]
             return doc
-    return []
+    return {}
 
 
 def try_to_create_file(filename: str) -> None:
@@ -182,12 +182,12 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     # for every row do:
     for i in range(2, max_row):
         try:
-            #filename = ""
+            # filename = ""
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             if not True:
-                #if debug_row_number < 710 :
-                if debug_row_number not in [770]:
+                # if debug_row_number < 710 :
+                if debug_row_number not in [430]:
                     print_debug = True
                     continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
@@ -199,12 +199,12 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 print("[MAIN:run] END FLAG WAS FOUND!")
                 break
             translate_content_files(entry)
-            #continue
+            # continue
             if not (entry["exclude"] or entry["done"]):
                 content_translations = {}
                 for lang in LANGUAGES:
                     content_translations[lang] = {}
-                #print(f"{entry['instanceType']}: {entry['title']}")
+                # print(f"{entry['instanceType']}: {entry['title']}")
                 if entry['categories'] == "":
                     print("[MAIN:run] Skipped due to no expansion specified")
                     continue
@@ -215,11 +215,11 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 # if old file was found, replace filename to save
                 if not old_data == {}:
                     filename = existing_filename
-                    #logger.info(pretty_json(old_data))
+                    # logger.info(pretty_json(old_data))
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_data, content_translations)
                 # write translation file
-                #print_pretty_json(content_translations)
+                # print_pretty_json(content_translations)
                 filename_translation_location = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '').replace('_', '-')}"
                 if not os.path.exists(filename_translation_location):
                     os.makedirs(filename_translation_location)
