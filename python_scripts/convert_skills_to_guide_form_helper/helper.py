@@ -14,9 +14,9 @@ LANGUAGES_MAPPING = {
 }
 
 
-def getImage(image):
+def getImage(image: str | None) -> str:
     if image is None:
-        return None
+        return ""
     image = image.replace(".tex", "_hr1.png")
     image = image.replace("ui/icon/", "")
     image = copy_and_return_image_as_hr(image)

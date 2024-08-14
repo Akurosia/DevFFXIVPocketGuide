@@ -118,7 +118,7 @@
 
                     {%- if page.extraicons -%}
                         {%- for icon in page.extraicons -%}
-                            <img onclick="copyIcon('{{icon}}')" loading="lazy" title="ExtraIcons" src="{{ site.baseurl }}/assets/img/game_assets/{{icon}}" />
+                            <img onclick="copyIcon('{{icon.name}}')" loading="lazy" title="{{icon.desc}}" src="{{ site.baseurl }}/assets/img/game_assets/{{icon.name}}" />
                         {%- endfor -%}
                     {%- endif -%}
                 </span>
