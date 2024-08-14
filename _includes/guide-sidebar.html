@@ -103,18 +103,23 @@
                 </span>
             </h5>
         {%- endif -%}
-        {%- if page.classicon or page.jobicon -%}
+        {%- if page.classicon or page.jobicon or page.jobkristall or page.extraicons -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Icon:
                 <span class="block group-icon">
                     {%- if page.classicon -%}
-                        <img loading="lazy" title="Class" src="{{ site.baseurl }}/assets/img/game_assets/{{page.classicon}}"/>
+                        <img onclick="copyIcon('{{page.classicon}}')" loading="lazy" title="Class" src="{{ site.baseurl }}/assets/img/game_assets/{{page.classicon}}"/>
                     {%- endif -%}
                     {%- if page.jobicon-%}
-                        <img loading="lazy" title="Job" src="{{ site.baseurl }}/assets/img/game_assets/{{page.jobicon}}"/>
+                        <img onclick="copyIcon('{{page.jobicon}}')" loading="lazy" title="Job" src="{{ site.baseurl }}/assets/img/game_assets/{{page.jobicon}}"/>
+                    {%- endif -%}
+                    {%- if page.jobkristall -%}
+                        <img onclick="copyIcon('{{page.jobkristall}}')" loading="lazy" title="Jobkristall" src="{{ site.baseurl }}/assets/img/game_assets/{{page.jobkristall}}"/>
                     {%- endif -%}
 
-                    {%- if page.jobkristall -%}
-                        <img loading="lazy" title="Jobkristall" src="{{ site.baseurl }}/assets/img/game_assets/{{page.jobkristall}}"/>
+                    {%- if page.extraicons -%}
+                        {%- for icon in page.extraicons -%}
+                            <img onclick="copyIcon('{{icon}}')" loading="lazy" title="ExtraIcons" src="{{ site.baseurl }}/assets/img/game_assets/{{icon}}" />
+                        {%- endfor -%}
                     {%- endif -%}
                 </span>
             </h5>
