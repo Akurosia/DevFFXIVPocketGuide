@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
+from logging import Logger
 import os
 import traceback
 # traceback.print_exc()
 import errno
 import yaml
 from yaml.loader import SafeLoader
-import python_scripts.generatePatch as gp
 from ffxiv_aku import pretty_json, print_color_green, sys, writeJsonFile, print_pretty_json
+import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide, logdata, logdata_lower
 from python_scripts.helper import uglyContentNameFix, getContentName
-#from python_scripts.constants import *
+# from python_scripts.constants import *
 from python_scripts.custom_logger import getLogger
 from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file
 import python_scripts.convert_skills_to_guide_form as csgf
@@ -20,18 +21,19 @@ import python_scripts.generateLinks as gl
 import python_scripts.generateHousingMissions as ghm
 import python_scripts.get_achivments as ga
 import python_scripts.getBlueSideQuestData as gbsq
+from typing import Any
 
 
-logger = getLogger(50)
-disable_green_print = True
-disable_yellow_print = True
-disable_blue_print = True
-disable_red_print = True
-debug_row_number = 0
-print_debug = False
+logger: Logger = getLogger(50)
+disable_green_print: bool = True
+disable_yellow_print: bool = True
+disable_blue_print: bool = True
+disable_red_print: bool = True
+debug_row_number: int = 0
+print_debug: bool = False
 
-LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
-LANGUAGES_MAPPING = {
+LANGUAGES: list[str] = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES_MAPPING: dict[str, str] = {
     "de": "de-DE",
     "en": "en-US",
     "fr": "fr-FR",
@@ -40,7 +42,7 @@ LANGUAGES_MAPPING = {
     "ko": "ko-KR"
 }
 
-translations = {
+translations:dict[str, dict[str, dict[str, str]]] = {
     "de": {},
     "en": {},
     "fr": {},
@@ -48,46 +50,46 @@ translations = {
     "cn": {},
     "ko": {}
 }
-def translate_content_files(entry):
+
+def translate_content_files(entry: dict[str, str]) -> None:
     global translations
     if entry['categories'] == "":
         return
-    #exp = expansion_list[entry['categories']]
-
-    _type = entry['instanceType']
+    _type: str = entry['instanceType']
     for lang in LANGUAGES:
         if not translations[lang].get(_type, None):
             translations[lang][_type] = {}
-        name = entry[f'title_{lang}']
-        translations[lang][_type][f"Summary_{_type}_{entry['title_en'].lower()}"] = uglyContentNameFix(name, instanceType=entry['instanceType'], difficulty=entry['difficulty']).replace(f' ({entry["difficulty"].lower()})', "")
+        name: str = entry[f'title_{lang}']
+        name = uglyContentNameFix(name, instanceType=entry['instanceType'], difficulty=entry['difficulty'])
+        name = name.replace(f' ({entry["difficulty"].lower()})', "")
+        translations[lang][_type][f"Summary_{_type}_{entry['title_en'].lower()}"] = name
 
 
-def create_translation_files():
+def create_translation_files() -> None:
     global translations
-    #print_pretty_json(translations)
     for lang, cat_data in translations.items():
         for cat, data in cat_data.items():
             writeJsonFile(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json", data)
 
 
-def get_old_content_if_file_is_found(_existing_filename):
+def get_old_content_if_file_is_found(_existing_filename: str) -> list[str]:
     if os.path.exists(_existing_filename):
         with open(_existing_filename, encoding="utf8") as f:
             doc = list(yaml.load_all(f, Loader=SafeLoader))[0]
             return doc
-    return {}
+    return []
 
 
-def try_to_create_file(filename):
+def try_to_create_file(filename: str) -> None:
     if not os.path.exists(os.path.dirname(filename)):
         try:
             os.makedirs(os.path.dirname(filename))
-        except OSError as exc:  # Guard against race condition
+        except OSError as exc:
             if exc.errno != errno.EEXIST:
                 raise
 
 
-def cleanup_logdata(logdata_instance_content):
+def cleanup_logdata(logdata_instance_content: dict[Any, Any]) -> tuple[dict[Any, Any], list[str] | None]:
     try:
         del logdata_instance_content["combatants"]
     except Exception:
@@ -100,9 +102,10 @@ def cleanup_logdata(logdata_instance_content):
         del logdata_instance_content["contentzoneid"]
     except Exception:
         pass
+
     music = None
     try:
-        music = logdata_instance_content["music"]
+        music: list[str] = logdata_instance_content["music"]
         del logdata_instance_content["music"]
     except Exception:
         pass
