@@ -21,6 +21,9 @@
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  &[class*=klassen] {
+    flex-direction: row;
+  }
   @media screen and (min-width: 70em) {
     flex-direction: row;
     align-items: center;
@@ -316,6 +319,15 @@
   position: relative;
   flex-shrink: 0;
   z-index: 2;
+  &[class*=xtitle] {
+    &:before{
+      content: "";
+
+      @media screen and (min-width: 70em) {
+        content: "\00a0|\00a0";
+      }
+    }
+  }
 }
 
 .guide__accordion-trigger-vartitle {
