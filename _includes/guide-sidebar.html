@@ -184,6 +184,14 @@
                 <span class="block">{{ page.mapid }}</span>
             </h5>
         {%- endif -%}
+        {%- if page.mapimage -%}
+            <h5 class="guide-metadata__subtitle {% if page.mapimage.size == 1%}akuflex{% endif %} box small-1of2 med-full">
+                <div data-translate="Sidebar_MapImage">MapImage: </div>
+                {%- for mapimage in page.mapimage -%}
+                    <span class="block">{% if page.mapimage.size > 1%}-&nbsp;{% endif %}{{ mapimage.image }}</span>
+                {%- endfor -%}
+            </h5>
+        {%- endif -%}
         {%- if page.mappath -%}
             <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_MapPath">MapPath: </div>
@@ -194,11 +202,7 @@
             <h5 class="guide-metadata__subtitle {% if page.contentzoneids.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_Contenzoneids">Contenzoneids: </div>
                 {%- for zone in page.contentzoneids -%}
-                    {%- if page.contentzoneids.size > 1 -%}
-                        <span class="block">- {{ zone.id }}</span>
-                    {%- else -%}
-                        <span class="block">{{ zone.id }}</span>
-                    {%- endif -%}
+                    <span class="block">{% if page.contentzoneids.size > 1 %}-&nbsp;{% endif %}{{ zone.id }}</span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
@@ -206,15 +210,13 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_ContentMusic">Content Music:</div>
                 {%- for music in page.music -%}
-                    {%- if music.id -%}
-                        <span class="block">
-                            <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{% if page.music.size > 1 %}- {% endif %}{{ music.name }}</a>
-                        </span>
-                    {%- else -%}
-                        <span class="block">
-                            <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}">- {{ music.name }}</a>
-                        </span>
-                    {%- endif -%}
+                    <span class="block">{% if page.music.size > 1%}-&nbsp;{% endif %}
+                        {%- if music.id -%}
+                            <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name }}</a>
+                        {%- else -%}
+                            <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}">{{ music.name }}</a>
+                        {%- endif -%}
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
@@ -267,11 +269,13 @@
             <h5 class="guide-metadata__subtitle {% if page.mount.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_Mounts">Mount(s): </div>
                 {%- for mount in page.mount -%}
+                    <span class="block">{% if page.mount.size > 1%}-&nbsp;{% endif %}
                     {%- if mount.id -%}
-                        <span class="block"><a data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{% if page.mount.size > 1%}- {% endif %}{{ mount.name }}</a></span>
+                        <a data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name }}</a>
                     {%- else -%}
-                        <span class="block"><a data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer">{% if page.mount.size > 1%}- {% endif %}{{ mount.name }}</a></span>
+                        <a data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer">{{ mount.name }}</a>
                     {%- endif -%}
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
@@ -279,11 +283,13 @@
             <h5 class="guide-metadata__subtitle {% if page.minion.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_Minions">Minion(s): </div>
                 {%- for minion in page.minion -%}
-                    {%- if minion.id -%}
-                        <span class="block"><a data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/minions/{{ minion.id }}">{% if page.minion.size > 1%}- {% endif %}{{ minion.name }}</a></span>
-                    {%- else -%}
-                        <span class="block"><a data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer">{% if page.minion.size > 1%}- {% endif %}{{ minion.name }}</a></span>
-                    {%- endif -%}
+                    <span class="block">{% if page.minion.size > 1%}-&nbsp;{% endif %}
+                        {%- if minion.id -%}
+                            <a data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name }}</a>
+                        {%- else -%}
+                            <a data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer">{{ minion.name }}</a>
+                        {%- endif -%}
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
@@ -291,11 +297,7 @@
             <h5 class="guide-metadata__subtitle {% if page.gearset_loot.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_Gearsets">Gearset(s): </div>
                 {%- for gearset in page.gearset_loot -%}
-                    {%- if page.gearset_loot.size > 1 -%}
-                        <span class="block">- {{ gearset.gsetname }}</span>
-                    {%- else -%}
-                        <span class="block">{{ gearset.gsetname }}</span>
-                    {%- endif -%}
+                    <span class="block">{% if page.gearset_loot.size > 1%}-&nbsp;{% endif %}{{ gearset.gsetname }}</span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
@@ -303,11 +305,13 @@
             <h5 class="guide-metadata__subtitle {% if page.tt_card.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_TT_Karten">TT_Karte(n): </div>
                 {%- for tt_card in page.tt_card -%}
-                    {%- if tt_card.id -%}
-                        <span class="block"><a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{% if page.tt_card.size > 1%}- {% endif %}{{ tt_card.name }}</a></span>
-                    {%- else -%}
-                        <span class="block"><a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" >{% if page.tt_card.size > 1%}- {% endif %}{{ tt_card.name }}</a></span>
-                    {%- endif -%}
+                    <span class="block">{% if page.tt_card.size > 1%}-&nbsp;{% endif %}
+                        {%- if tt_card.id -%}
+                            <a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name }}</a>
+                        {%- else -%}
+                            <a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" >{{ tt_card.name }}</a>
+                        {%- endif -%}
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
@@ -315,11 +319,13 @@
             <h5 class="guide-metadata__subtitle {% if page.orchestrion.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_OrchestrionRoll">Orchestrion Roll: </div>
                 {%- for orchestrion in page.orchestrion -%}
-                    {%- if orchestrion.id -%}
-                        <span class="block"><a data-translate="orchestrion_{{orchestrion.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{% if page.orchestrion.size > 1%}- {% endif %}{{ orchestrion.name }}</a></span>
-                    {%- else -%}
-                        <span class="block"><a data-translate="orchestrion_{{orchestrion.name}}" target="_blank" rel="noopener noreferrer">{% if page.orchestrion.size > 1%}- {% endif %}{{ orchestrion.name }}</a></span>
-                    {%- endif -%}
+                    <span class="block">{% if page.orchestrion.size > 1%}-&nbsp;{% endif %}
+                        {%- if orchestrion.id -%}
+                            <a data-translate="orchestrion_{{orchestrion.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name }}</a>
+                        {%- else -%}
+                            <a data-translate="orchestrion_{{orchestrion.name}}" target="_blank" rel="noopener noreferrer">{{ orchestrion.name }}</a>
+                        {%- endif -%}
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
@@ -327,11 +333,9 @@
             <h5 class="guide-metadata__subtitle {% if page.orchestrion_material.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_OrchestrionRollMaterial">Orchestrion Roll Material: </div>
                 {%- for orchestrion_material in page.orchestrion_material -%}
-                    {%- if page.orchestrion_material.size > 1 -%}
-                        <span data-translate="orchestrion_material_{{orchestrion_material.name}}" class="block">- {{ orchestrion_material.name }}</span>
-                    {%- else -%}
-                        <span data-translate="orchestrion_material_{{orchestrion_material.name}}" class="block">{{ orchestrion_material.name }}</span>
-                    {%- endif -%}
+                    <span class="block">{% if page.orchestrion_material.size > 1%}-&nbsp;{% endif %}
+                        <span data-translate="orchestrion_material_{{orchestrion_material.name}}">{{ orchestrion_material.name }}</span>
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
@@ -369,13 +373,13 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_Links">Links: </div>
                 {%- if page.links.teamcraftlink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance/{{ page.links.teamcraftlink }}">Teamcraft</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance/{{ page.links.teamcraftlink }}">- Teamcraft</a></span>
                 {%- endif -%}
                 {%- if page.links.garlandtoolslink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance/{{ page.links.garlandtoolslink }}">Garlandtools</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance/{{ page.links.garlandtoolslink }}">- Garlandtools</a></span>
                 {%- endif -%}
                 {%- if page.links.gamerescapelink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki/{{ page.links.gamerescapelink }}">Gamerscape</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki/{{ page.links.gamerescapelink }}">- Gamerscape</a></span>
                 {%- endif -%}
             </h5>
         {%- endif -%}
@@ -388,7 +392,7 @@
             {%- if page.mechanics -%}
                 <li>
                     <a href="#" data-id="guideNotes" title="Go to the Guide Notes" class="guide-metadata__menu-link">
-                         <div data-translate="Sidebar_Notizen">Notes</div>
+                        <div data-translate="Sidebar_Notizen">Notes</div>
                     </a>
                 </li>
             {%- endif -%}
@@ -396,7 +400,7 @@
             {%- if page.bosses.size > 1 -%}
                 <li>
                     <a href="#" data-id="guideBosse" title="Go to the Guide Bosse" class="guide-metadata__menu-link">
-                         <div data-translate="Sidebar_Bosse">Bosses</div>
+                        <div data-translate="Sidebar_Bosse">Bosses</div>
                     </a>
                     <ul class="guide-metadata__submenu">
                         {%- for boss in page.bosses -%}
