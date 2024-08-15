@@ -10,29 +10,31 @@ contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json
 placename = loadDataTheQuickestWay("placename_all.json", translate=True)
 
 
-def getImage(image):
+def getImage(image: str, _type: str="icon") -> str:
     if image is None:
         return None
     image = image.replace(".tex", "_hr1.png")
-    image = image.replace("ui/icon/", "")
-    image = copy_and_return_image_as_hr(image)
+    if _type == "icon":
+        image = image.replace(f"ui/{_type}/", "")
+    image = copy_and_return_image_as_hr(img=image, _type=_type)
     return image
 
-def copy_and_return_image_as_hr(img):
-    if "_hr1" not in img:
+def copy_and_return_image_as_hr(img: str, _type: str="icon") -> str:
+    if "_hr1" not in img and not _type == "map":
         img = img.replace(".png", "_hr1.png")
 
-    if os.path.exists("P:\\extras\\images\\ui\\icon\\" + img):
-        #print(os.getcwd())
+    if os.path.exists(f"P:\\extras\\images\\ui\\{_type}\\" + img):
         new_path = "..\\assets\\img\\game_assets\\"
         if os.getcwd().endswith("DevFFXIVPocketGuide"):
             new_path = "assets\\img\\game_assets\\"
+        if _type == "map":
+            new_path += "map\\"
         if not os.path.exists(new_path + img):
             if not os.path.exists(os.path.dirname(new_path + img)):
                 os.makedirs(os.path.dirname(new_path + img))
-            shutil.copyfile("P:\\extras\\images\\ui\\icon\\" + img, new_path + img)
+            shutil.copyfile(f"P:\\extras\\images\\ui\\{_type}\\" + img, new_path + img)
     else:
-        print_color_red(img)
+        print_color_red(f"P:\\extras\\images\\ui\\{_type}\\" + img)
     return img
 
 
@@ -40,7 +42,7 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
     if difficulty == "Fatal" and instanceType == "ultimate" and "fatal" not in name.lower():
         name = f"{name} (fatal)"
     elif difficulty == "Episch" and instanceType in ["raid", "feldexkursion", "gewölbesuche"] and "episch" not in name.lower():
-        name = f"{name} (episch)"    
+        name = f"{name} (episch)"
     elif difficulty == "Schwer" and instanceType == "dungeon" and "schwer" not in name.lower():
         name = f"{name} (schwer)"
     # handle stupid edge cases for primals

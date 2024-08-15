@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, get_any_Versiondata, print_color_red, true, readJsonFile, print_pretty_json
+from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, get_any_Versiondata, print_color_red, true, readJsonFile, print_pretty_json, glob
 from copy import deepcopy
 from typing import Any
 try:
@@ -55,7 +55,7 @@ def getClassJobDict() -> dict[Any, Any]:
 class_job_item_array: dict[Any, Any] = getClassJobDict()
 
 
-def get_territorytype_from_mapid(entry):
+def get_territorytype_from_mapid(entry) -> tuple[str, str]:
     for key, tt_type in territorytype_trans.items():
         if tt_type["TerritoryType"].lower() == entry["mapid"].lower():
             return tt_type, territorytype[key]['Bg']
@@ -296,6 +296,21 @@ def get_cat_image(instancetype, cfc_key):
     return cat_to_instance_image.get(instancetype, None)
 
 
+def getMapImages(mapid: str, contentname: str) -> str:
+    result: str = ""
+    path: str = "P:\\extras\\images\\ui\\map\\"
+    files: list[str] = glob(path + mapid[:3] + "\\*.png")
+    found_valid_maps: list[str] = []
+    for file in files:
+        if contentname in file:
+            found_valid_maps.append(file)
+    if found_valid_maps:
+        found_valid_maps = [ x.replace(path, "").replace("\\", "/") for x in found_valid_maps ]
+        result += "mapimage:\n"
+        for image in found_valid_maps:
+            result += f'    - image: "{getImage(image=image, _type="map")}"\n'
+    return result
+
 def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations):
     global contentfindercondition
     global instancecontent
@@ -350,6 +365,8 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations
         for lang in LANGUAGES:
             content_translations[lang][f'ContentName_{tt_type_name["Name_en"]}'] = tt_type_name[f"Name_{lang}"]
             # header_data += f'  {lang}: "' + tt_type_name[f"Name_{lang}"] + '"\n'
+    if entry.get("mapid", None) and tt_bg_entry:
+        header_data += getMapImages(mapid=entry["mapid"], contentname=tt_type_name["Name_de"])
     header_data += 'sortid: ' + entry["sortid"] + '\n'
     header_data += get_lvl_data(entry)
     # quests
