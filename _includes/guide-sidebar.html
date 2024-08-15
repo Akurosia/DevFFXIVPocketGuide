@@ -188,7 +188,9 @@
             <h5 class="guide-metadata__subtitle {% if page.mapimage.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_MapImage">MapImage: </div>
                 {%- for mapimage in page.mapimage -%}
-                    <span class="block">{% if page.mapimage.size > 1%}-&nbsp;{% endif %}{{ mapimage.image }}</span>
+                    <span class="block">{% if page.mapimage.size > 1%}-&nbsp;{% endif %}
+                        <a target="_blank" rel="noopener noreferrer" href="https://ff14.akurosiakamo.de/extras/images/ui/map/{{ mapimage.image }}">{{ mapimage.image }}</a>
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
