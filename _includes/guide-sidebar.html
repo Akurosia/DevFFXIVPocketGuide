@@ -191,7 +191,7 @@
             </h5>
         {%- endif -%}
         {%- if page.contentzoneids -%}
-            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle {% if page.contentzoneids.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_Contenzoneids">Contenzoneids: </div>
                 {%- for zone in page.contentzoneids -%}
                     {%- if page.contentzoneids.size > 1 -%}

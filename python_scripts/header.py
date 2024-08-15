@@ -301,7 +301,6 @@ def getMapImages(mapid: str, contentname: str) -> str:
     path: str = "P:\\extras\\images\\ui\\map\\"
     files: list[str] = glob(path + mapid[:3] + "\\*.png")
     found_valid_maps: list[str] = []
-    found_valid_maps_re: list[str] = []
     for file in files:
         if "_ow_" in file:
             continue
