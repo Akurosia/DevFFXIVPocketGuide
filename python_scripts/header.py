@@ -301,14 +301,19 @@ def getMapImages(mapid: str, contentname: str) -> str:
     path: str = "P:\\extras\\images\\ui\\map\\"
     files: list[str] = glob(path + mapid[:3] + "\\*.png")
     found_valid_maps: list[str] = []
+    found_valid_maps_re: list[str] = []
     for file in files:
-        if contentname in file:
+        if "_ow_" in file:
+            continue
+        if contentname+".png" in file and not "_event" in file and mapid in file:
             found_valid_maps.append(file)
+            if "_event" in file:
+                print_color_red(file)
     if found_valid_maps:
         found_valid_maps = [ x.replace(path, "").replace("\\", "/") for x in found_valid_maps ]
         result += "mapimage:\n"
         for image in found_valid_maps:
-            result += f'    - image: "{getImage(image=image, _type="map")}"\n'
+            result += f'    - image: "{image}"\n'
     return result
 
 def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations):

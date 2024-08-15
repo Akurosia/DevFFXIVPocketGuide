@@ -304,13 +304,9 @@
                 <div data-translate="Sidebar_TT_Karten">TT_Karte(n): </div>
                 {%- for tt_card in page.tt_card -%}
                     {%- if tt_card.id -%}
-                        {%- for lang in LANGUAGES -%}
-                            <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{% if page.tt_card.size > 1%}- {% endif %}{{ tt_card.name[lang] }}</a></span>
-                        {%- endfor -%}
+                        <span class="block"><a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{% if page.tt_card.size > 1%}- {% endif %}{{ tt_card.name }}</a></span>
                     {%- else -%}
-                        {%- for lang in LANGUAGES -%}
-                            <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" >{% if page.tt_card.size > 1%}- {% endif %}{{ tt_card.name[lang] }}</a></span>
-                        {%- endfor -%}
+                        <span class="block"><a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" >{% if page.tt_card.size > 1%}- {% endif %}{{ tt_card.name }}</a></span>
                     {%- endif -%}
                 {%- endfor -%}
             </h5>
@@ -332,9 +328,9 @@
                 <div data-translate="Sidebar_OrchestrionRollMaterial">Orchestrion Roll Material: </div>
                 {%- for orchestrion_material in page.orchestrion_material -%}
                     {%- if page.orchestrion_material.size > 1 -%}
-                        <span data-translate="orchestrion__material_{{orchestrion_material.name}}" class="block">- {{ orchestrion_material.name }}</span>
+                        <span data-translate="orchestrion_material_{{orchestrion_material.name}}" class="block">- {{ orchestrion_material.name }}</span>
                     {%- else -%}
-                        <span data-translate="orchestrion__material_{{orchestrion_material.name}}" class="block">{{ orchestrion_material.name }}</span>
+                        <span data-translate="orchestrion_material_{{orchestrion_material.name}}" class="block">{{ orchestrion_material.name }}</span>
                     {%- endif -%}
                 {%- endfor -%}
             </h5>
