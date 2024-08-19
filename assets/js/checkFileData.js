@@ -1,48 +1,46 @@
 function translate_getSearchCategories(){
-  var Http = new XMLHttpRequest();
-  url = encodeURI('https://ffxivapi.akurosia.de/ffxiv/latestJSONfiles/overview');
-  Http.open("GET", url, true);
-  Http.send();
-  Http.onreadystatechange = (e) => {
-    if (Http.readyState == 4 && Http.status == 200){
-      _select = document.getElementById("filterValue");
-      let json = JSON.parse(Http.responseText)
+    var Http = new XMLHttpRequest();
+    url = encodeURI('https://ffxivapi.akurosia.de/ffxiv/latestJSONfiles/overview');
+    Http.open("GET", url, true);
+    Http.send();
+    Http.onreadystatechange = (e) => {
+        if (Http.readyState == 4 && Http.status == 200){
+            _select = document.getElementById("filterValue");
+            let json = JSON.parse(Http.responseText)
 
-      var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base', ignorePunctuation: true});
-      var keys = Object.keys(json);
-      keys = keys.sort(collator.compare)
+            var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base', ignorePunctuation: true});
+            var keys = Object.keys(json);
+            keys = keys.sort(collator.compare)
 
-      for (var category in keys){
-        var _element = document.createElement('option');
-        _element.setAttribute("value", json[keys[category]]);
-        _element.text = json[keys[category]];
-        _select.appendChild(_element);
-      }
-      translate_loadFromLocalStorage();
+            for (var category in keys){
+            var _element = document.createElement('option');
+            _element.setAttribute("value", json[keys[category]]);
+            _element.text = json[keys[category]];
+            _select.appendChild(_element);
+            }
+            translate_loadFromLocalStorage();
+        }
     }
-  }
 }
 
 
 function translate_SubmitToLocalStorage(){
-  var inp = document.getElementById("filterValue").selectedIndex;
-  localStorage.setItem('ffxiv_aku_filterValue', inp);
-
-  var inp = document.getElementById("fieldfilter").value;
-  localStorage.setItem('ffxiv_aku_fieldfilter', inp);
-
-  var inp = document.getElementById("filterterm").value
-  localStorage.setItem('ffxiv_aku_filterterm', inp);
+    var inp = document.getElementById("filterValue").selectedIndex;
+    localStorage.setItem('ffxiv_aku_filterValue', inp);
+    var inp = document.getElementById("fieldfilter").value;
+    localStorage.setItem('ffxiv_aku_fieldfilter', inp);
+    var inp = document.getElementById("filterterm").value
+    localStorage.setItem('ffxiv_aku_filterterm', inp);
 }
 
 
 function translate_loadFromLocalStorage(){
-  if(localStorage.getItem('translate_ffxiv_term') !== null){
-    document.getElementById("filterValue").selectedIndex = localStorage.getItem('ffxiv_aku_filterValue');
-    document.getElementById("fieldfilter").value = localStorage.getItem('ffxiv_aku_fieldfilter');
-    document.getElementById("filterterm").value = localStorage.getItem('ffxiv_aku_filterterm');
-    //document.getElementById("exactSearch").selectedIndex = localStorage.getItem('ffxiv_aku_filterValue');
-  }
+    if(localStorage.getItem('translate_ffxiv_term') !== null){
+        document.getElementById("filterValue").selectedIndex = localStorage.getItem('ffxiv_aku_filterValue');
+        document.getElementById("fieldfilter").value = localStorage.getItem('ffxiv_aku_fieldfilter');
+        document.getElementById("filterterm").value = localStorage.getItem('ffxiv_aku_filterterm');
+        //document.getElementById("exactSearch").selectedIndex = localStorage.getItem('ffxiv_aku_filterValue');
+    }
 }
 
 
@@ -217,12 +215,15 @@ function createTemplateTableHead(json){
 
 function addBodyElement(_tr, element){
     var _td = document.createElement('td');
-    if (JSON.stringify(element).startsWith("ui/") && element.endsWith(".tex")){
+    if (typeof element == "object") {
+        element = JSON.stringify(element);
+    }
+    if (element.startsWith("ui") && element.endsWith(".tex")){
         var value = element.replace(".tex", "_hr1.png")
         var textnode_1 = document.createElement('img');
         textnode_1.setAttribute("src", "https://ffxiv.akurosia.de/extras/images/" + value);
         textnode_1.setAttribute("alt", value);
-        textnode_1.setAttribute("style", "max-height: 200px; max-width: 500px;");
+        textnode_1.setAttribute("style", "max-height: 40px; max-width: fit-content;");
     } else{
         var textnode_1 = document.createTextNode(element);
     }
@@ -246,18 +247,20 @@ function createTemplateTableBody(json, _filterterm, _input){
         }
         var _tr = document.createElement('tr');
         var _td = document.createElement('td');
+        // add json key to list
         var textnode_1 = document.createTextNode(json_key);
         _td.appendChild(textnode_1);
         _tr.appendChild(_td);
 
         // Add all coulmn fro file
+        found_item = false
         for (var element_key in element) {
             if (_input != "*") {
                 if (!_input.includes(element_key.toLocaleLowerCase())){
                     continue
                 }
             }
-            var _td = document.createElement('td');
+            found_item = true
             // if element is a dict do it for all subkeys
             if (typeof element[element_key] == "object") {
                 //_tr = addBodyElement(_tr, JSON.stringify(element[element_key]))
@@ -267,8 +270,19 @@ function createTemplateTableBody(json, _filterterm, _input){
             } else {
                 _tr = addBodyElement(_tr, element[element_key])
             }
+            //_tr.appendChild(_td);
         }
-        _body.appendChild(_tr);
+
+        // if a filterterm is set and the final result does not include the filterterm, pretent to have not found the item at all
+        if (_filterterm != "") {
+            if (!_tr.outerHTML.toLowerCase().includes(_filterterm)){
+                found_item=false
+            }
+        }
+        // only print result if flag is true
+        if (found_item){
+            _body.appendChild(_tr);
+        }
     }
     return _body;
 }
