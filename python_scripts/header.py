@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, get_any_Versiondata, print_color_red, true, readJsonFile, print_pretty_json
+from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, get_any_Versiondata, print_color_red, true, readJsonFile, print_pretty_json, glob
 from copy import deepcopy
+from typing import Any
 try:
     from python_scripts.constants import LANGUAGES
     from python_scripts.helper import seperate_data_into_array, getImage
@@ -19,10 +20,12 @@ mounts = loadDataTheQuickestWay("mount_all.json", translate=True)
 exversion = loadDataTheQuickestWay("exversion_all.json", translate=True)
 minions = loadDataTheQuickestWay("companion_all.json", translate=True)
 orchestrions = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
+orchestrionpath = loadDataTheQuickestWay("OrchestrionPath.json", translate=False)
 ttcards = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
 contentfindercondition = loadDataTheQuickestWay("ContentFinderCondition.de.json")
 contentfindercondition_trans = loadDataTheQuickestWay("ContentFinderCondition", translate=True)
 contentfinderconditiontransient = loadDataTheQuickestWay("ContentFinderConditionTransient", translate=True)
+instancecontent = loadDataTheQuickestWay("InstanceContent.json")
 contentmembertype = loadDataTheQuickestWay("ContentMemberType.json")
 classjob = loadDataTheQuickestWay("Classjob.de.json")
 items = loadDataTheQuickestWay("Item.de.json")
@@ -30,10 +33,10 @@ gamerscape_items = readJsonFile("python_scripts/gamerscape_items/after_item_scan
 logger = logging.getLogger()
 
 
-def getClassJobDict():
-    final_array = {}
-    for key, value in classjob.items():
-        if not int(value['JobIndex']) == 0:
+def getClassJobDict() -> dict[Any, Any]:
+    final_array: dict[Any, Any] = {}
+    for _, value in classjob.items():
+        if int(value['JobIndex']) != 0:
             final_array[value['Abbreviation']] = {
                 "Waffe": [],
                 "Schild": [],
@@ -49,10 +52,10 @@ def getClassJobDict():
                 "Verschiedenes": []
             }
     return final_array
-class_job_item_array = getClassJobDict()
+class_job_item_array: dict[Any, Any] = getClassJobDict()
 
 
-def get_territorytype_from_mapid(entry):
+def get_territorytype_from_mapid(entry) -> tuple[str, str]:
     for key, tt_type in territorytype_trans.items():
         if tt_type["TerritoryType"].lower() == entry["mapid"].lower():
             return tt_type, territorytype[key]['Bg']
@@ -60,11 +63,14 @@ def get_territorytype_from_mapid(entry):
     return "", ""
 
 
-def replaceSlug(text):
-    return str(text).replace("_", "-").replace(".", "-").replace(",", "").replace("'", "").replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("Ä", "Ae").replace("Ö", "Oe").replace("Ü", "Ue").replace("ß", "ss")
+def replaceSlug(text: Any) -> str:
+    text = str(text).replace("_", "-").replace(".", "-").replace(",", "").replace("'", "")
+    text = text.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("Ä", "Ae")
+    text = text.replace("Ö", "Oe").replace("Ü", "Ue").replace("ß", "ss")
+    return text
 
 
-def myCapitalize(string):
+def myCapitalize(string: str) -> str:
     if string == "":
         return ""
     return string[:1].upper() + string[1:]
@@ -188,13 +194,14 @@ def writeTags(header_data, entry, tt_type_name):
     return header_data
 
 
-def addEntries(header_data, data, get_data_function):
+def addEntries(header_data: str, data, get_data_function, content_translations, cat) -> str:
     if data:
         _id, array = get_data_function(data)
         if _id:
-            header_data += '  - name:\n'
+            header_data += f'  - name: "{array.get("Singular_en", array.get("Name_en", ""))}"\n'
             for lang in LANGUAGES:
-                header_data += f'      {lang}: "' + array.get(f"Singular_{lang}", array.get(f"Name_{lang}", "")) + '"\n'
+                #header_data += f'      {lang}: "' + array.get(f"Singular_{lang}", array.get(f"Name_{lang}", "")) + '"\n'
+                content_translations[lang][f'{cat}_{array.get("Singular_en", array.get("Name_en", ""))}'] = array.get(f"Singular_{lang}", array.get(f"Name_{lang}", ""))
         else:
             header_data += '  - name: "' + data + '"\n'
         if _id:
@@ -202,7 +209,7 @@ def addEntries(header_data, data, get_data_function):
     return header_data
 
 
-def get_order_id(entry):
+def get_order_id(entry) -> str:
     patch = "0000"
     plvl = "00"
     sortid = "0000"
@@ -264,21 +271,21 @@ def get_lvl_data(entry):
         lvl_data += 'ilvl_sync: ' + cfc_value["ItemLevel"]["Sync"] + '\n'
     return lvl_data
 
-cat_to_instance_image = {
-    "dungeon": "/061000/061801_hr1.png",
-    "trial": "/061000/061804_hr1.png",
-    "raid": "/061000/061802_hr1.png",
-    "ultimate": "/061000/061832_hr1.png",
-    "allianzraid": "/061000/061844_hr1.png",
+cat_to_instance_image: dict[str, str] = {
+    "dungeon":      "/061000/061801_hr1.png",
+    "trial":        "/061000/061804_hr1.png",
+    "raid":         "/061000/061802_hr1.png",
+    "ultimate":     "/061000/061832_hr1.png",
+    "allianzraid":  "/061000/061844_hr1.png",
     "gewölbesuche": "/061000/061846_hr1.png",
-    "feldexkursion": "/061000/061837_hr1.png",
-    "bluemage": "/061000/061836_hr1.png",
-    "potd": "/061000/061824_hr1.png",
-    "guildhest": "/061000/061803_hr1.png",
-    "treasure": "/061000/061808_hr1.png",
-    "pvp": "/061000/061806_hr1.png",
-    "training": "/061000/061823_hr1.png",
-    "overworld": "/052000/052474_hr1.png"
+    "feldexkursion":"/061000/061837_hr1.png",
+    "bluemage":     "/061000/061836_hr1.png",
+    "potd":         "/061000/061824_hr1.png",
+    "guildhest":    "/061000/061803_hr1.png",
+    "treasure":     "/061000/061808_hr1.png",
+    "pvp":          "/061000/061806_hr1.png",
+    "training":     "/061000/061823_hr1.png",
+    "overworld":    "/052000/052474_hr1.png"
 }
 def get_cat_image(instancetype, cfc_key):
     global cat_to_instance_image
@@ -289,17 +296,40 @@ def get_cat_image(instancetype, cfc_key):
     return cat_to_instance_image.get(instancetype, None)
 
 
-def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
+def getMapImages(mapid: str, contentname: str) -> str:
+    result: str = ""
+    path: str = "P:\\extras\\images\\ui\\map\\"
+    files: list[str] = glob(path + mapid[:3] + "\\*.png")
+    found_valid_maps: list[str] = []
+    for file in files:
+        if "_ow_" in file:
+            continue
+        if contentname+".png" in file and not "_event" in file and mapid in file:
+            found_valid_maps.append(file)
+            if "_event" in file:
+                print_color_red(file)
+    if found_valid_maps:
+        found_valid_maps = [ x.replace(path, "").replace("\\", "/") for x in found_valid_maps ]
+        result += "mapimage:\n"
+        for image in found_valid_maps:
+            result += f'    - image: "{image}"\n'
+    return result
+
+def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations):
+    global contentfindercondition
+    global instancecontent
     header_data = ""
     tt_type_name, tt_bg_entry = get_territorytype_from_mapid(entry)
     if old_wip in ["True", "False"]:
         header_data += 'wip: "' + str(old_wip).title() + '"\n'
     else:
         header_data += 'wip: "True"\n'
-    #header_data += 'title: "' + entry["title"] + '"\n'
+    # header_data += 'title: "' + entry["title"] + '"\n'
+    #! DO NOT TOUCH TITLE HERE AS IT IS NEEDED FOR TAGS
     header_data += 'title:\n'
     for lang in LANGUAGES:
-        tmp = entry[f"title_{lang}"].replace(f' ({entry["difficulty"].lower()})', "")
+        tmp = entry[f"title_{lang}"]
+        tmp = tmp.replace(f' ({entry["difficulty"].lower()})', "")
         tmp = tmp.replace(f' ({entry["difficulty"].title()})', "")
         tmp = tmp.replace('Traumprüfung - ', "")
         tmp = myCapitalize(tmp)
@@ -322,7 +352,7 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
         header_data += 'next_slug: "' + replaceSlug(entry["next_content"]) + '"\n'
     if entry["image"]:
         header_data += f'image: "{getImage(entry["image"])}"\n'
-        #header_data += '  - url: \"/' +  + '\n'
+        # header_data += '  - url: \"/' +  + '\n'
     cat_image = get_cat_image(entry["instanceType"], cfc_key)
     if cat_image:
         header_data += f'jobicon: "{getImage(cat_image)}"\n'
@@ -334,10 +364,13 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
     if not tt_bg_entry == "":
         header_data += 'mappath: "' + tt_bg_entry + '"\n'
     if not tt_type_name == "":
-        #header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
-        header_data += 'contentname:\n'
+        # header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
+        header_data += f'contentname: "{tt_type_name["Name_en"]}"\n'
         for lang in LANGUAGES:
-            header_data += f'  {lang}: "' + tt_type_name[f"Name_{lang}"] + '"\n'
+            content_translations[lang][f'ContentName_{tt_type_name["Name_en"]}'] = tt_type_name[f"Name_{lang}"]
+            # header_data += f'  {lang}: "' + tt_type_name[f"Name_{lang}"] + '"\n'
+    if entry.get("mapid", None) and tt_bg_entry:
+        header_data += getMapImages(mapid=entry["mapid"], contentname=tt_type_name["Name_de"])
     header_data += 'sortid: ' + entry["sortid"] + '\n'
     header_data += get_lvl_data(entry)
     # quests
@@ -346,27 +379,27 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
         if not entry.get(f"quest_{lang}", "") == "":
             if not x:
                 x = True
-                header_data += 'quest:\n'
-            header_data += f'  {lang}: "' + entry[f"quest_{lang}"] + '"\n'
+                header_data += f'quest: "{entry["quest_en"]}"\n'
+            content_translations[lang][f'QuestName_{entry["quest_en"]}'] = entry[f"quest_{lang}"]
     x = False
     for lang in LANGUAGES:
         if not entry.get(f"quest_location_{lang}", "") == "":
             if not x:
                 x = True
-                header_data += 'quest_location:\n'
-            header_data += f'  {lang}: "' + entry[f"quest_location_{lang}"] + '"\n'
+                header_data += f'quest_location: "{entry["quest_location_en"]}"\n'
+            content_translations[lang][f'QuestLocation_{entry["quest_location_en"]}'] = entry[f"quest_location_{lang}"]
     x = False
     for lang in LANGUAGES:
         if not entry.get(f"quest_npc_{lang}", "") == "":
             if not x:
                 x = True
-                header_data += 'quest_npc:\n'
-            header_data += f'  {lang}: "' + entry[f"quest_npc_{lang}"] + '"\n'
+                header_data += f'quest_npc: "{entry["quest_npc_en"]}"\n'
+            content_translations[lang][f'QuestNPC_{entry["quest_npc_en"]}'] = entry[f"quest_npc_{lang}"]
 
-    #header_data += 'order: ' + get_order_id(entry) + '\n'
+    # header_data += 'order: ' + get_order_id(entry) + '\n'
     header_data += 'order: ' + entry["sortid"] + '\n'
 
-    #TODO add funcion for Orchestrio Material
+    # TODO add funcion for Orchestrio Material
     category_names = {
         'mount': getMountIDByName,
         'minion': getMinionIDByName,
@@ -392,7 +425,7 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
         elif fun:
             header_data += f'{cat}:\n'
             for i, d in enumerate(data):
-                header_data = addEntries(header_data, d.strip(), fun)
+                header_data = addEntries(header_data, d.strip(), fun, content_translations, cat)
         else:
             pass
 
@@ -431,10 +464,13 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key):
             found, data = checkVariable(entry, x)
             if found:
                 header_data += f'    {x}: "' + data[0] + '"\n'
-
-    #if gamerscape_items.get(entry["gamerescapelink"], None):
-    #    header_data += 'gamerscape_items:\n'
-    #    header_data += getItemsList(gamerscape_items[entry["gamerescapelink"]])
+    # get bgmusic
+    instancecontent_id = contentfindercondition.get(cfc_key, {}).get('Content', "").replace("InstanceContent#", "")
+    if instancecontent_id not in  ["0", "", None]:
+        instancecontent_entry = instancecontent[instancecontent_id]
+        bgm = instancecontent_entry["BGM"].replace(".scd", ".ogg")
+        if not bgm == "":
+            header_data += f'bgmusic: "{bgm}"\n'
     return header_data, entry
 
 
@@ -450,16 +486,16 @@ def getItemsList(gs_items):
                 cat = "Waffe" if "waffe" in items[gs_item]['ItemUICategory'].lower() else items[gs_item]['ItemUICategory']
                 cat = "Waffe" if cat == "Grimoire" else cat
 
-                if not items[gs_item]['Name'] in final_array[_class][cat]:
+                if items[gs_item]['Name'] not in final_array[_class][cat]:
                     final_array[_class][cat].append(items[gs_item]['Name'])
         if not found:
             print(items[gs_item])
-        item_list += f'  - item: "' + items[gs_item]['Name'] + '"\n'
+        item_list += f'  - item: "{items[gs_item]["Name"]}"\n'
     print(final_array)
     return item_list
 
 
-def addContentZoneIdToHeader(contentzoneid, entry):
+def addContentZoneIdToHeader(contentzoneid, entry, content_translations):
     global contentfindercondition
     global contentfindercondition_trans
     cmt = None
@@ -489,9 +525,16 @@ def addContentZoneIdToHeader(contentzoneid, entry):
                 header_data += '  - id: ' + _id + '\n'
                 # add transient on the first valid entry
     if "contentdescription" not in header_data and not working_key == "":
-        header_data += 'contentdescription:\n'
+        content_en_desc = contentfinderconditiontransient[working_key]["Description_en"].replace("\n", "<br/>").replace('"', '\\"')
+        header_data += f'contentdescription: "{content_en_desc}"\n'
+        tmp = entry["title"]
+        tmp = tmp.replace(f' ({entry["difficulty"].lower()})', "")
+        tmp = tmp.replace(f' ({entry["difficulty"].title()})', "")
+        tmp = tmp.replace('Traumprüfung - ', "")
+        tmp = myCapitalize(tmp)
         for lang in LANGUAGES:
-            header_data += f'    {lang}: "' + contentfinderconditiontransient[working_key][f"Description_{lang}"].replace("\n", "<br/>").replace('"', '\\"') + '"\n'
+            content_translations[lang][f'ContentDesc_{tmp}'] = contentfinderconditiontransient[working_key][f"Description_{lang}"].replace("\n", "<br/>").replace('"', '\\"')
+            #header_data += f'    {lang}: "' + contentfinderconditiontransient[working_key][f"Description_{lang}"].replace("\n", "<br/>").replace('"', '\\"') + '"\n'
 
     return header_data, cmt, working_key
 
@@ -572,32 +615,44 @@ def getOrchestrionMaterialIDByName(name):
     return None, None
 
 
-def addMusic(header_data, music):
+def getBGMPath(_id: str, name: str) -> str:
+    global orchestrionpath
+    return orchestrionpath[_id]['File'].replace(".scd", f"-{name}.ogg")
+
+
+def addMusic(header_data, music, content_translations):
     header_data += "music:\n"
     for m in music:
         _id, orchestrion = getOrchestrionIDByName(m)
+        name = None
         if _id:
-            header_data += '  - name:\n'
+            header_data += f'  - name: "{orchestrion.get("Name_en", "")}"\n'
             for lang in LANGUAGES:
-                header_data += f'      {lang}: "' + orchestrion.get(f"Name_{lang}", "") + '"\n'
+                name = orchestrion.get(f"Name_{lang}", "")
+                if name == "":
+                    name = f'{orchestrion.get("Name_de", "")} (no official translation)'
+                content_translations[lang][f'music_{orchestrion.get("Name_en", "")}'] = name
+            name = orchestrion.get("Name_de", "")
         else:
-            header_data += '  - name:\n'
+            header_data += f'  - name: {m}\n'
+            name = m
             for lang in LANGUAGES:
-                header_data += f'      {lang}: "' + m + '"\n'
+                content_translations[lang][f'music_{name}'] = name
         if _id:
             header_data += '    id: "' + _id + '"\n'
+            header_data += '    bgm_path: "' + getBGMPath(_id, name) + '"\n'
     return header_data
 
 
 def addHeader(entry, old_data, music, contentzoneid, content_translations):
     logger.info("test")
     # the order was changed so that we have the cfc_key to retrief the correct icon for the content (latest ex primals and savage raids)
-    content_data, cmt, cfc_key = addContentZoneIdToHeader(contentzoneid, entry)
-    header_data, entry = rewrite_content_even_if_exists(entry, old_data.get('wip', False), cfc_key)
+    content_data, cmt, cfc_key = addContentZoneIdToHeader(contentzoneid, entry, content_translations)
+    header_data, entry = rewrite_content_even_if_exists(entry, old_data.get('wip', False), cfc_key, content_translations)
     header_data += content_data
     header_data += addGroupCollections(cmt, entry)
     if music:
-        header_data = addMusic(header_data, music)
+        header_data = addMusic(header_data, music, content_translations)
     return header_data
 
 if __name__ == "__main__":

@@ -32,7 +32,7 @@
         {%- endfor -%}
     {%- endif -%}
     <div class="guide-metadata__wrapper">
-        <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+        <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
             {%- if page.instanceType == "klassenjobs" -%}
                 <div data-translate="Sidebar_MaxPlayerLevel">Max-Player Level: </div>
             {%- else -%}
@@ -41,13 +41,13 @@
             <span class="noblock">{{ page.plvl }}</span>
         </h5>
         {%- if page.plvl_sync > 0 -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_PlayerLevelSync">Player Level Sync: </div>
                 <span class="noblock">{{ page.plvl_sync }}</span>
             </h5>
         {%- endif -%}
         {%- if page.ilvl > 0 -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 {%- if page.instanceType == "klassenjobs" -%}
                     <div data-translate="Sidebar_MaxItemLevel">Max-Item Level: </div>
                 {%- else -%}
@@ -56,19 +56,19 @@
                 <span class="noblock">{{ page.ilvl }}</span>
             </h5>
         {%- else -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_ItemLevel">Item Level: </div>
                 <span class="noblock">N/A</span
             ></h5>
         {%- endif -%}
         {%- if page.ilvl_sync > 0 -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_ItemLevelSync">Item Level Sync: </div>
                 <span class="noblock">{{ page.ilvl_sync }}</span>
             </h5>
         {%- endif -%}
         {%- if page.patchNumber -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_Patch">Patch:</div>
                 {%- if page.patchLink -%}
                     <span class="block">
@@ -81,12 +81,12 @@
         {%- endif -%}
         <!-- Only on Classes -->
         {%- if page.roletypeinparty -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">Type:
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">Type:
                 <span class="block" data-translate="Sidebar_Role_{{ page.roletypeinparty }}">{{ page.roletypeinparty }}</span>
             </h5>
         {%- endif -%}
         {%- if page.base_class -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_BaseClass">Base-Klasse:</div>
                 <span class="block" data-translate="Sidebar_BaseClass_{{ page.base_class }}">{{ page.base_class }}</span>
             </h5>
@@ -103,30 +103,38 @@
                 </span>
             </h5>
         {%- endif -%}
-        {%- if page.classicon or page.jobicon -%}
+        {%- if page.jobkristall -%}
+        <h5 class="guide-metadata__subtitle box small-1of2 med-full">Job-Kristall:
+            <span class="block group-icon">
+                <img onclick="copyIcon('{{page.jobkristall}}')" loading="lazy" title="Jobkristall" src="{{ site.baseurl }}/assets/img/game_assets/{{page.jobkristall}}" />
+            </span>
+        </h5>
+        {%- endif -%}
+        {%- if page.classicon or page.jobicon or page.extraicons -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Icon:
                 <span class="block group-icon">
                     {%- if page.classicon -%}
-                        <img loading="lazy" title="Class" src="{{ site.baseurl }}/assets/img/game_assets/{{page.classicon}}"/>
+                        <img onclick="copyIcon('{{page.classicon}}')" loading="lazy" title="Class" src="{{ site.baseurl }}/assets/img/game_assets/{{page.classicon}}"/>
                     {%- endif -%}
                     {%- if page.jobicon-%}
-                        <img loading="lazy" title="Job" src="{{ site.baseurl }}/assets/img/game_assets/{{page.jobicon}}"/>
+                        <img onclick="copyIcon('{{page.jobicon}}')" loading="lazy" title="Job" src="{{ site.baseurl }}/assets/img/game_assets/{{page.jobicon}}"/>
                     {%- endif -%}
-
-                    {%- if page.jobkristall -%}
-                        <img loading="lazy" title="Jobkristall" src="{{ site.baseurl }}/assets/img/game_assets/{{page.jobkristall}}"/>
+                    {%- if page.extraicons -%}
+                        {%- for icon in page.extraicons -%}
+                            <img onclick="copyIcon('{{icon.name}}')" loading="lazy" title="{{icon.desc}}" src="{{ site.baseurl }}/assets/img/game_assets/{{icon.name}}" />
+                        {%- endfor -%}
                     {%- endif -%}
                 </span>
             </h5>
         {%- endif -%}
         {%- if page.abbreviations -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_ClassShort">Klassen-Kürzel:</div>
                 <span class="block" data-translate="Sidebar_ClassShort_{{ page.abbreviations }}">{{ page.abbreviations }}</span>
             </h5>
         {%- endif -%}
         {%- if page.lodestone -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_Lodestone">Lodestone:</div>
                 <span class="block">
                     <a target="_blank" rel="noopener noreferrer" href="{{ page.lodestone.en }}" data-href-translate="Sidebar_LodestoneURL_{{page.title.en}}" data-translate="Sidebar_Title_Full_{{page.title.en}}">{{ page.title.en }}</a>
@@ -143,54 +151,60 @@
         <!-- END Only on Classes -->
         <!-- Only on Content -->
         {%- if page.contentname -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
-                <div data-translate="Sidebar_ContentName">Contentname: </div>
-                {%- for lang in LANGUAGES -%}
-                    <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.contentname[lang] }}</span>
-                {%- endfor -%}
+            {%- if page.contentname.de != "0" and page.contentname.de != "" -%}
+                <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
+                    <div data-translate="Sidebar_ContentName">Contentname: </div>
+                    <span data-translate="ContentName_{{page.contentname}}" class="block">{{ page.contentname }}</span>
+                {%- endif -%}
             </h5>
         {%- endif -%}
         {%- if page.contentdescription -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
-                <div data-translate="Sidebar_ContentDesc">Contentbeschreibung: </div>
-                {%- for lang in LANGUAGES -%}
-                    <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.contentdescription[lang] }}</span>
-                {%- endfor -%}
-            </h5>
+            {%- if page.contentdescription.de != "0" and page.contentdescription.de != "" -%}
+                <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                    <div data-translate="Sidebar_ContentDesc">Contentbeschreibung: </div>
+                    <span data-translate="ContentDesc_{{page.title.de}}" class="block">{{ page.contentdescription }}</span>
+                </h5>
+            {%- endif -%}
         {%- endif -%}
         {%- if page.cfcid -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_ContentFinderID">ContentFinderID: </div>
                 <span class="block">{{ page.cfcid }}</span>
             </h5>
         {%- endif -%}
         {%- if page.pnid -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_PlaceNameID">PlaceNameID: </div>
                 <span class="block">{{ page.pnid }}</span>
             </h5>
         {%- endif -%}
         {%- if page.mapid -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_MapID">MapID: </div>
                 <span class="block">{{ page.mapid }}</span>
             </h5>
         {%- endif -%}
+        {%- if page.mapimage -%}
+            <h5 class="guide-metadata__subtitle {% if page.mapimage.size == 1%}akuflex{% endif %} box small-1of2 med-full">
+                <div data-translate="Sidebar_MapImage">MapImage: </div>
+                {%- for mapimage in page.mapimage -%}
+                    <span class="block">{% if page.mapimage.size > 1%}-&nbsp;{% endif %}
+                        <a target="_blank" rel="noopener noreferrer" href="https://ff14.akurosiakamo.de/extras/images/ui/map/{{ mapimage.image }}">{{ mapimage.image }}</a>
+                    </span>
+                {%- endfor -%}
+            </h5>
+        {%- endif -%}
         {%- if page.mappath -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_MapPath">MapPath: </div>
                 <span class="block">{{ page.mappath }}</span>
             </h5>
         {%- endif -%}
         {%- if page.contentzoneids -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle {% if page.contentzoneids.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_Contenzoneids">Contenzoneids: </div>
                 {%- for zone in page.contentzoneids -%}
-                    {%- if page.contentzoneids.size > 1 -%}
-                        <span class="block">- {{ zone.id }}</span>
-                    {%- else -%}
-                        <span class="block">{{ zone.id }}</span>
-                    {%- endif -%}
+                    <span class="block">{% if page.contentzoneids.size > 1 %}-&nbsp;{% endif %}{{ zone.id }}</span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
@@ -198,28 +212,20 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_ContentMusic">Content Music:</div>
                 {%- for music in page.music -%}
-                    {%- if page.music.size > 1 -%}
+                    <span class="block">{% if page.music.size > 1%}-&nbsp;{% endif %}
                         {%- if music.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">- {{ music.name[lang] }}</a></span>
-                            {%- endfor -%}
+                            <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name }}</a>
                         {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" >- {{ music.name[lang] }}</a></span>
-                            {%- endfor -%}
+                            <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}">{{ music.name }}</a>
                         {%- endif -%}
-                    {%- else -%}
-                        {%- if music.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" >{{ music.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- endif -%}
-                    {%- endif -%}
+                    </span>
                 {%- endfor -%}
+            </h5>
+        {%- endif -%}
+        {%- if page.bgmusic -%}
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
+                <div data-translate="Sidebar_BGM">BGM: </div>
+                <span class="block">{{ page.bgmusic }}</span>
             </h5>
         {%- endif -%}
         {%- if page.group -%}
@@ -242,168 +248,96 @@
             </h5>
         {%- endif -%}
         {%- if page.quest -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_Quest">Quest: </div>
                 <span class="block">
-                    {%- for lang in LANGUAGES -%}
-                        <a target="_blank" rel="noopener noreferrer" class="lang-toggle lang-toogle-{{lang}}" href="https://{{lang}}.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest[lang] }}">{{ page.quest[lang] }}</a>
-                    {%- endfor -%}
+                    <a target="_blank" rel="noopener noreferrer" data-translate="QuestName_{{page.quest}}" href="https://{{lang}}.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest[lang] }}">{{ page.quest }}</a>
                 </span>
             </h5>
             {%- if page.quest_location -%}
-                <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                     <div data-translate="Sidebar_QuestLocation">Quest Location: </div>
-                    {%- for lang in LANGUAGES -%}
-                        <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.quest_location[lang] }}</span>
-                    {%- endfor -%}
+                        <span data-translate="QuestLocation_{{page.quest_location}}" class="block">{{ page.quest_location }}</span>
                 </h5>
             {%- endif -%}
             {%- if page.quest_npc -%}
-                <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                     <div data-translate="Sidebar_QuestNPC">Quest NPC: </div>
-                    {%- for lang in LANGUAGES -%}
-                        <span class="lang-toggle lang-toogle-{{lang}} block">{{ page.quest_npc[lang] }}</span>
-                    {%- endfor -%}
+                    <span data-translate="QuestNPC_{{page.quest_npc}}" class="block">{{ page.quest_npc }}</span>
                 </h5>
             {%- endif -%}
         {%- endif -%}
         {%- if page.mount -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle {% if page.mount.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_Mounts">Mount(s): </div>
                 {%- for mount in page.mount -%}
-                    {%- if page.mount.size > 1 -%}
-                        {%- if mount.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/mounts/{{ mount.id }}">- {{ mount.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">- {{ mount.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- endif -%}
+                    <span class="block">{% if page.mount.size > 1%}-&nbsp;{% endif %}
+                    {%- if mount.id -%}
+                        <a data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name }}</a>
                     {%- else -%}
-                        {%- if mount.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">{{ mount.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- endif -%}
+                        <a data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer">{{ mount.name }}</a>
                     {%- endif -%}
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
         {%- if page.minion -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle {% if page.minion.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_Minions">Minion(s): </div>
                 {%- for minion in page.minion -%}
-                    {%- if page.minion.size > 1 -%}
+                    <span class="block">{% if page.minion.size > 1%}-&nbsp;{% endif %}
                         {%- if minion.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/minions/{{ minion.id }}">- {{ minion.name[lang] }}</a></span>
-                            {%- endfor -%}
+                            <a data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name }}</a>
                         {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">- {{ minion.name[lang] }}</a></span>
-                            {%- endfor -%}
+                            <a data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer">{{ minion.name }}</a>
                         {%- endif -%}
-                    {%- else -%}
-                        {%- if minion.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">{{ minion.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- endif -%}
-                    {%- endif -%}
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
         {%- if page.gearset_loot -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle {% if page.gearset_loot.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_Gearsets">Gearset(s): </div>
                 {%- for gearset in page.gearset_loot -%}
-                    {%- if page.gearset_loot.size > 1 -%}
-                        <span class="block">- {{ gearset.gsetname }}</span>
-                    {%- else -%}
-                        <span class="block">{{ gearset.gsetname }}</span>
-                    {%- endif -%}
+                    <span class="block">{% if page.gearset_loot.size > 1%}-&nbsp;{% endif %}{{ gearset.gsetname }}</span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
         {%- if page.tt_card -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle {% if page.tt_card.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_TT_Karten">TT_Karte(n): </div>
                 {%- for tt_card in page.tt_card -%}
-                    {%- if page.tt_card.size > 1 -%}
+                    <span class="block">{% if page.tt_card.size > 1%}-&nbsp;{% endif %}
                         {%- if tt_card.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards/{{ tt_card.id }}">- {{ tt_card.name[lang] }}</a></span>
-                            {%- endfor -%}
+                            <a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name }}</a>
                         {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" >- {{ tt_card.name[lang] }}</a></span>
-                            {%- endfor -%}
+                            <a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" >{{ tt_card.name }}</a>
                         {%- endif -%}
-                    {%- else -%}
-                        {%- if tt_card.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">{{ tt_card.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- endif -%}
-                    {%- endif -%}
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
         {%- if page.orchestrion -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle {% if page.orchestrion.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_OrchestrionRoll">Orchestrion Roll: </div>
                 {%- for orchestrion in page.orchestrion -%}
-                    {%- if page.orchestrion.size > 1 -%}
+                    <span class="block">{% if page.orchestrion.size > 1%}-&nbsp;{% endif %}
                         {%- if orchestrion.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">- {{ orchestrion.name[lang] }}</a></span>
-                            {%- endfor -%}
+                            <a data-translate="orchestrion_{{orchestrion.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name }}</a>
                         {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">- {{ orchestrion.name[lang] }}</a></span>
-                            {%- endfor -%}
+                            <a data-translate="orchestrion_{{orchestrion.name}}" target="_blank" rel="noopener noreferrer">{{ orchestrion.name }}</a>
                         {%- endif -%}
-                    {%- else -%}
-                        {%- if orchestrion.id -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- else -%}
-                            {%- for lang in LANGUAGES -%}
-                                <span class="lang-toggle lang-toogle-{{lang}} block"><a target="_blank" rel="noopener noreferrer">{{ orchestrion.name[lang] }}</a></span>
-                            {%- endfor -%}
-                        {%- endif -%}
-                    {%- endif -%}
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
         {%- if page.orchestrion_material -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle {% if page.orchestrion_material.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_OrchestrionRollMaterial">Orchestrion Roll Material: </div>
                 {%- for orchestrion_material in page.orchestrion_material -%}
-                    {%- if page.orchestrion_material.size > 1 -%}
-                        {%- for lang in LANGUAGES -%}
-                            <span class="lang-toggle lang-toogle-{{lang}} block">- {{ orchestrion_material.name[lang] }}</span>
-                        {%- endfor -%}
-                    {%- else -%}
-                        {%- for lang in LANGUAGES -%}
-                            <span class="lang-toggle lang-toogle-{{lang}} block">{{ orchestrion_material.name[lang] }}</span>
-                        {%- endfor -%}
-                    {%- endif -%}
+                    <span class="block">{% if page.orchestrion_material.size > 1%}-&nbsp;{% endif %}
+                        <span data-translate="orchestrion_material_{{orchestrion_material.name}}">{{ orchestrion_material.name }}</span>
+                    </span>
                 {%- endfor -%}
             </h5>
         {%- endif -%}
@@ -441,38 +375,39 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_Links">Links: </div>
                 {%- if page.links.teamcraftlink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance/{{ page.links.teamcraftlink }}">Teamcraft</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance/{{ page.links.teamcraftlink }}">- Teamcraft</a></span>
                 {%- endif -%}
                 {%- if page.links.garlandtoolslink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance/{{ page.links.garlandtoolslink }}">Garlandtools</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance/{{ page.links.garlandtoolslink }}">- Garlandtools</a></span>
                 {%- endif -%}
                 {%- if page.links.gamerescapelink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki/{{ page.links.gamerescapelink }}">Gamerscape</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki/{{ page.links.gamerescapelink }}">- Gamerscape</a></span>
                 {%- endif -%}
             </h5>
         {%- endif -%}
     </div>
     {%- if page.mechanics || page.bosses.size > 1 || page.adds.size > 1 -%}
+        <hr style="border-top: 1px solid #ccc;"/>
         <ul class="guide-metadata__menu">
-            <h5 class="guide-metadata__subtitle" data-translate="Sidebar_InThisGuide">In This Guide:</h5>
+            <h5 class="guide-metadata__subtitle akuflex" data-translate="Sidebar_InThisGuide">In This Guide:</h5>
+            <!--
             {%- if page.mechanics -%}
                 <li>
                     <a href="#" data-id="guideNotes" title="Go to the Guide Notes" class="guide-metadata__menu-link">
-                         <div data-translate="Sidebar_Notizen">Notes</div>
+                        <div data-translate="Sidebar_Notizen">Notes</div>
                     </a>
                 </li>
             {%- endif -%}
+            -->
             {%- if page.bosses.size > 1 -%}
                 <li>
                     <a href="#" data-id="guideBosse" title="Go to the Guide Bosse" class="guide-metadata__menu-link">
-                         <div data-translate="Sidebar_Bosse">Bosses</div>
+                        <div data-translate="Sidebar_Bosse">Bosses</div>
                     </a>
                     <ul class="guide-metadata__submenu">
                         {%- for boss in page.bosses -%}
                             <li>
-                                {%- for lang in LANGUAGES -%}
-                                    <a href="#" data-id="{{ boss.id }}" title="Go to {{ boss.title[lang] }}" class="lang-toggle lang-toogle-{{lang}} guide-metadata__menu-link">{{ boss.title[lang] }}</a>
-                                {%- endfor -%}
+                                <a href="#" data-id="{{ boss.id }}" data-translate="Bosse_{{ boss.title.en }}_Name" title="Go to {{ boss.title.en }}" class="guide-metadata__menu-link">{{ boss.title.en }}</a>
                             </li>
                         {%- endfor -%}
                     </ul>
@@ -486,9 +421,7 @@
                     <ul class="guide-metadata__submenu">
                         {%- for add in page.adds -%}
                             <li>
-                                {%- for lang in LANGUAGES -%}
-                                    <a href="#" data-id="{{ add.id }}" title="Go to {{ add.title[lang] }}" class="lang-toggle lang-toogle-{{lang}} guide-metadata__menu-link">{{ add.title[lang] }}</a>
-                                {%- endfor -%}
+                                <a href="#" data-id="{{ add.id }}" data-translate="Adds_{{ add.title.en }}_Name" title="Go to {{ add.title.en }}" class="guide-metadata__menu-link">{{ add.title.en }}</a>
                             </li>
                         {%- endfor -%}
                     </ul>

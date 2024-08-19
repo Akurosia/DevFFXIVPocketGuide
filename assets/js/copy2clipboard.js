@@ -22,3 +22,8 @@ function buildAndCopyRegex(_id, bossname, type){
     copyValuetoClipboard(":" + _id + ":" + bossname)
   }
 }
+
+
+function copyIcon(path){
+  copyValuetoClipboard(path)
+}

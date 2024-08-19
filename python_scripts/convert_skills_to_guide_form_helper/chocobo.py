@@ -173,7 +173,7 @@ def addRennChocoboMissions():
     return result
 
 
-def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations, callback_function):
+def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations, callback_function, addExtraIcons):
     global job_translations
     cb_load_global_data(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans)
 
@@ -215,6 +215,9 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     filecontent += 'expac: "arr"\n'
     icon = getImage("062000/062143_hr1.png")
     filecontent += f'jobicon: "{icon}"\n'
+
+    filecontent += "extraicons:\n"
+    filecontent += addExtraIcons(job, icon, icon)
     filecontent += 'slug: "klassen_und_jobs_' + job.lower() + '"\n'
     if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
         filecontent += f'image: "/assets/img/content/klassen/{job}.png"\n'
@@ -240,10 +243,10 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     for lang in LANGUAGES:
         klass_translations[lang][f'Content_Title_{job_d["Name_en"]}'] = job_d[f"Name_{lang}"]
     filecontent += "    id: \"" + "boss0\"\n"
-    #todo add chocobo stuff
+    # todo add chocobo stuff
     filecontent += addChocoboPartnerSkills()
     filecontent += addRennChocoboSkills_trans()
-    #addRennChocoboStatus()
+    # addRennChocoboStatus()
     filecontent += addRennChocoboItems_trans()
     filecontent += addRennChocoboMissions()
     filecontent += addChocoboPartnerTraits()
@@ -254,8 +257,8 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     filecontent += "        name: \"Chocobo-Partner-Traits\"\n"
     filecontent += "      - phase: \"03\"\n"
     filecontent += "        name: \"Renn-Chocobo-Skills\"\n"
-    #filecontent += "      - phase: \"04\"\n"
-    #filecontent += "        name: \"Renn-Chocobo-Status\"\n"
+    # filecontent += "      - phase: \"04\"\n"
+    # filecontent += "        name: \"Renn-Chocobo-Status\"\n"
     filecontent += "      - phase: \"04\"\n"
     filecontent += "        name: \"Renn-Chocobo-Items\"\n"
     filecontent += "      - phase: \"05\"\n"

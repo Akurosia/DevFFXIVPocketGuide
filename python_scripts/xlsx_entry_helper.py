@@ -8,7 +8,7 @@ import os
 from io import BytesIO
 import requests
 import logging
-from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red, getLevel
+from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red, getLevel, print_pretty_json
 #getLevel?
 
 try:
@@ -75,6 +75,12 @@ def workOnQuests(entry, quest_id):
         entry[f'quest_{lang}'] = quests_all[quest_id][f'Name_{lang}'].replace(" ", "").replace(" ", "")
         
     issuer_id = quest['Issuer']['Start']
+    if int(issuer_id) < 1_000_000:
+        issuer_id = str(int(issuer_id) + 1_000_000)
+    if not enpcresidentss.get(issuer_id, None):
+        print_color_red(f"[XLSX_ENTRY_HELPER:workOnQuests] Cannot find Issuer Enpcresident with id: {issuer_id}")
+        return entry
+
     for lang in LANGUAGES:
         npc = enpcresidentss[issuer_id][f"Singular_{lang}"]
         if "[a]" in npc or "[t]" in npc:
@@ -88,7 +94,7 @@ def workOnQuests(entry, quest_id):
             entry[f'quest_location_{lang}'] = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
         except KeyError:
             entry['quest_location'] = ""
-            print_color_red(f"[workOnQuests] Error on loading: {quest['Issuer']['Location']} ({quest_id})")
+            print_color_red(f"[XLSX_ENTRY_HELPER:workOnQuests] Error on loading: {quest['Issuer']['Location']} ({quest_id})")
     return entry
 
 

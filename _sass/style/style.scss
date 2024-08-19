@@ -1017,6 +1017,13 @@ html {
   margin: 1rem 0;
   display: grid;
 
+  &[class*=akuflex] {
+    display: flex;
+    span {
+      padding-left: 10px;
+    }
+  }
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -1024,7 +1031,7 @@ html {
   span {
     color: #ff575c;
     font-weight: 400;
-    margin: 0.5rem 0 0;
+    //margin: 0.5rem 0 0;
     display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
@@ -1039,6 +1046,9 @@ html {
       font-size: inherit;
       line-height: inherit;
       margin: 0;
+    }
+    a[href] {
+      text-decoration: underline !important;
     }
   }
 }
@@ -1749,8 +1759,6 @@ ion-icon {
     }
 }
 
-
-
 .iso_CN {background-position: 0 0}
 .iso_DE {background-position: -54px 0}
 .iso_FR {background-position: -27px 0}
@@ -1761,6 +1769,7 @@ ion-icon {
 .myflexwrapper {
   display: flex;
 }
+
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";

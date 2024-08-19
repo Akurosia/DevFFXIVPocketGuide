@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
+from logging import Logger
 import os
 import traceback
 # traceback.print_exc()
 import errno
 import yaml
 from yaml.loader import SafeLoader
-import python_scripts.generatePatch as gp
 from ffxiv_aku import pretty_json, print_color_green, sys, writeJsonFile, print_pretty_json
+import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide, logdata, logdata_lower
 from python_scripts.helper import uglyContentNameFix, getContentName
-#from python_scripts.constants import *
+# from python_scripts.constants import *
 from python_scripts.custom_logger import getLogger
 from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file
 import python_scripts.convert_skills_to_guide_form as csgf
@@ -20,18 +21,19 @@ import python_scripts.generateLinks as gl
 import python_scripts.generateHousingMissions as ghm
 import python_scripts.get_achivments as ga
 import python_scripts.getBlueSideQuestData as gbsq
+from typing import Any
 
 
-logger = getLogger(50)
-disable_green_print = True
-disable_yellow_print = True
-disable_blue_print = True
-disable_red_print = True
-debug_row_number = 0
-print_debug = False
+logger: Logger = getLogger(50)
+disable_green_print: bool = True
+disable_yellow_print: bool = True
+disable_blue_print: bool = True
+disable_red_print: bool = True
+debug_row_number: int = 0
+print_debug: bool = False
 
-LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
-LANGUAGES_MAPPING = {
+LANGUAGES: list[str] = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES_MAPPING: dict[str, str] = {
     "de": "de-DE",
     "en": "en-US",
     "fr": "fr-FR",
@@ -40,7 +42,7 @@ LANGUAGES_MAPPING = {
     "ko": "ko-KR"
 }
 
-translations = {
+translations:dict[str, dict[str, dict[str, str]]] = {
     "de": {},
     "en": {},
     "fr": {},
@@ -48,29 +50,29 @@ translations = {
     "cn": {},
     "ko": {}
 }
-def translate_content_files(entry):
+
+def translate_content_files(entry: dict[str, str]) -> None:
     global translations
     if entry['categories'] == "":
         return
-    #exp = expansion_list[entry['categories']]
-
-    _type = entry['instanceType']
+    _type: str = entry['instanceType']
     for lang in LANGUAGES:
         if not translations[lang].get(_type, None):
             translations[lang][_type] = {}
-        name = entry[f'title_{lang}']
-        translations[lang][_type][f"Summary_{_type}_{entry['title_en'].lower()}"] = uglyContentNameFix(name, instanceType=entry['instanceType'], difficulty=entry['difficulty']).replace(f' ({entry["difficulty"].lower()})', "")
+        name: str = entry[f'title_{lang}']
+        name = uglyContentNameFix(name, instanceType=entry['instanceType'], difficulty=entry['difficulty'])
+        name = name.replace(f' ({entry["difficulty"].lower()})', "")
+        translations[lang][_type][f"Summary_{_type}_{entry['title_en'].lower()}"] = name
 
 
-def create_translation_files():
+def create_translation_files() -> None:
     global translations
-    #print_pretty_json(translations)
     for lang, cat_data in translations.items():
         for cat, data in cat_data.items():
             writeJsonFile(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json", data)
 
 
-def get_old_content_if_file_is_found(_existing_filename):
+def get_old_content_if_file_is_found(_existing_filename: str) -> dict[Any, Any]:
     if os.path.exists(_existing_filename):
         with open(_existing_filename, encoding="utf8") as f:
             doc = list(yaml.load_all(f, Loader=SafeLoader))[0]
@@ -78,16 +80,16 @@ def get_old_content_if_file_is_found(_existing_filename):
     return {}
 
 
-def try_to_create_file(filename):
+def try_to_create_file(filename: str) -> None:
     if not os.path.exists(os.path.dirname(filename)):
         try:
             os.makedirs(os.path.dirname(filename))
-        except OSError as exc:  # Guard against race condition
+        except OSError as exc:
             if exc.errno != errno.EEXIST:
                 raise
 
 
-def cleanup_logdata(logdata_instance_content):
+def cleanup_logdata(logdata_instance_content: dict[Any, Any]) -> tuple[dict[Any, Any], list[str] | None]:
     try:
         del logdata_instance_content["combatants"]
     except Exception:
@@ -100,9 +102,10 @@ def cleanup_logdata(logdata_instance_content):
         del logdata_instance_content["contentzoneid"]
     except Exception:
         pass
+
     music = None
     try:
-        music = logdata_instance_content["music"]
+        music: list[str] = logdata_instance_content["music"]
         del logdata_instance_content["music"]
     except Exception:
         pass
@@ -150,7 +153,7 @@ def writeFileIfNoDifferent(filename, filedata):
     if not filedata == x_data:
         with open(filename, "w", encoding="utf8") as fi:
             fi.write(filedata)
-        print(f"Wrote new data to file {filename}")
+        print(f"[MAIN:writeFileIfNoDifferent] Wrote new data to file {filename}")
 
 
 def write_content_to_file(entry, filename, old_data, content_translations):
@@ -179,31 +182,31 @@ def run(sheet, max_row, max_column, elements, orderedContent):
     # for every row do:
     for i in range(2, max_row):
         try:
-            #filename = ""
+            # filename = ""
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             if not True:
-                #if debug_row_number < 710 :
-                if debug_row_number not in [782]:
+                # if debug_row_number < 710 :
+                if debug_row_number not in [103]:
                     print_debug = True
                     continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
             if print_debug:
-                print(entry['title'])
+                print(f"[MAIN:run] {entry['title']}")
             logger.info(pretty_json(entry))
             # if the done collumn is not prefilled
             if entry["exclude"] == "end":
-                print("END FLAG WAS FOUND!")
+                print("[MAIN:run] END FLAG WAS FOUND!")
                 break
             translate_content_files(entry)
-            #continue
+            # continue
             if not (entry["exclude"] or entry["done"]):
                 content_translations = {}
                 for lang in LANGUAGES:
                     content_translations[lang] = {}
-                #print(f"{entry['instanceType']}: {entry['title']}")
+                # print(f"{entry['instanceType']}: {entry['title']}")
                 if entry['categories'] == "":
-                    print("Skipped due to no expansion specified")
+                    print("[MAIN:run] Skipped due to no expansion specified")
                     continue
                 expansion = expansion_list[entry['categories']]
                 filename = f"{expansion}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
@@ -212,10 +215,11 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 # if old file was found, replace filename to save
                 if not old_data == {}:
                     filename = existing_filename
-                    #logger.info(pretty_json(old_data))
+                    # logger.info(pretty_json(old_data))
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_data, content_translations)
                 # write translation file
+                # print_pretty_json(content_translations)
                 filename_translation_location = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '').replace('_', '-')}"
                 if not os.path.exists(filename_translation_location):
                     os.makedirs(filename_translation_location)
@@ -223,7 +227,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                     writeJsonFile(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json", content_translations[lang])
 
             elif entry['title'] != "":
-                print_color_green(f"Skip {entry['title']} as its marked as {entry['exclude']}/{entry['done']}")
+                print_color_green(f"[MAIN:run] Skip {entry['title']} as its marked as {entry['exclude']}/{entry['done']}")
         except Exception as e:
             logger.critical(f"Error when handeling '{filename}' with line id '{i}' ({e})")
             traceback.print_exception(*sys.exc_info())
@@ -257,5 +261,5 @@ def main():
 
 
 if __name__ == "__main__":
-    print(sys.version)
+    print(f"[MAIN:if] {sys.version}")
     main()

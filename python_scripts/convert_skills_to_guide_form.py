@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # coding: utf8
 import os
-from ffxiv_aku import print_color_red, gear_get, getLevel, deal_with_extras_in_text, readJsonFile, print_pretty_json, writeJsonFile
-from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata, print_color_green
 from collections import OrderedDict
 from operator import getitem
+from typing import Any, Literal
+from ffxiv_aku import print_color_red, gear_get, getLevel, deal_with_extras_in_text, readJsonFile, print_pretty_json, writeJsonFile
+from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata, print_color_green
 
 try:
     from .convert_skills_to_guide_form_helper.chocobo import addChocobo
@@ -55,7 +56,7 @@ status_ncj = None
 klass_translations = None
 job_translations = None
 
-def get_class_translation_data():
+def get_class_translation_data() -> None:
     global klass_translations
     klass_translations = {}
     for lang in LANGUAGES:
@@ -63,15 +64,15 @@ def get_class_translation_data():
         klass_translations[lang] = {}
 
 
-def write_class_translation_data(data):
-    origin = os.getcwd()
+def write_class_translation_data(data: dict) -> None:
+    origin: str = os.getcwd()
     os.chdir("..")
     for lang in LANGUAGES:
-        klass_translations[lang] = writeJsonFile(f'assets/translations/klassen/{LANGUAGES_MAPPING[lang]}.json', data[lang])
+        writeJsonFile(f'assets/translations/klassen/{LANGUAGES_MAPPING[lang]}.json', data[lang])
     os.chdir(origin)
 
 
-def load_global_data():
+def load_global_data() -> None:
     global skills
     global pvpskills
     global logdata
@@ -143,7 +144,7 @@ def convertJobToAbrev(job):
     raise NotImplementedError
 
 
-def addAttackDetails(job_data, pvp=False):
+def addAttackDetails(job_data, pvp: bool=False):
     global actions_trans
     global craftactions_trans
     global job_translations
@@ -156,25 +157,19 @@ def addAttackDetails(job_data, pvp=False):
     else:
         pvp_text_field = "PVP_"
 
-    #print_pretty_json(job_data.get('7429', ""))
-
     job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, skill_data in job_data.items():
-        #print_color_red(pretty_json(skill_data) + "\n")
         name = {}
         for lang in LANGUAGES:
             name[lang] = deal_with_extras_in_text(actions_trans.get(skill_data["Id"], {}).get(f"Name_{lang}", "").replace("\n", "</br>").replace("</br></br>", "</br>"))
         if name["en"] == "":
             for lang in LANGUAGES:
                 name[lang] = deal_with_extras_in_text(craftactions_trans[skill_data["Id"]][f"Name_{lang}"].replace("\n", "</br>").replace("</br></br>", "</br>"))
-        level = "0" if skill_data['Level'] == "99999" else skill_data['Level']
+        level: str | Literal['0'] = "0" if skill_data['Level'] == "99999" else skill_data['Level']
 
-        #if _id == "7429":
-        #    print_pretty_json(skill_data)
-
-        tpye_damage = "Schaden" if skill_data["IsDamageSkill"] else None
-        tpye_heilung = "Heilung" if skill_data["IsHealingSkill"] else None
-        type_shield = "P-Schild-Mitigation" if skill_data["IsShieldSkill"] else None
+        tpye_damage: None | Literal['Schaden'] = "Schaden" if skill_data["IsDamageSkill"] else None
+        tpye_heilung: None | Literal['Heilung'] = "Heilung" if skill_data["IsHealingSkill"] else None
+        type_shield: None | Literal['P-Schild-Mitigation'] = "P-Schild-Mitigation" if skill_data["IsShieldSkill"] else None
         mtype  = skill_data["MitigationType"]
         mvalue = skill_data["MitigationValue"]
 
@@ -213,9 +208,6 @@ def addAttackDetails(job_data, pvp=False):
         for lang in LANGUAGES:
             result += f'          {lang}: "' + skill_data["Description"][lang] + '"\n'
             job_translations[lang][f'Class_Skill_Desc_{pvp_text_field}{name["en"]}'] = deal_with_extras_in_text(skill_data["Description"][lang])
-        #if "%" in description["en"]:
-        #    print(name["en"])
-        #    print(description["en"])
         result += '        phases:\n'
         if pvp:
             result += '          - phase: "04"\n'
@@ -224,12 +216,12 @@ def addAttackDetails(job_data, pvp=False):
     return result, attack_skills
 
 
-def addOldStatusDetails(job, job_abb):
+def addOldStatusDetails(job, job_abb) -> str:
     global logdata
     global status_trans
     global status_ncj
     global status
-    result = ""
+    result: str = ""
     jobstatusdata = logdata["Klassen"].get(job, {}).get("status", {})
     for key, value in status_ncj[job_abb].items():
         if key not in jobstatusdata:
@@ -539,6 +531,57 @@ classDetails = {
     "Piktomant": {      "date": "2024.07.02", "patchNumber": "7.0", "patchName": "Dawntrail", "patchShort": "dt"},
 }
 
+ExtraIconsCategory: list[str] = ["MarketBoard", "classjob", "normal", "glow", "gearset", "grey", "black", "gold", "orange", "red", "purple", "blue", "green"]
+ExtraIcons: dict[str, list[str]] = {
+                    # [MarketBoard, classjob, normal,   glow,     gearset,  grey,     black,    gold,     orange,   red,      purple,   blue,     green
+    "Zimmerer":       ["060112",    "062008", "062108", "062310", "062808", "091031", "091531", "092031", "092531", "093031", "093531", "094031", "094531"],
+    "Grobschmied":    ["060113",    "062009", "062109", "062311", "062809", "091032", "091532", "092032", "092532", "093032", "093532", "094032", "094532"],
+    "Plattner":       ["060114",    "062010", "062110", "062312", "062810", "091033", "091533", "092033", "092533", "093033", "093533", "094033", "094533"],
+    "Goldschmied":    ["060115",    "062011", "062111", "062313", "062811", "091034", "091534", "092034", "092534", "093034", "093534", "094034", "094534"],
+    "Gerber":         ["060116",    "062012", "062112", "062314", "062812", "091035", "091535", "092035", "092535", "093035", "093535", "094035", "094535"],
+    "Weber":          ["060117",    "062013", "062113", "062315", "062813", "091036", "091536", "092036", "092536", "093036", "093536", "094036", "094536"],
+    "Alchemist":      ["060118",    "062014", "062114", "062316", "062814", "091037", "091537", "092037", "092537", "093037", "093537", "094037", "094537"],
+    "Gourmet":        ["060119",    "062015", "062115", "062317", "062815", "091038", "091538", "092038", "092538", "093038", "093538", "094038", "094538"],
+
+    "Minenarbeiter":  ["060120",    "062016", "062116", "062318", "062816", "091039", "091539", "092039", "092539", "093039", "093539", "094039", "094539"],
+    "Gärtner":        ["060121",    "062017", "062117", "062319", "062817", "091040", "091540", "092040", "092540", "093040", "093540", "094040", "094540"],
+    "Fischer":        ["060122",    "062018", "062118", "062320", "062818", "091041", "091541", "092041", "092541", "093041", "093541", "094041", "094541"],
+
+    "Chocobo":        ["060842",    "062043", "062143", "",       "",       "091088", "091588", "092088", "092588", "093088", "093588", "094088", "094588"],
+
+    "Gladiator":      ["060102",    "062001", "062101", "062301", "062801", "091022", "091522", "092022", "092522", "093022", "093522", "094022", "094522"],
+    "Faustkämpfer":   ["060101",    "062002", "062102", "062302", "062802", "091023", "091523", "092023", "092523", "093023", "093523", "094023", "094523"],
+    "Marodeur":       ["060103",    "062003", "062103", "062303", "062803", "091024", "091524", "092024", "092524", "093024", "093524", "094024", "094524"],
+    "Pikenier":       ["060104",    "062004", "062104", "062304", "062804", "091025", "091525", "092025", "092525", "093025", "093525", "094025", "094525"],
+    "Waldläufer":     ["060105",    "062005", "062105", "062305", "062805", "091026", "091526", "092026", "092526", "093026", "093526", "094026", "094526"],
+    "Druide":         ["060107",    "062006", "062106", "062306", "062806", "091028", "091528", "092028", "092528", "093028", "093528", "094028", "094528"],
+    "Thaumaturg":     ["060108",    "062007", "062107", "062307", "062807", "091029", "091529", "092029", "092529", "093029", "093529", "094029", "094529"],
+    "Hermetiker":     ["060109",    "062026", "062126", "062308", "062826", "091030", "091530", "092030", "092530", "093030", "093530", "094030", "094530"],
+    "Schurke":        ["060106",    "062029", "062129", "062309", "062829", "091121", "091621", "092121", "092621", "093121", "093621", "094121", "094621"],
+
+    "Paladin":        ["",          "062019", "062119", "062401", "062819", "091079", "091579", "092079", "092579", "093079", "093579", "094079", "094579"],
+    "Mönch":          ["",          "062020", "062120", "062402", "062820", "091080", "091580", "092080", "092580", "093080", "093580", "094080", "094580"],
+    "Krieger":        ["",          "062021", "062121", "062403", "062821", "091081", "091581", "092081", "092581", "093081", "093581", "094081", "094581"],
+    "Dragoon":        ["",          "062022", "062122", "062404", "062822", "091082", "091582", "092082", "092582", "093082", "093582", "094082", "094582"],
+    "Barde":          ["",          "062023", "062123", "062405", "062823", "091083", "091583", "092083", "092583", "093083", "093583", "094083", "094583"],
+    "Weißmagier":     ["",          "062024", "062124", "062406", "062824", "091084", "091584", "092084", "092584", "093084", "093584", "094084", "094584"],
+    "Schwarzmagier":  ["",          "062025", "062125", "062407", "062825", "091085", "091585", "092085", "092585", "093085", "093585", "094085", "094585"],
+    "Beschwörer":     ["",          "062027", "062127", "062408", "062827", "091086", "091586", "092086", "092586", "093086", "093586", "094086", "094586"],
+    "Gelehrter":      ["060178",    "062028", "062128", "062409", "062828", "091087", "091587", "092087", "092587", "093087", "093587", "094087", "094587"],
+    "Ninja":          ["",          "062030", "062130", "062410", "062830", "091122", "091622", "092122", "092622", "093122", "093622", "094122", "094622"],
+    "Maschinist":     ["060172",    "062031", "062131", "062411", "062831", "091125", "091625", "092125", "092625", "093125", "093625", "094125", "094625"],
+    "Dunkelritter":   ["060170",    "062032", "062132", "062412", "062832", "091123", "091623", "092123", "092623", "093123", "093623", "094123", "094623"],
+    "Astrologe":      ["060171",    "062033", "062133", "062413", "062833", "091124", "091624", "092124", "092624", "093124", "093624", "094124", "094624"],
+    "Samurai":        ["060177",    "062034", "062134", "062414", "062834", "091127", "091627", "092127", "092627", "093127", "093627", "094127", "094627"],
+    "Rotmagier":      ["060176",    "062035", "062135", "062415", "062835", "091128", "091628", "092128", "092628", "093128", "093628", "094128", "094628"],
+    "Blaumagier":     ["060180",    "062036", "062136", "062416", "062836", "091129", "091629", "092129", "092629", "093129", "093629", "094129", "094629"],
+    "Revolverklinge": ["060181",    "062037", "062137", "062417", "062837", "091130", "091630", "092130", "092630", "093130", "093630", "094130", "094630"],
+    "Tänzer":         ["060182",    "062038", "062138", "062418", "062838", "091131", "091631", "092131", "092631", "093131", "093631", "094131", "094631"],
+    "Schnitter":      ["060183",    "062039", "062139", "062419", "062839", "091132", "091632", "092132", "092632", "093132", "093632", "094132", "094632"],
+    "Weiser":         ["060184",    "062040", "062140", "062420", "062840", "091133", "091633", "092133", "092633", "093133", "093633", "094133", "094633"],
+    "Viper":          ["060187",    "062041", "062141", "062421", "062841", "091185", "091685", "092185", "092685", "093185", "093685", "094185", "094685"],
+    "Piktomant":      ["060188",    "062042", "062142", "062422", "062842", "091186", "091686", "092186", "092686", "093186", "093686", "094186", "094686"],
+}
 
 def getQuestName(job):
     for key, value in cjs.items():
@@ -573,7 +616,7 @@ def getStatusFromFile(ncj):
     return default_status
 
 
-def get_classJobKeyMapping():
+def get_classJobKeyMapping() -> dict[Any, Any]:
     global cjs
     results = {}
     for key, value in cjs.items():
@@ -620,7 +663,7 @@ def getIconForJob(job_abb):
 
 # these are the classes before they are job and usually dont need change
 
-roleicons = {
+roleicons: dict[str, str] = {
     "Tank":                "062000/062581_hr1.png",
     "Melee Dps":           "062000/062584_hr1.png",
     "Physical Ranged Dps": "062000/062586_hr1.png",
@@ -643,6 +686,24 @@ additionalClassIcons = {
     "GLT": "062126_hr1",
     "NIN": "062129_hr1"
 }
+
+def addExtraIcons(_type: str, jobicon: str, classicon: str) -> str:
+    if _type == "":
+        return ""
+    result: str = ""
+    for index, icon in enumerate(ExtraIcons[_type]):
+        if icon == "":
+            continue
+        nicon = getImage(f"{icon[:3]}000/{icon}_hr1.png")
+        if jobicon and nicon == jobicon:
+            continue
+        if classicon and nicon == classicon:
+            continue
+        result += f'    - name: "{nicon}"\n'
+        result += f'      desc: "{ExtraIconsCategory[index]}"\n'
+    return result
+
+
 def addKlassJobs():
     global cjs_trans
     global cjs
@@ -688,9 +749,9 @@ def addKlassJobs():
             continue
         allPartyMittigation[job] = []
         counter += 1
-        #if not job == "Dragoon":
+        #if not job == "Rotmagier":
         #    continue
-        base_class = cjs[k[0]]["ClassJob"]['Parent'] if not cjs[k[0]]["ClassJob"]['Parent'] == job else None
+        base_class: str = cjs[k[0]]["ClassJob"]['Parent'] if not cjs[k[0]]["ClassJob"]['Parent'] == job else ""
         print_color_red(job)
 
         # prepare translation elements
@@ -748,10 +809,10 @@ def addKlassJobs():
             filecontent += f'image: "/assets/img/content/klassen/{job}.png"\n'
         else:
             print(f"Missing img: {job}.png")
-        jobicon = getIconForJob(job_abb)
+        jobicon: str = getIconForJob(job_abb)
         if jobicon:
             filecontent += f'jobicon: "{jobicon}"\n'
-        classicon = additionalClassIcons.get(job_abb, None)
+        classicon: str = additionalClassIcons.get(job_abb, "")
         if classicon:
             classicon = getImage(f"062000/{classicon}.png")
             filecontent += f'classicon: "{classicon}"\n'
@@ -764,6 +825,9 @@ def addKlassJobs():
                     filecontent += f'    - name: "{healname}"\n'
                     filecontent += f'      icon: "{healicon}"\n'
         filecontent += getJobKristall(job)
+        filecontent += "extraicons:\n"
+        filecontent += addExtraIcons(base_class, jobicon, classicon)
+        filecontent += addExtraIcons(job, jobicon, classicon)
         filecontent += 'terms:\n'
         filecontent += '    - term: "Klassen"\n'
         filecontent += '    - term: "Jobs"\n'
@@ -891,7 +955,7 @@ def run():
     load_global_data()
     os.chdir("_posts")
     addKlassJobs()
-    addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations, write_class_translation_file)
+    addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations, write_class_translation_file, addExtraIcons)
     write_class_translation_data(klass_translations)
 
 
