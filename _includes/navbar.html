@@ -33,7 +33,7 @@
                 </a>
             </h1>
             {%- assign expand_category = "false" -%}
-            {%- if "translate,gear,fflogs" contains page.page_category -%}
+            {%- if "translate,gear,fflogs,checkFileData" contains page.page_category -%}
                 {%- assign expand_category = "true" -%}
             {%- endif -%}
             <ul class="sidebar__menu">
@@ -66,12 +66,17 @@
                             <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
                             <span data-translate="Navbar_Equipment">Equipment</span>
                         </a>
-                    </li>
-                    <li>
-                        <a target="" {%- if page.page_category == "fflogs" -%}class="active"{%- endif -%}
+                    </li><li>
+                        <a target="" {%- if page.page_category=="fflogs" -%}class="active" {%- endif -%}
                             href='{{ "/fflogs/" | prepend: site.baseurl }}' title="See fflogs">
                             <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
-                            <span data-translate="Navbar_FFLogs">FFLogs</span>
+                            <span data-translate=" Navbar_FFLogs">FFLogs</span>
+                        </a>
+                    </li><li>
+                        <a target="" {%- if page.page_category=="checkFileData" -%}class="active" {%- endif -%}
+                            href='{{ "/checkFileData/" | prepend: site.baseurl }}' title="See checkFileData">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
+                            <span data-translate=" Navbar_checkFileData">checkFileData</span>
                         </a>
                     </li>
                 </ul>

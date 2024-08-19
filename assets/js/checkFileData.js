@@ -18,7 +18,30 @@ function translate_getSearchCategories(){
         _element.text = json[keys[category]];
         _select.appendChild(_element);
       }
+      translate_loadFromLocalStorage();
     }
+  }
+}
+
+
+function translate_SubmitToLocalStorage(){
+  var inp = document.getElementById("filterValue").selectedIndex;
+  localStorage.setItem('ffxiv_aku_filterValue', inp);
+
+  var inp = document.getElementById("fieldfilter").value;
+  localStorage.setItem('ffxiv_aku_fieldfilter', inp);
+
+  var inp = document.getElementById("filterterm").value
+  localStorage.setItem('ffxiv_aku_filterterm', inp);
+}
+
+
+function translate_loadFromLocalStorage(){
+  if(localStorage.getItem('translate_ffxiv_term') !== null){
+    document.getElementById("filterValue").selectedIndex = localStorage.getItem('ffxiv_aku_filterValue');
+    document.getElementById("fieldfilter").value = localStorage.getItem('ffxiv_aku_fieldfilter');
+    document.getElementById("filterterm").value = localStorage.getItem('ffxiv_aku_filterterm');
+    //document.getElementById("exactSearch").selectedIndex = localStorage.getItem('ffxiv_aku_filterValue');
   }
 }
 
@@ -29,10 +52,12 @@ async function UserAction2(caller){
     console.log("Done")
 }
 
+
 function remove_bodyDiv(){
     _body = document.getElementById("workspace");
     _body.innerHTML = "";
 }
+
 
 async function load_data(caller){
     _select = document.getElementById("filterValue")
@@ -41,6 +66,8 @@ async function load_data(caller){
     _input = _input.value.split(/,\s*/)
     if (_input == ""){
         _input = "*"
+    }else {
+        _input = [..._input].map(c => c.trim().toLowerCase());
     }
     var Http = new XMLHttpRequest();
     if (caller == "example"){
@@ -55,29 +82,31 @@ async function load_data(caller){
     Http.send();
     Http.onreadystatechange = (e) => {
         if (Http.readyState == 4 && Http.status == 200){
-            let json = JSON.parse(Http.responseText)
-            addToBody(json, caller, _filterterm)
+            let json = JSON.parse(Http.responseText);
+            addToBody(json, caller, _filterterm, _input);
+            translate_SubmitToLocalStorage();
         }
     }
 }
 
 
-function addToBody(json, caller, _filterterm){
+function addToBody(json, caller, _filterterm, _input){
     _body = document.getElementById("workspace");
     //button = createTemplateButton(name, icon);
-    _table = createTemplateTable(json, caller, _filterterm);
+    _table = createTemplateTable(json, caller, _filterterm, _input);
     //_body.appendChild(button)
     _body.appendChild(_table)
 }
 
-function createTemplateTable(json, caller, _filterterm){
+
+function createTemplateTable(json, caller, _filterterm, _input){
     var _table = document.createElement('table');
 
 
     if (caller == "data"){
         console.log("data");
         _thead = createTemplateTableHead(json)
-        _tbody = createTemplateTableBody(json, _filterterm)
+        _tbody = createTemplateTableBody(json, _filterterm, _input)
     } else {
         console.log("example");
         _thead = createTemplateTableHead2(json)
@@ -89,6 +118,7 @@ function createTemplateTable(json, caller, _filterterm){
     _table.className = "table table-bordered table-dark table-striped text-light patch_table";
     return _table;
 }
+
 
 function createTemplateTableHead2(json){
     var _head = document.createElement('thead');
@@ -108,6 +138,7 @@ function createTemplateTableHead2(json){
 
     return _head;
 }
+
 
 function createTemplateTableBody2(json){
     var _body = document.createElement('tbody');
@@ -136,6 +167,7 @@ function createTemplateTableBody2(json){
     return _body;
 }
 
+
 function addHeadElement(_tr, prop){
     var _th = document.createElement('th');
     _th.setAttribute("role", "columnheader");
@@ -145,6 +177,7 @@ function addHeadElement(_tr, prop){
     _tr.appendChild(_th);
     return _tr
 }
+
 
 function createTemplateTableHead(json){
     header_json = json
@@ -160,6 +193,11 @@ function createTemplateTableHead(json){
     // Add all coulmn fro file
     for (var firstelement in header_json) {
         for (var prop in header_json[firstelement]) {
+            if (_input != "*") {
+                if (!_input.includes(prop.toLocaleLowerCase())){
+                    continue
+                }
+            }
             if (typeof header_json[firstelement][prop] == "object") {
                 for (var sub_element_key in header_json[firstelement][prop]) {
                     _tr = addBodyElement(_tr, prop + "[" + sub_element_key + "]")
@@ -193,7 +231,8 @@ function addBodyElement(_tr, element){
     return _tr
 }
 
-function createTemplateTableBody(json, _filterterm){
+
+function createTemplateTableBody(json, _filterterm, _input){
     var _body = document.createElement('tbody');
     var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
     var keys = Object.keys(json);
@@ -213,6 +252,11 @@ function createTemplateTableBody(json, _filterterm){
 
         // Add all coulmn fro file
         for (var element_key in element) {
+            if (_input != "*") {
+                if (!_input.includes(element_key.toLocaleLowerCase())){
+                    continue
+                }
+            }
             var _td = document.createElement('td');
             // if element is a dict do it for all subkeys
             if (typeof element[element_key] == "object") {
@@ -230,4 +274,5 @@ function createTemplateTableBody(json, _filterterm){
 }
 
 
-translate_getSearchCategories()
+translate_getSearchCategories();
+
