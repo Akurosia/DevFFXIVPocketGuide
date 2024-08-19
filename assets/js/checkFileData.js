@@ -37,7 +37,7 @@ function remove_bodyDiv(){
 async function load_data(caller){
     _select = document.getElementById("filterValue")
     _input = document.getElementById("fieldfilter")
-    _filterterm = document.getElementById("filterterm").value;
+    _filterterm = document.getElementById("filterterm").value.toLowerCase();
     _input = _input.value.split(/,\s*/)
     if (_input == ""){
         _input = "*"
@@ -46,44 +46,38 @@ async function load_data(caller){
     if (caller == "example"){
         url = "https://ffxivapi.akurosia.de/ffxiv/latestJSONfields/?name=" + _select.value;
     } else {
-        url = "https://ff14.akurosiakamo.de/datamine/exd-all/latest/" + _select.value;
-        //if (_input != "*") {
-        //    url += "&fieldfilter=" + _input
-        //}
-        if (_filterterm != "") {
-            url += "&filterterm=" + _filterterm
-        }
+        url = "https://ff14.akurosiakamo.de/extras/json/exd-all/latest/" + _select.value;
     }
-
     url = encodeURI(url)
     console.log(url)
+
     Http.open("GET", url, true);
     Http.send();
     Http.onreadystatechange = (e) => {
         if (Http.readyState == 4 && Http.status == 200){
             let json = JSON.parse(Http.responseText)
-            addToBody(json, caller)
+            addToBody(json, caller, _filterterm)
         }
     }
 }
 
 
-function addToBody(json, caller){
+function addToBody(json, caller, _filterterm){
     _body = document.getElementById("workspace");
     //button = createTemplateButton(name, icon);
-    _table = createTemplateTable(json, caller);
+    _table = createTemplateTable(json, caller, _filterterm);
     //_body.appendChild(button)
     _body.appendChild(_table)
 }
 
-function createTemplateTable(json, caller){
+function createTemplateTable(json, caller, _filterterm){
     var _table = document.createElement('table');
 
 
     if (caller == "data"){
         console.log("data");
         _thead = createTemplateTableHead(json)
-        _tbody = createTemplateTableBody(json)
+        _tbody = createTemplateTableBody(json, _filterterm)
     } else {
         console.log("example");
         _thead = createTemplateTableHead2(json)
@@ -199,16 +193,19 @@ function addBodyElement(_tr, element){
     return _tr
 }
 
-function createTemplateTableBody(json){
+function createTemplateTableBody(json, _filterterm){
     var _body = document.createElement('tbody');
     var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
     var keys = Object.keys(json);
     keys = keys.sort(collator.compare)
     for (var json_key of keys) {
-
         element = json[json_key]
+        if (_filterterm != ""){
+            if (!(JSON.stringify(element)+json_key).toLowerCase().includes(_filterterm)){
+                continue
+            }
+        }
         var _tr = document.createElement('tr');
-
         var _td = document.createElement('td');
         var textnode_1 = document.createTextNode(json_key);
         _td.appendChild(textnode_1);
