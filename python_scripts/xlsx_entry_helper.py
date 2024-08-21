@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-import natsort
 from collections import OrderedDict
-from openpyxl import load_workbook
-import os
 from io import BytesIO
-import requests
+import os
 import logging
-from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red, getLevel, print_pretty_json
-#getLevel?
+import natsort
+#from openpyxl.workbook.workbook import _WorksheetOrChartsheetLike
+import requests
+from openpyxl import Workbook, load_workbook
+from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red, getLevel
+# getLevel?
 
 try:
     from python_scripts.constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
@@ -28,14 +29,14 @@ contentfinderconditionX = loadDataTheQuickestWay("ContentFinderCondition.de.json
 logger = logging.getLogger()
 
 
-def get_header_from_xlsx(sheet, max_column):
-    result = []
+def get_header_from_xlsx(sheet, max_column) -> list[str]:
+    result: list[str] = []
     for j in range(1, max_column + 1):
         result.append(str(sheet.cell(row=int(1), column=int(j)).value).replace("None", "").strip())
     return result
 
 
-def get_data_from_xlsx(sheet, max_column, i, elements):
+def get_data_from_xlsx(sheet, max_column: int, i: int, elements):
     entry = {}
     # for every column in row add all elements into a dict:
     # max_column will ignore last column due to how range is working
@@ -54,8 +55,8 @@ def clean_entries_from_single_quotes(entry):
     return entry
 
 
-def make_name_readable(entry, x):
-    name = entry
+def make_name_readable(entry: str, x: dict[str, str]) -> str:
+    name: str = entry
     name = name.replace("[t]", DIFFERENT_PRONOUNS[x["Pronoun"]])
     name = name.replace("[a]", DIFFERENT_PRONOUNSS[x["Pronoun"]])
     return name
@@ -68,12 +69,12 @@ def workOnQuests(entry, quest_id):
             entry[f'quest_location_{lang}'] = ""
             entry[f'quest_npc_{lang}'] = ""
         return entry
-        
+
     # retriev quest from raw-exd to easily get all languages
     quest = questss[quest_id]
     for lang in LANGUAGES:
         entry[f'quest_{lang}'] = quests_all[quest_id][f'Name_{lang}'].replace(" ", "").replace(" ", "")
-        
+
     issuer_id = quest['Issuer']['Start']
     if int(issuer_id) < 1_000_000:
         issuer_id = str(int(issuer_id) + 1_000_000)
@@ -86,7 +87,7 @@ def workOnQuests(entry, quest_id):
         if "[a]" in npc or "[t]" in npc:
             npc = make_name_readable(npc, enpcresidents[issuer_id])
         entry[f'quest_npc_{lang}'] = npc
-    
+
     level_id = quest['Issuer']['Location']
     for lang in LANGUAGES:
         try:
@@ -172,19 +173,27 @@ def getPrevAndNextContentOrder(sheet, elements, max_row):
     return OrderedDict(natsort.natsorted(entry.items()))
 
 
-def load_workbook_from_url(url):
-    file = requests.get(url)
+def load_workbook_from_url(url: str) -> Workbook:
+    file: requests.Response = requests.get(url=url)
     return load_workbook(filename=BytesIO(file.content))
 
 
 def read_xlsx_file():
-    KEY = os.environ.get("GDRIVE_APIKEY")
+    KEY: str|None = os.environ.get("GDRIVE_APIKEY")
+    if KEY is None:
+        raise Exception("Missing GDRIVE_APIKEY in Environment")
+    print(KEY)
     MIME_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     SHEET = "11SBQWYyFnyh19Ku6T1Wr5tNAJvxdze8tvD6m4bzPGIA"
-    r = f"https://www.googleapis.com/drive/v3/files/{SHEET}/export?key={KEY}&mimeType={MIME_TYPE}"
-    wb = load_workbook_from_url(r)
-    #wb = openpyxl.load_workbook('./guide_ffxiv.xlsx')
+    r: str = f"https://www.googleapis.com/drive/v3/files/{SHEET}/export?key={KEY}&mimeType={MIME_TYPE}"
+    wb: Workbook = load_workbook_from_url(r)
+    # wb = openpyxl.load_workbook('./guide_ffxiv.xlsx')
     sheet = wb['Tabelle1']
-    max_row = sheet.max_row
-    max_column = sheet.max_column
+    max_row: int = sheet.max_row
+    max_column: int = sheet.max_column
     return sheet, max_row, max_column
+
+
+if __name__ == "__main__":
+    sheet, max_row, max_column = read_xlsx_file()
+    XLSXELEMENTS = get_header_from_xlsx(sheet, max_column)

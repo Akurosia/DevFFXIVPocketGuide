@@ -22,11 +22,13 @@
                 </div>
                 <div class="IdsHps">
                     {%- if enemy.enemy_id and enemy.enemy_id != "" -%}
-                        <div class="guide__accordion-trigger-title_id">Enemy-ID: {{ enemy.enemy_id }}</div>
+                        <div class="guide__accordion-trigger-title_id">ID: {{ enemy.enemy_id }}
+                            {%- if enemy.enemy_hex_id and enemy.enemy_hex_id != "" -%}
+                                &nbsp;(0x{{ enemy.enemy_hex_id }})
+                            {%- endif -%}
+                        </div>
                     {%- endif -%}
-                    {%- if enemy.enemy_hex_id and enemy.enemy_hex_id != "" -%}
-                        <div class="guide__accordion-trigger-title_hex_id">Enemy-Hex-ID: {{ enemy.enemy_hex_id }}</div>
-                    {%- endif -%}
+
                     {%- if enemy.hp -%}
                         <div class="guide__accordion-trigger-title_hp">HP:&nbsp;
                             {%- if enemy.hp[0].min == enemy.hp[1].max -%}
