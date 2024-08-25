@@ -1,37 +1,55 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, get_any_Versiondata, print_color_red, true, readJsonFile, print_pretty_json, glob
+from ffxiv_aku import print_color_red, true, glob
 from copy import deepcopy
 from typing import Any
 try:
     from python_scripts.constants import LANGUAGES
     from python_scripts.helper import seperate_data_into_array, getImage
-except Exception:
+    from python_scripts.fileimports import (
+        territorytype_trans,
+        territorytype,
+        patchversions,
+        mounts,
+        minions,
+        orchestrions,
+        orchestrionpath,
+        ttcards,
+        contentfindercondition,
+        contentfindercondition_trans,
+        contentfinderconditiontransient,
+        instancecontent,
+        contentmembertype,
+        classjob,
+        items
+    )
+except Exception as e:
+    print_color_red(e)
     from constants import LANGUAGES
     from helper import seperate_data_into_array, getImage
+    from fileimports import (
+        territorytype_trans,
+        territorytype,
+        patchversions,
+        mounts,
+        minions,
+        orchestrions,
+        orchestrionpath,
+        ttcards,
+        contentfindercondition,
+        contentfindercondition_trans,
+        contentfinderconditiontransient,
+        instancecontent,
+        contentmembertype,
+        classjob,
+        items
+    )
+
 import logging
 
-storeFilesInTmp(True)
-territorytype_trans = loadDataTheQuickestWay("territorytype_all.json", translate=True)
-territorytype = loadDataTheQuickestWay("TerritoryType.json")
-patchversions = get_any_Versiondata()
-mounts = loadDataTheQuickestWay("mount_all.json", translate=True)
-exversion = loadDataTheQuickestWay("exversion_all.json", translate=True)
-minions = loadDataTheQuickestWay("companion_all.json", translate=True)
-orchestrions = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
-orchestrionpath = loadDataTheQuickestWay("OrchestrionPath.json", translate=False)
-ttcards = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
-contentfindercondition = loadDataTheQuickestWay("ContentFinderCondition.de.json")
-contentfindercondition_trans = loadDataTheQuickestWay("ContentFinderCondition", translate=True)
-contentfinderconditiontransient = loadDataTheQuickestWay("ContentFinderConditionTransient", translate=True)
-instancecontent = loadDataTheQuickestWay("InstanceContent.json")
-contentmembertype = loadDataTheQuickestWay("ContentMemberType.json")
-classjob = loadDataTheQuickestWay("Classjob.de.json")
-items = loadDataTheQuickestWay("Item.de.json")
-gamerscape_items = readJsonFile("python_scripts/gamerscape_items/after_item_scan.json")
-logger = logging.getLogger()
 
+logger = logging.getLogger()
 
 def getClassJobDict() -> dict[Any, Any]:
     final_array: dict[Any, Any] = {}

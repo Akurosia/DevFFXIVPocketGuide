@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
 from logging import Logger
@@ -8,10 +7,11 @@ import traceback
 import errno
 import yaml
 from yaml.loader import SafeLoader
-from ffxiv_aku import pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, print_pretty_json
+from ffxiv_aku import pretty_json, print_color_green, sys, readJsonFile, writeJsonFile
 import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
-from python_scripts.guide import addGuide, logdata, logdata_lower
+from python_scripts.guide import addGuide
+from python_scripts.fileimports import logdata, logdata_lower
 from python_scripts.helper import uglyContentNameFix, getContentName
 # from python_scripts.constants import *
 from python_scripts.custom_logger import getLogger
@@ -189,7 +189,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             # filename = ""
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if True:
+            if not True:
                 # if debug_row_number < 710 :
                 if debug_row_number not in [785]:
                     print_debug = True

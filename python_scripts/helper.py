@@ -4,11 +4,11 @@
 import os
 import sys
 import shutil
-from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red
-
-storeFilesInTmp(True)
-contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
-placename = loadDataTheQuickestWay("placename_all.json", translate=True)
+from ffxiv_aku import print_color_red
+try:
+    from python_scripts.fileimports import placename, contentfindercondition_trans
+except Exception:
+    from fileimports import placename, contentfindercondition_trans
 
 
 def getImage(image: str, _type: str="icon") -> str:
@@ -19,6 +19,7 @@ def getImage(image: str, _type: str="icon") -> str:
         image = image.replace(f"ui/{_type}/", "")
     image = copy_and_return_image_as_hr(img=image, _type=_type)
     return image
+
 
 def copy_and_return_image_as_hr(img: str, _type: str="icon") -> str:
     if "_hr1" not in img and not _type == "map":
@@ -78,7 +79,7 @@ def uglyContentNameFix(name: str, instanceType: str="", difficulty: str="") -> s
 def getContentName(name: str, lang: str ="en", difficulty: str="", instanceType: str="") -> str:
     name = uglyContentNameFix(name, instanceType, difficulty)
     try:
-        for _, content in contentfindercondition.items():
+        for _, content in contentfindercondition_trans.items():
             if "memoria" in content["Name_de"].lower().strip() and "memoria" in name.lower().strip():
                 return content[f"Name_{lang}"]
             if content["Name_de"].lower().strip() == name.lower().strip():

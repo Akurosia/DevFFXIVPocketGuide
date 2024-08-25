@@ -1,23 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import storeFilesInTmp, get_any_Logdata, loadDataTheQuickestWay, print_color_green, os, writeJsonFile, readJsonFile
+from ffxiv_aku import print_color_green
 
 try:
     from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from python_scripts.custom_logger import *
     from python_scripts.helper import getImage
-    from python_scripts.guide_helper import setMultipleLanguageStrings, ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, logdata_lower, sort_status_ids
+    from python_scripts.fileimports import logdata, status
+    from python_scripts.guide_helper import setMultipleLanguageStrings, ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 except Exception:
     from constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from custom_logger import *
     from helper import getImage
-    from guide_helper import setMultipleLanguageStrings, ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, logdata_lower, sort_status_ids
-
-storeFilesInTmp(False)
-logdata = get_any_Logdata()
-storeFilesInTmp(True)
-status = loadDataTheQuickestWay("status_all.json", translate=True)
+    from fileimports import logdata, status
+    from guide_helper import setMultipleLanguageStrings, ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 
 disable_green_print = True
 disable_yellow_print = True
