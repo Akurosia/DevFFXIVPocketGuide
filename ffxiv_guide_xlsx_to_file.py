@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
 from logging import Logger
@@ -190,7 +189,7 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             # filename = ""
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if True:
+            if not True:
                 # if debug_row_number < 710 :
                 if debug_row_number not in [785]:
                     print_debug = True
