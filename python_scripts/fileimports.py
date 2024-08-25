@@ -1,5 +1,4 @@
 from ffxiv_aku import loadDataTheQuickestWay, get_any_Versiondata, get_any_Logdata, readJsonFile, storeFilesInTmp
-
 storeFilesInTmp(False)
 
 # from guide_helper/guide
@@ -40,7 +39,7 @@ placename = loadDataTheQuickestWay("placename_all.json", translate=True)
 status = loadDataTheQuickestWay("status_all.json", translate=True)
 
 # from xlsx entry helper
-#quests = loadDataTheQuickestWay("Quest.de.json")
+# quests = loadDataTheQuickestWay("Quest.de.json")
 quests_all = loadDataTheQuickestWay("quest_all.json", translate=True)
 questss = loadDataTheQuickestWay("Quest.de.json", exd="raw-exd-all")
 enpcresidents = loadDataTheQuickestWay("Enpcresident.de.json")

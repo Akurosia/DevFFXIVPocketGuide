@@ -22,9 +22,10 @@ try:
         instancecontent,
         contentmembertype,
         classjob,
-        items,
+        items
     )
-except Exception:
+except Exception as e:
+    print_color_red(e)
     from constants import LANGUAGES
     from helper import seperate_data_into_array, getImage
     from fileimports import (
@@ -42,7 +43,7 @@ except Exception:
         instancecontent,
         contentmembertype,
         classjob,
-        items,
+        items
     )
 
 import logging
