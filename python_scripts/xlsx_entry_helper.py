@@ -9,23 +9,19 @@ import natsort
 #from openpyxl.workbook.workbook import _WorksheetOrChartsheetLike
 import requests
 from openpyxl import Workbook, load_workbook
-from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red, getLevel
+from ffxiv_aku import print_color_red, getLevel
 # getLevel?
 
 try:
     from python_scripts.constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
     from python_scripts.helper import getContentName, seperate_data_into_array
+    from python_scripts.fileimports import quests_all, questss, enpcresidents, enpcresidentss, contentfinderconditionX
 except Exception:
     from constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
     from helper import getContentName, seperate_data_into_array
+    from fileimports import quests_all, questss, enpcresidents, enpcresidentss, contentfinderconditionX
 
-storeFilesInTmp(True)
-quests = loadDataTheQuickestWay("Quest.de.json")
-quests_all = loadDataTheQuickestWay("quest_all.json", translate=True)
-questss = loadDataTheQuickestWay("Quest.de.json", exd="raw-exd-all")
-enpcresidents = loadDataTheQuickestWay("Enpcresident.de.json")
-enpcresidentss = loadDataTheQuickestWay("Enpcresident", translate=True)
-contentfinderconditionX = loadDataTheQuickestWay("ContentFinderCondition.de.json")
+
 logger = logging.getLogger()
 
 

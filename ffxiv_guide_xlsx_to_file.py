@@ -8,10 +8,11 @@ import traceback
 import errno
 import yaml
 from yaml.loader import SafeLoader
-from ffxiv_aku import pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, print_pretty_json
+from ffxiv_aku import pretty_json, print_color_green, sys, readJsonFile, writeJsonFile
 import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
-from python_scripts.guide import addGuide, logdata, logdata_lower
+from python_scripts.guide import addGuide
+from python_scripts.fileimports import logdata, logdata_lower
 from python_scripts.helper import uglyContentNameFix, getContentName
 # from python_scripts.constants import *
 from python_scripts.custom_logger import getLogger
