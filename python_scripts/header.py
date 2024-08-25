@@ -620,7 +620,7 @@ def getBGMPath(_id: str, name: str) -> str:
     return orchestrionpath[_id]['File'].replace(".scd", f"-{name}.ogg")
 
 
-def addMusic(header_data, music, content_translations):
+def addMusic(header_data: str, music: list[str], content_translations) -> str:
     header_data += "music:\n"
     for m in music:
         _id, orchestrion = getOrchestrionIDByName(m)
@@ -628,16 +628,17 @@ def addMusic(header_data, music, content_translations):
         if _id:
             header_data += f'  - name: "{orchestrion.get("Name_en", "")}"\n'
             for lang in LANGUAGES:
-                name = orchestrion.get(f"Name_{lang}", "")
+                name: str = orchestrion.get(f"Name_{lang}", "")
                 if name == "":
                     name = f'{orchestrion.get("Name_de", "")} (no official translation)'
                 content_translations[lang][f'music_{orchestrion.get("Name_en", "")}'] = name
             name = orchestrion.get("Name_de", "")
         else:
-            header_data += f'  - name: {m}\n'
-            name = m
-            for lang in LANGUAGES:
-                content_translations[lang][f'music_{name}'] = name
+            if m != "Victory!":
+                header_data += f'  - name: {m}\n'
+                name = m
+                for lang in LANGUAGES:
+                    content_translations[lang][f'music_{name}'] = name
         if _id:
             header_data += '    id: "' + _id + '"\n'
             header_data += '    bgm_path: "' + getBGMPath(_id, name) + '"\n'

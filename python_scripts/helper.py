@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red
 import os
+import sys
 import shutil
+from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, print_color_red
 
 storeFilesInTmp(True)
 contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
@@ -11,8 +12,8 @@ placename = loadDataTheQuickestWay("placename_all.json", translate=True)
 
 
 def getImage(image: str, _type: str="icon") -> str:
-    if image is None:
-        return None
+    if image is None or image == "":
+        return ""
     image = image.replace(".tex", "_hr1.png")
     if _type == "icon":
         image = image.replace(f"ui/{_type}/", "")
@@ -23,22 +24,30 @@ def copy_and_return_image_as_hr(img: str, _type: str="icon") -> str:
     if "_hr1" not in img and not _type == "map":
         img = img.replace(".png", "_hr1.png")
 
-    if os.path.exists(f"P:\\extras\\images\\ui\\{_type}\\" + img):
-        new_path = "..\\assets\\img\\game_assets\\"
+    basepath = None
+    if os.name == 'nt':
+        basepath = "P:/extras/images/ui/"
+    elif sys.platform.startswith("linux"):
+        basepath = "/var/www/ffxiv/extras/images/ui/"
+    elif sys.platform == "darwin":
+        basepath = "/Volumes/FFXIV/extras/images/ui/"
+
+    if os.path.exists(f"{basepath}{_type}/" + img):
+        new_path = "../assets/img/game_assets/"
         if os.getcwd().endswith("DevFFXIVPocketGuide"):
-            new_path = "assets\\img\\game_assets\\"
+            new_path = "assets/img/game_assets/"
         if _type == "map":
-            new_path += "map\\"
+            new_path += "map/"
         if not os.path.exists(new_path + img):
             if not os.path.exists(os.path.dirname(new_path + img)):
                 os.makedirs(os.path.dirname(new_path + img))
-            shutil.copyfile(f"P:\\extras\\images\\ui\\{_type}\\" + img, new_path + img)
+            shutil.copyfile(f"{basepath}{_type}/" + img, new_path + img)
     else:
-        print_color_red(f"P:\\extras\\images\\ui\\{_type}\\" + img)
+        print_color_red(f"{basepath}{_type}/" + img)
     return img
 
 
-def uglyContentNameFix(name, instanceType=None, difficulty=None):
+def uglyContentNameFix(name: str, instanceType: str="", difficulty: str="") -> str:
     if difficulty == "Fatal" and instanceType == "ultimate" and "fatal" not in name.lower():
         name = f"{name} (fatal)"
     elif difficulty == "Episch" and instanceType in ["raid", "feldexkursion", "gewölbesuche"] and "episch" not in name.lower():
@@ -66,7 +75,7 @@ def uglyContentNameFix(name, instanceType=None, difficulty=None):
     return name
 
 
-def getContentName(name, lang="en", difficulty=None, instanceType=None):
+def getContentName(name: str, lang: str ="en", difficulty: str="", instanceType: str="") -> str:
     name = uglyContentNameFix(name, instanceType, difficulty)
     try:
         for _, content in contentfindercondition.items():
@@ -84,7 +93,7 @@ def getContentName(name, lang="en", difficulty=None, instanceType=None):
     return ""
 
 
-def seperate_data_into_array(tag, entry):
+def seperate_data_into_array(tag: str, entry: dict[str, str|list[str]]) -> str:
     if entry[tag]:
         entry[tag] = entry[tag].strip("'[").strip("]'").strip("\"[").strip("]\"").strip("[").strip("]").replace("\", \"", "', '").replace("\",\"", "', '").split("', '")
         entry[tag] = [b for b in entry[tag]]

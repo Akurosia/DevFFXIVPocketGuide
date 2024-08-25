@@ -8,7 +8,7 @@ import traceback
 import errno
 import yaml
 from yaml.loader import SafeLoader
-from ffxiv_aku import pretty_json, print_color_green, sys, writeJsonFile, print_pretty_json
+from ffxiv_aku import pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, print_pretty_json
 import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide, logdata, logdata_lower
@@ -69,7 +69,11 @@ def create_translation_files() -> None:
     global translations
     for lang, cat_data in translations.items():
         for cat, data in cat_data.items():
-            writeJsonFile(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json", data)
+            tmp = None
+            if os.path.exists(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json"):
+                tmp = readJsonFile(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json")
+            if tmp is None or tmp != data:
+                writeJsonFile(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json", data)
 
 
 def get_old_content_if_file_is_found(_existing_filename: str) -> dict[Any, Any]:
@@ -185,9 +189,9 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             # filename = ""
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if not True:
+            if True:
                 # if debug_row_number < 710 :
-                if debug_row_number not in [103]:
+                if debug_row_number not in [785]:
                     print_debug = True
                     continue
             entry = getEntryData(sheet, max_column, i, elements, orderedContent)
@@ -208,12 +212,12 @@ def run(sheet, max_row, max_column, elements, orderedContent):
                 if entry['categories'] == "":
                     print("[MAIN:run] Skipped due to no expansion specified")
                     continue
-                expansion = expansion_list[entry['categories']]
-                filename = f"{expansion}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
-                existing_filename = f"{expansion}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
+                expansion: str = expansion_list[entry['categories']]
+                filename: str = f"{expansion}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
+                existing_filename: str = f"{expansion}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 old_data = get_old_content_if_file_is_found(existing_filename)
                 # if old file was found, replace filename to save
-                if not old_data == {}:
+                if old_data != {}:
                     filename = existing_filename
                     # logger.info(pretty_json(old_data))
                 try_to_create_file(filename)

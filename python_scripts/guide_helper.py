@@ -19,9 +19,9 @@ import logging
 storeFilesInTmp(False)
 logdata = get_any_Logdata()
 storeFilesInTmp(True)
-#if os.path.exists("tmp/19/logdata_de.json"):
+# if os.path.exists("tmp/19/logdata_de.json"):
 #    logdata = readJsonFile("tmp/19/logdata_de.json")
-#else:
+# else:
 #    logdata = get_any_Logdata()
 #    writeJsonFile("tmp/19/logdata_de.json", logdata)
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
@@ -205,8 +205,8 @@ def get_fixed_status_description(_id):
         return {"en": f"Unknown_{_id}"}
 
 
-ids_to_replace = ["10742", "11399"]
-ids_to_replace += ["10744", "11402"]
+ids_to_replace1: list[str] = ["10742", "11399", "13057"]
+ids_to_replace2: list[str] = ["10744", "11402", "13058"]
 def getBnpcNameFromID(_id, aname, nname, lang="en"):
     global ids_to_replace
     bnpc_new_name = ""
@@ -219,12 +219,17 @@ def getBnpcNameFromID(_id, aname, nname, lang="en"):
     _id = str(_id)
     try:
         bnpc_new_name = bnpcname[_id]["Singular_de"]
-        if _id in ids_to_replace:
-            nname = nname.replace(" iii", "").replace(" ii", "").replace(" i", "")
+        extra = ""
+        if _id in ids_to_replace1:
+            nname = nname.replace(" i", "")
+            extra = " I"
+        elif _id in ids_to_replace2:
+            nname = nname.replace(" ii", "")
+            extra = " II"
         m = re.search(nname, bnpc_new_name, re.IGNORECASE)
         n = re.search(aname, bnpc_new_name, re.IGNORECASE)
         if m or n:
-            return bnpcname[_id][f"Singular_{lang}"]
+            return bnpcname[_id][f"Singular_{lang}"] + extra
     except Exception:
         if nname == bnpc_new_name or aname == bnpc_new_name:
             return bnpcname[_id][f"Singular_{lang}"]
@@ -768,6 +773,8 @@ def workOnOldEnemies(guide_data, entry, enemy_type, old_enemies, logdata_instanc
                     del logdata_instance_content["Hesperos"]
                 elif old_enemy_data['title']['de'].title() == "Hephaistos I":
                     del logdata_instance_content["Hephaistos"]
+                elif old_enemy_data['title']['de'].title() == "Tosender Donner I":
+                    del logdata_instance_content["Tosender Donner"]
             except Exception:
                 print_color_red(" [workOnOldEnemies] !Could not remove enemy: Hesperos", disable_red_print)
 
@@ -903,4 +910,3 @@ def setMultipleLanguageStrings(guide_data, elementName, elemntArray, spaces):
         elif elemntArray[elementName].get(f"{lang}", None):
             guide_data += f'{spaces}{lang}: "{elemntArray[elementName][lang]}"\n'
     return guide_data
-
