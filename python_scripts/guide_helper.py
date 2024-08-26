@@ -5,32 +5,16 @@ import re
 import copy
 from operator import itemgetter
 from collections import OrderedDict
-from ffxiv_aku import storeFilesInTmp, get_any_Logdata, loadDataTheQuickestWay, print_color_red, print_color_yellow, print_color_blue, os, writeJsonFile, readJsonFile, print_color_green
+from ffxiv_aku import print_color_red, print_color_yellow, print_color_blue
 try:
     from python_scripts.constants import LANGUAGES, UNKNOWNTITLE
-    #from python_scripts.helper import *
+    from python_scripts.fileimports import action, bnpcname, eobjname, enpcresident, status
 except Exception:
     from constants import LANGUAGES, UNKNOWNTITLE
-    #from helper import *
+    from fileimports import action, bnpcname, eobjname, enpcresident, status
 import logging
-#
-##
 
-storeFilesInTmp(False)
-logdata = get_any_Logdata()
-storeFilesInTmp(True)
-# if os.path.exists("tmp/19/logdata_de.json"):
-#    logdata = readJsonFile("tmp/19/logdata_de.json")
-# else:
-#    logdata = get_any_Logdata()
-#    writeJsonFile("tmp/19/logdata_de.json", logdata)
-logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
-action = loadDataTheQuickestWay("action_all.json", translate=True)
-status = loadDataTheQuickestWay("status_all.json", translate=True)
-bnpcname = loadDataTheQuickestWay("bnpcname_all.json", translate=True)
-eobjname = loadDataTheQuickestWay("eobjname_all.json", translate=True)
-enpcresident = loadDataTheQuickestWay("enpcresident_all.json", translate=True)
-logger = logging.getLogger()
+logger: logging.Logger = logging.getLogger()
 
 disable_green_print = True
 disable_yellow_print = True
@@ -609,7 +593,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
         if status_id in obviouse_debuffs:
             tmp_status = addknowndebuff(status_id, status_data)
         else:
-            descriptions = get_fixed_status_description(status_id)
+            descriptions: dict[str, str] = get_fixed_status_description(status_id)
             tmp_status = {
                 'sortname': translateAttack(status_id, _type=status, lang="de"),
                 'title': {

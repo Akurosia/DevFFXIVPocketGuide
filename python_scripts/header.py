@@ -6,7 +6,7 @@ from copy import deepcopy
 from typing import Any
 try:
     from python_scripts.constants import LANGUAGES
-    from python_scripts.helper import seperate_data_into_array, getImage
+    from python_scripts.helper import seperate_data_into_array, getImage, EntryType
     from python_scripts.fileimports import (
         territorytype_trans,
         territorytype,
@@ -27,7 +27,7 @@ try:
 except Exception as e:
     print_color_red(e)
     from constants import LANGUAGES
-    from helper import seperate_data_into_array, getImage
+    from helper import seperate_data_into_array, getImage, EntryType
     from fileimports import (
         territorytype_trans,
         territorytype,
@@ -49,7 +49,7 @@ except Exception as e:
 import logging
 
 
-logger = logging.getLogger()
+logger: logging.Logger = logging.getLogger()
 
 def getClassJobDict() -> dict[Any, Any]:
     final_array: dict[Any, Any] = {}
@@ -94,7 +94,7 @@ def myCapitalize(string: str) -> str:
     return string[:1].upper() + string[1:]
 
 
-def writeTags(header_data, entry, tt_type_name):
+def writeTags(header_data: str, entry: EntryType, tt_type_name: str|dict[str, str]) -> str:
     # write tags per expansion
     if entry["categories"] == "arr":
         header_data += "  - term: \"A Realm Reborn\"\n"
@@ -119,7 +119,7 @@ def writeTags(header_data, entry, tt_type_name):
             header_data += "  - term: \"" + tt_type_name["Name_" + lang] + "\"\n"
 
     for lang in LANGUAGES:
-        header_data += "  - term: \"" + myCapitalize(entry[f"title_{lang}"]) + "\"\n"
+        header_data += "  - term: \"" + myCapitalize(entry[f"titles"][lang]) + "\"\n"
 
     # write rest of the tags
     header_data += "  - term: \"" + entry["difficulty"] + "\"\n"
@@ -130,8 +130,8 @@ def writeTags(header_data, entry, tt_type_name):
     header_data += "  - term: \"" + entry["patchName"] + "\"\n"
 
     for lang in LANGUAGES:
-        if not entry.get(f"quest_{lang}", "") == "":
-            header_data += "  - term: \"" + entry[f"quest_{lang}"] + "\"\n"
+        if not entry['quest'].get(lang, "") == "":
+            header_data += "  - term: \"" + entry['quest'][lang] + "\"\n"
 
     found, data = checkVariable(entry, "mount")
     if found:
@@ -275,7 +275,7 @@ def get_video_url(url):
     return "https://www.youtube.com/watch?v={}".format(url)
 
 
-def get_lvl_data(entry):
+def get_lvl_data(entry: EntryType):
     global contentfindercondition
     lvl_data = ""
     _id = entry['CFC_ID']
@@ -333,7 +333,7 @@ def getMapImages(mapid: str, contentname: str) -> str:
             result += f'    - image: "{image}"\n'
     return result
 
-def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations):
+def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_translations):
     global contentfindercondition
     global instancecontent
     header_data = ""
@@ -346,7 +346,7 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations
     #! DO NOT TOUCH TITLE HERE AS IT IS NEEDED FOR TAGS
     header_data += 'title:\n'
     for lang in LANGUAGES:
-        tmp = entry[f"title_{lang}"]
+        tmp = entry["titles"][lang]
         tmp = tmp.replace(f' ({entry["difficulty"].lower()})', "")
         tmp = tmp.replace(f' ({entry["difficulty"].title()})', "")
         tmp = tmp.replace('Traumprüfung - ', "")
@@ -394,25 +394,25 @@ def rewrite_content_even_if_exists(entry, old_wip, cfc_key, content_translations
     # quests
     x = False
     for lang in LANGUAGES:
-        if not entry.get(f"quest_{lang}", "") == "":
+        if not entry['quest'].get(lang, "") == "":
             if not x:
                 x = True
-                header_data += f'quest: "{entry["quest_en"]}"\n'
-            content_translations[lang][f'QuestName_{entry["quest_en"]}'] = entry[f"quest_{lang}"]
+                header_data += f'quest: "{entry["quest"]["en"]}"\n'
+            content_translations[lang][f'QuestName_{entry["quest"]["en"]}'] = entry['quest'][lang]
     x = False
     for lang in LANGUAGES:
-        if not entry.get(f"quest_location_{lang}", "") == "":
+        if not entry['quest_location'].get(lang, "") == "":
             if not x:
                 x = True
-                header_data += f'quest_location: "{entry["quest_location_en"]}"\n'
-            content_translations[lang][f'QuestLocation_{entry["quest_location_en"]}'] = entry[f"quest_location_{lang}"]
+                header_data += f'quest_location: "{entry["quest_location"]["en"]}"\n'
+            content_translations[lang][f'QuestLocation_{entry["quest_location"]["en"]}'] = entry['quest_location'][lang]
     x = False
     for lang in LANGUAGES:
-        if not entry.get(f"quest_npc_{lang}", "") == "":
+        if not entry['quest_npc'].get(lang, "") == "":
             if not x:
                 x = True
-                header_data += f'quest_npc: "{entry["quest_npc_en"]}"\n'
-            content_translations[lang][f'QuestNPC_{entry["quest_npc_en"]}'] = entry[f"quest_npc_{lang}"]
+                header_data += f'quest_npc: "{entry['quest_npc']["en"]}"\n'
+            content_translations[lang][f'QuestNPC_{entry["quest_npc"]["en"]}'] = entry['quest_npc'][lang]
 
     # header_data += 'order: ' + get_order_id(entry) + '\n'
     header_data += 'order: ' + entry["sortid"] + '\n'
@@ -524,7 +524,7 @@ def addContentZoneIdToHeader(contentzoneid, entry, content_translations):
         for zone in contentzoneid:
             header_data += '  - id: ' + zone + '\n'
     for key, value in contentfindercondition.items():
-        if contentfindercondition_trans[key]['Name_de'] == entry['title_de']:
+        if contentfindercondition_trans[key]['Name_de'] == entry['titles']['de']:
             working_key = key
             cmt = value['ContentMemberType']
             if "InstanceContent" not in value['Content']:

@@ -490,7 +490,7 @@ def addGuide(entry, old_data, logdata_instance_content, content_translations):
     guide_data = ""
     # add mechanics
     guide_data += check_Mechanics(entry, old_data.get('mechanics', None))
-    print_color_green(f"Work on '{entry['title_de']}'", disable_green_print)
+    print_color_green(f"Work on '{entry['titles']['de']}'", disable_green_print)
     guide_data += check_Enemy(entry, "bosse", logdata_instance_content, old_data.get('bosses', {}), content_translations)
     guide_data += check_Enemy(entry, "adds", logdata_instance_content, old_data.get('adds', {}), content_translations)
     return guide_data

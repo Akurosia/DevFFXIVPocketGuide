@@ -6,48 +6,48 @@ from io import BytesIO
 import os
 import logging
 import natsort
-#from openpyxl.workbook.workbook import _WorksheetOrChartsheetLike
 import requests
 from openpyxl import Workbook, load_workbook
+from openpyxl.worksheet.worksheet import Worksheet
 from ffxiv_aku import print_color_red, getLevel
-# getLevel?
-
+from typing import Any
 try:
     from python_scripts.constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
-    from python_scripts.helper import getContentName, seperate_data_into_array
+    from python_scripts.helper import getContentName, seperate_data_into_array, EntryType
     from python_scripts.fileimports import quests_all, questss, enpcresidents, enpcresidentss, contentfinderconditionX
 except Exception:
     from constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
-    from helper import getContentName, seperate_data_into_array
+    from helper import getContentName, seperate_data_into_array, EntryType
     from fileimports import quests_all, questss, enpcresidents, enpcresidentss, contentfinderconditionX
 
 
-logger = logging.getLogger()
+logger: logging.Logger = logging.getLogger()
 
 
-def get_header_from_xlsx(sheet, max_column) -> list[str]:
+def get_header_from_xlsx(local_sheet: Worksheet, local_max_column: int) -> list[str]:
     result: list[str] = []
-    for j in range(1, max_column + 1):
-        result.append(str(sheet.cell(row=int(1), column=int(j)).value).replace("None", "").strip())
+    for j in range(1, local_max_column + 1):
+        result.append(str(local_sheet.cell(row=int(1), column=int(j)).value).replace("None", "").strip())
     return result
 
 
-def get_data_from_xlsx(sheet, max_column: int, i: int, elements):
-    entry = {}
+def get_data_from_xlsx(local_sheet: Worksheet, local_max_column: int, i: int, elements) -> EntryType:
+    entry: EntryType = {} # type: ignore
     # for every column in row add all elements into a dict:
-    # max_column will ignore last column due to how range is working
-    for j in range(1, max_column + 1):
-        name = str(sheet.cell(row=int(i), column=int(j)).value).replace("None", "").strip()
+    # local_max_column will ignore last column due to how range is working
+    for j in range(1, local_max_column + 1):
+        name: str = str(local_sheet.cell(row=int(i), column=int(j)).value).replace("None", "").strip()
         entry[elements[j - 1]] = name
     return entry
 
 
-def clean_entries_from_single_quotes(entry):
+def clean_entries_from_single_quotes(entry: EntryType):
     for key, value in entry.items():
-        if value.startswith("'"):
-            entry[key] = value[1:]
-        if value.endswith("'"):
-            entry[key] = value[:-1]
+        if isinstance(value, str):
+            if value.startswith("'"):
+                entry[key] = value[1:]
+            if value.endswith("'"):
+                entry[key] = value[:-1]
     return entry
 
 
@@ -58,20 +58,27 @@ def make_name_readable(entry: str, x: dict[str, str]) -> str:
     return name
 
 
-def workOnQuests(entry, quest_id):
+def workOnQuests(entry: EntryType) -> EntryType:
+    quest_id: str = entry["quest_id"]
     if quest_id == "":
         for lang in LANGUAGES:
-            entry[f'quest_{lang}'] = ""
-            entry[f'quest_location_{lang}'] = ""
-            entry[f'quest_npc_{lang}'] = ""
+            #entry[f'quest_{lang}'] = ""
+            #entry[f'quest_location_{lang}'] = ""
+            #entry[f'quest_npc_{lang}'] = ""
+
+            entry['quest'][lang] = ""
+            entry['quest_location'][lang] = ""
+            entry['quest_npc'][lang] = ""
         return entry
 
     # retriev quest from raw-exd to easily get all languages
-    quest = questss[quest_id]
+    quest: dict[str, str | dict[str, str]] = questss[quest_id]
     for lang in LANGUAGES:
-        entry[f'quest_{lang}'] = quests_all[quest_id][f'Name_{lang}'].replace(" ", "").replace(" ", "")
+        tmp_quest: str = quests_all[quest_id][f'Name_{lang}'].replace(" ", "").replace(" ", "") # type: ignore
+        #entry[f'quest_{lang}'] = tmp_quest
+        entry['quest'][lang] = tmp_quest
 
-    issuer_id = quest['Issuer']['Start']
+    issuer_id: str = quest['Issuer']['Start'] # type: ignore
     if int(issuer_id) < 1_000_000:
         issuer_id = str(int(issuer_id) + 1_000_000)
     if not enpcresidentss.get(issuer_id, None):
@@ -79,23 +86,27 @@ def workOnQuests(entry, quest_id):
         return entry
 
     for lang in LANGUAGES:
-        npc = enpcresidentss[issuer_id][f"Singular_{lang}"]
+        npc: str = enpcresidentss[issuer_id][f"Singular_{lang}"] # type: ignore
         if "[a]" in npc or "[t]" in npc:
             npc = make_name_readable(npc, enpcresidents[issuer_id])
-        entry[f'quest_npc_{lang}'] = npc
+        #entry[f'quest_npc_{lang}'] = npc
+        entry['quest_npc'][lang] = npc
 
-    level_id = quest['Issuer']['Location']
+    level_id: str = quest['Issuer']['Location'] # type: ignore
     for lang in LANGUAGES:
         try:
             level_data = getLevel(level_id, lang=lang)
-            entry[f'quest_location_{lang}'] = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
+            tmp_quest_location = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
+            #entry[f'quest_location_{lang}'] = tmp_quest_location
+            entry['quest_location'][lang] = tmp_quest_location
         except KeyError:
-            entry['quest_location'] = ""
+            #entry['quest_location'] = ""
+            entry['quest_location'][lang] = ""
             print_color_red(f"[XLSX_ENTRY_HELPER:workOnQuests] Error on loading: {quest['Issuer']['Location']} ({quest_id})")
     return entry
 
 
-def getEntriesForRouletts(entry):
+def getEntriesForRouletts(entry: EntryType) -> EntryType:
     global contentfinderconditionX
     for _, value in contentfinderconditionX.items():
         if value['Name'] == getContentName(entry["title"], "de", entry["difficulty"], entry["instanceType"]):
@@ -116,7 +127,7 @@ def getEntriesForRouletts(entry):
     return entry
 
 
-def getBeforeAndAfterContentEntries(orderedContent, entry):
+def getBeforeAndAfterContentEntries(orderedContent, entry: EntryType):
     _previous = None
     _next = None
     _type = orderedContent[entry['instanceType']]
@@ -133,16 +144,29 @@ def getBeforeAndAfterContentEntries(orderedContent, entry):
             except Exception:
                 pass
             return _previous, _next
-    return None, None
+    return "", ""
 
+def createNewElements(entry: EntryType) -> EntryType:
+    if not entry.get("quest", None):
+        entry['quest'] = {}
+    if not entry.get("quest_location", None):
+        entry['quest_location'] = {}
+    if not entry.get("quest_npc", None):
+        entry['quest_npc'] = {}
+    if not entry.get("titles", None):
+        entry['titles'] = {}
+    return entry
 
-def getEntryData(sheet, max_column, i, elements, orderedContent):
-    entry = get_data_from_xlsx(sheet, max_column, i, elements)
+def getEntryData(sheet: Worksheet, max_column: int, i: int, elements, orderedContent):
+    entry: EntryType = get_data_from_xlsx(sheet, max_column, i, elements)
     entry = clean_entries_from_single_quotes(entry)
-    entry = workOnQuests(entry, entry["quest_id"])
+    entry = createNewElements(entry)
+    entry = workOnQuests(entry)
     entry = getEntriesForRouletts(entry)
     for lang in LANGUAGES:
-        entry[f"title_{lang}"] = getContentName(entry["title"], lang, entry["difficulty"], entry["instanceType"])
+        tpm_title: str = getContentName(entry["title"], lang, entry["difficulty"], entry["instanceType"])
+        #entry[f"title_{lang}"] = tpm_title
+        entry["titles"][lang] = tpm_title
     _previous, _next = getBeforeAndAfterContentEntries(orderedContent, entry)
     # remove time from excel datetime
     entry["date"] = str(entry["date"]).replace(" 00:00:00", "").replace("-", ".")
@@ -153,10 +177,11 @@ def getEntryData(sheet, max_column, i, elements, orderedContent):
     seperate_data_into_array("tags", entry)
     entry['adds'] = []
     entry['mechanics'] = "[]"
+    #print(entry)
     return entry
 
 
-def getPrevAndNextContentOrder(sheet, elements, max_row):
+def getPrevAndNextContentOrder(sheet: Worksheet, elements, max_row: int) -> OrderedDict[Any, Any]:
     entry = {}
     for i in range(1, max_row + 1):
         instanceType = str(sheet.cell(row=int(i), column=int(elements.index('instanceType')) + 1).value).replace("None", "")
@@ -184,10 +209,10 @@ def read_xlsx_file():
     r: str = f"https://www.googleapis.com/drive/v3/files/{SHEET}/export?key={KEY}&mimeType={MIME_TYPE}"
     wb: Workbook = load_workbook_from_url(r)
     # wb = openpyxl.load_workbook('./guide_ffxiv.xlsx')
-    sheet = wb['Tabelle1']
-    max_row: int = sheet.max_row
-    max_column: int = sheet.max_column
-    return sheet, max_row, max_column
+    local_sheet: Worksheet = wb['Tabelle1']
+    local_max_row: int = local_sheet.max_row
+    local_max_column: int = local_sheet.max_column
+    return local_sheet, local_max_row, local_max_column
 
 
 if __name__ == "__main__":

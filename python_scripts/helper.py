@@ -4,11 +4,81 @@
 import os
 import sys
 import shutil
+from dataclasses import dataclass, field
+from typing import List, Any, Dict
 from ffxiv_aku import print_color_red
 try:
     from python_scripts.fileimports import placename, contentfindercondition_trans
 except Exception:
     from fileimports import placename, contentfindercondition_trans
+
+@dataclass
+class EntryType(dict):
+    exclude: str = ""
+    date: str = ""
+    sortid: str = ""
+    title: str = ""
+    categories: str = ""
+    slug: str = ""
+    image: str = ""
+    patchNumber: str = ""
+    patchName: str = ""
+    difficulty: str = ""
+    CFC_ID: str = ""
+    PN_ID: str = ""
+    quest_id: str = ""
+    gearset_loot: List[str] = field(default_factory=list)
+    tt_card: str = ""
+    orchestrion: List[str] = field(default_factory=list)
+    orchestrion_material: str = ""
+    mtqvid: List[str] = field(default_factory=list)
+    mrhvid: List[str] = field(default_factory=list)
+    hector: List[str] = field(default_factory=list)
+    mount: List[str] = field(default_factory=list)
+    minion: List[str] = field(default_factory=list)
+    instanceType: str = ""
+    mapid: str = ""
+    bosse: List[str] = field(default_factory=list)
+    tags: List[str] = field(default_factory=list)
+    teamcraftlink: str = ""
+    garlandtoolslink: str = ""
+    gamerescapelink: str = ""
+    done: str = ""
+    type: str = ""
+    allianceraid: str = ""
+    frontier: str = ""
+    expert: str = ""
+    guildhest: str = ""
+    highlevelroulette: str = ""
+    levelcaproulette: str = ""
+    leveling: str = ""
+    main: str = ""
+    mentor: str = ""
+    normalraid: str = ""
+    trial: str = ""
+    title_de: str = ""
+    title_en: str = ""
+    title_fr: str = ""
+    title_ja: str = ""
+    title_cn: str = ""
+    title_ko: str = ""
+    prev_content: str = ""
+    next_content: str = ""
+    line_index: int = 0
+    adds: List[str] = field(default_factory=list)
+    mechanics: List[str] = field(default_factory=list)
+    quest: Dict[str, str] = field(default_factory=dict)
+    quest_location: Dict[str, str] = field(default_factory=dict)
+    quest_npc: Dict[str, str] = field(default_factory=dict)
+    titles: Dict[str, str] = field(default_factory=dict)
+
+    def __getitem__(self, key: str) -> Any:
+        return getattr(self, key)
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        setattr(self, key, value)
+
+
 
 
 def getImage(image: str, _type: str="icon") -> str:

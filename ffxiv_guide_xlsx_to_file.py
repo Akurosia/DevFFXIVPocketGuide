@@ -5,6 +5,7 @@ import os
 import traceback
 # traceback.print_exc()
 import errno
+from typing import Any
 import yaml
 from yaml.loader import SafeLoader
 from ffxiv_aku import pretty_json, print_color_green, sys, readJsonFile, writeJsonFile
@@ -12,17 +13,15 @@ import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide
 from python_scripts.fileimports import logdata, logdata_lower
-from python_scripts.helper import uglyContentNameFix, getContentName
+from python_scripts.helper import uglyContentNameFix, getContentName, EntryType
 # from python_scripts.constants import *
 from python_scripts.custom_logger import getLogger
-from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file
+from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file, Worksheet
 import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
 import python_scripts.generateHousingMissions as ghm
 import python_scripts.get_achivments as ga
 import python_scripts.getBlueSideQuestData as gbsq
-from typing import Any
-
 
 logger: Logger = getLogger(50)
 disable_green_print: bool = True
@@ -51,7 +50,7 @@ translations:dict[str, dict[str, dict[str, str]]] = {
     "ko": {}
 }
 
-def translate_content_files(entry: dict[str, str]) -> None:
+def translate_content_files(entry: EntryType) -> None:
     global translations
     if entry['categories'] == "":
         return
@@ -59,10 +58,10 @@ def translate_content_files(entry: dict[str, str]) -> None:
     for lang in LANGUAGES:
         if not translations[lang].get(_type, None):
             translations[lang][_type] = {}
-        name: str = entry[f'title_{lang}']
+        name: str = entry['titles'][lang]
         name = uglyContentNameFix(name, instanceType=entry['instanceType'], difficulty=entry['difficulty'])
         name = name.replace(f' ({entry["difficulty"].lower()})', "")
-        translations[lang][_type][f"Summary_{_type}_{entry['title_en'].lower()}"] = name
+        translations[lang][_type][f"Summary_{_type}_{entry['titles']['en'].lower()}"] = name
 
 
 def create_translation_files() -> None:
@@ -107,9 +106,9 @@ def cleanup_logdata(logdata_instance_content: dict[Any, Any]) -> tuple[dict[Any,
     except Exception:
         pass
 
-    music = None
+    music: list[str]|None = None
     try:
-        music: list[str] = logdata_instance_content["music"]
+        music = logdata_instance_content["music"]
         del logdata_instance_content["music"]
     except Exception:
         pass
@@ -129,14 +128,14 @@ def cleanup_logdata(logdata_instance_content: dict[Any, Any]) -> tuple[dict[Any,
     return new_lic, music
 
 
-def getDataFromLogfile(entry):
+def getDataFromLogfile(entry: dict[str, Any]):
     logdata_instance_content = None
     music = None
     contentzoneid = ""
     # get correct title capitalization to read data from logdata
-    title = uglyContentNameFix(entry["title_de"].title(), entry["instanceType"], entry["difficulty"])
+    title = uglyContentNameFix(entry["titles"]['de'].title(), entry["instanceType"], entry["difficulty"])
     # get the latest data from logdata
-    if not entry["title_de"] == "" and logdata_lower.get(entry["title_de"].lower()):
+    if not entry["titles"]['de'] == "" and logdata_lower.get(entry["titles"]['de'].lower()):
         try:
             logdata_instance_content = dict(logdata[getContentName(title, lang="de")])
         except Exception:
@@ -147,7 +146,7 @@ def getDataFromLogfile(entry):
     return logdata_instance_content, music, contentzoneid
 
 
-def writeFileIfNoDifferent(filename, filedata):
+def writeFileIfNoDifferent(filename: str, filedata: str) -> None:
     try:
         with open(filename, "r", encoding="utf8") as f:
             x_data = f.read()
@@ -160,7 +159,7 @@ def writeFileIfNoDifferent(filename, filedata):
         print(f"[MAIN:writeFileIfNoDifferent] Wrote new data to file {filename}")
 
 
-def write_content_to_file(entry, filename, old_data, content_translations):
+def write_content_to_file(entry: dict[str, Any], filename: str, old_data: dict[str, Any], content_translations: dict[str, Any] ) -> None:
     logdata_instance_content, music, contentzoneid = getDataFromLogfile(entry)
     filedata = '---\n'
     filedata += addHeader(entry, old_data, music, contentzoneid, content_translations)
@@ -170,7 +169,7 @@ def write_content_to_file(entry, filename, old_data, content_translations):
     writeFileIfNoDifferent(filename, filedata)
 
 
-expansion_list = {
+expansion_list: dict[str, str] = {
     "arr": "2_arr",
     "hw": "3_hw",
     "sb": "4_sb",
@@ -180,21 +179,22 @@ expansion_list = {
 }
 
 
-def run(sheet, max_row, max_column, elements, orderedContent):
+def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], orderedContent: dict[str, str]) -> None:
     global debug_row_number # used in debugger to verify entry
     global print_debug
     # for every row do:
+    filename = ""
     for i in range(2, max_row):
         try:
-            # filename = ""
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             if not True:
                 # if debug_row_number < 710 :
-                if debug_row_number not in [785]:
+                if debug_row_number not in [270, 785]:
                     print_debug = True
                     continue
-            entry = getEntryData(sheet, max_column, i, elements, orderedContent)
+            entry: EntryType = getEntryData(sheet, max_column, i, elements, orderedContent)
+            #print(entry)
             if print_debug:
                 print(f"[MAIN:run] {entry['title']}")
             logger.info(pretty_json(entry))
@@ -233,19 +233,23 @@ def run(sheet, max_row, max_column, elements, orderedContent):
             elif entry['title'] != "":
                 print_color_green(f"[MAIN:run] Skip {entry['title']} as its marked as {entry['exclude']}/{entry['done']}")
         except Exception as e:
-            logger.critical(f"Error when handeling '{filename}' with line id '{i}' ({e})")
+            msg = f"Error when handeling '{filename}' with line id '{i}' ({e})"
+            logger.critical(msg)
             traceback.print_exception(*sys.exc_info())
 
 
-def main():
+def main() -> None:
     logger.critical('START')
+    sheet: Worksheet
+    max_row: int
+    max_column: int
     sheet, max_row, max_column = read_xlsx_file()
-    XLSXELEMENTS = get_header_from_xlsx(sheet, max_column)
+    XLSXELEMENTS: list[str] = get_header_from_xlsx(sheet, max_column)
     csgf.load_global_data()
     # change into _posts dir
     os.chdir("./_posts")
     # first run to create all files
-    orderedContent = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
+    orderedContent: dict[str, str] = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
     #logger.debug(orderedContent)
     try:
         run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
@@ -254,7 +258,6 @@ def main():
         traceback.print_exception(*sys.exc_info())
     create_translation_files()
     if not print_debug:
-        #csgf needs also to run from posts dir
         csgf.run()
         gl.run()
         gp.run()
