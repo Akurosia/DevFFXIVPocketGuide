@@ -122,7 +122,7 @@ def run():
     #print_pretty_json(sorted(repo_urls))
     for url in sorted(repo_urls):
         if url == "https://plugins.carvel.li":
-            url = "https://git.carvel.li/liza/plugin-repo/raw/branch/master/dist/pluginmaster.json"
+            url = "https://git.carvel.li/liza/plugin-repo/raw/commit/9993ca37f1c659749fddc8531b5edb460831fc66/dist/pluginmaster.json"
         tjson = ""
         if url in skip_urls:
             ...#continue
