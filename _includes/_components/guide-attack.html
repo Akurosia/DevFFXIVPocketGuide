@@ -44,13 +44,14 @@
             {%- endif -%}" style="{%- if attack.disable == 'true' -%}display: none;{%- endif -%}">
     <div class="guide__accordion-copy-wrapper">
         {%- for status in attack.add_status -%}
-            {%- for lang in LANGUAGES -%}
-                <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status
+            <h5 class="guide__attack-notes-title">Fügt Status
+                {%- if status.icon != ""-%}
                     <img loading="lazy" src="{{ site.baseurl }}/assets/img/game_assets/{{ status.icon }}" style="height: 30px; width: auto;">
-                    <u>{{ status.name[lang] }}</u> hinzu.
-                </h5>
-            {%- endfor -%}
-            <br/>
+                    <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_{{status.name.en}}_Name"> {{ status.name.en }}</span></u> hinzu.
+                {%- else -%}
+                    <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_HiddenDebuff_Name"> ohne Namen und Icon </span> ({{ status.status }})</u> hinzu.
+                {%- endif -%}
+            </h5>
         {%- endfor -%}
         <!-- Standard Attacks -->
         {%- if attack.combo -%}
@@ -78,9 +79,14 @@
         {%- for combo in attack.combo -%}
             {%- include _components/guide-combo-tags.html -%}
             {%- for status in combo.add_status -%}
-                {%- for lang in LANGUAGES -%}
-                    <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status {{ status.name[lang] }} hinzu.</h5><br/>
-                {%- endfor -%}
+                <h5 class="guide__attack-notes-title">Fügt Status
+                    {%- if status.icon != ""-%}
+                        <img loading="lazy" src="{{ site.baseurl }}/assets/img/game_assets/{{ status.icon }}" style="height: 30px; width: auto;">
+                        <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_{{status.name.en}}_Name"> {{ status.name.en }}</span></u> hinzu.
+                    {%- else -%}
+                        <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_HiddenDebuff_Name"> ohne Namen und Icon </span> ({{ status.status }})</u> hinzu.
+                    {%- endif -%}
+                </h5>
             {%- endfor -%}
             {%- include _components/guide-attack-notes.html -%}
             <!-- Combo Images -->
@@ -101,34 +107,40 @@
             {%- endif -%}
         {%- endfor -%}
         <!-- Variation Attacks -->
-        {%- for variation in attack.variation -%}
-            <div class="guide__variation-attack-seperator">
-                {%- include _components/guide-variation-tags.html -%}
-                {%- for status in variation.add_status -%}
-                    {%- for lang in LANGUAGES -%}
-                        <h5 class="lang-toggle lang-toogle-{{lang}} guide__attack-notes-title">Fügt Status {{ status.name[lang] }} hinzu.</h5>
+        <div class="variation_container">
+            {%- for variation in attack.variation -%}
+                <div class="guide__variation-attack-seperator">
+                    {%- include _components/guide-variation-tags.html -%}
+                    {%- for status in variation.add_status -%}
+                        <h5 class="guide__attack-notes-title">Fügt Status
+                            {%- if status.icon != ""-%}
+                                <img loading="lazy" src="{{ site.baseurl }}/assets/img/game_assets/{{ status.icon }}" style="height: 30px; width: auto;">
+                                <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_{{status.name.en}}_Name"> {{ status.name.en }}</span></u> hinzu.
+                            {%- else -%}
+                                <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_HiddenDebuff_Name"> ohne Namen und Icon </span> ({{ status.status }})</u> hinzu.
+                            {%- endif -%}
+                        </h5>
                     {%- endfor -%}
-                    <br/>
-                {%- endfor -%}
-                {%- include _components/guide-attack-notes.html -%}
-                <!-- Variation Images -->
-                {%- if variation.images -%}
-                    <div class="guide__attack-image-list">
+                    {%- include _components/guide-attack-notes.html -%}
+                    <!-- Variation Images -->
+                    {%- if variation.images -%}
+                        <div class="guide__attack-image-list">
                         {%- for image in variation.images -%}
                             {%- include _components/guide-images.html -%}
                         {%- endfor -%}
-                    </div>
-                {%- endif -%}
-                <!-- Variation Videos -->
-                {%- if variation.videos -%}
-                    <div class="guide__attack-video-list">
+                        </div>
+                    {%- endif -%}
+                    <!-- Variation Videos -->
+                    {%- if variation.videos -%}
+                        <div class="guide__attack-video-list">
                         {%- for video in variation.videos -%}
                             {%- include _components/guide-videos.html -%}
                         {%- endfor -%}
-                    </div>
-                {%- endif -%}
-            </div>
-        {%- endfor -%}
+                        </div>
+                    {%- endif -%}
+                </div>
+            {%- endfor -%}
+        </div>
         <!-- Attack Images -->
         {%- if attack.images -%}
             <div class="guide__attack-image-list">

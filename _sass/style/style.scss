@@ -1770,6 +1770,11 @@ ion-icon {
   display: flex;
 }
 
+.variation_container {
+  display: flex;
+  gap: 1rem;
+}
+
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";

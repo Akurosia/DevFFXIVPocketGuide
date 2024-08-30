@@ -3,11 +3,11 @@
     {%- if attack.variation -%}
         <h5 class="guide__accordion-trigger-vartitle">
             {%- if variation.title_id -%}
-                <div class="guide__accordion-trigger-vartitle" onclick="buildAndCopyRegex('{{ variation.title_id }}', '{{ enemy.title.de }}', 'attack')">Skill-ID: {{ variation.title_id }}</div>
+                <div class="guide__accordion-trigger-title" onclick="buildAndCopyRegex('{{ variation.title_id }}', '{{ enemy.title.de }}', 'attack')">Skill-ID: {{ variation.title_id }}</div>
             {%- endif -%}
 
             {%- if variation.damage -%}
-                <div class="guide__accordion-trigger-vartitle">DMG:
+                <div class="guide__accordion-trigger-title">DMG:
                     {%- if variation.damage[0].min == variation.damage[1].max -%}
                         {{ variation.damage[0].min | intcomma: '.' }}
                     {%- else -%}

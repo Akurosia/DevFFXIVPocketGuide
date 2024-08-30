@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import print_color_green
+from ffxiv_aku import print_color_green, print_color_red
 
 try:
     from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
@@ -219,7 +219,7 @@ def add_variation_Attack(guide_data, attack, enemy_type, enemy_name_en, content_
 
     if attack.get('add_status', None):
         guide_data += '        add_status:\n'
-        sort_attacks = sort_status_ids(attack["add_status"])
+        sort_attacks = sort_status_ids(list(set(attack["add_status"])))
         for e in sort_attacks:
             s = status[str(int(e, 16))]
             guide_data += f'          - status: {e}\n'
@@ -248,7 +248,7 @@ def add_variation_Attack(guide_data, attack, enemy_type, enemy_name_en, content_
 
             if variation.get('add_status', None):
                 guide_data += '            add_status:\n'
-                sort_attacks = sort_status_ids(variation["add_status"])
+                sort_attacks = sort_status_ids(list(set(variation["add_status"])))
                 for e in sort_attacks:
                     try:
                         s = status[str(int(e, 16))]
