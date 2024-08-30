@@ -8,18 +8,19 @@ try:
     #from python_scripts.custom_logger import *
     from python_scripts.helper import getImage
     from python_scripts.fileimports import logdata, status
-    from python_scripts.guide_helper import setMultipleLanguageStrings, ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
+    from python_scripts.guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 except Exception:
     from constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from custom_logger import *
     from helper import getImage
     from fileimports import logdata, status
-    from guide_helper import setMultipleLanguageStrings, ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
+    from guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 
 disable_green_print = True
 disable_yellow_print = True
 disable_blue_print = True
 disable_red_print = True
+
 
 
 def check_Mechanics(entry, old_mechanics):
@@ -156,9 +157,9 @@ def add_regular_Attack(guide_data, attack, enemy_type, enemy_name_en, content_tr
             s = status[str(int(e, 16))]
             guide_data += f'          - status: {e}\n'
             guide_data += f'            icon: "{getImage(s["Icon"])}"\n'
-            guide_data += '            name:\n'
-            for lang in LANGUAGES:
-                guide_data += f'               {lang}: "' + s[f"Name_{lang}"] + '"\n'
+            guide_data += f'            name: "{s[f"Name_en"]}"\n'
+            #for lang in LANGUAGES:
+            #    guide_data += f'               {lang}: "' + s[f"Name_{lang}"] + '"\n'
 
     if attack.get('damage', None):
         guide_data += '        damage:\n'
@@ -224,9 +225,9 @@ def add_variation_Attack(guide_data, attack, enemy_type, enemy_name_en, content_
             s = status[str(int(e, 16))]
             guide_data += f'          - status: {e}\n'
             guide_data += f'            icon: "{getImage(s["Icon"])}"\n'
-            guide_data += '            name:\n'
-            for lang in LANGUAGES:
-                guide_data += f'               {lang}: "' + s[f"Name_{lang}"] + '"\n'
+            guide_data += f'            name: "{s[f"Name_en"]}"\n'
+            #for lang in LANGUAGES:
+            #    guide_data += f'               {lang}: "' + s[f"Name_{lang}"] + '"\n'
 
     if attack.get('phases', None):
         guide_data += '        phases:\n'
@@ -241,8 +242,6 @@ def add_variation_Attack(guide_data, attack, enemy_type, enemy_name_en, content_
     if attack.get('variation', None):
         guide_data += '        variation:\n'
         for variation in attack.get('variation', {}):
-            #guide_data += f'          - title:\n'
-            #guide_data = setMultipleLanguageStrings(guide_data, "title", variation, "              ")
             guide_data += f'          - title_id: "{variation["title_id"]}"\n'
             guide_data += f'            damage_type: "{variation.get("damage_type", None)}"\n'
 
@@ -256,9 +255,9 @@ def add_variation_Attack(guide_data, attack, enemy_type, enemy_name_en, content_
                         s = status[str(int(str(e['status']), 16))]
                     guide_data += f'              - status: {s["0xID"]}\n'
                     guide_data += f'                icon: "{getImage(s["Icon"])}"\n'
-                    guide_data += '                name:\n'
-                    for lang in LANGUAGES:
-                        guide_data += f'                 {lang}: "' + s[f"Name_{lang}"] + '"\n'
+                    guide_data += f'                name: "{s[f"Name_en"]}"\n'
+                    #for lang in LANGUAGES:
+                    #    guide_data += f'                 {lang}: "' + s[f"Name_{lang}"] + '"\n'
 
             # print_color_yellow(variation)
             if variation.get('damage', None):
@@ -318,9 +317,9 @@ def add_combo_Attack(guide_data, attack, enemy_type, enemy_name_en, content_tran
             s = status[str(int(e, 16))]
             guide_data += f'          - status: {e}\n'
             guide_data += f'            icon: "{getImage(s["Icon"])}"\n'
-            guide_data += '            name:\n'
-            for lang in LANGUAGES:
-                guide_data += f'               {lang}: "' + s[f"Name_{lang}"] + '"\n'
+            guide_data += f'            name: "{s[f"Name_en"]}"\n'
+            #for lang in LANGUAGES:
+            #    guide_data += f'               {lang}: "' + s[f"Name_{lang}"] + '"\n'
 
     if attack.get('phases', None):
         guide_data += '        phases:\n'
@@ -428,9 +427,14 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
     enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
     guide_data += '  - title:\n'
     for lang in LANGUAGES:
-        #print(f"{enemy_data['title']} -> {enemy_type} -> ")
         content_translations[lang][f"{enemy_type.title()}_{enemy_data['title']['en']}_Name"] = enemy_data['title'].get(lang, "")
-    guide_data = setMultipleLanguageStrings(guide_data, "title", enemy_data, "      ")
+        if enemy_data is None:
+            guide_data += f'      {lang}: "{enemy_data["title"][lang]}"\n'
+        elif type(enemy_data["title"]) == str or type(enemy_data["title"]) is None:
+            continue
+        elif enemy_data["title"].get(f"{lang}", None):
+            guide_data += f'      {lang}: "{enemy_data["title"][lang]}"\n'
+
 
     if isinstance(enemy_data.get("enemy_id", ""), list):
         hex_id_list = [str(hex(int(i))).replace("0x", "").upper() for i in enemy_data.get("enemy_id", [])]
