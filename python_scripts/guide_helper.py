@@ -5,6 +5,7 @@ import re
 import copy
 from operator import itemgetter
 from collections import OrderedDict
+from typing import Any
 from ffxiv_aku import print_color_red, print_color_yellow, print_color_blue
 try:
     from python_scripts.constants import LANGUAGES, UNKNOWNTITLE
@@ -22,22 +23,22 @@ disable_blue_print = True
 disable_red_print = True
 
 
-def sort_status_ids(status_list):
-    if type(status_list) == list:
+def sort_status_ids(status_list: Any) -> list[str]:
+    if isinstance(status_list,list):
         try:
-            return sorted(status_list, key=lambda x: int(x,16))
+            return sorted(list(set(status_list)), key=lambda x: int(x,16))
         except:
-            y = []
+            y: list[str] = []
             for x in status_list:
                 if str(x['status']) not in y:
                     y.append(str(x['status']))
-            return sorted(y, key=lambda x: int(x,16))
+            return sorted(list(set(y)), key=lambda x: int(x,16))
     else:
         print_color_red(status_list)
-    return status_list
+    return list(set(status_list))
 
 
-def delete_invalid_entries(tmp_attack):
+def delete_invalid_entries(tmp_attack: dict[str, Any]) -> dict[str, Any]:
     try:
         del tmp_attack['title_id']
     except Exception:
