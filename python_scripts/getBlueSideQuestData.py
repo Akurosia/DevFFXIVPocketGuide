@@ -225,7 +225,7 @@ def main():
         try:
             level_data = getLevel(quest['Issuer']['Location'])
         except Exception as e:
-            print((e, name))
+            print_color_red(f"[MAIN] Error for getLevel using '{quest['Issuer']['Location']}' and questname '{name}' with error '{e}'")
             error.append(name)
 
         if name in error:
