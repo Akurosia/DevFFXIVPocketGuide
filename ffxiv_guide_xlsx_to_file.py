@@ -92,7 +92,7 @@ def try_to_create_file(filename: str) -> None:
                 raise
 
 
-def cleanup_logdata(logdata_instance_content: dict[Any, Any]) -> tuple[dict[Any, Any], list[str] | None]:
+def cleanup_logdata(logdata_instance_content: dict[Any, Any]) -> tuple[dict[Any, Any], list[str] | None, list[str] | None]:
     try:
         del logdata_instance_content["combatants"]
     except Exception:
@@ -103,6 +103,12 @@ def cleanup_logdata(logdata_instance_content: dict[Any, Any]) -> tuple[dict[Any,
         pass
     try:
         del logdata_instance_content["contentzoneid"]
+    except Exception:
+        pass
+    fates: list[str]|None = None
+    try:
+        fates = logdata_instance_content["fates"]
+        del logdata_instance_content["fates"]
     except Exception:
         pass
 
@@ -125,12 +131,16 @@ def cleanup_logdata(logdata_instance_content: dict[Any, Any]) -> tuple[dict[Any,
     new_lic = {}
     for k, v in logdata_instance_content.items():
         new_lic[k] = v
-    return new_lic, music
+
+    if fates:
+        print_color_green(fates)
+    return new_lic, music, fates
 
 
 def getDataFromLogfile(entry: dict[str, Any]):
     logdata_instance_content = None
     music = None
+    fates = None
     contentzoneid = ""
     # get correct title capitalization to read data from logdata
     title = uglyContentNameFix(entry["titles"]['de'].title(), entry["instanceType"], entry["difficulty"])
@@ -142,8 +152,8 @@ def getDataFromLogfile(entry: dict[str, Any]):
             logdata_instance_content = dict(logdata[title])
         if logdata_instance_content.get('contentzoneid', None):
             contentzoneid = logdata_instance_content['contentzoneid']
-        logdata_instance_content, music = cleanup_logdata(logdata_instance_content)
-    return logdata_instance_content, music, contentzoneid
+        logdata_instance_content, music, fates = cleanup_logdata(logdata_instance_content)
+    return logdata_instance_content, music, contentzoneid, fates
 
 
 def writeFileIfNoDifferent(filename: str, filedata: str) -> None:
@@ -160,7 +170,7 @@ def writeFileIfNoDifferent(filename: str, filedata: str) -> None:
 
 
 def write_content_to_file(entry: dict[str, Any], filename: str, old_data: dict[str, Any], content_translations: dict[str, Any] ) -> None:
-    logdata_instance_content, music, contentzoneid = getDataFromLogfile(entry)
+    logdata_instance_content, music, contentzoneid, fates = getDataFromLogfile(entry)
     filedata = '---\n'
     filedata += addHeader(entry, old_data, music, contentzoneid, content_translations)
     filedata += addGuide(entry, old_data, logdata_instance_content, content_translations)
@@ -190,7 +200,7 @@ def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], or
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             if not True:
                 # if debug_row_number < 710 :
-                if debug_row_number not in [785, 456]:
+                if debug_row_number not in [785, 748]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(sheet, max_column, i, elements, orderedContent)
