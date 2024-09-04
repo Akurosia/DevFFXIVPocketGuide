@@ -424,15 +424,17 @@ def add_Sequence(guide_data, data):
 def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
     guide_data = ""
     enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
-    guide_data += '  - title:\n'
+    enemy_name_en = enemy_data['title']['en']
+    guide_data += f'  - title: "{enemy_name_en}"\n'
+    #print(enemy_name_en)
     for lang in LANGUAGES:
-        content_translations[lang][f"{enemy_type.title()}_{enemy_data['title']['en']}_Name"] = enemy_data['title'].get(lang, "")
-        if enemy_data is None:
-            guide_data += f'      {lang}: "{enemy_data["title"][lang]}"\n'
-        elif type(enemy_data["title"]) == str or type(enemy_data["title"]) is None:
-            continue
-        elif enemy_data["title"].get(f"{lang}", None):
-            guide_data += f'      {lang}: "{enemy_data["title"][lang]}"\n'
+        content_translations[lang][f"{enemy_type.title()}_{enemy_name_en}_Name"] = enemy_data['title'].get(lang, "")
+        #if enemy_data is None:
+        #    guide_data += f'      {lang}: "{enemy_data["title"][lang]}"\n'
+        #elif type(enemy_data["title"]) == str or type(enemy_data["title"]) is None:
+        #    continue
+        #elif enemy_data["title"].get(f"{lang}", None):
+        #    guide_data += f'      {lang}: "{enemy_data["title"][lang]}"\n'
 
 
     if isinstance(enemy_data.get("enemy_id", ""), list):
@@ -462,6 +464,7 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
                 guide_data = add_variation_Attack(guide_data, attack, enemy_type, enemy_data['title']['en'], content_translations)
             elif attack["type"] == "combo":
                 guide_data = add_combo_Attack(guide_data, attack, enemy_type, enemy_data['title']['en'], content_translations)
+
     if enemy_data.get("debuffs", None):
         guide_data += '    debuffs:\n'
         for debuff in enemy_data["debuffs"]:
@@ -495,10 +498,13 @@ def add_leves(lfates, content_translations):
     lguide_data += "fates:\n"
     for fate_id in lfates:
         name_en = fates_trans[fate_id]["Name_en"]
+        desc_en = fates_trans[fate_id]['Description_en']
         lguide_data += f'  - id: "{fate_id}"\n'
         lguide_data += f'    name: "{name_en}"\n'
+        lguide_data += f'    desc: "{desc_en}"\n'
         for lang in LANGUAGES:
             content_translations[lang][f"Leve_{name_en}_Name"] = fates_trans[fate_id][f'Name_{lang}']
+            content_translations[lang][f"Leve_{name_en}_Desc"] = fates_trans[fate_id][f'Description_{lang}']
 
         #print(fates[fate_id])
 

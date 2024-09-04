@@ -16,7 +16,7 @@
             <div class="guide__accordion-trigger--02-grid" id="{{ enemy.id | slugify }}">
                 <i class="Dropdown material-icons" style="{%- if enemy.attacks or enemy.debuffs -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
                 <div class="EnemyNames">
-                    {%- assign enemy_name_en = enemy.title.en -%}
+                    {%- assign enemy_name_en = enemy.title -%}
                     <h3 class="guide__accordion-trigger-title" data-translate="{{x}}_{{enemy_name_en}}_Name"> {{ enemy_name_en }} </h3>
                     <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemy_name_en }}</span>
                 </div>
