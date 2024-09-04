@@ -131,9 +131,6 @@ def cleanup_logdata(logdata_instance_content: dict[Any, Any]) -> tuple[dict[Any,
     new_lic = {}
     for k, v in logdata_instance_content.items():
         new_lic[k] = v
-
-    if fates:
-        print_color_green(fates)
     return new_lic, music, fates
 
 
@@ -173,7 +170,7 @@ def write_content_to_file(entry: dict[str, Any], filename: str, old_data: dict[s
     logdata_instance_content, music, contentzoneid, fates = getDataFromLogfile(entry)
     filedata = '---\n'
     filedata += addHeader(entry, old_data, music, contentzoneid, content_translations)
-    filedata += addGuide(entry, old_data, logdata_instance_content, content_translations)
+    filedata += addGuide(entry, old_data, logdata_instance_content, fates, content_translations)
     filedata += '---'
     filedata += '\n'
     writeFileIfNoDifferent(filename, filedata)

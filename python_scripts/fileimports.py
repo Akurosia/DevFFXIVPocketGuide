@@ -38,6 +38,10 @@ classjob: FFXIV_DATA = loadDataTheQuickestWay("Classjob.de.json")
 items: FFXIV_DATA = loadDataTheQuickestWay("Item.de.json")
 gamerscape_items: FFXIV_DATA = readJsonFile("python_scripts/gamerscape_items/after_item_scan.json")
 
+
+fates: FFXIV_DATA = loadDataTheQuickestWay("Fate.de.json")
+fates_trans: FFXIV_DATA = loadDataTheQuickestWay("fate_all.json", translate=True)
+
 # from guide_helper
 action: FFXIV_DATA = loadDataTheQuickestWay("action_all.json", translate=True)
 bnpcname: FFXIV_DATA = loadDataTheQuickestWay("bnpcname_all.json", translate=True)

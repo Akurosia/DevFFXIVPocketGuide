@@ -15,15 +15,15 @@ for fi in files:
 
     for line in data:
         if "{%" in line and ("include " in line or "include_cached " in line):
-            value = (line.strip()
-                      .replace("{%- include_cached ", "")
-                      .replace("{% include_cached ", "")
-                      .replace("{%- include ", "")
-                      .replace("{% include ", "")
-                      .replace(" -%}", "")
-                      .replace(" %}", "")
-                      .split(".html")[0] + ".html"
-                      )
+            value: str = (line.strip()
+                    .replace("{%- include_cached ", "")
+                    .replace("{% include_cached ", "")
+                    .replace("{%- include ", "")
+                    .replace("{% include ", "")
+                    .replace(" -%}", "")
+                    .replace(" %}", "")
+                    .split(".html")[0] + ".html"
+                    )
             #print(f"_includes/{value}")
             if f"_includes/{value}" not in results[fi]:
                 results[fi].append(f"_includes/{value}")

@@ -22,6 +22,11 @@
         {%- assign x = "Adds" -%}
         {%- include guide_enemy.html -%}
     {%- endif -%}
+    {%- if page.leves -%}
+        {%- assign enemies = page.adds -%}
+        {%- assign x = "Leves" -%}
+        {%- include guide_enemy.html -%}
+    {%- endif -%}
     <div style="display: none" data-extra-translate="/assets/translations/content/{{page.categories}}/{{page.instanceType}}/{{page.slug}}"></div>
 </div>
 <!-- END Include from _includes/guide-content -->

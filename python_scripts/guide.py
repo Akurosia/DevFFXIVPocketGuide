@@ -7,20 +7,19 @@ try:
     from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from python_scripts.custom_logger import *
     from python_scripts.helper import getImage
-    from python_scripts.fileimports import logdata, status
+    from python_scripts.fileimports import logdata, status, fates, fates_trans
     from python_scripts.guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 except Exception:
     from constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from custom_logger import *
     from helper import getImage
-    from fileimports import logdata, status
+    from fileimports import logdata, status, fates, fates_trans
     from guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 
 disable_green_print = True
 disable_yellow_print = True
 disable_blue_print = True
 disable_red_print = True
-
 
 
 def check_Mechanics(entry, old_mechanics):
@@ -489,14 +488,31 @@ def check_Enemy(entry, enemy_type, logdata_instance_content, old_enemies, conten
     return guide_data
 
 
+def add_leves(lfates, content_translations):
+    lguide_data: str = ""
+    if not lfates:
+        return lguide_data
+    lguide_data += "fates:\n"
+    for fate_id in lfates:
+        name_en = fates_trans[fate_id]["Name_en"]
+        lguide_data += f'  - id: "{fate_id}"\n'
+        lguide_data += f'    name: "{name_en}"\n'
+        for lang in LANGUAGES:
+            content_translations[lang][f"Leve_{name_en}_Name"] = fates_trans[fate_id][f'Name_{lang}']
+
+        #print(fates[fate_id])
+
+    return lguide_data
+
 # Notizen, Bosse und Adds
-def addGuide(entry, old_data, logdata_instance_content, content_translations):
+def addGuide(entry, old_data, logdata_instance_content, lfates, content_translations):
     guide_data = ""
     # add mechanics
     guide_data += check_Mechanics(entry, old_data.get('mechanics', None))
     print_color_green(f"Work on '{entry['titles']['de']}'", disable_green_print)
     guide_data += check_Enemy(entry, "bosse", logdata_instance_content, old_data.get('bosses', {}), content_translations)
     guide_data += check_Enemy(entry, "adds", logdata_instance_content, old_data.get('adds', {}), content_translations)
+    guide_data += add_leves(lfates, content_translations)
     return guide_data
 
 

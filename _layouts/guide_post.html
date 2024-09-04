@@ -10,7 +10,10 @@
             {% include navbar.html %}
             <div class="layout__wrapper">
                 {% include header.html %}
-                {% include guide-layout.html %}
+                <div class="guide-layout">
+                    {%- include guide-sidebar.html -%}
+                    {%- include guide-content.html -%}
+                </div>
                 {% include_cached footer.html %}
             </div>
         </div>
