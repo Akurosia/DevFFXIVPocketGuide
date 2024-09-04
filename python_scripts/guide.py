@@ -425,7 +425,7 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
     guide_data = ""
     enemy_data = ugly_fix_enemy_data(enemy_data, new_enemy_data)
     enemy_name_en = enemy_data['title']['en']
-    guide_data += f'  - title: \n'
+    guide_data += f'  - title:\n'
     #print(enemy_name_en)
     for lang in LANGUAGES:
         content_translations[lang][f"{enemy_type.title()}_{enemy_name_en}_Name"] = enemy_data['title'].get(lang, "")
@@ -500,13 +500,13 @@ def add_leves(lfates, content_translations):
         name_en = fates_trans[fate_id]["Name_en"]
         desc_en = fates_trans[fate_id]['Description_en']
         lguide_data += f'  - id: "{fate_id}"\n'
-        lguide_data += f'    name:\n'
+        lguide_data += f'    title:\n'
         for lang in LANGUAGES:
             lguide_data += f'      {lang}: "{fates_trans[fate_id][f"Name_{lang}"]}"\n'
         lguide_data += f'    desc: "{desc_en}"\n'
         for lang in LANGUAGES:
-            content_translations[lang][f"Leve_{name_en}_Name"] = fates_trans[fate_id][f'Name_{lang}']
-            content_translations[lang][f"Leve_{name_en}_Desc"] = fates_trans[fate_id][f'Description_{lang}']
+            content_translations[lang][f"FATEs_{name_en}_Name"] = fates_trans[fate_id][f'Name_{lang}']
+            content_translations[lang][f"FATEs_{name_en}_Desc"] = fates_trans[fate_id][f'Description_{lang}']
     return lguide_data
 
 # Notizen, Bosse und Adds
