@@ -852,7 +852,7 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
         if enemy_type == 'bosse':
             for boss in entry['bosse']:
                 for e in enemies_to_add:
-                    if f'  - title: "{boss}"' in e:
+                    if f'  - title:\n      de: "{boss}"' in e:
                         guide_data += e
                         break
         else:
