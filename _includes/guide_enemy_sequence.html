@@ -1,7 +1,7 @@
 <!-- Include from _includes/guide_enemy_sequence -->
 <!-- Opens the Sequence Loop -->
-{%- for phase in enemy.sequence -%}
 
+{%- for phase in enemy.sequence -%}
     {%- if enemy.sequence.size > 1 -%}
         <div class="guide__accordion-trigger--03-grid" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
             <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
@@ -61,6 +61,15 @@
             {%- for debuffPhase in debuff.phases -%}
                 {%- if debuffPhase.phase == currentPhase -%}
                     {%- include _components/guide-debuff.html -%}
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endfor -%}
+        <!-- Enters the enemy fate loop. -->
+        {%- for fate in enemy.fates -%}
+            <!-- Enters the fate's phases. -->
+            {%- for fatePhase in fate.phases -%}
+                {%- if fatePhase.phase == currentPhase -%}
+                    {%- include _components/guide-fate.html -%}
                 {%- endif -%}
             {%- endfor -%}
         {%- endfor -%}
