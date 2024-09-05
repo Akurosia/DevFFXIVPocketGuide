@@ -1,0 +1,45 @@
+<!-- Include from _includes/_components/guide-fate -->
+<!-- _components/Guide-fate "Button"======================================================= -->
+<div class="guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--fate">
+    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+    <img loading="lazy" class="Icon fate_icon" src="{{ site.baseurl }}/assets/img/game_assets/{{ fate.icon }}" alt="{{ fate.icon }}"/>
+    <div class="Names">
+        <span class="">
+            <span data-translate="{{x}}_{{enemy_name_en}}_{{fate.title}}_Name">{{ fate.title }}</span>
+        </span>
+        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ fate.title }}</div>
+    </div>
+    {%- include _components/guide-attack-types.html -%}
+    <div class="IdsHps">
+        {%- if fate.title_id -%}
+            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'fate')">Fate-ID: {{ fate.title_id }}</div>
+        {%- endif -%}
+
+        {%- assign attack = fate -%}
+        {%- assign isfate = "True" -%}
+    </div>
+</div>
+
+<!-- _components/Guide-fate "Content"======================================================= -->
+<div class="guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--fate" style="">
+    <div class="guide__accordion-copy-wrapper">
+        <!-- Standard Attacks -->
+        {%- if fate.description -%}
+            <div class="guide__attack-notes-wrapper">
+                <h5 class="guide__attack-notes-title">Description:</h5>
+                <span class="guide__debuff_description" data-translate="{{x}}_{{enemy_name_en}}_{{fate.title}}_Desc">{{ fate.description }}</span>
+            </div>
+        {%- endif -%}
+
+        {%- include _components/guide-attack-notes.html -%}
+        <!-- fate Videos -->
+        {%- if fate.videos -%}
+            <div class="guide__attack-video-list">
+                {%- for video in fate.videos -%}
+                    {%- include _components/guide-videos.html -%}
+                {%- endfor -%}
+            </div>
+        {%- endif -%}
+    </div>
+</div>
+<!-- END Include from _includes/_components/guide-fate -->

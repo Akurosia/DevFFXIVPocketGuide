@@ -497,6 +497,12 @@ fatetypes: dict[str, str] = {
     "ui/icon/060000/060723.tex": "Sammeln",
     "ui/icon/060000/060724.tex": "Verteidigen"
 }
+fateNames: dict[str, str] = {
+    "Gegner Besiegen": "Slay enemies",
+    "Boss besiegen": "Notorious monster",
+    "Sammeln": "Gather",
+    "Verteidigen": "Defense"
+}
 def add_leves(lfates: list[str], content_translations: dict[str, Any]) -> str:
     lguide_data: str = ""
     if not lfates:
@@ -514,23 +520,31 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any]) -> str:
     #add fates by type
     lguide_data += "fates:\n"
     for fatetype, fate_data in fates_by_type.items():
+        lguide_data += f'  - title:\n'
+        lguide_data += f'      de: "{fatetype}"\n'
+        lguide_data += f'      en: "{fateNames[fatetype]}"\n'
+        content_translations['de'][f"FATEs_{fateNames[fatetype]}_Name"] = fatetype
+        lguide_data += f'    fates:\n'
         for fate_id in fate_data:
             name_en = fates_trans[fate_id]["Name_en"]
             desc_en = fates_trans[fate_id]['Description_en']
-            lguide_data += f'  - title:\n'
+            lguide_data += f'      - title: "{fates_trans[fate_id][f"Name_en"]}"\n'
+            lguide_data += f'        title_id: "{fate_id}"\n'
+            lguide_data += f'        icon: "{getImage(fates[fate_id]['Icon']['Objective'])}"\n'
+            lguide_data += f'        description: "{desc_en}"\n'
+            lguide_data += f'        phases:\n'
+            lguide_data += f'          - phase: "01"\n'
+            lguide_data += f'        roles:\n'
+            lguide_data += f'          - role: "Lvl: {fates[fate_id]['ClassJobLevel']['Value']}"\n'
+            lguide_data += f'        tags:\n'
+            lguide_data += f'          - tag: "Lvl-Sync: {fates[fate_id]['ClassJobLevel']['Max']}"\n'
             for lang in LANGUAGES:
-                lguide_data += f'      {lang}: "{fates_trans[fate_id][f"Name_{lang}"]}"\n'
-            lguide_data += f'    id: "{fate_id}"\n'
-            lguide_data += f'    icon: "{getImage(fates[fate_id]['Icon']['Objective'])}"\n'
-            lguide_data += f'    desc: "{desc_en}"\n'
-            lguide_data += f'    type: "{fatetype}"\n'
-            lguide_data += f'    fatelevel: "{fates[fate_id]['ClassJobLevel']['Value']}"\n'
-            lguide_data += f'    fatelevel_sync: "{fates[fate_id]['ClassJobLevel']['Max']}"\n'
-            for lang in LANGUAGES:
-                content_translations[lang][f"FATEs_{name_en}_Name"] = fates_trans[fate_id][f'Name_{lang}']
-                content_translations[lang][f"FATEs_{name_en}_Desc"] = fates_trans[fate_id][f'Description_{lang}']
-    return lguide_data
+                content_translations[lang][f"FATEs_{fateNames[fatetype]}_{name_en}_Name"] = fates_trans[fate_id][f'Name_{lang}']
+                content_translations[lang][f"FATEs_{fateNames[fatetype]}_{name_en}_Desc"] = fates_trans[fate_id][f'Description_{lang}']
+        lguide_data += f'    sequence:\n'
+        lguide_data += f'      - phase: "01"\n'
 
+    return lguide_data
 # Notizen, Bosse und Adds
 def addGuide(entry, old_data, logdata_instance_content, lfates, content_translations):
     guide_data = ""
