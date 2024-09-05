@@ -496,12 +496,20 @@ fatetypes: dict[str, str] = {
     "ui/icon/060000/060722.tex": "Boss besiegen",
     "ui/icon/060000/060723.tex": "Sammeln",
     "ui/icon/060000/060724.tex": "Verteidigen"
+    "ui/icon/060000/060725.tex": "Unknown1"
+    "ui/icon/060000/060726.tex": "Unknown2"
+    "ui/icon/060000/060727.tex": "Unknown3"
+    "ui/icon/060000/060728.tex": "Unknown4"
 }
 fateNames: dict[str, str] = {
     "Gegner Besiegen": "Slay enemies",
     "Boss besiegen": "Notorious monster",
     "Sammeln": "Gather",
-    "Verteidigen": "Defense"
+    "Verteidigen": "Defense",
+    "Unknown1": "Unknown1",
+    "Unknown2": "Unknown2",
+    "Unknown3": "Unknown3",
+    "Unknown4": "Unknown4"
 }
 def add_leves(lfates: list[str], content_translations: dict[str, Any]) -> str:
     lguide_data: str = ""
