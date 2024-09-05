@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # coding: utf8
 from ffxiv_aku import print_color_green, print_color_red
-
+from typing import Any
 try:
     from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from python_scripts.custom_logger import *
@@ -491,22 +491,44 @@ def check_Enemy(entry, enemy_type, logdata_instance_content, old_enemies, conten
     return guide_data
 
 
-def add_leves(lfates, content_translations):
+fatetypes: dict[str, str] = {
+    "ui/icon/060000/060721.tex": "Gegner Besiegen",
+    "ui/icon/060000/060722.tex": "Boss besiegen",
+    "ui/icon/060000/060723.tex": "Sammeln",
+    "ui/icon/060000/060724.tex": "Verteidigen"
+}
+def add_leves(lfates: list[str], content_translations: dict[str, Any]) -> str:
     lguide_data: str = ""
     if not lfates:
         return lguide_data
-    lguide_data += "fates:\n"
+
+    #sort fates by type
+    fates_by_type: dict[str, list[str]] = {}
     for fate_id in lfates:
-        name_en = fates_trans[fate_id]["Name_en"]
-        desc_en = fates_trans[fate_id]['Description_en']
-        lguide_data += f'  - id: "{fate_id}"\n'
-        lguide_data += f'    title:\n'
-        for lang in LANGUAGES:
-            lguide_data += f'      {lang}: "{fates_trans[fate_id][f"Name_{lang}"]}"\n'
-        lguide_data += f'    desc: "{desc_en}"\n'
-        for lang in LANGUAGES:
-            content_translations[lang][f"FATEs_{name_en}_Name"] = fates_trans[fate_id][f'Name_{lang}']
-            content_translations[lang][f"FATEs_{name_en}_Desc"] = fates_trans[fate_id][f'Description_{lang}']
+        _id: str = fates[fate_id]['Icon']['Objective'] # type: ignore
+        _type = fatetypes[_id]
+        if not fates_by_type.get(_type, None):
+            fates_by_type[_type] = []
+        fates_by_type[_type].append(fate_id)
+
+    #add fates by type
+    lguide_data += "fates:\n"
+    for fatetype, fate_data in fates_by_type.items():
+        for fate_id in fate_data:
+            name_en = fates_trans[fate_id]["Name_en"]
+            desc_en = fates_trans[fate_id]['Description_en']
+            lguide_data += f'  - title:\n'
+            for lang in LANGUAGES:
+                lguide_data += f'      {lang}: "{fates_trans[fate_id][f"Name_{lang}"]}"\n'
+            lguide_data += f'    id: "{fate_id}"\n'
+            lguide_data += f'    icon: "{getImage(fates[fate_id]['Icon']['Objective'])}"\n'
+            lguide_data += f'    desc: "{desc_en}"\n'
+            lguide_data += f'    type: "{fatetype}"\n'
+            lguide_data += f'    fatelevel: "{fates[fate_id]['ClassJobLevel']['Value']}"\n'
+            lguide_data += f'    fatelevel_sync: "{fates[fate_id]['ClassJobLevel']['Max']}"\n'
+            for lang in LANGUAGES:
+                content_translations[lang][f"FATEs_{name_en}_Name"] = fates_trans[fate_id][f'Name_{lang}']
+                content_translations[lang][f"FATEs_{name_en}_Desc"] = fates_trans[fate_id][f'Description_{lang}']
     return lguide_data
 
 # Notizen, Bosse und Adds
