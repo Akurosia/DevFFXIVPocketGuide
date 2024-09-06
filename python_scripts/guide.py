@@ -7,13 +7,13 @@ try:
     from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from python_scripts.custom_logger import *
     from python_scripts.helper import getImage
-    from python_scripts.fileimports import logdata, status, fates, fates_trans, ENTRY_DATA
+    from python_scripts.fileimports import logdata, status, ces, ces_type, ces_trans, fates, fates_trans, ENTRY_DATA
     from python_scripts.guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 except Exception:
     from constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from custom_logger import *
     from helper import getImage
-    from fileimports import logdata, status, fates, fates_trans, ENTRY_DATA
+    from fileimports import logdata, status, ces, ces_type, ces_trans, fates, fates_trans, ENTRY_DATA
     from guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 
 disable_green_print = True
@@ -499,7 +499,18 @@ fatetypes: dict[str, str] = {
     "ui/icon/060000/060725.tex": "Eskortieren",
     "ui/icon/060000/060726.tex": "Event",
     "ui/icon/060000/060727.tex": "Verfolgen",
-    "ui/icon/060000/060728.tex": "Festival"
+    "ui/icon/060000/060728.tex": "Festival",
+
+    "ui/icon/060000/060852.tex": "Boss besiegen",
+
+    "ui/icon/063000/063909.tex": "CE Boss besiegen",
+    "ui/icon/063000/063910.tex": "CE Solo Kampf",
+    "ui/icon/063000/063911.tex": "CE Gegner Wellen",
+
+    "ui/icon/063000/063914.tex": "Gegner Besiegen",
+    "ui/icon/063000/063915.tex": "Boss besiegen",
+    "ui/icon/063000/063916.tex": "Sammeln",
+    "ui/icon/063000/063917.tex": "Verteidigen"
 }
 fateNames: dict[str, str] = {
     "Gegner Besiegen": "Slay enemies",
@@ -509,25 +520,47 @@ fateNames: dict[str, str] = {
     "Eskortieren": "Escort",
     "Event": "Event",
     "Verfolgen": "Chase",
-    "Festival": "Festival"
+    "Festival": "Festival",
+    "CE Boss besiegen": "CE Notorious monster",
+    "CE Solo Kampf": "CE Solo Fight",
+    "CE Gegner Wellen": "CE Eney Waves"
 }
 additional_fate_data: dict[str, Any] = readJsonFile("python_scripts/FatesFromConsoleWiki.json")
 def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) -> str:
     lguide_data: str = ""
-    if not lfates:
+    name = entry['titles']['en'].replace("the Forbidden Land, ", "")
+    if name.startswith("the "):
+        name = name.replace("the ", "The ")
+    add_data: Any = additional_fate_data.get(name, None)
+    if not lfates and not add_data:
         return lguide_data
-    add_data: Any = additional_fate_data.get(entry['titles']['en'], None)
+    if not lfates:
+        lfates = []
+
+    ce_ids = []
     if add_data:
-        lfates = sorted(list(set(lfates + list(add_data.keys()))))
+        fate_ids: list[str] = [k for k,v in add_data.items() if v.get("Fate Type", "") != "CE"]
+        ce_ids: list[str] = [k for k,v in add_data.items() if v.get("Fate Type", "") == "CE"]
+        lfates = sorted(list(set(lfates + fate_ids)))
 
     #sort fates by type
     fates_by_type: dict[str, list[str]] = {}
     for fate_id in lfates:
+        #print(fate_id)
         _id: str = fates[fate_id]['Icon']['Objective'] # type: ignore
         _type = fatetypes[_id]
         if not fates_by_type.get(_type, None):
             fates_by_type[_type] = []
         fates_by_type[_type].append(fate_id)
+
+    ces_by_type: dict[str, list[str]] = {}
+    for ce_id in ce_ids:
+        #print(ce_id)
+        _id: str = ces_type[ces[ce_id]['EventType'].replace("DynamicEventType#", "")]['Icon']['Objective']['1'] # type: ignore
+        _type = fatetypes[_id]
+        if not ces_by_type.get(_type, None):
+            ces_by_type[_type] = []
+        ces_by_type[_type].append(ce_id)
 
     #add fates by type
     lguide_data += "fates:\n"
@@ -556,6 +589,28 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
         lguide_data += f'    sequence:\n'
         lguide_data += f'      - phase: "01"\n'
 
+    for cetype, ce_data in ces_by_type.items():
+        lguide_data += f'  - title:\n'
+        lguide_data += f'      de: "{cetype}"\n'
+        lguide_data += f'      en: "{fateNames[cetype]}"\n'
+        content_translations['de'][f"FATEs_{fateNames[cetype]}_Name"] = cetype
+        lguide_data += f'    fates:\n'
+        for ce_id in ce_data:
+            name_en = ces_trans[ce_id]["Name_en"]
+            desc_en = ces_trans[ce_id]['Description_en']
+            lguide_data += f'      - title: "{ces_trans[ce_id][f"Name_en"]}"\n'
+            lguide_data += f'        title_id: "{ce_id}"\n'
+            lguide_data += f'        icon: "{getImage(ces_type[ces[ce_id]["EventType"].replace("DynamicEventType#", "")]["Icon"]["Objective"]["1"])}"\n'
+            lguide_data += f'        description: "{desc_en}"\n'
+            lguide_data += f'        phases:\n'
+            lguide_data += f'          - phase: "01"\n'
+            lguide_data += f'        roles:\n'
+            lguide_data += f'          - role: "Lvl: {fates[ce_id]['ClassJobLevel']['Value']}"\n'
+            lguide_data += f'        tags:\n'
+            lguide_data += f'          - tag: "Lvl-Sync: {fates[ce_id]['ClassJobLevel']['Max']}"\n'
+            for lang in LANGUAGES:
+                content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Name"] = ces_trans[ce_id][f'Name_{lang}']
+                content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Desc"] = ces_trans[ce_id][f'Description_{lang}']
     return lguide_data
 # Notizen, Bosse und Adds
 def addGuide(entry: ENTRY_DATA, old_data, logdata_instance_content, lfates, content_translations):

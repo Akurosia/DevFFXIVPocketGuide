@@ -197,7 +197,7 @@ def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], or
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             if not True:
                 # if debug_row_number < 710 :
-                if debug_row_number not in [785, 748]:
+                if debug_row_number not in [785, 577, 581]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(sheet, max_column, i, elements, orderedContent)
