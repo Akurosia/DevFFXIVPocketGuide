@@ -17,6 +17,7 @@
     {%- endif -%}
         {%- if phase.name or phase.alerts or phase.toolbox or phase.mechanics or phase.attacks or phase.images or phase.videos  -%}
             <div class="guide__accordion-copy-wrapper" id="phase{{ phase.phase }}">
+                <!--
                 {%- if enemy.sequence.size == 1 -%}
                     {%- if phase.name -%}
                         <h1 class="guide__accordion-title">{{ phase.name }} - Phase {{ phase.phase }}</h1>
@@ -24,7 +25,7 @@
                         <h1 class="guide__accordion-title">Phase {{ phase.phase }}</h4>
                     {%- endif -%}
                 {%- endif -%}
-
+                -->
                 {%- if phase.alerts -%}
                     {%- include _components/guide-alerts.html -%}
                 {%- endif -%}
