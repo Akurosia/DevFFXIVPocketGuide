@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import print_color_green, print_color_red
+from ffxiv_aku import print_color_green, print_color_red, readJsonFile
 from typing import Any
 try:
     from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from python_scripts.custom_logger import *
     from python_scripts.helper import getImage
-    from python_scripts.fileimports import logdata, status, fates, fates_trans
+    from python_scripts.fileimports import logdata, status, fates, fates_trans, ENTRY_DATA
     from python_scripts.guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 except Exception:
     from constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from custom_logger import *
     from helper import getImage
-    from fileimports import logdata, status, fates, fates_trans
+    from fileimports import logdata, status, fates, fates_trans, ENTRY_DATA
     from guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 
 disable_green_print = True
@@ -22,7 +22,7 @@ disable_blue_print = True
 disable_red_print = True
 
 
-def check_Mechanics(entry, old_mechanics):
+def check_Mechanics(entry: ENTRY_DATA, old_mechanics):
     guide_data = ""
     # this contruct looks ugly but it forbidds the recreation of empty mechanics
     if old_mechanics:
@@ -479,7 +479,7 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
     return guide_data
 
 
-def check_Enemy(entry, enemy_type, logdata_instance_content, old_enemies, content_translations):
+def check_Enemy(entry: ENTRY_DATA, enemy_type, logdata_instance_content, old_enemies, content_translations):
     guide_data = ""
     if old_enemies == {} and logdata == {}:
         return guide_data
@@ -511,10 +511,14 @@ fateNames: dict[str, str] = {
     "Verfolgen": "Chase",
     "Festival": "Festival"
 }
-def add_leves(lfates: list[str], content_translations: dict[str, Any]) -> str:
+additional_fate_data: dict[str, Any] = readJsonFile("python_scripts/FatesFromConsoleWiki.json")
+def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) -> str:
     lguide_data: str = ""
     if not lfates:
         return lguide_data
+    add_data: Any = additional_fate_data.get(entry['titles']['en'], None)
+    if add_data:
+        lfates = sorted(list(set(lfates + list(add_data.keys()))))
 
     #sort fates by type
     fates_by_type: dict[str, list[str]] = {}
@@ -554,14 +558,14 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any]) -> str:
 
     return lguide_data
 # Notizen, Bosse und Adds
-def addGuide(entry, old_data, logdata_instance_content, lfates, content_translations):
+def addGuide(entry: ENTRY_DATA, old_data, logdata_instance_content, lfates, content_translations):
     guide_data = ""
     # add mechanics
     guide_data += check_Mechanics(entry, old_data.get('mechanics', None))
     print_color_green(f"Work on '{entry['titles']['de']}'", disable_green_print)
     guide_data += check_Enemy(entry, "bosse", logdata_instance_content, old_data.get('bosses', {}), content_translations)
     guide_data += check_Enemy(entry, "adds", logdata_instance_content, old_data.get('adds', {}), content_translations)
-    guide_data += add_leves(lfates, content_translations)
+    guide_data += add_leves(lfates, content_translations, entry)
     return guide_data
 
 

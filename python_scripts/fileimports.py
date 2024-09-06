@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # coding: utf8
-from typing import Any
+from typing import Any, Union
 from ffxiv_aku import (
     loadDataTheQuickestWay,
     get_any_Versiondata,
@@ -18,6 +18,13 @@ logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
 storeFilesInTmp(True)
 
 FFXIV_DATA = dict[str, dict[str,str|dict[str,str]]]
+
+ENTRY_DATA = dict[str, Union[
+    str,  # For all string values
+    int,  # For integer values like 'line_index'
+    list[str],  # For lists of strings like 'bosse', 'tags', 'adds'
+    dict[str, str]  # For nested dictionaries like 'quest', 'quest_location', 'quest_npc', 'titles'
+]]
 
 # from header
 territorytype_trans: FFXIV_DATA = loadDataTheQuickestWay("territorytype_all.json", translate=True)
