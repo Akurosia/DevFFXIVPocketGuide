@@ -9,13 +9,13 @@
         </span>
         <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ fate.title }}</div>
     </div>
+    {%- assign attack = fate -%}
     {%- include _components/guide-attack-types.html -%}
     <div class="IdsHps">
         {%- if fate.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'fate')">Fate-ID: {{ fate.title_id }}</div>
         {%- endif -%}
 
-        {%- assign attack = fate -%}
         {%- assign isfate = "True" -%}
     </div>
 </div>

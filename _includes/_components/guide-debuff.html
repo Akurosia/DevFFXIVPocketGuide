@@ -15,13 +15,12 @@
         </span>
         <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ debuff.title }}</div>
     </div>
+    {%- assign attack = debuff -%}
     {%- include _components/guide-attack-types.html -%}
     <div class="IdsHps">
         {%- if debuff.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'debuff')">Status-ID: {{ debuff.title_id }}</div>
         {%- endif -%}
-
-        {%- assign attack = debuff -%}
         {%- assign isDebuff = "True" -%}
     </div>
 </div>
