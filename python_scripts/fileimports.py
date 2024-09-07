@@ -49,7 +49,7 @@ fates: FFXIV_DATA = loadDataTheQuickestWay("Fate.de.json")
 fates_trans: FFXIV_DATA = loadDataTheQuickestWay("fate_all.json", translate=True)
 ces: FFXIV_DATA = loadDataTheQuickestWay("DynamicEvent.de.json")
 ces_type: FFXIV_DATA = loadDataTheQuickestWay("DynamicEventType.json")
-ces_trans: FFXIV_DATA = loadDataTheQuickestWay("fate_all.json", translate=True)
+ces_trans: FFXIV_DATA = loadDataTheQuickestWay("dynamicevent_all.json", translate=True)
 
 # from guide_helper
 action: FFXIV_DATA = loadDataTheQuickestWay("action_all.json", translate=True)

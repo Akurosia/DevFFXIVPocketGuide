@@ -574,7 +574,7 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
         for fate_id in fate_data:
             name_en = fates_trans[fate_id]["Name_en"]
             desc_en = fates_trans[fate_id]['Description_en']
-            lguide_data += f'      - title: "{fates_trans[fate_id][f"Name_en"]}"\n'
+            lguide_data += f'      - title: "{name_en}"\n'
             lguide_data += f'        title_id: "{fate_id}"\n'
             lguide_data += f'        icon: "{getImage(fates[fate_id]['Icon']['Objective'])}"\n'
             lguide_data += f'        description: "{desc_en}"\n'
@@ -629,15 +629,12 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
         for ce_id in ce_data:
             name_en = ces_trans[ce_id]["Name_en"]
             desc_en = ces_trans[ce_id]['Description_en']
-            lguide_data += f'      - title: "{ces_trans[ce_id][f"Name_en"]}"\n'
+            lguide_data += f'      - title: "{name_en}"\n'
             lguide_data += f'        title_id: "{ce_id}"\n'
             lguide_data += f'        icon: "{getImage(ces_type[ces[ce_id]["EventType"].replace("DynamicEventType#", "")]["Icon"]["Objective"]["1"])}"\n'
             lguide_data += f'        description: "{desc_en}"\n'
             lguide_data += '        phases:\n'
             lguide_data += '          - phase: "01"\n'
-            lguide_data += '        roles:\n'
-            lguide_data += f'          - role: "Lvl: {fates[ce_id]['ClassJobLevel']['Value']}"\n'
-            lguide_data += f'          - role: "Lvl-Sync: {fates[ce_id]['ClassJobLevel']['Max']}"\n'
             lguide_data += '        tags:\n'
             if add_data[ce_id].get('Lockboxes/Crystals', None):
                 text = add_data[ce_id]['Lockboxes/Crystals']
