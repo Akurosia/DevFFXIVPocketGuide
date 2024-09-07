@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
+import re
 from ffxiv_aku import print_color_green, print_color_red, readJsonFile, print_color_yellow
 from typing import Any
 try:
@@ -596,9 +597,15 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
                 if add_data[fate_id].get('Gemstones', None):
                     lguide_data += f'          - tag: "Gemstones: {add_data[fate_id]['Gemstones']}"\n'
                 if add_data[fate_id].get('Lockboxes/Crystals', None):
-                    lguide_data += f'          - tag: "Lockboxes/Crystals: {add_data[fate_id]['Lockboxes/Crystals']}"\n'
+                    text = add_data[fate_id]['Lockboxes/Crystals']
+                    text = re.sub(r"^(\d+)   ", r"\1 ", text)
+                    text = re.sub(r"(\d+)   ", r" / \1 ", text)
+                    lguide_data += f'          - tag: "Lockboxes/Crystals: {text}"\n'
                 if add_data[fate_id].get('Notable Rewards', None):
-                    lguide_data += f'          - tag: "Notable Rewards: {add_data[fate_id]['Notable Rewards']}"\n'
+                    text = add_data[fate_id]['Notable Rewards']
+                    text = re.sub(r"^(\d+)   ", r"\1 ", text)
+                    text = re.sub(r"(\d+)   ", r" / \1 ", text)
+                    lguide_data += f'          - tag: "Notable Rewards: {text}"\n'
                 if add_data[fate_id].get('Notorious Monster', None):
                     lguide_data += f'          - tag: "Notorious Monster: {add_data[fate_id]['Notorious Monster']}"\n'
                 if add_data[fate_id].get('Spawn Mob', None):
@@ -632,7 +639,22 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
             lguide_data += f'          - role: "Lvl: {fates[ce_id]['ClassJobLevel']['Value']}"\n'
             lguide_data += f'          - role: "Lvl-Sync: {fates[ce_id]['ClassJobLevel']['Max']}"\n'
             lguide_data += '        tags:\n'
-            lguide_data += f'          - tag: "Lvl-Sync: {fates[ce_id]['ClassJobLevel']['Max']}"\n'
+            if add_data[ce_id].get('Lockboxes/Crystals', None):
+                text = add_data[ce_id]['Lockboxes/Crystals']
+                text = re.sub(r"^(\d+)   ", r"\1 ", text)
+                text = re.sub(r"(\d+)   ", r" / \1 ", text)
+                lguide_data += f'          - tag: "Lockboxes/Crystals: {text}"\n'
+            if add_data[ce_id].get('Notable Rewards', None):
+                text = add_data[ce_id]['Notable Rewards']
+                text = re.sub(r"^(\d+)   ", r"\1 ", text)
+                text = re.sub(r"(\d+)   ", r" / \1 ", text)
+                lguide_data += f'          - tag: "Notable Rewards: {text}"\n'
+            if add_data[ce_id].get('Notorious Monster', None):
+                lguide_data += f'          - tag: "Notorious Monster: {add_data[ce_id]['Notorious Monster']}"\n'
+            if add_data[ce_id].get('Spawn Mob', None):
+                lguide_data += f'          - tag: "Spawn Mob: {add_data[ce_id]['Spawn Mob']}"\n'
+            if add_data[ce_id].get('Tomestones', None):
+                lguide_data += f'          - tag: "Tomestones: {add_data[ce_id]['Tomestones']}"\n'
             for lang in LANGUAGES:
                 content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Name"] = ces_trans[ce_id][f'Name_{lang}']
                 content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Desc"] = ces_trans[ce_id][f'Description_{lang}']
