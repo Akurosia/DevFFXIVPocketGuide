@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import print_color_green, print_color_red, readJsonFile
+from ffxiv_aku import print_color_green, print_color_red, readJsonFile, print_color_yellow
 from typing import Any
 try:
     from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
@@ -577,17 +577,41 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
             lguide_data += f'        title_id: "{fate_id}"\n'
             lguide_data += f'        icon: "{getImage(fates[fate_id]['Icon']['Objective'])}"\n'
             lguide_data += f'        description: "{desc_en}"\n'
-            lguide_data += f'        phases:\n'
-            lguide_data += f'          - phase: "01"\n'
-            lguide_data += f'        roles:\n'
+            lguide_data += '        phases:\n'
+            lguide_data += '          - phase: "01"\n'
+            lguide_data += '        roles:\n'
             lguide_data += f'          - role: "Lvl: {fates[fate_id]['ClassJobLevel']['Value']}"\n'
-            lguide_data += f'        tags:\n'
-            lguide_data += f'          - tag: "Lvl-Sync: {fates[fate_id]['ClassJobLevel']['Max']}"\n'
+            lguide_data += f'          - role: "Lvl-Sync: {fates[fate_id]['ClassJobLevel']['Max']}"\n'
+            if add_data.get(fate_id, None):
+                lguide_data += '        tags:\n'
+                if add_data[fate_id].get('Experience', None):
+                    lguide_data += f'          - tag: "EXP: {add_data[fate_id]['Experience']}"\n'
+                if add_data[fate_id].get('Elemental EXP', None):
+                    lguide_data += f'          - tag: "EXP: {add_data[fate_id]['Elemental EXP']}"\n'
+                if add_data[fate_id].get('Gil', None):
+                    lguide_data += f'          - tag: "Gil: {add_data[fate_id]['Gil']}"\n'
+                lguide_data += f'          - tag: "Location: {add_data[fate_id]['Location']}"\n'
+                if add_data[fate_id].get('Company Seals', None):
+                    lguide_data += f'          - tag: "Company Seals: {add_data[fate_id]['Company Seals']}"\n'
+                if add_data[fate_id].get('Gemstones', None):
+                    lguide_data += f'          - tag: "Gemstones: {add_data[fate_id]['Gemstones']}"\n'
+                if add_data[fate_id].get('Lockboxes/Crystals', None):
+                    lguide_data += f'          - tag: "Lockboxes/Crystals: {add_data[fate_id]['Lockboxes/Crystals']}"\n'
+                if add_data[fate_id].get('Notable Rewards', None):
+                    lguide_data += f'          - tag: "Notable Rewards: {add_data[fate_id]['Notable Rewards']}"\n'
+                if add_data[fate_id].get('Notorious Monster', None):
+                    lguide_data += f'          - tag: "Notorious Monster: {add_data[fate_id]['Notorious Monster']}"\n'
+                if add_data[fate_id].get('Spawn Mob', None):
+                    lguide_data += f'          - tag: "Spawn Mob: {add_data[fate_id]['Spawn Mob']}"\n'
+                if add_data[fate_id].get('Tomestones', None):
+                    lguide_data += f'          - tag: "Tomestones: {add_data[fate_id]['Tomestones']}"\n'
+            else:
+                print(f"No additional Fate data for {name} -> FateID: {fate_id}")
             for lang in LANGUAGES:
                 content_translations[lang][f"FATEs_{fateNames[fatetype]}_{name_en}_Name"] = fates_trans[fate_id][f'Name_{lang}']
                 content_translations[lang][f"FATEs_{fateNames[fatetype]}_{name_en}_Desc"] = fates_trans[fate_id][f'Description_{lang}']
-        lguide_data += f'    sequence:\n'
-        lguide_data += f'      - phase: "01"\n'
+        lguide_data += '    sequence:\n'
+        lguide_data += '      - phase: "01"\n'
 
     for cetype, ce_data in ces_by_type.items():
         lguide_data += f'  - title:\n'
@@ -602,16 +626,21 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
             lguide_data += f'        title_id: "{ce_id}"\n'
             lguide_data += f'        icon: "{getImage(ces_type[ces[ce_id]["EventType"].replace("DynamicEventType#", "")]["Icon"]["Objective"]["1"])}"\n'
             lguide_data += f'        description: "{desc_en}"\n'
-            lguide_data += f'        phases:\n'
-            lguide_data += f'          - phase: "01"\n'
-            lguide_data += f'        roles:\n'
+            lguide_data += '        phases:\n'
+            lguide_data += '          - phase: "01"\n'
+            lguide_data += '        roles:\n'
             lguide_data += f'          - role: "Lvl: {fates[ce_id]['ClassJobLevel']['Value']}"\n'
-            lguide_data += f'        tags:\n'
+            lguide_data += f'          - role: "Lvl-Sync: {fates[ce_id]['ClassJobLevel']['Max']}"\n'
+            lguide_data += '        tags:\n'
             lguide_data += f'          - tag: "Lvl-Sync: {fates[ce_id]['ClassJobLevel']['Max']}"\n'
             for lang in LANGUAGES:
                 content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Name"] = ces_trans[ce_id][f'Name_{lang}']
                 content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Desc"] = ces_trans[ce_id][f'Description_{lang}']
+        lguide_data += '    sequence:\n'
+        lguide_data += '      - phase: "01"\n'
     return lguide_data
+
+
 # Notizen, Bosse und Adds
 def addGuide(entry: ENTRY_DATA, old_data, logdata_instance_content, lfates, content_translations):
     guide_data = ""
