@@ -11,17 +11,6 @@
         {%- endfor -%}
         <span class="guide__accordion-tag--variation" data-translate="AttackType_Variation">Variation</span>
     {%- else -%}
-      {%- if page.cms == "netlify-cms" -%}
-        {%- for role in attack.roles -%}
-          <span class="guide__accordion-tag--role" data-translate="AttackType_{{role}}">{{ role }}</span>
-        {%- endfor -%}
-        {%- for action in attack.dutyActions -%}
-          <span class="guide__accordion-tag--duty-action" data-translate="AttackType_DutyAction">Duty Action</span>
-        {%- endfor -%}
-        {%- for tag in attack.tags -%}
-          <span class="guide__accordion-tag--attack" data-translate="AttackType_{{tag}}">{{ tag }}</span>
-        {%- endfor -%}
-      {%- else -%}
         {%- for role in attack.roles -%}
           <span class="guide__accordion-tag--role" data-translate="AttackType_{{role.role}}">{{ role.role }}</span>
         {%- endfor -%}
@@ -29,9 +18,13 @@
           <span class="guide__accordion-tag--duty-action" data-translate="AttackType_DutyAction">Duty Action</span>
         {%- endfor -%}
         {%- for tag in attack.tags -%}
-          <span class="guide__accordion-tag--attack" data-translate="AttackType_{{tag.tag}}">{{ tag.tag }}</span>
+          <span class="guide__accordion-tag--attack" data-translate="AttackType_{{tag.tag}}">
+            {%- if tag.icon -%}
+              <img loading="lazy" class="tag-icon" title="{{tag.icon-title}}" src='{{ site.baseurl }}/assets/img/game_assets/{{ tag.icon }}'">
+            {%- endif -%}
+            {{ tag.tag }}
+          </span>
         {%- endfor -%}
-      {%- endif -%}
     {%- endif -%}
   </div>
 <!-- END Include from _includes/_components/guide-attack-types -->

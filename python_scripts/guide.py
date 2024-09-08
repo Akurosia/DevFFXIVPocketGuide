@@ -590,12 +590,18 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
                 if add_data[fate_id].get('Elemental EXP', None):
                     lguide_data += f'          - tag: "EXP: {add_data[fate_id]['Elemental EXP']}"\n'
                 if add_data[fate_id].get('Gil', None):
-                    lguide_data += f'          - tag: "Gil: {add_data[fate_id]['Gil']}"\n'
+                    lguide_data += f'          - tag: "{add_data[fate_id]['Gil']}"\n'
+                    lguide_data += f'            icon: "{getImage("065000/065002_hr1.png")}"\n'
+                    lguide_data += f'            icon-title: "Gil"\n'
                 lguide_data += f'          - tag: "Location: {add_data[fate_id]['Location']}"\n'
                 if add_data[fate_id].get('Company Seals', None):
-                    lguide_data += f'          - tag: "Company Seals: {add_data[fate_id]['Company Seals']}"\n'
+                    lguide_data += f'          - tag: "{add_data[fate_id]['Company Seals']}"\n'
+                    lguide_data += f'            icon: "{getImage("065000/065004_hr1.png")}"\n'
+                    lguide_data += f'            icon-title: "Company Seals"\n'
                 if add_data[fate_id].get('Gemstones', None):
-                    lguide_data += f'          - tag: "Gemstones: {add_data[fate_id]['Gemstones']}"\n'
+                    lguide_data += f'          - tag: "{add_data[fate_id]['Gemstones']}"\n'
+                    lguide_data += f'            icon: "{getImage("065000/065071_hr1.png")}"\n'
+                    lguide_data += f'            icon-title: "Gemstones"\n'
                 if add_data[fate_id].get('Lockboxes/Crystals', None):
                     text = add_data[fate_id]['Lockboxes/Crystals']
                     text = re.sub(r"^(\d+)   ", r"\1 ", text)
@@ -611,7 +617,9 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
                 if add_data[fate_id].get('Spawn Mob', None):
                     lguide_data += f'          - tag: "Spawn Mob: {add_data[fate_id]['Spawn Mob']}"\n'
                 if add_data[fate_id].get('Tomestones', None):
-                    lguide_data += f'          - tag: "Tomestones: {add_data[fate_id]['Tomestones']}"\n'
+                    lguide_data += f'          - tag: "{add_data[fate_id]['Tomestones']}"\n'
+                    lguide_data += f'            icon: "{getImage("065000/065023_hr1.png")}"\n'
+                    lguide_data += f'            icon-title: "Tomestones"\n'
             else:
                 print(f"No additional Fate data for {name} -> FateID: {fate_id}")
             for lang in LANGUAGES:
@@ -651,7 +659,9 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
             if add_data[ce_id].get('Spawn Mob', None):
                 lguide_data += f'          - tag: "Spawn Mob: {add_data[ce_id]['Spawn Mob']}"\n'
             if add_data[ce_id].get('Tomestones', None):
-                lguide_data += f'          - tag: "Tomestones: {add_data[ce_id]['Tomestones']}"\n'
+                lguide_data += f'          - tag: "{add_data[ce_id]['Tomestones']}"\n'
+                lguide_data += f'            icon: "{getImage("065000/065023_hr1.png")}"\n'
+                lguide_data += f'            icon-title: "Tomestones"\n'
             for lang in LANGUAGES:
                 content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Name"] = ces_trans[ce_id][f'Name_{lang}']
                 content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Desc"] = ces_trans[ce_id][f'Description_{lang}']

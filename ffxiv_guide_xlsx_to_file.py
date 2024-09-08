@@ -153,17 +153,26 @@ def getDataFromLogfile(entry: dict[str, Any]):
     return logdata_instance_content, music, contentzoneid, fates
 
 
-def writeFileIfNoDifferent(filename: str, filedata: str) -> None:
-    try:
-        with open(filename, "r", encoding="utf8") as f:
-            x_data = f.read()
-    except Exception:
-        x_data = None
-
-    if not filedata == x_data:
-        with open(filename, "w", encoding="utf8") as fi:
-            fi.write(filedata)
-        print(f"[MAIN:writeFileIfNoDifferent] Wrote new data to file {filename}")
+def writeFileIfNoDifferent(filename: str, filedata: str, aku_write: bool = False) -> None:
+    if aku_write:
+        try:
+            x_data = readJsonFile(filename)
+        except Exception:
+            x_data = {}
+        #res = all((x_data.get(k) == v for k, v in filedata.items()))
+        if not x_data == filedata:
+            writeJsonFile(filename, filedata)
+            print(f"[MAIN:writeFileIfNoDifferent] Wrote new data to file {filename}")
+    else:
+        try:
+            with open(filename, "r", encoding="utf8") as f:
+                x_data = f.read()
+        except Exception:
+            x_data = None
+        if not filedata == x_data:
+            with open(filename, "w", encoding="utf8") as fi:
+                fi.write(filedata)
+            print(f"[MAIN:writeFileIfNoDifferent] Wrote new data to file {filename}")
 
 
 def write_content_to_file(entry: dict[str, Any], filename: str, old_data: dict[str, Any], content_translations: dict[str, Any] ) -> None:
@@ -231,11 +240,12 @@ def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], or
                 write_content_to_file(entry, filename, old_data, content_translations)
                 # write translation file
                 # print_pretty_json(content_translations)
+
                 filename_translation_location = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '').replace('_', '-')}"
                 if not os.path.exists(filename_translation_location):
                     os.makedirs(filename_translation_location)
                 for lang in LANGUAGES:
-                    writeJsonFile(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json", content_translations[lang])
+                    writeFileIfNoDifferent(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json", content_translations[lang], True)
 
             elif entry['title'] != "":
                 print_color_green(f"[MAIN:run] Skip {entry['title']} as its marked as {entry['exclude']}/{entry['done']}")
