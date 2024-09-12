@@ -417,7 +417,7 @@
         ]
     },
     "Aether Remote": {
-        "DalamudApiLevel": 9,
+        "DalamudApiLevel": 10,
         "description": "Control other player's speech, emotes, and appearance.",
         "name": "Aether Remote",
         "punchline": [
@@ -437,7 +437,7 @@
                 "Mora",
                 "https://github.com/aetherremote/AetherRemote/raw/main/repo.json",
                 "https://github.com/aetherremote/AetherRemote",
-                "1.1.36.1"
+                "1.4.0.0"
             ]
         ]
     },
@@ -520,6 +520,25 @@
             ]
         ]
     },
+    "Allagan Market": {
+        "DalamudApiLevel": 10,
+        "description": "Allagan Market's primary purpose is to provide a list of all retainer listings/sales across all characters.\n\nIt'll do it's best to track your sales but it works best when it's always on!",
+        "name": "Allagan Market",
+        "punchline": [
+            "Get your retainer sales organized, track active sales, historical sales and undercutting!"
+        ],
+        "tags": [
+            "market"
+        ],
+        "versions": [
+            [
+                "Critical_Impact",
+                "https://kamori.goats.dev/Plugin/PluginMaster",
+                null,
+                "1.0.0.3"
+            ]
+        ]
+    },
     "Allagan Tools": {
         "DalamudApiLevel": 10,
         "description": "Allagan Tool's primary purpose is to keep track of items across your characters/retainers/free company. With it's filter system you'll never lose track of items or not know where they should be sorted.\n\nWhile this is it's primary purpose, it has quite an exhaustive list of other features including:\n\t- Craft planning\n\t- Market board integration\n\t- Item highlighting in inventories when searching/sorting and picking ingredients for crafts\n\t- Item window that includes vendor and source information among other things\n\t- Duty/mob/airship/submarine windows that are fully searchable\n\t- A filtering system that lets you setup complex searches for specific items \n\t- Tooltip integration that'll let you see where the items are on hover",
@@ -557,7 +576,7 @@
                 "Sohtoren",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 null,
-                "0.0.0.10"
+                "0.0.0.12"
             ]
         ]
     },
@@ -684,7 +703,7 @@
                 "Sebastina",
                 "https://github.com/Sebane1/RoleplayingVoiceDalamud/raw/master/repo.json",
                 "https://github.com/Sebane1/RoleplayingVoiceDalamud",
-                "0.5.1.0"
+                "0.5.1.8"
             ]
         ]
     },
@@ -762,7 +781,7 @@
                 "Athavar",
                 "https://github.com/Athavar/Athavar.FFXIV.DalaRepo/raw/master/pluginmaster.json",
                 "https://github.com/Athavar/Athavar.FFXIV.Plugin",
-                "2.2.1.10"
+                "2.2.1.11"
             ]
         ]
     },
@@ -871,7 +890,7 @@
                 "Aida Enna",
                 "https://github.com/Aida-Enna/XIVPlugins/raw/main/repo.json",
                 "https://github.com/Aida-Enna/XIVPlugins",
-                "1.0.0.8"
+                "1.3.0.0"
             ],
             [
                 "Aida Enna",
@@ -1003,7 +1022,7 @@
                 "Herculezz",
                 "https://github.com/VeraNala/AutoDuty/raw/master/AutoDuty/AutoDuty.json",
                 "https://github.com/ffxivcode/AutoDuty",
-                "0.0.0.133"
+                0
             ],
             [
                 "Herculezz",
@@ -1015,19 +1034,19 @@
                 "Herculezz",
                 "https://github.com/ffxivcode/AutoDuty/raw/master/AutoDuty/AutoDuty.json",
                 "https://github.com/ffxivcode/AutoDuty",
-                "0.0.0.133"
+                0
             ],
             [
                 "Herculezz",
                 "https://github.com/ryonive/AutoDuty/raw/master/AutoDuty/AutoDuty.json",
                 "https://github.com/ffxivcode/AutoDuty",
-                "0.0.0.133"
+                "0.0.0.138"
             ],
             [
-                "Herculezz",
+                "Herculezz, James",
                 "https://puni.sh/api/repository/herc",
                 "https://github.com/ffxivcode/AutoDuty",
-                "0.0.0.133"
+                "0.0.0.160"
             ]
         ]
     },
@@ -1099,7 +1118,7 @@
                 "cookedlizard",
                 "https://github.com/ffxivcode/DalamudPlugins/raw/main/repo.json",
                 "",
-                "7.0.7.5"
+                "7.0.9.23"
             ]
         ]
     },
@@ -1190,24 +1209,7 @@
                 "kawaii, NightmareXIV",
                 "https://love.puni.sh/ment.json",
                 "https://github.com/PunishXIV/AutoRetainer",
-                "4.3.2.5"
-            ]
-        ]
-    },
-    "AutoRetainerMover": {
-        "DalamudApiLevel": 10,
-        "description": "Currently Moves to New Gridania Summoning Bell when a retainer is ready, will add option to choose other summoning bells in the future.",
-        "name": "AutoRetainerMover",
-        "punchline": [
-            "Automatically move to the summoning Bell"
-        ],
-        "tags": [],
-        "versions": [
-            [
-                "cookedlizard",
-                "https://github.com/ffxivcode/DalamudPlugins/raw/main/repo.json",
-                "",
-                "7.0.5.1"
+                "4.4.0.2"
             ]
         ]
     },
@@ -1276,7 +1278,7 @@
                 "croizat",
                 "https://puni.sh/api/repository/croizat",
                 "https://github.com/Jaksuhn/Automaton",
-                "69.37"
+                "69.39"
             ]
         ]
     },
@@ -1296,7 +1298,7 @@
                 "NeNeppie",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/NeNeppie/AvantGarde",
-                "0.1.1.1"
+                "0.1.1.2"
             ]
         ]
     },
@@ -1487,7 +1489,7 @@
                 "Nuffin",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/CMDRNuffin/BetterMountRoulette",
-                "1.5.0.19"
+                "1.5.0.20"
             ]
         ]
     },
@@ -1504,7 +1506,7 @@
                 "Infi, ash, Anna",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Infiziert90/BetterPartyFinder",
-                "1.4.1.0"
+                "1.4.3.0"
             ]
         ]
     },
@@ -1701,7 +1703,7 @@
                 "Elypha",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Elypha/BilingualTooltips",
-                "0.1.0.1"
+                "0.2.1.1"
             ]
         ]
     },
@@ -1806,7 +1808,7 @@
                 "veyn",
                 "https://puni.sh/api/repository/veyn",
                 "https://github.com/awgil/ffxiv_bossmod",
-                "0.0.0.216"
+                "0.0.0.239"
             ]
         ]
     },
@@ -1828,7 +1830,7 @@
                 "The Combat Reborn Team",
                 "https://github.com/FFXIV-CombatReborn/CombatRebornRepo/raw/main/pluginmaster.json",
                 null,
-                "7.2.0.88"
+                "7.2.0.122"
             ]
         ]
     },
@@ -2109,7 +2111,7 @@
                 "Infi, Anna",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Infiziert90/ChatTwo",
-                "1.28.2.0"
+                "1.29.2.0"
             ]
         ]
     },
@@ -2313,7 +2315,7 @@
                 "James Keesey",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/jlkeesey/Chatter",
-                "1.2.0.0"
+                "1.2.1.0"
             ]
         ]
     },
@@ -2723,7 +2725,7 @@
                 "AtmoOmen",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/AtmoOmen/CurrencyTracker",
-                "1.4.3.0"
+                "1.4.4.0"
             ]
         ]
     },
@@ -2742,7 +2744,7 @@
                 "MidoriKami, Lharz",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/MidoriKami/CurrencyAlert",
-                "2.1.0.1"
+                "2.1.0.2"
             ]
         ]
     },
@@ -2923,7 +2925,7 @@
                 "SHOEGAZEssb",
                 "https://github.com/SHOEGAZEssb/DalamudPluginRepo/raw/main/pluginmaster.json",
                 "https://github.com/SHOEGAZEssb/Dagobert",
-                "0.0.0.9"
+                "0.0.0.13"
             ]
         ]
     },
@@ -2979,7 +2981,7 @@
                 "AtmoOmen",
                 "https://github.com/AtmoOmen/DalamudPlugins/raw/main/pluginmaster.json",
                 "https://github.com/AtmoOmen/DalamudPlugins",
-                "1.0.10.1"
+                "1.0.11.2"
             ]
         ]
     },
@@ -2998,7 +3000,7 @@
                 "MidoriKami",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/MidoriKami/DailyDuty",
-                "5.1.0.1"
+                "5.1.0.5"
             ]
         ]
     },
@@ -3179,8 +3181,8 @@
         ]
     },
     "DeviceChangeFix": {
-        "DalamudApiLevel": 9,
-        "description": "Stops controller input from freezing randomly by ensuring FFXIV only polls for controllers when one is actually connected or disconnected.\n\nOriginal plugin by PGGB, icon from Mutant Standard.",
+        "DalamudApiLevel": 10,
+        "description": "Stops controller input from freezing randomly by ensuring FFXIV only polls for controllers when one is actually connected or disconnected. Doesn't require any configuration.\n\nOriginal plugin by PGGB, icon from Mutant Standard.",
         "name": "DeviceChangeFix",
         "punchline": [
             "Stops controller input from freezing randomly."
@@ -3190,10 +3192,10 @@
         ],
         "versions": [
             [
-                "Jessidhia",
+                "nopjmp, Jessidhia, PGGB",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
-                "https://github.com/Jessidhia/DeviceChangeFix",
-                "2.0.3.0"
+                "https://github.com/MKhayle/DeviceChangeFix",
+                "2.0.5.0"
             ]
         ]
     },
@@ -3231,7 +3233,7 @@
                 "Glyceri",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 null,
-                "1.1.0.2"
+                "1.1.0.3"
             ]
         ]
     },
@@ -3381,7 +3383,7 @@
                 "Asteria Nocturna",
                 "https://github.com/SlashNephy/divination-distrib/raw/master/plugins/master.json",
                 "https://github.com/SlashNephy/Divination",
-                "7.0.0.0"
+                "7.0.1.18"
             ],
             [
                 "Asteria Nocturna",
@@ -3497,7 +3499,7 @@
                 "Asteria Nocturna",
                 "https://github.com/SlashNephy/divination-distrib/raw/master/plugins/master.json",
                 "https://github.com/SlashNephy/Divination",
-                "7.0.0.0"
+                "7.0.1.18"
             ],
             [
                 "Asteria Nocturna",
@@ -3671,6 +3673,25 @@
             ]
         ]
     },
+    "DragoonMayCry": {
+        "DalamudApiLevel": 10,
+        "description": "A plugin that tries to add flavour to combat. You score by dealing damage, and lose points if you are not greeding correctly",
+        "name": "DragoonMayCry",
+        "punchline": [
+            "A plugin that ranks your performance based on your fundamentals in combat"
+        ],
+        "tags": [
+            "dmc"
+        ],
+        "versions": [
+            [
+                "Felscream",
+                "https://kamori.goats.dev/Plugin/PluginMaster",
+                "https://github.com/Felscream/DragoonMayCry",
+                "0.7.5.0"
+            ]
+        ]
+    },
     "Dresser Anywhere": {
         "DalamudApiLevel": 10,
         "description": "Use dresser outside of inns. Search items in other inventories or cheap at vendors. Try on your own character. Browse modded items.",
@@ -3721,6 +3742,28 @@
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Xpahtalo/DutyTracker",
                 "1.0.1.8"
+            ]
+        ]
+    },
+    "DutyLanguage": {
+        "DalamudApiLevel": 10,
+        "description": "Lets you configure voice acting language on a per-duty basis.",
+        "image": [
+            ""
+        ],
+        "name": "DutyLanguage",
+        "punchline": [
+            "Diversify your ingame voice acting experience"
+        ],
+        "tags": [
+            "other"
+        ],
+        "versions": [
+            [
+                "SHOEGAZEssb",
+                "https://github.com/SHOEGAZEssb/DalamudPluginRepo/raw/main/pluginmaster.json",
+                "https://github.com/SHOEGAZEssb/DutyLanguage",
+                "1.0.0.0"
             ]
         ]
     },
@@ -4065,10 +4108,10 @@
         "tags": [],
         "versions": [
             [
-                "Felys & Anima",
+                "Felys",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Felys1998/EnemyListDebuffs",
-                "0.4.0.2"
+                "0.4.0.3"
             ]
         ]
     },
@@ -4350,7 +4393,7 @@
                 "Aireil",
                 "https://github.com/Aireil/MyDalamudPlugins/raw/master/pluginmaster.json",
                 "https://github.com/Aireil/FFLogsViewer",
-                "2.1.7.5"
+                "2.1.7.7"
             ],
             [
                 "Aireil",
@@ -4735,7 +4778,7 @@
                 "Aida Enna",
                 "https://github.com/Aida-Enna/XIVPlugins/raw/main/repo.json",
                 "https://github.com/Aida-Enna/XIVPlugins",
-                "1.0.0.3"
+                "1.0.0.4"
             ],
             [
                 "Aida Enna",
@@ -4901,7 +4944,7 @@
                 "Cai",
                 "https://gist.githubusercontent.com/CaiClone/0aad66569dbf63a9bbeec6a8e95a123f/raw/pluginmaster.json",
                 "https://github.com/CaiClone/GCDTracker",
-                "1.0.4.1"
+                "1.0.4.3"
             ]
         ]
     },
@@ -4980,7 +5023,7 @@
         ]
     },
     "GambaGames": {
-        "DalamudApiLevel": 9,
+        "DalamudApiLevel": 10,
         "description": "A set of gambling games for casinos to use!",
         "name": "GambaGames",
         "punchline": [
@@ -4994,13 +5037,13 @@
                 "MilesNocte",
                 "https://github.com/Milesnocte/GambaGames/raw/main/repo.json",
                 "https://github.com/Milesnocte/GambaGames",
-                "0.0.1.8"
+                "0.0.1.9"
             ]
         ]
     },
     "GambaTracker": {
         "DalamudApiLevel": 10,
-        "description": "Minx Dealer Tracker",
+        "description": "Dealer Tracker",
         "name": "GambaTracker",
         "tags": [
             "gamba"
@@ -5010,7 +5053,7 @@
                 "Asuna",
                 "https://github.com/AsunaTsuki/dalamudplugins/raw/main/repo.json",
                 "https://github.com/AsunaTsuki/GambaTracker",
-                "1.1"
+                "1.3"
             ]
         ]
     },
@@ -5082,7 +5125,7 @@
                 "ItsBexy",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 null,
-                "0.8.0.7"
+                "0.8.0.9"
             ]
         ]
     },
@@ -5384,9 +5427,28 @@
             ]
         ]
     },
+    "Grace Gawker": {
+        "DalamudApiLevel": 10,
+        "description": "An overlay plugin that displays the remaining XP for your Crafter's/Gatherer's Grace buffs.",
+        "name": "Grace Gawker",
+        "punchline": [
+            "View the remaining XP on Crafter's/Gatherer's Grace"
+        ],
+        "tags": [
+            "crafting"
+        ],
+        "versions": [
+            [
+                "Fuwa Aika",
+                "https://kamori.goats.dev/Plugin/PluginMaster",
+                "https://github.com/mashirochan/FFXIV-GraceGawker",
+                "0.1.0.7"
+            ]
+        ]
+    },
     "Graphics Config": {
         "DalamudApiLevel": 10,
-        "description": "Allows you to save/load/share graphical setting presets (based on your System Configuration -> Graphics menu) at any time, including when triggered by events like entering a battle, cutscene, or gpose.",
+        "description": "Allows you to save/load/share graphical setting presets (based on your System Configuration menu) at any time, including when triggered by events like entering a battle, cutscene, or gpose.",
         "name": "Graphics Config",
         "punchline": [
             "Save/load/share graphical setting presets at any time!"
@@ -5399,7 +5461,7 @@
                 "Aida Enna",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "hhttps://github.com/Aida-Enna/GraphicsConfig",
-                "1.0.0.1"
+                "1.0.0.4"
             ]
         ]
     },
@@ -5554,13 +5616,13 @@
                 "Haselnussbomber",
                 "https://github.com/Haselnussbomber/DalamudPlugins/raw/main/repo.json",
                 "https://github.com/Haselnussbomber/HaselTweaks",
-                "26.1.0"
+                "26.1.1"
             ],
             [
                 "Haselnussbomber",
                 "https://github.com/Haselnussbomber/MyDalamudPlugins/raw/main/repo.json",
                 "https://github.com/Haselnussbomber/HaselTweaks",
-                "26.1.0"
+                "26.1.1"
             ],
             [
                 "Haselnussbomber",
@@ -5607,7 +5669,7 @@
                 "Anna",
                 "https://github.com/Ottermandias/SeaOfStars/raw/main/repo.json",
                 "https://heliosphere.app/",
-                "1.28.6.0"
+                "2.3.0.0"
             ],
             [
                 "Anna",
@@ -5897,7 +5959,7 @@
                 "img02",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/img02/HuntHelper",
-                "1.0.0.22"
+                "1.0.0.23"
             ]
         ]
     },
@@ -5942,7 +6004,7 @@
                 "NightmareXIV",
                 "https://github.com/NightmareXIV/MyDalamudPlugins/raw/main/pluginmaster.json",
                 "https://github.com/NightmareXIV/HuntTrainAssistant",
-                "1.0.1.5"
+                "1.0.1.6"
             ],
             [
                 "NightmareXIV",
@@ -6082,7 +6144,7 @@
                 "Usagi",
                 "https://github.com/marzent/IINACT/raw/main/repo.json",
                 "https://github.com/marzent/IINACT",
-                "2.7.1.1"
+                "2.7.2.0"
             ],
             [
                 "Usagi",
@@ -6106,7 +6168,7 @@
                 "Usagi",
                 "https://github.com/ryonive/IINACT/raw/main/repo.json",
                 "https://github.com/marzent/IINACT",
-                "2.7.1.0"
+                "2.7.2.0"
             ],
             [
                 "Usagi",
@@ -6509,7 +6571,7 @@
                 "PunishedPineapple",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/PunishedPineapple/ItemUse",
-                "0.9.2.0"
+                "1.0.0.0"
             ]
         ]
     },
@@ -7079,7 +7141,7 @@
                 "NightmareXIV",
                 "https://github.com/NightmareXIV/MyDalamudPlugins/raw/main/pluginmaster.json",
                 "https://github.com/NightmareXIV/Lifestream",
-                "2.2.0.7"
+                "2.2.1.2"
             ],
             [
                 "NightmareXIV",
@@ -7399,8 +7461,14 @@
             [
                 "Herculezz",
                 "https://github.com/ffxivcode/MBT/raw/master/MBT/MBT.json",
-                "",
-                "0.0.0.15"
+                "https://github.com/ffxivcode/MBT",
+                0
+            ],
+            [
+                "Herculezz",
+                "https://puni.sh/api/repository/herc",
+                "https://github.com/ffxivcode/MBT",
+                "0.0.0.16"
             ]
         ]
     },
@@ -7514,7 +7582,7 @@
                 "grittyfrog",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/grittyfrog/MacroMate",
-                "1.0.17.2"
+                "1.0.19.0"
             ]
         ]
     },
@@ -7531,7 +7599,7 @@
                 "grittyfrog",
                 "https://github.com/grittyfrog/MacroMate/raw/master/repo.json",
                 "https://github.com/grittyfrog/MacroMate",
-                "1.0.17.2"
+                "1.0.19.1"
             ]
         ]
     },
@@ -7730,6 +7798,25 @@
             ]
         ]
     },
+    "Malmstone Calculator": {
+        "DalamudApiLevel": 10,
+        "description": "Calculate the number of wins/losses needed in different modes of PVP before achieving your target Series Level.\nUse /pmalm to get started",
+        "name": "Malmstone Calculator",
+        "punchline": [
+            "Keep tabs on how much more PVP you have to play before unlocking your next Series Malmstone reward!"
+        ],
+        "tags": [
+            "pvp"
+        ],
+        "versions": [
+            [
+                "pinapelz",
+                "https://kamori.goats.dev/Plugin/PluginMaster",
+                null,
+                "1.0.6.5"
+            ]
+        ]
+    },
     "Map Party Assist": {
         "DalamudApiLevel": 10,
         "description": "Tool for keeping track of treasure maps opened by party members and recording treasure dungeon statistics.",
@@ -7831,13 +7918,13 @@
                 "darkarchon",
                 "https://github.com/Ottermandias/SeaOfStars/raw/main/repo.json",
                 "https://github.com/Penumbra-Sync/client",
-                "0.10.4"
+                "0.10.9"
             ],
             [
                 "darkarchon",
                 "https://github.com/Penumbra-Sync/repo/raw/main/plogonmaster.json",
                 "https://github.com/Penumbra-Sync/client",
-                "0.10.4"
+                "0.10.9"
             ],
             [
                 "darkarchon",
@@ -8014,7 +8101,7 @@
                 "Ramen",
                 "https://github.com/PassiveModding/Meddle/raw/main/repo.json",
                 "https://github.com/PassiveModding/Meddle",
-                "0.1.14"
+                "0.1.17"
             ]
         ]
     },
@@ -8980,7 +9067,7 @@
                 "NiGuangOwO, Small_Miao (moewcorp)",
                 "https://github.com/NiGuangOwO/DalamudPlugins/raw/main/pluginmaster.json",
                 null,
-                "1.0.3.21"
+                "1.0.3.30"
             ]
         ]
     },
@@ -8999,7 +9086,7 @@
                 "NiGuangOwO, Small_Miao (moewcorp)",
                 "https://github.com/NiGuangOwO/DalamudPlugins/raw/main/pluginmaster.json",
                 null,
-                "1.0.6.20"
+                "1.0.6.29"
             ]
         ]
     },
@@ -9251,7 +9338,7 @@
                 "herulume, sevii",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 null,
-                "0.2.0.0"
+                "0.3.1.0"
             ]
         ]
     },
@@ -9382,7 +9469,7 @@
         ]
     },
     "PF Symbol Converter": {
-        "DalamudApiLevel": 9,
+        "DalamudApiLevel": 10,
         "description": "Converts text to symbols mostly for use in making party finders.\n\nUse [] around characters you want to be converted.\nYou can also do {} inside the brackets to make numbers appear circular instead of just square version.\n\nExample: /pfc [PGP Cyberpunk Night] Drinks [11pm-3am] EST",
         "name": "PF Symbol Converter",
         "tags": [
@@ -9393,7 +9480,7 @@
                 "Asuna",
                 "https://github.com/AsunaTsuki/dalamudplugins/raw/main/repo.json",
                 "https://github.com/AsunaTsuki/PFSymbolConverter",
-                "0.7"
+                "0.8"
             ]
         ]
     },
@@ -9835,7 +9922,7 @@
                 "Ottermandias, Adam, Wintermute",
                 "https://github.com/Hapseleg/Penumbra/raw/master/repo.json",
                 "https://github.com/xivdev/Penumbra",
-                "0.8.1.8"
+                "1.2.1.1"
             ],
             [
                 "Ottermandias, Adam, Wintermute",
@@ -9859,7 +9946,7 @@
                 "Ottermandias, Adam, Wintermute",
                 "https://github.com/MeowZWR/Penumbra-CN/raw/master/repo.json",
                 "https://github.com/xivdev/Penumbra",
-                "1.1.0.2"
+                "1.2.1.1"
             ],
             [
                 "Ottermandias, Adam, Wintermute",
@@ -9925,7 +10012,7 @@
                 "Ottermandias, Adam, Wintermute",
                 "https://github.com/ackwell/Penumbra/raw/master/repo.json",
                 "https://github.com/xivdev/Penumbra",
-                "1.1.0.2"
+                "1.2.1.1"
             ],
             [
                 "Ottermandias, Adam, Wintermute",
@@ -10032,7 +10119,7 @@
                 "Glyceri",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Glyceri/FFXIVPetRenamer",
-                "2.1.2.3"
+                "2.2.0.3"
             ]
         ]
     },
@@ -10484,7 +10571,7 @@
                 "SaMo",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/wrath16/PvpStats",
-                "2.1.3.0"
+                "2.1.6.0"
             ]
         ]
     },
@@ -11230,7 +11317,7 @@
                 "The Combat Reborn Team",
                 "https://github.com/FFXIV-CombatReborn/CombatRebornRepo/raw/main/pluginmaster.json",
                 null,
-                "7.0.5.30"
+                "7.0.5.61"
             ]
         ]
     },
@@ -11253,6 +11340,23 @@
                 "https://github.com/ryon5541/dalamud-repo-up/raw/main/ffxiv_custom_repo.json",
                 "https://github.com/BrakusTapus/SamplePlugin",
                 "0.0.0.8"
+            ]
+        ]
+    },
+    "Satisfier": {
+        "DalamudApiLevel": "10",
+        "description": "Make custom deliveries less annoying by automating the process.",
+        "name": "Satisfier",
+        "punchline": [
+            "Simplify custom deliveries."
+        ],
+        "tags": [],
+        "versions": [
+            [
+                "veyn",
+                "https://puni.sh/api/repository/veyn",
+                null,
+                "0.0.0.4"
             ]
         ]
     },
@@ -11579,7 +11683,7 @@
                 "Caraxi",
                 "https://github.com/Ottermandias/SeaOfStars/raw/main/repo.json",
                 "https://github.com/Caraxi/SimpleHeels",
-                "0.10.0.5"
+                "0.10.1.1"
             ],
             [
                 "Caraxi",
@@ -11625,7 +11729,7 @@
                 "Caraxi",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Caraxi/SimpleTweaksPlugin",
-                "1.10.0.4"
+                "1.10.1.1"
             ]
         ]
     },
@@ -11881,7 +11985,7 @@
                 "croizat",
                 "https://puni.sh/api/repository/croizat",
                 "https://github.com/Jaksuhn/SomethingNeedDoing",
-                "1.36"
+                "1.41"
             ]
         ]
     },
@@ -12075,7 +12179,7 @@
                 "NightmareXIV, kawaii",
                 "https://love.puni.sh/ment.json",
                 "https://github.com/PunishXIV/Splatoon",
-                "3.7.0.2"
+                "3.7.0.7"
             ]
         ]
     },
@@ -12365,7 +12469,7 @@
                 "Drahsid",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Drahsid/TargetLines",
-                "1.6.1.0"
+                "1.7.0.0"
             ]
         ]
     },
@@ -12542,7 +12646,7 @@
                 "NightmareXIV",
                 "https://github.com/NightmareXIV/MyDalamudPlugins/raw/main/pluginmaster.json",
                 "https://github.com/NightmareXIV/TextAdvance",
-                "3.2.3.3"
+                "3.2.3.5"
             ],
             [
                 "NightmareXIV",
@@ -12896,7 +13000,7 @@
                 "Infi",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Infiziert90/TrackyTrack",
-                "1.5.2.5"
+                "1.5.3.0"
             ]
         ]
     },
@@ -13040,7 +13144,7 @@
                 "Una",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/una-xiv/umbra",
-                "2.2.29.0"
+                "2.2.36.0"
             ]
         ]
     },
@@ -13172,7 +13276,7 @@
                 "veyn",
                 "https://puni.sh/api/repository/veyn",
                 "https://github.com/awgil/ffxiv_visland",
-                "0.0.0.117"
+                "0.0.0.118"
             ]
         ]
     },
@@ -13235,7 +13339,7 @@
                 "Jrogo",
                 "https://github.com/Jrogo7/VenueManager/raw/master/repo.json",
                 "https://github.com/Jrogo7/VenueManager",
-                "2.0.0"
+                "2.2.0"
             ]
         ]
     },
@@ -13296,7 +13400,7 @@
                 "Khloe Leclair",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/KhloeLeclair/WTSync",
-                "0.10.0.0"
+                "0.11.0.0"
             ]
         ]
     },
@@ -13316,13 +13420,13 @@
                 "Asriel",
                 "https://github.com/WorkingRobot/MyDalamudPlugins/raw/main/plogon.json",
                 "https://waiting.camora.dev",
-                "2.1.2.0"
+                "2.2.0.0"
             ],
             [
                 "Asriel",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://waiting.camora.dev",
-                "2.1.2.0"
+                "2.2.0.0"
             ]
         ]
     },
@@ -13342,7 +13446,7 @@
                 "Asriel",
                 "https://github.com/WorkingRobot/MyDalamudPlugins/raw/main/goodplogon.json",
                 "https://waiting.camora.dev",
-                "2.1.2.0"
+                "2.2.0.0"
             ]
         ]
     },
@@ -13506,6 +13610,25 @@
             ]
         ]
     },
+    "Which Mount": {
+        "DalamudApiLevel": 10,
+        "description": "Plugin adds a 'Mount Search' button to the target's context menu, showing information in chat about the mount and how to obtain it. Settings allow you to include the current availability of the mount in the game and other details.",
+        "name": "Which Mount",
+        "punchline": [
+            "Show mount information of other players"
+        ],
+        "tags": [
+            "Character"
+        ],
+        "versions": [
+            [
+                "Megurt",
+                "https://kamori.goats.dev/Plugin/PluginMaster",
+                "https://github.com/megurte/WhichMount",
+                "1.0.0.2"
+            ]
+        ]
+    },
     "Which Patch Was That?": {
         "DalamudApiLevel": 10,
         "description": "Whenever you mouseover an item, the tooltip will show you the patch the item was released in.\nNever carry around old useless crafting materials again!\n",
@@ -13620,7 +13743,7 @@
                 "Blooym",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Blooym/Wholist",
-                "1.4.4.2"
+                "1.5.0.0"
             ]
         ]
     },
@@ -14038,6 +14161,23 @@
             ]
         ]
     },
+    "XIV Uncombo": {
+        "DalamudApiLevel": 10,
+        "description": "This plugin splits combos and mutually exclusive abilities onto several buttons. For example, a 1-1-1 combo would become 1-2-3.",
+        "name": "XIV Uncombo",
+        "punchline": [
+            "Splits combos into more button for more button bloating. Requires BLU spells."
+        ],
+        "tags": [],
+        "versions": [
+            [
+                "Khayle, daemitus, attick",
+                "https://kamori.goats.dev/Plugin/PluginMaster",
+                "https://github.com/MKhayle/XIVUncombo",
+                "1.0.0.0"
+            ]
+        ]
+    },
     "XIVAuras": {
         "DalamudApiLevel": 8,
         "description": "Customizable status and cooldown tracking.",
@@ -14239,7 +14379,7 @@
                 "Infi, Cadaeix",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Infiziert90/XIVLogger",
-                "1.0.7.0"
+                "1.0.7.1"
             ]
         ]
     },
@@ -14375,6 +14515,12 @@
                 "https://github.com/LiangYuxuan/dalamud-plugin-cn-fetcher/raw/master/pluginmaster_gh.json",
                 "https://github.com/44451516/XIVSlothCombo/",
                 "3.0.19.13"
+            ],
+            [
+                "Aki, k-kz, ele-starshade, damolitionn, Taurenkey, Augporto, grimgal, Genesis-Nova, Tartarga",
+                "https://github.com/zhouhuichen741/dalamud-plugins/raw/master/repo.json",
+                "https://github.com/44451516/XIVSlothCombo/",
+                "3.0.19.12"
             ]
         ]
     },
@@ -14528,7 +14674,7 @@
                 "daemitus, kawaii",
                 "https://love.puni.sh/ment.json",
                 "https://github.com/PunishXIV/YesAlready",
-                "1.7.0.19"
+                "1.7.2"
             ]
         ]
     },
@@ -14576,7 +14722,7 @@
                 "Zeffuro",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Zeffuro/ZDs",
-                "1.0.0.1"
+                "1.0.0.2"
             ]
         ]
     },
