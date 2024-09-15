@@ -241,7 +241,7 @@ def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], or
                 # write translation file
                 # print_pretty_json(content_translations)
 
-                filename_translation_location = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '').replace('_', '-')}"
+                filename_translation_location: str = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '').replace('_', '-')}"
                 if not os.path.exists(filename_translation_location):
                     os.makedirs(filename_translation_location)
                 for lang in LANGUAGES:
