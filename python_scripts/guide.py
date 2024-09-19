@@ -8,13 +8,13 @@ try:
     from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from python_scripts.custom_logger import *
     from python_scripts.helper import getImage
-    from python_scripts.fileimports import logdata, status, ces, ces_type, ces_trans, fates, fates_trans, ENTRY_DATA
+    from python_scripts.fileimports import logdata, status, ces, ces_type, ces_trans, fates, fates_trans, ENTRY_DATA, npcyell, instancecontenttextdata, fateevent
     from python_scripts.guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 except Exception:
     from constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from custom_logger import *
     from helper import getImage
-    from fileimports import logdata, status, ces, ces_type, ces_trans, fates, fates_trans, ENTRY_DATA
+    from fileimports import logdata, status, ces, ces_type, ces_trans, fates, fates_trans, ENTRY_DATA, npcyell, instancecontenttextdata, fateevent
     from guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 
 disable_green_print = True
@@ -428,6 +428,7 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
     enemy_name_en = enemy_data['title']['en']
     guide_data += f'  - title:\n'
     #print(enemy_name_en)
+    #print(new_enemy_data)
     for lang in LANGUAGES:
         content_translations[lang][f"{enemy_type.title()}_{enemy_name_en}_Name"] = enemy_data['title'].get(lang, "")
         if enemy_data is None:
@@ -470,6 +471,22 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
         guide_data += '    debuffs:\n'
         for debuff in enemy_data["debuffs"]:
             guide_data = add_Debuff(guide_data, debuff, enemy_type, enemy_data['title']['en'], content_translations)
+
+    #Handle text
+    if enemy_data.get("text", None):
+        try:
+            del enemy_data['text']['old']
+        except: pass
+        guide_data += '    text:\n'
+        for cat, text_ids in enemy_data["text"].items():
+            if cat == "old":
+                continue
+            if text_ids == []:
+                continue
+            guide_data += f'       {cat}: \n'
+            for _id in text_ids:
+                guide_data += f'        - id: "{_id}"\n'
+                guide_data += f'          text: "{getTextFromCatAndID(cat, _id, content_translations)}"\n'
     if enemy_data.get("sequence", None):
         guide_data = add_Sequence(guide_data, enemy_data)
     else:
@@ -479,6 +496,22 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
             guide_data = add_Sequence(guide_data, EXAMPLE_ADD_SEQUENCE)
     return guide_data
 
+enemy_line_itterator: dict[str, Any] = {
+    "npcyell_ids": npcyell,
+    "instancecontenttextdata_ids": instancecontenttextdata,
+    "fateevent_ids": fateevent,
+}
+def getTextFromCatAndID(cat: str, _id: str, content_translations: dict[str, Any]) -> str:
+    global enemy_line_itterator
+    if cat != "fateevent_ids":
+        text: str = enemy_line_itterator[cat][_id]['Text_en'].replace("\n\n", " ").replace("\n", "")
+        for lang in LANGUAGES:
+            content_translations[lang][f"{cat}_{_id}_Text"] = enemy_line_itterator[cat][_id][f'Text_{lang}'].replace("\n\n", " ").replace("\n", "")
+    else:
+        text: str = enemy_line_itterator[cat][_id]['Text_0_en'].replace("\n\n", " ").replace("\n", "")
+        for lang in LANGUAGES:
+            content_translations[lang][f"{cat}_{_id}_Text"] = enemy_line_itterator[cat][_id][f'Text_0_{lang}'].replace("\n\n", " ").replace("\n", "")
+    return text
 
 def check_Enemy(entry: ENTRY_DATA, enemy_type, logdata_instance_content, old_enemies, content_translations):
     guide_data = ""

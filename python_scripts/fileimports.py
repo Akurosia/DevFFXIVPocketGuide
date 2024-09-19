@@ -70,3 +70,7 @@ questss: FFXIV_DATA = loadDataTheQuickestWay("Quest.de.json", exd="raw-exd-all")
 enpcresidents: FFXIV_DATA = loadDataTheQuickestWay("Enpcresident.de.json")
 enpcresidentss: FFXIV_DATA = loadDataTheQuickestWay("Enpcresident", translate=True)
 contentfinderconditionX: FFXIV_DATA = loadDataTheQuickestWay("ContentFinderCondition.de.json")
+
+npcyell: FFXIV_DATA = loadDataTheQuickestWay("npcyell_all.json", translate=True)
+instancecontenttextdata: FFXIV_DATA = loadDataTheQuickestWay("instancecontenttextdata_all.json", translate=True)
+fateevent: FFXIV_DATA = loadDataTheQuickestWay("fateevent_all.json", translate=True)

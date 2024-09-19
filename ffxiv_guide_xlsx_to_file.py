@@ -8,7 +8,7 @@ import errno
 from typing import Any
 import yaml
 from yaml.loader import SafeLoader
-from ffxiv_aku import pretty_json, print_color_green, sys, readJsonFile, writeJsonFile
+from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile
 import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide
@@ -206,7 +206,7 @@ def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], or
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             if not True:
                 # if debug_row_number < 710 :
-                if debug_row_number not in [785, 581]:
+                if debug_row_number not in [430]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(sheet, max_column, i, elements, orderedContent)
@@ -232,6 +232,7 @@ def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], or
                 filename: str = f"{expansion}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 existing_filename: str = f"{expansion}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 old_data = get_old_content_if_file_is_found(existing_filename)
+                #print_pretty_json(old_data)
                 # if old file was found, replace filename to save
                 if old_data != {}:
                     filename = existing_filename

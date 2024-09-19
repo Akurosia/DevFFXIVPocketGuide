@@ -6,7 +6,7 @@ import copy
 from operator import itemgetter
 from collections import OrderedDict
 from typing import Any
-from ffxiv_aku import print_color_red, print_color_yellow, print_color_blue
+from ffxiv_aku import print_color_red, print_color_yellow, print_color_blue, print_pretty_json
 try:
     from python_scripts.constants import LANGUAGES, UNKNOWNTITLE
     from python_scripts.fileimports import action, bnpcname, eobjname, enpcresident, status
@@ -866,7 +866,42 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
     return guide_data
 
 
-def ugly_fix_enemy_data(enemy_data, new_enemy_data):
+#def getIDSFromText(enemy_names: dict[str, Any], texts: list[str]) -> dict[str, set]:
+#    result: dict[str, set] = {'npcyell_ids': set(), 'instancecontenttextdata_ids': set()}
+#    remove_text = set()
+#    for key, value in npcyell.items():
+#        for text in texts:
+#            textx: str = text.strip()
+#            de_val: str = value['Text_de'].replace("\n\n", " ").strip()
+#            if textx == de_val:
+#                result['npcyell_ids'].add(key)
+#                remove_text.add(text)
+#                break
+#    for t in remove_text:
+#        try:
+#            texts.remove(t)
+#        except: pass
+#
+#    remove_text = set()
+#    for key, value in instancecontenttextdata.items():
+#        for text in texts:
+#            textx: str = text.strip()
+#            de_val: str = value['Text_de'].replace("\n\n", " ").strip()
+#            if textx == de_val:
+#                result['instancecontenttextdata_ids'].add(key)
+#                remove_text.add(text)
+#
+#    for t in remove_text:
+#        try:
+#            texts.remove(t)
+#        except: pass
+#    if texts != []:
+#        print_color_red(f"\t{enemy_names}")
+#        print_color_red(f"\t\t{texts}")
+#    return result
+
+
+def ugly_fix_enemy_data(enemy_data: dict[str, Any], new_enemy_data: dict[str, Any]) -> dict[str, Any]:
     for attack in enemy_data.get('attacks', []):
         if attack['type'] in ["variation", "combo"]:
             for action in attack[attack['type']]:
@@ -883,6 +918,17 @@ def ugly_fix_enemy_data(enemy_data, new_enemy_data):
                     attack['damage'] = {}
                     attack['damage']['min'] = x.get("damage", {}).get("min", None)
                     attack['damage']['max'] = x.get("damage", {}).get("max", None)
+    if not enemy_data.get('text', None):
+        enemy_data['text'] = {}
+    enemy_data['text'] = new_enemy_data.get('text', {})
+    #if new_enemy_data.get('text', None):
+    #    _ids: dict[str, set] = getIDSFromText(enemy_data['title'], new_enemy_data['text'])
+    #    for cat, _xids in _ids.items():
+    #        for _id in _xids:
+    #            if not enemy_data['text'].get(cat, None):
+    #                enemy_data['text'][cat] = set()
+    #            enemy_data['text'][cat].add(_id)
+    #print(enemy_data['text'])
     return enemy_data
 
 
