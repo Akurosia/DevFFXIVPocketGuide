@@ -22,6 +22,7 @@ import python_scripts.generateLinks as gl
 import python_scripts.generateHousingMissions as ghm
 import python_scripts.get_achivments as ga
 import python_scripts.getBlueSideQuestData as gbsq
+import python_scripts.FFXIV_Charachter_Config as fcc
 
 logger: Logger = getLogger(50)
 disable_green_print: bool = True
@@ -257,6 +258,7 @@ def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], or
 
 
 def main() -> None:
+    global translations
     logger.critical('START')
     sheet: Worksheet
     max_row: int
@@ -274,7 +276,6 @@ def main() -> None:
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
-    create_translation_files()
     if not print_debug:
         csgf.run()
         gl.run()
@@ -282,6 +283,8 @@ def main() -> None:
         ghm.run()
         ga.run()
         gbsq.run()
+        fcc.run(translations)
+    create_translation_files()
     logger.critical('STOP')
 
 
