@@ -105,9 +105,9 @@ def run2() -> dict[str, Any]:
 def custom_print_results(lresults: dict[str, Any], ltext: str = "", spaces: int=0, main_cat: str = "", sub_cat: str = "", translations: dict[str, Any] = {}) -> tuple[str, dict[str, Any]]:
     counter = 0
     if spaces == 0:
-        ltext += f'{"\t" * (spaces-1)}<div style="background-color: cadetblue;border: 2px solid black;border-radius: 5px;padding: 5px;width: fit-content;margin: auto;display: flex;column-gap: 50px;" class="setting_container">\n'
+        ltext += f'{"\t" * (spaces-1)}<div class="setting_container">\n'
     elif spaces < 3:
-        ltext += f'{"\t" * (spaces-1)}<div style="background-color: cadetblue;border: 2px solid black;border-radius: 5px;padding: 5px;margin-left: 15px;">\n'
+        ltext += f'{"\t" * (spaces-1)}<div class="setting_container_inner">\n'
 
     for value, subvalues in lresults.items():
         if spaces == 0:

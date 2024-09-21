@@ -1784,6 +1784,22 @@ ion-icon {
   gap: 1rem;
 }
 
+.setting_container {
+  padding: 10px;
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  column-gap: 50px;
+}
+
+.setting_container_inner {
+  background-color: cadetblue;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 15px;
+}
+
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";
