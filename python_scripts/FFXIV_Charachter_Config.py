@@ -145,6 +145,28 @@ def getFinalContent(ltext: str, translations: dict[str, Any], subvalues3: dict[s
                     sub_sub_sub_cat = value6
                     translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
                 ltext += f'        <span class="attack-is-magic" style="padding-left: 6rem;" data-translate="{translate_string}">    {sub_sub_sub_cat}</span>\n'
+
+                for value7, subvalues7 in subvalues6.items():
+                    try:
+                        int(value7)
+                        sub_sub_sub_cat = addon_trans[value7]['Text_en']
+                        translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
+                        translations = add_to_translate_element(translations, translate_string, value7)
+                    except:
+                        sub_sub_sub_cat = value7
+                        translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
+                    ltext += f'        <span class="attack-is-magic" style="padding-left: 6rem;" data-translate="{translate_string}">    {sub_sub_sub_cat}</span>\n'
+
+                    for value8, subvalues8 in subvalues7.items():
+                        try:
+                            int(value8)
+                            sub_sub_sub_cat = addon_trans[value8]['Text_en']
+                            translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
+                            translations = add_to_translate_element(translations, translate_string, value8)
+                        except:
+                            sub_sub_sub_cat = value8
+                            translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
+                        ltext += f'        <span class="attack-is-magic" style="padding-left: 6rem;" data-translate="{translate_string}">    {sub_sub_sub_cat}</span>\n'
     return ltext, translations
 
 
