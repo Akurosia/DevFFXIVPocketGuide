@@ -155,7 +155,7 @@ def getFinalContent(ltext: str, translations: dict[str, Any], subvalues3: dict[s
                     except:
                         sub_sub_sub_cat = value7
                         translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
-                    ltext += f'        <span class="attack-is-magic" style="padding-left: 6rem;" data-translate="{translate_string}">    {sub_sub_sub_cat}</span>\n'
+                    ltext += f'        <span class="attack-is-magic" style="padding-left: 8rem;" data-translate="{translate_string}">    {sub_sub_sub_cat}</span>\n'
 
                     for value8, subvalues8 in subvalues7.items():
                         try:
@@ -166,7 +166,7 @@ def getFinalContent(ltext: str, translations: dict[str, Any], subvalues3: dict[s
                         except:
                             sub_sub_sub_cat = value8
                             translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
-                        ltext += f'        <span class="attack-is-magic" style="padding-left: 6rem;" data-translate="{translate_string}">    {sub_sub_sub_cat}</span>\n'
+                        ltext += f'        <span class="attack-is-magic" style="padding-left: 10rem;" data-translate="{translate_string}">    {sub_sub_sub_cat}</span>\n'
     return ltext, translations
 
 
