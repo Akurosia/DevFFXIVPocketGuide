@@ -24,7 +24,7 @@
     "Adds_Carvallain_Attack_Unknown_42A2": "Unknown_42A2",
     "Adds_Carvallain_Attack_Vengeance": "复仇",
     "Adds_Carvallain_Name": "卡尔瓦兰",
-    "Adds_Carvallain_Status_Rampart_Desc": "减轻所受到的伤害",
+    "Adds_Carvallain_Status_Rampart_Desc": "减轻所受到的伤害<If(GreaterThanOrEqualTo(PlayerParameter(72),94))><If(Equal(PlayerParameter(68),1))><br>自身所受的治疗效果提高<Else/><If(Equal(PlayerParameter(68),19))><br>自身所受的治疗效果提高<Else/><If(Equal(PlayerParameter(68),3))><br>自身所受的治疗效果提高<Else/><If(Equal(PlayerParameter(68),21))><br>自身所受的治疗效果提高<Else/><If(Equal(PlayerParameter(68),32))><br>自身所受的治疗效果提高<Else/><If(Equal(PlayerParameter(68),37))><br>自身所受的治疗效果提高<Else/><Else/>",
     "Adds_Carvallain_Status_Rampart_Name": "铁壁",
     "Adds_Carvallain_Status_Reprisal_Desc": "攻击所造成的伤害降低",
     "Adds_Carvallain_Status_Reprisal_Name": "雪仇",

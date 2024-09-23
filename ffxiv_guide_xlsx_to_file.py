@@ -161,7 +161,7 @@ def writeFileIfNoDifferent(filename: str, filedata: str, aku_write: bool = False
         except Exception:
             x_data = {}
         #res = all((x_data.get(k) == v for k, v in filedata.items()))
-        if not x_data == filedata:
+        if not x_data == filedata: # type: ignore
             writeJsonFile(filename, filedata)
             print(f"[MAIN:writeFileIfNoDifferent] Wrote new data to file {filename}")
     else:
