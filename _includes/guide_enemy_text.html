@@ -1,0 +1,19 @@
+<!-- Include from _includes/guide_enemy_text -->
+{%- for category in enemy.text -%}
+    <div class="guide__accordion-trigger--02-grid">
+        <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+        <div class="Names"><span class=""><span>{{ category[0] }}</span></span></div>
+    </div>
+    <div class="guide__accordion-content--02">
+        <div class="guide__accordion-copy-wrapper">
+            <!-- Standard Attacks -->
+            <div class="guide__text-notes-wrapper">
+                <h5 class="guide__attack-notes-title">Texte:</h5>
+                {%- for text in category[1] -%}
+                    <span class="guide__text_description">"<span data-translate="{{category[0]}}_{{text.id}}_Text">{{ text.text }}</span>" - ({{ text.id }})</span>
+                {%- endfor -%}
+            </div>
+        </div>
+    </div>
+{%- endfor -%}
+<!-- END Include from _includes/guide_enemy_text -->

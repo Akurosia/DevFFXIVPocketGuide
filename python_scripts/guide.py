@@ -483,7 +483,7 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
                 continue
             if text_ids == []:
                 continue
-            guide_data += f'       {cat}: \n'
+            guide_data += f'       {cat[:-4].title()}: \n'
             for _id in text_ids:
                 guide_data += f'        - id: "{_id}"\n'
                 guide_data += f'          text: "{getTextFromCatAndID(cat, _id, content_translations)}"\n'
@@ -497,20 +497,21 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
     return guide_data
 
 enemy_line_itterator: dict[str, Any] = {
-    "npcyell_ids": npcyell,
-    "instancecontenttextdata_ids": instancecontenttextdata,
-    "fateevent_ids": fateevent,
+    "Npcyell": npcyell,
+    "Instancecontenttextdata": instancecontenttextdata,
+    "Fateevent": fateevent,
 }
 def getTextFromCatAndID(cat: str, _id: str, content_translations: dict[str, Any]) -> str:
     global enemy_line_itterator
-    if cat != "fateevent_ids":
-        text: str = enemy_line_itterator[cat][_id]['Text_en'].replace("\n\n", " ").replace("\n", "")
+    n_cat = cat[:-4].title()
+    if n_cat != "Fateevent":
+        text: str = enemy_line_itterator[n_cat][_id]['Text_en'].replace("\n\n", " ").replace("\n", "")
         for lang in LANGUAGES:
-            content_translations[lang][f"{cat}_{_id}_Text"] = enemy_line_itterator[cat][_id][f'Text_{lang}'].replace("\n\n", " ").replace("\n", "")
+            content_translations[lang][f"{n_cat}_{_id}_Text"] = enemy_line_itterator[n_cat][_id][f'Text_{lang}'].replace("\n\n", " ").replace("\n", "")
     else:
-        text: str = enemy_line_itterator[cat][_id]['Text_0_en'].replace("\n\n", " ").replace("\n", "")
+        text: str = enemy_line_itterator[n_cat][_id]['Text_0_en'].replace("\n\n", " ").replace("\n", "")
         for lang in LANGUAGES:
-            content_translations[lang][f"{cat}_{_id}_Text"] = enemy_line_itterator[cat][_id][f'Text_0_{lang}'].replace("\n\n", " ").replace("\n", "")
+            content_translations[lang][f"{n_cat}_{_id}_Text"] = enemy_line_itterator[n_cat][_id][f'Text_0_{lang}'].replace("\n\n", " ").replace("\n", "")
     return text
 
 def check_Enemy(entry: ENTRY_DATA, enemy_type, logdata_instance_content, old_enemies, content_translations):

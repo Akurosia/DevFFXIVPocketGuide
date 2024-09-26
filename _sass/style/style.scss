@@ -1628,13 +1628,32 @@ body {
 }
 
 .guide__debuff_description {
+  display: block;
+  margin: 0.5rem 0 2rem;
+  padding: 0 0 0 1.2rem;
+  width: 100%;
+  color: white;
+  font-family: PT Serif,serif;
+  font-size: 1rem;
+}
+
+.guide__text_description {
     display: block;
-    margin: 0.5rem 0 2rem;
+    margin: 0.5rem 0 0.5rem;
     padding: 0 0 0 1.2rem;
     width: 100%;
     color: white;
     font-family: PT Serif,serif;
     font-size: 1rem;
+}
+
+.guide__text-notes-wrapper {
+  display: block;
+  width: 100%;
+
+  &:last-child .guide__attack-notes-list {
+    margin-bottom: 0;
+  }
 }
 
 .guide__content__wip {
