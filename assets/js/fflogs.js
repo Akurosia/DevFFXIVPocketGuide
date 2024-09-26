@@ -3,33 +3,33 @@ var result = {}
 var player_list = [];
 if (localStorage.getItem('fflogs_isAku')){
     player_list = [
-         ["Akurosia Kamo", "Shiva", "EU"],
-         ["---", "", ""],
-         ["Nana Mejyna", "Odin", "EU"],
-         ["Ieni Telara", "Odin", "EU"],
-         ["Loucid Dreaming", "Odin", "EU"],
-         ["Aegir Ragnaroek", "Raiden", "EU"],
-         ["Dragomir Xertuz", "Shiva", "EU"],
-         ["Shira Noyuki", "Shiva", "EU"],
-         ["Rhotgeim Igarashi", "Odin", "EU"],
-         ["---", "", ""],
-         ["Kamo Akurosia", "Shiva", "EU"],
-         ["Kuroyuki Hiragi", "Shiva", "EU"],
-         ["Patrobo Rendan", "Shiva", "EU"],
-         ["Nanami Bladefield", "Odin", "EU"],
-         ["Koko Hirai", "Shiva", "EU"],
-         ["Myosotis Black", "Shiva", "EU"],
-         ["Archangel Scarlett", "Phoenix", "EU"],
-         ["Shade Kazumori", "Shiva", "EU"],
-         ["---", "", ""],
-         ["Hans Yolo", "Shiva", "EU"],
-         ["Calis Asterion", "Lich", "EU"],
-         ["Nanoha Bladefield", "Odin", "EU"],
-         ["Asuna Bladefield", "Odin", "EU"],
+        ["Akurosia Kamo", "Shiva", "EU"],
+        ["---", "", ""],
+        ["Nana Mejyna", "Odin", "EU"],
+        ["Ieni Telara", "Odin", "EU"],
+        ["Loucid Dreaming", "Odin", "EU"],
+        ["Aegir Ragnaroek", "Raiden", "EU"],
+        ["Dragomir Xertuz", "Shiva", "EU"],
+        ["Shira Noyuki", "Shiva", "EU"],
+        ["Rhotgeim Igarashi", "Odin", "EU"],
+        ["---", "", ""],
+        ["Kamo Akurosia", "Shiva", "EU"],
+        ["Kuroyuki Hiragi", "Shiva", "EU"],
+        ["Patrobo Rendan", "Shiva", "EU"],
+        ["Nanami Bladefield", "Odin", "EU"],
+        ["Koko Hirai", "Shiva", "EU"],
+        ["Myosotis Black", "Shiva", "EU"],
+        ["Archangel Scarlett", "Phoenix", "EU"],
+        ["Shade Kazumori", "Shiva", "EU"],
+        ["---", "", ""],
+        ["Hans Yolo", "Shiva", "EU"],
+        ["Calis Asterion", "Lich", "EU"],
+        ["Nanoha Bladefield", "Odin", "EU"],
+        ["Asuna Bladefield", "Odin", "EU"],
 
 
-         //["Miyuki Mizu", "Twintania", "EU"],
-         //["Filianore Void", "Shiva", "EU"],
+        ["Miyuki Mizu", "Zodiark", "EU"],
+        ["Filianore Void", "Shiva", "EU"],
          //["---", "", ""],
          //["Celia Edenfall", "Twintania", "EU"],
          //["Emi Apyrha", "Odin", "EU"],
@@ -346,17 +346,17 @@ function addEntryToTable(state){
 async function getFFLOGSapiPlayerData(player = "", customTextblock = "", includeName = false, latestRaid = null, unrealId = null, latestPrimal = null, rerun = false) {
     access_key = localStorage.getItem('fflogs_token')
     if (access_key === undefined) {
-      access_key = getNewAccessKey();
+        access_key = getNewAccessKey();
     }
     // get ids by api https://www.fflogs.com:443/v1/zones?api_key={KEY} and looking for bossid e.g. 1071
     if (latestRaid === null) {
-      latestRaid = "62";
+        latestRaid = "62";
     }
     if (unrealId === null) {
-      unrealId = "46";
+        unrealId = "46";
     }
     if (latestPrimal === null) {
-      latestPrimal = "58";
+        latestPrimal = "58";
     }
 
     let query_player = "";
@@ -394,18 +394,18 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
     console.log(payload)
 
     const headers = {
-      'Authorization': `Bearer ${access_key}`,
-      "Origin": "*",
-      "Access-Control-Allow-Origin": "no-cors",
-      'Content-Type': 'application/json'
+        'Authorization': `Bearer ${access_key}`,
+        "Origin": "*",
+        "Access-Control-Allow-Origin": "no-cors",
+        'Content-Type': 'application/json'
     };
     const url = "https://www.fflogs.com/api/v2/client";
 
 
     const response = await fetch(url, {
-      method: "POST",
-      headers: headers,
-      body: payload
+        method: "POST",
+        headers: headers,
+        body: payload
     })
     let jsonData;
     try {
@@ -464,21 +464,21 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
 }
 
 async function getNewAccessKey(bearer) {
-  const url = "https://www.fflogs.com/oauth/token";
+    const url = "https://www.fflogs.com/oauth/token";
 
-  const payload = 'grant_type=client_credentials';
-  const headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Authorization': 'Basic ' + bearer
-  };
+    const payload = 'grant_type=client_credentials';
+    const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Basic ' + bearer
+    };
 
-  return await fetch(url, {
-    method: 'POST',
-    headers: headers,
-    body: payload
-  })
-  .then(response => response.json())
-  .then(data => data.access_token);
+    return await fetch(url, {
+        method: 'POST',
+        headers: headers,
+        body: payload
+    })
+    .then(response => response.json())
+    .then(data => data.access_token);
 }
 
 function setNewAccessToken() {
