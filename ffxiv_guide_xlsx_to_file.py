@@ -207,7 +207,7 @@ def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], or
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             if not True:
                 # if debug_row_number < 710 :
-                if debug_row_number not in [430]:
+                if debug_row_number not in [782]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(sheet, max_column, i, elements, orderedContent)
@@ -234,14 +234,10 @@ def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], or
                 existing_filename: str = f"{expansion}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
                 old_data = get_old_content_if_file_is_found(existing_filename)
                 #print_pretty_json(old_data)
-                # if old file was found, replace filename to save
                 if old_data != {}:
                     filename = existing_filename
-                    # logger.info(pretty_json(old_data))
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_data, content_translations)
-                # write translation file
-                # print_pretty_json(content_translations)
 
                 filename_translation_location: str = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '').replace('_', '-')}"
                 if not os.path.exists(filename_translation_location):
@@ -283,7 +279,7 @@ def main() -> None:
         ghm.run()
         ga.run()
         gbsq.run()
-    fcc.run(translations)
+        fcc.run(translations)
     create_translation_files()
     logger.critical('STOP')
 

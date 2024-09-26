@@ -861,7 +861,7 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
 
         if empty_enemy and not empty_enemy_available:
             if empty_enemy.get("attacks", None) or empty_enemy.get("debuffs", None):
-                guide_data += add_Enemy(empty_enemy, "bosse", new_enemy_data_c, content_translations)
+                guide_data += add_Enemy(empty_enemy, "bosse", {}, content_translations)
 
     return guide_data
 
