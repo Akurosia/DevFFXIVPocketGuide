@@ -186,7 +186,7 @@ function addLink(link, name){
     }
     a.target = "_blank"
     a.innerHTML = name
-    a.style = "color: blue !important"
+    a.style = "color: #2d59db !important"
     a.rel = "noopener noreferrer"
     return a
 }
@@ -201,7 +201,7 @@ function addUserNameStuff(iresult, name){
         td.appendChild(addFFLOGSID(iresult["fflogs_id"]))
     }
     td.appendChild(addLink(iresult["link"], name))
-    td.style = "color: blue !important; font-size: 20px; text-shadow: black 0px 0px;"
+    td.style = "color: #2d59db !important; font-size: 20px; text-shadow: black 0px 0px;"
     return td
 }
 
@@ -232,7 +232,7 @@ function printTable(data){
     x = document.getElementById("table")
     x.innerHTML = "";
     table = document.createElement("table")
-    table.className = "table table-striped table-dark table-hover bg-slate text-light border-gold-metallic";
+    table.className = "table table-bordered table-dark table-striped text-light table-hover";
     table.setAttribute("id", "table_fflogs");
     head = addThead(result)
     table.appendChild(head)
@@ -317,10 +317,10 @@ function colorize(td, value){
         td.style.color = "orange"
     //purple
     }else if ( 95 > value && value >= 75 ){
-        td.style.color = "purple"
+        td.style.color = "#d72dd7"
     //blue
     }else if ( 75 > value && value >= 50 ){
-        td.style.color = "blue"
+        td.style.color = "#2d59db"
     //green
     }else if ( 50 > value && value >= 25 ){
         td.style.color = "lightgreen"

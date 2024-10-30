@@ -22,11 +22,11 @@ function translate_getSearchCategories(){
 function set_files(list_of_files){
     _select = document.getElementById("filterValue");
     for (var category in list_of_files){
-      var _element = document.createElement('option');
-      var value = list_of_files[category].replace('_all', '')
-      _element.setAttribute("value", value);
-      _element.text = value;
-      _select.appendChild(_element);
+        var _element = document.createElement('option');
+        var value = list_of_files[category].replace('_all', '')
+        _element.setAttribute("value", value);
+        _element.text = value;
+        _select.appendChild(_element);
     }
     translate_loadFromLocalStorage();
 }
@@ -34,22 +34,22 @@ function set_files(list_of_files){
 // Execute a function when the user releases a key on the keyboard
 var input = document.getElementById("searchValue");
 input.addEventListener("keyup", function(event) {
-  event.preventDefault();
-  if (event.keyCode === 13) {
-    document.getElementById("submitbtn").click();
-  }
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("submitbtn").click();
+    }
 });
 
 //saves last used search criteria to localstorage
 function translate_SubmitToLocalStorage(){
-  var inp = document.getElementById("searchValue").value;
-  localStorage.setItem('translate_ffxiv_term', inp);
+    var inp = document.getElementById("searchValue").value;
+    localStorage.setItem('translate_ffxiv_term', inp);
 
-  var inp = document.getElementById("exactSearch").selectedIndex;
-  localStorage.setItem('translate_ffxiv_exact', inp);
+    var inp = document.getElementById("exactSearch").selectedIndex;
+    localStorage.setItem('translate_ffxiv_exact', inp);
 
-  var inp = document.getElementById("filterValue").value
-  localStorage.setItem('translate_ffxiv_filter', inp);
+    var inp = document.getElementById("filterValue").value
+    localStorage.setItem('translate_ffxiv_filter', inp);
 }
 
 
@@ -415,8 +415,8 @@ function collapsOrExpand(ele, state="none"){
 // Get the input field
 $(document).ready(function(){
     $('#searchValue').keypress(function(e){
-      if(e.keyCode==13)
-      $('#submit').click();
+        if(e.keyCode==13)
+        $('#submit').click();
     });
     window.dispatchEvent(new Event('resize'));
 });
@@ -452,9 +452,9 @@ function getRegEx(data) {
     try {
        return document.execCommand("copy");  // Security exception may be thrown by some browsers.
     } catch (ex) {
-       console.warn("Copy to clipboard failed.", ex);
-       return false;
+        console.warn("Copy to clipboard failed.", ex);
+        return false;
     } finally {
-       document.body.removeChild(textarea);
+        document.body.removeChild(textarea);
     }
 }
