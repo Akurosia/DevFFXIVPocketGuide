@@ -49,8 +49,8 @@ def get_submarine_information(page, data) -> None:
         locations = iterate_locator(page.locator('.tabbertab'))
         for loc in locations:
             loc_name = loc.get_attribute("title").strip()
-            if not loc_name == "The Lilac Sea (Lv. 105-)":
-                continue
+            #if not loc_name == "The Lilac Sea (Lv. 105-)":
+            #    continue
             print(loc_name)
             data[loc_name] = {}
             #loc.click()
@@ -142,7 +142,7 @@ with sync_playwright() as playwright:
     try:
         data = readJsonFile("data2.json") or { "Sea of Clouds": {} }
         #data = { "Sea of Clouds": {} }
-        #data = get_airship_information(page, data)
+        data = get_airship_information(page, data)
         data = get_submarine_information(page, data)
         data = fix_submarine(data)
         data = add_items(data)

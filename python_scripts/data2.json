@@ -5,7 +5,6 @@
             "exp": "292,170",
             "items": [
                 "Combed Wool Rug",
-                "Crystal Boule",
                 "Dead Man's Chest",
                 "Plundered Treasure",
                 "Salvaged Earring",
@@ -87,7 +86,6 @@
             "exp": "338,330",
             "items": [
                 "Aetherochemical Fiber",
-                "Cassia Log",
                 "Empty Crystal",
                 "Synthetic Resin"
             ],
@@ -100,7 +98,6 @@
             "exp": "374,020",
             "items": [
                 "Balsa Wood Lumber",
-                "Cassia Log",
                 "Aetherochemical Fiber",
                 "Abroader Otter"
             ],
@@ -115,7 +112,6 @@
                 "Aetherochemical Fiber",
                 "Kamacite Ore",
                 "Synthetic Resin",
-                "Marine Wax Ester",
                 "Faded Copy of Ambient Abyss"
             ],
             "link": "/wiki/Flickering_Dip",
@@ -151,7 +147,7 @@
             "exp": "231,750",
             "items": [
                 "Balsa Wood Lumber",
-                "Synthetic Fiber",
+                "Red Moko Grass",
                 "Synthetic Resin",
                 "Chemically Treated Chimera Hide",
                 "Cassia Log",
@@ -179,7 +175,6 @@
             "alias": "H",
             "exp": "102,600",
             "items": [
-                "Empty Crystal",
                 "Bamboo Weave",
                 "Red Clay",
                 "Balsa Wood Scrap"
@@ -192,7 +187,6 @@
             "alias": "T",
             "exp": "338,330",
             "items": [
-                "Raw Celestine",
                 "Vivianite",
                 "Dinosaur Fossil",
                 "Aurelia Polyp"
@@ -374,7 +368,6 @@
             "exp": "440,990",
             "items": [
                 "Plundered Treasure",
-                "Dead Man's Chest",
                 "Salvaged Coinage",
                 "Extravagant Salvaged Bracelet",
                 "Extravagant Salvaged Earring",
@@ -413,6 +406,7 @@
                 "Undersea Spoils",
                 "Extravagant Salvaged Ring",
                 "Extravagant Salvaged Bracelet",
+                "Extravagant Salvaged Earring",
                 "Extravagant Salvaged Necklace"
             ],
             "link": "/wiki/Ascetic%27s_Demise",
@@ -423,7 +417,6 @@
             "alias": "N",
             "exp": "645,590",
             "items": [
-                "Meerkat",
                 "Cryptomeria Log",
                 "Cocobolo Lumber"
             ],
@@ -461,7 +454,6 @@
             "exp": "480,270",
             "items": [
                 "Bamboo Weave",
-                "Black Clay",
                 "Pure Titanium Ore",
                 "Red Clay"
             ],
@@ -485,7 +477,6 @@
             "alias": "F",
             "exp": "522,300",
             "items": [
-                "Cocobolo Lumber",
                 "Cassia Log",
                 "Abroader Otter"
             ],
@@ -551,10 +542,10 @@
             "exp": "730,428",
             "items": [
                 "Cerulean Crystal Boule",
-                "Colossus Slab",
                 "Golden Ewer",
                 "Balsa Wood Scrap",
                 "Cocobolo Lumber",
+                "Synthetic Fiber",
                 "Synthetic Resin"
             ],
             "link": "/wiki/The_Blue_Hole",
@@ -580,7 +571,6 @@
                 "Cryptomeria Log",
                 "Kamacite Ore",
                 "Pure Titanium Ore",
-                "Vivianite",
                 "Sharksucker-class Insubmersible",
                 "Cerulean Crystal Boule"
             ],
@@ -617,6 +607,7 @@
             "items": [
                 "Cryptomeria Log",
                 "Cocobolo Lumber",
+                "Silver Dasher",
                 "Meerkat",
                 "Emerald Crystal Boule"
             ],
@@ -641,7 +632,6 @@
             "alias": "E",
             "exp": "522,300",
             "items": [
-                "Vivianite",
                 "Crimson Coral",
                 "Marine Wax Ester",
                 "Sharksucker-class Insubmersible"
@@ -738,7 +728,6 @@
             "exp": "146210",
             "items": [
                 "Balsa Wood Lumber",
-                "Raw Celestine",
                 "Iron Giant Core"
             ],
             "link": "/wiki/Sea_of_Clouds_-_Sector_08",
@@ -750,7 +739,8 @@
             "items": [
                 "Balsa Wood Lumber",
                 "Raw Celestine",
-                "Toy Box Schema"
+                "Toy Box Schema",
+                "Copper Voyage Spoil"
             ],
             "link": "/wiki/Sea_of_Clouds_-_Sector_09",
             "lvl": "24",
@@ -760,7 +750,6 @@
             "exp": "200430",
             "items": [
                 "Black Clay",
-                "Raw Celestine",
                 "Potters Stone"
             ],
             "link": "/wiki/Sea_of_Clouds_-_Sector_10",
@@ -780,8 +769,7 @@
         "Sea of Clouds - Sector 12": {
             "exp": "263530",
             "items": [
-                "Chemically Treated Chimera Hide",
-                "Synthetic Fiber"
+                "Chemically Treated Chimera Hide"
             ],
             "link": "/wiki/Sea_of_Clouds_-_Sector_12",
             "lvl": "34",
@@ -790,7 +778,6 @@
         "Sea of Clouds - Sector 13": {
             "exp": "292170",
             "items": [
-                "Chemically Treated Chimera Hide",
                 "Synthetic Resin",
                 "Dravanian Mote"
             ],
@@ -811,15 +798,14 @@
             "unlocked_by": "Sea of Clouds - Sector 11"
         },
         "Sea of Clouds - Sector 15": {
-            "exp": "406590",
+            "exp": "374020",
             "items": [
                 "Aetherochemical Fiber",
-                "Cassia Log",
                 "Dinosaur Fossil"
             ],
             "link": "/wiki/Sea_of_Clouds_-_Sector_15",
             "lvl": "44",
-            "unlocked_by": "Sea of Clouds - Sector 12"
+            "unlocked_by": "Sea of Clouds - Sector 13"
         },
         "Sea of Clouds - Sector 16": {
             "exp": "406590",
@@ -900,7 +886,7 @@
         "Sea of Clouds - Sector 23": {
             "exp": "0",
             "items": [
-                "Bear Fat",
+                "Cassia Log",
                 "Faded Copy of A World Apart"
             ],
             "link": "/wiki/Sea_of_Clouds_-_Sector_23",
@@ -910,6 +896,7 @@
         "Sea of Clouds - Sector 24": {
             "exp": "0",
             "items": [
+                "Cassia Log",
                 "Iron Voyage Spoil",
                 "Cloudsbreath Seeds"
             ],
@@ -924,7 +911,7 @@
             "exp": "1,057,886",
             "items": [
                 "Parkside Tree",
-                "Plum Paper Parasol"
+                "Meerkat"
             ],
             "link": "/wiki/Bladefall_Chasm",
             "lvl": "85",
@@ -935,7 +922,6 @@
             "exp": "847,076",
             "items": [
                 "Pure Titanium Ore",
-                "Cocobolo Lumber",
                 "Nemesis Orchestrion Roll"
             ],
             "link": "/wiki/Moergynn%27s_Forge",
@@ -974,6 +960,7 @@
             "exp": "730,428",
             "items": [
                 "Aurelia Polyp",
+                "Antique Vessels",
                 "Balsa Wood Scrap",
                 "Black Clay",
                 "Pelagic Clay"
@@ -1011,8 +998,7 @@
             "exp": "826,415",
             "items": [
                 "Syldrion-class Insubmersible",
-                "Sintered Whetstone",
-                "Pelagic Clay"
+                "Sintered Whetstone"
             ],
             "link": "/wiki/Sea_of_Jade_4",
             "lvl": "80",
@@ -1023,7 +1009,7 @@
             "exp": "1,006,910",
             "items": [
                 "Royal Lion",
-                "Golden Crystal Boule"
+                "By Design Orchestrion Roll"
             ],
             "link": "/wiki/Sea_of_Jade_5",
             "lvl": "83",
@@ -1034,8 +1020,7 @@
             "exp": "1,167,711",
             "items": [
                 "Portrait of Gestahl",
-                "Nemesis Orchestrion Roll",
-                "Hard to Miss Orchestrion Roll"
+                "Nemesis Orchestrion Roll"
             ],
             "link": "/wiki/Sea_of_Jade_6",
             "lvl": "89",
@@ -1046,8 +1031,7 @@
             "exp": "1,111,443",
             "items": [
                 "Ancient Bone",
-                "Cryptomeria Log",
-                "Pelagic Clay"
+                "Cryptomeria Log"
             ],
             "link": "/wiki/Stormport",
             "lvl": "87",
@@ -1094,8 +1078,7 @@
             "exp": "1,196,904",
             "items": [
                 "Benben Stone",
-                "Tankard",
-                "Silver Dasher"
+                "Tankard"
             ],
             "link": "/wiki/The_Devil%27s_Crypt",
             "lvl": "90",
@@ -1106,7 +1089,7 @@
             "exp": "958,391",
             "items": [
                 "Rusted Suit of Armor",
-                "Pelagic Clay"
+                "Pure Titanium Ore"
             ],
             "link": "/wiki/The_Forest_of_Kelp",
             "lvl": "81",
@@ -1129,6 +1112,7 @@
             "exp": "730,428",
             "items": [
                 "Colossus Slab",
+                "Sintered Whetstone",
                 "Pelagic Clay"
             ],
             "link": "/wiki/The_Kraken%27s_Tomb",
@@ -1153,8 +1137,7 @@
             "exp": "1,139,230",
             "items": [
                 "Syldrion-class Insubmersible",
-                "Damaged Icebox",
-                "Antique Sink"
+                "Damaged Icebox"
             ],
             "link": "/wiki/Wyrm%27s_Rest",
             "lvl": "88",
@@ -1167,6 +1150,7 @@
             "exp": "1,926,724",
             "items": [
                 "False Classic Spectacles",
+                "Gemseeker's Pack",
                 "Cocobolo Lumber"
             ],
             "link": "/wiki/Anthemoessa",
@@ -1200,8 +1184,8 @@
             "exp": "4,687,564",
             "items": [
                 "White Granite",
-                "Blue Blossom Parasol",
-                "False Classic Spectacles"
+                "Charcoal Iron",
+                "Blue Blossom Parasol"
             ],
             "link": "/wiki/Drifter%27s_Decay",
             "lvl": "101",
@@ -1212,6 +1196,7 @@
             "exp": "4,687,564",
             "items": [
                 "Weatherproof Cloth",
+                "Weathered Pipe",
                 "Classical Water Jug"
             ],
             "link": "/wiki/Lugat%27s_Landing",
@@ -1257,6 +1242,7 @@
             "exp": "3,653,174",
             "items": [
                 "Damaged Icebox",
+                "Flagstone Steps",
                 "Syldrion-class Insubmersible"
             ],
             "link": "/wiki/Seafoam_Tide",
@@ -1267,7 +1253,6 @@
             "alias": "B",
             "exp": "1,751,567",
             "items": [
-                "Damaged Icebox",
                 "Pelagic Clay"
             ],
             "link": "/wiki/Sirensong_Sea_1",
@@ -1279,6 +1264,7 @@
             "exp": "1,751,567",
             "items": [
                 "Driftseeds",
+                "Silver Dasher",
                 "Cocobolo Lumber"
             ],
             "link": "/wiki/Sirensong_Sea_2",
@@ -1290,7 +1276,6 @@
             "exp": "3,074,802",
             "items": [
                 "Sharksucker-class Insubmersible",
-                "By Design Orchestrion Roll",
                 "Weatherproof Cloth"
             ],
             "link": "/wiki/Sirensong_Sea_3",
@@ -1301,7 +1286,6 @@
             "alias": "J",
             "exp": "3,351,535",
             "items": [
-                "Deep-sea Marble",
                 "Golden Crystal Boule",
                 "Weathered Pipe"
             ],
@@ -1314,6 +1298,7 @@
             "exp": "5,467,576",
             "items": [
                 "Damaged Highland Turret",
+                "Flagstone Loft",
                 "Ominous Plating"
             ],
             "link": "/wiki/Sirensong_Sea_5",
@@ -1335,8 +1320,7 @@
             "exp": "3,981,960",
             "items": [
                 "Driftseeds",
-                "Flagstone Loft",
-                "Basaltic Clay"
+                "Flagstone Loft"
             ],
             "link": "/wiki/The_Beak",
             "lvl": "99",
@@ -1347,7 +1331,7 @@
             "exp": "6,377,382",
             "items": [
                 "Dreams Aloft Orchestrion Roll",
-                "Basaltic Clay"
+                "Ancient Bone"
             ],
             "link": "/wiki/The_Crystal_Font",
             "lvl": "105",
@@ -1384,6 +1368,7 @@
             "exp": "5,904,983",
             "items": [
                 "Damaged Icebox",
+                "Deep-sea Marble",
                 "Enigmatic Gear"
             ],
             "link": "/wiki/Tidewind_Isle",
@@ -1391,7 +1376,49 @@
             "unlocked_by": "Lugat's Landing"
         }
     },
-    "The Lilac Sea (Lv. 105-)": {
+    "South Indigo Deep (Lv. 120-)": {
+        "North Delphinium Seashelf": {
+            "alias": "C",
+            "exp": "9,236,357",
+            "items": [],
+            "link": "/wiki/North_Delphinium_Seashelf",
+            "lvl": "120",
+            "unlocked_by": "The Indigo Shallows"
+        },
+        "Rainbringer Rift": {
+            "alias": "D",
+            "exp": "9,467,266",
+            "items": [],
+            "link": "/wiki/Rainbringer_Rift",
+            "lvl": "121",
+            "unlocked_by": "Voyagers' Reprieve"
+        },
+        "South Indigo Deep 1": {
+            "alias": "E",
+            "exp": "9,703,948",
+            "items": [],
+            "link": "/wiki/South_Indigo_Deep_1",
+            "lvl": "122",
+            "unlocked_by": "North Delphinium Seashelf"
+        },
+        "The Indigo Shallows": {
+            "alias": "A",
+            "exp": "9,236,357",
+            "items": [],
+            "link": "/wiki/The_Indigo_Shallows",
+            "lvl": "120",
+            "unlocked_by": "West Dodie's Abyss"
+        },
+        "Voyagers' Reprieve": {
+            "alias": "B",
+            "exp": "9,236,357",
+            "items": [],
+            "link": "/wiki/Voyagers%27_Reprieve",
+            "lvl": "120",
+            "unlocked_by": "The Indigo Shallows"
+        }
+    },
+    "The Lilac Sea (Lv. 105-120)": {
         "Bellflower Flood": {
             "alias": "F",
             "exp": "6,867,744",

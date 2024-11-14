@@ -38,7 +38,8 @@ locations_translator = {
     "Sea of Ash (Lv. 50-70)": "Verbranntes Meer",
     "Sea of Jade (Lv. 70-90)": "Jademeer",
     "Sirensong Sea (Lv. 90-105)": "Sirenen-See",
-    "The Lilac Sea (Lv. 105-)": "Das Fliedermeer"
+    "The Lilac Sea (Lv. 105-120)": "Das Fliedermeer",
+    "South Indigo Deep (Lv. 120-)": "Südlicher Indigo-Ozean"
 }
 
 def get_translated_unlocks(asd, search):

@@ -205,7 +205,7 @@ def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], or
         try:
             debug_row_number = i
             # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
-            if True:
+            if not True:
                 # if debug_row_number < 710 :
                 if debug_row_number not in [771]:
                     print_debug = True
