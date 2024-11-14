@@ -61,13 +61,13 @@ figths = {
     96: ["R4S"],
     //92: ["P12S_P2"],
 
-    //3009: ["Thordan"],
-    1071: ["Valigarmanda"],
-    1072: ["Zoraal Ja"],
-    //1073: ["Ewige Königin"],
+    3009: ["Byakko"],
+    //1071: ["Valigarmanda"],
+    //1072: ["Zoraal Ja"],
+    1078: ["Ewige Königin"],
 }
 
-fight_ids = [1060,1061,1062,1065,1068,93,94,95,96,1071,1072]
+fight_ids = [1060,1061,1062,1065,1068,93,94,95,96,1078,3009]
 
 function fixIDs(_id) {
     if (["1039", "1047", "1060", "1073"].includes(_id)) { // 1039=SB 1047=SHB 1060=EW   FIX OLD UCoB
@@ -297,6 +297,9 @@ function addRow(tr, result, name, encounterID){
     td = document.createElement("td")
     console.log(result[name][encounterID])
     console.log(encounterID)
+    if (result[name][encounterID] === undefined) {
+        result[name][encounterID] = { 'historical': -1 }
+    }
     if (parseInt(result[name][encounterID]['historical']) !== -1) {
         td.innerHTML = addJobImage(result[name][encounterID]['job']) + parseInt(result[name][encounterID]['historical'])
     }
@@ -354,7 +357,7 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
         latestRaid = "62";
     }
     if (unrealId === null) {
-        unrealId = "46";
+        unrealId = "64";
     }
     if (latestPrimal === null) {
         latestPrimal = "58";
