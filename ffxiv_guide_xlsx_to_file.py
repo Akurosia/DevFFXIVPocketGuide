@@ -163,7 +163,7 @@ def writeFileIfNoDifferent(filename: str, filedata: str, aku_write: bool = False
         #res = all((x_data.get(k) == v for k, v in filedata.items()))
         if not x_data == filedata: # type: ignore
             writeJsonFile(filename, filedata)
-            print(f"[MAIN:writeFileIfNoDifferent] Wrote new data to file {filename}")
+            print_color_green(f"[MAIN:writeFileIfNoDifferent] Wrote new data to file {filename}")
     else:
         try:
             with open(filename, "r", encoding="utf8") as f:
@@ -173,7 +173,7 @@ def writeFileIfNoDifferent(filename: str, filedata: str, aku_write: bool = False
         if not filedata == x_data:
             with open(filename, "w", encoding="utf8") as fi:
                 fi.write(filedata)
-            print(f"[MAIN:writeFileIfNoDifferent] Wrote new data to file {filename}")
+            print_color_green(f"[MAIN:writeFileIfNoDifferent] Wrote new data to file {filename}")
 
 
 def write_content_to_file(entry: dict[str, Any], filename: str, old_data: dict[str, Any], content_translations: dict[str, Any] ) -> None:
