@@ -728,6 +728,7 @@
             "exp": "146210",
             "items": [
                 "Balsa Wood Lumber",
+                "Raw Celestine",
                 "Iron Giant Core"
             ],
             "link": "/wiki/Sea_of_Clouds_-_Sector_08",
@@ -750,6 +751,7 @@
             "exp": "200430",
             "items": [
                 "Black Clay",
+                "Raw Celestine",
                 "Potters Stone"
             ],
             "link": "/wiki/Sea_of_Clouds_-_Sector_10",
@@ -769,7 +771,8 @@
         "Sea of Clouds - Sector 12": {
             "exp": "263530",
             "items": [
-                "Chemically Treated Chimera Hide"
+                "Chemically Treated Chimera Hide",
+                "Synthetic Fiber"
             ],
             "link": "/wiki/Sea_of_Clouds_-_Sector_12",
             "lvl": "34",
@@ -778,6 +781,7 @@
         "Sea of Clouds - Sector 13": {
             "exp": "292170",
             "items": [
+                "Chemically Treated Chimera Hide",
                 "Synthetic Resin",
                 "Dravanian Mote"
             ],
@@ -801,6 +805,7 @@
             "exp": "374020",
             "items": [
                 "Aetherochemical Fiber",
+                "Cassia Log",
                 "Dinosaur Fossil"
             ],
             "link": "/wiki/Sea_of_Clouds_-_Sector_15",
@@ -1380,7 +1385,11 @@
         "North Delphinium Seashelf": {
             "alias": "C",
             "exp": "9,236,357",
-            "items": [],
+            "items": [
+                "Wall-climbing Ivy",
+                "Stuffed Punutiy",
+                "Toco Toquito"
+            ],
             "link": "/wiki/North_Delphinium_Seashelf",
             "lvl": "120",
             "unlocked_by": "The Indigo Shallows"
@@ -1388,7 +1397,11 @@
         "Rainbringer Rift": {
             "alias": "D",
             "exp": "9,467,266",
-            "items": [],
+            "items": [
+                "Subterranean Drop Orchestrion Roll",
+                "Damaged Icebox",
+                "Laboratory Counter"
+            ],
             "link": "/wiki/Rainbringer_Rift",
             "lvl": "121",
             "unlocked_by": "Voyagers' Reprieve"
@@ -1396,15 +1409,41 @@
         "South Indigo Deep 1": {
             "alias": "E",
             "exp": "9,703,948",
-            "items": [],
+            "items": [
+                "Tankard",
+                "Tinkerer's Treasure Trove Orchestrion Roll",
+                "Weathered Porthole"
+            ],
             "link": "/wiki/South_Indigo_Deep_1",
             "lvl": "122",
             "unlocked_by": "North Delphinium Seashelf"
         },
+        "South Indigo Deep 2": {
+            "alias": "G",
+            "exp": "",
+            "items": [],
+            "link": "/wiki/South_Indigo_Deep_2",
+            "lvl": "125",
+            "unlocked_by": "North Delphinium Seashelf"
+        },
+        "The Central Blue": {
+            "alias": "F",
+            "exp": "",
+            "items": [],
+            "link": "/wiki/The_Central_Blue",
+            "lvl": "123",
+            "unlocked_by": "Voyagers' Reprieve"
+        },
         "The Indigo Shallows": {
             "alias": "A",
             "exp": "9,236,357",
-            "items": [],
+            "items": [
+                "Royal Maple Syrup",
+                "Turali Corn Oil",
+                "The Faces We Wear - Classic Spectacles",
+                "Fluffy-wuffy Stuffed Drippy",
+                "Nature's Bounty Orchestrion Roll"
+            ],
             "link": "/wiki/The_Indigo_Shallows",
             "lvl": "120",
             "unlocked_by": "West Dodie's Abyss"
@@ -1412,7 +1451,11 @@
         "Voyagers' Reprieve": {
             "alias": "B",
             "exp": "9,236,357",
-            "items": [],
+            "items": [
+                "Blue Blossom Parasol",
+                "Bluecap Mushroom Lamp",
+                "Aromatic Wood Strips"
+            ],
             "link": "/wiki/Voyagers%27_Reprieve",
             "lvl": "120",
             "unlocked_by": "The Indigo Shallows"

@@ -35,7 +35,7 @@ def write_class_translation_data(data):
         klass_translations[lang] = writeJsonFile(f'assets/translations/housing_missions/{LANGUAGES_MAPPING[lang]}.json', data[lang])
 
 
-locations_translator = {
+locations_translator: dict[str, str] = {
     "Sea of Clouds": "Wolkenmeer",
     "Deep-sea Site (Lv. 1-50)":"Tiefsee",
     "Sea of Ash (Lv. 50-70)": "Verbranntes Meer",

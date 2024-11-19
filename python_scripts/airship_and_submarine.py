@@ -49,7 +49,7 @@ def get_submarine_information(page, data) -> None:
         locations = iterate_locator(page.locator('.tabbertab'))
         for loc in locations:
             loc_name = loc.get_attribute("title").strip()
-            #if not loc_name == "The Lilac Sea (Lv. 105-)":
+            #if not loc_name == "South Indigo Deep (Lv. 120-)":
             #    continue
             print(loc_name)
             data[loc_name] = {}

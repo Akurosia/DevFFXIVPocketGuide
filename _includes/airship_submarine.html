@@ -1,6 +1,6 @@
 <!-- Include from _includes/airship_submarine -->
 <div class="index">
-    {%- assign my_array = "Lilac Sea,Sirensong Sea,Sea of Jade,Sea of Ash,Deep-sea Site,Sea of Clouds" | split: ',' -%}
+    {%- assign my_array = site.ffxiv_housingstops | split: ',' -%}
     {%- for x in my_array -%}
         <div class="index-divider" data-expansion="{{ x }}">
             {%- for location in page.locations reversed -%}
