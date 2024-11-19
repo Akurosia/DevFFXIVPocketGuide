@@ -7,7 +7,10 @@ submarineexploration_trans = loadDataTheQuickestWay("submarineexploration_all.js
 submarinemap_trans = loadDataTheQuickestWay("submarinemap_all.json", translate=True)
 #data = readJsonFile(r"T:\var\www\ffxiv\front\housing_missions\data2.json")
 print(os.getcwd())
-data = readJsonFile(r"python_scripts/data2.json")
+try:
+    data = readJsonFile(r"python_scripts/data2.json")
+except:
+    data = readJsonFile(r"data2.json")
 
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
 LANGUAGES_MAPPING = {
