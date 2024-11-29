@@ -111,6 +111,9 @@ def writeTags(header_data: str, entry: EntryType, tt_type_name: str|dict[str, st
     elif entry["categories"] == "ew":
         header_data += "  - term: \"Endwalker\"\n"
         header_data += "  - term: \"EW\"\n"
+    elif entry["categories"] == "dt":
+        header_data += "  - term: \"Dawntrail\"\n"
+        header_data += "  - term: \"DT\"\n"
     else:
         pass
 
@@ -309,8 +312,8 @@ def get_cat_image(instancetype, cfc_key):
     global cat_to_instance_image
     global contentfindercondition
     # this case handels latest primals and savage content as they are always classified as hardcore content
-    if contentfindercondition.get(cfc_key, {}).get("HighEndDuty", None) == "True":
-        return cat_to_instance_image['ultimate']
+    #if contentfindercondition.get(cfc_key, {}).get("HighEndDuty", None) == "True":
+    #    return cat_to_instance_image['ultimate']
     return cat_to_instance_image.get(instancetype, None)
 
 
