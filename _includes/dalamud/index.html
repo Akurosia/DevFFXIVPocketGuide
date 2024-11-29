@@ -12,7 +12,7 @@
                             {%- endif -%}
                         {%- endfor -%}
                         <div class="index-item__background"
-                                style="background-color: {%- if guide.DalamudApiLevel < 10 -%} red; {%- elsif official == true -%} green; {%- else -%} yellow; {%- endif -%}">
+                                style="background-color: {%- if guide.DalamudApiLevel < 11 -%} red; {%- elsif official == true -%} green; {%- else -%} yellow; {%- endif -%}">
                         </div>
                         <h3 class="index-item__title"
                             data-terms="{%- for tag in guide.tags -%}tag:{{ tag.tag }}&#32;{%- endfor -%}
