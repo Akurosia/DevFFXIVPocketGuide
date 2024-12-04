@@ -60,7 +60,8 @@ def add_element(col_k: str, col_id: str, row: str, r: dict[str, list[str]]) -> t
     r[id_to_gear[col_k]] = [i_name, i_icon]
     for lang in LANGUAGES:
         klass_translations[lang][f"Set_Item_{col_id}"] = items[col_id][f'Name_{lang}']
-    row += f"<td id='{i_name}' onclick='myFunction(this)'><span data-translate='Set_Item_{col_id}'>{i_name}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='https://xivapi.com/i/{i_icon}' alt='{i_name}'></td>\n"
+    href = f'<a data-translate="Set_Item_{col_id}" target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#item/{col_id}">{i_name}</a>'
+    row += f"<td id='{i_name}' onclick='myFunction(this)'><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='https://xivapi.com/i/{i_icon}' alt='{i_name}'></td>\n"
     return row, r
 
 def run():
@@ -86,7 +87,8 @@ def run():
                 for lang in LANGUAGES:
                     klass_translations[lang][f"Set_{setid}"] = items[setid][f'Name_{lang}']
                 row = "<tr>\n"
-                row += f"<td id='{name}' onclick='myFunction(this)' ><span data-translate='Set_{setid}'>{name}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='https://xivapi.com/i/{icon}' alt='{name}'></td>\n"
+                href = f'<a data-translate="Set_{setid}" target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#item/{setid}">{name}</a>'
+                row += f"<td id='{name}' onclick='myFunction(this)' ><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='https://xivapi.com/i/{icon}' alt='{name}'></td>\n"
                 r = {}
                 for col_k, col_id in mssi[setid].items():
                     if col_k in ["col_0", "col_1", "col_10"]:
