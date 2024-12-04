@@ -23,6 +23,7 @@ import python_scripts.generateHousingMissions as ghm
 import python_scripts.get_achivments as ga
 import python_scripts.getBlueSideQuestData as gbsq
 import python_scripts.FFXIV_Charachter_Config as fcc
+import python_scripts.get_item_sets as gis
 
 logger: Logger = getLogger(50)
 disable_green_print: bool = True
@@ -268,18 +269,19 @@ def main() -> None:
     orderedContent: dict[str, str] = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
     #logger.debug(orderedContent)
     try:
-        #run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
+        run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
         csgf.run()
-        #gl.run()
+        gl.run()
         gp.run()
         ghm.run()
         ga.run()
         gbsq.run()
         fcc.run(translations)
+        gis.run()
     create_translation_files()
     logger.critical('STOP')
 

@@ -88,6 +88,13 @@
                             <span data-translate=" Navbar_settings">settings</span>
                         </a>
                     </li>
+                    <li>
+                        <a target="" {%- if page.page_category=="itemsets" -%}class="active" {%- endif -%}
+                            href='{{ "/itemsets/" | prepend: site.baseurl }}' title="See itemsets">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.png" }}'">
+                            <span data-translate=" Navbar_itemsets">itemsets</span>
+                        </a>
+                    </li>
                 </ul>
                 <li style="cursor: pointer;"><span><span>&#9660;</span> Instance Content</span></li>
                 <ul style="display: inherit;">
