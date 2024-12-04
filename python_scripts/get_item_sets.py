@@ -74,7 +74,7 @@ def run():
     #html += '<head><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> </head>'
     #html += "<body>\n"
     html = "<table class='table table-bordered table-dark table-striped text-light patch_table'>\n"
-    html += "<thead> <tr> <th>Set</th> <th>Kopf</th>  <th>Body</th>  <th>Hände</th>  <th>Hose</th>  <th>Schuhe</th>  <th>Ohrringe</th>  <th>Halskette</th>  <th>Armreif</th>  <th>Ring</th>  </tr> </thead>\n"
+    html += "<thead> <tr> <th>Set</th> <th>Kopf</th>  <th>Body</th>  <th>Hände</th>  <th>Hose</th>  <th>Schuhe</th>  <th>Ohrringe</th>  <th>Halskette</th>  <th>Armreif</th>  <th>Ring</th> <th>GetFrom</th>  </tr> </thead>\n"
     html += "<tbody>\n"
     result: dict[str, str] = {}
     for key, value in mssil.items():
@@ -93,6 +93,7 @@ def run():
                         continue
                     row, r = add_element(col_k, col_id, row, r)
                 row, r = add_element("col_10", mssi[setid]["col_10"], row, r)
+                row += "<td></td>\n"
                 row += "</tr>\n"
                 if not result.get(name, None):
                     result[name] = row
