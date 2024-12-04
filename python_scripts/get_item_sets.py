@@ -30,7 +30,7 @@ def write_class_translation_data(data):
 def getImage(image: str|None, _type: str="icon") -> str:
     if image is None or image == "":
         return ""
-    image = image.replace(".tex", "_hr1.png")
+    image = image.replace(".png", "_hr1.png")
     if _type == "icon":
         image = image.replace(f"ui/{_type}/", "")
     return image
@@ -125,5 +125,4 @@ def run():
         f.write(html)
 
 if __name__ == "__main__":
-    os.chdir("..")
     run()
