@@ -87,7 +87,7 @@
     "Adds_Kelmomo_Status_Convalescence_Name": "재활",
     "Adds_Kelmomo_Status_Defiance_Desc": "자신을 향한 적의 적개심이 상승하는 상태.",
     "Adds_Kelmomo_Status_Defiance_Name": "수비 태세",
-    "Adds_Kelmomo_Status_Rampart_Desc": "받는 피해량이 감소하는 상태.",
+    "Adds_Kelmomo_Status_Rampart_Desc": "받는 피해량이 감소<If(Equal(PlayerParameter(68),1))>하고, 자신이 받는 HP 회복 효과가 증가하는 상태.<Else/>하는 상태.",
     "Adds_Kelmomo_Status_Rampart_Name": "철벽 방어",
     "Adds_Kelmomo_Status_Reprisal_Desc": "주는 피해량이 감소하는 상태.",
     "Adds_Kelmomo_Status_Reprisal_Name": "앙갚음",

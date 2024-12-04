@@ -100,7 +100,7 @@
     "Adds_Varshahn_Name": "바르샨",
     "Adds_Varshahn_Status_Limit Breaker_Desc": "리미트 브레이크를 발동한 상태.",
     "Adds_Varshahn_Status_Limit Breaker_Name": "리미트 브레이크",
-    "Adds_Varshahn_Status_Rampart_Desc": "받는 피해량이 감소하는 상태.",
+    "Adds_Varshahn_Status_Rampart_Desc": "받는 피해량이 감소<If(Equal(PlayerParameter(68),1))>하고, 자신이 받는 HP 회복 효과가 증가하는 상태.<Else/>하는 상태.",
     "Adds_Varshahn_Status_Rampart_Name": "철벽 방어",
     "Adds_Varshahn_Status_Reprisal_Desc": "주는 피해량이 감소하는 상태.",
     "Adds_Varshahn_Status_Reprisal_Name": "앙갚음",

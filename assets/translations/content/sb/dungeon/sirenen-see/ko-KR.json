@@ -24,7 +24,7 @@
     "Adds_Carvallain_Attack_Unknown_42A2": "Unknown_42A2",
     "Adds_Carvallain_Attack_Vengeance": "보복",
     "Adds_Carvallain_Name": "카르발랭",
-    "Adds_Carvallain_Status_Rampart_Desc": "받는 피해량이 감소하는 상태.",
+    "Adds_Carvallain_Status_Rampart_Desc": "받는 피해량이 감소<If(Equal(PlayerParameter(68),1))>하고, 자신이 받는 HP 회복 효과가 증가하는 상태.<Else/>하는 상태.",
     "Adds_Carvallain_Status_Rampart_Name": "철벽 방어",
     "Adds_Carvallain_Status_Reprisal_Desc": "주는 피해량이 감소하는 상태.",
     "Adds_Carvallain_Status_Reprisal_Name": "앙갚음",

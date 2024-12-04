@@ -84,7 +84,7 @@
     "Adds_Resistance Fighter_Attack_Unknown_42A2": "Unknown_42A2",
     "Adds_Resistance Fighter_Attack_Unknown_745E": "Unknown_745E",
     "Adds_Resistance Fighter_Name": "해방군 투사",
-    "Adds_Resistance Fighter_Status_Rampart_Desc": "받는 피해량이 감소하는 상태.",
+    "Adds_Resistance Fighter_Status_Rampart_Desc": "받는 피해량이 감소<If(Equal(PlayerParameter(68),1))>하고, 자신이 받는 HP 회복 효과가 증가하는 상태.<Else/>하는 상태.",
     "Adds_Resistance Fighter_Status_Rampart_Name": "철벽 방어",
     "Adds_Resistance Fighter_Status_Reprisal_Desc": "주는 피해량이 감소하는 상태.",
     "Adds_Resistance Fighter_Status_Reprisal_Name": "앙갚음",

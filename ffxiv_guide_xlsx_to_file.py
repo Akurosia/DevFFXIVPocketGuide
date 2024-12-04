@@ -268,13 +268,13 @@ def main() -> None:
     orderedContent: dict[str, str] = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
     #logger.debug(orderedContent)
     try:
-        run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
+        #run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
         csgf.run()
-        gl.run()
+        #gl.run()
         gp.run()
         ghm.run()
         ga.run()

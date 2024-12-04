@@ -63,7 +63,7 @@
     "Adds_Gosetsu_Name": "고우세츠",
     "Adds_Gosetsu_Status_Honed Eye_Desc": "받는 피해량이 감소하는 상태.",
     "Adds_Gosetsu_Status_Honed Eye_Name": "이인류 심안",
-    "Adds_Gosetsu_Status_Rampart_Desc": "받는 피해량이 감소하는 상태.",
+    "Adds_Gosetsu_Status_Rampart_Desc": "받는 피해량이 감소<If(Equal(PlayerParameter(68),1))>하고, 자신이 받는 HP 회복 효과가 증가하는 상태.<Else/>하는 상태.",
     "Adds_Gosetsu_Status_Rampart_Name": "철벽 방어",
     "Adds_Hexadrone Bit_Attack_Chain Mine": "사슬 지뢰",
     "Adds_Hexadrone Bit_Name": "헥사롤러 비트",
