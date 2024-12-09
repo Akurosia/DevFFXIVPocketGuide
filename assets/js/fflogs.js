@@ -29,7 +29,6 @@ if (localStorage.getItem('fflogs_isAku')){
         ["Nanoha Bladefield", "Odin", "EU"],
         ["Asuna Bladefield", "Odin", "EU"],
 
-
         ["Miyuki Mizu", "Zodiark", "EU"],
         ["Filianore Void", "Shiva", "EU"],
          //["---", "", ""],
@@ -46,6 +45,8 @@ if (localStorage.getItem('fflogs_isAku')){
          //["Gora Saurus", "Phoenix", "EU"],
          //["Mimiko Moeka", "Zodiark", "EU"],
          //["Simha'ze Lerdai", "Shiva", "EU"]
+
+        //FRU 100% ["Couchgirl Neviutz", "Odin", "EU"],
     ]
 }
 // fix also in python_module > __init__.getFFLOGSapiPlayerData
@@ -55,6 +56,7 @@ figths = {
     1062: ["TEA"],
     1065: ["DSU"],
     1068: ["TOP"],
+    1079: ["FRU"],
 
     93: ["R1S"],
     94: ["R2S"],
@@ -68,23 +70,27 @@ figths = {
     1078: ["Ewige Königin"],
 }
 
-fight_ids = [1060,1061,1062,1065,1068,93,94,95,96,1078,3009]
+fight_ids = [1060,1061,1062,1065,1068,1079,93,94,95,96,1078,3009]
+//fight_ids = [1060,1061,1062,1065]
 
 function fixIDs(_id) {
-    if (["1039", "1047", "1060", "1073"].includes(_id)) { // 1039=SB 1047=SHB 1060=EW   FIX OLD UCoB
+    if (["1039", "1047", "1060", "1073"].includes(_id)) { // 1039=SB 1047=SHB 1060=EW 1073=DT FIX OLD UCoB
         _id = "1060"
     }
-    if (["1042", "1048", "1061", "1074"].includes(_id)) { // 1042=SB 1048=SHB 1061=EW   FIX OLD UWU
+    if (["1042", "1048", "1061", "1074"].includes(_id)) { // 1042=SB 1048=SHB 1061=EW 1074=DT  FIX OLD UWU
         _id = "1061"
     }
-    if (["1050", "1062", "1075"].includes(_id)) { // 1050=SHB 1062=EW FIX OLD TEA
+    if (["1050", "1062", "1075"].includes(_id)) { // 1050=SHB 1062=EW 1075=DT FIX OLD TEA
         _id = "1062"
     }
-    if (["1065", "1076"].includes(_id)) { // 1065=EW FIX OLD DSU
+    if (["1065", "1076"].includes(_id)) { // 1065=EW 1076=DT FIX OLD DSU
         _id = "1065"
     }
-    if (["1068", "1077"].includes(_id)) { // 1068=EW FIX OLD TOP
+    if (["1068", "1077"].includes(_id)) { // 1068=EW 1077=DT FIX OLD TOP
         _id = "1068"
+    }
+    if (["1079"].includes(_id)) { // 1079=DT FIX OLD FRU
+        _id = "1079"
     }
     return _id
 }
@@ -98,18 +104,18 @@ function gSFZ_getDataViaFetch(user, state){
     //  .then(data => JSON.parse(data))
     //  .then(data => printTable(data))
 
-    // state is only set if the button was pressed manually in the frontend
-    if (localStorage.getItem('player_data') && currentDate.getTime() < localStorage.getItem('last_access') && !state) {
-        remaining = (localStorage.getItem('last_access') - currentDate.getTime()) / 60000
+    // state is only set if the button was pressed manually in the frontend    console.log("STATE: " + localStorage.getItem('fflogs_player_data')=== undefined)
+    if (localStorage.getItem('fflogs_player_data') !== "undefined" && currentDate.getTime() < localStorage.getItem('fflogs_last_access') && !state) {
+        remaining = (localStorage.getItem('fflogs_last_access') - currentDate.getTime()) / 60000
         console.log(`Get Cached Data (${remaining})`)
-        printTable(JSON.parse(localStorage.getItem('player_data')))
+        printTable(JSON.parse(localStorage.getItem('fflogs_player_data')))
     } else {
         console.log("Get New Data")
         prom = getFFLOGSapiPlayerData(player = user, customTextblock = "", includeName = false)
         Promise.all([prom]).then((values) => {
             next5min = new Date(currentDate.getTime() + 5 * 60000).getTime()
-            localStorage.setItem('player_data', JSON.stringify(values[0]))
-            localStorage.setItem('last_access', next5min)
+            localStorage.setItem('fflogs_player_data', JSON.stringify(values[0]))
+            localStorage.setItem('fflogs_last_access', next5min)
             printTable(values[0])
         });
     }
@@ -218,6 +224,7 @@ function addTbody(result){
         tr.appendChild(addUserNameStuff(result[i], i))
         for (var j of fight_ids){
             if (figths[j] != undefined) {
+                console.log("[addTbody] Result:")
                 console.log(result)
                 tr = addRow(tr, result, i, j)
             }
@@ -296,15 +303,17 @@ function addJobImage(job){
 
 function addRow(tr, result, name, encounterID){
     td = document.createElement("td")
+    console.log("[addRow] result[name][encounterID]:")
     console.log(result[name][encounterID])
     console.log(encounterID)
     if (result[name][encounterID] === undefined) {
         result[name][encounterID] = { 'historical': -1 }
     }
     if (parseInt(result[name][encounterID]['historical']) !== -1) {
-        td.innerHTML = addJobImage(result[name][encounterID]['job']) + parseInt(result[name][encounterID]['historical'])
+        td.innerHTML = addJobImage(result[name][encounterID]['job']) + parseInt(result[name][encounterID]['historical']) + " <span style=\"color:white\">(" + parseInt(result[name][encounterID]['kills']) + ")</span>"
     }
     td = colorize(td, parseInt(result[name][encounterID]['historical']))
+    td.title = parseInt(result[name][encounterID]['kills']) + " Kills"
     tr.appendChild(td)
     return tr
 }
@@ -384,8 +393,9 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
             textblock += `DSU_6: zoneRankings(zoneID: 45, metric: rdps),`
             textblock += `TOP_6: zoneRankings(zoneID: 53, metric: rdps),`
             textblock += `Ultimates_Legacy_7: zoneRankings(zoneID: 59, metric: rdps),`
+            textblock += `FRU_7: zoneRankings(zoneID: 65, metric: rdps),`
             textblock += `LATEST_RAID: zoneRankings(zoneID: ${latestRaid}, metric: rdps, difficulty: 101),`
-            //textblock += `UNREAL_Primals: zoneRankings(zoneID: ${unrealId}, metric: rdps),`
+            textblock += `UNREAL_Primals: zoneRankings(zoneID: ${unrealId}, metric: rdps),`
             textblock += `LATEST_Primals: zoneRankings(zoneID: ${latestPrimal}, metric: rdps)`
             textblock += `},`;
         } else {
@@ -396,7 +406,8 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
     let payload = `{"query":"query char_to_id { characterData { ${query_player} } }","variables":{} }`;
     payload = payload.replace(/\s+/, " ")
     payload = `${payload}`;
-    console.log(payload)
+    console.log("[getFFLOGSapiPlayerData] Query:")
+    console.log(payload.replace("\\", ""))
 
     const headers = {
         'Authorization': `Bearer ${access_key}`,
@@ -416,6 +427,7 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
     try {
         jsonData = (await response.json()).data.characterData;
     } catch(err) {
+        console.log("[getFFLOGSapiPlayerData] Error:")
         console.log(err)
         if (!rerun){
             setNewAccessToken()
@@ -449,18 +461,30 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
                     if (entry['rankPercent'] == null) {
                         entry['rankPercent'] = -1
                     }
-                    if (player_result[player_data['name']][_id] == undefined) {
-                        player_result[player_data['name']][_id] = {'historical': entry['rankPercent'], 'job': entry['spec']}
-                    }
-                    if (player_result[player_data['name']][_id]['historical'] < entry['rankPercent']) {
-                        player_result[player_data['name']][_id] = {'historical': entry['rankPercent'], 'job': entry['spec']}
-                    }
+                    console.log(entry['totalKills'])
                     if (includeName) {
                         player_result[player_data['name']][_id]['name'] = entry['encounter']['name']
                     }
+
+                    // add template if fight is not already added
+                    if (player_result[player_data['name']][_id] == undefined) {
+                        player_result[player_data['name']][_id] = {'historical': entry['rankPercent'], 'job': entry['spec'], 'kills': entry['totalKills']}
+                        continue
+                    }
+                    // if fight was already added, but new entry has a higher percent, we update it, for kills we add them together
+                    if (player_result[player_data['name']][_id]['historical'] < entry['rankPercent']) {
+                        player_result[player_data['name']][_id] = {'historical': entry['rankPercent'], 'job': entry['spec'], 'kills': player_result[player_data['name']][_id]['kills']}
+                    }
+
+                    if (entry['totalKills'] > 0) [
+                        player_result[player_data['name']][_id]['kills'] += entry['totalKills']
+                    ]
+
+
                 }
             }
         } catch(err) {
+            console.log("[getFFLOGSapiPlayerData] Error:")
             console.log(err)
             console.log(`Error when loading user ${player_key}`)
         }
