@@ -36,20 +36,18 @@ def getImage(image: str|None, _type: str="icon") -> str:
     return image
 
 id_to_gear: dict[str, str] = {
-    'col_0':  'Unknown_9',
-    'col_1':  'Unknown_10',
-    'col_2':  '0_Kopf',
-    'col_3':  '1_Body',
-    'col_4':  '2_Hände',
-    'col_5':  '3_Hose',
-    'col_6':  '4_Schuhe',
-    'col_7':  '5_Ohrringe',
-    'col_8':  '6_Halskette',
-    'col_9':  '7_Armreif',
-    'col_10': '8_Ring'
+    '0': '0_Kopf',
+    '1': '1_Body',
+    '2': '2_Hände',
+    '3': '3_Hose',
+    '4': '4_Schuhe',
+    '5': '5_Ohrringe',
+    '6': '6_Halskette',
+    '7': '7_Armreif',
+    '8': '8_Ring'
 }
 
-def add_element(col_k: str, col_id: str, row: str, r: dict[str, list[str]]) -> tuple[str, dict[str, list[str]]]:
+def add_element(col_k: str, col_id: dict[str, str], row: str, r: dict[str, list[str]]) -> tuple[str, dict[str, list[str]]]:
     global klass_translations
     if col_id == "0":
         row += "<td></td>\n"
@@ -90,11 +88,10 @@ def run():
                 href = f'<a style="color: #007bff" data-translate="Set_{setid}" target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#item/{setid}">{name}</a>'
                 row += f"<td id='{name}' onclick='myFunction(this)' ><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='https://xivapi.com/i/{icon}' alt='{name}'></td>\n"
                 r = {}
-                for col_k, col_id in mssi[setid].items():
-                    if col_k in ["col_0", "col_1", "col_10"]:
-                        continue
+                for col_k, col_id in mssi[setid]["Item"].items():
                     row, r = add_element(col_k, col_id, row, r)
-                row, r = add_element("col_10", mssi[setid]["col_10"], row, r)
+
+                #row, r = add_element("col_10", mssi[setid]["col_10"], row, r)
                 row += "<td></td>\n"
                 row += "</tr>\n"
                 if not result.get(name, None):
