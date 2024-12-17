@@ -293,20 +293,21 @@ def get_lvl_data(entry: EntryType):
     return lvl_data
 
 cat_to_instance_image: dict[str, str] = {
-    "dungeon":      "/061000/061801_hr1.png",
-    "trial":        "/061000/061804_hr1.png",
-    "raid":         "/061000/061802_hr1.png",
-    "ultimate":     "/061000/061832_hr1.png",
-    "allianzraid":  "/061000/061844_hr1.png",
-    "gewölbesuche": "/061000/061846_hr1.png",
-    "feldexkursion":"/061000/061837_hr1.png",
-    "bluemage":     "/061000/061836_hr1.png",
-    "potd":         "/061000/061824_hr1.png",
-    "guildhest":    "/061000/061803_hr1.png",
-    "treasure":     "/061000/061808_hr1.png",
-    "pvp":          "/061000/061806_hr1.png",
-    "training":     "/061000/061823_hr1.png",
-    "overworld":    "/052000/052474_hr1.png"
+    "dungeon":           "/061000/061801_hr1.png",
+    "trial":             "/061000/061804_hr1.png",
+    "raid":              "/061000/061802_hr1.png",
+    "ultimate":          "/061000/061832_hr1.png",
+    "allianzraid":       "/061000/061844_hr1.png",
+    "chaosallianzraid":  "/061000/061850_hr1.png",
+    "gewölbesuche":      "/061000/061846_hr1.png",
+    "feldexkursion":     "/061000/061837_hr1.png",
+    "bluemage":          "/061000/061836_hr1.png",
+    "potd":              "/061000/061824_hr1.png",
+    "guildhest":         "/061000/061803_hr1.png",
+    "treasure":          "/061000/061808_hr1.png",
+    "pvp":               "/061000/061806_hr1.png",
+    "training":          "/061000/061823_hr1.png",
+    "overworld":         "/052000/052474_hr1.png"
 }
 def get_cat_image(instancetype, cfc_key):
     global cat_to_instance_image

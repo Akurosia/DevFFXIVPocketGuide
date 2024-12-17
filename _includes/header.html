@@ -44,6 +44,7 @@
                     {%- elsif page.page_category == "raids" -%}             Raids
                     {%- elsif page.page_category == "ultimates" -%}         Ultimates
                     {%- elsif page.page_category == "allianzraid" -%}       Allianz Raids
+                    {%- elsif page.page_category == "chaosallianzraid" -%}  Chaotische Allianz Raids
                     {%- elsif page.page_category == "gewölbesuche" -%}      Gewölbesuche
                     {%- elsif page.page_category == "pvp" -%}               PVP
                     {%- elsif page.page_category == "potd" -%}              Tiefes Gewölbe
@@ -82,6 +83,7 @@
                                 {%- elsif page.difficulty == "Episch" -%}       ="savage"
                                 {%- elsif page.difficulty == "Normal" -%}       ="normal"
                                 {%- elsif page.difficulty == "Fatal" -%}        ="ultimate"
+                                {%- elsif page.difficulty == "Chaotisch" -%}    ="chaos"
                                 {%- endif -%}
                             >
                             <span class="lang-toggle lang-toogle-de" data-translate="Header_{{ page.difficulty }}"> ({{ page.difficulty }})</span>

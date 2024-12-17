@@ -141,6 +141,13 @@
                         </a>
                     </li>
                     <li>
+                        <a target="" {%- if page.page_category == "chaosallianzraid" or page.instanceType == "chaosallianzraid" or page.instance_type == "ChaosAllianzRaid" -%}class="active"{%- endif -%}
+                            href='{{ "/chaosallianzraid/" | prepend: site.baseurl }}' title="Chaos Allianz Raid - Guides anzeigen">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061850_hr1.png" }}'">
+                            <span data-translate="Navbar_Chaos Alliance Raids">Chaos Alliance Raids</span>
+                        </a>
+                    </li>
+                    <li>
                         <a target="" {%- if page.page_category == "gewölbesuche" or page.instanceType == "gewölbesuche" or page.instance_type == "Gewölbesuche" -%}class="active"{%- endif -%}
                             href='{{ "/gewölbesuche/" | prepend: site.baseurl }}' title="Gewölbesuche - Guides anzeigen">
                             <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061846_hr1.png" }}'">
