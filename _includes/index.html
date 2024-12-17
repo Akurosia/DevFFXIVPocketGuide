@@ -20,6 +20,7 @@
     {%- include guide-index-null-state.html -%}
 
     <!-- Include correct translation files -->
+    {%- if page.page_category == "all" or page.page_category == "chaosallianzraid" -%}  <div style="display: none" data-extra-translate="/assets/translations/summary/chaosallianzraid">  </div> {%- endif -%}
     {%- if page.page_category == "all" or page.page_category == "allianzraid" -%}       <div style="display: none" data-extra-translate="/assets/translations/summary/allianzraid">       </div> {%- endif -%}
     {%- if page.page_category == "all" or page.page_category == "bluemage" -%}          <div style="display: none" data-extra-translate="/assets/translations/summary/bluemage">          </div> {%- endif -%}
     {%- if page.page_category == "all" or page.page_category == "dungeons" -%}          <div style="display: none" data-extra-translate="/assets/translations/summary/dungeon">           </div> {%- endif -%}

@@ -26,6 +26,11 @@
             {%- assign counter = counter | plus: 1 -%}
             {%- include summary.html -%}
         {%- endif -%}
+    {%- elsif page.page_category == "chaosallianzraid" -%}
+        {%- if guide.instanceType == "chaosallianzraid" or guide.instance_type == "ChaosAllianzRaid" -%}
+            {%- assign counter = counter | plus: 1 -%}
+            {%- include summary.html -%}
+        {%- endif -%}
     {%- elsif page.page_category == "raids" -%}
         {%- if guide.instanceType == "raid" or guide.instance_type == "Raid" -%}
             {%- assign counter = counter | plus: 1 -%}
