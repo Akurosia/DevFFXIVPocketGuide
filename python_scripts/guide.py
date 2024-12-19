@@ -545,7 +545,9 @@ fatetypes: dict[str, str] = {
     "ui/icon/063000/063914.tex": "Gegner Besiegen",
     "ui/icon/063000/063915.tex": "Boss besiegen",
     "ui/icon/063000/063916.tex": "Sammeln",
-    "ui/icon/063000/063917.tex": "Verteidigen"
+    "ui/icon/063000/063917.tex": "Verteidigen",
+
+    "ui/icon/060000/060806.tex": "Unkown_060806"
 }
 fateNames: dict[str, str] = {
     "Gegner Besiegen": "Slay enemies",
@@ -558,7 +560,8 @@ fateNames: dict[str, str] = {
     "Festival": "Festival",
     "CE Boss besiegen": "CE Notorious monster",
     "CE Solo Kampf": "CE Solo Fight",
-    "CE Gegner Wellen": "CE Eney Waves"
+    "CE Gegner Wellen": "CE Eney Waves",
+    "Unkown_060806": "Unkown_060806"
 }
 additional_fate_data: dict[str, Any] = readJsonFile("python_scripts/FatesFromConsoleWiki.json")
 def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) -> str:
@@ -617,7 +620,9 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
             lguide_data += '        roles:\n'
             lguide_data += f'          - role: "Lvl: {fates[fate_id]['ClassJobLevel']['Value']}"\n'
             lguide_data += f'          - role: "Lvl-Sync: {fates[fate_id]['ClassJobLevel']['Max']}"\n'
-            if add_data.get(fate_id, None):
+            if add_data is None:
+                print(f"No additional Fate data for {name} -> FateID: {fate_id}")
+            elif add_data.get(fate_id, None):
                 lguide_data += '        tags:\n'
                 if add_data[fate_id].get('Experience', None):
                     lguide_data += f'          - tag: "EXP: {add_data[fate_id]['Experience']}"\n'
