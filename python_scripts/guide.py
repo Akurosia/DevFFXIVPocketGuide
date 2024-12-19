@@ -483,7 +483,7 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
                 continue
             if text_ids == []:
                 continue
-            guide_data += f'       {cat[:-4].title()}: \n'
+            guide_data += f'      {cat[:-4].title()}:\n'
             for _id in text_ids:
                 guide_data += f'        - id: "{_id}"\n'
                 guide_data += f'          text: "{getTextFromCatAndID(cat, _id, content_translations)}"\n'
