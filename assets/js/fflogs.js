@@ -12,7 +12,7 @@ if (localStorage.getItem('fflogs_isAku')){
         ["Dragomir Xertuz", "Shiva", "EU"],
         ["Shira Noyuki", "Shiva", "EU"],
         ["Robin Black", "Shiva", "EU"],
-        ["Kelly Fate", "Raiden", "EU"],
+        ["Kelly Orphis'black", "Raiden", "EU"],
         //["Rhotgeim Igarashi", "Odin", "EU"],
         ["---", "", ""],
         ["Kamo Akurosia", "Shiva", "EU"],
