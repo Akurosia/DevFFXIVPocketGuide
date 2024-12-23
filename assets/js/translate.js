@@ -337,6 +337,7 @@ function createTemplateTableBody(name, json){
                 var _img = document.createElement('img');
                 // _img.setAttribute("src", "https://ffxiv.akurosia.de/extras/images/" + e);
                 _img.setAttribute("src", "https://xivapi.com/i/" + e.replace("ui/icon/", ""));
+                _img.setAttribute("title", e);
                 _img.setAttribute("alt", e);
                 _img.setAttribute("loading", "lazy");
                 _img.setAttribute("height", "30");

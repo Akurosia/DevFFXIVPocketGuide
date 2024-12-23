@@ -124,15 +124,15 @@ lists = ["Mainhand", "Offhand", "Kopf", "Rumpf", "Hände", "Beine", "Füße", "O
 
 function copy2clipboard(text) {
     console.log(text)
-  if (!navigator.clipboard) {
-    fallbackCopyTextToClipboard(text);
-    return;
-  }
-  navigator.clipboard.writeText(text).then(function() {
-    console.log('Async: Copying to clipboard was successful!');
-  }, function(err) {
-    console.error('Async: Could not copy text: ', err);
-  });
+    if (!navigator.clipboard) {
+        fallbackCopyTextToClipboard(text);
+        return;
+    }
+    navigator.clipboard.writeText(text).then(function() {
+        console.log('Async: Copying to clipboard was successful!');
+    }, function(err) {
+        console.error('Async: Could not copy text: ', err);
+    });
 }
 
 function remove_gearlist(){
@@ -182,14 +182,14 @@ async function call_api_data(){
                 table_name = category
             }
         }
-        url_params2 = "?classjob=" + classjob +
-                     "&classjobadd=" + class_additions[classjob] +
-                     "&category=" + String(table_name).replaceAll(" (", "_").replaceAll(")", "").replaceAll("-", "_").replaceAll(" ", "_") +
-                     "&lvl_from=" + lvl_from +
-                     "&lvl_to=" + lvl_to +
-                     "&ilvl_from=" + ilvl_from +
-                     "&ilvl_to=" + ilvl_to +
-                     "&rarity=" + String(rarity)
+        url_params2 =   "?classjob=" + classjob +
+                        "&classjobadd=" + class_additions[classjob] +
+                        "&category=" + String(table_name).replaceAll(" (", "_").replaceAll(")", "").replaceAll("-", "_").replaceAll(" ", "_") +
+                        "&lvl_from=" + lvl_from +
+                        "&lvl_to=" + lvl_to +
+                        "&ilvl_from=" + ilvl_from +
+                        "&ilvl_to=" + ilvl_to +
+                        "&rarity=" + String(rarity)
         if (include_hq && limit_to_hq) {
             url_params2 += "&hq=1"
         } else if (include_hq && !limit_to_hq) {
@@ -216,7 +216,8 @@ async function load_data(params, table_name, category, classJob){
     return fetch(url)
         .then(r => r.json())
         .then(data => {
-            create_table(data, table_name, category, classJob)
+            fields = get_stats_for_class(classJob)
+            create_table(data, table_name, category, classJob, fields)
         })
         .catch(e => console.log(e))
 }
@@ -230,7 +231,7 @@ function get(object, key, default_value) {
 }
 
 var ringcounter = 1
-async function create_table(data, table_name, category, classJob){
+async function create_table(data, table_name, category, classJob, fields){
     //console.log(table_name)
     // handle mainhand case
     if (category == "Mainhand"){
@@ -255,14 +256,15 @@ async function create_table(data, table_name, category, classJob){
         _div = document.getElementById(table_name.toLowerCase())
     }
     _div.innerHTML = ""
-    _table = await createTemplateTable(category, data, classJob)
+    _table = await createTemplateTable(category, data, classJob, fields)
     _div.appendChild(_table)
 }
 
-async function createTemplateTable(name, json, classJob){
+async function createTemplateTable(name, json, classJob, fields){
     var _table = document.createElement('table');
-    _thead = await createTemplateTableHead(name, json, classJob)
-    _tbody = await createTemplateTableBody(name, json, classJob)
+
+    _thead = await createTemplateTableHead(name, json, classJob, fields)
+    _tbody = await createTemplateTableBody(name, json, fields)
     createSummaryTable(sum_fields)
     _table.appendChild(_thead);
     _table.appendChild(_tbody);
@@ -286,28 +288,36 @@ async function createTHorTD(field, _type, classname){
     return _th
 }
 
-function get_stats_for_class(classJob, removeshy=false){
+function get_stats_for_class(classJob, removeshy=true){
     x = []
     if (["BSW","SMA","RMA","BMA", "PKT"].includes(classJob)){
-        x = ["Mag. Basiswert", "Magieabwehr", "Intelligenz", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit","Zaubertempo","Konstitution"]
+        x = ["Mag. Basiswert", "Magieabwehr", "Intelligenz"]
+        x.push(...["Kritischer Treffer", "Direkter Treffer", "Entschlossenheit","Zaubertempo","Konstitution"])
     }
-    if (["WMA","GLT","AST", "WEI"].includes(classJob)){
-        x = ["Mag. Basiswert", "Magieabwehr", "Willenskraft", "Frömmigkeit", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit","Zaubertempo","Konstitution"]
+    else if (["WMA","GLT","AST", "WEI"].includes(classJob)){
+        x = ["Mag. Basiswert", "Magieabwehr", "Willenskraft"]
+        x.push(...["Frömmigkeit", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit","Zaubertempo","Konstitution"])
     }
-    if (["ZMR","GRS","PLA","GLD","GER","WEB","ALC","GRM"].includes(classJob)){
-        x = ["Kunstfertigkeit", "Kontrolle", "HP","Konstitution"]
+    else if (["ZMR","GRS","PLA","GLD","GER","WEB","ALC","GRM"].includes(classJob)){
+        x = ["Kunstfertigkeit", "Kontrolle", "HP", "Konstitution"]
     }
-    if (["MIN","GÄR","FIS"].includes(classJob)){
-        x = ["Sammelgeschick", "Expertise", "SP","Konstitution"]
+    else if (["MIN","GÄR","FIS"].includes(classJob)){
+        x = ["Sammelgeschick", "Expertise", "SP", "Konstitution"]
     }
-    if (["PLD","KRG","DKR","REV"].includes(classJob)){
-        x = ["Phys. Basiswert", "Verteidigung", "Stärke", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit", "Unbeugsamkeit", "Konstitution"]
+    else if (["PLD","KRG","DKR","REV"].includes(classJob)){
+        x = ["Phys. Basiswert", "Verteidigung", "Stärke"]
+        x.push(...["Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit", "Unbeugsamkeit", "Konstitution"])
     }
-    if (["NIN","BRD","MCH","TÄN"].includes(classJob)){
-        x = ["Phys. Basiswert", "Verteidigung", "Geschick", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit","Konstitution"]
+    else if (["NIN","BRD","MCH","TÄN"].includes(classJob)){
+        x = ["Phys. Basiswert", "Verteidigung", "Geschick"]
+        x.push(...["Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit","Konstitution"])
     }
-    if (["MÖN","DRG","SAM", "SNT", "VPR"].includes(classJob)){
-        x = ["Phys. Basiswert", "Verteidigung", "Stärke", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit","Konstitution"]
+    else if (["MÖN","DRG","SAM", "SNT", "VPR"].includes(classJob)){
+        x = ["Phys. Basiswert", "Verteidigung", "Stärke"]
+        x.push(...["Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit","Konstitution"])
+    }
+    else {
+        console.log("ERROR CLASS NOT AVAILABLE!!!")
     }
     if (removeshy){
         for (e in x){
@@ -387,7 +397,7 @@ async function createSummaryTable(fields){
     document.getElementById("races_select").onchange()
 }
 
-async function createTemplateTableHead(name, json, classJob){
+async function createTemplateTableHead(name, json, classJob, fields){
     var _head = document.createElement('thead');
     _head.setAttribute("id", "thead_"+name);
     var _tr = document.createElement('tr');
@@ -399,7 +409,6 @@ async function createTemplateTableHead(name, json, classJob){
     _tr.appendChild(await createTHorTD("patch", "th", "patch"));
     _tr.appendChild(await createTHorTD("Materia", "th", "materia"));
 
-    fields = get_stats_for_class(classJob)
     for (var field in fields){
         if (["Blockeffekt", "Blockrate"].includes(fields[field])){
         } else if (fields[field] == []){
@@ -434,7 +443,7 @@ cleartext = {
 }
 
 
-async function createTemplateTableBody(name, json, classJob){
+async function createTemplateTableBody(name, json, fields){
     var _body = document.createElement('tbody');
     _body.setAttribute("id", "tbody_"+name);
     for (var key in json){
@@ -442,7 +451,8 @@ async function createTemplateTableBody(name, json, classJob){
         var _tr = document.createElement('tr');
         _tr.appendChild(await createTHorTD("<input onclick='updateValues()' type='radio' id='" + json[key]["Name_de"] + "' name='" + name + "' value=''>", "td"));
         //_tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img loading='lazy' src='https://xivapi.com/i/" + json[key]['Icon'].replace("ui/icon/", "") + "'></img>" + "</a>", "td", "icon"));
-        _tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img loading='lazy' src='https://ff14.akurosiakamo.de/extras/images/ui/icon/" + json[key]['Icon'].replace("ui/icon/", "") + "'></img>" + "</a>", "td", "icon"));
+        var icon = json[key]['Icon'].replace("ui/icon/", "").replace(".png", "_hr1.png")
+        _tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img loading='lazy' src='https://ff14.akurosiakamo.de/extras/images/ui/icon/" + icon + "'></img>" + "</a>", "td", "icon"));
         _name = '<div class="mytooltip"  id="' + json[key]["ID"] + '">'
         _name += '<span class="lang-toggle lang-toogle-de" onclick="copy2clipboard(\'' + json[key]["Name_de"] + '\')">' + json[key]["Name_de"] + '</span>'
         _name += '<span class="lang-toggle lang-toogle-en" onclick="copy2clipboard(\'' + json[key]["Name_en"] + '\')">' + json[key]["Name_en"] + '</span>'
@@ -461,7 +471,6 @@ async function createTemplateTableBody(name, json, classJob){
         _tr.appendChild(await createTHorTD(json[key]["Level_Item"], "td", "ilvl"));
         _tr.appendChild(await createTHorTD(json[key]["Patch"], "td", "patch"));
         _tr.appendChild(await createTHorTD(json[key]["MateriaSlotCount"], "td", "materia"));
-        fields = get_stats_for_class(classJob, true)
         for (var field in fields){
             xfield = fields[field].replace("&shy;", "")
             if (["Blockeffekt", "Blockrate"].includes(field)){
