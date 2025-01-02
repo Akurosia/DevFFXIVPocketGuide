@@ -5,6 +5,11 @@
       <span data-translate="Tag_Name_Level">Level:</span>&nbsp;{{ attack.level }}{{ trait.level }}{{ quest.level }}{{ leve.level }}
     </span>
   {%- endif -%}
+  {%- if attack.cost -%}
+    <span class="guide__accordion-tag--akurole">
+      <span data-translate="Tag_Name_Cost">Kosten:</span>&nbsp;{{ attack.cost }}
+    </span>
+  {%- endif -%}
   {%- if attack.range -%}
     <span class="guide__accordion-tag--duty-action">
       <span data-translate="Tag_Name_Range">Range:</span>&nbsp;{{ attack.range }}

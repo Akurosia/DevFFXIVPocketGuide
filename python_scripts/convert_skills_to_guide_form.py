@@ -188,6 +188,7 @@ def addAttackDetails(job_data, pvp: bool=False):
         result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
         result += f'        range: "{skill_data["Range"]}"\n'
         result += f'        effectrange: "{skill_data["EffectRange"]}"\n'
+        result += f'        cost: "{skill_data["Cost"]}"\n'
         result += f'        cast: "{skill_data["Cast"]}"\n'
         result += f'        recast: "{skill_data["Recast"]}"\n'
         result += f'        secondarycost: "{skill_data.get("SecondaryCostType", 0)}"\n'
