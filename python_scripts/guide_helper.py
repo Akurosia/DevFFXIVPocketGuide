@@ -192,51 +192,53 @@ def get_fixed_status_description(_id):
 
 ids_to_replace1: list[str] = ["10742", "11399", "13057"]
 ids_to_replace2: list[str] = ["10744", "11402", "13058"]
-def getBnpcNameFromID(_id, aname, nname, lang="en"):
+def getBnpcNameFromID(_id, article_name, german_name, lang="en"):
     global ids_to_replace
     bnpc_new_name = ""
     eobjname = ""
     enpcresident_name = ""
-    if nname == "???":
-        nname = "\\?\\?\\?"
+    if german_name == "???":
+        german_name = "\\?\\?\\?"
     if isinstance(_id, list):
         _id = _id[0]
     _id = str(_id)
+    # handel bnpc names
     try:
         bnpc_new_name = bnpcname[_id]["Singular_de"]
         extra = ""
         if _id in ids_to_replace1:
-            nname = nname.replace(" i", "")
+            german_name = german_name.replace(" i", "")
             extra = " I"
         elif _id in ids_to_replace2:
-            nname = nname.replace(" ii", "")
+            german_name = german_name.replace(" ii", "")
             extra = " II"
-        m = re.search(nname, bnpc_new_name, re.IGNORECASE)
-        n = re.search(aname, bnpc_new_name, re.IGNORECASE)
+        # TODO check here why its not working
+        m = re.search(german_name, bnpc_new_name, re.IGNORECASE)
+        n = re.search(article_name, bnpc_new_name, re.IGNORECASE)
         if m or n:
             return bnpcname[_id][f"Singular_{lang}"] + extra
     except Exception:
-        if nname == bnpc_new_name or aname == bnpc_new_name:
+        if german_name == bnpc_new_name or article_name == bnpc_new_name:
             return bnpcname[_id][f"Singular_{lang}"]
-
+    # handel eobj name
     try:
         eobjname = eobjname[_id]["Singular_de"]
-        m = re.search(nname, eobjname, re.IGNORECASE)
-        n = re.search(aname, eobjname, re.IGNORECASE)
+        m = re.search(german_name, eobjname, re.IGNORECASE)
+        n = re.search(article_name, eobjname, re.IGNORECASE)
         if m or n:
             return eobjname[_id][f"Singular_{lang}"]
     except Exception:
-        if nname == eobjname or aname == eobjname:
+        if german_name == eobjname or article_name == eobjname:
             return eobjname[_id][f"Singular_{lang}"]
-
+    # handel enpcresident name
     try:
         enpcresident_name = enpcresident[_id]["Singular_de"]
-        m = re.search(nname, enpcresident_name, re.IGNORECASE)
-        n = re.search(aname, enpcresident_name, re.IGNORECASE)
+        m = re.search(german_name, enpcresident_name, re.IGNORECASE)
+        n = re.search(article_name, enpcresident_name, re.IGNORECASE)
         if m or n:
             return enpcresident[_id][f"Singular_{lang}"]
     except Exception:
-        if nname == enpcresident_name or aname == enpcresident_name:
+        if german_name == enpcresident_name or article_name == enpcresident_name:
             return enpcresident[_id][f"Singular_{lang}"]
 
     if "α" not in bnpc_new_name and "β" not in bnpc_new_name and "（仮）鎖" not in bnpc_new_name:
@@ -247,7 +249,7 @@ def getBnpcNameFromID(_id, aname, nname, lang="en"):
             final_string += f"{eobjname=} "
         if enpcresident_name:
             final_string += f"{enpcresident_name=} "
-        print_color_red(f"{final_string}not found '{aname}' ({nname}) - ({_id})")
+        print_color_red(f"{final_string}not found '{article_name=}' ({german_name=}) - ({_id=})")
     return ""
 
 
