@@ -368,8 +368,8 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
     header_data += 'difficulty: "' + entry["difficulty"] + '"\n'
     header_data += 'instanceType: "' + entry["instanceType"] + '"\n'
     header_data += 'date: "' + entry["date"] + '"\n'
-    #header_data += 'slug: "' + replaceSlug(entry["slug_url"]) + '"\n'
-    header_data += 'slug: "' + replaceSlug(entry["slug"]) + '"\n'
+    header_data += 'slug: "' + replaceSlug(entry["slug_url"]) + '"\n'
+    #header_data += 'slug: "' + replaceSlug(entry["slug"]) + '"\n'
     if entry["prev_content"]:
         header_data += 'previous_slug: "' + replaceSlug(entry["prev_content"]) + '"\n'
     if entry["next_content"]:
