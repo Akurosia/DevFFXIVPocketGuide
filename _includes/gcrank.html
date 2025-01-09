@@ -1,0 +1,30 @@
+<!-- Include from _includes/links -->
+<div class="index">
+    {%- for category in page.links -%}
+        {%- assign csize = category.links | size -%}
+        {%- if csize > 0 -%}
+            <a id="{{ category.category }}"></a>
+            <div class="index-divider" data-expansion="{{ category.category }}">
+                <h2 class="index-divider__title">{{ category.category }}</h2>
+            </div>
+            <div class="index__list" data-expansion="{{ category.category }}">
+                {%- for link in category.links -%}
+                    <div class="summary">
+                        <a class="index-item__link" target="_blank" rel="noopener noreferrer" href="{{ link.url }}" title="Go to the {{ link.name }} Site">
+                            <div class="index-item__background"> </div>
+                            <img loading="lazy" class="link-favicon" src="{{ link.favicon }}" onerror="this.style.display='none'"></img>
+                            <h3 class="index-item__title"
+                                data-terms="{{ link.name }}&#32;{{ link.url }}&#32;{{ link.shorturl }}&#32;{%- for term in link.terms -%}{{ term.term }}&#32;{%- endfor -%}">
+                                {{ link.name }}
+                            </h3>
+                            <h4 class="index-item__title_en">
+                                {{ link.shorturl }}
+                            </h4>
+                        </a>
+                    </div>
+                {%- endfor -%}
+            </div>
+        {%- endif -%}
+    {%- endfor -%}
+</div>
+<!-- END Include from _includes/links -->

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
+    <head>
+        {% include head.html %}
+    </head>
+    <!-- ORIGIN: _layout/gcrank -->
+    <body class="{{ page.page_type }} {{ page.page_category }}">
+        <div class="layout">
+            {% include navbar.html %}
+            <div class="layout__wrapper">
+                {% include header.html %}
+                <!-- Search Bar -->
+                {% if page.page_type == "index" %}
+                    <div class="search">
+                        <form class="search__form">
+                            <label for="guideFilter" data-translate="Searchbar_Example_Text">Nach einem Guide suchen...</label>
+                            <input id="guideFilter" placeholder="!Shadowbringer, E8S, Krieger des Lichts, Mounts, Minions, etc..." type="text"/>
+                        </form>
+                    </div>
+                {% endif %}
+                {% include gcrank.html %}
+                {% include_cached footer.html %}
+            </div>
+        </div>
+        <div style="display: none" data-extra-translate="/assets/translations/gcrank"></div>
+        {% include_cached scripts.html %}
+    </body>
+    <!-- END ORIGIN: _layout/gcrank -->
+    <script type="text/javascript">executeHandelingLanguages()</script>
+</html>
