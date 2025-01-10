@@ -233,7 +233,7 @@ def main():
         new_element = {
             "name": name,
             "level": quest['ClassJobLevel']["0"],
-            "icon": getImage(quest['Icon']['Value'].replace('.tex', "_hr1.png")),
+            "icon": getImage(quest['Icon']['Value'].replace('.tex', "_hr1.webp")),
             "place": f"{level_data['region']}",
             "previousquest": [quest['PreviousQuest']["0"], quest['PreviousQuest']["1"], quest['PreviousQuest']["2"]],
             "journalgenre": quest['JournalGenre'],

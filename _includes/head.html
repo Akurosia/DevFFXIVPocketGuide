@@ -21,16 +21,16 @@
     <meta property="og:title" content="{{ page.title.en }}{%- if page.difficulty -%} ({{ page.difficulty }}){%- endif -%} | FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail" />
     <meta property="og:description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV. {%- if page.description -%}{{ page.description | strip_html | strip_newlines | truncate: 300 }}{%- else -%}{{ site.description }}{%- endif -%}" />
     {%- if page.page_category == "all" or page.page_category == "dungeons" or page.page_category == "trials" or page.page_category == "raids" -%}
-        <meta property="og:image" content="{{ site.url }}/assets/img/guide_social.jpg" />
+        <meta property="og:image" content="{{ site.url }}/assets/img/guide_social.webp" />
     {%- else -%}
         <meta property="og:image" content="{{ site.url }}{%- if page.cover -%}{{ page.cover }}{%- elsif page.image.urlSmall -%}{{ page.image.urlSmall }}{%- elsif page.image -%}{%- for image in page.image -%}{{ image.urlSmall }}{%- endfor -%}{%- endif -%}" />
     {%- endif -%}
     <!-- Google Fonts -->
     <link href="{{ site.baseurl }}/assets/fonts/fonts.css" rel="stylesheet" />
     <!--  Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.png' | prepend: site.baseurl }}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.png' | prepend: site.baseurl }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.webp" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ '/favicon-32x32.webp' | prepend: site.baseurl }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ '/favicon-16x16.webp' | prepend: site.baseurl }}" />
     <link rel="manifest" href="{{site.baseurl}}/manifest.json" />
     <link rel="mask-icon" href="{{site.baseurl}}/safari-pinned-tab.svg" color="#ff575c" />
     <meta name="theme-color" content="#ffffff" />

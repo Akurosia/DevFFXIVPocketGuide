@@ -239,7 +239,7 @@ def addOldStatusDetails(job, job_abb) -> str:
             if "_hr1" in getImage(s["icon"]):
                 result += f'        icon: "{getImage(s["icon"])}"\n'
             else:
-                result += f'        icon: "{getImage(s["icon"]).replace(".png", "_hr1.png")}"\n'
+                result += f'        icon: "{getImage(s["icon"]).replace(".webp", "_hr1.webp")}"\n'
             result += '        description:\n'
             for lang in LANGUAGES:
                 result += f'          {lang}: "' + deal_with_extras_in_text(status_trans[_id][f"Description_{lang}"]) + '"\n'
@@ -288,7 +288,7 @@ def addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, boz
         if "_hr1" in image:
             result += f'        icon: "{image}"\n'
         else:
-            result += f'        icon: "{image.replace(".png", "_hr1.png")}"\n'
+            result += f'        icon: "{image.replace(".webp", "_hr1.webp")}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
             tmp_desc = deal_with_extras_in_text(status_trans[key][f"Description_{lang}"])
@@ -321,7 +321,7 @@ def addTraitDetails(job):
             job_translations[lang][f'Class_Trait_Name_{deal_with_extras_in_text(traits_trans[_id]["Name_en"]) }'] = tmp_trait
         result += f'        title_id: "{_id.split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
-        result += f'        icon: "{getImage(trait_data["Icon"].replace(".tex", "_hr1.png"))}"\n'
+        result += f'        icon: "{getImage(trait_data["Icon"].replace(".tex", "_hr1.webp"))}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
             tmp_trait = deal_with_extras_in_text(traitstransient_trans[_id][f"Description_{lang}"])
@@ -470,7 +470,7 @@ def addQuestkDetails(job, pvp):
                 "id": key,
                 "expansion": quest['Expansion'],
                 "level": int(quest['ClassJobLevel']["0"]),
-                "Icon": quest['Icon']['Value'].replace('.tex', "_hr1.png"),
+                "Icon": quest['Icon']['Value'].replace('.tex', "_hr1.webp"),
                 "place": place,
                 "previousquest": [quest['PreviousQuest']["0"], quest['PreviousQuest']["1"], quest['PreviousQuest']["2"]],
                 "journalgenre": quest['JournalGenre'],
@@ -659,21 +659,21 @@ def getIconForJob(job_abb):
         if value["AcceptClassJobCategory"] == job_abb:
             return getImage(value["Icon"])
     if additionalJobIcons.get(job_abb, None):
-        return getImage("062000/" + additionalJobIcons[job_abb] + ".png")
+        return getImage("062000/" + additionalJobIcons[job_abb] + ".webp")
     return icon
 
 # these are the classes before they are job and usually dont need change
 
 roleicons: dict[str, str] = {
-    "Tank":                "062000/062581_hr1.png",
-    "Melee Dps":           "062000/062584_hr1.png",
-    "Physical Ranged Dps": "062000/062586_hr1.png",
-    "Healer":              "062000/062582_hr1.png",
-    "Magical Ranged Dps":  "062000/062587_hr1.png"
+    "Tank":                "062000/062581_hr1.webp",
+    "Melee Dps":           "062000/062584_hr1.webp",
+    "Physical Ranged Dps": "062000/062586_hr1.webp",
+    "Healer":              "062000/062582_hr1.webp",
+    "Magical Ranged Dps":  "062000/062587_hr1.webp"
 }
 roleiconsextra = {
-    "2": ("uld/pure-healer.png", "Primärheiler"),
-    "6": ("uld/barrier-healer.png", "Barriereheiler")
+    "2": ("uld/pure-healer.webp", "Primärheiler"),
+    "6": ("uld/barrier-healer.webp", "Barriereheiler")
 }
 additionalClassIcons = {
     "PLD": "062101_hr1",
@@ -695,7 +695,7 @@ def addExtraIcons(_type: str, jobicon: str, classicon: str) -> str:
     for index, icon in enumerate(ExtraIcons[_type]):
         if icon == "":
             continue
-        nicon = getImage(f"{icon[:3]}000/{icon}_hr1.png")
+        nicon = getImage(f"{icon[:3]}000/{icon}_hr1.webp")
         if jobicon and nicon == jobicon:
             continue
         if classicon and nicon == classicon:
@@ -806,16 +806,16 @@ def addKlassJobs():
         pvp = getQuestName(job)
 
         filecontent += 'slug: "klassen_und_jobs_' + job.lower() + '"\n'
-        if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
-            filecontent += f'image: "/assets/img/content/klassen/{job}.png"\n'
+        if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.webp"):
+            filecontent += f'image: "/assets/img/content/klassen/{job}.webp"\n'
         else:
-            print(f"Missing img: {job}.png")
+            print(f"Missing img: {job}.webp")
         jobicon: str = getIconForJob(job_abb)
         if jobicon:
             filecontent += f'jobicon: "{jobicon}"\n'
         classicon: str = additionalClassIcons.get(job_abb, "")
         if classicon:
-            classicon = getImage(f"062000/{classicon}.png")
+            classicon = getImage(f"062000/{classicon}.webp")
             filecontent += f'classicon: "{classicon}"\n'
         if roletypeinparty_en_name_key:
             if roleicons.get(roletypeinparty_en_name_key, None):

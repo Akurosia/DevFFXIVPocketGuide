@@ -67,9 +67,9 @@ def run():
         r_data += f'      cap: "{random_data[key][3]}"\n'
         r_data += f'      unlocked_by: "{random_data[key][4]}"\n'
         r_data += f'      icons:\n'
-        r_data += f'        gridania: "{random_data[key][0]}_hr1.png"\n'
-        r_data += f'        limsa: "{random_data[key][1]}_hr1.png"\n'
-        r_data += f'        uldah: "{random_data[key][2]}_hr1.png"\n'
+        r_data += f'        gridania: "{random_data[key][0]}_hr1.webp"\n'
+        r_data += f'        limsa: "{random_data[key][1]}_hr1.webp"\n'
+        r_data += f'        uldah: "{random_data[key][2]}_hr1.webp"\n'
     r_data += f'    - name:\n'
     r_data += f'        gridania_male: "" \n'
     r_data += f'        gridania_female: "" \n'
@@ -81,9 +81,9 @@ def run():
     r_data += f'      cap: "{random_data['20'][3]}"\n'
     r_data += f'      unlocked_by: "{random_data['20'][4]}"\n'
     r_data += f'      icons:\n'
-    r_data += f'        gridania: "{random_data['20'][0]}_hr1.png"\n'
-    r_data += f'        limsa: "{random_data['20'][1]}_hr1.png"\n'
-    r_data += f'        uldah: "{random_data['20'][2]}_hr1.png"\n'
+    r_data += f'        gridania: "{random_data['20'][0]}_hr1.webp"\n'
+    r_data += f'        limsa: "{random_data['20'][1]}_hr1.webp"\n'
+    r_data += f'        uldah: "{random_data['20'][2]}_hr1.webp"\n'
     print(r_data)
 
     filename = "_pages/gcrank/index.html"

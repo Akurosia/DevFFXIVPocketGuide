@@ -1,4 +1,5 @@
 from ffxiv_aku import *
+from python_scripts.helper import getImage
 
 items: dict[str, dict[str, str]] = loadDataTheQuickestWay("item_all.json", translate=True)
 mssi: dict[str, Any] = loadDataTheQuickestWay("MirageStoreSetItem.json", exd="raw-exd-all")
@@ -27,14 +28,6 @@ def write_class_translation_data(data):
         klass_translations[lang] = writeJsonFile(f'../assets/translations/itemsets/{LANGUAGES_MAPPING[lang]}.json', data[lang])
 
 
-def getImage(image: str|None, _type: str="icon") -> str:
-    if image is None or image == "":
-        return ""
-    image = image.replace(".png", "_hr1.png")
-    if _type == "icon":
-        image = image.replace(f"ui/{_type}/", "")
-    return image
-
 id_to_gear: dict[str, str] = {
     '0': '0_Kopf',
     '1': '1_Body',
@@ -59,7 +52,7 @@ def add_element(col_k: str, col_id: dict[str, str], row: str, r: dict[str, list[
     for lang in LANGUAGES:
         klass_translations[lang][f"Set_Item_{col_id}"] = items[col_id][f'Name_{lang}']
     href = f'<a style="color: #007bff" data-translate="Set_Item_{col_id}" target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#item/{col_id}">{i_name}</a>'
-    row += f"<td id='{i_name}' onclick='myFunction(this)'><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='https://xivapi.com/i/{i_icon}' alt='{i_name}'></td>\n"
+    row += f"<td id='{i_name}' onclick='myFunction(this)'><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='/assets/img/game_assets/{i_icon}' alt='{i_name}'></td>\n"
     return row, r
 
 def run():
@@ -86,7 +79,7 @@ def run():
                     klass_translations[lang][f"Set_{setid}"] = items[setid][f'Name_{lang}']
                 row = "<tr>\n"
                 href = f'<a style="color: #007bff" data-translate="Set_{setid}" target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#item/{setid}">{name}</a>'
-                row += f"<td id='{name}' onclick='myFunction(this)' ><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='https://xivapi.com/i/{icon}' alt='{name}'></td>\n"
+                row += f"<td id='{name}' onclick='myFunction(this)' ><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='/assets/img/game_assets/{icon}' alt='{name}'></td>\n"
                 r = {}
                 for col_k, col_id in mssi[setid]["Item"].items():
                     row, r = add_element(col_k, col_id, row, r)

@@ -105,13 +105,13 @@ def patches_overview():
 
 def single_patch_file():
     logos= {
-        "ff14": "title_logoonline_hr1.tex.png",
-        "arr": "title_logo_hr1.tex.png",
-        "hw": "title_logo300_hr1.tex.png",
-        "sb": "title_logo400_hr1.tex.png",
-        "shb": "title_logo500_hr1.tex.png",
-        "ew": "title_logo600_hr1.tex.png",
-        "dt": "title_logo700_hr1.tex.png"
+        "ff14": "title_logoonline_hr1.tex.webp",
+        "arr": "title_logo_hr1.tex.webp",
+        "hw": "title_logo300_hr1.tex.webp",
+        "sb": "title_logo400_hr1.tex.webp",
+        "shb": "title_logo500_hr1.tex.webp",
+        "ew": "title_logo600_hr1.tex.webp",
+        "dt": "title_logo700_hr1.tex.webp"
     }
     versions = get_any_Versiondata()
     #print_pretty_json(versions)

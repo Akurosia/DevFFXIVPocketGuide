@@ -150,7 +150,7 @@ def write_yaml_data_for_guide(kind, a_data):
                 #print(value)
                 for k in sorted(value['achievements']):
                     v = value['achievements'][k]
-                    icon = getImage(v["icon"].replace(".tex", ".png"))
+                    icon = getImage(v["icon"].replace(".tex", ".webp"))
                     order = round(v["order"], 1)
                     translate_content_files(v)
                     doc_data += ' - name:\n'

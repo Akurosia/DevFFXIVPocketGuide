@@ -213,16 +213,16 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     filecontent += 'patchNumber: "2.0"\n'
     filecontent += 'patchName: "A Realm Reborn"\n'
     filecontent += 'expac: "arr"\n'
-    icon = getImage("062000/062143_hr1.png")
+    icon = getImage("062000/062143_hr1.webp")
     filecontent += f'jobicon: "{icon}"\n'
 
     filecontent += "extraicons:\n"
     filecontent += addExtraIcons(job, icon, icon)
     filecontent += 'slug: "klassen_und_jobs_' + job.lower() + '"\n'
-    if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.png"):
-        filecontent += f'image: "/assets/img/content/klassen/{job}.png"\n'
+    if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.webp"):
+        filecontent += f'image: "/assets/img/content/klassen/{job}.webp"\n'
     else:
-        print(f"Missing img: {job}.png")
+        print(f"Missing img: {job}.webp")
     filecontent += 'terms:\n'
     filecontent += '    - term: "Klassen"\n'
     filecontent += '    - term: "Jobs"\n'

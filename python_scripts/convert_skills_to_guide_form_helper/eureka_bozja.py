@@ -133,9 +133,9 @@ def getBozjaActionDetails():
         if not result.get(action['Category']):
             result[action['Category']] = {}
         b, a = getActionDataSet(action['Action'])
-        icon = a["Icon"].replace(".tex", "_hr1.png")
+        icon = a["Icon"].replace(".tex", "_hr1.webp")
         if action['Action'] == "Würfel des Schicksals":
-            icon = "ui/icon/064000/064690_hr1.png"
+            icon = "ui/icon/064000/064690_hr1.webp"
         tmp = {
             "name": {},
             "icon": getImage(icon),
