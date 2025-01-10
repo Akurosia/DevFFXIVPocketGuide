@@ -113,6 +113,7 @@ def copy_and_return_image_as_hr(img: str, _type: str="icon") -> str:
             if not os.path.exists(os.path.dirname(new_path + img)):
                 os.makedirs(os.path.dirname(new_path + img))
             convert_single_image(f"{basepath}{_type}/" + img, replace_dir=(f"{basepath}{_type}/", new_path))
+            img = img.replace(".png", ".webp")
             #shutil.copyfile(f"{basepath}{_type}/" + img, new_path + img)
     else:
         print_color_red(f"{basepath}{_type}/" + img)
