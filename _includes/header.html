@@ -13,15 +13,10 @@
             style="background-image: url('{{ "/assets/img/7.0.webp" | prepend: site.baseurl }}')"
         {%- elsif page.image -%}
             style="background-image:
-            {%- if page.image -%}
-                {%- if page.image contains "/assets/" -%}
-                    url('{{ page.image }}');
-                {%- elsif guide.image contains "/assets/" -%}
-                    url('{{site.baseurl}}/{{ guide.image }}');
-                {%- else -%}
-                    url('{{site.imageurl}}/{{ page.image }}');
-                    url('{{site.imageurl}}/{{ guide.image }}');
-                {%- endif -%}
+            {%- if page.image contains "/assets/" -%}
+                url('{{site.baseurl}}{{ page.image }}');
+            {%- else -%}
+                url('{{site.imageurl}}/{{ page.image }}');
             {%- endif -%}
             {%- if page.instanceType == "patch_details" -%}
                 background-size: contain;
