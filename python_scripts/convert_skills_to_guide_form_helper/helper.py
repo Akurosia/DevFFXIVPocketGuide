@@ -21,6 +21,8 @@ def getImage(image: str, _type: str="icon") -> str:
     if _type == "icon":
         image = image.replace(f"ui/{_type}/", "")
     image = copy_and_return_image_as_hr(img=image, _type=_type)
+    if not image.startswith("/"):
+        image = "/" + image
     return image
 
 
