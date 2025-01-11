@@ -100,10 +100,10 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Role-Icon:
                 <span class="block group-icon">
                     {%- if page.roleicon -%}
-                        <img loading="lazy" title="{{ page.roletypeinparty }}" src="/{{page.roleicon}}"/>
+                        <img loading="lazy" title="{{ page.roletypeinparty }}" src="{{page.roleicon}}"/>
                     {%- endif -%}
                     {%- if page.roleiconextra-%}
-                        <img loading="lazy" title="{{page.roleiconextra[0].name}}" src="/{{page.roleiconextra[0].icon}}"/>
+                        <img loading="lazy" title="{{page.roleiconextra[0].name}}" src="{{page.roleiconextra[0].icon}}"/>
                     {%- endif -%}
                 </span>
             </h5>
@@ -111,7 +111,7 @@
         {%- if page.jobkristall -%}
         <h5 class="guide-metadata__subtitle box small-1of2 med-full">Job-Kristall:
             <span class="block group-icon">
-                <img onclick="copyIcon('{{page.jobkristall}}')" loading="lazy" title="Jobkristall" src="/assets/img/game_assets/{{page.jobkristall}}" />
+                <img onclick="copyIcon('{{page.jobkristall}}')" loading="lazy" title="Jobkristall" src="{{page.jobkristall}}" />
             </span>
         </h5>
         {%- endif -%}
@@ -119,14 +119,14 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Icon:
                 <span class="block group-icon">
                     {%- if page.classicon -%}
-                        <img onclick="copyIcon('{{page.classicon}}')" loading="lazy" title="Class" src="/{{page.classicon}}"/>
+                        <img onclick="copyIcon('{{page.classicon}}')" loading="lazy" title="Class" src="{{page.classicon}}"/>
                     {%- endif -%}
                     {%- if page.jobicon-%}
-                        <img onclick="copyIcon('{{page.jobicon}}')" loading="lazy" title="Job" src="/{{page.jobicon}}"/>
+                        <img onclick="copyIcon('{{page.jobicon}}')" loading="lazy" title="Job" src="{{page.jobicon}}"/>
                     {%- endif -%}
                     {%- if page.extraicons -%}
                         {%- for icon in page.extraicons -%}
-                            <img onclick="copyIcon('{{icon.name}}')" loading="lazy" title="{{icon.desc}}" src="/{{icon.name}}" />
+                            <img onclick="copyIcon('{{icon.name}}')" loading="lazy" title="{{icon.desc}}" src="{{icon.name}}" />
                         {%- endfor -%}
                     {%- endif -%}
                 </span>
@@ -194,7 +194,7 @@
                 <div data-translate="Sidebar_MapImage">MapImage: </div>
                 {%- for mapimage in page.mapimage -%}
                     <span class="block">{% if page.mapimage.size > 1%}-&nbsp;{% endif %}
-                        <a target="_blank" rel="noopener noreferrer" href="https://ff14.akurosiakamo.de/extras/images/ui/map/{{ mapimage.image }}">{{ mapimage.image }}</a>
+                        <a target="_blank" rel="noopener noreferrer" href="https://ff14.akurosiakamo.de/extras/images/ui/map{{ mapimage.image }}">{{ mapimage.image }}</a>
                     </span>
                 {%- endfor -%}
             </h5>
@@ -219,7 +219,7 @@
                 {%- for music in page.music -%}
                     <span class="block">{% if page.music.size > 1%}-&nbsp;{% endif %}
                         {%- if music.id -%}
-                            <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name }}</a>
+                            <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}" href="https://ffxivcollect.com/orchestrions{{ music.id }}">{{ music.name }}</a>
                         {%- else -%}
                             <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}">{{ music.name }}</a>
                         {%- endif -%}
@@ -238,16 +238,16 @@
                 <div data-translate="Sidebar_Guppenaufstellung">Guppenaufstellung: </div>
                 <span class="block group-icon">
                     {%- if page.group.tank -%}
-                        {{ page.group.tank }}x<img loading="lazy" src="{{site.baseurl}}/assets/img/game_assets/062000/062581_hr1.webp"/>
+                        {{ page.group.tank }}x<img loading="lazy" src="/assets/img/game_assets/062000/062581_hr1.webp"/>
                     {%- endif -%}
                     {%- if page.group.healer -%}
-                        {{ page.group.healer }}x<img loading="lazy" src="{{site.baseurl}}/assets/img/game_assets/062000/062582_hr1.webp"/>
+                        {{ page.group.healer }}x<img loading="lazy" src="/assets/img/game_assets/062000/062582_hr1.webp"/>
                     {%- endif -%}
                     {%- if page.group.melee -%}
-                        {{ page.group.melee }}x<img loading="lazy" src="{{site.baseurl}}/assets/img/game_assets/062000/062584_hr1.webp"/>
+                        {{ page.group.melee }}x<img loading="lazy" src="/assets/img/game_assets/062000/062584_hr1.webp"/>
                     {%- endif -%}
                     {%- if page.group.range -%}
-                        {{ page.group.range }}x<img loading="lazy" src="{{site.baseurl}}/assets/img/game_assets/062000/062585_hr1.webp"/>
+                        {{ page.group.range }}x<img loading="lazy" src="/assets/img/game_assets/062000/062585_hr1.webp"/>
                     {%- endif -%}
                 </span>
             </h5>
@@ -256,7 +256,7 @@
             <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_Quest">Quest: </div>
                 <span class="block">
-                    <a target="_blank" rel="noopener noreferrer" data-translate="QuestName_{{page.quest}}" href="https://{{lang}}.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest[lang] }}">{{ page.quest }}</a>
+                    <a target="_blank" rel="noopener noreferrer" data-translate="QuestName_{{page.quest}}" href="https:/{{lang}}.finalfantasyxiv.com/lodestone/playguide/db/quest/?patch=&db_search_category=quest&category2=&min_level=&max_level=&min_craft_lv=&max_craft_lv=&q={{ page.quest[lang] }}">{{ page.quest }}</a>
                 </span>
             </h5>
             {%- if page.quest_location -%}
@@ -278,7 +278,7 @@
                 {%- for mount in page.mount -%}
                     <span class="block">{% if page.mount.size > 1%}-&nbsp;{% endif %}
                     {%- if mount.id -%}
-                        <a data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name }}</a>
+                        <a data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/mounts{{ mount.id }}">{{ mount.name }}</a>
                     {%- else -%}
                         <a data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer">{{ mount.name }}</a>
                     {%- endif -%}
@@ -292,7 +292,7 @@
                 {%- for minion in page.minion -%}
                     <span class="block">{% if page.minion.size > 1%}-&nbsp;{% endif %}
                         {%- if minion.id -%}
-                            <a data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name }}</a>
+                            <a data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/minions{{ minion.id }}">{{ minion.name }}</a>
                         {%- else -%}
                             <a data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer">{{ minion.name }}</a>
                         {%- endif -%}
@@ -314,7 +314,7 @@
                 {%- for tt_card in page.tt_card -%}
                     <span class="block">{% if page.tt_card.size > 1%}-&nbsp;{% endif %}
                         {%- if tt_card.id -%}
-                            <a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name }}</a>
+                            <a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards{{ tt_card.id }}">{{ tt_card.name }}</a>
                         {%- else -%}
                             <a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" >{{ tt_card.name }}</a>
                         {%- endif -%}
@@ -328,7 +328,7 @@
                 {%- for orchestrion in page.orchestrion -%}
                     <span class="block">{% if page.orchestrion.size > 1%}-&nbsp;{% endif %}
                         {%- if orchestrion.id -%}
-                            <a data-translate="orchestrion_{{orchestrion.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions/{{ orchestrion.id }}">{{ orchestrion.name }}</a>
+                            <a data-translate="orchestrion_{{orchestrion.name}}" target="_blank" rel="noopener noreferrer" href="https://ffxivcollect.com/orchestrions{{ orchestrion.id }}">{{ orchestrion.name }}</a>
                         {%- else -%}
                             <a data-translate="orchestrion_{{orchestrion.name}}" target="_blank" rel="noopener noreferrer">{{ orchestrion.name }}</a>
                         {%- endif -%}
@@ -380,13 +380,13 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_Links">Links: </div>
                 {%- if page.links.teamcraftlink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance/{{ page.links.teamcraftlink }}">- Teamcraft</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance{{ page.links.teamcraftlink }}">- Teamcraft</a></span>
                 {%- endif -%}
                 {%- if page.links.garlandtoolslink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance/{{ page.links.garlandtoolslink }}">- Garlandtools</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance{{ page.links.garlandtoolslink }}">- Garlandtools</a></span>
                 {%- endif -%}
                 {%- if page.links.gamerescapelink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki/{{ page.links.gamerescapelink }}">- Gamerscape</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki{{ page.links.gamerescapelink }}">- Gamerscape</a></span>
                 {%- endif -%}
             </h5>
         {%- endif -%}

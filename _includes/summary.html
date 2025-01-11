@@ -7,16 +7,16 @@
             {%- elsif guide.image -%}
                 style="background-image:
                     {%- if guide.image contains "assets/" -%}
-                        url('{{site.baseurl}}{{guide.image}}')
+                        url('{{guide.image}}')
                     {%- else -%}
-                        url('{{site.baseurl}}/assets/img/game_assets/{{guide.image}}')
+                        url('{{guide.image}}')
                     {%- endif -%}
             {%- endif -%}">
         </div>
 
         <div class="klassenjobgrid{%- if guide.jobicon -%}{%- else -%}-onlyname{%- endif -%}">
             {%- if guide.jobicon -%}
-                <image loading="lazy" class="SummaryIcon Icon" title="{{guide.instanceType}}" src="{{site.baseurl}}{{guide.jobicon}}"/>
+                <image loading="lazy" class="SummaryIcon Icon" title="{{guide.instanceType}}" src="{{guide.jobicon}}"/>
             {%- endif -%}
             <div class="SummaryName">
                 <h3 class="index-item__title"

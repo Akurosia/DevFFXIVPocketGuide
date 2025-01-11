@@ -7,7 +7,7 @@
         style="display: none">
     </h4>
 
-    <img class="Icon debuff_icon" loading="lazy" src="{{ site.baseurl }}/assets/img/game_assets/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
+    <img class="Icon debuff_icon" loading="lazy" src="{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
     <div class="Names">
         <span>
             <span data-translate="Class_Status_Name_{{  debuff.title.en }}">{{ debuff.title.en }} </span>
@@ -55,7 +55,7 @@
             <div class="guide__attack-notes-wrapper">
                 <h5 class="guide__attack-notes-title" data-translate="Class_Status_Skill_Title">Wurde durch Folgenden Skill hinzugefügt:</h5>
                 <span class="guide__debuff_description">
-                    <img loading="lazy" class="attack_icon" src="{{ site.baseurl }}/assets/img/game_assets/{{ debuff.added_by.icon }}" alt="{{ debuff.added_by.icon }}"/>
+                    <img loading="lazy" class="attack_icon" src="{{ debuff.added_by.icon }}" alt="{{ debuff.added_by.icon }}"/>
                     <span data-translate="Class_Skill_Name_{{  debuff.added_by.en }}">{{  debuff.added_by.en }}</span>
                 </span>
             </div>

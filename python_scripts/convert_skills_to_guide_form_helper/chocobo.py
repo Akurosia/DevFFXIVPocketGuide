@@ -66,7 +66,7 @@ def addChocoboPartnerSkills():
         for lang in LANGUAGES:
             result += f'          {lang}: "{t[f"Name_{lang}"]}"\n'
             job_translations[lang][f'Class_Skill_Name_{t["Name_en"]}'] = t[f"Name_{lang}"]
-        result += f'        icon: "{getImage(t["Icon"])}"\n'
+        result += f'        icon: "/assets/img/game_assets{getImage(t["Icon"])}"\n'
         #result += f'        level: "{actions[key]["Level"]}"\n'
         result += f'        title_id: "{key}"\n'
         result += '        description:\n'
@@ -91,7 +91,7 @@ def addRennChocoboSkills_trans():
             result += f'          {lang}: "{value[f"Name_{lang}"]}"\n'
             job_translations[lang][f'Class_Skill_Name_{value["Name_en"]}'] = value[f"Name_{lang}"]
         result += f'        title_id: "{key}"\n'
-        result += f'        icon: "{getImage(value["Icon"])}"\n'
+        result += f'        icon: "/assets/img/game_assets{getImage(value["Icon"])}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "{deal_with_extras_in_text(value[f"Description_{lang}"])}"\n'
@@ -121,7 +121,7 @@ def addChocoboPartnerTraits():
         for lang in LANGUAGES:
             result += f'          {lang}: "{t[f"Name_{lang}"]}"\n'
             job_translations[lang][f'Class_Trait_Name_{t["Name_en"]}'] = t[f"Name_{lang}"]
-        result += f'        icon: "{getImage(t["Icon"])}"\n'
+        result += f'        icon: "/assets/img/game_assets{getImage(t["Icon"])}"\n'
         result += f'        level: "{traits[key]["Level"]}"\n'
         result += f'        title_id: "{key}"\n'
         result += '        description:\n'
@@ -146,7 +146,7 @@ def addRennChocoboItems_trans():
             result += f'          {lang}: "{value[f"Name_{lang}"]}"\n'
             job_translations[lang][f'Class_Skill_Name_{value["Name_en"]}'] = value[f"Name_{lang}"]
         result += f'        title_id: "{key}"\n'
-        result += f'        icon: "{getImage(value["Icon"])}"\n'
+        result += f'        icon: "/assets/img/game_assets{getImage(value["Icon"])}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "{deal_with_extras_in_text(value[f"Description_{lang}"])}"\n'
@@ -214,7 +214,7 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     filecontent += 'patchName: "A Realm Reborn"\n'
     filecontent += 'expac: "arr"\n'
     icon = getImage("062000/062143_hr1.webp")
-    filecontent += f'jobicon: "{icon}"\n'
+    filecontent += f'jobicon: "/assets/img/game_assets{icon}"\n'
 
     filecontent += "extraicons:\n"
     filecontent += addExtraIcons(job, icon, icon)

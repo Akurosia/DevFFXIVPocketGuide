@@ -183,7 +183,7 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
             result += '        terms:\n'
             for term in terms:
                 result += f'          - term: "{term}"\n'
-            result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
+            result += f'        icon: "/assets/img/game_assets{getImage(skill_data["Icon"])}"\n'
             result += f'        range: "{skill_data["Range"]}"\n'
             result += f'        effectrange: "{skill_data["EffectRange"]}"\n'
             result += f'        cast: "{skill_data["Cast"]}"\n'

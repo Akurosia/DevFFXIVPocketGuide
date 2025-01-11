@@ -98,7 +98,7 @@ def addEurekaActions(job, eureka_actions, job_translations):
             result_text += f'        status_icon: "{getImage(value["status_icon"])}"\n'
             result_text += f'        title_id: "{k}"\n'
             result_text += '        level: "70"\n'
-            result_text += f'        icon: "{getImage(value["icon"])}"\n'
+            result_text += f'        icon: "/assets/img/game_assets{getImage(value["icon"])}"\n'
             result_text += '        description:\n'
             for lang in LANGUAGES:
                 result_text += f'          {lang}: "' + deal_with_extras_in_text(value["description"][lang]) + '"\n'
@@ -168,7 +168,7 @@ def addBozjaActions(job, bozja_actions, job_translations):
                     job_translations[lang][f'Class_Skill_Name_{value["name"]["en"]}'] = value["name"][lang]
                 result_text += f'        title_id: "{k}"\n'
                 result_text += '        level: "80"\n'
-                result_text += f'        icon: "{getImage(value["icon"])}"\n'
+                result_text += f'        icon: "/assets/img/game_assets{getImage(value["icon"])}"\n'
                 result_text += '        description:\n'
                 for lang in LANGUAGES:
                     result_text += f'          {lang}: "' + deal_with_extras_in_text(value["description"][lang]) + '"\n'
