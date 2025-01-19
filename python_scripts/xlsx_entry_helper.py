@@ -133,7 +133,7 @@ def getBeforeAndAfterContentEntries(orderedContent, entry: EntryType):
     _type = orderedContent[entry['instanceType']]
     _typeKeys = list(_type)
     for i, k in enumerate(_type):
-        if _type[k].endswith(entry['slug']):
+        if _type[k].endswith(entry['slug_url']):
             if i - 1 >= 0:
                 try:
                     _previous = _type[_typeKeys[i - 1]]
@@ -189,7 +189,8 @@ def getPrevAndNextContentOrder(sheet: Worksheet, elements, max_row: int) -> Orde
             entry[instanceType] = {}
         sortID = str(sheet.cell(row=int(i), column=int(3)).value).replace("None", "")
         addon = str(sheet.cell(row=int(i), column=int(5)).value).replace("None", "")
-        slug = str(sheet.cell(row=int(i), column=int(6)).value).replace("None", "")
+        #column 7 is the slug_url field while 6 would be the normal slug field
+        slug = str(sheet.cell(row=int(i), column=int(7)).value).replace("None", "")
         entry[instanceType][sortID] = "/" + addon + "/" + slug
     return OrderedDict(natsort.natsorted(entry.items()))
 

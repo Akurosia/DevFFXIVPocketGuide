@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import print_color_red, true, glob
+from ffxiv_aku import print_color_red, true, glob, fix_slug
 from copy import deepcopy
 from typing import Any
 try:
@@ -341,6 +341,7 @@ def getMapImages(mapid: str, contentname: str) -> str:
 def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_translations):
     global contentfindercondition
     global instancecontent
+    global contentfindercondition_trans
     header_data = ""
     tt_type_name, tt_bg_entry = get_territorytype_from_mapid(entry)
     if old_wip in ["True", "False"]:
@@ -368,7 +369,8 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
     header_data += 'difficulty: "' + entry["difficulty"] + '"\n'
     header_data += 'instanceType: "' + entry["instanceType"] + '"\n'
     header_data += 'date: "' + entry["date"] + '"\n'
-    header_data += 'slug: "' + replaceSlug(entry["slug"]) + '"\n'
+    header_data += 'slug: "' + replaceSlug(entry["slug_url"]) + '"\n'
+    header_data += 'slug_translate: "' + replaceSlug(entry["slug"]) + '"\n'
     if entry["prev_content"]:
         header_data += 'previous_slug: "' + replaceSlug(entry["prev_content"]) + '"\n'
     if entry["next_content"]:
