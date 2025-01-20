@@ -6,7 +6,7 @@ import sys
 import shutil
 from dataclasses import dataclass, field
 from typing import List, Any, Dict
-from ffxiv_aku import print_color_red, convert_single_image
+from ffxiv_aku import print_color_red, print_color_green, convert_single_image
 try:
     from python_scripts.fileimports import placename, contentfindercondition_trans
 except Exception:
@@ -84,19 +84,28 @@ class EntryType(dict):
 def getImage(image: str, _type: str="icon") -> str:
     if image is None or image == "":
         return ""
-    image = image.replace(".tex", "_hr1.png")
+    if image.startswith("/../"):
+        image = image.replace("/../", "/")
+    if os.path.exists(".." + image):
+        return image
+    # get propper image extention as _hr1.png
+    image = image.replace(".webp", ".png")
+    image = image.replace(".tex", ".png")
+    image = image.replace("test.jpg", "test.webp")
     if _type == "icon":
         image = image.replace(f"ui/{_type}/", "")
     image = copy_and_return_image_as_hr(img=image, _type=_type)
     if not image.startswith("/"):
         image = "/" + image
+    if not os.path.exists(".." + image):
+        image = image.replace("_hr1.webp", ".webp")
+        print_color_green(image)
     return image
 
 
 def copy_and_return_image_as_hr(img: str, _type: str="icon") -> str:
     if "_hr1" not in img and not _type == "map":
         img = img.replace(".png", "_hr1.png")
-    img = img.replace(".webp", ".png" )
 
     basepath = None
     if os.name == 'nt':
@@ -112,15 +121,16 @@ def copy_and_return_image_as_hr(img: str, _type: str="icon") -> str:
             new_path = "assets/img/game_assets/"
         if _type == "map":
             new_path += "map/"
-        if not os.path.exists(new_path + img.replace(".png", ".webp")):
+        full_filepath: str = (new_path + img.replace(".png", ".webp")).replace("//", "/")
+        if not os.path.exists(full_filepath):
             if not os.path.exists(os.path.dirname(new_path + img)):
                 os.makedirs(os.path.dirname(new_path + img))
             convert_single_image(f"{basepath}{_type}/" + img, replace_dir=(f"{basepath}{_type}/", new_path))
             #shutil.copyfile(f"{basepath}{_type}/" + img, new_path + img)
+        img = full_filepath
     else:
         print_color_red(f"{basepath}{_type}/" + img)
-    img = img.replace(".png", ".webp")
-    return img
+    return img.replace(".png", ".webp").replace("../", "")
 
 
 def uglyContentNameFix(name: str, instanceType: str="", difficulty: str="") -> str:

@@ -84,8 +84,8 @@ def add_Mechanic(data):
                 if step.get("images", None):
                     guide_data += "        images:\n"
                     for image in step["images"]:
-                        guide_data += f"          - url: \"{image['url']}\"\n"
-                        guide_data += f"            alt: \"{image.get('alt', image['url'])}\"\n"
+                        guide_data += f"          - url: \"{getImage(image['url'])}\"\n"
+                        guide_data += f"            alt: \"{getImage(image.get('alt', image['url']))}\"\n"
                         guide_data += f"            height: \"{image.get('height', '250px')}\"\n"
 
                 if step.get("videos", None):
@@ -199,8 +199,8 @@ def add_regular_Attack(guide_data, attack, enemy_type, enemy_name_en, content_tr
     if attack.get('images', None):
         guide_data += '        images:\n'
         for image in attack.get('images', {}):
-            guide_data += f'          - url: "{image["url"]}"\n'
-            guide_data += f'            alt: "{image.get("alt", None) or image["url"]}"\n'
+            guide_data += f'          - url: "{getImage(image["url"])}"\n'
+            guide_data += f'            alt: "{getImage(image.get("alt", None)) or getImage(image["url"])}"\n'
             guide_data += f'            height: "{image.get("height", None) or "350px"}"\n'
 
     if attack.get('videos', None):
@@ -290,8 +290,8 @@ def add_variation_Attack(guide_data, attack, enemy_type, enemy_name_en, content_
     if attack.get('images', None):
         guide_data += '        images:\n'
         for image in attack.get('images', {}):
-            guide_data += f'          - url: "{image["url"]}"\n'
-            guide_data += f'            alt: "{image.get("alt", None) or image["url"]}"\n'
+            guide_data += f'          - url: "{getImage(image["url"])}"\n'
+            guide_data += f'            alt: "{getImage(image.get("alt", None)) or getImage(image["url"])}"\n'
             guide_data += f'            height: "{image.get("height", None) or "350px"}"\n'
 
     if attack.get('videos', None):
@@ -364,8 +364,8 @@ def add_combo_Attack(guide_data, attack, enemy_type, enemy_name_en, content_tran
     if attack.get('images', None):
         guide_data += '        images:\n'
         for image in attack.get('images', {}):
-            guide_data += f'          - url: "{image["url"]}"\n'
-            guide_data += f'            alt: "{image.get("alt", None) or image["url"]}"\n'
+            guide_data += f'          - url: "{getImage(image["url"])}"\n'
+            guide_data += f'            alt: "{getImage(image.get("alt", None)) or getImage(image["url"])}"\n'
             guide_data += f'            height: "{image.get("height", None) or "350px"}"\n'
 
     if attack.get('videos', None):
@@ -411,8 +411,8 @@ def add_Sequence(guide_data, data):
         if phase.get('images', None):
             guide_data += "        images:\n"
             for image in phase['images']:
-                guide_data += f"          - url: \"{image['url']}\"\n"
-                guide_data += f"            alt: \"{image.get('alt', image['url'])}\"\n"
+                guide_data += f"          - url: \"{getImage(image['url'])}\"\n"
+                guide_data += f"            alt: \"{getImage(image.get('alt', image['url']))}\"\n"
                 guide_data += f"            height: \"{image.get('height', '250px')}\"\n"
 
         if phase.get('videos', None):

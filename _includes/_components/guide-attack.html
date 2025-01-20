@@ -46,7 +46,7 @@
         {%- for status in attack.add_status -%}
             <h5 class="guide__attack-notes-title">Fügt Status
                 {%- if status.icon != ""-%}
-                    <img loading="lazy" src="{{ site.baseurl }}/assets/img/game_assets/{{ status.icon }}" style="height: 30px; width: auto;">
+                    <img loading="lazy" src="{{ site.baseurl }}{{ status.icon }}" style="height: 30px; width: auto;">
                     <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_{{status.name.en}}_Name"> {{ status.name.en }}</span></u> hinzu.
                 {%- else -%}
                     <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_HiddenDebuff_Name"> ohne Namen und Icon </span> ({{ status.status }})</u> hinzu.
@@ -81,7 +81,7 @@
             {%- for status in combo.add_status -%}
                 <h5 class="guide__attack-notes-title">Fügt Status
                     {%- if status.icon != ""-%}
-                        <img loading="lazy" src="{{ site.baseurl }}/assets/img/game_assets/{{ status.icon }}" style="height: 30px; width: auto;">
+                        <img loading="lazy" src="{{ site.baseurl }}{{ status.icon }}" style="height: 30px; width: auto;">
                         <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_{{status.name.en}}_Name"> {{ status.name.en }}</span></u> hinzu.
                     {%- else -%}
                         <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_HiddenDebuff_Name"> ohne Namen und Icon </span> ({{ status.status }})</u> hinzu.
@@ -114,7 +114,7 @@
                     {%- for status in variation.add_status -%}
                         <h5 class="guide__attack-notes-title">Fügt Status
                             {%- if status.icon != ""-%}
-                                <img loading="lazy" src="{{ site.baseurl }}/assets/img/game_assets/{{ status.icon }}" style="height: 30px; width: auto;">
+                                <img loading="lazy" src="{{ site.baseurl }}{{ status.icon }}" style="height: 30px; width: auto;">
                                 <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_{{status.name.en}}_Name"> {{ status.name.en }}</span></u> hinzu.
                             {%- else -%}
                                 <u><span data-translate="{{x}}_{{enemy_name_en}}_Status_HiddenDebuff_Name"> ohne Namen und Icon </span> ({{ status.status }})</u> hinzu.

@@ -6,7 +6,7 @@
             {%- endif -%}">
     <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
 
-    <img loading="lazy" class="Icon debuff_icon" src="{{ site.baseurl }}/assets/img/game_assets/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
+    <img loading="lazy" class="Icon debuff_icon" src="{{ site.baseurl }}{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
     <div class="Names">
         <span class="{% if debuff.damage_type == 'Magical' %} attack-is-magic
                      {% elsif debuff.damage_type && debuff.damage_type != 'None' %} attack-is-physical
