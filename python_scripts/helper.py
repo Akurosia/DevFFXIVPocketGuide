@@ -86,7 +86,8 @@ def getImage(image: str, _type: str="icon") -> str:
         return ""
     if image.startswith("/../"):
         image = image.replace("/../", "/")
-    if os.path.exists(".." + image):
+    # exit early if corret name format is found and file exixsts
+    if "_hr1" in image and os.path.exists(".." + image) or "/content/" in image and os.path.exists(".." + image) or image == "/assets/img/test.webp":
         return image
     # get propper image extention as _hr1.png
     image = image.replace(".webp", ".png")

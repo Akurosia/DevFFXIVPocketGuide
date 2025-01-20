@@ -41,7 +41,7 @@ def check_Mechanics(entry: ENTRY_DATA, old_mechanics):
                 "steps": [{
                     "step": "09",
                     "notes": [{"note": f"Mechanics-note {counter}", }],
-                    "images": [{"url": "/assets/img/test.jpg", "alt": "/assets/img/test.jpg", "height": "250px", }],
+                    "images": [{"url": "/assets/img/test.webp", "alt": "/assets/img/test.webp", "height": "250px", }],
                     "videos": [{"url": "https&#58;//akurosia.de/upload/test.mp4", }],
                 }],
             }
