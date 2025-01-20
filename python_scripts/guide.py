@@ -66,7 +66,7 @@ def add_Mechanic(data):
             z = x.get(lang, x['de']).replace('"', '\\"').strip()
             guide_data += f"      {lang}: \"{z}\"\n"
         if x.get('icon', None):
-            guide_data += f"      icon: \"{x['icon']}\"\n"
+            guide_data += f"      icon: \"{getImage(x['icon'])}\"\n"
         if data.get("steps", None):
             guide_data += "    steps:\n"
             for step in data["steps"]:
