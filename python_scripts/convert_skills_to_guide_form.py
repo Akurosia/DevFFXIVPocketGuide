@@ -672,8 +672,8 @@ roleicons: dict[str, str] = {
     "Magical Ranged Dps":  "062000/062587_hr1.webp"
 }
 roleiconsextra = {
-    "2": ("uld/pure-healer.webp", "Primärheiler"),
-    "6": ("uld/barrier-healer.webp", "Barriereheiler")
+    "2": ("/assets/img/game_assets/uld/pure-healer.webp", "Primärheiler"),
+    "6": ("/assets/img/game_assets/uld/barrier-healer.webp", "Barriereheiler")
 }
 additionalClassIcons = {
     "PLD": "062101_hr1",
