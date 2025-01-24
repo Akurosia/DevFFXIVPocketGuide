@@ -1,30 +1,35 @@
 <!-- Include from _includes/links -->
 <div class="index">
-    {%- for category in page.links -%}
-        {%- assign csize = category.links | size -%}
-        {%- if csize > 0 -%}
-            <a id="{{ category.category }}"></a>
-            <div class="index-divider" data-expansion="{{ category.category }}">
-                <h2 class="index-divider__title">{{ category.category }}</h2>
-            </div>
-            <div class="index__list" data-expansion="{{ category.category }}">
-                {%- for link in category.links -%}
-                    <div class="summary">
-                        <a class="index-item__link" target="_blank" rel="noopener noreferrer" href="{{ link.url }}" title="Go to the {{ link.name }} Site">
-                            <div class="index-item__background"> </div>
-                            <img loading="lazy" class="link-favicon" src="{{ link.favicon }}" onerror="this.style.display='none'"></img>
-                            <h3 class="index-item__title"
-                                data-terms="{{ link.name }}&#32;{{ link.url }}&#32;{{ link.shorturl }}&#32;{%- for term in link.terms -%}{{ term.term }}&#32;{%- endfor -%}">
-                                {{ link.name }}
-                            </h3>
-                            <h4 class="index-item__title_en">
-                                {{ link.shorturl }}
-                            </h4>
-                        </a>
-                    </div>
+    <div class="setting_container">
+        <table class="table table-bordered table-dark table-striped text-light gcrank_table" id="tInfo">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Icon</th>
+                    <th scope="col">Griania Male / Female</th>
+                    <th scope="col">Limsa Male / Female</th>
+                    <th scope="col">Ul'dah Male / Female</th>
+                    <th scope="col">Cap</th>
+                    <th scope="col">Unlocked By</th>
+            </thead>
+            <tbody>
+                {%- for gcrank in page.gcrank -%}
+                    <tr>
+                        <td class="gcrank_table_1">{{gcrank.id}}</td>
+                        <td class="gcrank_table_2">
+                            <img style="height: 40px;width: 40px;" loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets{{ gcrank.icons.gridania }}'"> /
+                            <img style="height: 40px;width: 40px;" loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets{{ gcrank.icons.limsa }}'"> /
+                            <img style="height: 40px;width: 40px;" loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets{{ gcrank.icons.uldah }}'">
+                        </td>
+                        <td class="gcrank_table_3">{{gcrank.name.gridania_male}} / {{gcrank.name.gridania_female}}</td>
+                        <td class="gcrank_table_3">{{gcrank.name.limsa_male}} / {{gcrank.name.limsa_female}}</td>
+                        <td class="gcrank_table_3">{{gcrank.name.uldah_male}} / {{gcrank.name.uldah_female}}</td>
+                        <td class="gcrank_table_4">{{gcrank.cap}}</td>
+                        <td class="gcrank_table_5">{{gcrank.unlocked_by}}</td>
+                    </tr>
                 {%- endfor -%}
-            </div>
-        {%- endif -%}
-    {%- endfor -%}
+            </tbody>
+        </table>
+    </div>
 </div>
 <!-- END Include from _includes/links -->

@@ -10,15 +10,6 @@
             {% include navbar.html %}
             <div class="layout__wrapper">
                 {% include header.html %}
-                <!-- Search Bar -->
-                {% if page.page_type == "index" %}
-                    <div class="search">
-                        <form class="search__form">
-                            <label for="guideFilter" data-translate="Searchbar_Example_Text">Nach einem Guide suchen...</label>
-                            <input id="guideFilter" placeholder="!Shadowbringer, E8S, Krieger des Lichts, Mounts, Minions, etc..." type="text"/>
-                        </form>
-                    </div>
-                {% endif %}
                 {% include gcrank.html %}
                 {% include_cached footer.html %}
             </div>

@@ -1,6 +1,10 @@
 
 from ffxiv_aku import *
 from natsort import natsorted
+try:
+    from .convert_skills_to_guide_form_helper.helper import getImage
+except:
+    from convert_skills_to_guide_form_helper.helper import getImage
 
 #storeFilesInTmp(state=True)
 GCRankGridaniaFemaleText = loadDataTheQuickestWay("GCRankGridaniaFemaleText", translate=True)
@@ -67,9 +71,16 @@ def run():
         r_data += f'      cap: "{random_data[key][3]}"\n'
         r_data += f'      unlocked_by: "{random_data[key][4]}"\n'
         r_data += f'      icons:\n'
-        r_data += f'        gridania: "{random_data[key][0]}_hr1.webp"\n'
-        r_data += f'        limsa: "{random_data[key][1]}_hr1.webp"\n'
-        r_data += f'        uldah: "{random_data[key][2]}_hr1.webp"\n'
+        gridania_icon = getImage("083000/" + random_data[key][0] + "_hr1.webp")
+        limsa_icon = getImage("083000/" + random_data[key][1] + "_hr1.webp")
+        uldah_icon = getImage("083000/" + random_data[key][2] + "_hr1.webp")
+        r_data += f'        gridania: "{gridania_icon}"\n'
+        r_data += f'        limsa: "{limsa_icon}"\n'
+        r_data += f'        uldah: "{uldah_icon}"\n'
+
+    gridania_icon = getImage("083000/" + random_data["20"][0] + "_hr1.webp")
+    limsa_icon = getImage("083000/" + random_data["20"][1] + "_hr1.webp")
+    uldah_icon = getImage("083000/" + random_data["20"][2] + "_hr1.webp")
     r_data += f'    - name:\n'
     r_data += f'        gridania_male: "" \n'
     r_data += f'        gridania_female: "" \n'
@@ -81,9 +92,10 @@ def run():
     r_data += f'      cap: "{random_data['20'][3]}"\n'
     r_data += f'      unlocked_by: "{random_data['20'][4]}"\n'
     r_data += f'      icons:\n'
-    r_data += f'        gridania: "{random_data['20'][0]}_hr1.webp"\n'
-    r_data += f'        limsa: "{random_data['20'][1]}_hr1.webp"\n'
-    r_data += f'        uldah: "{random_data['20'][2]}_hr1.webp"\n'
+    r_data += f'        gridania: "{gridania_icon}"\n'
+    r_data += f'        limsa: "{limsa_icon}"\n'
+    r_data += f'        uldah: "{uldah_icon}"\n'
+    r_data += f'---'
     print(r_data)
 
     filename = "_pages/gcrank/index.html"
