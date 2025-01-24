@@ -46,7 +46,7 @@ id_to_gear: dict[str, str] = {
 def add_element(col_k: str, col_id: dict[str, str], row: str, r: dict[str, list[str]]) -> tuple[str, dict[str, list[str]]]:
     global klass_translations
     if col_id == "0":
-        row += "<td></td>\n"
+        row += "        <td></td>\n"
         return row, r
     i_name: str
     i_icon: str
@@ -55,7 +55,7 @@ def add_element(col_k: str, col_id: dict[str, str], row: str, r: dict[str, list[
     for lang in LANGUAGES:
         klass_translations[lang][f"Set_Item_{col_id}"] = items[col_id][f'Name_{lang}']
     href = f'<a style="color: #007bff" data-translate="Set_Item_{col_id}" target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#item/{col_id}">{i_name}</a>'
-    row += f"<td id='{i_name}' onclick='myFunction(this)'><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='/assets/img/game_assets{i_icon}' alt='{i_name}'></td>\n"
+    row += f"        <td id='{i_name}' onclick='myFunction(this)'><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='/assets/img/game_assets{i_icon}' alt='{i_name}'></td>\n"
     return row, r
 
 def run():
@@ -68,9 +68,9 @@ def run():
     #html = "<html>\n"
     #html += '<head><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> </head>'
     #html += "<body>\n"
-    html = "<table class='table table-bordered table-dark table-striped text-light patch_table'>\n"
-    html += "<thead> <tr> <th>Set</th> <th>Kopf</th>  <th>Body</th>  <th>Hände</th>  <th>Hose</th>  <th>Schuhe</th>  <th>Ohrringe</th>  <th>Halskette</th>  <th>Armreif</th>  <th>Ring</th> <th>GetFrom</th>  </tr> </thead>\n"
-    html += "<tbody>\n"
+    html = "  <table class='table table-bordered table-dark table-striped text-light patch_table'>\n"
+    html += "    <thead> <tr> <th>Set</th> <th>Kopf</th>  <th>Body</th>  <th>Hände</th>  <th>Hose</th>  <th>Schuhe</th>  <th>Ohrringe</th>  <th>Halskette</th>  <th>Armreif</th>  <th>Ring</th> <th>GetFrom</th>  </tr> </thead>\n"
+    html += "    <tbody>\n"
     result: dict[str, str] = {}
     for key, value in mssil.items():
         for k, _set in value['MirageStoreSetItem'].items():
@@ -80,16 +80,16 @@ def run():
                 name, icon = [items[setid]['Name_de'], getImage(items[setid]['Icon'])]
                 for lang in LANGUAGES:
                     klass_translations[lang][f"Set_{setid}"] = items[setid][f'Name_{lang}']
-                row = "<tr>\n"
+                row = "      <tr>\n"
                 href = f'<a style="color: #007bff" data-translate="Set_{setid}" target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#item/{setid}">{name}</a>'
-                row += f"<td id='{name}' onclick='myFunction(this)' ><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='/assets/img/game_assets{icon}' alt='{name}'></td>\n"
+                row += f"        <td id='{name}' onclick='myFunction(this)' ><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='/assets/img/game_assets{icon}' alt='{name}'></td>\n"
                 r = {}
                 for col_k, col_id in mssi[setid]["Item"].items():
                     row, r = add_element(col_k, col_id, row, r)
 
                 #row, r = add_element("col_10", mssi[setid]["col_10"], row, r)
-                row += "<td></td>\n"
-                row += "</tr>\n"
+                row += "        <td></td>\n"
+                row += "      </tr>\n"
                 if not result.get(name, None):
                     result[name] = row
                 else:
@@ -100,8 +100,8 @@ def run():
     for key in sorted(result):
         html += result[key]
 
-    html += "</tbody>\n"
-    html += "</table><br>\n"
+    html += "    </tbody>\n"
+    html += "  </table><br>\n"
     html += "</body>"
     #html += "<style> td { display: ruby-text;} </style>"
     html += """<script>
