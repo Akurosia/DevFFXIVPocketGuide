@@ -1,6 +1,10 @@
 from PIL.ImageFile import ImageFile
 from ffxiv_aku import *
 from PIL import Image, ImageDraw, ImageFont
+try:
+    from .convert_skills_to_guide_form_helper.helper import LANGUAGES, LANGUAGES_MAPPING
+except:
+    from convert_skills_to_guide_form_helper.helper import LANGUAGES, LANGUAGES_MAPPING
 
 treasurespot = loadDataTheQuickestWay("TreasureSpot.json")
 treasurehuntrank = loadDataTheQuickestWay("TreasureHuntRank.json")
@@ -8,12 +12,62 @@ treasurehunttexture = loadDataTheQuickestWay("TreasureHuntTexture.json")
 level = loadDataTheQuickestWay("Level.json")
 ttype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
 items  = loadDataTheQuickestWay("item_all.json", translate=True)
+versions = get_any_Versiondata()
+placename = loadDataTheQuickestWay("placename_all.json", translate=True)
+contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
+map_translations = None
+
+def cache_results(func):
+    cache = {}  # Dictionary to store cached results
+    def wrapper(*args):
+        if args in cache:
+            return cache[args]  # Return cached result
+        result = func(*args)  # Call the original function
+        cache[args] = result  # Cache the result
+        return result
+
+    return wrapper
+
+@cache_results
+def get_placename(name):
+    for key, value in placename.items():
+        if value['Name_de'] == name:
+            return value
+
+@cache_results
+def get_contentfindercondition(name):
+    for key, value in contentfindercondition.items():
+        if value['Name_de'] == name:
+            return value
+
+
+@cache_results
+def get_item(name):
+    for key, value in items.items():
+        if value['Name_de'] == name:
+            return value
+
+
+def get_map_translation_data() -> None:
+    global map_translations
+    map_translations = {}
+    for lang in LANGUAGES:
+        #map_translations[lang] = readJsonFile(f'assets/translations/klassen/{LANGUAGES_MAPPING[lang]}.json')
+        map_translations[lang] = {}
+
+
+def write_map_translation_data() -> None:
+    global map_translations
+    origin: str = os.getcwd()
+    os.chdir("..")
+    for lang in LANGUAGES:
+        writeJsonFile(f'assets/translations/treasuremaps/{LANGUAGES_MAPPING[lang]}.json', map_translations[lang])
+    os.chdir(origin)
+
 
 def add_watermark(image, watermark_text, font_path="arial.ttf", font_size=30):
     # Create a copy of the image to avoid modifying the original
     watermarked_image = image.copy()
-    draw = ImageDraw.Draw(watermarked_image)
-
     # Load font
     try:
         font = ImageFont.truetype(font_path, font_size)
@@ -95,37 +149,27 @@ def get_sub_images(original_image, overlay_cropped, x, y, output_path, name):
         modified_image.save(output_path + f"{chr(name)}.webp", format='WEBP', lossless=True)
         print(f"Saved modified image: {output_path}{chr(name)}.webp")
 
+treasuredungeons: dict[str, list[str]] = {
+    "12243": ["Aquapolis"],
+    "17836": ["Kanäle von Uznair", "Glücksaltäre von Uznair"],
+    "19770": ["Vergessene Kanäle von Uznair"],
+    "26745": ["Verliese von Lyhe Ghiah", "Das Karussell von Lyhe Ghiah"],
+    "36612": ["Euphoratron"],
+    "39591": ["Gymnasion Agonon"],
+    "43557": ["Cenote Ja Ja Gural"],
+}
 
-ids: dict[str, list[str]] = {
-    "6688":  ["A Realm Reborn", "arr", "02-arr"],
-    "6689":  ["A Realm Reborn", "arr", "02-arr"],
-    "6690":  ["A Realm Reborn", "arr", "02-arr"],
-    "6691":  ["A Realm Reborn", "arr", "02-arr"],
-    "6692":  ["A Realm Reborn", "arr", "02-arr"],
-    "7884":  ["A Realm Reborn", "arr", "02-arr"],
-    "8156":  ["A Realm Reborn", "arr", "02-arr"],
-    "9900":  ["A Realm Reborn", "arr", "02-arr"],
-    "12241": ["Heavensward", "hw", "03-hw"],
-    "12242": ["Heavensward", "hw", "03-hw"],
-    "12243": ["Heavensward", "hw", "03-hw"],
-    "17835": ["Stormblood", "sb", "04-sb"],
-    "17836": ["Stormblood", "sb", "04-sb"],
-    "19770": ["Stormblood", "sb", "04-sb"],
-    "24794": ["Stormblood", "sb", "04-sb"],
-    "26744": ["Shadowbringers", "shb", "05-shb"],
-    "26745": ["Shadowbringers", "shb", "05-shb"],
-    "33328": ["Shadowbringers", "shb", "05-shb"],
-    "36611": ["Endwalker", "ew", "06-ew"],
-    "36612": ["Endwalker", "ew", "06-ew"],
-    "39591": ["Endwalker", "ew", "06-ew"],
-    "39593": ["Endwalker", "ew", "06-ew"],
-    "39918": ["Endwalker", "ew", "06-ew"],
-    "43556": ["Dawntrail", "dt", "07-dt"],
-    "43557": ["Dawntrail", "dt", "07-dt"],
+plevelmax = {
+    "2": "50",
+    "3": "60",
+    "4": "70",
+    "5": "80",
+    "6": "90",
+    "7": "100",
 }
 
 def show_image(circle_coords: dict[str, dict[str, Any]]):
-
+    global map_translations
     for tmap, locations in circle_coords.items():
         #if not tmap == "18":
         #    continue
@@ -133,38 +177,45 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
         placename: str = ""
         overlay_id = treasurehuntrank[tmap]['TreasureHuntTexture']
         item_name = treasurehuntrank[tmap]['ItemName']
-        active_treasuremap_id = None
-        active_treasuremap = None
-        for key, value in items.items():
-            if value['Name_de'] == item_name:
-                print(tmap, key, value['Name_de'])
-                active_treasuremap = value
-                active_treasuremap_id = key
-                break
+        active_treasuremap = get_item(item_name)
+        patch = active_treasuremap.get("Patch", "2.0")
+        patch = patch + "0" if len(patch) <= 3 else patch
+        patch2 = patch[:-1] if len(patch) > 3 and patch.endswith("0") else patch
+        _date = versions[patch]["date"].replace(".", "-")
         _post = '---\n'
         _post += 'wip: "True"\n'
+        _post += f'id: "{int(active_treasuremap['0xID'], 16)}"\n'
         _post += 'title:\n'
-        _post += f'  de: "{active_treasuremap["Name_de"]}"\n'
-        _post += f'  en: "{active_treasuremap["Name_en"]}"\n'
-        _post += f'  fr: "{active_treasuremap["Name_fr"]}"\n'
-        _post += f'  ja: "{active_treasuremap["Name_ja"]}"\n'
-        _post += f'  cn: "{active_treasuremap["Name_cn"]}"\n'
-        _post += f'  ko: "{active_treasuremap["Name_ko"]}"\n'
+        for lang in LANGUAGES:
+            _post += f'  {lang}: "{active_treasuremap["Name_"+lang]}"\n'
+            map_translations[lang][f'Map_Name_{active_treasuremap["Name_"+"en"]}'] = active_treasuremap["Name_"+lang]
         _post += 'layout: treasuremap\n'
         _post += 'page_type: guide\n'
         _post += 'categories: "treasuremap"\n'
         _post += 'instanceType: "treasuremap"\n'
-        _post += 'date: "2013.01.01"\n'
-        _post += 'patchNumber: "2.0"\n'
-        _post += f'patchName: "{ids[active_treasuremap_id][0]}"\n'
-        _post += f'expac: "{ids[active_treasuremap_id][1]}"\n'
+        _post += f'date: "{versions[patch]["date"]}"\n'
+        _post += f'patchNumber: "{patch2}"\n'
+        _post += f'patchName: "{versions[patch]["name"]}"\n'
+        _post += f'expac: "{versions[patch]["pname"]}"\n'
         _post += 'image: "/assets/img/content/klassen/Chocobo.webp"\n'
         _post += 'terms:\n'
         _post += '    - term: "TreasureMaps"\n'
-        _post += f'    - term: "{ids[active_treasuremap_id][0]}"\n'
+        _post += f'    - term: "{versions[patch]["name"]}"\n'
         _post += f'sortid: {tmap}\n'
         _post += f'order: {tmap}\n'
+        plvl = plevelmax[patch[0]]
+        _post += f'plvl: {plvl}\n'
         _post += f'slug: "{fix_slug(active_treasuremap["Name_de"])}"\n'
+        #if treasurehuntrank[tmap]["InstanceMap"]:
+        #    _post += f'instancemap: {treasurehuntrank[tmap]["InstanceMap"]}\n'
+        _post += f'maxpartysize: {treasurehuntrank[tmap]["MaxPartySize"]}\n'
+        if treasuredungeons.get(str(int(active_treasuremap['0xID'], 16)), None):
+            _post += f'treasuredungeons:\n'
+            for k in treasuredungeons[str(int(active_treasuremap['0xID'], 16))]:
+                cfc = get_contentfindercondition(k)
+                _post += f'  - name: "{cfc["Name_en"]}"\n'
+                for lang in LANGUAGES:
+                    map_translations[lang][f'TreasureDungeon_Name_{cfc["Name_"+"en"]}'] = cfc["Name_"+lang]
         _post += f'zones:\n'
         for _id, location in locations.items():
             folder: str = _id[:3]
@@ -192,7 +243,9 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
             w, h = modified_image.size
             _extra: list[str] = []
             for i, coord in enumerate(location):
-                x, y , placename= coord
+                x, y , placename = coord
+                full_placename = get_placename(placename)
+
                 output_path: str = f"../assets/img/TreasureMaps/{item_name}/{placename}/"
                 x+= w/2
                 y+= h/2
@@ -208,7 +261,9 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
 
                 get_sub_images(original_image, overlay_cropped, int(x)-x_off, int(y)-y_off, output_path, 65+i)
                 _extra.append(chr(65+i))
-            _post += f'  - zonename: "{placename}"\n'
+            _post += f'  - zonename: "{full_placename["Name_en"]}"\n'
+            for lang in LANGUAGES:
+                map_translations[lang][f'Map_Section_{full_placename["Name_"+"en"]}'] = full_placename["Name_"+lang]
             _post += f'    fullimage: "/assets/img/TreasureMaps/{item_name}/{placename}/{placename}.webp"\n'
             _post += f'    subimage:\n'
             for img in _extra:
@@ -222,16 +277,18 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
                 print(f"Saved modified image: {output_path}{placename}.webp")
         _post += '---'
 
-        if not os.path.exists(f"../_posts/treasuremaps/{ids[active_treasuremap_id][2]}/"):
-            os.makedirs(f"../_posts/treasuremaps/{ids[active_treasuremap_id][2]}/")
+        _id = f"0{patch[0]}-{versions[patch]["pname"]}"
+        if not os.path.exists(f"../_posts/treasuremaps/{_id}/"):
+            os.makedirs(f"../_posts/treasuremaps/{_id}/")
         #write _post file
-        with open(f"../_posts/treasuremaps/{ids[active_treasuremap_id][2]}/2013-01-01--2.0--0--{active_treasuremap["Name_en"]}.md", "w", encoding="utf8") as f:
+        with open(f"../_posts/treasuremaps/{_id}/{_date}--{patch2}--0--{active_treasuremap["Name_en"]}.md", "w", encoding="utf8") as f:
             f.write(_post)
 
 
 def run():
     print("[TS] Start TreasureSpotGenerator")
     print(os.getcwd())
+    get_map_translation_data()
     coords_later: dict[str, dict[str, Any]] = {}
     map_ = ""
     for key, value in treasurespot.items():
@@ -252,6 +309,7 @@ def run():
 
     #coords_later[]['y6f3/00'] = [(127.6, -535.0), (339.0, -318.2), (-607.9, 279.5), (-222.8, -65.4), (-496.3, -648.4), (351.2, 219.4), (799.0, -133.6), (-371.9, 816.7), (64.0, 717.3), (-301.7, 268.9), (-790.4, -92.3), (760.9, -448.5), (485.3, 22.8), (-511.4, 588.8), (163.2, -24.7), (56.4, -781.7)]
     show_image(coords_later)
+    write_map_translation_data()
 
 if __name__ == "__main__":
     run()

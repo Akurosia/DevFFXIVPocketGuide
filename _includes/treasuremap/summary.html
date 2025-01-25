@@ -1,4 +1,4 @@
-<!-- Include _include/klassen/summary.html -->
+<!-- Include _include/treasuremap/summary.html -->
 <div class="summary">
     <a class="index-item__link" href="{{ guide.url | prepend: site.baseurl }}" title="Go to the {{ guide.title.de }} Guide">
         <div loading="lazy" class="index-item__background"
@@ -17,7 +17,7 @@
                     {%- else -%}
                       data-terms="{%- for term in guide.terms -%}term:{{ term.term }}&#32;{%- endfor -%}"
                     {%- endif -%}>
-                    <span data-translate="Content_Title_{{ guide.title.en }}"> {{ guide.title.en }} </span>
+                    <span data-translate="Map_Name_{{ guide.title.en }}"> {{ guide.title.en }} </span>
                 </h3>
                 <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
                     {{ guide.title.en }}
@@ -26,4 +26,4 @@
         </div>
     </a>
 </div>
-<!-- END Include _include/klassen/summary.html -->
+<!-- END Include _include/treasuremap/summary.html -->

@@ -33,10 +33,12 @@
     {%- endif -%}
     <div style="display: none;"></div>
     <div class="guide-metadata__wrapper">
-        <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
-            <div data-translate="Sidebar_IDs">Content-E-ID: </div>
-            <span class="noblock">{{page.excel_line}}</span>
-        </h5>
+        {%- if page.excel_line -%}
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
+                <div data-translate="Sidebar_IDs">Content-E-ID: </div>
+                <span class="noblock">{{page.excel_line}}</span>
+            </h5>
+        {%- endif -%}
         <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
             {%- if page.instanceType == "klassenjobs" -%}
                 <div data-translate="Sidebar_MaxPlayerLevel">Max-Player Level: </div>
@@ -346,6 +348,28 @@
                 {%- endfor -%}
             </h5>
         {%- endif -%}
+        {%- if page.instancemap -%}
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
+                <div data-translate="Sidebar_InstanceMap">InstanceMap: </div>
+                <span data-translate="instancemap_{{instancemap}}">{{ page.instancemap }}</span>
+            </h5>
+        {%- endif -%}
+        {%- if page.maxpartysize -%}
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
+                <div data-translate="Sidebar_MaxPartySize">MaxPartySize: </div>
+                <span data-translate="maxpartysize_{{maxpartysize}}">{{ page.maxpartysize }}</span>
+            </h5>
+        {%- endif -%}
+        {%- if page.treasuredungeons -%}
+            <h5 class="guide-metadata__subtitle {% if page.treasuredungeons.size == 1%}akuflex{% endif %} box small-1of2 med-full">
+                <div data-translate="Sidebar_TreasureDungeon">TreasureDungeon: </div>
+                {%- for treasuredungeons in page.treasuredungeons -%}
+                    <span class="block">{% if page.treasuredungeons.size > 1%}-&nbsp;{% endif %}
+                        <span data-translate="TreasureDungeon_Name_{{treasuredungeons.name}}">{{ treasuredungeons.name }}</span>
+                    </span>
+                {%- endfor -%}
+            </h5>
+        {%- endif -%}
         {%- if page.rouletts -%}
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-origin="contentroulette" data-translate="Sidebar_Rouletts">Duty Roulette: </div>
@@ -380,13 +404,13 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_Links">Links: </div>
                 {%- if page.links.teamcraftlink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance{{ page.links.teamcraftlink }}">- Teamcraft</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance/{{ page.links.teamcraftlink }}">- Teamcraft</a></span>
                 {%- endif -%}
                 {%- if page.links.garlandtoolslink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance{{ page.links.garlandtoolslink }}">- Garlandtools</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance/{{ page.links.garlandtoolslink }}">- Garlandtools</a></span>
                 {%- endif -%}
                 {%- if page.links.gamerescapelink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki{{ page.links.gamerescapelink }}">- Gamerscape</a></span>
+                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki/{{ page.links.gamerescapelink }}">- Gamerscape</a></span>
                 {%- endif -%}
             </h5>
         {%- endif -%}

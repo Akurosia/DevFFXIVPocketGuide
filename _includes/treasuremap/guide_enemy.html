@@ -3,7 +3,7 @@
 <div class="guide__accordion">
     <div class="guide__accordion-trigger--01-grid active" id="guide{{ x }}">
         <div class="Names">
-            <span class="guide__accordion-trigger-title class" data-translate="Content_Title_{{ x }}">{{ x }}</span>
+            <span class="guide__accordion-trigger-title class" data-translate="Map_Title_{{ x }}">{{ x }}</span>
             <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en xtitle">{{ x }}</span>
         </div>
     </div>
@@ -14,6 +14,5 @@
             {%- include treasuremap/guide_enemy_sequence.html -%}
         {%- endfor -%}
     </div>
-    <div style="display: none" data-extra-translate="/assets/translations/treasuremap/{{ page.title.en | downcase }}"></div>
 </div>
 <!-- END Include from _includes/treasuremap/guide-enemy -->
