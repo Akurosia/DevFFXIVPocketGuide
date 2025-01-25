@@ -1,0 +1,12 @@
+<!-- Include from _includes/treasuremap/guide-content -->
+<!-- Guide Content ========================================================= -->
+<div class="guide-content">
+    <!-- Duty zones ======================================================= -->
+    {%- if page.zones -%}
+        {%- assign zones = page.zones -%}
+        {%- assign x = "Zone" -%}
+        {%- include treasuremap/guide_enemy.html -%}
+    {%- endif -%}
+    <div style="display: none" data-extra-translate="/assets/translations/treasuremap"></div>
+</div>
+<!-- END Include from _includes/treasuremap/guide-content -->

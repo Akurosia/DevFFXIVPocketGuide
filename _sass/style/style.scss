@@ -1449,13 +1449,24 @@ h5.guide__accordion-title {
   z-index: 1;
 
   &[class*=active] {
+    //z-index: 500;
+    //position: fixed;
+    //left: 50%;
+    //top: 50%;
+    //transition: -webkit-transform 0.5s ease;
+    //transition: transform 0.5s ease;
+    //transform: translate(-50%, -50%) scale(4);
     z-index: 500;
     position: fixed;
     left: 50%;
     top: 50%;
-    transition: -webkit-transform 0.5s ease;
+    transform: translate(-50%, -50%) scale(3); /* Reduced scale for better fit on smaller screens */
     transition: transform 0.5s ease;
-    transform: translate(-50%, -50%) scale(4);
+    max-width: 80vw; /* Limits width to 80% of the viewport width */
+    max-height: 80vh; /* Limits height to 80% of the viewport height */
+    object-fit: contain; /* Ensures the image fits within the constraints without distortion */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Subtle shadow for visual enhancement */
+    border-radius: 8px; /* Optional: Rounded corners for a polished look */
   }
 
 }

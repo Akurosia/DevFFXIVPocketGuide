@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
+    <head>
+        {% include head.html %}
+    </head>
+    <!-- ORIGIN: _layout/treasuremap -->
+    <body class="{{ page.page_type }} {{ page.page_category }}">
+        <div class="layout">
+            {% include navbar.html %}
+            <div class="layout__wrapper">
+                {% include header.html %}
+                {% include treasuremap/guide-layout.html %}
+                {% include_cached footer.html %}
+            </div>
+        </div>
+        <div style="display: none" data-extra-translate="/assets/translations/treasuremap"></div>
+        {% include_cached scripts.html %}
+    </body>
+    <!-- END ORIGIN: _layout/treasuremap -->
+    <script type="text/javascript">executeHandelingLanguages()</script>
+</html>

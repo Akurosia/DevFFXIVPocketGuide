@@ -1,0 +1,29 @@
+<!-- Include _include/klassen/summary.html -->
+<div class="summary">
+    <a class="index-item__link" href="{{ guide.url | prepend: site.baseurl }}" title="Go to the {{ guide.title.de }} Guide">
+        <div loading="lazy" class="index-item__background"
+            {%- if guide.image -%}
+                style="background-image: url('{{guide.image}}')"
+            {%- endif -%}>
+        </div>
+        <div class="klassenjobgrid">
+            {%- if guide.jobicon -%}
+                <img loading="lazy" class="SummaryIcon Icon" title="Job" src="{{guide.jobicon}}"/>
+            {%- endif -%}
+            <div class="SummaryName">
+                <h3 class="index-item__title"
+                    {%- if guide.layout == "new-guide" -%}
+                      data-terms="title:{{ guide.title.de }}&#32;title:{{ guide.title.en }}&#32;title:{{ guide.title.fr }}&#32;title:{{ guide.title.ja }}&#32;title:{{ guide.title.cn }}&#32;title:{{ guide.title.ko }}&#32;type:{{ guide.guide-type }}&#32;cat:{{ guide.categories }}&#32;{%- for term in guide.search-terms -%}term:{{ term }}&#32;{%- endfor -%}"
+                    {%- else -%}
+                      data-terms="{%- for term in guide.terms -%}term:{{ term.term }}&#32;{%- endfor -%}"
+                    {%- endif -%}>
+                    <span data-translate="Content_Title_{{ guide.title.en }}"> {{ guide.title.en }} </span>
+                </h3>
+                <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                    {{ guide.title.en }}
+                </h4>
+            </div>
+        </div>
+    </a>
+</div>
+<!-- END Include _include/klassen/summary.html -->

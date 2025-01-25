@@ -1,0 +1,11 @@
+<!-- Include from _includes/treasuremap/_component/index-counter -->
+{%- for guide in categories -%}
+    {%- if page.page_category == "treasuremap" -%}
+        {%- if guide.instanceType == "treasuremap" or guide.instance_type == "treasuremap" -%}
+            {%- if guide.expac == expac -%}
+                {%- assign counter = counter | plus: 1 -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endif -%}
+{%- endfor -%}
+<!-- END Include from _includes/treasuremap/_component/index-counter -->

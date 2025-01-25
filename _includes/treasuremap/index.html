@@ -1,0 +1,27 @@
+<!-- Include from _includes/treasuremap/index -->
+<div class="index">
+    <div class="">
+        {%- assign my_array = site.ffxiv_expansion_list | split: ',' -%}
+        {%- for x in my_array -%}
+            {% include helper/handle_version_switchcase.html %}
+            {%- assign categories = site.categories.treasuremap -%}
+
+            {%- assign expac = x -%}
+            {%- assign counter = 0 -%}
+            {%- include treasuremap/_components/index-counter.html -%}
+            {%- if counter > 0 -%}
+                <a id="{{ x_id }}"></a>
+                <div class="index-divider" data-expansion="{{ x }}">
+                    {%- include _components/expantion_filter.html -%}
+                </div>
+                <div class="index__list" data-expansion="{{ x }}">
+                    {%- assign sorted = categories | sort:"order" -%}
+                    {%- include treasuremap/_components/index-list.html -%}
+                </div>
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+    {%- include guide-index-null-state.html -%}
+    <div style="display: none" data-extra-translate="/assets/translations/treasuremap"></div>
+</div>
+<!-- END Include from _includes/treasuremap/index -->
