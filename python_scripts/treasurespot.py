@@ -264,7 +264,7 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
             _post += f'  - zonename: "{full_placename["Name_en"]}"\n'
             for lang in LANGUAGES:
                 map_translations[lang][f'Map_Section_{full_placename["Name_"+"en"]}'] = full_placename["Name_"+lang]
-            _post += f'    fullimage: "/assets/img/treasuremaps/{item_name}/{placename}.webp"\n'
+            _post += f'    fullimage: "/assets/img/treasuremaps/{item_name}/{placename}/{placename}.webp"\n'
             _post += f'    subimage:\n'
             for img in _extra:
                 _post += f'      - "/assets/img/treasuremaps/{item_name}/{placename}/{img}.webp"\n'
