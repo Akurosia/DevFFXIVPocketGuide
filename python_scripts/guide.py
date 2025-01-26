@@ -564,6 +564,7 @@ fateNames: dict[str, str] = {
     "Unkown_060806": "Unkown_060806"
 }
 additional_fate_data: dict[str, Any] = readJsonFile("python_scripts/FatesFromConsoleWiki.json")
+#https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/ff19f1e379a9a222570174f81d68bbba1512a16c/libs/data/src/lib/json/fates.json
 def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) -> str:
     lguide_data: str = ""
     name = entry['titles']['en'].replace("the Forbidden Land, ", "")

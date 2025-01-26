@@ -20,7 +20,7 @@
         {%- for tag in attack.tags -%}
           <span class="guide__accordion-tag--attack" data-translate="AttackType_{{tag.tag}}">
             {%- if tag.icon -%}
-              <img loading="lazy" class="tag-icon" title="{{tag.icon-title}}" src='{{ site.baseurl }}/assets/img/game_assets/{{ tag.icon }}'">
+              <img loading="lazy" class="tag-icon" title="{{tag.icon-title}}" src='{{ tag.icon }}'">
             {%- endif -%}
             {{ tag.tag }}
           </span>
