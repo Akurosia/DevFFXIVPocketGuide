@@ -68,6 +68,8 @@ def get_x_items(items):
 
 
 def get_submarine_map(name):
+    if name == "Das Fliedermeer":
+        name = "Fliedermeer"
     for key, value in submarinemap_trans.items():
         if name.lower() == value['Name_de'].lower():
             return value
