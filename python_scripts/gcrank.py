@@ -2,10 +2,9 @@
 from ffxiv_aku import *
 from natsort import natsorted
 try:
-    from .convert_skills_to_guide_form_helper.helper import getImage
+    from .convert_skills_to_guide_form_helper.helper import getImage, LANGUAGES, LANGUAGES_MAPPING
 except:
-    from convert_skills_to_guide_form_helper.helper import getImage
-
+    from convert_skills_to_guide_form_helper.helper import getImage, LANGUAGES, LANGUAGES_MAPPING
 #storeFilesInTmp(state=True)
 GCRankGridaniaFemaleText = loadDataTheQuickestWay("GCRankGridaniaFemaleText", translate=True)
 GCRankGridaniaMaleText = loadDataTheQuickestWay("GCRankGridaniaMaleText", translate=True)
@@ -13,6 +12,24 @@ GCRankLimsaFemaleText = loadDataTheQuickestWay("GCRankLimsaFemaleText", translat
 GCRankLimsaMaleText = loadDataTheQuickestWay("GCRankLimsaMaleText", translate=True)
 GCRankUldahFemaleText = loadDataTheQuickestWay("GCRankUldahFemaleText", translate=True)
 GCRankUldahMaleText = loadDataTheQuickestWay("GCRankUldahMaleText", translate=True)
+gcrank_translations = None
+
+
+def get_gcrank_translation_data() -> None:
+    global gcrank_translations
+    gcrank_translations = {}
+    for lang in LANGUAGES:
+        #gcrank_translations[lang] = readJsonFile(f'assets/translations/klassen/{LANGUAGES_gcrankPING[lang]}.json')
+        gcrank_translations[lang] = {}
+
+
+def write_gcrank_translation_data() -> None:
+    global gcrank_translations
+    origin: str = os.getcwd()
+    #os.chdir("..")
+    for lang in LANGUAGES:
+        writeJsonFile(f'assets/translations/gcrank/{LANGUAGES_MAPPING[lang]}.json', gcrank_translations[lang])
+    #os.chdir(origin)
 
 random_data = {
     #       Die Bruderschaft, Der Mahlstrom, Die Legion , Money, Unlock
@@ -40,6 +57,7 @@ random_data = {
 }
 
 def run():
+    get_gcrank_translation_data()
     r_data  = "---\n"
     r_data += 'layout: gcrank\n'
     r_data += 'title: Grand Company\n'
@@ -49,18 +67,22 @@ def run():
     r_data += 'page_type: index\n'
     r_data += 'page_category: gcrank\n'
     r_data += 'gcrank:\n'
-    print(f"{"Nr": >2} | {"Gridania Female": <35} | {"Gridania Male": <30} | {"Limsa Female": <30} | {"Limsa Male": <30} | {"Uldah Female": <30} | {"Uldah Male": <30}")
+    #print(f"{"Nr": >2} | {"Gridania Female": <35} | {"Gridania Male": <30} | {"Limsa Female": <30} | {"Limsa Male": <30} | {"Uldah Female": <30} | {"Uldah Male": <30}")
     for key in natsorted(GCRankGridaniaFemaleText):
         if key == "0":
             continue
-        gcGridFemale = GCRankGridaniaFemaleText[key]['Singular_de']
-        gcGridMale = GCRankGridaniaMaleText[key]['Singular_de']
-        gcLimsaFemale = GCRankLimsaFemaleText[key]['Singular_de']
-        gcLimsaMale = GCRankLimsaMaleText[key]['Singular_de']
-        gcUldahFemale = GCRankUldahFemaleText[key]['Singular_de']
-        gcUldahMale = GCRankUldahMaleText[key]['Singular_de']
-        print(f"{key: >2} | {gcGridFemale: <35} | {gcGridMale: <30} | {gcLimsaFemale: <30} | {gcLimsaMale: <30} | {gcUldahFemale: <30} | {gcUldahMale: <30}")
-        r_data += f'    - name:\n'
+        gcGridFemale = GCRankGridaniaFemaleText[key]['Singular_en']
+        gcGridMale = GCRankGridaniaMaleText[key]['Singular_en']
+        gcLimsaFemale = GCRankLimsaFemaleText[key]['Singular_en']
+        gcLimsaMale = GCRankLimsaMaleText[key]['Singular_en']
+        gcUldahFemale = GCRankUldahFemaleText[key]['Singular_en']
+        gcUldahMale = GCRankUldahMaleText[key]['Singular_en']
+        for lang in LANGUAGES:
+            gcrank_translations[lang][f'Map_Name_{GCRankUldahMaleText[key]["Singular_en"]}_{GCRankUldahFemaleText[key]["Singular_en"]}'] = GCRankUldahMaleText[key]["Singular_"+lang] + "\n</br>" + GCRankUldahFemaleText[key]["Singular_"+lang]
+            gcrank_translations[lang][f'Map_Name_{GCRankLimsaMaleText[key]["Singular_en"]}_{GCRankLimsaFemaleText[key]["Singular_en"]}'] = GCRankLimsaMaleText[key]["Singular_"+lang] + "\n</br>" + GCRankLimsaFemaleText[key]["Singular_"+lang]
+            gcrank_translations[lang][f'Map_Name_{GCRankGridaniaMaleText[key]["Singular_en"]}_{GCRankGridaniaFemaleText[key]["Singular_en"]}'] = GCRankGridaniaMaleText[key]["Singular_"+lang] + "\n</br>" + GCRankGridaniaFemaleText[key]["Singular_"+lang]
+        #print(f"{key: >2} | {gcGridFemale: <35} | {gcGridMale: <30} | {gcLimsaFemale: <30} | {gcLimsaMale: <30} | {gcUldahFemale: <30} | {gcUldahMale: <30}")
+        r_data += '    - name:\n'
         r_data += f'        gridania_male: "{gcGridMale}" \n'
         r_data += f'        gridania_female: "{gcGridFemale}" \n'
         r_data += f'        limsa_male: "{gcLimsaMale}" \n'
@@ -70,7 +92,7 @@ def run():
         r_data += f'      id: "{key}"\n'
         r_data += f'      cap: "{random_data[key][3]}"\n'
         r_data += f'      unlocked_by: "{random_data[key][4]}"\n'
-        r_data += f'      icons:\n'
+        r_data += '      icons:\n'
         gridania_icon = getImage("083000/" + random_data[key][0] + "_hr1.webp")
         limsa_icon = getImage("083000/" + random_data[key][1] + "_hr1.webp")
         uldah_icon = getImage("083000/" + random_data[key][2] + "_hr1.webp")
@@ -81,22 +103,22 @@ def run():
     gridania_icon = getImage("083000/" + random_data["20"][0] + "_hr1.webp")
     limsa_icon = getImage("083000/" + random_data["20"][1] + "_hr1.webp")
     uldah_icon = getImage("083000/" + random_data["20"][2] + "_hr1.webp")
-    r_data += f'    - name:\n'
-    r_data += f'        gridania_male: "" \n'
-    r_data += f'        gridania_female: "" \n'
-    r_data += f'        limsa_male: "" \n'
-    r_data += f'        limsa_female: "" \n'
-    r_data += f'        uldah_male: "" \n'
-    r_data += f'        uldah_female: "" \n'
-    r_data += f'      id: "20"\n'
+    r_data += '    - name:\n'
+    r_data += '        gridania_male: "" \n'
+    r_data += '        gridania_female: "" \n'
+    r_data += '        limsa_male: "" \n'
+    r_data += '        limsa_female: "" \n'
+    r_data += '        uldah_male: "" \n'
+    r_data += '        uldah_female: "" \n'
+    r_data += '      id: "20"\n'
     r_data += f'      cap: "{random_data['20'][3]}"\n'
     r_data += f'      unlocked_by: "{random_data['20'][4]}"\n'
-    r_data += f'      icons:\n'
+    r_data += '      icons:\n'
     r_data += f'        gridania: "{gridania_icon}"\n'
     r_data += f'        limsa: "{limsa_icon}"\n'
     r_data += f'        uldah: "{uldah_icon}"\n'
-    r_data += f'---'
-    print(r_data)
+    r_data += '---'
+    #print(r_data)
 
     filename = "_pages/gcrank/index.html"
     with open(filename, encoding="utf8") as f:
@@ -104,6 +126,7 @@ def run():
     if not doc == r_data:
         with open(filename, "w", encoding="utf8") as f:
             f.write(r_data)
+    write_gcrank_translation_data()
 
 if __name__ == "__main__":
     os.chdir("..")
