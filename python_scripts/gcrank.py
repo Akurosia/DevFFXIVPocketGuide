@@ -78,9 +78,9 @@ def run():
         gcUldahFemale = GCRankUldahFemaleText[key]['Singular_en']
         gcUldahMale = GCRankUldahMaleText[key]['Singular_en']
         for lang in LANGUAGES:
-            gcrank_translations[lang][f'Map_Name_{GCRankUldahMaleText[key]["Singular_en"]}_{GCRankUldahFemaleText[key]["Singular_en"]}'] = GCRankUldahMaleText[key]["Singular_"+lang] + "\n</br>" + GCRankUldahFemaleText[key]["Singular_"+lang]
-            gcrank_translations[lang][f'Map_Name_{GCRankLimsaMaleText[key]["Singular_en"]}_{GCRankLimsaFemaleText[key]["Singular_en"]}'] = GCRankLimsaMaleText[key]["Singular_"+lang] + "\n</br>" + GCRankLimsaFemaleText[key]["Singular_"+lang]
-            gcrank_translations[lang][f'Map_Name_{GCRankGridaniaMaleText[key]["Singular_en"]}_{GCRankGridaniaFemaleText[key]["Singular_en"]}'] = GCRankGridaniaMaleText[key]["Singular_"+lang] + "\n</br>" + GCRankGridaniaFemaleText[key]["Singular_"+lang]
+            gcrank_translations[lang][f'GCRank_Names_{GCRankUldahMaleText[key]["Singular_en"]}_{GCRankUldahFemaleText[key]["Singular_en"]}'] = GCRankUldahMaleText[key]["Singular_"+lang] + "\n</br>" + GCRankUldahFemaleText[key]["Singular_"+lang]
+            gcrank_translations[lang][f'GCRank_Names_{GCRankLimsaMaleText[key]["Singular_en"]}_{GCRankLimsaFemaleText[key]["Singular_en"]}'] = GCRankLimsaMaleText[key]["Singular_"+lang] + "\n</br>" + GCRankLimsaFemaleText[key]["Singular_"+lang]
+            gcrank_translations[lang][f'GCRank_Names_{GCRankGridaniaMaleText[key]["Singular_en"]}_{GCRankGridaniaFemaleText[key]["Singular_en"]}'] = GCRankGridaniaMaleText[key]["Singular_"+lang] + "\n</br>" + GCRankGridaniaFemaleText[key]["Singular_"+lang]
         #print(f"{key: >2} | {gcGridFemale: <35} | {gcGridMale: <30} | {gcLimsaFemale: <30} | {gcLimsaMale: <30} | {gcUldahFemale: <30} | {gcUldahMale: <30}")
         r_data += '    - name:\n'
         r_data += f'        gridania_male: "{gcGridMale}" \n'
