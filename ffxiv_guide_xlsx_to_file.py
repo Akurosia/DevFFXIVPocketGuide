@@ -274,6 +274,7 @@ def main() -> None:
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
+    print_debug = True
     if not print_debug:
         csgf.run()
         gl.run()
