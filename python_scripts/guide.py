@@ -633,7 +633,7 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
                     lguide_data += f'          - tag: "{add_data[fate_id]['Gil']}"\n'
                     lguide_data += f'            icon: "{getImage("065000/065002_hr1.webp")}"\n'
                     lguide_data += f'            icon-title: "Gil"\n'
-                lguide_data += f'          - tag: "Location: {add_data[fate_id]['Location']}"\n'
+                lguide_data += f'          - tag: "Location: X:{add_data[fate_id].get('Location', {}).get('x', "N/A")} Y:{add_data[fate_id].get('Location', {}).get('y', "N/A")}"\n'
                 if add_data[fate_id].get('Company Seals', None):
                     lguide_data += f'          - tag: "{add_data[fate_id]['Company Seals']}"\n'
                     lguide_data += f'            icon: "{getImage("065000/065004_hr1.webp")}"\n'
