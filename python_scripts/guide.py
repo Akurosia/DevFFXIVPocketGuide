@@ -527,16 +527,19 @@ def check_Enemy(entry: ENTRY_DATA, enemy_type, logdata_instance_content, old_ene
 
 
 fatetypes: dict[str, str] = {
+    "": "Unbekannt",
     "ui/icon/060000/060721.tex": "Gegner Besiegen",
     "ui/icon/060000/060722.tex": "Boss besiegen",
     "ui/icon/060000/060723.tex": "Sammeln",
     "ui/icon/060000/060724.tex": "Verteidigen",
     "ui/icon/060000/060725.tex": "Eskortieren",
-    "ui/icon/060000/060726.tex": "Event",
+    "ui/icon/060000/060726.tex": "Event/Quest",
     "ui/icon/060000/060727.tex": "Verfolgen",
-    "ui/icon/060000/060728.tex": "Festival",
+    "ui/icon/060000/060728.tex": "Festival (Zeitlich begrenzte Events)",
 
-    "ui/icon/060000/060852.tex": "Boss besiegen",
+    "ui/icon/060000/060806.tex": "Fête",
+    "ui/icon/060000/060852.tex": "Notorisches Monster",
+    'ui/icon/060000/060858.tex': 'Arbeitsaufträge',
 
     "ui/icon/063000/063909.tex": "CE Boss besiegen",
     "ui/icon/063000/063910.tex": "CE Solo Kampf",
@@ -545,23 +548,25 @@ fatetypes: dict[str, str] = {
     "ui/icon/063000/063914.tex": "Gegner Besiegen",
     "ui/icon/063000/063915.tex": "Boss besiegen",
     "ui/icon/063000/063916.tex": "Sammeln",
-    "ui/icon/063000/063917.tex": "Verteidigen",
+    "ui/icon/063000/063917.tex": "Verteidigen"
 
-    "ui/icon/060000/060806.tex": "Unkown_060806"
 }
 fateNames: dict[str, str] = {
     "Gegner Besiegen": "Slay enemies",
-    "Boss besiegen": "Notorious monster",
+    "Boss besiegen": "Kill Boss",
+    "Notorisches Monster": "Notorious monster",
+    "Arbeitsaufträge": "Concerted works",
     "Sammeln": "Gather",
     "Verteidigen": "Defense",
     "Eskortieren": "Escort",
-    "Event": "Event",
+    "Event/Quest": "Event/Quest",
     "Verfolgen": "Chase",
-    "Festival": "Festival",
+    "Fête": "Fête",
+    "Festival (Zeitlich begrenzte Events)": "Holiday (Limited Time)",
     "CE Boss besiegen": "CE Notorious monster",
     "CE Solo Kampf": "CE Solo Fight",
     "CE Gegner Wellen": "CE Eney Waves",
-    "Unkown_060806": "Unkown_060806"
+    "Unbekannt": "Unkown"
 }
 additional_fate_data: dict[str, Any] = readJsonFile("python_scripts/FatesFromConsoleWiki.json")
 #https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/ff19f1e379a9a222570174f81d68bbba1512a16c/libs/data/src/lib/json/fates.json
