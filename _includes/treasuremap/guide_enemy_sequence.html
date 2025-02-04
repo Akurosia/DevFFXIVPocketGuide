@@ -23,8 +23,6 @@
         {%- endfor -%}
         </div>
     {%- endif -%}
-    <div style="display: none" class="fullscreen-overlay" id="fullscreenOverlay" onclick="closeFullscreen()">
-        <img id="fullscreenImg" src="" alt="Fullscreen View">
-    </div>
+    {%- include _components/image_overlay.html -%}
 </div>
 <!-- END Include from _includes/treasuremap/guide_enemy_sequence -->
