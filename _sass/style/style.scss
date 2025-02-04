@@ -1829,6 +1829,26 @@ ion-icon {
   margin-left: 15px;
 }
 
+/* Styling for the fullscreen overlay */
+.fullscreen-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+/* Ensure image maintains aspect ratio */
+.fullscreen-overlay img {
+    max-width: 95vw; /* Maximum width: 90% of the viewport width */
+    max-height: 95vh; /* Maximum height: 90% of the viewport height */
+    object-fit: contain;
+}
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";

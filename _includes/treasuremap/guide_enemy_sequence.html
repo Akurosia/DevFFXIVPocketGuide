@@ -11,17 +11,20 @@
 <div class="guide__accordion-content--03">
     {%- if zone.fullimage -%}
         <div class="guide__attack-image-item">
-            <img loading="lazy" style="object-fit: scale-down; height: 400px" src="{{zone.fullimage}}" alt="{{ zone.fullimage }}"/>
+            <img loading="lazy" style="object-fit: scale-down; height: 400px; cursor: pointer;" src="{{zone.fullimage}}" alt="{{ zone.fullimage }}"/>
         </div>
     {%- endif -%}
     {%- if zone.subimage -%}
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
         {%- for image in zone.subimage -%}
             <div class="guide__attack-image-item">
-                <img loading="lazy" style="object-fit: scale-down; height: 200px" src="{{image}}" alt="{{ image }}"/>
+                <img loading="lazy" style="object-fit: scale-down; height: 200px; cursor: pointer;" src="{{image}}" alt="{{ image }}"/>
             </div>
         {%- endfor -%}
         </div>
     {%- endif -%}
+    <div style="display: none" class="fullscreen-overlay" id="fullscreenOverlay" onclick="closeFullscreen()">
+        <img id="fullscreenImg" src="" alt="Fullscreen View">
+    </div>
 </div>
 <!-- END Include from _includes/treasuremap/guide_enemy_sequence -->

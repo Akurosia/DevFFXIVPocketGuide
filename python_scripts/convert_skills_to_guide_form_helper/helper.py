@@ -88,6 +88,7 @@ def deal_with_extras_in_text(text):
         text = text[:-2]
     elif text.endswith("./"):
         text = text[:-1]
+    text = text.replace('"', "&quot;")
     return text
 
 

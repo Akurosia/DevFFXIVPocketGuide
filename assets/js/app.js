@@ -236,13 +236,16 @@
         });
 
         // Guide Image Zoom ====================================================
-        $(".guide__attack-image-item").on("click", function(e) {
-            if($(this).hasClass("active")) {
-                $(this).removeClass("active")
-            }
-            else {
-                $(this).addClass("active")
-            }
+        //$(".guide__attack-image-item").on("click", function(e) {
+        //    if($(this).hasClass("active")) {
+        //        $(this).removeClass("active")
+        //    }
+        //    else {
+        //        $(this).addClass("active")
+        //    }
+        //});
+        $(".guide__attack-image-item").each(function () {
+            $(this).find("img").attr("onclick", "openFullscreen(this)");
         });
 
         // Guide Only display final skills ====================================================
@@ -265,3 +268,16 @@
     });
 
 })(jQuery);
+
+
+function openFullscreen(imgElement) {
+    const overlay = document.getElementById("fullscreenOverlay");
+    const fullscreenImg = document.getElementById("fullscreenImg");
+
+    fullscreenImg.src = imgElement.src; // Set the clicked image as fullscreen image
+    overlay.style.display = "flex"; // Show the overlay
+}
+
+function closeFullscreen() {
+    document.getElementById("fullscreenOverlay").style.display = "none";
+}
