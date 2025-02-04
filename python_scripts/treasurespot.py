@@ -168,6 +168,40 @@ plevelmax = {
     "7": "100",
 }
 
+def code_for_image(overlay_id, posible_maps, location, item_name):
+    image_path: str = posible_maps[0]
+    original_image: ImageFile = Image.open(image_path)
+    modified_image: Image.Image = original_image.copy()
+
+    overlay_cropped, x_off, y_off = get_croped_image(overlay_id)
+    overlay_x_cropped, xx_off, xy_off = get_x_image(overlay_id)
+    overlay_cropped.paste(overlay_x_cropped, (x_off-xx_off, y_off-xy_off), overlay_x_cropped if overlay_x_cropped.mode == 'RGBA' else None)
+
+    w, h = modified_image.size
+    full_placename = None
+    _extra: list[str] = []
+    for i, coord in enumerate(location):
+        x, y , placename = coord
+        full_placename = get_placename(placename)
+
+        output_path: str = f"../assets/img/treasuremaps/{item_name}/{placename}/"
+        x+= w/2
+        y+= h/2
+        modified_image.paste(overlay_cropped, (int(x)-x_off, int(y)-y_off), overlay_cropped if overlay_cropped.mode == 'RGBA' else None)
+
+        font1 = ImageFont.truetype('timesbd.ttf',50)
+        write = ImageDraw.Draw(modified_image)
+        write.text(xy=(int(x)-x_off, int(y)-y_off), text=chr(65+i), fill=(255, 255, 255), font=font1)
+
+        font1 = ImageFont.truetype('timesbd.ttf',40)
+        write = ImageDraw.Draw(modified_image)
+        write.text(xy=(int(x)-x_off+3, int(y)-y_off+5), text=chr(65+i), fill=(0, 0, 0), font=font1)
+
+        get_sub_images(original_image, overlay_cropped, int(x)-x_off, int(y)-y_off, output_path, 65+i)
+        _extra.append(chr(65+i))
+    return _extra, full_placename, output_path, modified_image, placename
+
+
 def show_image(circle_coords: dict[str, dict[str, Any]]):
     global map_translations
     for tmap, locations in circle_coords.items():
@@ -232,35 +266,9 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
             if len(posible_maps) > 1:
                 print(posible_maps)
 
-            image_path: str = posible_maps[0]
-            original_image: ImageFile = Image.open(image_path)
-            modified_image: Image.Image = original_image.copy()
+            _extra, full_placename, output_path, modified_image, placename = code_for_image(overlay_id, posible_maps, location, item_name)
 
-            overlay_cropped, x_off, y_off = get_croped_image(overlay_id)
-            overlay_x_cropped, xx_off, xy_off = get_x_image(overlay_id)
-            overlay_cropped.paste(overlay_x_cropped, (x_off-xx_off, y_off-xy_off), overlay_x_cropped if overlay_x_cropped.mode == 'RGBA' else None)
 
-            w, h = modified_image.size
-            _extra: list[str] = []
-            for i, coord in enumerate(location):
-                x, y , placename = coord
-                full_placename = get_placename(placename)
-
-                output_path: str = f"../assets/img/treasuremaps/{item_name}/{placename}/"
-                x+= w/2
-                y+= h/2
-                modified_image.paste(overlay_cropped, (int(x)-x_off, int(y)-y_off), overlay_cropped if overlay_cropped.mode == 'RGBA' else None)
-
-                font1 = ImageFont.truetype('timesbd.ttf',50)
-                write = ImageDraw.Draw(modified_image)
-                write.text(xy=(int(x)-x_off, int(y)-y_off), text=chr(65+i), fill=(255, 255, 255), font=font1)
-
-                font1 = ImageFont.truetype('timesbd.ttf',40)
-                write = ImageDraw.Draw(modified_image)
-                write.text(xy=(int(x)-x_off+3, int(y)-y_off+5), text=chr(65+i), fill=(0, 0, 0), font=font1)
-
-                get_sub_images(original_image, overlay_cropped, int(x)-x_off, int(y)-y_off, output_path, 65+i)
-                _extra.append(chr(65+i))
             _post += f'  - zonename: "{full_placename["Name_en"]}"\n'
             for lang in LANGUAGES:
                 map_translations[lang][f'Map_Section_{full_placename["Name_"+"en"]}'] = full_placename["Name_"+lang]
