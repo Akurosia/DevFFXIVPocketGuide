@@ -335,8 +335,8 @@ function createTemplateTableBody(name, json){
                 // if e is an image
                 e = e.replace(".png", "_hr1.png")
                 var _img = document.createElement('img');
-                // _img.setAttribute("src", "https://ffxiv.akurosia.de/extras/images/" + e);
-                _img.setAttribute("src", "https://xivapi.com/i/" + e.replace("ui/icon/", ""));
+                _img.setAttribute("src", "https://ff14.akurosiakamo.de/extras/images/ui/icon/" + e.replace("ui/icon/", ""));
+                //_img.setAttribute("src", "https://xivapi.com/i/" + e.replace("ui/icon/", ""));
                 _img.setAttribute("title", e);
                 _img.setAttribute("alt", e);
                 _img.setAttribute("loading", "lazy");

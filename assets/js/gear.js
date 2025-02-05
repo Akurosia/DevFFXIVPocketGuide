@@ -450,7 +450,6 @@ async function createTemplateTableBody(name, json, fields){
         max_meld = getMaxMeld(json[key])
         var _tr = document.createElement('tr');
         _tr.appendChild(await createTHorTD("<input onclick='updateValues()' type='radio' id='" + json[key]["Name_de"] + "' name='" + name + "' value=''>", "td"));
-        //_tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img loading='lazy' src='https://xivapi.com/i/" + json[key]['Icon'].replace("ui/icon/", "") + "'></img>" + "</a>", "td", "icon"));
         var icon = json[key]['Icon'].replace("ui/icon/", "").replace(".png", "_hr1.png")
         _tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img loading='lazy' src='https://ff14.akurosiakamo.de/extras/images/ui/icon/" + icon + "'></img>" + "</a>", "td", "icon"));
         _name = '<div class="mytooltip"  id="' + json[key]["ID"] + '">'

@@ -97,13 +97,6 @@ function fixIDs(_id) {
 
 const currentDate = new Date();
 function gSFZ_getDataViaFetch(user, state){
-    //url = "https://ffxivapi.akurosia.de/ffxiv/fflogsapi/getPlayer?player=" + user
-    //console.log(url)
-    //fetch(url)
-    //  .then(response => response.json())
-    //  .then(data => JSON.parse(data))
-    //  .then(data => printTable(data))
-
     // state is only set if the button was pressed manually in the frontend    console.log("STATE: " + localStorage.getItem('fflogs_player_data')=== undefined)
     if (localStorage.getItem('fflogs_player_data') !== "undefined" && currentDate.getTime() < localStorage.getItem('fflogs_last_access') && !state) {
         remaining = (localStorage.getItem('fflogs_last_access') - currentDate.getTime()) / 60000
@@ -251,54 +244,55 @@ function printTable(data){
 
 // normal job icons
 jobs = {
-    "Paladin":     "062119_hr1.png",
-    "Warrior":     "062121_hr1.png",
-    "DarkKnight":  "062132_hr1.png",
-    "Gunbreaker":  "062137_hr1.png",
-    "WhiteMage":   "062124_hr1.png",
-    "Scholar":     "062128_hr1.png",
-    "Astrologian": "062133_hr1.png",
-    "Sage":        "062140_hr1.png",
-    "Monk":        "062120_hr1.png",
-    "Dragoon":     "062122_hr1.png",
-    "Ninja":       "062130_hr1.png",
-    "Samurai":     "062134_hr1.png",
-    "Reaper":      "062139_hr1.png",
-    "Viper":       "062141_hr1.png",
-    "Bard":        "062123_hr1.png",
-    "Machinist":   "062131_hr1.png",
-    "Dancer":      "062138_hr1.png",
-    "BlackMage":   "062125_hr1.png",
-    "Summoner":    "062127_hr1.png",
-    "RedMage":     "062135_hr1.png",
-    "Pictomancer": "062142_hr1.png"
+    "Paladin":     "062119_hr1",
+    "Warrior":     "062121_hr1",
+    "DarkKnight":  "062132_hr1",
+    "Gunbreaker":  "062137_hr1",
+    "WhiteMage":   "062124_hr1",
+    "Scholar":     "062128_hr1",
+    "Astrologian": "062133_hr1",
+    "Sage":        "062140_hr1",
+    "Monk":        "062120_hr1",
+    "Dragoon":     "062122_hr1",
+    "Ninja":       "062130_hr1",
+    "Samurai":     "062134_hr1",
+    "Reaper":      "062139_hr1",
+    "Viper":       "062141_hr1",
+    "Bard":        "062123_hr1",
+    "Machinist":   "062131_hr1",
+    "Dancer":      "062138_hr1",
+    "BlackMage":   "062125_hr1",
+    "Summoner":    "062127_hr1",
+    "RedMage":     "062135_hr1",
+    "Pictomancer": "062142_hr1"
 }
 //golden icons
 jobs = {
-    "Paladin":     "062019_hr1.png",
-    "Warrior":     "062021_hr1.png",
-    "DarkKnight":  "062032_hr1.png",
-    "Gunbreaker":  "062037_hr1.png",
-    "WhiteMage":   "062024_hr1.png",
-    "Scholar":     "062028_hr1.png",
-    "Astrologian": "062033_hr1.png",
-    "Sage":        "062040_hr1.png",
-    "Monk":        "062020_hr1.png",
-    "Dragoon":     "062022_hr1.png",
-    "Ninja":       "062030_hr1.png",
-    "Samurai":     "062034_hr1.png",
-    "Reaper":      "062039_hr1.png",
-    "Viper":       "062041_hr1.png",
-    "Bard":        "062023_hr1.png",
-    "Machinist":   "062031_hr1.png",
-    "Dancer":      "062038_hr1.png",
-    "BlackMage":   "062025_hr1.png",
-    "Summoner":    "062027_hr1.png",
-    "RedMage":     "062035_hr1.png",
-    "Pictomancer": "062042_hr1.png"
+    "Paladin":     "062019_hr1",
+    "Warrior":     "062021_hr1",
+    "DarkKnight":  "062032_hr1",
+    "Gunbreaker":  "062037_hr1",
+    "WhiteMage":   "062024_hr1",
+    "Scholar":     "062028_hr1",
+    "Astrologian": "062033_hr1",
+    "Sage":        "062040_hr1",
+    "Monk":        "062020_hr1",
+    "Dragoon":     "062022_hr1",
+    "Ninja":       "062030_hr1",
+    "Samurai":     "062034_hr1",
+    "Reaper":      "062039_hr1",
+    "Viper":       "062041_hr1",
+    "Bard":        "062023_hr1",
+    "Machinist":   "062031_hr1",
+    "Dancer":      "062038_hr1",
+    "BlackMage":   "062025_hr1",
+    "Summoner":    "062027_hr1",
+    "RedMage":     "062035_hr1",
+    "Pictomancer": "062042_hr1"
 }
 function addJobImage(job){
-    return '<img loading="lazy" src="https://xivapi.com/i/062000/' + jobs[job] + '" style="height: 30px; padding-right: 5px;">'
+    //return '<img loading="lazy" src="https://xivapi.com/i/062000/' + jobs[job] + '" style="height: 30px; padding-right: 5px;">'
+    return '<img loading="lazy" src="https://v2.xivapi.com/api/asset/ui/icon/062000/' + jobs[job] + '.tex?format=webp" style="height: 30px; padding-right: 5px;">'
 }
 
 function addRow(tr, result, name, encounterID){
