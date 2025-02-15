@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
+    <head>
+        {% include head.html %}
+        <link type="text/css" rel="stylesheet" href="{{ site.baseurl }}/assets/css/mainquestsfinder.css">
+    </head>
+    <!-- ORIGIN: _layout/mainquestsfinder -->
+    <body class="{{ page.page_type }} {{ page.page_category }}">
+        <div class="layout">
+            {% include navbar.html %}
+            <div class="layout__wrapper">
+                {% include header.html %}
+                {% include mainquestsfinder.html %}
+                {% include_cached footer.html %}
+            </div>
+        </div>
+        <div style="display: none" data-extra-translate="/assets/translations/summary/mainquestsfinder"></div>
+        {% include_cached scripts.html %}
+    </body>
+    <!-- END ORIGIN: _layout/mainquestsfinder -->
+    <script type="text/javascript">executeHandelingLanguages()</script>
+</html>

@@ -1,0 +1,10 @@
+
+<div class="container">
+    <div class="fixed-header">
+        <input type="text" id="questSearch" placeholder="Quest ID oder Name eingeben" value="Willkommen in Gridania">
+        <select class="quest-dropdown" style="display: none;width: auto;" id="test" onchange="document.getElementById('questSearch').value = this.value;"></select>
+        <button onclick="searchQuest()"><i class="fas fa-search"></i> Suchen</button>
+    </div>
+    <div id="progress"></div>
+</div>
+<script type="text/javascript" src="{{ "/assets/js/mainquestsfinderscript.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>

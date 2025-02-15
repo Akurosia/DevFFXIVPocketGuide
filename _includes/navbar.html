@@ -32,9 +32,14 @@
                     <img loading="lazy" alt="FFXIV Icon" src='{{ "/assets/img/icon.svg" | prepend: site.baseurl }}'>
                 </a>
             </h1>
-            {%- assign expand_category = "false" -%}
-            {%- if "translate,gear,fflogs,checkFileData,settings,itemsets" contains page.page_category -%}
-                {%- assign expand_category = "true" -%}
+            {%- assign extratools = "false" -%}
+            {%- if "translate,gear,fflogs,checkFileData,settings,itemsets,mainquestsfinder" contains page.page_category -%}
+                {%- assign extratools = "true" -%}
+            {%- endif -%}
+
+            {%- assign instancecontent = "false" -%}
+            {%- if "all,dungeons,trials,raids,ultimates,allianzraid,chaosallianzraid,gewölbesuche,feldexkursion,bluemage,potd,guildhest,treasure,pvp,training,overworld" contains page.page_category -%}
+                {%- assign instancecontent = "true" -%}
             {%- endif -%}
             <ul class="sidebar__menu">
                 <li>
@@ -51,26 +56,26 @@
                         <span data-translate="Navbar_Patches">Patches</span>
                     </a>
                 </li>
-                <li style="cursor: pointer;"><span><span>{%- if expand_category == "true" -%}&#9660;{%- else -%}&#9654;{%- endif -%}</span> Extra Tools</span></li>
-                <ul {% if expand_category == "true" -%}style="display: inherit;"{%- endif %}>
+                <li style="cursor: pointer;"><span><span>{%- if extratools == "true" -%}&#9660;{%- else -%}&#9654;{%- endif -%}</span> Extra Tools</span></li>
+                <ul {% if extratools == "true" -%}style="display: inherit;"{%- endif %}>
                     <li>
                         <a target="" {%- if page.page_category == "translate" -%}class="active"{%- endif -%}
                             href='{{ "/translate/" | prepend: site.baseurl }}' title="See Translations">
-                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.webp" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061825_hr1.webp" }}'">
                             <span data-translate="Navbar_Translations">Translations</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category == "gear" -%}class="active"{%- endif -%}
                             href='{{ "/gear/" | prepend: site.baseurl }}' title="See Gear">
-                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.webp" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061828_hr1.webp" }}'">
                             <span data-translate="Navbar_Equipment">Equipment</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category=="fflogs" -%}class="active" {%- endif -%}
                             href='{{ "/fflogs/" | prepend: site.baseurl }}' title="See fflogs">
-                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.webp" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/060000/060453_hr1.webp" }}'">
                             <span data-translate=" Navbar_FFLogs">FFLogs</span>
                         </a>
                     </li>
@@ -84,20 +89,27 @@
                     <li>
                         <a target="" {%- if page.page_category=="settings" -%}class="active" {%- endif -%}
                             href='{{ "/settings/" | prepend: site.baseurl }}' title="See settings">
-                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.webp" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/000000/000029_hr1.webp" }}'">
                             <span data-translate=" Navbar_settings">settings</span>
                         </a>
                     </li>
                     <li>
                         <a target="" {%- if page.page_category=="itemsets" -%}class="active" {%- endif -%}
                             href='{{ "/itemsets/" | prepend: site.baseurl }}' title="See itemsets">
-                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.webp" }}'">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061759_hr1.webp" }}'">
                             <span data-translate=" Navbar_itemsets">itemsets</span>
                         </a>
                     </li>
+                    <li>
+                        <a target="" {%- if page.page_category=="mainquestsfinder" -%}class="active" {%- endif -%}
+                            href='{{ "/mainquestsfinder/" | prepend: site.baseurl }}' title="See mainquestsfinder">
+                            <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061432_hr1.webp" }}'">
+                            <span data-translate=" Navbar_mainquestsfinder">mainquestsfinder</span>
+                        </a>
+                    </li>
                 </ul>
-                <li style="cursor: pointer;"><span><span>&#9660;</span> Instance Content</span></li>
-                <ul style="display: inherit;">
+                <li style="cursor: pointer;"><span><span>{%- if instancecontent == "true" -%}&#9660;{%- else -%}&#9654;{%- endif -%}</span> Instance Content</span></li>
+                <ul {% if instancecontent == "true" -%}style="display: inherit;"{%- endif %}>
                     <li>
                         <a target="" {%- if page.page_category == "all" -%}class="active"{%- endif -%}
                             href='{{ "/" | prepend: site.baseurl }}' title="Alle Guides anzeigen">
@@ -214,7 +226,7 @@
                 <li>
                     <a target="" {%- if page.page_category == "klassenjobs" or page.instanceType == "klassenjobs" or page.instance_type == "klassenjobs" -%}class="active"{%- endif -%}
                         href='{{ "/klassenjobs/" | prepend: site.baseurl }}' title="Klassen/Jobs anzeigen">
-                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061828_hr1.webp" }}'">
+                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061835_hr1.webp" }}'">
                         <span data-translate="Navbar_Classes/Jobs">Classes/Jobs</span>
                     </a>
                 </li>
@@ -242,14 +254,14 @@
                 <li>
                     <a target="" {%- if page.page_category == "achivments" or page.instanceType == "achivments" or page.instance_type == "achivments" -%}class="active"{%- endif -%}
                         href='{{ "/achivments/" | prepend: site.baseurl }}' title="Achivments anzeigen">
-                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.webp" }}'">
+                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061767_hr1.webp" }}'">
                         <span data-translate="Navbar_Achievement">Achievement</span>
                     </a>
                 </li>
                 <li>
                     <a target="" {%- if page.page_category == "treasuremap" or page.instanceType == "treasuremap" or page.instance_type == "treasuremap" -%}class="active"{%- endif -%}
                         href='{{ "/treasuremap/" | prepend: site.baseurl }}' title="GCrank anzeigen">
-                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/061000/061723_hr1.webp" }}'">
+                        <img loading="lazy" src='{{ site.baseurl }}/assets/img/game_assets/{{ "/000000/000115_hr1.webp" }}'">
                         <span data-translate="Navbar_treasuremap">TreasureMaps</span>
                     </a>
                 </li>
