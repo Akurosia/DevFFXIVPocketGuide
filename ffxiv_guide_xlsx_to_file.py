@@ -25,6 +25,7 @@ import python_scripts.getBlueSideQuestData as gbsq
 import python_scripts.FFXIV_Charachter_Config as fcc
 import python_scripts.get_item_sets as gis
 import python_scripts.treasurespot as ts
+import python_scripts.quests as quests
 
 logger: Logger = getLogger(50)
 disable_green_print: bool = True
@@ -284,6 +285,7 @@ def main() -> None:
         fcc.run(translations)
         gis.run()
         ts.run()
+        quests.run()
     create_translation_files()
     logger.critical('STOP')
 
