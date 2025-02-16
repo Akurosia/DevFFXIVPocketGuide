@@ -151,6 +151,7 @@ def sort_quests(quests):
         return
 
     visited = set()
+    existing_names = set()
     queue = deque([start_quest_id])
 
     while queue:
@@ -159,15 +160,20 @@ def sort_quests(quests):
         if not current_quest or current_id in visited:
             continue
 
+        quest_name = current_quest.get("Name")  # Annahme: Die Quest hat ein "Name"-Feld
+
+        if quest_name in existing_names:
+            print(f'Doppelte Quest erkannt: {quest_name} (ID: {current_id})')
+            continue  # Quest nicht hinzufügen
+
         visited.add(current_id)
+        existing_names.add(quest_name)
         ordered_quests.append(current_quest)  # Füge das komplette Dictionary hinzu
 
         if "NextQuest" in current_quest:
             queue.extend([qid for qid in current_quest["NextQuest"] if qid in quest_map])
 
-
-    quests = ordered_quests  # Setze sicher, dass quests eine Liste von Dictionaries bleibt
-    return quests
+    return ordered_quests  # Gibt die sortierte Liste zurück
 
 def search_quest(quests, query):
     query = query.strip()
