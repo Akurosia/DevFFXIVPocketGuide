@@ -4,56 +4,13 @@ if (localStorage.getItem('savedQuest')) {
     document.getElementById("questSearch").value = localStorage.getItem('savedQuest').trim();
 }
 // Load JSON file and filter relevant quests
-fetch('/assets/quests_aku.json')
+fetch('/assets/sorted_quests_aku.json')
     .then(response => response.json())
     .then(data => {
-        quests = Object.fromEntries(
-            Object.entries(data).filter(([_, quest]) =>
-                quest.JournalGenre?.Icon === "ui/icon/071000/071201_hr1.webp"
-            )
-        );
-        sortQuests();
+        quests = data;
         searchQuest();
     })
     .catch(error => console.error('Fehler beim Laden der Quest-Daten:', error));
-
-function sortQuests() {
-    let orderedQuests = [];
-    let questMap = new Map(Object.entries(quests));
-    let startQuestId = "65575";
-    let startQuest = questMap.get(startQuestId);
-
-    if (!startQuest) {
-        console.error('Start-Quest nicht gefunden.');
-        return;
-    }
-
-    let visited = new Set();
-    let queue = [startQuestId];
-
-    while (queue.length > 0) {
-        let currentId = queue.shift();
-        let currentQuest = questMap.get(currentId);
-        if (!currentQuest || visited.has(currentId)) continue;
-
-        visited.add(currentId);
-        orderedQuests.push(currentQuest);
-
-        if (currentQuest.NextQuest) {
-            queue.push(...currentQuest.NextQuest.filter(id => questMap.has(id)));
-        }
-    }
-
-    quests = orderedQuests;
-
-    const selectElement = document.getElementById("test");
-    quests.forEach(item => {
-        let option = document.createElement("option");
-        option.textContent = item.Name;
-        option.value = item.Name;
-        selectElement.appendChild(option);
-    });
-}
 
 function searchQuest() {
     const query = document.getElementById('questSearch').value.trim();
@@ -97,7 +54,6 @@ function searchQuest() {
 
 function renderProgressBar(completed, total) {
     const progressDiv = document.getElementById('progress');
-    const searchInput = document.getElementById('search-input');
     const breakpoin1 = {
         "2.0 A Realm Reborn":                   "Zu neuen Ufern",
         "2.1 A Realm Awoken":                   "Ein neuer Morgen",
@@ -152,7 +108,12 @@ function renderProgressBar(completed, total) {
         let doneInSection = Math.max(0, Math.min(completed, currentIndex) - lastIndex);
         let progressPercentage = Math.max(0, Math.min(100, (doneInSection / totalInSection) * 100));
 
-        let sectionQuests = quests.slice(lastIndex, currentIndex).map(q => `<option value="${q.Name}">${q.Name}</option>`).join('');
+        let sectionQuests = quests.slice(lastIndex, currentIndex)
+        .map((q, index) =>
+            `<option value="${q.Name}">${index + 1}. ${q.Name} (${index + lastIndex + 1})</option>`
+        )
+        .join('');
+
 
         sections.push(`
             <div class="progress-section-container">
