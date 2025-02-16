@@ -851,6 +851,8 @@ def addKlassJobs():
         filecontent += f'ilvl: {maxilvl}\n'
         if pvp:
             filecontent += f'deepdungeon: {job.lower()}\n'
+        else:
+            filecontent += f'pixelicon: {job.lower()}\n'
         filecontent += f'lodestone: "https://na.finalfantasyxiv.com/jobguide/{job_d["Name_en"].replace(" ", "").lower()}/"\n'
         for lang in LANGUAGES:
             n_lang = lang

@@ -76,3 +76,50 @@
 .sprite-podt-piktomant{
   background-position: -222px -440px;
 }
+
+.pxsprite-sheet {
+  background: attr(data-image url);
+}
+
+.sprite-pixel-common {
+  height: 64px;
+  width: 64px;
+  background-size: 256px 192px;
+}
+
+
+.sprite-pixel-zimmerer {
+  background-position: 0px 0px;
+}
+.sprite-pixel-grobschmied {
+  background-position: -64px 0px;
+}
+.sprite-pixel-plattner {
+  background-position: -128px 0px;
+}
+.sprite-pixel-goldschmied {
+  background-position: -192px 0px;
+}
+
+.sprite-pixel-gerber {
+  background-position: 0px -64px;
+}
+.sprite-pixel-weber {
+  background-position: -64px -64px;
+}
+.sprite-pixel-alchemist {
+  background-position: -128px -64px;
+}
+.sprite-pixel-gourmet {
+  background-position: -192px -64px;
+}
+
+.sprite-pixel-fischer {
+  background-position: -128px -128px;
+}
+.sprite-pixel-gärtner {
+  background-position: -64px -128px;
+}
+.sprite-pixel-minenarbeiter {
+  background-position: 0px -128px;
+}

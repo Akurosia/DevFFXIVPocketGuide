@@ -153,7 +153,12 @@
                 <div data-translate="Sidebar_DeepDungeonIcon">Deep Dungeon Icon:</div>
                 <div style="background-image: url('{{ site.baseurl }}/assets/img/deepdungeonclassjob_hr1.tex.webp')" class="xsprite-sheet sprite-podt-common sprite-podt-{{page.deepdungeon}}"></div>
             </h5>
-
+        {%- endif -%}
+        {%- if page.pixelicon -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_PixelIcon">Pixel Icon:</div>
+                <div style="background-image: url('{{ site.baseurl }}/assets/img/dot_craftergatherer_small_hr1.tex.webp')" class="pxsprite-sheet sprite-pixel-common sprite-pixel-{{page.pixelicon}}"></div>
+            </h5>
         {%- endif -%}
         <!-- END Only on Classes -->
         <!-- Only on Content -->
