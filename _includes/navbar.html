@@ -32,16 +32,17 @@
                     <img loading="lazy" alt="FFXIV Icon" src='{{ "/assets/img/icon.svg" | prepend: site.baseurl }}'>
                 </a>
             </h1>
-
             {%- assign extratools = "false" -%}
             {%- if "translate,gear,fflogs,checkFileData,settings,itemsets,mainquestsfinder,klassenjobs,relics,airship_submarine,quests,achivments,treasuremap,gcrank,dalamud,links" contains page.page_category -%}
+                {%- assign extratools = "true" -%}
+            {%- elsif page.layout == "klassen" -%}
                 {%- assign extratools = "true" -%}
             {%- endif -%}
 
             {%- assign instancecontent = "false" -%}
             {%- if "all,dungeons,trials,raids,ultimates,allianzraid,chaosallianzraid,gewölbesuche,feldexkursion,bluemage,potd,guildhest,treasure,pvp,training,overworld" contains page.page_category -%}
                 {%- assign instancecontent = "true" -%}
-            {%- elsif page.page_category == nil -%}
+            {%- elsif page.layout == "guide_post" -%}
                 {%- assign instancecontent = "true" -%}
             {%- endif -%}
             <ul class="sidebar__menu">
