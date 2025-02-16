@@ -1,4 +1,6 @@
+from typing import Any
 from ffxiv_aku import *
+from collections import deque
 
 quests = loadDataTheQuickestWay("Quest.de.json")
 journalgenre = loadDataTheQuickestWay("JournalGenre.de.json")
@@ -30,7 +32,8 @@ def printQuest(data: dict[str, Any]) -> None:
     del data['ToDoCompleteSeq']
     del data['ToDoLocation']
     del data['ToDoQty']
-    print(data)
+    #print(data)
+    return data
 
 def fix_icons(icon: str) -> str:
     return {
@@ -68,7 +71,6 @@ def addOptionalReward(data: dict[str, Any]) -> list[Any]:
             "Stain": data['OptionalItemStain']['Reward'][k]
         })
     return result
-
 
 def generate_new_quest_data() -> None:
     newQuest = {}
@@ -127,17 +129,75 @@ def generate_new_quest_data() -> None:
 
     writeJsonFile("../assets/quests_aku.json", newQuest)
 
+### sort quests like in JS
+
+def load_quests():
+    try:
+        with open("../assets/quests_aku.json", 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            quests: dict[Any, Any] = {k: v for k, v in data.items() if v.get("JournalGenre", {}).get("Icon") == "ui/icon/071000/071201_hr1.webp"}
+            return sort_quests(quests)
+    except Exception as e:
+        print(f'Fehler beim Laden der Quest-Daten: {e}')
+
+def sort_quests(quests):
+    ordered_quests = []
+    quest_map = {k: v for k, v in quests.items()}  # Dictionary bleibt erhalten
+    start_quest_id = "65575"
+    start_quest = quest_map.get(start_quest_id)
+
+    if not start_quest:
+        print('Start-Quest nicht gefunden.')
+        return
+
+    visited = set()
+    queue = deque([start_quest_id])
+
+    while queue:
+        current_id = queue.popleft()
+        current_quest = quest_map.get(current_id)
+        if not current_quest or current_id in visited:
+            continue
+
+        visited.add(current_id)
+        ordered_quests.append(current_quest)  # Füge das komplette Dictionary hinzu
+
+        if "NextQuest" in current_quest:
+            queue.extend([qid for qid in current_quest["NextQuest"] if qid in quest_map])
+
+
+    quests = ordered_quests  # Setze sicher, dass quests eine Liste von Dictionaries bleibt
+    return quests
+
+def search_quest(quests, query):
+    query = query.strip()
+    if not query:
+        print("Bitte eine Quest-ID oder einen Namen eingeben.")
+        return
+
+    quest_index = next((i for i, q in enumerate(quests) if q["Name"] == query), -1)
+    if quest_index == -1:
+        print("Quest nicht gefunden.")
+        return
+
+    completed_quests = quest_index + 1
+    remaining_quests = len(quests) - completed_quests
+    progress_percentage = max(0, min(100, (completed_quests / len(quests)) * 100))
+
+    print(f"Abgeschlossene Quests: {completed_quests}")
+    print(f"Verbleibende Quests: {remaining_quests}")
+    print(f"Fortschritt: {progress_percentage:.2f}%")
+
 
 def run() -> None:
     print("[MQF] Start MainQuestFinderr")
     print(os.getcwd())
     generate_new_quest_data()
-    #data = readJsonFile("quests_aku.json")
-    #for key, value in data.items():
-    #    if not value['PreviousQuest'] and "061412_hr1.webp" in value['JournalGenre']['Icon']:
-    #        print(value['JournalGenre']['Icon'])
 
+    sorted_quests = load_quests()
+    writeJsonFile("../assets/sorted_quests_aku.json", sorted_quests)
 
 if __name__ == "__main__":
     run()
     getExecutionTime()
+    #search_quest(sorted_quests, "Ydas Trauer")
