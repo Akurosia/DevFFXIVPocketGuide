@@ -35,8 +35,10 @@
             {%- assign extratools = "false" -%}
             {%- if "translate,gear,fflogs,checkFileData,settings,itemsets,mainquestsfinder,klassenjobs,relics,airship_submarine,quests,achivments,treasuremap,gcrank,dalamud,links" contains page.page_category -%}
                 {%- assign extratools = "true" -%}
-            {%- elsif page.layout == "klassen" -%}
-                {%- assign extratools = "true" -%}
+                {%- elsif page.layout == "klassen" -%}
+                    {%- assign extratools = "true" -%}
+                {%- elsif page.layout == "treasuremap" -%}
+                    {%- assign extratools = "true" -%}
             {%- endif -%}
 
             {%- assign instancecontent = "false" -%}
