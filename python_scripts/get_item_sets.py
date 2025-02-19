@@ -117,7 +117,7 @@ def run():
     #html += "</html>"
 
     write_class_translation_data(klass_translations)
-    with open("../_includes/itemsets.html", "w", encoding="utf8") as f:
+    with open("../_includes/single_pages/itemsets.html", "w", encoding="utf8") as f:
         f.write(html)
 
 if __name__ == "__main__":

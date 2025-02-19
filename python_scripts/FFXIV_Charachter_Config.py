@@ -250,7 +250,7 @@ def run(translations: dict[str, Any]) -> None:
 
     # the following code will print the result that is seen on the page in the end
     otext, translations = custom_print_results(lresults=results, ltext="", translations=translations)
-    with open('../_includes/settings.html', "w", encoding="utf8") as f:
+    with open('../_includes/single_pages/settings.html', "w", encoding="utf8") as f:
         f.write(otext)
     if "python_scripts" in os.getcwd():
         if "_posts" in os.getcwd():
