@@ -12,12 +12,12 @@ template = """<div class="container2">
     .container2 { display: block; text-align: center;}
     .search-bar { margin: 20px; padding: 10px; width: 80%; max-width: 400px; border-radius: 5px; border: none; }
     .innercontainer { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; color: #ffffff; }
+    @media screen and (max-width: 1024px) { .innercontainer > .album { width: 45% !important; height: auto !important; max-height: 500px !important} .innercontainer > .album > img { height: 350px !important; }}
+    @media screen and (max-width: 768px)  { .innercontainer > .album { width: 90% !important; height: auto !important; max-height: 500px !important} .innercontainer > .album > img { height: 250px !important; }}
     .innercontainer > .album { width: 22%; min-width: 200px; max-width: 500px; height: 800px; overflow-y: auto; background: #1e1e1e; border-radius: 8px; box-shadow: 0 0 10px rgba(255,255,255,0.1); padding: 10px; display: flex; flex-direction: column; align-items: center; }
-    .innercontainer > .album > img { width: 100%; height: 450px; object-fit: cover; border-radius: 25px; }
+    .innercontainer > .album > img { width: auto; height: 450px; object-fit: cover; border-radius: 25px; }
     .innercontainer > .album > ul { list-style: none; padding: 0; width: 100%; }
     .innercontainer > .album > ul > li { text-align: left; display: block; }
-    .innercontainer > @media (max-width: 1024px) { .album { width: 45%; } }
-    .innercontainer > @media (max-width: 768px) { .album { width: 90%; } }
     .innercontainer > ::-webkit-scrollbar { width: 5px; }
     .innercontainer > ::-webkit-scrollbar-track { background: #958686; border-radius: 25px;}
     .innercontainer > ::-webkit-scrollbar-thumb { background: #912020; border-radius: 25px; }
@@ -73,7 +73,7 @@ def scan_directory(base_dir: str) -> str:
 def generate_html(albums: list) -> str:
     content = ""
     for album, cover, tracks in albums:
-        track_list = "".join(f"<li>{track}</li>" for track in tracks)
+        track_list = "".join(f"<li>{track.replace('.mp3', '')}</li>" for track in tracks)
         cover_img = f"<img src='{cover}' alt='{album} Cover'>" if cover else ""
         content += f"        <div class='album'>{cover_img}<h3>{album}</h3><ul>{track_list}</ul></div>\n"
 
