@@ -3,6 +3,7 @@ from functools import lru_cache
 #from json import JSONDecoder
 from collections import OrderedDict
 from ffxiv_aku import *
+import html
 
 LANGUAGES: list[str] = ["de", "en", "fr", "ja", "cn", "ko"]
 addon_trans: dict[str, Any] = loadDataTheQuickestWay("addon", translate=True)
@@ -16,18 +17,6 @@ def search_addon_translation(term: str) -> tuple[bool, str]:
         if value['Text_de'].lower().replace("\n", " ").strip() == term.lower():
             return True, key#value['Text_en']
     return False, term
-
-
-#def run() -> None:
-#    with open(r"FFXIV_Charachter_Config.txt", encoding="utf8") as f:
-#        ldata = f.readlines()
-#    for line in ldata:
-#        found, value = search_addon_translation(line.strip())
-#        if found:
-#            print_color_green(line.replace(line.strip(), value)[:-1])
-#        else:
-#            print_color_red(line.replace(line.strip(), value)[:-1])
-
 
 
 def run2() -> dict[str, Any]:
@@ -56,7 +45,7 @@ def run2() -> dict[str, Any]:
             #value = line.replace(line.strip(), value)[:-1]
             if not found:
                 print_color_red(value)
-
+            value = html.escape(value)
             if not line == line.replace("    "*7, ""):
                 if not lresults[last_value[0]][last_value[1]][last_value[2]][last_value[3]][last_value[4]][last_value[5]][last_value[6]].get(value):
                     lresults[last_value[0]][last_value[1]][last_value[2]][last_value[3]][last_value[4]][last_value[5]][last_value[6]][value] = {}
@@ -116,18 +105,18 @@ def getFinalContent(ltext: str, translations: dict[str, Any], subvalues3: dict[s
     for value4, subvalues4 in subvalues3.items():
         try:
             int(value4)
-            sub_sub_sub_cat = addon_trans[value4]['Text_en']
+            sub_sub_sub_cat = html.escape(addon_trans[value4]['Text_en'])
             translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
             translations = add_to_translate_element(translations, translate_string, value4)
         except:
-            sub_sub_sub_cat = value4
+            sub_sub_sub_cat = html.escape(value4)
             translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
         ltext += f'        <span class="attack-is-magic" style="padding-left: 2rem;" data-translate="{translate_string}">    {sub_sub_sub_cat}</span>\n'
 
         for value5, subvalues5 in subvalues4.items():
             try:
                 int(value5)
-                sub_sub_sub_cat = addon_trans[value5]['Text_en']
+                sub_sub_sub_cat = html.escape(addon_trans[value5]['Text_en'])
                 translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
                 translations = add_to_translate_element(translations, translate_string, value5)
             except:
@@ -138,7 +127,7 @@ def getFinalContent(ltext: str, translations: dict[str, Any], subvalues3: dict[s
             for value6, subvalues6 in subvalues5.items():
                 try:
                     int(value6)
-                    sub_sub_sub_cat = addon_trans[value6]['Text_en']
+                    sub_sub_sub_cat = html.escape(addon_trans[value6]['Text_en'])
                     translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
                     translations = add_to_translate_element(translations, translate_string, value6)
                 except:
@@ -149,22 +138,22 @@ def getFinalContent(ltext: str, translations: dict[str, Any], subvalues3: dict[s
                 for value7, subvalues7 in subvalues6.items():
                     try:
                         int(value7)
-                        sub_sub_sub_cat = addon_trans[value7]['Text_en']
+                        sub_sub_sub_cat = html.escape(addon_trans[value7]['Text_en'])
                         translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
                         translations = add_to_translate_element(translations, translate_string, value7)
                     except:
-                        sub_sub_sub_cat = value7
+                        sub_sub_sub_cat = html.escape(value7)
                         translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
                     ltext += f'        <span class="attack-is-magic" style="padding-left: 8rem;" data-translate="{translate_string}">    {sub_sub_sub_cat}</span>\n'
 
                     for value8, subvalues8 in subvalues7.items():
                         try:
                             int(value8)
-                            sub_sub_sub_cat = addon_trans[value8]['Text_en']
+                            sub_sub_sub_cat = html.escape(addon_trans[value8]['Text_en'])
                             translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
                             translations = add_to_translate_element(translations, translate_string, value8)
                         except:
-                            sub_sub_sub_cat = value8
+                            sub_sub_sub_cat = html.escape(value8)
                             translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_sub_cat}'
                         ltext += f'        <span class="attack-is-magic" style="padding-left: 10rem;" data-translate="{translate_string}">    {sub_sub_sub_cat}</span>\n'
     return ltext, translations
@@ -174,7 +163,7 @@ def custom_print_results(lresults: dict[str, Any], ltext: str = "", translations
     ltext += f'<div class="setting_container">\n'
 
     for value, subvalues in lresults.items():
-        main_cat = addon_trans[value]['Text_en']
+        main_cat = html.escape(addon_trans[value]['Text_en'])
         translate_string: str = f'Settings_{main_cat}'
         translations = add_to_translate_element(translations, translate_string, value)
         ltext += f'<div section="{main_cat}" style="width: 49%;">\n'
@@ -199,11 +188,11 @@ def custom_print_results(lresults: dict[str, Any], ltext: str = "", translations
             for value3, subvalues3 in subvalues2.items():
                 try:
                     int(value3)
-                    sub_sub_cat = addon_trans[value3]['Text_en']
+                    sub_sub_cat = html.escape(addon_trans[value3]['Text_en'])
                     translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_cat}'
                     translations = add_to_translate_element(translations, translate_string, value3)
                 except:
-                    sub_sub_cat = value3
+                    sub_sub_cat = html.escape(value3)
                     translate_string: str = f'Settings_{main_cat}_{sub_cat}_{sub_sub_cat}'
 
                 #handle first elements for system configuration
@@ -245,7 +234,7 @@ def run(translations: dict[str, Any]) -> None:
             os.chdir('../python_scripts')
 
     results: dict[str, Any] = run2()
-    writeJsonFile("FFXIV_Charachter_Config.json", results)
+    #writeJsonFile("FFXIV_Charachter_Config.json", results)
 
 
     # the following code will print the result that is seen on the page in the end

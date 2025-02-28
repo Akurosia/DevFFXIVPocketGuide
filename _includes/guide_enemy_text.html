@@ -10,7 +10,7 @@
             <div class="guide__text-notes-wrapper">
                 <h5 class="guide__attack-notes-title">Texte:</h5>
                 {%- for text in category[1] -%}
-                    <span class="guide__text_description">"<span data-translate="{{category[0]}}_{{text.id}}_Text">{{ text.text }}</span>" - ({{ text.id }})</span>
+                    <span class="guide__text_description"><span data-translate="{{category[0]}}_{{text.id}}_Text">{{ text.text }}</span>" - ({{ text.id }})"</span>
                 {%- endfor -%}
             </div>
         </div>

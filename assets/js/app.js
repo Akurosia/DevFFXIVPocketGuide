@@ -281,3 +281,33 @@ function openFullscreen(imgElement) {
 function closeFullscreen() {
     document.getElementById("fullscreenOverlay").style.display = "none";
 }
+
+
+const links = document.querySelectorAll('.preview-link');
+const preview = document.getElementById('mapimagepreview');
+let currentTimeout;
+
+links.forEach(link => {
+    link.addEventListener('mouseenter', (e) => {
+        clearTimeout(currentTimeout); // Verhindert Race Condition
+        const url = link.href;
+        preview.innerHTML = `<img src="${url}" alt="Preview">`;
+        preview.style.display = 'block';
+
+        const rect = link.getBoundingClientRect();
+        preview.style.top = `${window.scrollY + rect.top}px`;
+        preview.style.left = `${window.scrollX + rect.left - preview.offsetWidth - 10}px`;
+
+        requestAnimationFrame(() => {
+            preview.style.opacity = 1;
+        });
+    });
+
+    link.addEventListener('mouseleave', () => {
+        preview.style.opacity = 0;
+        currentTimeout = setTimeout(() => {
+            preview.style.display = 'none';
+            preview.innerHTML = '';
+        }, 200); // Gleiche Zeit wie die Animation
+    });
+});

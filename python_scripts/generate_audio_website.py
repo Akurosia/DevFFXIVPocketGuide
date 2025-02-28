@@ -77,14 +77,14 @@ def scan_directory(base_dir: str) -> str:
 def generate_html(albums: list) -> str:
     content = ""
     for album, cover, folder_tracks in albums:
-        cover_img = f"<img src='{cover}' alt='{album} Cover'>" if cover else ""
-        track_list = "<div class='track-container'>\n"
+        cover_img = f"\n            <img src='{cover}' alt='{album} Cover'/>\n" if cover else ""
+        track_list = "            <div class='track-container'>\n"
         for subfolder, tracks in folder_tracks.items():
             if subfolder:
                 track_list += f"<h4>{subfolder}</h4>"
-            track_list += "<ul>\n" + "".join(f"        <li>{track.replace('.mp3', '')}</li>\n" for track in tracks) + "</ul>"
-        track_list += "</div>"
-        content += f"<div class='album'><h3>{album.replace(' - ', '</br>')}</h3>{cover_img}{track_list}</div>"
+            track_list += "                <ul>\n" + "".join(f"                    <li>{track.replace('.mp3', '')}</li>\n" for track in tracks) + "                </ul>\n"
+        track_list += "            </div>\n"
+        content += f"<div class='album'>\n            <h3>{album.replace(' - ', '</br>')}</h3>{cover_img}{track_list}        </div>\n        "
 
     return template.replace("{content}", content)
 

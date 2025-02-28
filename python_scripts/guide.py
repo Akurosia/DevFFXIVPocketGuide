@@ -4,6 +4,7 @@
 import re
 from ffxiv_aku import print_color_green, print_color_red, readJsonFile, print_color_yellow
 from typing import Any
+import html
 try:
     from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from python_scripts.custom_logger import *
@@ -79,7 +80,7 @@ def add_Mechanic(data):
                         y = note['note'] if isinstance(note['note'], dict) else {'de': note['note']}
                         for lang in LANGUAGES:
                             w = y.get(lang, y['de']).replace('"', '\\"').strip()
-                            guide_data += f"              {lang}: \"{w}\"\n"
+                            guide_data += f"              {lang}: \"{html.escape(w)}\"\n"
 
                 if step.get("images", None):
                     guide_data += "        images:\n"
@@ -512,7 +513,7 @@ def getTextFromCatAndID(cat: str, _id: str, content_translations: dict[str, Any]
         text: str = enemy_line_itterator[n_cat][_id]['Text_0_en'].replace("\n\n", " ").replace("\n", "")
         for lang in LANGUAGES:
             content_translations[lang][f"{n_cat}_{_id}_Text"] = enemy_line_itterator[n_cat][_id][f'Text_0_{lang}'].replace("\n\n", " ").replace("\n", "")
-    return text
+    return html.escape(text)
 
 def check_Enemy(entry: ENTRY_DATA, enemy_type, logdata_instance_content, old_enemies, content_translations):
     guide_data = ""

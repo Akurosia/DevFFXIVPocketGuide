@@ -29,7 +29,7 @@
 <div class="guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}
             {%- if debuff.attack_in_use == 'false' -%}--ignore
             {%- else -%}--debuff
-            {%- endif -%}" style="{%- if debuff.disable == 'true' -%}display: none;{%- endif -%}">
+            {%- endif -%}" {%- if debuff.disable == 'true' -%}style="display: none;"{%- endif -%}>
     <div class="guide__accordion-copy-wrapper">
         <!-- Standard Attacks -->
         {%- if debuff.description -%}

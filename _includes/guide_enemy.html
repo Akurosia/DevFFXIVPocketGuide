@@ -3,7 +3,7 @@
 <div class="guide__accordion">
     <!-- Guide Section -->
     <div class="guide__accordion-trigger--01-grid active" id="guide{{ x }}">
-        <i class="Dropdown material-icons" style="{%- if enemy.attacks or enemy.debuffs or enemy.fates -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+        <i class="Dropdown material-icons" {%- if enemy.attacks or enemy.debuffs or enemy.fates -%}{%- else -%}style="display: none;"{%- endif -%}><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
         <div class="Names">
             {% include helper/returnPropperName.html instanceType=page.instanceType %} {{ x }}
         </div>
@@ -14,7 +14,7 @@
         <!-- Opens the Adds Loop -->
         {%- for enemy in enemies -%}
             <div class="guide__accordion-trigger--02-grid" id="{{ enemy.id | slugify }}">
-                <i class="Dropdown material-icons" style="{%- if enemy.attacks or enemy.debuffs or enemy.fates -%}{%- else -%}display: none;{%- endif -%}"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+                <i class="Dropdown material-icons" {%- if enemy.attacks or enemy.debuffs or enemy.fates -%}{%- else -%}style="display: none;"{%- endif -%}><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
                 <div class="EnemyNames">
                     {%- assign enemy_name_en = enemy.title.en -%}
                     <h3 class="guide__accordion-trigger-title" data-translate="{{x}}_{{enemy_name_en}}_Name"> {{ enemy_name_en }} </h3>

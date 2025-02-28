@@ -1849,6 +1849,27 @@ ion-icon {
     max-height: 95vh; /* Maximum height: 90% of the viewport height */
     object-fit: contain;
 }
+
+/* mapimage */
+.mapimagepreview {
+  position: absolute;
+  display: none;
+  padding: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out; /* Schnelleres Fade-In */
+  pointer-events: none;
+  max-width: 400px;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.mapimagepreview img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 // Style CSS ====================================================================
 
     @import "style/_style_media_landscape_min_with_64.scss";
