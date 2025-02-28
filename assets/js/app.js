@@ -290,7 +290,7 @@ let currentTimeout;
 links.forEach(link => {
     link.addEventListener('mouseenter', (e) => {
         clearTimeout(currentTimeout); // Verhindert Race Condition
-        const url = link.href;
+        const url = link.getAttribute('src');
         preview.innerHTML = `<img src="${url}" alt="Preview">`;
         preview.style.display = 'block';
 

@@ -220,6 +220,8 @@ def addEntries(header_data: str, data, get_data_function, content_translations, 
         _id, array = get_data_function(data)
         if _id:
             header_data += f'  - name: "{array.get("Singular_en", array.get("Name_en", ""))}"\n'
+            if array.get("Icon", None):
+                header_data += f'    icon: "{getImage(array["Icon"])}"\n'
             for lang in LANGUAGES:
                 #header_data += f'      {lang}: "' + array.get(f"Singular_{lang}", array.get(f"Name_{lang}", "")) + '"\n'
                 content_translations[lang][f'{cat}_{array.get("Singular_en", array.get("Name_en", ""))}'] = array.get(f"Singular_{lang}", array.get(f"Name_{lang}", ""))
@@ -437,21 +439,21 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
         'mrhvid': "url",
         'hector': "url"
     }
-    for cat, fun in category_names.items():
+    for cat, value in category_names.items():
         found, data = checkVariable(entry, cat)
         if not found:
             continue
-        if isinstance(fun, str):
+        if isinstance(value, str):
             header_data += f'{cat}:\n'
             for i, d in enumerate(data):
-                if fun == "url":
-                    header_data += f'  - {fun}: "' + get_video_url(d.strip()) + '"\n'
+                if value == "url":
+                    header_data += f'  - {value}: "' + get_video_url(d.strip()) + '"\n'
                 else:
-                    header_data += f'  - {fun}: "' + d.strip() + '"\n'
-        elif fun:
+                    header_data += f'  - {value}: "' + d.strip() + '"\n'
+        elif value:
             header_data += f'{cat}:\n'
             for i, d in enumerate(data):
-                header_data = addEntries(header_data, d.strip(), fun, content_translations, cat)
+                header_data = addEntries(header_data, d.strip(), value, content_translations, cat)
         else:
             pass
 
