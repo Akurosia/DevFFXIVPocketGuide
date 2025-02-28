@@ -324,7 +324,7 @@ def getMapImages(mapid: str, contentname: str) -> str:
     result: str = ""
     path: str = "P:\\extras\\images\\ui\\map\\"
         # this needs to stay png to look at original files
-    files: list[str] = glob(path + mapid[:3] + "\\*.png")
+    files: list[str] = glob(path + mapid[:3] + f"\\{mapid[:4]}*.png")
     found_valid_maps: list[str] = []
     for file in files:
         if "_ow_" in file:
@@ -334,6 +334,15 @@ def getMapImages(mapid: str, contentname: str) -> str:
             found_valid_maps.append(file)
             if "_event" in file:
                 print_color_red(file)
+    # if exact mathc is not found e.g. titan ex s1fa_3 use s1fa_re
+    if not found_valid_maps:
+        for file in files:
+            t_mapid = mapid.split('_')[0] + "_re"
+            if "_ow_" in file:
+                continue
+            #if contentname+".png" in file and not "_event" in file and mapid in file:
+            if contentname in file and not "_event" in file and t_mapid in file:
+                found_valid_maps.append(file)
     if found_valid_maps:
         found_valid_maps = sorted([ x.replace(path, "").replace("\\", "/") for x in found_valid_maps ], reverse=True)
         result += "mapimage:\n"

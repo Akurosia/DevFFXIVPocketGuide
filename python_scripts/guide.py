@@ -80,7 +80,7 @@ def add_Mechanic(data):
                         y = note['note'] if isinstance(note['note'], dict) else {'de': note['note']}
                         for lang in LANGUAGES:
                             w = y.get(lang, y['de']).replace('"', '\\"').strip()
-                            guide_data += f"              {lang}: \"{html.escape(w)}\"\n"
+                            guide_data += f"              {lang}: \"{w}\"\n"
 
                 if step.get("images", None):
                     guide_data += "        images:\n"
