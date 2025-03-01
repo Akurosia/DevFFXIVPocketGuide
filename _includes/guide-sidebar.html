@@ -227,7 +227,7 @@
                 {%- for music in page.music -%}
                     <span class="block">{% if page.music.size > 1%}-&nbsp;{% endif %}
                         {%- if music.id -%}
-                            <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}" href="https://ffxivcollect.com/orchestrions{{ music.id }}">{{ music.name }}</a>
+                            <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name }}</a>
                         {%- else -%}
                             <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}">{{ music.name }}</a>
                         {%- endif -%}
