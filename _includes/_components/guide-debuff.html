@@ -1,9 +1,9 @@
 <!-- Include from _includes/_components/guide-debuff -->
 <!-- _components/Guide-Debuff "Button"======================================================= -->
-<div class="guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}
+<div class="guide-metadata__menu-link guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}
             {%- if debuff.debuff_in_use == 'false' -%}--ignore
             {%- else -%}--debuff
-            {%- endif -%}">
+            {%- endif -%}" id="debuff_{{ debuff.title | slugify }}">
     <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
 
     <img loading="lazy" class="Icon debuff_icon" src="{{ debuff.icon }}" alt="{{ debuff.icon }}"/>

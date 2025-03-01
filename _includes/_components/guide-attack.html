@@ -1,11 +1,11 @@
 <!-- Include from _includes/_components/guide-attack -->
-<div class="guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--grid_attack
+<div class="guide-metadata__menu-link guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--grid_attack
             {%- if attack.attack_in_use == 'false' -%}--ignore
             {%- elsif attack.dutyActions -%}--dutyAction
             {%- elsif attack.combo -%}--combo
             {%- elsif attack.variation -%}--variation
             {%- else -%}--attack
-            {%- endif -%}">
+            {%- endif -%}" id="attack_{{ attack.title | slugify }}">
     <i class="Dropdown material-icons" {%- if attack.disable == 'true' -%}style="display: none;"{%- endif -%}><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <div class="Names">
         <span class="{%- if attack.damage_type == 'Magical' -%} attack-is-magic

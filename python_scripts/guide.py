@@ -448,7 +448,8 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
         hex_id = "" if enemy_data.get("enemy_id", "") == "" else str(hex(int(enemy_data.get("enemy_id", 0)))).replace("0x", "").upper()
         guide_data += f'    enemy_id: "{enemy_data.get("enemy_id", "")}"\n'
         guide_data += f'    enemy_hex_id: "{hex_id}"\n'
-    guide_data += f'    id: "{enemy_data["id"]}"\n'
+    #guide_data += f'    id: "{enemy_data["id"]}"\n'
+    #guide_data += f'    id: "{enemy_data["title"]["en"]}"\n'
 
     if enemy_data.get('hp', None):
         guide_data += '    hp:\n'

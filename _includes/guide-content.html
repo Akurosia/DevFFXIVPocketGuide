@@ -15,11 +15,13 @@
     {%- if page.bosses -%}
         {%- assign enemies = page.bosses -%}
         {%- assign x = "Bosse" -%}
+        {%- assign y = "boss" -%}
         {%- include guide_enemy.html -%}
     {%- endif -%}
     {%- if page.adds -%}
         {%- assign enemies = page.adds -%}
         {%- assign x = "Adds" -%}
+        {%- assign y = "add" -%}
         {%- include guide_enemy.html -%}
     {%- endif -%}
     {%- if page.fates -%}

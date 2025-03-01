@@ -13,7 +13,7 @@
     <div class="guide__accordion-content--01-grid active">
         <!-- Opens the Adds Loop -->
         {%- for enemy in enemies -%}
-            <div class="guide__accordion-trigger--02-grid" id="{{ enemy.id | slugify }}">
+            <div class="guide__accordion-trigger--02-grid" id="{{y}}_{{ enemy.title.en | slugify }}">
                 <i class="Dropdown material-icons" {%- if enemy.attacks or enemy.debuffs or enemy.fates or enemy.text -%}{%- else -%}style="display: none;"{%- endif -%}><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
                 <div class="EnemyNames">
                     {%- assign enemy_name_en = enemy.title.en -%}

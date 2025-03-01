@@ -444,7 +444,7 @@
                     <ul class="guide-metadata__submenu">
                         {%- for boss in page.bosses -%}
                             <li>
-                                <a href="#" data-id="{{ boss.id }}" data-translate="Bosse_{{ boss.title.en }}_Name" title="Go to {{ boss.title.en }}" class="guide-metadata__menu-link">{{ boss.title.en }}</a>
+                                <a href="#" data-id="boss_{{ boss.title.en | slugify }}" data-translate="Bosse_{{ boss.title.en }}_Name" title="Go to {{ boss.title.en }}" class="guide-metadata__menu-link">{{ boss.title.en }}</a>
                             </li>
                         {%- endfor -%}
                     </ul>
@@ -458,7 +458,7 @@
                     <ul class="guide-metadata__submenu">
                         {%- for add in page.adds -%}
                             <li>
-                                <a href="#" data-id="{{ add.id }}" data-translate="Adds_{{ add.title.en }}_Name" title="Go to {{ add.title.en }}" class="guide-metadata__menu-link">{{ add.title.en }}</a>
+                                <a href="#" data-id="add_{{ add.title.en | slugify }}" data-translate="Adds_{{ add.title.en }}_Name" title="Go to {{ add.title.en }}" class="guide-metadata__menu-link">{{ add.title.en }}</a>
                             </li>
                         {%- endfor -%}
                     </ul>
