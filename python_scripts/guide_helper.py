@@ -144,11 +144,12 @@ def sort_list_of_skills(data):
         unknown_attacks = []
         known_attacks = []
         for attack in data['attacks']:
-            if attack['title']['de'].startswith("Unknown_"):
-                unknown_attacks.append(attack)
-            else:
-                known_attacks.append(attack)
-        data['attacks'] = unknown_attacks + known_attacks
+            #if attack['title']['de'].startswith("Unknown_"):
+            #    unknown_attacks.append(attack)
+            #else:
+            #    known_attacks.append(attack)
+            known_attacks.append(attack)
+        data['attacks'] = known_attacks# + unknown_attacks
     return data
 
 
@@ -306,7 +307,7 @@ def getBnpcName(name, _id, lang="en"):
 def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
     remove_attack = []
     existing_attacks = {}
-    # comapre all skill ids
+    # comapre all skill ids (old_enemy_data is also updated)
     existing_attacks, remove_attack = compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_attack)
     #remove_attack = []
     # remove skill ids if they were found before
@@ -686,21 +687,21 @@ def reorder_old_enemies(entry, enemy_type, old_enemies):
     return old_enemies
 
 
-def addLanguageElements(_type, _id, ori_value):
+def addLanguageElements(_type: str, _oid: str, ori_value) -> dict[str, str]:
     if _type == "bnpc":
         data = bnpcname
         field = "Singular"
     if _type == "action":
         data = action
         field = "Name"
-        _id = str(int(_id, 16))
+        _id = str(int(_oid, 16))
     if _type == "status":
         data = status
         field = "Name"
-        _id = str(int(_id, 16))
+        _id = str(int(_oid, 16))
 
     if _id:
-        return {
+        tmp: dict[str, str] = {
             'en': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_en']),
             'de': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_de']),
             'fr': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_fr']),
@@ -708,6 +709,17 @@ def addLanguageElements(_type, _id, ori_value):
             'cn': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_cn']),
             'ko': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_ko']),
         }
+        if _type in ['action', 'status']:
+            if tmp == {'en': '', 'de': '', 'fr': '', 'ja': '', 'cn': '', 'ko': ''}:
+                tmp = {
+                    'en': f'Unknown_{_oid}',
+                    'de': f'Unknown_{_oid}',
+                    'fr': f'Unknown_{_oid}',
+                    'ja': f'Unknown_{_oid}',
+                    'cn': f'Unknown_{_oid}',
+                    'ko': f'Unknown_{_oid}'
+                }
+        return tmp
     return UNKNOWNTITLE
 
 
@@ -866,41 +878,6 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
                 guide_data += add_Enemy(empty_enemy, "bosse", logdata_instance_content.get("", {}), content_translations)
 
     return guide_data
-
-
-#def getIDSFromText(enemy_names: dict[str, Any], texts: list[str]) -> dict[str, set]:
-#    result: dict[str, set] = {'npcyell_ids': set(), 'instancecontenttextdata_ids': set()}
-#    remove_text = set()
-#    for key, value in npcyell.items():
-#        for text in texts:
-#            textx: str = text.strip()
-#            de_val: str = value['Text_de'].replace("\n\n", " ").strip()
-#            if textx == de_val:
-#                result['npcyell_ids'].add(key)
-#                remove_text.add(text)
-#                break
-#    for t in remove_text:
-#        try:
-#            texts.remove(t)
-#        except: pass
-#
-#    remove_text = set()
-#    for key, value in instancecontenttextdata.items():
-#        for text in texts:
-#            textx: str = text.strip()
-#            de_val: str = value['Text_de'].replace("\n\n", " ").strip()
-#            if textx == de_val:
-#                result['instancecontenttextdata_ids'].add(key)
-#                remove_text.add(text)
-#
-#    for t in remove_text:
-#        try:
-#            texts.remove(t)
-#        except: pass
-#    if texts != []:
-#        print_color_red(f"\t{enemy_names}")
-#        print_color_red(f"\t\t{texts}")
-#    return result
 
 
 def ugly_fix_enemy_data(enemy_data: dict[str, Any], new_enemy_data: dict[str, Any]) -> dict[str, Any]:

@@ -142,7 +142,7 @@ def add_Debuff(guide_data, debuff, enemy_type, enemy_name_en, content_translatio
 
 
 def add_regular_Attack(guide_data, attack, enemy_type, enemy_name_en, content_translations):
-    guide_data += f'      - title: "{attack["title"]["en"]}"\n'
+    guide_data += f'      - title: "{attack["title"]["en"] if attack["title"]["en"] else "Unknown_"+attack["title_id"]}"\n'
     for lang in LANGUAGES:
         content_translations[lang][f"{enemy_type.title()}_{enemy_name_en}_Attack_{attack["title"]["en"]}"] = attack["title"].get(lang, "")
     guide_data += f'        title_id: "{attack["title_id"]}"\n'
