@@ -202,7 +202,7 @@
                 <div data-translate="Sidebar_MapImage">MapImage: </div>
                 {%- for mapimage in page.mapimage -%}
                     <span class="block">{% if page.mapimage.size > 1%}-&nbsp;{% endif %}
-                        <a class="preview-link" target="_blank" rel="noopener noreferrer" src="https://ff14.akurosiakamo.de/extras/images/ui/map/{{ mapimage.image }}"  href="https://ff14.akurosiakamo.de/extras/images/ui/map/{{ mapimage.image }}">{{ mapimage.image }}</a>
+                        <a data-size="300" class="preview-link" target="_blank" rel="noopener noreferrer" src="https://ff14.akurosiakamo.de/extras/images/ui/map/{{ mapimage.image }}"  href="https://ff14.akurosiakamo.de/extras/images/ui/map/{{ mapimage.image }}">{{ mapimage.displayname }}</a>
                     </span>
                 {%- endfor -%}
             </h5>
@@ -286,7 +286,7 @@
                 {%- for mount in page.mount -%}
                     <span class="block">{% if page.mount.size > 1%}-&nbsp;{% endif %}
                     {%- if mount.id -%}
-                        <a class="preview-link" data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer" src="{{mount.icon}}" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name }}</a>
+                        <a data-size="150" class="preview-link" data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer" src="{{mount.icon}}" href="https://ffxivcollect.com/mounts/{{ mount.id }}">{{ mount.name }}</a>
                     {%- else -%}
                         <a data-translate="mount_{{mount.name}}" target="_blank" rel="noopener noreferrer">{{ mount.name }}</a>
                     {%- endif -%}
@@ -300,7 +300,7 @@
                 {%- for minion in page.minion -%}
                     <span class="block">{% if page.minion.size > 1%}-&nbsp;{% endif %}
                         {%- if minion.id -%}
-                            <a class="preview-link" data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer" src="{{minion.icon}}" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name }}</a>
+                            <a data-size="150" class="preview-link" data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer" src="{{minion.icon}}" href="https://ffxivcollect.com/minions/{{ minion.id }}">{{ minion.name }}</a>
                         {%- else -%}
                             <a data-translate="minion_{{minion.name}}" target="_blank" rel="noopener noreferrer">{{ minion.name }}</a>
                         {%- endif -%}
@@ -322,7 +322,9 @@
                 {%- for tt_card in page.tt_card -%}
                     <span class="block">{% if page.tt_card.size > 1%}-&nbsp;{% endif %}
                         {%- if tt_card.id -%}
-                            <a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" href="https://triad.raelys.com/cards/{{ tt_card.id }}">{{ tt_card.name }}</a>
+                            <a data-size="150" class="preview-link" target="_blank" rel="noopener noreferrer" src="https://ff14.akurosiakamo.de/extras/images/ui/icon/088000/088{{ tt_card.id | sprintf: '%03d' }}_hr1.png" href="https://triad.raelys.com/cards/{{ tt_card.id }}"">
+                                {{ tt_card.id | sprintf: '%03d' }}. <span style="padding-left: 0;text-decoration: underline;" data-translate="tt_card_{{tt_card.name}}">{{ tt_card.name }}</span>
+                            </a>
                         {%- else -%}
                             <a data-translate="tt_card_{{tt_card.name}}" target="_blank" rel="noopener noreferrer" >{{ tt_card.name }}</a>
                         {%- endif -%}
@@ -346,7 +348,7 @@
         {%- endif -%}
         {%- if page.orchestrion_material -%}
             <h5 class="guide-metadata__subtitle {% if page.orchestrion_material.size == 1%}akuflex{% endif %} box small-1of2 med-full">
-                <div data-translate="Sidebar_OrchestrionRollMaterial">Orchestrion Roll Material: </div>
+                <div data-translate="Sidebar_OrchestrionRollMaterial">Orchestrion Roll Material:</div>
                 {%- for orchestrion_material in page.orchestrion_material -%}
                     <span class="block">{% if page.orchestrion_material.size > 1%}-&nbsp;{% endif %}
                         <span data-translate="orchestrion_material_{{orchestrion_material.name}}">{{ orchestrion_material.name }}</span>

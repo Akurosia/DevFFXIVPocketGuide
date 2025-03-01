@@ -291,16 +291,24 @@ links.forEach(link => {
     link.addEventListener('mouseenter', (e) => {
         clearTimeout(currentTimeout); // Verhindert Race Condition
         const url = link.getAttribute('src');
-        preview.innerHTML = `<img src="${url}" alt="Preview">`;
+        const size = link.getAttribute('data-size');
+        const scale = 300/link.getAttribute('data-size');
+        preview.innerHTML = `<img style="height:${size}px;width:${size}px;" src="${url}" alt="Preview">`;
         preview.style.display = 'block';
-
         const rect = link.getBoundingClientRect();
-        preview.style.top = `${window.scrollY + rect.top}px`;
-        preview.style.left = `${window.scrollX + rect.left - preview.offsetWidth - 10}px`;
+        preview.style.width = `${size}px`;
+        preview.style.height = `${size}px`;
+        preview.style.top = `${e.pageY - link.getAttribute('data-size')/2}px`;
+        preview.style.left = `${e.pageX - link.getAttribute('data-size') * scale}px`;
 
         requestAnimationFrame(() => {
             preview.style.opacity = 1;
         });
+    });
+
+    link.addEventListener('mousemove', (e) => {
+        preview.style.top = `${e.pageY - link.getAttribute('data-size')/2}px`;
+        preview.style.left = `${e.pageX - link.getAttribute('data-size') * scale}px`;
     });
 
     link.addEventListener('mouseleave', () => {

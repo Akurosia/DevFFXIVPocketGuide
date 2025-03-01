@@ -1854,14 +1854,12 @@ ion-icon {
 .mapimagepreview {
   position: absolute;
   display: none;
-  padding: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out; /* Schnelleres Fade-In */
   pointer-events: none;
-  max-width: 400px;
-  max-height: 400px;
+  width: 300px;
+  height: 300px;
+  z-index: 1001;
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
   overflow: hidden;
 }
 

@@ -349,6 +349,7 @@ def getMapImages(mapid: str, contentname: str) -> str:
         result += "mapimage:\n"
         for image in found_valid_maps:
             result += f'    - image: "{image}"\n'
+            result += f'      displayname: "{image.replace(ncontentname + " - ", "")}"\n'
     return result
 
 def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_translations):
