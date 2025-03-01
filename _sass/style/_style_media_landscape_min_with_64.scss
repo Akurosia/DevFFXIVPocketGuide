@@ -22,6 +22,10 @@
     padding: 3rem;
   }
 
+  [class*="Dropdown"] {
+    cursor: pointer;
+  }
+
   [class*=guide__accordion-trigger--] {
     &[class*="01"] {
       padding: 2rem 2rem 2rem 3rem;

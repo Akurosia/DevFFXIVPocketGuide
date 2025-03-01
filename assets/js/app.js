@@ -202,48 +202,24 @@
 
         });
 
-        // FFXIV Guide Menu Temp ===============================================
-        $('.guide-metadata__menu-link--new').on("click", function(e) {
-
+        // FFXIV Guide Accordions only arrow ==============================================
+        $("[class*='Dropdown material-icons']").on("click", function(e) {
+            $(this).parents("[class*='guide__accordion-trigger']").toggleClass("active");
+            $(this).parents("[class*='guide__accordion-trigger']").next("[class*='guide__accordion-content']").toggleClass("active");
             e.preventDefault();
-
-            var dataTrigger = $(this).attr("data-menu-trigger");
-            var dataObject = $("[data-menu-target='"+dataTrigger+"']");
-            var container = $('html,body');
-
-            $("[class*='guide__accordion-trigger']").removeClass("active");
-            $("[class*='guide__accordion-content']").removeClass("active");
-
-            $(dataObject).parents("[class*='guide__accordion-content']").prev("[class*='guide__accordion-trigger']").addClass("active");
-            $(dataObject).parents("[class*='guide__accordion-content']").addClass("active");
-            $(dataObject).addClass("active");
-            $(dataObject).next("[class*='guide__accordion-content']").addClass("active");
-
-            var offSet = dataObject.offset().top;
-
-            container.animate({
-                scrollTop : offSet
-            }, 'slow');
-
         });
 
-
-        // FFXIV Guide Accordions ==============================================
+        // FFXIV Guide Accordions rest of the element ==============================================
         $("[class*='guide__accordion-trigger']").on("click", function(e) {
-            $(this).toggleClass("active");
-            $(this).next("[class*='guide__accordion-content']").toggleClass("active");
-            e.preventDefault();
+            const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+
+            if (e.shiftKey || e.ctrlKey || isMobile) {
+                $(this).toggleClass("active");
+                $(this).next("[class*='guide__accordion-content']").toggleClass("active");
+                e.preventDefault();
+            }
         });
 
-        // Guide Image Zoom ====================================================
-        //$(".guide__attack-image-item").on("click", function(e) {
-        //    if($(this).hasClass("active")) {
-        //        $(this).removeClass("active")
-        //    }
-        //    else {
-        //        $(this).addClass("active")
-        //    }
-        //});
         $(".guide__attack-image-item").each(function () {
             $(this).find("img").attr("onclick", "openFullscreen(this)");
         });
