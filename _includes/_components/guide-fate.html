@@ -1,6 +1,6 @@
 <!-- Include from _includes/_components/guide-fate -->
 <!-- _components/Guide-fate "Button"======================================================= -->
-<div class="guide-metadata__menu-link guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--fate" id="{{ "fate_" | fate: attack.title.en | slugify }}">
+<div class="guide-metadata__menu-link guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--fate" id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "fate_" | fate: attack.title.en | slugify }}">
     <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <img loading="lazy" class="Icon fate_icon" src="{{ fate.icon }}" alt="{{ fate.icon }}"/>
     <div class="Names">

@@ -5,7 +5,7 @@
             {%- elsif attack.combo -%}--combo
             {%- elsif attack.variation -%}--variation
             {%- else -%}--attack
-            {%- endif -%}" id="{{ "attack_" | append: attack.title | slugify }}">
+            {%- endif -%}" id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "attack_" | append: attack.title | slugify }}">
     <i class="Dropdown material-icons" {%- if attack.disable == 'true' -%}style="display: none;"{%- endif -%}><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <div class="Names">
         <span class="{%- if attack.damage_type == 'Magical' -%} attack-is-magic

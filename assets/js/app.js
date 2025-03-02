@@ -311,22 +311,13 @@ function scrollToElement(element) {
             var dataObject = $('#' + targetId);
 
             var newHash = '';
-            // if the clicked target is a boss or an add, scroll to it
-            if (targetId.startsWith('boss-') || targetId.startsWith('add-') || targetId.startsWith('map-')) {
-                if (dataObject.length) {
+            if (dataObject.length) {
+                if (targetId.includes('-attack-') || targetId.includes('-debuff-') || targetId.includes('-map-') || targetId.includes('-fate-')) {
+                    // do nothing
+                } else {
                     scrollToElement(dataObject);
-                    newHash = '#' + targetId;
                 }
-            }
-            else {
-                if (dataObject.length) {
-                    var previousSiblingId = $(this).parent().prev('[id]').attr('id'); // Find previous sibling with an ID
-                    if (previousSiblingId) {
-                        newHash = '#' + previousSiblingId + '/' + targetId;
-                    } else {
-                        newHash = '#' + targetId;
-                    }
-                }
+                newHash = '#' + targetId;
             }
             history.pushState(null, null, newHash);
         });
