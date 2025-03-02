@@ -1,5 +1,5 @@
 <!-- Include from _includes/klassen/_component/guide-attack -->
-<div class="summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--attack">
+<div class="guide-metadata__menu-link summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--attack" id="{{ "attack_" | append: attack.title.en | slugify }}">
     <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <h4 class="index-item__title"
         data-terms="{%- for lang in LANGUAGES -%}!skillname:{{ attack.title[lang] }}&#32;{%- endfor -%}&#32;
@@ -43,7 +43,7 @@
                     {%- unless attack.status_icon == "" -%}
                         <br/>
                         <h5 class="guide__attack-notes-title">Status: {{ attack.status.de }}</h5><br>
-                        <img loading="lazy" class="debuff_icon" src="{{ attack.status_icon }}" alt="{{ attack.status_icon }}"/>
+                        <img loading="lazy" class="debuff_icon" src="/assets/img/game_assets/{{ attack.status_icon }}" alt="{{ attack.status_icon }}"/>
                     {%- endunless -%}
                 {%- endif -%}
             </div>

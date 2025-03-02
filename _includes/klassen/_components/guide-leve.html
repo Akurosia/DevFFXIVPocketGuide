@@ -1,5 +1,5 @@
 <!-- Include from _includes/klassen/_component/guide-leve -->
-<div class="summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--leve">
+<div class="guide-metadata__menu-link summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--leve" id="{{ "leve_" | append: leve.title.en | slugify }}">
     <h4 class="index-item__title"
         data-terms="!{%- for lang in LANGUAGES -%}leve:{{ leve.title[lang] }}&#32;{%- endfor -%}&#32;
                     {%- for term in leve.terms -%}term:{{ term.term }}&#32;{%- endfor -%}" style="display: none">

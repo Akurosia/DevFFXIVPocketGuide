@@ -1,7 +1,7 @@
 <!-- Include from _includes/_components/guide-script -->
 <!-- Event Skill Script -->
 <div class="guide__script-wrapper">
-    <div class="guide__accordion-trigger--04--grid" id="{{ enemy.id | slugify }}-{{ phase.phase }}AttackScript">
+    <div class="guide__accordion-trigger--04--grid" id="{{ enemy.id | append: "-" | append: phase.phase | append: "AttackScript" | slugify }}">
         <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
         <h3 class="Names guide__accordion-trigger-title">Angriffsreihenfolge</h3>
     </div>

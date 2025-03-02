@@ -3,7 +3,7 @@
 
 {%- for phase in enemy.sequence -%}
     {%- if enemy.sequence.size > 1 -%}
-        <div class="guide__accordion-trigger--03-grid" id="{{ enemy.id | slugify }}-{{ phase.phase }}">
+        <div class="guide__accordion-trigger--03-grid" id="{{ phase.name | append: "-" | append: phase.phase | slugify }}">
             <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
             <div class="Names">
                 {%- if phase.name -%}

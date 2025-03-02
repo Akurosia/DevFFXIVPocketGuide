@@ -19,56 +19,82 @@ function closeFullscreen() {
     document.getElementById("fullscreenOverlay").style.display = "none";
 }
 
+function scrollToElement(element) {
+    var container = $('html, body');
 
-const links = document.querySelectorAll('.preview-link');
-const preview = document.getElementById('mapimagepreview');
-let currentTimeout;
+    $("[class*='guide__accordion-trigger']").removeClass("active");
+    $("[class*='guide__accordion-content']").removeClass("active");
 
-links.forEach(link => {
-    const scale = 300/link.getAttribute('data-size');
-    link.addEventListener('mouseenter', (e) => {
-        clearTimeout(currentTimeout); // Verhindert Race Condition
-        const url = link.getAttribute('src');
-        const size = link.getAttribute('data-size');
-        preview.innerHTML = `<img style="height:${size}px;width:${size}px;" src="${url}" alt="Preview">`;
-        preview.style.display = 'block';
-        const rect = link.getBoundingClientRect();
-        preview.style.width = `${size}px`;
-        preview.style.height = `${size}px`;
-        preview.style.top = `${e.pageY - link.getAttribute('data-size')/2}px`;
-        preview.style.left = `${e.pageX - link.getAttribute('data-size') * scale}px`;
-
-        requestAnimationFrame(() => {
-            preview.style.opacity = 1;
-        });
+    // Activate all parent accordions
+    element.parents("[class*='guide__accordion-content']").each(function () {
+        $(this).addClass("active");
+        $(this).prev("[class*='guide__accordion-trigger']").addClass("active");
     });
 
-    link.addEventListener('mousemove', (e) => {
-        preview.style.top = `${e.pageY - link.getAttribute('data-size')/2}px`;
-        preview.style.left = `${e.pageX - link.getAttribute('data-size') * scale}px`;
-    });
+    // Activate target element itself if necessary
+    element.addClass("active");
+    element.next("[class*='guide__accordion-content']").addClass("active");
 
-    link.addEventListener('mouseleave', () => {
-        preview.style.opacity = 0;
-        currentTimeout = setTimeout(() => {
-            preview.style.display = 'none';
-            preview.innerHTML = '';
-        }, 200); // Gleiche Zeit wie die Animation
-    });
-});
+    // Scroll to target
+    var offSet = element.offset().top;
+    container.animate({
+        scrollTop: offSet
+    }, 'slow');
+}
 
 (function($) {
-    $(document).on('click', '.sidebar__menu li ', function () {
-        arrow = $(this).children('span').children('span')[0]
-        if (arrow.textContent == "▶") {
-            arrow.textContent = "▼";
-        } else {
-            arrow.textContent = "▶";
-        }
-        $(this).next('ul').toggle();
-    })
 
     $(document).ready(function() {
+        $(document).on('click', '.guide__attack-image-item img', function() {
+            openFullscreen(this);
+        });
+
+        const links = document.querySelectorAll('.preview-link');
+        const preview = document.getElementById('mapimagepreview');
+        let currentTimeout;
+
+        links.forEach(link => {
+            const scale = 300/link.getAttribute('data-size');
+            link.addEventListener('mouseenter', (e) => {
+                clearTimeout(currentTimeout); // Verhindert Race Condition
+                const url = link.getAttribute('src');
+                const size = link.getAttribute('data-size');
+                preview.innerHTML = `<img style="height:${size}px;width:${size}px;" src="${url}" alt="Preview">`;
+                preview.style.display = 'block';
+                const rect = link.getBoundingClientRect();
+                preview.style.width = `${size}px`;
+                preview.style.height = `${size}px`;
+                preview.style.top = `${e.pageY - link.getAttribute('data-size')/2}px`;
+                preview.style.left = `${e.pageX - link.getAttribute('data-size') * scale}px`;
+
+                requestAnimationFrame(() => {
+                    preview.style.opacity = 1;
+                });
+            });
+
+            link.addEventListener('mousemove', (e) => {
+                preview.style.top = `${e.pageY - link.getAttribute('data-size')/2}px`;
+                preview.style.left = `${e.pageX - link.getAttribute('data-size') * scale}px`;
+            });
+
+            link.addEventListener('mouseleave', () => {
+                preview.style.opacity = 0;
+                currentTimeout = setTimeout(() => {
+                    preview.style.display = 'none';
+                    preview.innerHTML = '';
+                }, 200); // Gleiche Zeit wie die Animation
+            });
+        });
+
+        $(document).on('click', '.sidebar__menu li ', function () {
+            arrow = $(this).children('span').children('span')[0]
+            if (arrow.textContent == "▶") {
+                arrow.textContent = "▼";
+            } else {
+                arrow.textContent = "▶";
+            }
+            $(this).next('ul').toggle();
+        })
 
         var $root = $('html, body');
 
@@ -237,60 +263,6 @@ links.forEach(link => {
 
         });
 
-        // FFXIV Guide Menu ====================================================
-        function scrollToElement(element) {
-            var container = $('html, body');
-
-            $("[class*='guide__accordion-trigger']").removeClass("active");
-            $("[class*='guide__accordion-content']").removeClass("active");
-
-            // Activate all parent accordions
-            element.parents("[class*='guide__accordion-content']").each(function () {
-                $(this).addClass("active");
-                $(this).prev("[class*='guide__accordion-trigger']").addClass("active");
-            });
-
-            // Activate target element itself if necessary
-            element.addClass("active");
-            element.next("[class*='guide__accordion-content']").addClass("active");
-
-            // Scroll to target
-            var offSet = element.offset().top;
-            container.animate({
-                scrollTop: offSet
-            }, 'slow');
-        }
-
-        $('.guide-metadata__menu-link').on("click", function (e) {
-            e.preventDefault();
-            // get the correct element
-            var targetId = $(this).data("id");
-            if (targetId === undefined) {
-                targetId = $(this)[0].id;
-            }
-            var dataObject = $('#' + targetId);
-
-            var newHash = '';
-            // if the clicked target is a boss or an add, scroll to it
-            if (targetId.startsWith('boss_') || targetId.startsWith('add_')) {
-                if (dataObject.length) {
-                    scrollToElement(dataObject);
-                    newHash = '#' + targetId;
-                }
-            }
-            else {
-                if (dataObject.length) {
-                    var previousSiblingId = $(this).parent().prev('[id]').attr('id'); // Find previous sibling with an ID
-                    if (previousSiblingId) {
-                        newHash = '#' + previousSiblingId + '/' + targetId;
-                    } else {
-                        newHash = '#' + targetId;
-                    }
-                }
-            }
-            history.pushState(null, null, newHash);
-        });
-
         // FFXIV Guide Accordions only arrow ==============================================
         $("[class*='Dropdown material-icons']").on("click", function(e) {
             $(this).parents("[class*='guide__accordion-trigger']").toggleClass("active");
@@ -328,6 +300,36 @@ links.forEach(link => {
             });
         });
 
+        // FFXIV Guide Menu ====================================================
+        $('.guide-metadata__menu-link').on("click", function (e) {
+            e.preventDefault();
+            // get the correct element
+            var targetId = $(this).data("id");
+            if (targetId === undefined) {
+                targetId = $(this)[0].id;
+            }
+            var dataObject = $('#' + targetId);
+
+            var newHash = '';
+            // if the clicked target is a boss or an add, scroll to it
+            if (targetId.startsWith('boss-') || targetId.startsWith('add-') || targetId.startsWith('map-')) {
+                if (dataObject.length) {
+                    scrollToElement(dataObject);
+                    newHash = '#' + targetId;
+                }
+            }
+            else {
+                if (dataObject.length) {
+                    var previousSiblingId = $(this).parent().prev('[id]').attr('id'); // Find previous sibling with an ID
+                    if (previousSiblingId) {
+                        newHash = '#' + previousSiblingId + '/' + targetId;
+                    } else {
+                        newHash = '#' + targetId;
+                    }
+                }
+            }
+            history.pushState(null, null, newHash);
+        });
 
         // Check URL on page load /must be executed last, otherwise page does not function properly
         if (window.location.hash) {

@@ -2,7 +2,7 @@
 <!-- Opens the Sequence Loop -->
 
 
-<div class="guide__accordion-trigger--03--grid" id="{{ enemy.id | slugify }}-{{ zone.zonename }}">
+<div class="guide-metadata__menu-link guide__accordion-trigger--03--grid" id="{{ "map_" | append: zone.zonename | slugify }}">
     <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <div class="Names klassen">
         <h3 class="guide__accordion-trigger-title" data-translate="Map_Section_{{zone.zonename}}">{{ zone.zonename }}</h3>
@@ -23,6 +23,5 @@
         {%- endfor -%}
         </div>
     {%- endif -%}
-    {%- include _components/image_overlay.html -%}
 </div>
 <!-- END Include from _includes/treasuremap/guide_enemy_sequence -->

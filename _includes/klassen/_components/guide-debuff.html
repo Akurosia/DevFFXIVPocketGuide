@@ -1,5 +1,5 @@
 <!-- Include from _includes/klassen/_component/guide-debuff -->
-<div class="summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--debuff">
+<div class="guide-metadata__menu-link summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--debuff" id="{{ "debuff_" | append: debuff.title.en | slugify }}">
     <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <h4 class="index-item__title"
         data-terms="!{%- for lang in LANGUAGES -%}status:{{ debuff.title[lang] }}&#32;{%- endfor -%}&#32;

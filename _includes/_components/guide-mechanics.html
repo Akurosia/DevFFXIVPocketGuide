@@ -1,7 +1,7 @@
 <!-- Include from _includes/_components/guide-mechanics -->
 <!-- Event Mechanics -->
 <div class="guide__mechanics-wrapper">
-    <div class="guide__accordion-trigger--04--grid" id="{{ enemy.id | slugify }}-{{ phase.phase }}Mechanic">
+    <div class="guide__accordion-trigger--04--grid" id="{{ enemy.id | append: "-" | append: phase.phase | append: "Mechanic" | slugify }}">
         <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
         <h3 class="Names guide__accordion-trigger-title">Hinweise zu den Mechaniken</h3>
     </div>
