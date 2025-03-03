@@ -8,7 +8,7 @@ import errno
 from typing import Any
 import yaml
 from yaml.loader import SafeLoader
-from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile
+from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, storeFilesInTmp, sortJsonData
 import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide
@@ -16,7 +16,7 @@ from python_scripts.fileimports import logdata, logdata_lower
 from python_scripts.helper import uglyContentNameFix, getContentName, EntryType
 # from python_scripts.constants import *
 from python_scripts.custom_logger import getLogger
-from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file, Worksheet
+from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file, Worksheet, excel_to_json, getEntryDataOld
 import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
 import python_scripts.generateHousingMissions as ghm
@@ -199,22 +199,20 @@ expansion_list: dict[str, str] = {
 }
 
 
-def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], orderedContent: dict[str, str]) -> None:
+def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> None:
     global debug_row_number # used in debugger to verify entry
     global print_debug
-    # for every row do:
     filename = ""
-    for i in range(2, max_row):
+    for key, value in googledata.items():
+        i = int(key)
         try:
             debug_row_number = i
-            # comment the 2 line out to filter fo a specific line, numbering starts with 1 like it is in excel
             if not True:
                 #if debug_row_number > 3 :
                 if debug_row_number not in [795]:
                     print_debug = True
                     continue
-            entry: EntryType = getEntryData(sheet, max_column, i, elements, orderedContent)
-            #print(entry)
+            entry: EntryType = getEntryData(value, i, orderedContent)
             if print_debug:
                 print(f"[MAIN:run] {entry['title']}")
             logger.info(pretty_json(entry))
@@ -259,20 +257,36 @@ def run(sheet: Worksheet, max_row: int, max_column: int, elements: list[str], or
 def main() -> None:
     global translations
     logger.critical('START')
+    tmp_path = storeFilesInTmp(True) # set tmp path
     sheet: Worksheet
     max_row: int
     max_column: int
-    sheet, max_row, max_column = read_xlsx_file()
-    #print_pretty_json(sheet)
-    XLSXELEMENTS: list[str] = get_header_from_xlsx(sheet, max_column)
+    google_file_name = os.path.join(tmp_path, "google.json")
+    if not os.path.exists(google_file_name):
+        sheet, max_row, max_column = read_xlsx_file()
+        #print_pretty_json(sheet)
+        XLSXELEMENTS: list[str] = get_header_from_xlsx(sheet, max_column)
+        # first run to create all files
+        orderedContent: dict[str, str] = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
+        googledata: dict[str, EntryType] = excel_to_json(sheet)
+        googledata = sortJsonData(googledata, sort_sub_keys=False) # type: ignore
+        tmp = {
+            "google": googledata,
+            "ordered": orderedContent
+        }
+        writeJsonFile(google_file_name, tmp)
+    else:
+        print_color_green("[MAIN:main] SKIP DOWNLOADING CONTENT FILE!")
+        tmp = readJsonFile(google_file_name)
+        googledata = tmp["google"]
+        orderedContent = tmp["ordered"]
+
     csgf.load_global_data()
     # change into _posts dir
     os.chdir("./_posts")
-    # first run to create all files
-    orderedContent: dict[str, str] = getPrevAndNextContentOrder(sheet, XLSXELEMENTS, max_row)
     #logger.debug(orderedContent)
     try:
-        run(sheet, max_row, max_column, XLSXELEMENTS, orderedContent)
+        run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())

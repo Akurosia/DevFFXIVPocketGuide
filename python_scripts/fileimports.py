@@ -43,7 +43,10 @@ instancecontent: FFXIV_DATA = loadDataTheQuickestWay("InstanceContent.json")
 contentmembertype: FFXIV_DATA = loadDataTheQuickestWay("ContentMemberType.json")
 classjob: FFXIV_DATA = loadDataTheQuickestWay("Classjob.de.json")
 items: FFXIV_DATA = loadDataTheQuickestWay("Item.de.json")
-gamerscape_items: FFXIV_DATA = readJsonFile("python_scripts/gamerscape_items/after_item_scan.json")
+try:
+    gamerscape_items: FFXIV_DATA = readJsonFile("python_scripts/gamerscape_items/after_item_scan.json")
+except:
+    gamerscape_items: FFXIV_DATA = readJsonFile("gamerscape_items/after_item_scan.json")
 
 fates: FFXIV_DATA = loadDataTheQuickestWay("Fate.de.json")
 fates_trans: FFXIV_DATA = loadDataTheQuickestWay("fate_all.json", translate=True)

@@ -4,12 +4,13 @@
 from collections import OrderedDict
 from io import BytesIO
 import os
+import json
 import logging
 import natsort
 import requests
 from openpyxl import Workbook, load_workbook
 from openpyxl.worksheet.worksheet import Worksheet
-from ffxiv_aku import print_color_red, getLevel
+from ffxiv_aku import print_color_red, getLevel, writeJsonFile, print_pretty_json, sortJsonData, readJsonFile
 from typing import Any
 try:
     from python_scripts.constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
@@ -157,8 +158,13 @@ def createNewElements(entry: EntryType) -> EntryType:
         entry['titles'] = {}
     return entry
 
-def getEntryData(sheet: Worksheet, max_column: int, i: int, elements, orderedContent):
+def getEntryDataOld(sheet: Worksheet, max_column: int, i: int, elements, orderedContent):
     entry: EntryType = get_data_from_xlsx(sheet, max_column, i, elements)
+    entry = getEntryData(entry, i, orderedContent)
+    return entry
+
+def getEntryData(googledata: EntryType, i: int, orderedContent):
+    entry: EntryType = googledata
     entry = clean_entries_from_single_quotes(entry)
     entry = createNewElements(entry)
     entry = workOnQuests(entry)
@@ -216,6 +222,40 @@ def read_xlsx_file():
     return local_sheet, local_max_row, local_max_column
 
 
+def excel_to_json(sheet: Worksheet) -> dict[str, EntryType]:
+    """
+    Converts an Excel worksheet to a JSON object.
+
+    Args:
+        excel_file (str): Path to the Excel file.
+        sheet_name (str, optional): Name of the worksheet to convert. If None, the active sheet is used.
+        output_file (str, optional): Path to save the JSON output. If None, the JSON is returned as a string.
+
+    Returns:
+        str or None: JSON string or None if saved to file.
+    """
+    try:
+        data: dict[str, EntryType] = {}
+        header: list[str] = [str(cell.value) for cell in sheet[1]]  # Get header from the first row
+
+        for row_num, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=2): #start at row 2
+            row_data: EntryType = {}
+            for col_num, cell_value in enumerate(row):
+                row_data[header[col_num]] = str(cell_value).replace("None", "").strip()
+            data[str(row_num)] = row_data
+
+        return data
+
+    except FileNotFoundError:
+        print( f"Error: File '{excel_file}' not found.")
+    except KeyError:
+        print( f"Error: Sheet '{sheet_name}' not found in the Excel file.")
+    except Exception as e:
+        print( f"An error occurred: {e}")
+    return {}
+
+
 if __name__ == "__main__":
     sheet, max_row, max_column = read_xlsx_file()
-    XLSXELEMENTS = get_header_from_xlsx(sheet, max_column)
+    #XLSXELEMENTS = get_header_from_xlsx(sheet, max_column)
+
