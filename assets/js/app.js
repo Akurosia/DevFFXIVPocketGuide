@@ -312,7 +312,7 @@ function scrollToElement(element) {
 
             var newHash = '';
             if (dataObject.length) {
-                if (targetId.includes('-attack-') || targetId.includes('-debuff-') || targetId.includes('-map-') || targetId.includes('-fate-')) {
+                if (targetId.includes('-attack-') || targetId.includes('-debuff-') || targetId.includes('map-') || targetId.includes('fate-')) {
                     // do nothing
                 } else {
                     scrollToElement(dataObject);
