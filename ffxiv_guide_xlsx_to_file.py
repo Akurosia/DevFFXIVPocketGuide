@@ -19,6 +19,7 @@ from python_scripts.custom_logger import getLogger
 from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file, Worksheet, excel_to_json, getEntryDataOld
 import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
+import python_scripts.airship_and_submarine as aas
 import python_scripts.generateHousingMissions as ghm
 import python_scripts.get_achivments as ga
 import python_scripts.getBlueSideQuestData as gbsq
@@ -291,6 +292,7 @@ def main() -> None:
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
+        aas.run()
         csgf.run()
         gl.run()
         gp.run()
