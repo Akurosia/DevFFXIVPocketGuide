@@ -56,6 +56,23 @@
             ""
         ]
     },
+    "A Realm Recorded Lite": {
+        "name": "A Realm Recorded Lite",
+        "description": "使用 /record 指令打开配置界面\n如显示相关指令未解锁, 请去摩杜纳第七天堂找异国的诗人完成任务「回顾英雄诗篇」",
+        "versions": [
+            [
+                "UnknownX, AtmoOmen",
+                "https://github.com/AtmoOmen/DalamudPlugins/raw/main/pluginmaster.json",
+                "https://github.com/AtmoOmen/ARealmRecordedLite",
+                "1.0.1.0"
+            ]
+        ],
+        "tags": [],
+        "DalamudApiLevel": 11,
+        "punchline": [
+            "A Realm Recorded 精简版\n相比原版: 四分之一的体积、更低的待机消耗、全匿名化的录像处理、全副本可录像"
+        ]
+    },
     "AFKMute": {
         "name": "AFKMute",
         "description": "Mutes your game when you're AFK. /afkmute to toggle.",
@@ -676,7 +693,7 @@
                 "Sohtoren",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 null,
-                "0.0.0.39"
+                "0.0.0.40"
             ]
         ],
         "tags": [
@@ -1147,7 +1164,7 @@
                 "Herculezz, James, erdelf",
                 "https://puni.sh/api/repository/herc",
                 "https://github.com/ffxivcode/AutoDuty",
-                "0.0.0.198"
+                "0.0.0.199"
             ]
         ],
         "tags": [],
@@ -1193,7 +1210,7 @@
                 "Det, Taurenkey",
                 "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
                 "https://github.com/PunishXIV/AutoHook",
-                "4.3.0.12"
+                "4.3.2.0"
             ],
             [
                 "Det, Taurenkey",
@@ -1313,7 +1330,7 @@
                 "kawaii, NightmareXIV",
                 "https://love.puni.sh/ment.json",
                 "https://github.com/PunishXIV/AutoRetainer",
-                "4.4.4.8"
+                "4.4.5.0"
             ]
         ],
         "tags": [],
@@ -1361,11 +1378,11 @@
                 "Ottermandias",
                 "https://github.com/Ottermandias/AutoVisor/raw/master/repo.json",
                 "https://github.com/Ottermandias/AutoVisor",
-                "1.3.2.0"
+                "1.4.0.0"
             ]
         ],
         "tags": [],
-        "DalamudApiLevel": 11
+        "DalamudApiLevel": 12
     },
     "Automaton": {
         "name": "Automaton",
@@ -1451,7 +1468,7 @@
                 "Lily",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/RajahOmen/BisBuddy",
-                "0.1.1.0"
+                "0.1.1.1"
             ]
         ],
         "tags": [
@@ -1909,13 +1926,13 @@
     },
     "Boss Mod": {
         "name": "Boss Mod",
-        "description": "20250305-请支持逆光喵，谢谢喵-画得更全喵",
+        "description": "20250322-请支持逆光喵，谢谢喵-画得更全喵",
         "versions": [
             [
                 "veyn",
                 "https://github.com/LiangYuxuan/dalamud-plugin-cn-fetcher/raw/master/pluginmaster_gh.json",
                 "https://github.com/44451516/ffxiv_bossmod",
-                "0.1.0.3"
+                "0.1.0.4"
             ],
             [
                 "veyn",
@@ -1959,7 +1976,7 @@
                 "The Combat Reborn Team",
                 "https://github.com/FFXIV-CombatReborn/CombatRebornRepo/raw/main/pluginmaster.json",
                 null,
-                "7.2.0.344"
+                "7.2.0.351"
             ]
         ],
         "tags": [
@@ -2119,7 +2136,7 @@
                 "LeonBlade",
                 "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
                 "https://github.com/LeonBlade/BDTHPlugin",
-                "1.6.6"
+                "1.6.8"
             ],
             [
                 "LeonBlade",
@@ -2348,7 +2365,7 @@
                 "Infi, Anna",
                 "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
                 "https://github.com/Infiziert90/ChatTwo",
-                "1.29.3.0"
+                "1.29.20.0"
             ],
             [
                 "Infi, Anna",
@@ -3282,13 +3299,13 @@
                 "AtmoOmen",
                 "https://github.com/AtmoOmen/DalamudPlugins/raw/main/pluginmaster.json",
                 "https://github.com/AtmoOmen/DalamudPlugins",
-                "1.4.5.0"
+                "1.4.6.0"
             ],
             [
                 "AtmoOmen",
                 "https://github.com/LiangYuxuan/dalamud-plugin-cn-fetcher/raw/master/pluginmaster_gh.json",
                 "https://github.com/AtmoOmen/DalamudPlugins",
-                "1.4.5.0"
+                "1.4.6.0"
             ],
             [
                 "AtmoOmen",
@@ -3333,6 +3350,12 @@
                 "https://github.com/UnknownX7/DalamudPluginRepo/raw/master/pluginmaster.json",
                 "https://github.com/UnknownX7/DalamudRepoBrowser",
                 "2.0.3.3"
+            ],
+            [
+                "UnknownX",
+                "https://github.com/iRobsie/DalamudRepoBrowser/raw/refs/heads/master/DalamudRepoBrowser.json",
+                "https://github.com/UnknownX7/DalamudRepoBrowser",
+                "9.9.9.9"
             ],
             [
                 "UnknownX",
@@ -4890,7 +4913,7 @@
                 "Infi, shdwp, Aelexe",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Infiziert90/xivFaderPlugin",
-                "2.6.2.7"
+                "2.7.0.0"
             ]
         ],
         "tags": [
@@ -6048,13 +6071,13 @@
                 "Haselnussbomber",
                 "https://github.com/Haselnussbomber/DalamudPlugins/raw/main/repo.json",
                 "https://github.com/Haselnussbomber/HaselTweaks",
-                "33.0.2"
+                "34.0.0"
             ],
             [
                 "Haselnussbomber",
                 "https://github.com/Haselnussbomber/MyDalamudPlugins/raw/main/repo.json",
                 "https://github.com/Haselnussbomber/HaselTweaks",
-                "33.0.2"
+                "34.0.0"
             ],
             [
                 "Haselnussbomber",
@@ -6603,7 +6626,7 @@
                 "Usagi",
                 "https://github.com/marzent/IINACT/raw/main/repo.json",
                 "https://github.com/marzent/IINACT",
-                "2.7.3.12"
+                "2.7.3.13"
             ],
             [
                 "Usagi",
@@ -7125,7 +7148,7 @@
                 "keifufu",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/keifufu/JobTitles",
-                "0.2.0.0"
+                "0.2.0.1"
             ]
         ],
         "tags": [
@@ -8562,7 +8585,7 @@
                 "Ramen",
                 "https://github.com/PassiveModding/Meddle/raw/main/repo.json",
                 "https://github.com/PassiveModding/Meddle",
-                "0.1.28"
+                "0.1.29"
             ]
         ],
         "tags": [
@@ -8623,7 +8646,7 @@
                 "akira0245, Ori",
                 "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
                 "https://midibard.org",
-                "2.6.1.0"
+                "2.6.2.1"
             ],
             [
                 "akira0245, Ori",
@@ -8884,7 +8907,7 @@
                 "kawaii, Glyceri",
                 "https://github.com/MeowZWR/DalamudPlugin/raw/main/meowrs.json",
                 "https://github.com/MeowZWR/Moodles",
-                "2.0.0.40"
+                "2.0.0.41"
             ],
             [
                 "kawaii",
@@ -8896,13 +8919,13 @@
                 "kawaii, Glyceri",
                 "https://github.com/Ottermandias/SeaOfStars/raw/main/repo.json",
                 "https://github.com/kawaii/Moodles",
-                "1.0.0.42"
+                "1.0.0.43"
             ],
             [
                 "kawaii, Glyceri",
                 "https://github.com/kawaii/Moodles/raw/main/repo.json",
                 "https://github.com/kawaii/Moodles",
-                "1.0.0.42"
+                "1.0.0.43"
             ],
             [
                 "kawaii",
@@ -9431,7 +9454,7 @@
                 "UnknownX",
                 "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
                 "https://github.com/UnknownX7/NoClippy",
-                "0.5.0.16"
+                "0.5.0.17"
             ],
             [
                 "UnknownX",
@@ -9600,7 +9623,7 @@
                 "NiGuangOwO, Small_Miao (moewcorp)",
                 "https://github.com/NiGuangOwO/DalamudPlugins/raw/main/pluginmaster.json",
                 null,
-                "1.0.11.44"
+                "1.0.11.47"
             ]
         ],
         "tags": [
@@ -10543,7 +10566,7 @@
                 "Ottermandias, Adam, Wintermute",
                 "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
                 "https://github.com/MeowZWR/Penumbra-CN",
-                "1.3.0.100"
+                "1.3.5.0"
             ],
             [
                 "Ottermandias, Adam, Wintermute",
@@ -10617,7 +10640,7 @@
                 "Ottermandias, Adam, Wintermute (modifications by aniachan)",
                 "https://github.com/aniachan/penumbra/raw/master/repo.json",
                 "https://github.com/aniachan/Penumbra",
-                "1.3.4.100"
+                "1.3.5.100"
             ]
         ],
         "tags": [],
@@ -10631,7 +10654,7 @@
                 "Glyceri",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Glyceri/FFXIVPetRenamer",
-                "2.3.0.12"
+                "2.3.0.14"
             ]
         ],
         "tags": [
@@ -11107,7 +11130,7 @@
                 "SaMo",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/wrath16/PvpStats",
-                "2.3.1.0"
+                "2.3.2.0"
             ]
         ],
         "tags": [
@@ -11521,7 +11544,7 @@
                 "UnknownX",
                 "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
                 "https://github.com/UnknownX7/ReAction",
-                "1.3.3.10"
+                "1.3.4.0"
             ],
             [
                 "UnknownX",
@@ -11968,7 +11991,7 @@
                 "The Combat Reborn Team",
                 "https://github.com/FFXIV-CombatReborn/CombatRebornRepo/raw/main/pluginmaster.json",
                 null,
-                "7.1.8.0"
+                "7.1.8.1"
             ]
         ],
         "tags": [
@@ -12035,7 +12058,7 @@
                 "veyn",
                 "https://puni.sh/api/repository/veyn",
                 null,
-                "0.0.0.11"
+                "0.0.0.12"
             ]
         ],
         "tags": [],
@@ -12590,7 +12613,7 @@
                 "Windmourn",
                 "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
                 "https://github.com/a08381/Dalamud.SkipCutscene",
-                "1.2.2.4"
+                "1.2.2.5"
             ]
         ],
         "tags": [],
@@ -12732,12 +12755,6 @@
             ],
             [
                 "Asriel & daemitus",
-                "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
-                "https://github.com/WorkingRobot/SomethingNeedDoing",
-                "1.5.1.0"
-            ],
-            [
-                "Asriel & daemitus",
                 "https://github.com/WorkingRobot/MyDalamudPlugins/raw/main/plogon.json",
                 "https://github.com/WorkingRobot/SomethingNeedDoing",
                 "1.5.1.0"
@@ -12778,6 +12795,12 @@
         "versions": [
             [
                 "croizat",
+                "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
+                "https://github.com/Jaksuhn/SomethingNeedDoing",
+                "1.77"
+            ],
+            [
+                "croizat",
                 "https://github.com/ryon5541/dalamud-repo-up/raw/main/ffxiv_custom_repo.json",
                 "https://github.com/Jaksuhn/SomethingNeedDoing",
                 "1.6.33.2"
@@ -12790,7 +12813,7 @@
             ]
         ],
         "tags": [],
-        "DalamudApiLevel": 11,
+        "DalamudApiLevel": "11",
         "punchline": [
             "Work work."
         ]
@@ -12809,7 +12832,7 @@
                 "Sonar Team",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://discord.gg/K7y24Rr",
-                "0.6.9.0"
+                "0.7.0.0"
             ]
         ],
         "tags": [
@@ -12831,7 +12854,29 @@
                 "Sonar Team",
                 "https://github.com/FFXIV-Sonar/SonarRepo/raw/main/pluginmaster.json",
                 "https://discord.gg/K7y24Rr",
-                "0.6.9.2"
+                "0.7.0.0"
+            ]
+        ],
+        "tags": [
+            "Sonar"
+        ],
+        "DalamudApiLevel": 11,
+        "punchline": [
+            "Automatically send and receive hunt and fate relays."
+        ],
+        "image": [
+            "https://assets.ffxivsonar.com/dalamud/image1.png"
+        ]
+    },
+    "Sonar-preview-kr": {
+        "name": "Sonar-preview-kr",
+        "description": "Automatically send and receive hunt and fate relays. /sonar to open, /sonarconfig to configure. Support is only provided in the Sonar Support discord.",
+        "versions": [
+            [
+                "Sonar Team",
+                "https://github.com/FFXIV-Sonar/SonarRepo/raw/main/pluginmaster.json",
+                "https://discord.gg/K7y24Rr",
+                "0.7.0.1"
             ]
         ],
         "tags": [
@@ -12971,7 +13016,7 @@
                 "NightmareXIV,Errer(本地特化)",
                 "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
                 "https://github.com/PunishXIV/Splatoon",
-                "13.7.0.0"
+                "13.7.4.6"
             ],
             [
                 "NightmareXIV,Errer(本地特化)",
@@ -13703,13 +13748,13 @@
     },
     "Tippy": {
         "name": "Tippy",
-        "description": "Developed by goat for April Fools 2021 and unnecessarily resurrected by kal.\n\nHandcrafted by our finest code artisans with special AI, \nhe will analyze your playstyle to give you useful tips to get your GAMING to the next level.\n\nSome things he can do:\n* He can give general tips about the game\n* He can give tips about the job you're playing\n* He can report on your battle performance\n* He will respect your feelings",
+        "description": "Developed by goat for April Fools 2021 and unnecessarily resurrected by kal and adopted by Critical-Impact.\n\nHandcrafted by our finest code artisans with special AI, \nhe will analyze your playstyle to give you useful tips to get your GAMING to the next level.\n\nSome things he can do:\n* He can give general tips about the game\n* He can give tips about the job you're playing\n* He can report on your battle performance\n* He will respect your feelings",
         "versions": [
             [
-                "kalilistic",
+                "Critical-Impact",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/Critical-Impact/tippy",
-                "1.11.0.1"
+                "1.12.0.0"
             ]
         ],
         "tags": [],
@@ -14138,7 +14183,7 @@
                 "AtmoOmen",
                 "https://github.com/AtmoOmen/DalamudPlugins/raw/main/pluginmaster.json",
                 "https://github.com/AtmoOmen/DalamudPlugins",
-                "0.1.2.0"
+                "0.1.3.0"
             ]
         ],
         "tags": [
@@ -14464,7 +14509,7 @@
                 "NightmareXIV",
                 "https://kamori.goats.dev/Plugin/PluginMaster",
                 "https://github.com/NightmareXIV/Weatherman",
-                "2.4.1.1"
+                "2.4.1.2"
             ]
         ],
         "tags": [],
@@ -15657,7 +15702,7 @@
                 "daemitus, kawaii",
                 "https://github.com/TCrazylion/MyDalamudPlugins/raw/main/myrepo.json",
                 "https://github.com/PunishXIV/YesAlready",
-                "1.8.5"
+                "1.9.1"
             ],
             [
                 "daemitus",
@@ -16035,7 +16080,7 @@
                 "veyn, xan_0",
                 "https://puni.sh/api/repository/veyn",
                 null,
-                "0.1.4.3"
+                "0.1.4.4"
             ]
         ],
         "tags": [],

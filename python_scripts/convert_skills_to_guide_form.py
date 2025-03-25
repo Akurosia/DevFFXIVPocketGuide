@@ -748,6 +748,8 @@ def addKlassJobs():
             job_party_bonus = "3"
         if not job_data:
             continue
+        if job_d['0xID'] == "0":
+            continue
         allPartyMittigation[job] = []
         counter += 1
         #if not job == "Rotmagier":
