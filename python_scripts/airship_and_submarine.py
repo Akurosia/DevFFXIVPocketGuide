@@ -36,6 +36,10 @@ def get_airship_information(page, data) -> None:
                 else:
                     location[key_map[header_name]] = cellvalue
             #print(location)
+            #add items if available
+            if data["Sea of Clouds"].get(name, None):
+                if data["Sea of Clouds"][name].get("items", None):
+                    location["items"] = data["Sea of Clouds"][name]["items"]
             data["Sea of Clouds"][name] = location
     except Exception as e:
         traceback.print_exc()
@@ -48,11 +52,12 @@ def get_submarine_information(page, data) -> None:
         time.sleep(2)
         locations = iterate_locator(page.locator('.tabbertab'))
         for loc in locations:
-            loc_name = loc.get_attribute("title").strip()
+            loc_name = loc.get_attribute("title").strip().replace("Lilac Sea", "The Lilac Sea")
             #if not loc_name == "South Indigo Deep (Lv. 120-)":
             #    continue
             print(loc_name)
-            data[loc_name] = {}
+            if not data.get(loc_name, None):
+                data[loc_name] = {}
             #loc.click()
 
             table = iterate_locator(loc.locator("table"))[0]
@@ -75,6 +80,10 @@ def get_submarine_information(page, data) -> None:
                         continue
                     location[key_map[header_name]] = cellvalue
                 print(f"\t {location}")
+                #add items if available
+                if data[loc_name].get(name, None):
+                    if data[loc_name][name].get("items", None):
+                        location["items"] = data[loc_name][name]["items"]
                 data[loc_name][name] = location
     except Exception as e:
         traceback.print_exc()
@@ -89,11 +98,19 @@ def get_items_per_location(url):
     tablerows = iterate_locator(table.locator("tbody").locator("tr"))[1:]
     items = []
     for row in tablerows:
-        location = {}
         elements = iterate_locator(row.locator("td"))
         for i, cell in enumerate(elements):
             header_name = tablehead[i].text_content().strip()
-            cellvalue = cell.inner_text().replace(" ", "").strip()
+            cellvalue = None
+            counter = 0
+            while cellvalue == None:
+                try:
+                    cellvalue = cell.inner_text().replace(" ", "").strip()
+                except:
+                    print("Try Again")
+                    counter+=1
+                    if counter > 1:
+                        raise Exception
             if header_name == "Quantity":
                 continue
             list_of_image = iterate_locator(cell.locator("img"))
@@ -118,16 +135,26 @@ def fix_submarine(data):
     return data
 
 def add_items(data):
-    for locations, location_spots in data.items():
-        for spot, spot_data in location_spots.items():
-            if spot == "":
-                continue
-            if not data[locations][spot].get("items", None):
-                print_color_green(spot)
-                print_color_green(spot_data.get("link", None))
-                data[locations][spot]["items"] = get_items_per_location(spot_data['link'])
-            else:
-                print_color_red(spot)
+    try:
+        for locations, location_spots in data.items():
+            print_color_yellow(locations)
+            for spot, spot_data in location_spots.items():
+                if spot == "":
+                    continue
+                if data[locations][spot].get("items", None) == []:
+                    print_color_red("\t" + spot)
+                elif not data[locations][spot].get("items", None):
+                    print_color_green("\t" + f"{spot} - {spot_data.get("link", None)}")
+                    items = get_items_per_location(spot_data['link'])
+                    print_color_green("\t" + f"{items}")
+                    data[locations][spot]["items"] = items
+                    writeJsonFile("airship_submarine.json", data, sort_sub_keys=True)
+                else:
+                    print_color_red("\t" + spot)
+    except Exception:
+        traceback.print_exc()
+        print("WROTE")
+        writeJsonFile("airship_submarine.json", data, sort_sub_keys=True)
     return data
 
 
@@ -140,7 +167,7 @@ with sync_playwright() as playwright:
     )
     page = context.new_page()
     try:
-        data = readJsonFile("data2.json") or { "Sea of Clouds": {} }
+        data = readJsonFile("airship_submarine.json") or { "Sea of Clouds": {} }
         #data = { "Sea of Clouds": {} }
         data = get_airship_information(page, data)
         data = get_submarine_information(page, data)
@@ -150,4 +177,4 @@ with sync_playwright() as playwright:
         traceback.print_exc()
     context.close()
     browser.close()
-    writeJsonFile("data2.json", data)
+    writeJsonFile("airship_submarine.json", data, sort_sub_keys=True)

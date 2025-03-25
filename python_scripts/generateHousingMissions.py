@@ -8,9 +8,9 @@ submarinemap_trans = loadDataTheQuickestWay("submarinemap_all.json", translate=T
 #data = readJsonFile(r"T:\var\www\ffxiv\front\housing_missions\data2.json")
 print(os.getcwd())
 try:
-    data = readJsonFile(r"python_scripts/data2.json")
+    data = readJsonFile(r"python_scripts/airship_submarine.json")
 except:
-    data = readJsonFile(r"data2.json")
+    data = readJsonFile(r"airship_submarine.json")
 
 LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
 LANGUAGES_MAPPING = {
