@@ -8,7 +8,7 @@ import errno
 from typing import Any
 import yaml
 from yaml.loader import SafeLoader
-from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, storeFilesInTmp, sortJsonData
+from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, storeFilesInTmp, sortJsonData, print_color_red
 import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide
@@ -292,7 +292,7 @@ def main() -> None:
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
-        aas.run()
+        #aas.run()
         csgf.run()
         gl.run()
         gp.run()
