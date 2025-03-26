@@ -58,16 +58,16 @@ figths = {
     1068: ["TOP"],
     1079: ["FRU"],
 
-    93: ["R1S"],
-    94: ["R2S"],
-    95: ["R3S"],
-    96: ["R4S"],
+    97:  ["R5S"],
+    98:  ["R6S"],
+    99:  ["R7S"],
+    100: ["R8S"],
     //92: ["P12S_P2"],
 
-    3009: ["Byakko"],
+    3010: ["Suzaku"],
     //1071: ["Valigarmanda"],
     //1072: ["Zoraal Ja"],
-    1078: ["Ewige Königin"],
+    1080: ["Zelenia"],
 }
 
 fight_ids = [1060,1061,1062,1065,1068,1079,93,94,95,96,1078,3009]
@@ -358,13 +358,13 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
     }
     // get ids by api https://www.fflogs.com:443/v1/zones?api_key={KEY} and looking for bossid e.g. 1071
     if (latestRaid === null) {
-        latestRaid = "62";
+        latestRaid = "68";
     }
     if (unrealId === null) {
         unrealId = "64";
     }
     if (latestPrimal === null) {
-        latestPrimal = "58";
+        latestPrimal = "67";
     }
 
     let query_player = "";
