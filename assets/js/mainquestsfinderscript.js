@@ -55,46 +55,48 @@ function searchQuest() {
 function renderProgressBar(completed, total) {
     const progressDiv = document.getElementById('progress');
     const breakpoin1 = {
-        "2.0 A Realm Reborn":                   "Zu neuen Ufern",
-        "2.1 A Realm Awoken":                   "Ein neuer Morgen",
-        "2.2 Through the Maelstrom":            "Das Leid der Heimatlosen",
-        "2.3 Defenders of Eorzea":              "Im Netz des Webers",
-        "2.4 Dreams of Ice":                    "Drei mächtige Säulen",
-        "2.5 Before the Fall":                  "Zu neuem Glanz",
-        "3.0 Heavensward":                      "Wahrheit tut weh",
-        "3.1 As Goes Light, So Goes Darkness":  "Fast wie früher",
-        "3.2 The Gears of Change":              "Zwei Seelen in einem Körper",
-        "3.3 Revenge of the Horde":             "Eine wohlverdiente Mahlzeit",
-        "3.4 Soul Surrender":                   "Nachricht aus Gyr Abania",
-        "3.5 The Far Edge of Fate":             "Über den Wall",
-        "4.0 Stormblood":                       "Ein neues Abenteuer",
-        "4.1 The Legend Returns":               "Eilmeldung aus Kugane",
-        "4.2 Rise of a new Sun":                "Sinneswandel",
-        "4.3 Under the Moonlight":              "Eine erste Spur",
-        "4.4 Prelude in Violet":                "Den Seelen auf der Spur",
-        "4.5 A Requiem for Heroes":             "Von Sendern und Sendungen",
-        "5.0 Shadowbringers":                   "Ein Flackern in der Seele",
-        "5.1 Vows of Virtue, Deeds of Cruelty": "Eine Warnung für die Allianz",
-        "5.2 Echoes of a fallen Star":          "Sage der Krieger des Lichts",
-        "5.3 Reflections in Crystal":           "Hohe Ziele",
-        "5.4 Futures Rewritten":                "Silberharnisch",
-        "5.5 Death Unto Dawn":                  "Aufbruch zu neuen Horizonten",
-        "6.0 Endwalker":                        "Neu entdecktes Abenteuer",
-        "6.1 Newfound Adventure":               "Auf den Spuren von Azdaja",
-        "6.2 Buried Memory":                    "Ruf aus dem Nichts",
-        "6.3 Gods Revel, Lands Tremble":        "Die Würze Radz-at-Hans",
-        "6.4 The Dark Throne":                  "Das Licht im Dunkel",
-        "6.5 Growing Light":                    "Unbegrenzte Möglichkeiten",
-        "7.0 Dawntrail":                        "Auf Geheiß Alexandrias",
-        "7.1 Crossroads":                       quests[quests.findIndex(q => q.Name === "Auf Geheiß Alexandrias") + 1]?.Name || ""
+        // current patch                        patches first quest
+        "2.0 A Realm Reborn":                   "Willkommen in Gridania",
+        "2.1 A Realm Awoken":                   "Zu neuen Ufern",
+        "2.2 Through the Maelstrom":            "Ein neuer Morgen",
+        "2.3 Defenders of Eorzea":              "Das Leid der Heimatlosen",
+        "2.4 Dreams of Ice":                    "Im Netz des Webers",
+        "2.5 Before the Fall":                  "Drei mächtige Säulen",
+        "3.0 Heavensward":                      "Zu neuem Glanz",
+        "3.1 As Goes Light, So Goes Darkness":  "Wahrheit tut weh",
+        "3.2 The Gears of Change":              "Fast wie früher",
+        "3.3 Revenge of the Horde":             "Zwei Seelen in einem Körper",
+        "3.4 Soul Surrender":                   "Eine wohlverdiente Mahlzeit",
+        "3.5 The Far Edge of Fate":             "Nachricht aus Gyr Abania",
+        "4.0 Stormblood":                       "Über den Wall",
+        "4.1 The Legend Returns":               "Ein neues Abenteuer",
+        "4.2 Rise of a new Sun":                "Eilmeldung aus Kugane",
+        "4.3 Under the Moonlight":              "Sinneswandel",
+        "4.4 Prelude in Violet":                "Eine erste Spur",
+        "4.5 A Requiem for Heroes":             "Den Seelen auf der Spur",
+        "5.0 Shadowbringers":                   "Von Sendern und Sendungen",
+        "5.1 Vows of Virtue, Deeds of Cruelty": "Ein Flackern in der Seele",
+        "5.2 Echoes of a fallen Star":          "Eine Warnung für die Allianz",
+        "5.3 Reflections in Crystal":           "Sage der Krieger des Lichts",
+        "5.4 Futures Rewritten":                "Hohe Ziele",
+        "5.5 Death Unto Dawn":                  "Silberharnisch",
+        "6.0 Endwalker":                        "Aufbruch zu neuen Horizonten",
+        "6.1 Newfound Adventure":               "Neu entdecktes Abenteuer",
+        "6.2 Buried Memory":                    "Auf den Spuren von Azdaja",
+        "6.3 Gods Revel, Lands Tremble":        "Ruf aus dem Nichts",
+        "6.4 The Dark Throne":                  "Die Würze Radz-at-Hans",
+        "6.5 Growing Light":                    "Das Licht im Dunkel",
+        "7.0 Dawntrail":                        "Unbegrenzte Möglichkeiten",
+        "7.1 Crossroads":                       "Auf Geheiß Alexandrias",
+        "7.2 Seekers of Eternity":              "Glanz der Vergangenheit"
     };
     const breakpoint2 = {
-        "2.0 A Realm Reborn":                   "Zu neuem Glanz",
-        "3.0 Heavensward":                      "Über den Wall",
-        "4.0 Stormblood":                       "Von Sendern und Sendungen",
-        "5.0 Shadowbringers":                   "Aufbruch zu neuen Horizonten",
-        "6.0 Endwalker":                        "Unbegrenzte Möglichkeiten",
-        "7.0 Dawntrail":                        quests[quests.findIndex(q => q.Name === "Auf Geheiß Alexandrias") + 1]?.Name || ""
+        "2.0 A Realm Reborn":                   "Willkommen in Gridania",
+        "3.0 Heavensward":                      "Zu neuem Glanz",
+        "4.0 Stormblood":                       "Über den Wall",
+        "5.0 Shadowbringers":                   "Von Sendern und Sendungen",
+        "6.0 Endwalker":                        "Aufbruch zu neuen Horizonten",
+        "7.0 Dawntrail":                        "Unbegrenzte Möglichkeiten"
     };
     const breakpoints = breakpoin1
 
@@ -102,18 +104,20 @@ function renderProgressBar(completed, total) {
     let lastIndex = 0;
     Object.entries(breakpoints).forEach(([label, questName], i, arr) => {
         let currentIndex = quests.findIndex(q => q.Name === questName);
-        if (currentIndex === -1) return;
+        let nextEntry = arr[i + 1];
+        let nextIndex = nextEntry ? quests.findIndex(q => q.Name === nextEntry[1]) : total;
 
-        let totalInSection = (i === arr.length - 1) ? (total - lastIndex) : (currentIndex - lastIndex);
-        let doneInSection = Math.max(0, Math.min(completed, currentIndex) - lastIndex);
+        if (currentIndex === -1 || (nextEntry && nextIndex === -1)) return;
+
+        let totalInSection = nextIndex - currentIndex;
+        let doneInSection = Math.max(0, Math.min(completed, nextIndex) - currentIndex);
         let progressPercentage = Math.max(0, Math.min(100, (doneInSection / totalInSection) * 100));
 
-        let sectionQuests = quests.slice(lastIndex, currentIndex)
-        .map((q, index) =>
-            `<option value="${q.Name}">${index + 1}. ${q.Name} (${index + lastIndex + 1})</option>`
-        )
-        .join('');
-
+        let sectionQuests = quests.slice(currentIndex, nextIndex)
+            .map((q, index) =>
+                `<option value="${q.Name}">${index + 1}. ${q.Name} (${index + currentIndex + 1})</option>`
+            )
+            .join('');
 
         sections.push(`
             <div class="progress-section-container">
@@ -129,9 +133,8 @@ function renderProgressBar(completed, total) {
                 </select>
             </div>
         `);
-
-        lastIndex = currentIndex;
     });
+
 
     progressDiv.innerHTML += `<div class="progress-container">${sections.join('')}</div>`;
 }
