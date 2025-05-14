@@ -103,7 +103,7 @@ def workOnQuests(entry: EntryType) -> EntryType:
         except KeyError:
             #entry['quest_location'] = ""
             entry['quest_location'][lang] = ""
-            print_color_red(f"[XLSX_ENTRY_HELPER:workOnQuests] Error on loading: {quest['Issuer']['Location']} ({quest_id})")
+            print_color_red(f"[XLSX_ENTRY_HELPER:workOnQuests] Error on loading: {quest['Issuer']['Location']=} ({quest_id=})")
     return entry
 
 
@@ -147,6 +147,7 @@ def getBeforeAndAfterContentEntries(orderedContent, entry: EntryType):
             return _previous, _next
     return "", ""
 
+
 def createNewElements(entry: EntryType) -> EntryType:
     if not entry.get("quest", None):
         entry['quest'] = {}
@@ -158,10 +159,12 @@ def createNewElements(entry: EntryType) -> EntryType:
         entry['titles'] = {}
     return entry
 
+
 def getEntryDataOld(sheet: Worksheet, max_column: int, i: int, elements, orderedContent):
     entry: EntryType = get_data_from_xlsx(sheet, max_column, i, elements)
     entry = getEntryData(entry, i, orderedContent)
     return entry
+
 
 def getEntryData(googledata: EntryType, i: int, orderedContent):
     entry: EntryType = googledata
@@ -256,6 +259,7 @@ def excel_to_json(sheet: Worksheet) -> dict[str, EntryType]:
 
 
 if __name__ == "__main__":
-    sheet, max_row, max_column = read_xlsx_file()
+    #sheet, max_row, max_column = read_xlsx_file()
     #XLSXELEMENTS = get_header_from_xlsx(sheet, max_column)
-
+    entry = {'exclude': '', 'date': '2024.11.12', 'sortid': '7100603144', 'title': 'Jeuno: Die erste Etappe', 'categories': 'dt', 'slug': 'jeuno_die_erste_etappe', 'slug_url': 'jeuno_the_first_walk', 'image': 'ui/icon/112000/112585.tex', 'patchNumber': '7.1', 'patchName': 'Crossroads', 'difficulty': 'Normal', 'CFC_ID': '1015', 'PN_ID': '', 'quest_id': '70769', 'gearset_loot': "['Erzengel']", 'tt_card': "['Schattenlord']", 'orchestrion': "['Vergilbte Notenrolle']", 'orchestrion_material': '', 'mtqvid': '[]', 'mrhvid': '[]', 'hector': '[]', 'mount': '', 'minion': "['Nanolord']", 'instanceType': 'allianzraid', 'mapid': 'z6r1', 'bosse': '["Prishe Von Den Fernen Ketten","Fafnir","Erzengel Gk","Erzengel Hm","Erzengel Mr","Erzengel Tt","Erzengel Ev","Schattenlord"]', 'tags': '[]', 'teamcraftlink': '30144', 'garlandtoolslink': '30144', 'gamerescapelink': 'Jeuno:_The_First_Walk', 'done': '', 'quest': {'de': 'Am Kreuzweg der Welten', 'en': 'An Otherworldly Encounter', 'fr': 'À la croisée des mondes', 'ja': '交わる世界', 'cn': '交错的世界', 'ko': '교차하는 세계'}, 'quest_location': {'de': ''}, 'quest_npc': {'de': 'Hoobigo-Gesandter', 'en': 'Hoobigo messenger', 'fr': 'messager hoobigo', 'ja': '使いのフビゴ族', 'cn': '霍比格族使者', 'ko': '후비고족 심부름꾼'}, 'titles': {}}
+    print(workOnQuests(entry))

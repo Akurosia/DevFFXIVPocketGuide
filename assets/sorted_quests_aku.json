@@ -1065,7 +1065,8 @@
             "69590",
             "70120",
             "70263",
-            "70350"
+            "70350",
+            "70858"
         ],
         "OptionalReward": [],
         "Other_Reward.Name": "",
@@ -32667,7 +32668,7 @@
         ],
         "OptionalReward": [],
         "Other_Reward.Name": "",
-        "PlaceName": "Obere Decks",
+        "PlaceName": "Limsa Lominsa",
         "PreviousQuest": {
             "0": "69546"
         },
@@ -32768,7 +32769,7 @@
         ],
         "OptionalReward": [],
         "Other_Reward.Name": "",
-        "PlaceName": "Untere Decks",
+        "PlaceName": "Limsa Lominsa",
         "PreviousQuest": {
             "0": "69548"
         },
@@ -37529,7 +37530,8 @@
             "70199",
             "70217",
             "70251",
-            "70266"
+            "70266",
+            "70789"
         ],
         "OptionalReward": [],
         "Other_Reward.Name": "",
@@ -37642,7 +37644,7 @@
         ],
         "OptionalReward": [],
         "Other_Reward.Name": "",
-        "PlaceName": "Geisterzoll",
+        "PlaceName": "Mor Dhona",
         "PreviousQuest": {
             "0": "70062"
         },
@@ -44053,7 +44055,8 @@
             "70728",
             "70729",
             "70769",
-            "70780"
+            "70780",
+            "70843"
         ],
         "OptionalReward": [],
         "Other_Reward.Name": "",
@@ -44382,7 +44385,9 @@
             "Name": "Dawntrail (Epilog)"
         },
         "Name": "An der Kreuzung des Schicksals",
-        "NextQuest": [],
+        "NextQuest": [
+            "70835"
+        ],
         "OptionalReward": [
             {
                 "Item": "Hellseher-Materia XI",
@@ -44407,6 +44412,390 @@
         "PlaceName": "Shaaloani",
         "PreviousQuest": {
             "0": "70785"
+        },
+        "Reward": []
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "1241",
+        "Icon": {
+            "Banner": "ui/icon/101000/101412_hr1.webp",
+            "Special": ""
+        },
+        "Issuer": {
+            "Location": {
+                "x": 6.0,
+                "y": 6.3,
+                "region": "Xak Tural",
+                "placename": "Hinterzimmer"
+            },
+            "NPC": "Krile"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Dawntrail - Epilog",
+            "Name": "Dawntrail (Epilog)"
+        },
+        "Name": "Glanz der Vergangenheit",
+        "NextQuest": [
+            "70836"
+        ],
+        "OptionalReward": [
+            {
+                "Item": "Tacos mit Carne Asada",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Mesquite-Suppe",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Sahnige Alpaka-Spaghetti",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Sautiertes grünes Gemüse",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Antikes Silberstück",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Hinterzimmer",
+        "PreviousQuest": {
+            "0": "70786"
+        },
+        "Reward": []
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "1241",
+        "Icon": {
+            "Banner": "",
+            "Special": ""
+        },
+        "Issuer": {
+            "Location": {
+                "x": 6.2,
+                "y": 6.1,
+                "region": "Xak Tural",
+                "placename": "Ruheraum"
+            },
+            "NPC": "Sphene"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Dawntrail - Epilog",
+            "Name": "Dawntrail (Epilog)"
+        },
+        "Name": "Erinnerungen aus längst vergangenen Zeiten",
+        "NextQuest": [
+            "70837"
+        ],
+        "OptionalReward": [],
+        "Other_Reward.Name": "",
+        "PlaceName": "Ruheraum",
+        "PreviousQuest": {
+            "0": "70835"
+        },
+        "Reward": []
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "1150",
+        "Icon": {
+            "Banner": "",
+            "Special": ""
+        },
+        "Issuer": {
+            "Location": {
+                "x": 5.5,
+                "y": 12.1,
+                "region": "Xak Tural",
+                "placename": "Lösung Neun"
+            },
+            "NPC": "Sphene"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Dawntrail - Epilog",
+            "Name": "Dawntrail (Epilog)"
+        },
+        "Name": "Symbol der Verbindung",
+        "NextQuest": [
+            "70838"
+        ],
+        "OptionalReward": [
+            {
+                "Item": "Frömmigkeits-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Fechtkunst-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Kampf-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Zauber-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Lösung Neun",
+        "PreviousQuest": {
+            "0": "70836"
+        },
+        "Reward": []
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "1104",
+        "Icon": {
+            "Banner": "",
+            "Special": ""
+        },
+        "Issuer": {
+            "Location": {
+                "x": 17.1,
+                "y": 17.8,
+                "region": "Xak Tural",
+                "placename": "Lösung Neun"
+            },
+            "NPC": "Sphene"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Dawntrail - Epilog",
+            "Name": "Dawntrail (Epilog)"
+        },
+        "Name": "Ein gebrochenes Juwel",
+        "NextQuest": [
+            "70839"
+        ],
+        "OptionalReward": [],
+        "Other_Reward.Name": "",
+        "PlaceName": "Lösung Neun",
+        "PreviousQuest": {
+            "0": "70837"
+        },
+        "Reward": []
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "920",
+        "Icon": {
+            "Banner": "",
+            "Special": ""
+        },
+        "Issuer": {
+            "Location": {
+                "x": 17.8,
+                "y": 16.1,
+                "region": "Xak Tural",
+                "placename": "Lösung Neun"
+            },
+            "NPC": "Sphene"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Dawntrail - Epilog",
+            "Name": "Dawntrail (Epilog)"
+        },
+        "Name": "Die Zusammenkunft",
+        "NextQuest": [
+            "70840"
+        ],
+        "OptionalReward": [
+            {
+                "Item": "Tacos mit Carne Asada",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Mesquite-Suppe",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Sahnige Alpaka-Spaghetti",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Sautiertes grünes Gemüse",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Antikes Silberstück",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Lösung Neun",
+        "PreviousQuest": {
+            "0": "70838"
+        },
+        "Reward": []
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "6000",
+        "Icon": {
+            "Banner": "ui/icon/112000/112592_hr1.webp",
+            "Special": ""
+        },
+        "Issuer": {
+            "Location": {
+                "x": 6.0,
+                "y": 6.2,
+                "region": "Xak Tural",
+                "placename": "Hinterzimmer"
+            },
+            "NPC": "Shale"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Dawntrail - Epilog",
+            "Name": "Dawntrail (Epilog)"
+        },
+        "Name": "Aufbruch zum Sockel",
+        "NextQuest": [
+            "70841"
+        ],
+        "OptionalReward": [],
+        "Other_Reward.Name": "",
+        "PlaceName": "Hinterzimmer",
+        "PreviousQuest": {
+            "0": "70839"
+        },
+        "Reward": []
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "1287",
+        "Icon": {
+            "Banner": "",
+            "Special": ""
+        },
+        "Issuer": {
+            "Location": {
+                "x": 6.1,
+                "y": 6.5,
+                "region": "Xak Tural",
+                "placename": "Audienzhalle"
+            },
+            "NPC": "Sphene"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Dawntrail - Epilog",
+            "Name": "Dawntrail (Epilog)"
+        },
+        "Name": "Alte Pfade, neue Wege",
+        "NextQuest": [
+            "70842"
+        ],
+        "OptionalReward": [],
+        "Other_Reward.Name": "",
+        "PlaceName": "Audienzhalle",
+        "PreviousQuest": {
+            "0": "70840"
+        },
+        "Reward": []
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "2373",
+        "Icon": {
+            "Banner": "ui/icon/101000/101413_hr1.webp",
+            "Special": ""
+        },
+        "Issuer": {
+            "Location": {
+                "x": 4.3,
+                "y": 17.8,
+                "region": "Xak Tural",
+                "placename": "Lösung Neun"
+            },
+            "NPC": "Sphene"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Dawntrail - Epilog",
+            "Name": "Dawntrail (Epilog)"
+        },
+        "Name": "Auf der Suche nach Endlosigkeit",
+        "NextQuest": [],
+        "OptionalReward": [
+            {
+                "Item": "Hellseher-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Strategen-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Assassinen-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Lösung Neun",
+        "PreviousQuest": {
+            "0": "70841"
         },
         "Reward": []
     }

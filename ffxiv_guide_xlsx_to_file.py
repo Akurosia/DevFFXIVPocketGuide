@@ -8,7 +8,7 @@ import errno
 from typing import Any
 import yaml
 from yaml.loader import SafeLoader
-from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, storeFilesInTmp, sortJsonData
+from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, storeFilesInTmp, sortJsonData, print_color_red
 import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide
@@ -19,6 +19,7 @@ from python_scripts.custom_logger import getLogger
 from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file, Worksheet, excel_to_json, getEntryDataOld
 import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
+import python_scripts.airship_and_submarine as aas
 import python_scripts.generateHousingMissions as ghm
 import python_scripts.get_achivments as ga
 import python_scripts.getBlueSideQuestData as gbsq
@@ -207,9 +208,9 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
         i = int(key)
         try:
             debug_row_number = i
-            if not True:
-                #if debug_row_number > 3 :
-                if debug_row_number not in [795]:
+            if True:
+                #if debug_row_number < 700 :
+                if debug_row_number not in [808, 809, 810, 811, 814, 567, 571]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(value, i, orderedContent)
@@ -291,6 +292,7 @@ def main() -> None:
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
+        #aas.run()
         csgf.run()
         gl.run()
         gp.run()

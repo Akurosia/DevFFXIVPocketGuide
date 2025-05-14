@@ -655,6 +655,7 @@ def getIconForJob(job_abb):
     global bannertimeline
     global additionalJobIcons
     icon = ""
+    # bannertimeline is used as all class icons are in there technicly
     for key, value in bannertimeline.items():
         if value["AcceptClassJobCategory"] == job_abb:
             return getImage(value["Icon"])
@@ -748,9 +749,11 @@ def addKlassJobs():
             job_party_bonus = "3"
         if not job_data:
             continue
+        if job_d['0xID'] == "0":
+            continue
         allPartyMittigation[job] = []
         counter += 1
-        #if not job == "Rotmagier":
+        #if not job == "Dunkelritter":
         #    continue
         base_class: str = cjs[k[0]]["ClassJob"]['Parent'] if not cjs[k[0]]["ClassJob"]['Parent'] == job else ""
         print_color_red(job)
