@@ -1,0 +1,126 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #e0e0e0;
+}
+.fixed-header {
+    padding: 10px;
+}
+h1 {
+    color: #ff4444;
+}
+input {
+    padding: 10px;
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid #ff4444;
+    background-color: #222;
+    color: #fff;
+    background-color: #1e2021;
+}
+.container {
+    text-align: center;
+}
+button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    background-color: #ff4444;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+button:hover {
+    background-color: #cc0000;
+}
+#progress {
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    border: 1px solid #ff4444;
+}
+
+.progress-section-container {
+    margin-bottom: 10px;
+    border: 2px solid red;
+    padding: 5px;
+    text-align: center;
+}
+.progress-label {
+    display: block;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+}
+.progress-bar-container {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+.progress-fill {
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Final Fantasy XIV Expansions and Updates */
+
+.arealmreborn { background: #FF0000; } /* A Realm Reborn */
+.arealmawoken { background: #781616; } /* A Realm Awoken */
+.throughthemaelstrom { background: #1E90FF; } /* Through the Maelstrom */
+.defendersofeorzea { background: #228B22; } /* Defenders of Eorzea */
+.dreamsofice { background: #ADD8E6; } /* Dreams of Ice */
+.beforethefall { background: #808080; } /* Before the Fall */
+.heavensward { background: #4682B4; } /* Heavensward */
+.asgoeslightsogoesdarkness { background: #2F4F4F; } /* As Goes Light, So Goes Darkness */
+.thegearsofchange { background: #D2691E; } /* The Gears of Change */
+.revengeofthehorde { background: #8B0000; } /* Revenge of the Horde */
+.soulsurrender { background: #4B0082; } /* Soul Surrender */
+.thefaredgeoffate { background: #FFD700; } /* The Far Edge of Fate */
+.stormblood { background: #B22222; } /* Stormblood */
+.thelegendreturns { background: #DAA520; } /* The Legend Returns */
+.riseofanewsun { background: #FF4500; } /* Rise of a New Sun */
+.underthemoonlight { background: #191970; } /* Under the Moonlight */
+.preludeinviolet { background: #9400D3; } /* Prelude in Violet */
+.arequiemforheroes { background: #708090; } /* A Requiem for Heroes */
+.shadowbringers { background: #4B0082; } /* Shadowbringers */
+.vowsofvirtuedeedsofcruelty { background: #800080; } /* Vows of Virtue, Deeds of Cruelty */
+.echoesofafallenstar { background: #483D8B; } /* Echoes of a Fallen Star */
+.reflectionsincrystal { background: #87CEEB; } /* Reflections in Crystal */
+.futuresrewritten { background: #2E8B57; } /* Futures Rewritten */
+.deathuntodawn { background: #696969; } /* Death Unto Dawn */
+.endwalker { background: #2F4F4F; } /* Endwalker */
+.newfoundadventure { background: #FF6347; } /* Newfound Adventure */
+.buriedmemory { background: #8B4513; } /* Buried Memory */
+.godsrevellandstremble { background: #4682B4; } /* Gods Revel, Lands Tremble */
+.thedarkthrone { background: #000000; } /* The Dark Throne */
+.growinglight { background: #FFFFE0; } /* Growing Light */
+.dawntrail { background: #FFD700; } /* Dawntrail */
+.crossroads { background: #D3D3D3; } /* Crossroads */
+
+
+.quest-dropdown {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    background: rgba(50, 50, 50, 0.8);
+    color: white;
+    border: 1px solid red;
+    outline: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+.quest-dropdown:hover {
+    background: rgba(70, 70, 70, 0.9);
+}
+.quest-dropdown:focus {
+    border-color: white;
+}
