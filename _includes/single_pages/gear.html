@@ -52,14 +52,14 @@
           <input class="form-control bg-charcoal text-light mx-1" type="number" id="ilvl_from" value="" min="1" max = "605" placeholder="">
           <input class="form-control bg-charcoal text-light mx-1" type="number" id="ilvl_to" value="" min="1" max = "605" placeholder="">
 
-          <label class="checkbox white"><input class="" type="checkbox" id="rarity_0" /></label>
-          <label class="checkbox red"><input class=" mx-1" type="checkbox" id="rarity_7" /></label>
-          <label class="checkbox green"><input class="" type="checkbox" id="rarity_2" /></label>
-          <label class="checkbox blue"><input class=" mx-1" type="checkbox" id="rarity_3" /></label>
-          <label class="checkbox purpel"><input class="" type="checkbox" id="rarity_4" /></label>
+          <label title="white gear" class="checkbox white"><input class="" type="checkbox" id="rarity_0" /></label>
+          <label title="red gear" class="checkbox red"><input class=" mx-1" type="checkbox" id="rarity_7" /></label>
+          <label title="green gear" class="checkbox green"><input class="" type="checkbox" id="rarity_2" /></label>
+          <label title="blue gear" class="checkbox blue"><input class=" mx-1" type="checkbox" id="rarity_3" /></label>
+          <label title="purpel gear" class="checkbox purpel"><input class="" type="checkbox" id="rarity_4" /></label>
 
-         <label style="display: flex;" class="checkbox white"><input class=" mx-1" type="checkbox" id="include_hq" checked/><span class="x_box_blah">HQ</span></label>
-         <label style="display: flex;" class="checkbox white"><input class="" type="checkbox" id="limit_to_hq" /><span class="x_box_blah">HQ2</span></label>
+         <label title="Include HQ in List" style="display: flex;" class="checkbox white"><input class=" mx-1" type="checkbox" id="include_hq" checked/><span class="x_box_blah">HQ</span></label>
+         <label title="Show only HQ if both exists" style="display: flex;" class="checkbox white"><input class="" type="checkbox" id="limit_to_hq" /><span class="x_box_blah">HQ2</span></label>
 
           <input class="form-control bg-charcoal text-light mx-1" type="button" name="Search" value="Search" onclick="call_api_data()" data-value-translate="Gear_Search">
       </div>
