@@ -287,7 +287,7 @@ def main() -> None:
     os.chdir("./_posts")
     #logger.debug(orderedContent)
     try:
-        #run(googledata, orderedContent)
+        run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
