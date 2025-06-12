@@ -210,13 +210,14 @@ def load_workbook_from_url(url: str) -> Workbook:
 
 
 def read_xlsx_file():
-    KEY: str|None = os.environ.get("GDRIVE_APIKEY")
-    if KEY is None:
-        raise Exception("Missing GDRIVE_APIKEY in Environment")
-    print(KEY)
-    MIME_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    SHEET = "11SBQWYyFnyh19Ku6T1Wr5tNAJvxdze8tvD6m4bzPGIA"
-    r: str = f"https://www.googleapis.com/drive/v3/files/{SHEET}/export?key={KEY}&mimeType={MIME_TYPE}"
+    #KEY: str|None = os.environ.get("GDRIVE_APIKEY")
+    #if KEY is None:
+    #    raise Exception("Missing GDRIVE_APIKEY in Environment")
+    #print(KEY)
+    #MIME_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    #SHEET = "11SBQWYyFnyh19Ku6T1Wr5tNAJvxdze8tvD6m4bzPGIA"
+    #r: str = f"https://www.googleapis.com/drive/v3/files/{SHEET}/export?key={KEY}&mimeType={MIME_TYPE}"
+    r: str = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT-NhazAByNg-0YtEumVnmJKQjVmHKbuThyAiFLk_3I1asUOCpbto89usgrxaM0Q2-gUqdVYVaKPNNl/pub?output=xlsx"
     wb: Workbook = load_workbook_from_url(r)
     # wb = openpyxl.load_workbook('./guide_ffxiv.xlsx')
     local_sheet: Worksheet = wb['Tabelle1']
