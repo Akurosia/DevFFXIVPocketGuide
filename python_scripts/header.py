@@ -439,29 +439,31 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
     # rouletts
     if entry.get("expert", None):
         # first check is to see if elements are even there, this one is for the actual filter
-        if eval(entry["allianceraid"]) or eval(entry["frontier"]) or eval(entry["expert"]) or eval(entry["guildhest"]) or eval(entry["highlevelroulette"]) or eval(entry["levelcaproulette"]) or eval(entry["leveling"]) or eval(entry["main"]) or eval(entry["mentor"]) or eval(entry["normalraid"]) or eval(entry["trial"]):
+        if entry.get("allianceraid") or entry.get("frontier") or entry.get("expert") or entry.get("guildhest") or \
+        entry.get("highlevelroulette") or entry.get("levelcaproulette") or entry.get("leveling") or entry.get("main") or \
+        entry.get("mentor") or entry.get("normalraid") or entry.get("trial"):
             header_data += 'rouletts:\n'
-            if eval(entry["allianceraid"]):
+            if entry.get("allianceraid"):
                 header_data += '    allianceraid: ' + entry["allianceraid"] + "\n"
-            if eval(entry["frontier"]):
+            if entry.get("frontier"):
                 header_data += '    frontier: ' + entry["frontier"] + "\n"
-            if eval(entry["expert"]):
+            if entry.get("expert"):
                 header_data += '    expert: ' + entry["expert"] + "\n"
-            if eval(entry["guildhest"]):
+            if entry.get("guildhest"):
                 header_data += '    guildhest: ' + entry["guildhest"] + "\n"
-            if eval(entry["highlevelroulette"]):
+            if entry.get("highlevelroulette"):
                 header_data += '    highlevelroulette: ' + entry["highlevelroulette"] + "\n"
-            if eval(entry["levelcaproulette"]):
+            if entry.get("levelcaproulette"):
                 header_data += '    levelcaproulette: ' + entry["levelcaproulette"] + "\n"
-            if eval(entry["leveling"]):
+            if entry.get("leveling"):
                 header_data += '    leveling: ' + entry["leveling"] + "\n"
-            if eval(entry["main"]):
+            if entry.get("main"):
                 header_data += '    main: ' + entry["main"] + "\n"
-            if eval(entry["mentor"]):
+            if entry.get("mentor"):
                 header_data += '    mentor: ' + entry["mentor"] + "\n"
-            if eval(entry["normalraid"]):
+            if entry.get("normalraid"):
                 header_data += '    normalraid: ' + entry["normalraid"] + "\n"
-            if eval(entry["trial"]):
+            if entry.get("trial"):
                 header_data += '    trial: ' + entry["trial"] + "\n"
     # links:
     # TODO Fix big if check
@@ -476,7 +478,7 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
     instancecontent_id = contentfindercondition.get(cfc_key, {}).get('Content', {}).get('row_id', "")
     if instancecontent_id not in  ["0", "", None]:
         instancecontent_entry = instancecontent[str(instancecontent_id)]
-        bgm = instancecontent_entry["BGM"]['File'].replace(".scd", ".ogg")
+        bgm = instancecontent_entry["BGM"].get('File', "").replace(".scd", ".ogg")
         if not bgm == "":
             header_data += f'bgmusic: "{bgm}"\n'
     return header_data, entry
@@ -516,7 +518,7 @@ def addContentZoneIdToHeader(contentzoneid, entry, content_translations):
         if contentfindercondition[key]['Name_de'] == entry['titles']['de']:
             working_key = key
             cmt = value
-            if "InstanceContent" != value['Content']['sheet']:
+            if "InstanceContent" != value['Content'].get('sheet', ""):
                 continue
             contentid = value['Content']['row_id']
             if not contentid:

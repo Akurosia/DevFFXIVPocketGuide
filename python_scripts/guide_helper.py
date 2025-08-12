@@ -706,18 +706,14 @@ def addLanguageElements(_type: str, _oid: str, ori_value) -> dict[str, str]:
             'de': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_de']),
             'fr': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_fr']),
             'ja': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_ja']),
-            'cn': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_cn']),
-            'ko': fixCaptilaziationAndRomanNumerals(data[_id][f'{field}_ko']),
         }
         if _type in ['action', 'status']:
-            if tmp == {'en': '', 'de': '', 'fr': '', 'ja': '', 'cn': '', 'ko': ''}:
+            if tmp == {'en': '', 'de': '', 'fr': '', 'ja': ''}:
                 tmp = {
                     'en': f'Unknown_{_oid}',
                     'de': f'Unknown_{_oid}',
                     'fr': f'Unknown_{_oid}',
-                    'ja': f'Unknown_{_oid}',
-                    'cn': f'Unknown_{_oid}',
-                    'ko': f'Unknown_{_oid}'
+                    'ja': f'Unknown_{_oid}'
                 }
         return tmp
     return UNKNOWNTITLE

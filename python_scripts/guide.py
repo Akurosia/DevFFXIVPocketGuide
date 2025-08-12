@@ -513,9 +513,9 @@ def getTextFromCatAndID(cat: str, _id: str, content_translations: dict[str, Any]
         for lang in LANGUAGES:
             content_translations[lang][f"{n_cat}_{_id}_Text"] = enemy_line_itterator[n_cat][_id][f'Text_{lang}'].replace("\n\n", " ").replace("\n", "")
     else:
-        text: str = enemy_line_itterator[n_cat][_id]['Text_0_en'].replace("\n\n", " ").replace("\n", "")
+        text: str = enemy_line_itterator[n_cat][_id]['Text_en'][0].replace("\n\n", " ").replace("\n", "")
         for lang in LANGUAGES:
-            content_translations[lang][f"{n_cat}_{_id}_Text"] = enemy_line_itterator[n_cat][_id][f'Text_0_{lang}'].replace("\n\n", " ").replace("\n", "")
+            content_translations[lang][f"{n_cat}_{_id}_Text"] = enemy_line_itterator[n_cat][_id][f'Text_{lang}'][0].replace("\n\n", " ").replace("\n", "")
     return html.escape(text)
 
 def check_Enemy(entry: ENTRY_DATA, enemy_type, logdata_instance_content, old_enemies, content_translations):
@@ -594,17 +594,17 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
     #sort fates by type
     fates_by_type: dict[str, list[str]] = {}
     for fate_id in lfates:
-        #print(fate_id)
-        _id: str = fates[fate_id]['Icon']['Objective'] # type: ignore
-        _type = fatetypes[_id]
+        _id: str = fates[fate_id]['Icon']['path'] # type: ignore
+        if fates[fate_id]['Icon']['id'] == 0:
+            continue
+        _type = fatetypes[str(_id)]
         if not fates_by_type.get(_type, None):
             fates_by_type[_type] = []
         fates_by_type[_type].append(fate_id)
 
     ces_by_type: dict[str, list[str]] = {}
     for ce_id in ce_ids:
-        #print(ce_id)
-        _id: str = ces_type[ces[ce_id]['EventType'].replace("DynamicEventType#", "")]['Icon']['Objective']['1'] # type: ignore
+        _id: str = ces[ce_id]['EventType']['IconObjective1']["path"] # type: ignore
         _type = fatetypes[_id]
         if not ces_by_type.get(_type, None):
             ces_by_type[_type] = []
@@ -619,17 +619,17 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
         content_translations['de'][f"FATEs_{fateNames[fatetype]}_Name"] = fatetype
         lguide_data += f'    fates:\n'
         for fate_id in fate_data:
-            name_en = fates_trans[fate_id]["Name_en"]
-            desc_en = fates_trans[fate_id]['Description_en']
+            name_en = fates[fate_id]["Name_en"]
+            desc_en = fates[fate_id]['Description_en']
             lguide_data += f'      - title: "{name_en}"\n'
             lguide_data += f'        title_id: "{fate_id}"\n'
-            lguide_data += f'        icon: "{getImage(fates[fate_id]['Icon']['Objective'])}"\n'
+            lguide_data += f'        icon: "{getImage(fates[fate_id]['Icon']['path'])}"\n'
             lguide_data += f'        description: "{desc_en}"\n'
             lguide_data += '        phases:\n'
             lguide_data += '          - phase: "01"\n'
             lguide_data += '        roles:\n'
-            lguide_data += f'          - role: "Lvl: {fates[fate_id]['ClassJobLevel']['Value']}"\n'
-            lguide_data += f'          - role: "Lvl-Sync: {fates[fate_id]['ClassJobLevel']['Max']}"\n'
+            lguide_data += f'          - role: "Lvl: {fates[fate_id]['ClassJobLevel']}"\n'
+            lguide_data += f'          - role: "Lvl-Sync: {fates[fate_id]['ClassJobLevelMax']}"\n'
             if add_data is None:
                 print(f"No additional Fate data for {name} -> FateID: {fate_id}")
             elif add_data.get(fate_id, None):
@@ -672,8 +672,8 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
             else:
                 print(f"No additional Fate data for {name} -> FateID: {fate_id}")
             for lang in LANGUAGES:
-                content_translations[lang][f"FATEs_{fateNames[fatetype]}_{name_en}_Name"] = fates_trans[fate_id][f'Name_{lang}']
-                content_translations[lang][f"FATEs_{fateNames[fatetype]}_{name_en}_Desc"] = fates_trans[fate_id][f'Description_{lang}']
+                content_translations[lang][f"FATEs_{fateNames[fatetype]}_{name_en}_Name"] = fates[fate_id][f'Name_{lang}']
+                content_translations[lang][f"FATEs_{fateNames[fatetype]}_{name_en}_Desc"] = fates[fate_id][f'Description_{lang}']
         lguide_data += '    sequence:\n'
         lguide_data += '      - phase: "01"\n'
 
@@ -684,11 +684,11 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
         content_translations['de'][f"FATEs_{fateNames[cetype]}_Name"] = cetype
         lguide_data += f'    fates:\n'
         for ce_id in ce_data:
-            name_en = ces_trans[ce_id]["Name_en"]
-            desc_en = ces_trans[ce_id]['Description_en']
+            name_en = ces[ce_id]["Name_en"]
+            desc_en = ces[ce_id]['Description_en']
             lguide_data += f'      - title: "{name_en}"\n'
             lguide_data += f'        title_id: "{ce_id}"\n'
-            lguide_data += f'        icon: "{getImage(ces_type[ces[ce_id]["EventType"].replace("DynamicEventType#", "")]["Icon"]["Objective"]["1"])}"\n'
+            lguide_data += f'        icon: "{getImage(ces[ce_id]["EventType"]["IconObjective1"]["path"])}"\n'
             lguide_data += f'        description: "{desc_en}"\n'
             lguide_data += '        phases:\n'
             lguide_data += '          - phase: "01"\n'
@@ -712,8 +712,8 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
                 lguide_data += f'            icon: "{getImage("065000/065023_hr1.webp")}"\n'
                 lguide_data += f'            icon-title: "Tomestones"\n'
             for lang in LANGUAGES:
-                content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Name"] = ces_trans[ce_id][f'Name_{lang}']
-                content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Desc"] = ces_trans[ce_id][f'Description_{lang}']
+                content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Name"] = ces[ce_id][f'Name_{lang}']
+                content_translations[lang][f"FATEs_{fateNames[cetype]}_{name_en}_Desc"] = ces[ce_id][f'Description_{lang}']
         lguide_data += '    sequence:\n'
         lguide_data += '      - phase: "01"\n'
     return lguide_data

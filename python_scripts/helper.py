@@ -172,12 +172,13 @@ def getContentName(name: str, lang: str ="en", difficulty: str="", instanceType:
             if content["Name_de"].lower().strip() == name.lower().strip():
                 return content[f"Name_{lang}"]
         for _, place in placename.items():
-            if place["Name_de"].lower().strip() == name.lower().strip():
+            # the replace is for the "shy" character that is sometimes in the names
+            if place["Name_de"].replace("­", "").lower().strip() == name.lower().strip():
                 return place[f"Name_{lang}"]
     except KeyError:
+        traceback.print_exc()
         pass
-    if name not in ['title']:
-        print_color_red("Could not translate: " + name)
+    print_color_red("Could not translate: " + name)
     return ""
 
 

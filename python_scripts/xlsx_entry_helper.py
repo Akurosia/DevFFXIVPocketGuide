@@ -102,21 +102,33 @@ def workOnQuests(entry: EntryType) -> EntryType:
 
 def getEntriesForRouletts(entry: EntryType) -> EntryType:
     global contentfindercondition
+    entry['allianceraid'] = None
+    entry['frontier'] = None
+    entry['expert'] = None
+    entry['guildhest'] = None
+    entry['highlevelroulette'] = None
+    entry['levelcaproulette'] = None
+    entry['leveling'] = None
+    entry['main'] = None
+    entry['mentor'] = None
+    entry['normalraid'] = None
+    entry['trial'] = None
     for _, value in contentfindercondition.items():
         if value['Name_de'] == getContentName(entry["title"], "de", entry["difficulty"], entry["instanceType"]):
+            #print(value['TerritoryType'])
             entry['type'] = value['ContentType']['Name_de'].lower()
-            entry['mapid'] = value['TerritoryType']['Name_de']
-            entry['allianceraid'] = value['AllianceRoulette']
-            entry['frontier'] = value['FeastTeamRoulette']
-            entry['expert'] = value['ExpertRoulette']
-            entry['guildhest'] = value['GuildHestRoulette']
-            entry['highlevelroulette'] = value['HighLevelRoulette']
-            entry['levelcaproulette'] = value['LevelCapRoulette']
-            entry['leveling'] = value['LevelingRoulette']
-            entry['main'] = value['MSQRoulette']
-            entry['mentor'] = value['MentorRoulette']
-            entry['normalraid'] = value['NormalRaidRoulette']
-            entry['trial'] = value['TrialRoulette']
+            entry['mapid'] = value['TerritoryType'].get('Name_de', "")
+            entry['allianceraid'] = str(value['AllianceRoulette'])
+            entry['frontier'] = str(value['FeastTeamRoulette'])
+            entry['expert'] = str(value['ExpertRoulette'])
+            entry['guildhest'] = str(value['GuildHestRoulette'])
+            entry['highlevelroulette'] = str(value['HighLevelRoulette'])
+            entry['levelcaproulette'] = str(value['LevelCapRoulette'])
+            entry['leveling'] = str(value['LevelingRoulette'])
+            entry['main'] = str(value['MSQRoulette'])
+            entry['mentor'] = str(value['MentorRoulette'])
+            entry['normalraid'] = str(value['NormalRaidRoulette'])
+            entry['trial'] = str(value['TrialRoulette'])
             return entry
     return entry
 
