@@ -4,7 +4,8 @@ from playwright.sync_api import Playwright, sync_playwright, expect
 import time
 
 data = None
-submarineexploration = loadDataTheQuickestWay("submarineexploration.en.json", translate=False)
+#submarineexploration = loadDataTheQuickestWay("submarineexploration.en.json", translate=False)
+submarineexploration = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\SubmarineExploration.json")
 
 def iterate_locator(locator):
     return [locator.nth(x) for x in range(0, locator.count())]
@@ -130,7 +131,7 @@ def fix_submarine(data):
         print(locations)
         for spot, spot_data in location_spots.items():
             for key, value in submarineexploration.items():
-                if spot.lower() == value['Destination'].lower():
+                if spot.lower() == value['Destination_en'].lower():
                     data[locations][spot]["lvl"] = value['RankReq']
                     break
     return data

@@ -27,53 +27,44 @@ ENTRY_DATA = dict[str, Union[
 ]]
 
 # from header
-territorytype_trans: FFXIV_DATA = loadDataTheQuickestWay("territorytype_all.json", translate=True)
-territorytype: FFXIV_DATA = loadDataTheQuickestWay("TerritoryType.json")
+territorytype: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\TerritoryType.json")
 patchversions: FFXIV_DATA = get_any_Versiondata()
-mounts: FFXIV_DATA = loadDataTheQuickestWay("mount_all.json", translate=True)
-exversion: FFXIV_DATA = loadDataTheQuickestWay("exversion_all.json", translate=True)
-minions: FFXIV_DATA = loadDataTheQuickestWay("companion_all.json", translate=True)
-orchestrions: FFXIV_DATA = loadDataTheQuickestWay("orchestrion_all.json", translate=True)
-orchestrionpath: FFXIV_DATA = loadDataTheQuickestWay("OrchestrionPath.json", translate=False)
-ttcards: FFXIV_DATA = loadDataTheQuickestWay("tripletriadcard_all.json", translate=True)
-contentfindercondition: FFXIV_DATA = loadDataTheQuickestWay("ContentFinderCondition.de.json")
-contentfindercondition_trans: FFXIV_DATA = loadDataTheQuickestWay("ContentFinderCondition", translate=True)
-contentfinderconditiontransient: FFXIV_DATA = loadDataTheQuickestWay("ContentFinderConditionTransient", translate=True)
-instancecontent: FFXIV_DATA = loadDataTheQuickestWay("InstanceContent.json")
-contentmembertype: FFXIV_DATA = loadDataTheQuickestWay("ContentMemberType.json")
-classjob: FFXIV_DATA = loadDataTheQuickestWay("Classjob.de.json")
-items: FFXIV_DATA = loadDataTheQuickestWay("Item.de.json")
+mounts: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\Mount.json")
+exversion: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\ExVersion.json")
+minions: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\Companion.json")
+orchestrions: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\Orchestrion.json")
+orchestrionpath: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\OrchestrionPath.json")
+ttcards: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\TripleTriadCard.json")
+contentfindercondition: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\ContentFinderCondition.json")
+contentfinderconditiontransient: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\ContentFinderConditionTransient.json")
+instancecontent: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\InstanceContent.json")
+contentmembertype: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\ContentMemberType.json")
+classjob: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\Classjob.json")
+items: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\Item.json")
 try:
     gamerscape_items: FFXIV_DATA = readJsonFile("python_scripts/gamerscape_items/after_item_scan.json")
 except:
     gamerscape_items: FFXIV_DATA = readJsonFile("gamerscape_items/after_item_scan.json")
 
-fates: FFXIV_DATA = loadDataTheQuickestWay("Fate.de.json")
-fates_trans: FFXIV_DATA = loadDataTheQuickestWay("fate_all.json", translate=True)
-ces: FFXIV_DATA = loadDataTheQuickestWay("DynamicEvent.de.json")
-ces_type: FFXIV_DATA = loadDataTheQuickestWay("DynamicEventType.json")
-ces_trans: FFXIV_DATA = loadDataTheQuickestWay("dynamicevent_all.json", translate=True)
+fates: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\Fate.json")
+ces: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\DynamicEvent.json")
+ces_type: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\DynamicEventType.json")
 
 # from guide_helper
-action: FFXIV_DATA = loadDataTheQuickestWay("action_all.json", translate=True)
-bnpcname: FFXIV_DATA = loadDataTheQuickestWay("bnpcname_all.json", translate=True)
-eobjname: FFXIV_DATA = loadDataTheQuickestWay("eobjname_all.json", translate=True)
-enpcresident: FFXIV_DATA = loadDataTheQuickestWay("enpcresident_all.json", translate=True)
+action: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\Action.json")
+bnpcname: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\BNpcName.json")
+eobjname: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\EObjName.json")
+enpcresident: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\ENpcResident.json")
 
 # from helper
-placename: FFXIV_DATA = loadDataTheQuickestWay("placename_all.json", translate=True)
+placename: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\PlaceName.json")
 
 # from guide/guide_helper
-status: FFXIV_DATA = loadDataTheQuickestWay("status_all.json", translate=True)
+status: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\Status.json")
 
 # from xlsx entry helper
-# quests = loadDataTheQuickestWay("Quest.de.json")
-quests_all: FFXIV_DATA = loadDataTheQuickestWay("quest_all.json", translate=True)
-questss: FFXIV_DATA = loadDataTheQuickestWay("Quest.de.json", exd="raw-exd-all")
-enpcresidents: FFXIV_DATA = loadDataTheQuickestWay("Enpcresident.de.json")
-enpcresidentss: FFXIV_DATA = loadDataTheQuickestWay("Enpcresident", translate=True)
-contentfinderconditionX: FFXIV_DATA = loadDataTheQuickestWay("ContentFinderCondition.de.json")
+quests: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\Quest.json")
 
-npcyell: FFXIV_DATA = loadDataTheQuickestWay("npcyell_all.json", translate=True)
-instancecontenttextdata: FFXIV_DATA = loadDataTheQuickestWay("instancecontenttextdata_all.json", translate=True)
-fateevent: FFXIV_DATA = loadDataTheQuickestWay("fateevent_all.json", translate=True)
+npcyell: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\NpcYell.json")
+instancecontenttextdata: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\InstanceContentTextData.json")
+fateevent: FFXIV_DATA = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\FateEvent.json")

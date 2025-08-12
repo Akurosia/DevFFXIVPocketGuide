@@ -5,8 +5,9 @@ from collections import OrderedDict
 from ffxiv_aku import *
 import html
 
-LANGUAGES: list[str] = ["de", "en", "fr", "ja", "cn", "ko"]
-addon_trans: dict[str, Any] = loadDataTheQuickestWay("addon", translate=True)
+LANGUAGES: list[str] = ["de", "en", "fr", "ja"]
+#addon_trans: dict[str, Any] = loadDataTheQuickestWay("addon", translate=True)
+addon_trans = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\Addon.json")
 
 @lru_cache(maxsize=None)
 def search_addon_translation(term: str) -> tuple[bool, str]:
