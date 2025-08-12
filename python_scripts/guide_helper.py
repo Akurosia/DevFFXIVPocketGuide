@@ -205,7 +205,7 @@ def getBnpcNameFromID(_id, article_name, german_name, lang="en"):
     _id = str(_id)
     # handel bnpc names
     try:
-        bnpc_new_name = bnpcname[_id]["Singular_de"]
+        bnpc_new_name = bnpcname[_id]["Singular_de"].replace("[p]", "")
         extra = ""
         if _id in ids_to_replace1:
             german_name = german_name.replace(" i", "")
@@ -835,9 +835,7 @@ def workOnLogDataEnemies(entry, enemy_type, logdata_instance_content, empty_enem
                     "en": getBnpcName(enemy, enemy_id, "en") if enemy != "" else "Unknown Source",
                     "de": de_and_sort_name,
                     "fr": getBnpcName(enemy, enemy_id, "fr") if enemy != "" else "Unknown Source",
-                    "ja": getBnpcName(enemy, enemy_id, "ja") if enemy != "" else "Unknown Source",
-                    "cn": getBnpcName(enemy, enemy_id, "cn") if enemy != "" else "Unknown Source",
-                    "ko": getBnpcName(enemy, enemy_id, "ko") if enemy != "" else "Unknown Source"
+                    "ja": getBnpcName(enemy, enemy_id, "ja") if enemy != "" else "Unknown Source"
                 },
                 "enemy_id": enemy_id,
                 "id": f"{enemy_type[:-1]}{counter:02d}",

@@ -567,7 +567,6 @@ def addGroupCollections(cmt, entry):
             return header_data
 
     if not skip_lookoup:
-        print(cmt)
         healerp = cmt['ContentMemberType']['HealersPerParty']
         tankp = cmt['ContentMemberType']['TanksPerParty']
         meleep = cmt['ContentMemberType']['MeleesPerParty']
