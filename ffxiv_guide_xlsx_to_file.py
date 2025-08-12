@@ -2,13 +2,14 @@
 # coding: utf8
 from logging import Logger
 import os
-import traceback
-# traceback.print_exc()
 import errno
 from typing import Any
 import yaml
 from yaml.loader import SafeLoader
+import traceback
+# traceback.print_exc()
 from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, storeFilesInTmp, sortJsonData, print_color_red
+os.system('cls')
 import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide
@@ -16,7 +17,7 @@ from python_scripts.fileimports import logdata, logdata_lower
 from python_scripts.helper import uglyContentNameFix, getContentName, EntryType
 # from python_scripts.constants import *
 from python_scripts.custom_logger import getLogger
-from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file, Worksheet, excel_to_json, getEntryDataOld
+from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file, Worksheet, excel_to_json
 import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
 import python_scripts.airship_and_submarine as aas
@@ -36,23 +37,19 @@ disable_red_print: bool = True
 debug_row_number: int = 0
 print_debug: bool = False
 
-LANGUAGES: list[str] = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES: list[str] = ["de", "en", "fr", "ja"]
 LANGUAGES_MAPPING: dict[str, str] = {
     "de": "de-DE",
     "en": "en-US",
     "fr": "fr-FR",
-    "ja": "ja-JP",
-    "cn": "cn-CN",
-    "ko": "ko-KR"
+    "ja": "ja-JP"
 }
 
 translations:dict[str, dict[str, dict[str, str]]] = {
     "de": {},
     "en": {},
     "fr": {},
-    "ja": {},
-    "cn": {},
-    "ko": {}
+    "ja": {}
 }
 
 def translate_content_files(entry: EntryType) -> None:
@@ -208,9 +205,9 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
         i = int(key)
         try:
             debug_row_number = i
-            if not True:
+            if True:
                 #if debug_row_number < 700 :
-                if debug_row_number not in [808, 809, 810, 811, 814, 567, 571]:
+                if debug_row_number not in [804]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(value, i, orderedContent)

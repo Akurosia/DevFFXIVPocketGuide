@@ -10,20 +10,27 @@ import natsort
 import requests
 from openpyxl import Workbook, load_workbook
 from openpyxl.worksheet.worksheet import Worksheet
-from ffxiv_aku import print_color_red, getLevel, writeJsonFile, print_pretty_json, sortJsonData, readJsonFile
+from ffxiv_aku import *
 from typing import Any
 try:
     from python_scripts.constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
     from python_scripts.helper import getContentName, seperate_data_into_array, EntryType
-    from python_scripts.fileimports import quests_all, questss, enpcresidents, enpcresidentss, contentfinderconditionX
+    from python_scripts.fileimports import *
 except Exception:
     from constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
     from helper import getContentName, seperate_data_into_array, EntryType
-    from fileimports import quests_all, questss, enpcresidents, enpcresidentss, contentfinderconditionX
-
+    from fileimports import *
 
 logger: logging.Logger = logging.getLogger()
 
+def _get_coords_relative(x: str, x_off: str, z: str, z_off: str, size: str, pixel: bool) -> tuple[float, float]:
+    if pixel:
+        new_x = truncate(ToMapPixel(float(x), float(x_off), float(size)))
+        new_y = truncate(ToMapPixel(float(z), float(z_off), float(size)))
+    else:
+        new_x = truncate(ToMapCoordinate(float(x), float(size)))
+        new_y = truncate(ToMapCoordinate(float(z), float(size)))
+    return new_x, new_y
 
 def get_header_from_xlsx(local_sheet: Worksheet, local_max_column: int) -> list[str]:
     result: list[str] = []
@@ -54,8 +61,8 @@ def clean_entries_from_single_quotes(entry: EntryType):
 
 def make_name_readable(entry: str, x: dict[str, str]) -> str:
     name: str = entry
-    name = name.replace("[t]", DIFFERENT_PRONOUNS[x["Pronoun"]])
-    name = name.replace("[a]", DIFFERENT_PRONOUNSS[x["Pronoun"]])
+    name = name.replace("[t]", DIFFERENT_PRONOUNS[str(x["Pronoun"])])
+    name = name.replace("[a]", DIFFERENT_PRONOUNSS[str(x["Pronoun"])])
     return name
 
 
@@ -63,56 +70,42 @@ def workOnQuests(entry: EntryType) -> EntryType:
     quest_id: str = entry["quest_id"]
     if quest_id == "":
         for lang in LANGUAGES:
-            #entry[f'quest_{lang}'] = ""
-            #entry[f'quest_location_{lang}'] = ""
-            #entry[f'quest_npc_{lang}'] = ""
-
             entry['quest'][lang] = ""
             entry['quest_location'][lang] = ""
             entry['quest_npc'][lang] = ""
         return entry
 
-    # retriev quest from raw-exd to easily get all languages
-    quest: dict[str, str | dict[str, str]] = questss[quest_id]
+    quest: dict[str, str | dict[str, str]] = quests[quest_id]
     for lang in LANGUAGES:
-        tmp_quest: str = quests_all[quest_id][f'Name_{lang}'].replace(" ", "").replace(" ", "") # type: ignore
+        tmp_quest: str = quests[quest_id][f'Name_{lang}'].replace(" ", "").replace(" ", "") # type: ignore
         #entry[f'quest_{lang}'] = tmp_quest
         entry['quest'][lang] = tmp_quest
 
-    issuer_id: str = quest['Issuer']['Start'] # type: ignore
-    if int(issuer_id) < 1_000_000:
-        issuer_id = str(int(issuer_id) + 1_000_000)
-    if not enpcresidentss.get(issuer_id, None):
-        print_color_red(f"[XLSX_ENTRY_HELPER:workOnQuests] Cannot find Issuer Enpcresident with id: {issuer_id}")
-        return entry
-
     for lang in LANGUAGES:
-        npc: str = enpcresidentss[issuer_id][f"Singular_{lang}"] # type: ignore
+        npc: str = quest['IssuerStart'][f"Singular_{lang}"] # type: ignore
         if "[a]" in npc or "[t]" in npc:
-            npc = make_name_readable(npc, enpcresidents[issuer_id])
+            npc = make_name_readable(npc, quest['IssuerStart'])
         #entry[f'quest_npc_{lang}'] = npc
         entry['quest_npc'][lang] = npc
 
-    level_id: str = quest['Issuer']['Location'] # type: ignore
+    issuer_location: str = quest['IssuerLocation'] # type: ignore
+    x, y = _get_coords_relative(issuer_location['X'], issuer_location['Map']['OffsetX'], issuer_location['Z'], issuer_location['Map']['OffsetY'], issuer_location['Map']['SizeFactor'], pixel=False)
     for lang in LANGUAGES:
         try:
-            level_data = getLevel(level_id, lang=lang)
-            tmp_quest_location = f'{level_data["placename"]} ({level_data["x"]}, {level_data["y"]})'
-            #entry[f'quest_location_{lang}'] = tmp_quest_location
+            tmp_quest_location = f'{issuer_location['Map']["PlaceName"][f'Name_{lang}']} ({x}, {y})'
             entry['quest_location'][lang] = tmp_quest_location
         except KeyError:
-            #entry['quest_location'] = ""
             entry['quest_location'][lang] = ""
-            print_color_red(f"[XLSX_ENTRY_HELPER:workOnQuests] Error on loading: {quest['Issuer']['Location']=} ({quest_id=})")
+            print_color_red(f"[XLSX_ENTRY_HELPER:workOnQuests] Error on loading: {quest['IssuerLocation']=} ({quest_id=})")
     return entry
 
 
 def getEntriesForRouletts(entry: EntryType) -> EntryType:
-    global contentfinderconditionX
-    for _, value in contentfinderconditionX.items():
-        if value['Name'] == getContentName(entry["title"], "de", entry["difficulty"], entry["instanceType"]):
-            entry['type'] = value['ContentType'].lower()
-            entry['mapid'] = value['TerritoryType']
+    global contentfindercondition
+    for _, value in contentfindercondition.items():
+        if value['Name_de'] == getContentName(entry["title"], "de", entry["difficulty"], entry["instanceType"]):
+            entry['type'] = value['ContentType']['Name_de'].lower()
+            entry['mapid'] = value['TerritoryType']['Name_de']
             entry['allianceraid'] = value['AllianceRoulette']
             entry['frontier'] = value['FeastTeamRoulette']
             entry['expert'] = value['ExpertRoulette']
@@ -263,4 +256,4 @@ if __name__ == "__main__":
     #sheet, max_row, max_column = read_xlsx_file()
     #XLSXELEMENTS = get_header_from_xlsx(sheet, max_column)
     entry = {'exclude': '', 'date': '2024.11.12', 'sortid': '7100603144', 'title': 'Jeuno: Die erste Etappe', 'categories': 'dt', 'slug': 'jeuno_die_erste_etappe', 'slug_url': 'jeuno_the_first_walk', 'image': 'ui/icon/112000/112585.tex', 'patchNumber': '7.1', 'patchName': 'Crossroads', 'difficulty': 'Normal', 'CFC_ID': '1015', 'PN_ID': '', 'quest_id': '70769', 'gearset_loot': "['Erzengel']", 'tt_card': "['Schattenlord']", 'orchestrion': "['Vergilbte Notenrolle']", 'orchestrion_material': '', 'mtqvid': '[]', 'mrhvid': '[]', 'hector': '[]', 'mount': '', 'minion': "['Nanolord']", 'instanceType': 'allianzraid', 'mapid': 'z6r1', 'bosse': '["Prishe Von Den Fernen Ketten","Fafnir","Erzengel Gk","Erzengel Hm","Erzengel Mr","Erzengel Tt","Erzengel Ev","Schattenlord"]', 'tags': '[]', 'teamcraftlink': '30144', 'garlandtoolslink': '30144', 'gamerescapelink': 'Jeuno:_The_First_Walk', 'done': '', 'quest': {'de': 'Am Kreuzweg der Welten', 'en': 'An Otherworldly Encounter', 'fr': 'À la croisée des mondes', 'ja': '交わる世界', 'cn': '交错的世界', 'ko': '교차하는 세계'}, 'quest_location': {'de': ''}, 'quest_npc': {'de': 'Hoobigo-Gesandter', 'en': 'Hoobigo messenger', 'fr': 'messager hoobigo', 'ja': '使いのフビゴ族', 'cn': '霍比格族使者', 'ko': '후비고족 심부름꾼'}, 'titles': {}}
-    print(workOnQuests(entry))
+    print_pretty_json(workOnQuests(entry))

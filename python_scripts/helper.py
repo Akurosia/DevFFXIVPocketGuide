@@ -8,10 +8,9 @@ from dataclasses import dataclass, field
 from typing import List, Any, Dict
 from ffxiv_aku import print_color_red, print_color_green, convert_single_image
 try:
-    from python_scripts.fileimports import placename, contentfindercondition_trans
+    from python_scripts.fileimports import *
 except Exception:
-    from fileimports import placename, contentfindercondition_trans
-
+    from fileimports import *
 @dataclass
 class EntryType(dict):
     exclude: str = ""
@@ -84,6 +83,8 @@ class EntryType(dict):
 def getImage(image: str, _type: str="icon") -> str:
     if image is None or image == "":
         return ""
+    if isinstance(image, dict):
+        image = image.get("path_hr1", image)
     if image.startswith("/../"):
         image = image.replace("/../", "/")
     # exit early if corret name format is found and file exixsts
@@ -165,7 +166,7 @@ def uglyContentNameFix(name: str, instanceType: str="", difficulty: str="") -> s
 def getContentName(name: str, lang: str ="en", difficulty: str="", instanceType: str="") -> str:
     name = uglyContentNameFix(name, instanceType, difficulty)
     try:
-        for _, content in contentfindercondition_trans.items():
+        for _, content in contentfindercondition.items():
             if "memoria" in content["Name_de"].lower().strip() and "memoria" in name.lower().strip():
                 return content[f"Name_{lang}"]
             if content["Name_de"].lower().strip() == name.lower().strip():

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
-UNKNOWNTITLE = {'de': 'Unbekannte Herkunft', 'en': 'Unknown Source', 'fr': 'Unknown Source', 'ja': 'Unknown Source', 'cn': 'Unknown Source', 'ko': 'Unknown Source'}
+LANGUAGES = ["de", "en", "fr", "ja"]
+UNKNOWNTITLE = {'de': 'Unbekannte Herkunft', 'en': 'Unknown Source', 'fr': 'Unknown Source', 'ja': 'Unknown Source'}
 
 DIFFERENT_PRONOUNS = {'0': 'Der', '1': 'Die', '2': 'Das'}
 DIFFERENT_PRONOUNSS = {'0': 'er', '1': 'e', '2': 'es'}

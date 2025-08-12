@@ -9,13 +9,13 @@ try:
     from python_scripts.constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from python_scripts.custom_logger import *
     from python_scripts.helper import getImage
-    from python_scripts.fileimports import logdata, status, ces, ces_type, ces_trans, fates, fates_trans, ENTRY_DATA, npcyell, instancecontenttextdata, fateevent
+    from python_scripts.fileimports import *
     from python_scripts.guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 except Exception:
     from constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from custom_logger import *
     from helper import getImage
-    from fileimports import logdata, status, ces, ces_type, ces_trans, fates, fates_trans, ENTRY_DATA, npcyell, instancecontenttextdata, fateevent
+    from fileimports import *
     from guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
 
 disable_green_print = True
@@ -252,9 +252,11 @@ def add_variation_Attack(guide_data, attack, enemy_type, enemy_name_en, content_
                 for e in sort_attacks:
                     try:
                         s = status[str(int(e, 16))]
+                        hex_s = e
                     except Exception:
                         s = status[str(int(str(e['status']), 16))]
-                    guide_data += f'              - status: {s["0xID"]}\n'
+                        hex_s = e['status']
+                    guide_data += f'              - status: {hex_s}\n'
                     guide_data += f'                icon: "{getImage(s["Icon"])}"\n'
                     guide_data += f'                name: "{s[f"Name_en"]}"\n'
                     #for lang in LANGUAGES:

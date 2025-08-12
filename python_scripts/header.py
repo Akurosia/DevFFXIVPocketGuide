@@ -7,44 +7,12 @@ from typing import Any
 try:
     from python_scripts.constants import LANGUAGES
     from python_scripts.helper import seperate_data_into_array, getImage, EntryType
-    from python_scripts.fileimports import (
-        territorytype_trans,
-        territorytype,
-        patchversions,
-        mounts,
-        minions,
-        orchestrions,
-        orchestrionpath,
-        ttcards,
-        contentfindercondition,
-        contentfindercondition_trans,
-        contentfinderconditiontransient,
-        instancecontent,
-        contentmembertype,
-        classjob,
-        items
-    )
+    from python_scripts.fileimports import *
 except Exception as e:
     print_color_red(e)
     from constants import LANGUAGES
     from helper import seperate_data_into_array, getImage, EntryType
-    from fileimports import (
-        territorytype_trans,
-        territorytype,
-        patchversions,
-        mounts,
-        minions,
-        orchestrions,
-        orchestrionpath,
-        ttcards,
-        contentfindercondition,
-        contentfindercondition_trans,
-        contentfinderconditiontransient,
-        instancecontent,
-        contentmembertype,
-        classjob,
-        items
-    )
+    from fileimports import *
 
 import logging
 
@@ -55,7 +23,7 @@ def getClassJobDict() -> dict[Any, Any]:
     final_array: dict[Any, Any] = {}
     for _, value in classjob.items():
         if int(value['JobIndex']) != 0:
-            final_array[value['Abbreviation']] = {
+            final_array[value['Abbreviation_de']] = {
                 "Waffe": [],
                 "Schild": [],
                 "Kopf": [],
@@ -74,8 +42,8 @@ class_job_item_array: dict[Any, Any] = getClassJobDict()
 
 
 def get_territorytype_from_mapid(entry) -> tuple[str, str]:
-    for key, tt_type in territorytype_trans.items():
-        if tt_type["TerritoryType"].lower() == entry["mapid"].lower():
+    for key, tt_type in territorytype.items():
+        if tt_type["Name"].lower() == entry["mapid"].lower():
             return tt_type, territorytype[key]['Bg']
     print_color_red(f"Could not find territorytype for {entry['mapid']} ({entry['title']})")
     return "", ""
@@ -119,7 +87,7 @@ def writeTags(header_data: str, entry: EntryType, tt_type_name: str|dict[str, st
 
     if not tt_type_name == "":
         for lang in LANGUAGES:
-            header_data += "  - term: \"" + tt_type_name["Name_" + lang] + "\"\n"
+            header_data += "  - term: \"" + tt_type_name['PlaceName']["Name_" + lang] + "\"\n"
 
     for lang in LANGUAGES:
         header_data += "  - term: \"" + myCapitalize(entry[f"titles"][lang]) + "\"\n"
@@ -288,10 +256,10 @@ def get_lvl_data(entry: EntryType):
         _id = _id[:-2]
     cfc_value = contentfindercondition.get(_id, None)
     if cfc_value:
-        lvl_data += 'plvl: ' + cfc_value["ClassJobLevel"]["Required"] + '\n'
-        lvl_data += 'plvl_sync: ' + cfc_value["ClassJobLevel"]["Sync"] + '\n'
-        lvl_data += 'ilvl: ' + cfc_value["ItemLevel"]["Required"] + '\n'
-        lvl_data += 'ilvl_sync: ' + cfc_value["ItemLevel"]["Sync"] + '\n'
+        lvl_data += 'plvl: ' + str(cfc_value["ClassJobLevelRequired"]) + '\n'
+        lvl_data += 'plvl_sync: ' + str(cfc_value["ClassJobLevelSync"]) + '\n'
+        lvl_data += 'ilvl: ' + str(cfc_value["ItemLevelRequired"]) + '\n'
+        lvl_data += 'ilvl_sync: ' + str(cfc_value["ItemLevelSync"]) + '\n'
     return lvl_data
 
 cat_to_instance_image: dict[str, str] = {
@@ -355,7 +323,7 @@ def getMapImages(mapid: str, contentname: str) -> str:
 def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_translations):
     global contentfindercondition
     global instancecontent
-    global contentfindercondition_trans
+    global contentfindercondition
     header_data = ""
     tt_type_name, tt_bg_entry = get_territorytype_from_mapid(entry)
     if old_wip in ["True", "False"]:
@@ -404,12 +372,12 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
         header_data += 'mappath: "' + tt_bg_entry + '"\n'
     if not tt_type_name == "":
         # header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
-        header_data += f'contentname: "{tt_type_name["Name_en"]}"\n'
+        header_data += f'contentname: "{tt_type_name['PlaceName']["Name_en"]}"\n'
         for lang in LANGUAGES:
-            content_translations[lang][f'ContentName_{tt_type_name["Name_en"]}'] = tt_type_name[f"Name_{lang}"]
-            # header_data += f'  {lang}: "' + tt_type_name[f"Name_{lang}"] + '"\n'
+            content_translations[lang][f'ContentName_{tt_type_name['PlaceName']["Name_en"]}'] = tt_type_name['PlaceName'][f"Name_{lang}"]
+            # header_data += f'  {lang}: "' + tt_type_name['PlaceName'][f"Name_{lang}"] + '"\n'
     if entry.get("mapid", None) and tt_bg_entry:
-        header_data += getMapImages(mapid=entry["mapid"], contentname=tt_type_name["Name_de"])
+        header_data += getMapImages(mapid=entry["mapid"], contentname=tt_type_name['PlaceName']["Name_de"])
     header_data += 'sortid: ' + entry["sortid"] + '\n'
     header_data += get_lvl_data(entry)
     # quests
@@ -504,10 +472,11 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
             if found:
                 header_data += f'    {x}: "' + data[0] + '"\n'
     # get bgmusic
-    instancecontent_id = contentfindercondition.get(cfc_key, {}).get('Content', "").replace("InstanceContent#", "")
+
+    instancecontent_id = contentfindercondition.get(cfc_key, {}).get('Content', {}).get('row_id', "")
     if instancecontent_id not in  ["0", "", None]:
-        instancecontent_entry = instancecontent[instancecontent_id]
-        bgm = instancecontent_entry["BGM"].replace(".scd", ".ogg")
+        instancecontent_entry = instancecontent[str(instancecontent_id)]
+        bgm = instancecontent_entry["BGM"]['File'].replace(".scd", ".ogg")
         if not bgm == "":
             header_data += f'bgmusic: "{bgm}"\n'
     return header_data, entry
@@ -536,7 +505,6 @@ def getItemsList(gs_items):
 
 def addContentZoneIdToHeader(contentzoneid, entry, content_translations):
     global contentfindercondition
-    global contentfindercondition_trans
     cmt = None
     header_data = ""
     working_key = ""
@@ -545,12 +513,12 @@ def addContentZoneIdToHeader(contentzoneid, entry, content_translations):
         for zone in contentzoneid:
             header_data += '  - id: ' + zone + '\n'
     for key, value in contentfindercondition.items():
-        if contentfindercondition_trans[key]['Name_de'] == entry['titles']['de']:
+        if contentfindercondition[key]['Name_de'] == entry['titles']['de']:
             working_key = key
-            cmt = value['ContentMemberType']
-            if "InstanceContent" not in value['Content']:
+            cmt = value
+            if "InstanceContent" != value['Content']['sheet']:
                 continue
-            contentid = value['Content'].replace("InstanceContent#", "")
+            contentid = value['Content']['row_id']
             if not contentid:
                 continue
             working_key = key
@@ -599,12 +567,11 @@ def addGroupCollections(cmt, entry):
             return header_data
 
     if not skip_lookoup:
-        wanted_id = cmt.split("#")[1]
-        cmt_entry = contentmembertype[f"{wanted_id}"]
-        healerp = cmt_entry['HealersPerParty']
-        tankp = cmt_entry['TanksPerParty']
-        meleep = cmt_entry['MeleesPerParty']
-        rangep = cmt_entry['RangedPerParty']
+        print(cmt)
+        healerp = cmt['ContentMemberType']['HealersPerParty']
+        tankp = cmt['ContentMemberType']['TanksPerParty']
+        meleep = cmt['ContentMemberType']['MeleesPerParty']
+        rangep = cmt['ContentMemberType']['RangedPerParty']
 
     if int(healerp) + int(tankp) + int(meleep) + int(rangep) > 0:
         header_data += "group:\n"
