@@ -3,14 +3,12 @@ import os
 from ffxiv_aku import *
 from datetime import datetime, date
 
-LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES = ["de", "en", "fr", "ja"]
 LANGUAGES_MAPPING = {
     "de": "de-DE",
     "en": "en-US",
     "fr": "fr-FR",
-    "ja": "ja-JP",
-    "cn": "cn-CN",
-    "ko": "ko-KR"
+    "ja": "ja-JP"
 }
 klass_translations = None
 def get_class_translation_data():

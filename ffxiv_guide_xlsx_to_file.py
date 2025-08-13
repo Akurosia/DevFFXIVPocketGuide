@@ -10,7 +10,6 @@ import traceback
 # traceback.print_exc()
 from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, storeFilesInTmp, sortJsonData, print_color_red
 os.system('cls')
-import python_scripts.generatePatch as gp
 from python_scripts.header import addHeader
 from python_scripts.guide import addGuide
 from python_scripts.fileimports import logdata, logdata_lower
@@ -20,7 +19,7 @@ from python_scripts.custom_logger import getLogger
 from python_scripts.xlsx_entry_helper import get_header_from_xlsx, getEntryData, getPrevAndNextContentOrder, read_xlsx_file, Worksheet, excel_to_json
 import python_scripts.convert_skills_to_guide_form as csgf
 import python_scripts.generateLinks as gl
-import python_scripts.airship_and_submarine as aas
+import python_scripts.generatePatch as gp
 import python_scripts.generateHousingMissions as ghm
 import python_scripts.get_achivments as ga
 import python_scripts.getBlueSideQuestData as gbsq
@@ -28,6 +27,7 @@ import python_scripts.FFXIV_Charachter_Config as fcc
 import python_scripts.get_item_sets as gis
 import python_scripts.treasurespot as ts
 import python_scripts.quests as quests
+import python_scripts.airship_and_submarine as aas
 
 logger: Logger = getLogger(50)
 disable_green_print: bool = True

@@ -3,18 +3,19 @@ from ffxiv_aku import *
 from PIL import Image, ImageDraw, ImageFont
 try:
     from .convert_skills_to_guide_form_helper.helper import LANGUAGES, LANGUAGES_MAPPING
+    from .fileimports import *
 except:
     from convert_skills_to_guide_form_helper.helper import LANGUAGES, LANGUAGES_MAPPING
+    from fileimports import *
 
-treasurespot = loadDataTheQuickestWay("TreasureSpot.json")
-treasurehuntrank = loadDataTheQuickestWay("TreasureHuntRank.json")
-treasurehunttexture = loadDataTheQuickestWay("TreasureHuntTexture.json")
-level = loadDataTheQuickestWay("Level.json")
-ttype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
-items  = loadDataTheQuickestWay("item_all.json", translate=True)
-versions = get_any_Versiondata()
-placename = loadDataTheQuickestWay("placename_all.json", translate=True)
-contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
+#treasurespot = loadDataTheQuickestWay("TreasureSpot.json")
+#treasurehuntrank = loadDataTheQuickestWay("TreasureHuntRank.json")
+#treasurehunttexture = loadDataTheQuickestWay("TreasureHuntTexture.json")
+
+#ttype = loadDataTheQuickestWay("territorytype_all.json", translate=True)
+#items  = loadDataTheQuickestWay("item_all.json", translate=True)
+#placename = loadDataTheQuickestWay("placename_all.json", translate=True)
+#contentfindercondition = loadDataTheQuickestWay("contentfindercondition_all.json", translate=True)
 map_translations = None
 
 def cache_results(func):
@@ -215,7 +216,7 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
         patch = active_treasuremap.get("Patch", "2.0")
         patch = patch + "0" if len(patch) <= 3 else patch
         patch2 = patch[:-1] if len(patch) > 3 and patch.endswith("0") else patch
-        _date = versions[patch]["date"].replace(".", "-")
+        _date = patchversions[patch]["date"].replace(".", "-")
         _post = '---\n'
         _post += 'wip: "True"\n'
         _post += f'id: "{int(active_treasuremap['0xID'], 16)}"\n'
@@ -227,14 +228,14 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
         _post += 'page_type: guide\n'
         _post += 'categories: "treasuremap"\n'
         _post += 'instanceType: "treasuremap"\n'
-        _post += f'date: "{versions[patch]["date"]}"\n'
+        _post += f'date: "{patchversions[patch]["date"]}"\n'
         _post += f'patchNumber: "{patch2}"\n'
-        _post += f'patchName: "{versions[patch]["name"]}"\n'
-        _post += f'expac: "{versions[patch]["pname"]}"\n'
+        _post += f'patchName: "{patchversions[patch]["name"]}"\n'
+        _post += f'expac: "{patchversions[patch]["pname"]}"\n'
         _post += 'image: "/assets/img/content/klassen/Chocobo.webp"\n'
         _post += 'terms:\n'
         _post += '    - term: "TreasureMaps"\n'
-        _post += f'    - term: "{versions[patch]["name"]}"\n'
+        _post += f'    - term: "{patchversions[patch]["name"]}"\n'
         _post += f'sortid: {tmap}\n'
         _post += f'order: {tmap}\n'
         plvl = plevelmax[patch[0]]
@@ -285,7 +286,7 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
                 print(f"Saved modified image: {output_path}{placename}.webp")
         _post += '---'
 
-        _id = f"0{patch[0]}-{versions[patch]["pname"]}"
+        _id = f"0{patch[0]}-{patchversions[patch]["pname"]}"
         if not os.path.exists(f"../_posts/treasuremaps/{_id}/"):
             os.makedirs(f"../_posts/treasuremaps/{_id}/")
         #write _post file
@@ -300,13 +301,13 @@ def run():
     coords_later: dict[str, dict[str, Any]] = {}
     map_ = ""
     for key, value in treasurespot.items():
-        lev = value['Location'][6:]
-        if not lev:
+        lev = value['Location'].get('row_id')
+        if not lev or lev == 0:
             continue
-        k, sub_id = key.split(".")
+        k = lev
 
-        coords: dict[str, dict[str, Any]] = getLevel(lev, pixel=True)
-        map_ = level[lev]['Map']
+        coords: dict[str, dict[str, Any]] = getLevel(str(lev), pixel=True)
+        map_ = str(level[lev]['Map']['row_id'])
 
         if not coords_later.get(k, None):
             coords_later[k] = {}

@@ -1,10 +1,14 @@
 from typing import Any
 from ffxiv_aku import *
 from collections import deque
+try:
+    from .fileimports import *
+except:
+    from fileimports import *
 
-quests = loadDataTheQuickestWay("Quest.de.json")
-journalgenre = loadDataTheQuickestWay("JournalGenre.de.json")
-quests_raw = loadDataTheQuickestWay("Quest.de.json", exd = "raw-exd-all")
+#quests = loadDataTheQuickestWay("Quest.de.json")
+#journalgenre = loadDataTheQuickestWay("JournalGenre.de.json")
+#quests_raw = loadDataTheQuickestWay("Quest.de.json", exd = "raw-exd-all")
 
 result = {}
 nextQuest = {}
@@ -78,23 +82,23 @@ def generate_new_quest_data() -> None:
     #for quest_id in ["70295"]:
         quest = quests[quest_id]
         data = quests[quest_id]#['66282']
-        data_raw = quests_raw[quest_id]#['66282']
 
         try:
             quest_ident = quest_id
             #quest_ident = data['Name']
+            print(data)
             newQuest[quest_ident] = {
-                "Name": data['Name'],
-                "PreviousQuest": { k:str(data_raw['PreviousQuest'][k]) for k, v in data['PreviousQuest'].items() if not v == ""},
+                "Name": data['Name_de'],
+                "PreviousQuest": { k:v['row_id'] for k, v in data['PreviousQuest'].items() if not v == ""},
                 "NextQuest": [],
                 "Icon": {
                     "Banner": fix_icons(str(data['Icon']['Value']).replace('.tex', "_hr1.webp")),
                     "Special": fix_icons(str(data['Icon']['Special']).replace('.tex', "_hr1.webp"))
                 },
                 "JournalGenre": {
-                    "Icon": fix_icons(str(journalgenre[data_raw['JournalGenre']]['Icon']).replace('.tex', "_hr1.webp")),
-                    "JournalCategory": journalgenre[data_raw['JournalGenre']]['JournalCategory'],
-                    "Name": journalgenre[data_raw['JournalGenre']]['Name']
+                    "Icon": fix_icons(str(journalgenre[data['JournalGenre']]['Icon']).replace('.tex', "_hr1.webp")),
+                    "JournalCategory": journalgenre[data['JournalGenre']['row_id']]['JournalCategory'],
+                    "Name": journalgenre[data['JournalGenre']['row_id']]['Name']
                 },
                 "ActionReward": data['Action']['Reward'],
                 "Expansion": data['Expansion'],
@@ -112,7 +116,7 @@ def generate_new_quest_data() -> None:
             if not data['Issuer']['Location'] == "":
                 newQuest[quest_ident]["Issuer"]["Location"] = getLevel(data['Issuer']['Location'])
         except Exception as e:
-            print(data['Name'])
+            print(data['Name_de'])
             print(traceback.format_exc())
             ...
 

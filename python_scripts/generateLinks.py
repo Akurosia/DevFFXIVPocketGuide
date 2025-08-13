@@ -61,7 +61,8 @@ def links():
 
 
 def run():
-    print(os.chdir(".."))
+    os.chdir("..")
+    print(os.getcwd())
     links()
 
 

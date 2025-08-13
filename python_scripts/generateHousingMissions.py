@@ -12,14 +12,12 @@ try:
 except:
     data = readJsonFile(r"airship_submarine.json")
 
-LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES = ["de", "en", "fr", "ja"]
 LANGUAGES_MAPPING = {
     "de": "de-DE",
     "en": "en-US",
     "fr": "fr-FR",
     "ja": "ja-JP",
-    "cn": "cn-CN",
-    "ko": "ko-KR"
 }
 klass_translations = None
 def get_class_translation_data():

@@ -7,14 +7,12 @@ try:
 except:
     from convert_skills_to_guide_form_helper.helper import getImage
 
-LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES = ["de", "en", "fr", "ja"]
 LANGUAGES_MAPPING = {
     "de": "de-DE",
     "en": "en-US",
     "fr": "fr-FR",
     "ja": "ja-JP",
-    "cn": "cn-CN",
-    "ko": "ko-KR"
 }
 
 translations = {
@@ -22,8 +20,6 @@ translations = {
     "en": {},
     "fr": {},
     "ja": {},
-    "cn": {},
-    "ko": {}
 }
 
 def translate_content_files(entry):
