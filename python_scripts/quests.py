@@ -3,8 +3,10 @@ from ffxiv_aku import *
 from collections import deque
 try:
     from .fileimports import *
+    from .helper import *
 except:
     from fileimports import *
+    from helper import *
 
 #quests = loadDataTheQuickestWay("Quest.de.json")
 #journalgenre = loadDataTheQuickestWay("JournalGenre.de.json")
@@ -54,25 +56,27 @@ def fix_icons(icon: str) -> str:
 
 def addReward(data: dict[str, Any]) -> list[Any]:
     result = []
-    for k, v in data['ItemCount']['Reward'].items():
-        if v == "0":
+    for i, k in enumerate(data['ItemCountReward']):
+        if k == 0:
+            continue
+        if data['Reward'][i]['sheet'] != "Item":
             continue
         result.append({
-            "Item": data['Item']['Reward'][k],
-            "Amount": v
+            "Item": data['Reward'][i]['Name_de'],
+            "Amount": str(k)
         })
     return result
 
 def addOptionalReward(data: dict[str, Any]) -> list[Any]:
     result = []
-    for k, v in data['OptionalItemCount']['Reward'].items():
-        if v == "0":
+    for i, k in enumerate(data['OptionalItemCountReward']):
+        if k == 0:
             continue
         result.append({
-            "Item": data['OptionalItem']['Reward'][k],
-            "Amount": v,
-            "IsHQ": data['OptionalItemIsHQ']['Reward'][k],
-            "Stain": data['OptionalItemStain']['Reward'][k]
+            "Item": data['OptionalItemReward'][i]['Name_de'],
+            "Amount": str(k),
+            "IsHQ": str(data['OptionalItemIsHQReward'][i]).capitalize(),
+            "Stain": data['OptionalItemStainReward'][i]['Name_de']
         })
     return result
 
@@ -85,48 +89,49 @@ def generate_new_quest_data() -> None:
 
         try:
             quest_ident = quest_id
-            #quest_ident = data['Name']
-            print(data)
+            if quest_id == "65541":
+                print_pretty_json(data)
             newQuest[quest_ident] = {
                 "Name": data['Name_de'],
-                "PreviousQuest": { k:v['row_id'] for k, v in data['PreviousQuest'].items() if not v == ""},
+                "PreviousQuest": { i:str(v['row_id']) for i, v in enumerate(data['PreviousQuest']) if not v.get('row_id', "") == ""},
                 "NextQuest": [],
                 "Icon": {
-                    "Banner": fix_icons(str(data['Icon']['Value']).replace('.tex', "_hr1.webp")),
-                    "Special": fix_icons(str(data['Icon']['Special']).replace('.tex', "_hr1.webp"))
+                    "Banner": fix_icons(str(data['Icon']['path']).replace('.tex', "_hr1.webp")),
+                    "Special": fix_icons(str(data['IconSpecial']['path']).replace('.tex', "_hr1.webp"))
                 },
                 "JournalGenre": {
-                    "Icon": fix_icons(str(journalgenre[data['JournalGenre']]['Icon']).replace('.tex', "_hr1.webp")),
-                    "JournalCategory": journalgenre[data['JournalGenre']['row_id']]['JournalCategory'],
-                    "Name": journalgenre[data['JournalGenre']['row_id']]['Name']
+                    "Icon": fix_icons(str(journalgenre[str(data['JournalGenre']['row_id'])]['Icon']['path']).replace('.tex', "_hr1.webp")),
+                    "JournalCategory": journalgenre[str(data['JournalGenre']['row_id'])]['JournalCategory']['Name_de'],
+                    "Name": journalgenre[str(data['JournalGenre']['row_id'])]['Name_de']
                 },
-                "ActionReward": data['Action']['Reward'],
-                "Expansion": data['Expansion'],
-                "GilReward": data['GilReward'],
-                "PlaceName": data['PlaceName'],
+                "ActionReward": data['ActionReward']['Name_de'],
+                "Expansion": data['Expansion']['Name_de'],
+                "GilReward": str(data['GilReward']),
+                "PlaceName": data['PlaceName']['Name_de'],
                 "Issuer": {
                     "Location": None,
-                    "NPC": data['Issuer']['Start']
+                    "NPC": data['IssuerStart'].get('Singular_de', "")
                 },
-                "ItemRewardType": data['ItemRewardType'],
-                "Other_Reward.Name":data['Other']['Reward'],
+                "ItemRewardType": str(data['ItemRewardType']),
+                "Other_Reward.Name":data['OtherReward']['Name_de'],
                 "Reward": addReward(data),
                 "OptionalReward": addOptionalReward(data)
             }
-            if not data['Issuer']['Location'] == "":
-                newQuest[quest_ident]["Issuer"]["Location"] = getLevel(data['Issuer']['Location'])
+            if not data['IssuerLocation'].get("row_id", 0) == 0:
+                newQuest[quest_ident]["Issuer"]["Location"] = getCoordsFromLocationLevel(data['IssuerLocation'])
         except Exception as e:
-            print(data['Name_de'])
+            #print(data)
             print(traceback.format_exc())
             ...
+            asdf
 
     #printQuest(data)
     for quest_name, quest in newQuest.items():
         for k, v in quest['PreviousQuest'].items():
-            if v == "0":
+            if v == 0:
                 continue
-            if not quest_name in newQuest[v]['NextQuest']:
-                newQuest[v]['NextQuest'].append(quest_name)
+            if not quest_name in newQuest[str(v)]['NextQuest']:
+                newQuest[str(v)]['NextQuest'].append(quest_name)
 
     # fix first quest icon fpr js script later on
     newQuest['65575']['JournalGenre']['Icon'] = "ui/icon/071000/071201_hr1.webp"
