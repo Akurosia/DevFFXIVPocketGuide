@@ -80,3 +80,7 @@ journalgenre: FFXIV_DATA = readJsonFile(BASEPATH + r"\JournalGenre.json")
 
 #maps = readJsonFile(BASEPATH + r"\Map.json")
 aethercurrent = readJsonFile(BASEPATH + r"\AetherCurrent.json")
+
+achivment = readJsonFile(BASEPATH + r"\Achievement.json")
+achivmentkind = readJsonFile(BASEPATH + r"\AchievementKind.json")
+achivmentcategory = readJsonFile(BASEPATH + r"\AchievementCategory.json")

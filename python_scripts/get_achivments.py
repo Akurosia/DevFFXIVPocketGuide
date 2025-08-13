@@ -1,11 +1,14 @@
-from ffxiv_aku import get_any_Logdata, print_color_yellow, loadDataTheQuickestWay, print_color_red, pretty_json, print_pretty_json, writeJsonFile
+
 import copy
 import os
 import traceback
+from ffxiv_aku import get_any_Logdata, print_color_yellow, loadDataTheQuickestWay, print_color_red, pretty_json, print_pretty_json, writeJsonFile
 try:
     from .convert_skills_to_guide_form_helper.helper import getImage
+    from .helper import *
 except:
     from convert_skills_to_guide_form_helper.helper import getImage
+    from helper import *
 
 LANGUAGES = ["de", "en", "fr", "ja"]
 LANGUAGES_MAPPING = {
@@ -43,51 +46,45 @@ def create_translation_files():
 
 def get_achivment_kind():
     global translations
-    achivmentkind = loadDataTheQuickestWay("AchievementKind", translate=False)
-    achivmentkind_trans = loadDataTheQuickestWay("AchievementKind", translate=True)
     kind = {}
     for key, value in achivmentkind.items():
-        if not value['Name'] == "":
-            kind[int(key)] = value['Name']
+        if not value['Name_de'] == "":
+            kind[int(key)] = value['Name_de']
 
     for x in kind:
         for lang in LANGUAGES:
             if not translations[lang].get("achievments", None):
                 translations[lang]["achievments"] = {}
-            translations[lang]["achievments"][f"Summary_Achievment_{achivmentkind_trans[str(x)]['Name_de']}_MainCat"] = achivmentkind_trans[str(x)][f'Name_{lang}']
-            translations[lang]["achievments"][f"Summary_Achievment_{achivmentkind_trans[str(x)]['Name_de']}_MainCat"] = achivmentkind_trans[str(x)][f'Name_{lang}']
+            translations[lang]["achievments"][f"Summary_Achievment_{achivmentkind[str(x)]['Name_de']}_MainCat"] = achivmentkind[str(x)][f'Name_{lang}']
+            translations[lang]["achievments"][f"Summary_Achievment_{achivmentkind[str(x)]['Name_de']}_MainCat"] = achivmentkind[str(x)][f'Name_{lang}']
     return kind
 
 
 def get_achivment_categories():
     global translations
-    achivmentcategory = loadDataTheQuickestWay("AchievementCategory", translate=False)
-    achivmentcategory_trans = loadDataTheQuickestWay("AchievementCategory", translate=True)
     cat = {}
     for key, value in achivmentcategory.items():
-        if value['AchievementKind'] == "":
+        if value['AchievementKind'].get('Name_de', '') == "":
             continue
-        if not cat.get(value['AchievementKind'], None):
-            cat[value['AchievementKind']] = {}
-        cat[value['AchievementKind']][int(value['Order'])] = { "Name": value['Name'], "achievements": {} }
+        if not cat.get(value['AchievementKind'].get('Name_de', ''), None):
+            cat[value['AchievementKind'].get('Name_de', '')] = {}
+        cat[value['AchievementKind'].get('Name_de', '')][int(value['AchievementKind']['Order'])] = { "Name": value['Name_de'], "achievements": {} }
         for lang in LANGUAGES:
             if not translations[lang].get("achievments", None):
                 translations[lang]["achievments"] = {}
-            translations[lang]["achievments"][f"Summary_Achievment_{achivmentcategory_trans[key]['Name_de']}_SubCat"] = achivmentcategory_trans[key][f'Name_{lang}']
-            translations[lang]["achievments"][f"Summary_Achievment_{achivmentcategory_trans[key]['Name_de']}_SubCat"] = achivmentcategory_trans[key][f'Name_{lang}']
+            translations[lang]["achievments"][f"Summary_Achievment_{achivmentcategory[key]['Name_de']}_SubCat"] = achivmentcategory[key][f'Name_{lang}']
+            translations[lang]["achievments"][f"Summary_Achievment_{achivmentcategory[key]['Name_de']}_SubCat"] = achivmentcategory[key][f'Name_{lang}']
     return cat
 
 
 def get_achivment_per_categorie(basic_cat):
-    achivment = loadDataTheQuickestWay("Achievement", translate=False)
-    trans_achivment = loadDataTheQuickestWay("Achievement", translate=True)
     cat = copy.deepcopy(basic_cat)
     #print_pretty_json(cat)
     for key, value in achivment.items():
         for cat_name, cat_data in cat.items():
             for sub_category_id, sub_category_data in cat_data.items():
-                if value['AchievementCategory'] == sub_category_data['Name']:
-                    order_id = float(value['Order'])
+                if value['AchievementCategory']['Name_de'] == sub_category_data['Name']:
+                    order_id = float(value['AchievementCategory']['Order'])
                     if order_id == 0.0:
                         continue
                     while cat[cat_name][sub_category_id]['achievements'].get(order_id, None):
@@ -97,20 +94,16 @@ def get_achivment_per_categorie(basic_cat):
 
                     cat[cat_name][sub_category_id]['achievements'][order_id] = {
                         "name": {
-                            'de': trans_achivment[key]['Name_de'],
-                            'en': trans_achivment[key]['Name_en'],
-                            'fr': trans_achivment[key]['Name_fr'],
-                            'ja': trans_achivment[key]['Name_ja'],
-                            'cn': trans_achivment[key]['Name_cn'],
-                            'ko': trans_achivment[key]['Name_ko']
+                            'de': achivment[key]['Name_de'],
+                            'en': achivment[key]['Name_en'],
+                            'fr': achivment[key]['Name_fr'],
+                            'ja': achivment[key]['Name_ja'],
                         },
                         "description": {
-                            'de': trans_achivment[key]['Description_de'],
-                            'en': trans_achivment[key]['Description_en'],
-                            'fr': trans_achivment[key]['Description_fr'],
-                            'ja': trans_achivment[key]['Description_ja'],
-                            'cn': trans_achivment[key]['Description_cn'],
-                            'ko': trans_achivment[key]['Description_ko']
+                            'de': achivment[key]['Description_de'],
+                            'en': achivment[key]['Description_en'],
+                            'fr': achivment[key]['Description_fr'],
+                            'ja': achivment[key]['Description_ja'],
                         },
                         "order": order_id,
                         "icon": getImage(value['Icon']),
@@ -154,15 +147,11 @@ def write_yaml_data_for_guide(kind, a_data):
                     doc_data += f'     en: "{v["name"]["en"]}"\n'
                     doc_data += f'     fr: "{v["name"]["fr"]}"\n'
                     doc_data += f'     ja: "{v["name"]["ja"]}"\n'
-                    doc_data += f'     cn: "{v["name"]["cn"]}"\n'
-                    doc_data += f'     ko: "{v["name"]["ko"]}"\n'
                     doc_data += '   description:\n'
                     doc_data += f'     de: "{v["description"]["de"]}"\n'
                     doc_data += f'     en: "{v["description"]["en"]}"\n'
                     doc_data += f'     fr: "{v["description"]["fr"]}"\n'
                     doc_data += f'     ja: "{v["description"]["ja"]}"\n'
-                    doc_data += f'     cn: "{v["description"]["cn"]}"\n'
-                    doc_data += f'     ko: "{v["description"]["ko"]}"\n'
                     doc_data += f'   main_category: "{main_category}"\n'
                     doc_data += f'   sub_category: "{sub_category}"\n'
                     doc_data += f'   icon: "{getImage(icon)}"\n'
