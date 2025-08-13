@@ -1,21 +1,18 @@
 from ffxiv_aku import *
 try:
     from .convert_skills_to_guide_form_helper.helper import getImage
+    from .helper import *
 except:
     from convert_skills_to_guide_form_helper.helper import getImage
+    from helper import *
 
-items: dict[str, dict[str, str]] = loadDataTheQuickestWay("item_all.json", translate=True)
-mssi: dict[str, Any] = loadDataTheQuickestWay("MirageStoreSetItem.json", exd="raw-exd-all")
-mssil: dict[str, Any] = loadDataTheQuickestWay("MirageStoreSetItemLookup.json")
 
-LANGUAGES: list[str] = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES: list[str] = ["de", "en", "fr", "ja"]
 LANGUAGES_MAPPING: dict[str, str] = {
     "de": "de-DE",
     "en": "en-US",
     "fr": "fr-FR",
     "ja": "ja-JP",
-    "cn": "cn-CN",
-    "ko": "ko-KR"
 }
 klass_translations = None
 def get_class_translation_data():
@@ -43,19 +40,20 @@ id_to_gear: dict[str, str] = {
     '8': '8_Ring'
 }
 
-def add_element(col_k: str, col_id: dict[str, str], row: str, r: dict[str, list[str]]) -> tuple[str, dict[str, list[str]]]:
+def add_element(col_k: str, data: dict[str, str], row: str, r: dict[str, list[str]]) -> tuple[str, dict[str, list[str]]]:
     global klass_translations
+    col_id = str(data.get('row_id', 0))
     if col_id == "0":
         row += "        <td></td>\n"
         return row, r
     i_name: str
     i_icon: str
-    i_name, i_icon = [items[col_id]['Name_de'], getImage(items[col_id]['Icon'])]
+    i_name, i_icon = [data['Name_de'], getImage(data['Icon']['path'])]
     r[id_to_gear[col_k]] = [i_name, i_icon]
     for lang in LANGUAGES:
-        klass_translations[lang][f"Set_Item_{col_id}"] = items[col_id][f'Name_{lang}']
+        klass_translations[lang][f"Set_Item_{col_id}"] = data[f'Name_{lang}']
     href = f'<a style="color: #007bff" data-translate="Set_Item_{col_id}" target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#item/{col_id}">{i_name}</a>'
-    row += f"        <td id='{i_name}' onclick='myFunction(this)'><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='/assets/img/game_assets{i_icon}' alt='{i_name}'></td>\n"
+    row += f"        <td id='{i_name}' onclick='myFunction(this)'><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='{i_icon}' alt='{i_name}'></td>\n"
     return row, r
 
 def run():
@@ -72,22 +70,32 @@ def run():
     html += "    <thead> <tr> <th>Set</th> <th>Kopf</th>  <th>Body</th>  <th>Hände</th>  <th>Hose</th>  <th>Schuhe</th>  <th>Ohrringe</th>  <th>Halskette</th>  <th>Armreif</th>  <th>Ring</th> <th>GetFrom</th>  </tr> </thead>\n"
     html += "    <tbody>\n"
     result: dict[str, str] = {}
-    for key, value in mssil.items():
-        for k, _set in value['MirageStoreSetItem'].items():
-            setid = _set.replace("MirageStoreSetItem#", "")
+    for key, value in miragestoresetitemlookup.items():
+        for mirageset in value['Item']:
+            if mirageset.get('row_id', 0) == 0:
+                continue
+            setid = str(mirageset.get('row_id', 0))
             if not setid in setcompleted:
                 setcompleted.append(setid)
-                name, icon = [items[setid]['Name_de'], getImage(items[setid]['Icon'])]
+                name, icon = [mirageset['Name_de'], getImage(mirageset['Icon']['path'])]
                 for lang in LANGUAGES:
-                    klass_translations[lang][f"Set_{setid}"] = items[setid][f'Name_{lang}']
+                    klass_translations[lang][f"Set_{setid}"] = mirageset[f'Name_{lang}']
                 row = "      <tr>\n"
                 href = f'<a style="color: #007bff" data-translate="Set_{setid}" target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#item/{setid}">{name}</a>'
-                row += f"        <td id='{name}' onclick='myFunction(this)' ><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='/assets/img/game_assets{icon}' alt='{name}'></td>\n"
+                row += f"        <td id='{name}' onclick='myFunction(this)' ><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='{icon}' alt='{name}'></td>\n"
                 r = {}
-                for col_k, col_id in mssi[setid]["Item"].items():
-                    row, r = add_element(col_k, col_id, row, r)
+                row, r = add_element("0", miragestoresetitem[setid]['Head'], row, r)
+                row, r = add_element("1", miragestoresetitem[setid]['Body'], row, r)
+                row, r = add_element("2", miragestoresetitem[setid]['Hands'], row, r)
+                row, r = add_element("3", miragestoresetitem[setid]['Legs'], row, r)
+                row, r = add_element("4", miragestoresetitem[setid]['Feet'], row, r)
 
-                #row, r = add_element("col_10", mssi[setid]["col_10"], row, r)
+                row, r = add_element("5", miragestoresetitem[setid]['Earrings'], row, r)
+                row, r = add_element("6", miragestoresetitem[setid]['Necklace'], row, r)
+                row, r = add_element("7", miragestoresetitem[setid]['Bracelets'], row, r)
+                row, r = add_element("8", miragestoresetitem[setid]['Ring'], row, r)
+
+                #row, r = add_element("col_10", miragestoresetitem[setid]["col_10"], row, r)
                 row += "        <td></td>\n"
                 row += "      </tr>\n"
                 if not result.get(name, None):

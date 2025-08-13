@@ -79,8 +79,12 @@ treasurehunttexture: FFXIV_DATA = readJsonFile(BASEPATH + r"\TreasureHuntTexture
 journalgenre: FFXIV_DATA = readJsonFile(BASEPATH + r"\JournalGenre.json")
 
 #maps = readJsonFile(BASEPATH + r"\Map.json")
-aethercurrent = readJsonFile(BASEPATH + r"\AetherCurrent.json")
+aethercurrent: FFXIV_DATA = readJsonFile(BASEPATH + r"\AetherCurrent.json")
 
-achivment = readJsonFile(BASEPATH + r"\Achievement.json")
-achivmentkind = readJsonFile(BASEPATH + r"\AchievementKind.json")
-achivmentcategory = readJsonFile(BASEPATH + r"\AchievementCategory.json")
+achivment: FFXIV_DATA = readJsonFile(BASEPATH + r"\Achievement.json")
+achivmentkind: FFXIV_DATA = readJsonFile(BASEPATH + r"\AchievementKind.json")
+achivmentcategory: FFXIV_DATA = readJsonFile(BASEPATH + r"\AchievementCategory.json")
+
+
+miragestoresetitem: FFXIV_DATA = readJsonFile(BASEPATH + r"\MirageStoreSetItem.json")
+miragestoresetitemlookup: FFXIV_DATA = readJsonFile(BASEPATH + r"\MirageStoreSetItemLookup.json")
