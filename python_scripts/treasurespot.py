@@ -2,11 +2,14 @@ from PIL.ImageFile import ImageFile
 from ffxiv_aku import *
 from PIL import Image, ImageDraw, ImageFont
 try:
+
+    from .helper import getCoordsFromLocationLevel
     from .convert_skills_to_guide_form_helper.helper import LANGUAGES, LANGUAGES_MAPPING
     from .fileimports import *
 except:
     from convert_skills_to_guide_form_helper.helper import LANGUAGES, LANGUAGES_MAPPING
     from fileimports import *
+    from helper import getCoordsFromLocationLevel
 
 #treasurespot = loadDataTheQuickestWay("TreasureSpot.json")
 #treasurehuntrank = loadDataTheQuickestWay("TreasureHuntRank.json")
@@ -97,7 +100,7 @@ def add_watermark(image, watermark_text, font_path="arial.ttf", font_size=30):
 
 def get_croped_image(_id: str = "0"):
     # Load the overlay image (e.g., icon or stamp)
-    file_name: str = treasurehunttexture[_id]['col_0'].lower()
+    file_name: str = treasurehunttexture[_id]['Unknown0'].lower()
     overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.tex.png"  # Replace with your overlay image path
     overlay_image = Image.open(overlay_path)
     _, height = overlay_image.size
@@ -113,7 +116,7 @@ def get_croped_image(_id: str = "0"):
 
 def get_x_image(_id: str = "0"):
     # Load the overlay image (e.g., icon or stamp)
-    file_name: str = treasurehunttexture[_id]['col_0'].lower()
+    file_name: str = treasurehunttexture[_id]['Unknown0'].lower()
     overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.tex.png"  # Replace with your overlay image path
     overlay_image = Image.open(overlay_path)
 
@@ -202,7 +205,34 @@ def code_for_image(overlay_id, posible_maps, location, item_name):
         _extra.append(chr(65+i))
     return _extra, full_placename, output_path, modified_image, placename
 
-
+GETPATCHDATA = {
+    "Timeworn Leather Map":             ("2.10", "2.1"),
+    "Timeworn Goatskin Map":            ("2.10", "2.1"),
+    "Timeworn Toadskin Map":            ("2.10", "2.1"),
+    "Timeworn Boarskin Map":            ("2.10", "2.1"),
+    "Timeworn Peisteskin Map":          ("2.10", "2.1"),
+    "Mysterious Map":                   ("2.28", "2.28"),
+    "Unhidden Leather Map":             ("2.30", "2.3"),
+    "Thorne Dynasty Map":               ("2.51", "2.51"),
+    "Timeworn Archaeoskin Map":         ("3.00", "3.0"),
+    "Timeworn Wyvernskin Map":          ("3.00", "3.0"),
+    "Timeworn Dragonskin Map":          ("3.00", "3.0"),
+    "Timeworn Gaganaskin Map":          ("4.00", "4.0"),
+    "Timeworn Gazelleskin Map":         ("4.00", "4.0"),
+    "Timeworn Thief's Map":             ("4.10", "4.1"),
+    "Seemingly Special Timeworn Map":   ("4.58", "4.58"),
+    "Timeworn Gliderskin Map":          ("5.00", "5.0"),
+    "Timeworn Zonureskin Map":          ("5.00", "5.0"),
+    "Ostensibly Special Timeworn Map":  ("5.50", "5.5"),
+    "Timeworn Saigaskin Map":           ("6.00", "6.0"),
+    "Timeworn Kumbhiraskin Map":        ("6.00", "6.0"),
+    "Timeworn Ophiotauroskin Map":      ("6.30", "6.3"),
+    "Potentially Special Timeworn Map": ("6.30", "6.3"),
+    "Conceivably Special Timeworn Map": ("6.40", "6.4"),
+    "Timeworn Br'aaxskin Map":          ("7.00", "7.0"),
+    "Timeworn Loboskin Map":            ("7.00", "7.0"),
+    "Timeworn Gargantuaskin Map":       ("7.30", "7.3"),
+}
 def show_image(circle_coords: dict[str, dict[str, Any]]):
     global map_translations
     for tmap, locations in circle_coords.items():
@@ -210,16 +240,15 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
         #    continue
         output_path: str = ""
         placename: str = ""
-        overlay_id = treasurehuntrank[tmap]['TreasureHuntTexture']
-        item_name = treasurehuntrank[tmap]['ItemName']
+        overlay_id = str(treasurehuntrank[tmap]['TreasureHuntTexture'])
+        item_name = treasurehuntrank[tmap]['ItemName']['Name_de']
         active_treasuremap = get_item(item_name)
-        patch = active_treasuremap.get("Patch", "2.0")
-        patch = patch + "0" if len(patch) <= 3 else patch
-        patch2 = patch[:-1] if len(patch) > 3 and patch.endswith("0") else patch
+        patch , patch2 = GETPATCHDATA[active_treasuremap["Name_en"]]
+
         _date = patchversions[patch]["date"].replace(".", "-")
         _post = '---\n'
         _post += 'wip: "True"\n'
-        _post += f'id: "{int(active_treasuremap['0xID'], 16)}"\n'
+        _post += f'id: "{int(active_treasuremap['row_id'])}"\n'
         _post += 'title:\n'
         for lang in LANGUAGES:
             _post += f'  {lang}: "{active_treasuremap["Name_"+lang]}"\n'
@@ -244,13 +273,14 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
         #if treasurehuntrank[tmap]["InstanceMap"]:
         #    _post += f'instancemap: {treasurehuntrank[tmap]["InstanceMap"]}\n'
         _post += f'maxpartysize: {treasurehuntrank[tmap]["MaxPartySize"]}\n'
-        if treasuredungeons.get(str(int(active_treasuremap['0xID'], 16)), None):
+        if treasuredungeons.get(str(int(active_treasuremap['row_id'])), None):
             _post += f'treasuredungeons:\n'
-            for k in treasuredungeons[str(int(active_treasuremap['0xID'], 16))]:
+            for k in treasuredungeons[str(int(active_treasuremap['row_id']))]:
                 cfc = get_contentfindercondition(k)
                 _post += f'  - name: "{cfc["Name_en"]}"\n'
                 for lang in LANGUAGES:
                     map_translations[lang][f'TreasureDungeon_Name_{cfc["Name_"+"en"]}'] = cfc["Name_"+lang]
+
         _post += f'zones:\n'
         for _id, location in locations.items():
             folder: str = _id[:3]
@@ -268,7 +298,6 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
                 print(posible_maps)
 
             _extra, full_placename, output_path, modified_image, placename = code_for_image(overlay_id, posible_maps, location, item_name)
-
 
             _post += f'  - zonename: "{full_placename["Name_en"]}"\n'
             for lang in LANGUAGES:
@@ -301,20 +330,21 @@ def run():
     coords_later: dict[str, dict[str, Any]] = {}
     map_ = ""
     for key, value in treasurespot.items():
-        lev = value['Location'].get('row_id')
-        if not lev or lev == 0:
+        lev = str(value['Location'].get('row_id'))
+        if not lev or lev == "0" or lev == "None":
             continue
-        k = lev
 
-        coords: dict[str, dict[str, Any]] = getLevel(str(lev), pixel=True)
-        map_ = str(level[lev]['Map']['row_id'])
+        treasure_hunt_rank_id, _ = key.split(".")
+        coords = getCoordsFromLocationLevel(value['Location'], True)
+        map_ = str(level[lev]['Map']['Id'])
 
-        if not coords_later.get(k, None):
-            coords_later[k] = {}
-        if not coords_later[k].get(map_, None):
-            coords_later[k][map_] = []
-        #print(coords)
-        coords_later[k][map_].append(((coords['x']), (coords['y']), coords['placename']))
+
+        if not coords_later.get(treasure_hunt_rank_id, None):
+            coords_later[treasure_hunt_rank_id] = {}
+        if not coords_later[treasure_hunt_rank_id].get(map_, None):
+            coords_later[treasure_hunt_rank_id][map_] = []
+        coords_later[treasure_hunt_rank_id][map_].append(((coords['x']), (coords['y']), coords['placename']))
+        #print(((coords['x']), (coords['y']), coords['placename']))
 
     #coords_later[]['y6f3/00'] = [(127.6, -535.0), (339.0, -318.2), (-607.9, 279.5), (-222.8, -65.4), (-496.3, -648.4), (351.2, 219.4), (799.0, -133.6), (-371.9, 816.7), (64.0, 717.3), (-301.7, 268.9), (-790.4, -92.3), (760.9, -448.5), (485.3, 22.8), (-511.4, 588.8), (163.2, -24.7), (56.4, -781.7)]
     show_image(coords_later)

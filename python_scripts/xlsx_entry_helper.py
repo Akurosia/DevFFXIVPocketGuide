@@ -14,7 +14,7 @@ from ffxiv_aku import *
 from typing import Any
 try:
     from python_scripts.constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
-    from python_scripts.helper import getContentName, seperate_data_into_array, EntryType
+    from python_scripts.helper import getContentName, seperate_data_into_array, EntryType, _get_coords_relative
     from python_scripts.fileimports import *
 except Exception:
     from constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
@@ -22,15 +22,6 @@ except Exception:
     from fileimports import *
 
 logger: logging.Logger = logging.getLogger()
-
-def _get_coords_relative(x: str, x_off: str, z: str, z_off: str, size: str, pixel: bool) -> tuple[float, float]:
-    if pixel:
-        new_x = truncate(ToMapPixel(float(x), float(x_off), float(size)))
-        new_y = truncate(ToMapPixel(float(z), float(z_off), float(size)))
-    else:
-        new_x = truncate(ToMapCoordinate(float(x), float(size)))
-        new_y = truncate(ToMapCoordinate(float(z), float(size)))
-    return new_x, new_y
 
 def get_header_from_xlsx(local_sheet: Worksheet, local_max_column: int) -> list[str]:
     result: list[str] = []

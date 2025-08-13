@@ -3,14 +3,12 @@ import os
 from ffxiv_aku import fix_slug, print_color_red, convert_single_image
 import shutil
 
-LANGUAGES = ["de", "en", "fr", "ja", "cn", "ko"]
+LANGUAGES = ["de", "en", "fr", "ja"]
 LANGUAGES_MAPPING = {
     "de": "de-DE",
     "en": "en-US",
     "fr": "fr-FR",
     "ja": "ja-JP",
-    "cn": "cn-CN",
-    "ko": "ko-KR"
 }
 
 
