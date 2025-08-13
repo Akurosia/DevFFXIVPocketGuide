@@ -77,3 +77,6 @@ treasurespot: FFXIV_DATA = readJsonFile(BASEPATH + r"\TreasureSpot.json")
 treasurehuntrank: FFXIV_DATA = readJsonFile(BASEPATH + r"\TreasureHuntRank.json")
 treasurehunttexture: FFXIV_DATA = readJsonFile(BASEPATH + r"\TreasureHuntTexture.json")
 journalgenre: FFXIV_DATA = readJsonFile(BASEPATH + r"\JournalGenre.json")
+
+#maps = readJsonFile(BASEPATH + r"\Map.json")
+aethercurrent = readJsonFile(BASEPATH + r"\AetherCurrent.json")

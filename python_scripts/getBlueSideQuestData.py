@@ -4,21 +4,16 @@ from ffxiv_aku import *
 from ffxiv_aku import loadDataTheQuickestWay, false, true, wrap_in_color_green, wrap_in_color_red
 try:
     from .convert_skills_to_guide_form_helper.helper import getImage
+    from .helper import getImage
 except:
-    from convert_skills_to_guide_form_helper.helper import getImage
+    from convert_skills_to_guide_form_helper.helper import *
+    from helper import *
 try:
     from yaml import CLoader as Loader
 except ImportError:
     from yaml import Loader
 
 file_location = os.path.dirname(os.path.realpath(__file__))
-
-quests = loadDataTheQuickestWay("Quest.de.json", translate=false)
-t_quests = loadDataTheQuickestWay("quest_all.json", translate=true)
-levels = loadDataTheQuickestWay("Level.json", translate=false)
-maps = loadDataTheQuickestWay("Map.json", translate=false)
-cfc = loadDataTheQuickestWay("ContentFindercondition.de.json", translate=false)
-ac = loadDataTheQuickestWay("AetherCurrent.json", translate=false)
 patched_data = None
 
 # test()
@@ -38,7 +33,7 @@ categories = ['dungeon', 'klasse', 'prüfung', 'gewoelbesuche', 'gildengeheiß',
 
 
 def getQuestName(name, lang="en", color=False):
-    for key, value in t_quests.items():
+    for key, value in quests.items():
         try:
             if value["Name_de"].replace(" ", "").replace(" ", "").strip().lower() == name.replace(" ", "").replace(" ", "").strip().lower():
                 if color:
@@ -67,27 +62,27 @@ def filtered_quest(quest):
 def findContentForQuest(quest, key2):
     global cfc
     elements = []
-    if not quest['InstanceContent']['Unlock'] == "InstanceContent#0":
-        _id = quest['InstanceContent']['Unlock']
-        for key, value in cfc.items():
-            if value['Content'] == _id:
-                if not value['Name'] in elements:
-                    elements.append(value['Name'])
+    if not quest['InstanceContentUnlock'].get('row_id', 0) == 0:
+        _id = str(quest['InstanceContentUnlock'].get('row_id', 0))
+        for key, value in contentfindercondition.items():
+            if str(value['Content'].get('row_id', "0")) == _id:
+                if not value['Name_de'] in elements:
+                    elements.append(value['Name_de'])
 
-    if "Jobaufträge" in quest['JournalGenre'] or "Gildenaufträge der" in quest['JournalGenre']:
-        x = (quest['JournalGenre'].replace("-Jobaufträge", "")).replace("Gildenaufträge der", "") + " (Klassenquest)"
+    if "Jobaufträge" in quest['JournalGenre']["Name_de"] or "Gildenaufträge der" in quest['JournalGenre']["Name_de"]:
+        x = (quest['JournalGenre']["Name_de"].replace("-Jobaufträge", "")).replace("Gildenaufträge der", "") + " (Klassenquest)"
         if not x in elements:
             elements.append(x)
 
     for i in range(0, 50):
-        if "UNLOCK_DUNGEON" in quest["Script"]['Instruction'][str(i)] or "UNLOCK_ADD_NEW_CONTENT_TO_CF" in quest["Script"]['Instruction'][str(i)]:
-            _id = "InstanceContent#" + quest["Script"]['Arg'][str(i)]
-            for key, value in cfc.items():
-                if value['Content'] == _id:
-                    if not value['Name'] in elements:
-                        elements.append(value['Name'])
-        elif "UNLOCK" in quest["Script"]['Instruction'][str(i)]:
-            value = quest["Script"]['Instruction'][str(i)]
+        if "UNLOCK_DUNGEON" in quest["QuestParams"][i]["ScriptInstruction"] or "UNLOCK_ADD_NEW_CONTENT_TO_CF" in quest["QuestParams"][i]["ScriptInstruction"]:
+            _id = str(quest["QuestParams"][i]["ScriptArg"])
+            for key, value in contentfindercondition.items():
+                if str(value['Content'].get('row_id', "0")) == _id:
+                    if not value['Name_de'] in elements:
+                        elements.append(value['Name_de'])
+        elif "UNLOCK" in quest["QuestParams"][i]["ScriptInstruction"]:
+            value = quest["QuestParams"][i]["ScriptInstruction"]
             if "UNLOCK_BANZOKU" == value or "UNLOCK_BEAST" == value:
                 value = "Wilder Stamm"
             elif "UNLOCK_IMAGE_DUNGEON_" in value:
@@ -101,15 +96,11 @@ def findContentForQuest(quest, key2):
             if not value in elements:
                 elements.append(value)
 
-    for key, value in ac.items():
-        if quest['Name'].replace(" ", "").replace(" ", "").strip() == value['Quest'].replace(" ", "").replace(" ", "").strip():
+    for key, value in aethercurrent.items():
+        if quest['Name_de'].replace(" ", "").replace(" ", "").strip() == value['Quest'].get('Name_de', "").replace(" ", "").replace(" ", "").strip():
             if not "[Location] Windätherquelle " in elements:
                 elements.append("[Location] Windätherquelle ")
     if len(elements) > 1:
-        # print(key2)
-        # print(quest['Name'])
-        # print(elements)
-        # print()
         return " / ".join(elements)
     elif len(elements) > 0:
         return elements[0]
@@ -168,8 +159,6 @@ def getFinalData(results):
                     write(out, f'     en: "{translated_quest_names["Name_en"].replace(" ", "").replace(" ", "")}"')
                     write(out, f'     fr: "{translated_quest_names["Name_fr"].replace(" ", "").replace(" ", "")}"')
                     write(out, f'     ja: "{translated_quest_names["Name_ja"].replace(" ", "").replace(" ", "")}"')
-                    write(out, f'     cn: "{translated_quest_names["Name_cn"].replace(" ", "").replace(" ", "")}"')
-                    write(out, f'     ko: "{translated_quest_names["Name_ko"].replace(" ", "").replace(" ", "")}"')
                     write(out, f'   level: "{quest["level"]}"')
                     write(out, f'   icon: "{getImage(quest["icon"])}"')
                     write(out, f'   journal: "{quest["journalgenre"]}"')
@@ -182,7 +171,7 @@ def getFinalData(results):
                         for q in quest['previousquest']:
                             write(out, f'   - "{q}"')
                 except:
-                    print_color_red(translated_quest_names)
+                    print_color_red(quest["name"])
 
         write(out, "---")
 
@@ -210,38 +199,39 @@ def getPatchedData(_id):
 def main():
     for key, quest in quests.items():
         _id = key
+
         if checkPatchedData(_id):
             # continue
             pass
-        elif not quest['EventIconType'] in ["EventIconType#8", "EventIconType#10"] and not checkPatchedData(str(_id)):
+        elif not str(quest['EventIconType'].get('row_id')) in ["8", "10"] and not checkPatchedData(str(_id)):
             continue
-        elif not (quest['ClassJobCategory']["0"] in ["Alle Klassen", "Krieger, Magier", "Handwerker", "Handwerker, Sammler", "Krieger oder Magier (außer beschränkte Jobs)", "Sammler"] or quest['ClassJobCategory']["1"] in ["Alle Klassen", "Krieger, Magier", "Krieger oder Magier (außer beschränkte Jobs)", "Handwerker, Sammler", "Handwerker", "Sammler"]):
+        elif not (quest['ClassJobCategory0']['Name_de'] in ["Alle Klassen", "Krieger, Magier", "Handwerker", "Handwerker, Sammler", "Krieger oder Magier (außer beschränkte Jobs)", "Sammler"] or quest['ClassJobCategory1']['Name_de'] in ["Alle Klassen", "Krieger, Magier", "Krieger oder Magier (außer beschränkte Jobs)", "Handwerker, Sammler", "Handwerker", "Sammler"]):
             continue
         # remove repeatables aas they never can unlock anything
         elif quest["IsRepeatable"] == "True":
             continue
-
-        name = quest['Name'].replace(" ", "").replace(" ", "")
+        name = quest['Name_de'].replace(" ", "").replace(" ", "")
         try:
-            level_data = getLevel(quest['Issuer']['Location'])
+            level_data = getCoordsFromLocationLevel(quest['IssuerLocation'])
         except Exception as e:
-            print_color_red(f"[MAIN] Error for getLevel using '{quest['Issuer']['Location']}' and questname '{name}' with error '{e}'")
+            print_color_red(f"[MAIN] Error for getLevel using '{quest['IssuerLocation']}' and questname '{name}' with error '{e}'")
             error.append(name)
 
         if name in error:
             error.remove(name)
+
         new_element = {
             "name": name,
-            "level": quest['ClassJobLevel']["0"],
-            "icon": getImage(quest['Icon']['Value'].replace('.tex', "_hr1.webp")),
+            "level": quest['ClassJobLevel'][0],
+            "icon": getImage(quest['Icon']['path'].replace('.tex', "_hr1.webp")),
             "place": f"{level_data['region']}",
-            "previousquest": [quest['PreviousQuest']["0"], quest['PreviousQuest']["1"], quest['PreviousQuest']["2"]],
-            "journalgenre": quest['JournalGenre'],
+            "previousquest": [str(quest['PreviousQuest'][0].get("Name_de", "")), str(quest['PreviousQuest'][1].get("Name_de", "")), str(quest['PreviousQuest'][2].get("Name_de", ""))],
+            "journalgenre": quest['JournalGenre']['Name_de'],
             "issuer_location_": {"x": level_data['x'], "y": level_data['y'], },
-            "issuer_start_": quest['Issuer']['Start'],
+            "issuer_start_": quest['IssuerStart']['Singular_de'],
         }
-        if quest['PlaceName']:
-            new_element["place"] += f" > {quest['PlaceName']}"
+        if quest['PlaceName']['Name_de']:
+            new_element["place"] += f" > {quest['PlaceName']['Name_de']}"
         if level_data['placename'] and level_data['placename'] not in new_element["place"]:
             new_element["place"] += f" > {level_data['placename']}"
         try:
@@ -260,7 +250,7 @@ def main():
         except:
             pass
 
-        exp = quest['Expansion']
+        exp = quest['Expansion']['Name_de']
         if not results.get(exp, None):
             results[exp] = {}
             mresults[exp] = {}

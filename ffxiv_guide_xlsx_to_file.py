@@ -285,13 +285,13 @@ def main() -> None:
     os.chdir("./_posts")
     #logger.debug(orderedContent)
     try:
-        run(googledata, orderedContent)
+        #run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
         #aas.run()
-        csgf.run()
+        #csgf.run()
         gl.run()
         gp.run()
         ghm.run()
