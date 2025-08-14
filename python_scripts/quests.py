@@ -59,7 +59,7 @@ def addReward(data: dict[str, Any]) -> list[Any]:
     for i, k in enumerate(data['ItemCountReward']):
         if k == 0:
             continue
-        if data['Reward'][i]['sheet'] != "Item":
+        if data['Reward'][i].get('sheet', "") != "Item":
             continue
         result.append({
             "Item": data['Reward'][i]['Name_de'],

@@ -18,7 +18,7 @@ try:
     from python_scripts.fileimports import *
 except Exception:
     from constants import DIFFERENT_PRONOUNS, DIFFERENT_PRONOUNSS, LANGUAGES
-    from helper import getContentName, seperate_data_into_array, EntryType
+    from helper import getContentName, seperate_data_into_array, EntryType, _get_coords_relative
     from fileimports import *
 
 logger: logging.Logger = logging.getLogger()

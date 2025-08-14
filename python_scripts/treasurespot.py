@@ -3,13 +3,13 @@ from ffxiv_aku import *
 from PIL import Image, ImageDraw, ImageFont
 try:
 
-    from .helper import getCoordsFromLocationLevel
+    from .helper import *
     from .convert_skills_to_guide_form_helper.helper import LANGUAGES, LANGUAGES_MAPPING
     from .fileimports import *
 except:
     from convert_skills_to_guide_form_helper.helper import LANGUAGES, LANGUAGES_MAPPING
     from fileimports import *
-    from helper import getCoordsFromLocationLevel
+    from helper import *
 
 #treasurespot = loadDataTheQuickestWay("TreasureSpot.json")
 #treasurehuntrank = loadDataTheQuickestWay("TreasureHuntRank.json")

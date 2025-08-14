@@ -280,21 +280,20 @@ def main() -> None:
         googledata = tmp["google"]
         orderedContent = tmp["ordered"]
 
-    csgf.load_global_data()
     # change into _posts dir
     os.chdir("./_posts")
     #logger.debug(orderedContent)
     try:
-        #run(googledata, orderedContent)
+        run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
         #aas.run()
-        #csgf.run()
+        csgf.run()
         gl.run()
         gp.run()
-        ghm.run()
+        #ghm.run()
         ga.run()
         gbsq.run()
         fcc.run(translations)

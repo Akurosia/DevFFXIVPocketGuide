@@ -79,9 +79,6 @@ class EntryType(dict):
     def __setitem__(self, key: str, value: Any) -> None:
         setattr(self, key, value)
 
-
-
-
 def getImage(image: str, _type: str="icon") -> str:
     if image is None or image == "":
         return ""
@@ -190,3 +187,35 @@ def seperate_data_into_array(tag: str, entry: dict[str, str|list[str]]) -> str:
         entry[tag] = [b for b in entry[tag]]
     return entry[tag]
 
+def _get_coords_relative(x: str, x_off: str, z: str, z_off: str, size: str, pixel: bool) -> tuple[float, float]:
+    if pixel:
+        new_x = truncate(ToMapPixel(float(x), float(x_off), float(size)))
+        new_y = truncate(ToMapPixel(float(z), float(z_off), float(size)))
+    else:
+        new_x = truncate(ToMapCoordinate(float(x), float(size)))
+        new_y = truncate(ToMapCoordinate(float(z), float(size)))
+    return new_x, new_y
+
+def truncate(f: float, n: float = 1) -> float:
+    return math.floor(f * 10 ** n) / 10 ** n
+
+def ToMapPixel(val: float, offset: float, sizefactor: float) -> float:
+    c = sizefactor / 100.0
+    return (val + offset) * c
+
+def ToMapCoordinate(val: float, sizefactor: float) -> float:
+    c = sizefactor / 100.0
+    val *= c
+    return round(((41.0 / c) * ((val + 1024.0) / 2048.0)) + 1, 2)
+
+#mainly used for fates
+def FromMapCoordinate(result: float, sizefactor: float) -> float:
+    c = sizefactor / 100.0
+    inverse_c = 1 / c  # Since val was multiplied by c
+    val = ((result - 1) * (2048.0 / 41.0)) - 1024.0
+    return round(val * inverse_c, 2)  # Round to 2 decimal places
+
+def getCoordsFromLocationLevel(value_location_dict: dict, pixel: bool = False):
+    x, y = _get_coords_relative(value_location_dict['X'], value_location_dict['Map']['OffsetX'], value_location_dict['Z'], value_location_dict['Map']['OffsetY'], value_location_dict['Map']['SizeFactor'], pixel=pixel)
+    #coords: dict[str, dict[str, Any]] = f'{value_location_dict['Map']["PlaceName"][f'Name_en']} ({x}, {y})'
+    return {"x": x, "y": y, "region": value_location_dict['Map']["PlaceNameRegion"][f'Name_de'], "placename": value_location_dict['Map']["PlaceName"][f'Name_de']}

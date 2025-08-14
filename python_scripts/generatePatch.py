@@ -2,6 +2,11 @@ import json
 import os
 from ffxiv_aku import *
 from datetime import datetime, date
+try:
+    from python_scripts.fileimports import *
+except Exception:
+    from fileimports import *
+
 
 LANGUAGES = ["de", "en", "fr", "ja"]
 LANGUAGES_MAPPING = {
@@ -112,10 +117,7 @@ def single_patch_file():
         "dt": "title_logo700_hr1.tex.webp"
     }
     versions = get_any_Versiondata()
-    #print_pretty_json(versions)
-    exversion_trans = loadDataTheQuickestWay("exversion", translate=True)
-    exversion = loadDataTheQuickestWay("exversion", translate=False)
-    for key, value in exversion_trans.items():
+    for key, value in exversion.items():
         #print(exversion[key])
         n_version = versions[str(int(key)+2) + ".00"]
         #print(n_version)
@@ -159,6 +161,7 @@ def run():
     single_patch_file()
     os.chdir("_posts")
     write_class_translation_data(klass_translations)
+    os.chdir("..")
 
 
 if __name__ == "__main__":

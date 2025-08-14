@@ -1,10 +1,14 @@
 from ffxiv_aku import *
 from ffxiv_aku import loadDataTheQuickestWay, readJsonFile, writeJsonFile, os
+try:
+    from .fileimports import *
+except:
+    from fileimports import *
 
-items_trans = loadDataTheQuickestWay("item_all.json", translate=True)
-airshipexplorationpoint_trans = loadDataTheQuickestWay("airshipexplorationpoint_all.json", translate=True)
-submarineexploration_trans = loadDataTheQuickestWay("submarineexploration_all.json", translate=True)
-submarinemap_trans = loadDataTheQuickestWay("submarinemap_all.json", translate=True)
+items = loadDataTheQuickestWay("Item.json")
+airshipexplorationpoint = loadDataTheQuickestWay("AirshipExplorationPoint.json")
+submarineexploration = loadDataTheQuickestWay("SubmarineExploration.json")
+submarinemap = loadDataTheQuickestWay("SubmarineMap.json")
 #data = readJsonFile(r"T:\var\www\ffxiv\front\housing_missions\data2.json")
 print(os.getcwd())
 try:
@@ -57,7 +61,7 @@ def get_x_items(items):
     result = {'de': "", 'en': "", 'fr': "", 'ja': "", 'cn': "", 'ko': ""}
     itemnames = [x for x in items]
     for item in sorted(itemnames):
-        for key, value in items_trans.items():
+        for key, value in items.items():
             if item == value['Name_en']:
                 for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
                     result[lang] += value[f'Name_{lang}'] + "</br>"
@@ -68,7 +72,7 @@ def get_x_items(items):
 def get_submarine_map(name):
     if name == "Das Fliedermeer":
         name = "Fliedermeer"
-    for key, value in submarinemap_trans.items():
+    for key, value in submarinemap.items():
         if name.lower() == value['Name_de'].lower():
             return value
     return {
@@ -96,9 +100,9 @@ def run():
     for location, stops in data.items():
         location = locations_translator[location]
         # this will sort all entry to avoid 2 equal cases
-        w_data = submarineexploration_trans
+        w_data = submarineexploration
         if location == "Wolkenmeer":
-            w_data = airshipexplorationpoint_trans
+            w_data = airshipexplorationpoint
 
         smm = get_submarine_map(location)
         r_data += f'    - name: "{smm["Name_en"]}" \n'

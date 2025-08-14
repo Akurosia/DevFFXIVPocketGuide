@@ -595,7 +595,7 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
     fates_by_type: dict[str, list[str]] = {}
     for fate_id in lfates:
         _id: str = fates[fate_id]['Icon']['path'] # type: ignore
-        if fates[fate_id]['Icon']['id'] == 0:
+        if fates[fate_id]['Icon']['id'] == 0 or _id == "ui/icon/000000/000000.tex":
             continue
         _type = fatetypes[str(_id)]
         if not fates_by_type.get(_type, None):
