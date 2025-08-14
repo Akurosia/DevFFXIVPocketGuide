@@ -56,7 +56,7 @@ def copy_and_return_image_as_hr(img: str, _type: str="icon") -> str:
 
 def getStatusKey(stat, status):
     for k, v in status.items():
-        if v["Name"] == stat:
+        if v["Name_de"] == stat:
             return k
     return "0"
 

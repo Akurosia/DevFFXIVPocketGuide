@@ -89,8 +89,6 @@ def generate_new_quest_data() -> None:
 
         try:
             quest_ident = quest_id
-            if quest_id == "65541":
-                print_pretty_json(data)
             newQuest[quest_ident] = {
                 "Name": data['Name_de'],
                 "PreviousQuest": { i:str(v['row_id']) for i, v in enumerate(data['PreviousQuest']) if not v.get('row_id', "") == ""},

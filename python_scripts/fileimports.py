@@ -7,6 +7,7 @@ from ffxiv_aku import (
     get_any_Logdata,
     storeFilesInTmp,
     readJsonFile,
+    get_skills_for_player
 )
 
 FFXIV_DATA = dict[str, dict[str,str|dict[str,str]]]
@@ -25,66 +26,79 @@ patchversions: FFXIV_DATA = get_any_Versiondata()
 logdata: dict[str, Any] = get_any_Logdata()
 logdata_lower = dict((k.lower(), v) for k, v in logdata.items())
 
-storeFilesInTmp(True)
+storeFilesInTmp(False)
 
 
-BASEPATH = r"C:\Users\kamot\Desktop\XIVAPI\translated"
+BASEPATH = r"P:\extras\json\xivapi_data"
 
 # from header
-territorytype: FFXIV_DATA = readJsonFile(BASEPATH + r"\TerritoryType.json")
-mounts: FFXIV_DATA = readJsonFile(BASEPATH + r"\Mount.json")
-exversion: FFXIV_DATA = readJsonFile(BASEPATH + r"\ExVersion.json")
-minions: FFXIV_DATA = readJsonFile(BASEPATH + r"\Companion.json")
-orchestrions: FFXIV_DATA = readJsonFile(BASEPATH + r"\Orchestrion.json")
-orchestrionpath: FFXIV_DATA = readJsonFile(BASEPATH + r"\OrchestrionPath.json")
-ttcards: FFXIV_DATA = readJsonFile(BASEPATH + r"\TripleTriadCard.json")
-contentfindercondition: FFXIV_DATA = readJsonFile(BASEPATH + r"\ContentFinderCondition.json")
-contentfinderconditiontransient: FFXIV_DATA = readJsonFile(BASEPATH + r"\ContentFinderConditionTransient.json")
-instancecontent: FFXIV_DATA = readJsonFile(BASEPATH + r"\InstanceContent.json")
-contentmembertype: FFXIV_DATA = readJsonFile(BASEPATH + r"\ContentMemberType.json")
-classjob: FFXIV_DATA = readJsonFile(BASEPATH + r"\Classjob.json")
-items: FFXIV_DATA = readJsonFile(BASEPATH + r"\Item.json")
+territorytype: FFXIV_DATA = loadDataTheQuickestWay("TerritoryType.json")
+mounts: FFXIV_DATA = loadDataTheQuickestWay("Mount.json")
+exversion: FFXIV_DATA = loadDataTheQuickestWay("ExVersion.json")
+minions: FFXIV_DATA = loadDataTheQuickestWay("Companion.json")
+orchestrions: FFXIV_DATA = loadDataTheQuickestWay("Orchestrion.json")
+orchestrionpath: FFXIV_DATA = loadDataTheQuickestWay("OrchestrionPath.json")
+ttcards: FFXIV_DATA = loadDataTheQuickestWay("TripleTriadCard.json")
+contentfindercondition: FFXIV_DATA = loadDataTheQuickestWay("ContentFinderCondition.json")
+contentfinderconditiontransient: FFXIV_DATA = loadDataTheQuickestWay("ContentFinderConditionTransient.json")
+instancecontent: FFXIV_DATA = loadDataTheQuickestWay("InstanceContent.json")
+contentmembertype: FFXIV_DATA = loadDataTheQuickestWay("ContentMemberType.json")
+classjob: FFXIV_DATA = loadDataTheQuickestWay("Classjob.json")
+items: FFXIV_DATA = loadDataTheQuickestWay("Item.json")
 try:
     gamerscape_items: FFXIV_DATA = readJsonFile("python_scripts/gamerscape_items/after_item_scan.json")
 except:
     gamerscape_items: FFXIV_DATA = readJsonFile("gamerscape_items/after_item_scan.json")
 
-fates: FFXIV_DATA = readJsonFile(BASEPATH + r"\Fate.json")
-ces: FFXIV_DATA = readJsonFile(BASEPATH + r"\DynamicEvent.json")
-ces_type: FFXIV_DATA = readJsonFile(BASEPATH + r"\DynamicEventType.json")
+fates: FFXIV_DATA = loadDataTheQuickestWay("Fate.json")
+ces: FFXIV_DATA = loadDataTheQuickestWay("DynamicEvent.json")
+ces_type: FFXIV_DATA = loadDataTheQuickestWay("DynamicEventType.json")
 
 # from guide_helper
-action: FFXIV_DATA = readJsonFile(BASEPATH + r"\Action.json")
-bnpcname: FFXIV_DATA = readJsonFile(BASEPATH + r"\BNpcName.json")
-eobjname: FFXIV_DATA = readJsonFile(BASEPATH + r"\EObjName.json")
-enpcresident: FFXIV_DATA = readJsonFile(BASEPATH + r"\ENpcResident.json")
+action: FFXIV_DATA = loadDataTheQuickestWay("Action.json")
+bnpcname: FFXIV_DATA = loadDataTheQuickestWay("BNpcName.json")
+eobjname: FFXIV_DATA = loadDataTheQuickestWay("EObjName.json")
+enpcresident: FFXIV_DATA = loadDataTheQuickestWay("ENpcResident.json")
 
 # from helper
-placename: FFXIV_DATA = readJsonFile(BASEPATH + r"\PlaceName.json")
+placename: FFXIV_DATA = loadDataTheQuickestWay("PlaceName.json")
 
 # from guide/guide_helper
-status: FFXIV_DATA = readJsonFile(BASEPATH + r"\Status.json")
+status: FFXIV_DATA = loadDataTheQuickestWay("Status.json")
 
 # from xlsx entry helper
-quests: FFXIV_DATA = readJsonFile(BASEPATH + r"\Quest.json")
+quests: FFXIV_DATA = loadDataTheQuickestWay("Quest.json")
 
-npcyell: FFXIV_DATA = readJsonFile(BASEPATH + r"\NpcYell.json")
-instancecontenttextdata: FFXIV_DATA = readJsonFile(BASEPATH + r"\InstanceContentTextData.json")
-fateevent: FFXIV_DATA = readJsonFile(BASEPATH + r"\FateEvent.json")
+npcyell: FFXIV_DATA = loadDataTheQuickestWay("NpcYell.json")
+instancecontenttextdata: FFXIV_DATA = loadDataTheQuickestWay("InstanceContentTextData.json")
+fateevent: FFXIV_DATA = loadDataTheQuickestWay("FateEvent.json")
 
-level: FFXIV_DATA = readJsonFile(BASEPATH + r"\Level.json")
-treasurespot: FFXIV_DATA = readJsonFile(BASEPATH + r"\TreasureSpot.json")
-treasurehuntrank: FFXIV_DATA = readJsonFile(BASEPATH + r"\TreasureHuntRank.json")
-treasurehunttexture: FFXIV_DATA = readJsonFile(BASEPATH + r"\TreasureHuntTexture.json")
-journalgenre: FFXIV_DATA = readJsonFile(BASEPATH + r"\JournalGenre.json")
+level: FFXIV_DATA = loadDataTheQuickestWay("Level.json")
+treasurespot: FFXIV_DATA = loadDataTheQuickestWay("TreasureSpot.json")
+treasurehuntrank: FFXIV_DATA = loadDataTheQuickestWay("TreasureHuntRank.json")
+treasurehunttexture: FFXIV_DATA = loadDataTheQuickestWay("TreasureHuntTexture.json")
+journalgenre: FFXIV_DATA = loadDataTheQuickestWay("JournalGenre.json")
 
-#maps = readJsonFile(BASEPATH + r"\Map.json")
-aethercurrent: FFXIV_DATA = readJsonFile(BASEPATH + r"\AetherCurrent.json")
+maps = loadDataTheQuickestWay("Map.json")
+aethercurrent: FFXIV_DATA = loadDataTheQuickestWay("AetherCurrent.json")
 
-achivment: FFXIV_DATA = readJsonFile(BASEPATH + r"\Achievement.json")
-achivmentkind: FFXIV_DATA = readJsonFile(BASEPATH + r"\AchievementKind.json")
-achivmentcategory: FFXIV_DATA = readJsonFile(BASEPATH + r"\AchievementCategory.json")
+achivment: FFXIV_DATA = loadDataTheQuickestWay("Achievement.json")
+achivmentkind: FFXIV_DATA = loadDataTheQuickestWay("AchievementKind.json")
+achivmentcategory: FFXIV_DATA = loadDataTheQuickestWay("AchievementCategory.json")
 
 
-miragestoresetitem: FFXIV_DATA = readJsonFile(BASEPATH + r"\MirageStoreSetItem.json")
-miragestoresetitemlookup: FFXIV_DATA = readJsonFile(BASEPATH + r"\MirageStoreSetItemLookup.json")
+miragestoresetitem: FFXIV_DATA = loadDataTheQuickestWay("MirageStoreSetItem.json")
+miragestoresetitemlookup: FFXIV_DATA = loadDataTheQuickestWay("MirageStoreSetItemLookup.json")
+
+
+skills = get_skills_for_player()
+pvpskills = get_skills_for_player(True)
+
+addon: FFXIV_DATA = loadDataTheQuickestWay("Addon.json")
+actiontransient: FFXIV_DATA = loadDataTheQuickestWay("ActionTransient.json")
+craftactions: FFXIV_DATA = loadDataTheQuickestWay("CraftAction.json")
+traits: FFXIV_DATA = loadDataTheQuickestWay("Trait.json")
+traitstransient: FFXIV_DATA = loadDataTheQuickestWay("TraitTransient.json")
+leves: FFXIV_DATA = loadDataTheQuickestWay("Leve.json")
+craftleves: FFXIV_DATA = loadDataTheQuickestWay("CraftLeve.json")
+bannertimeline: FFXIV_DATA = loadDataTheQuickestWay("BannerTimeline.json")

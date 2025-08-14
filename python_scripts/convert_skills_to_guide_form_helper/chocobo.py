@@ -4,54 +4,50 @@ from .helper import getImage, deal_with_extras_in_text, LANGUAGES
 from ffxiv_aku import storeFilesInTmp, loadDataTheQuickestWay, os
 from operator import getitem
 
-chocoboskills_trans = None
-chocoboitems_trans = None
-chocobochallange_trans = None
-buddyskill_raw = None
+chocoboskills = None
+chocoboitems = None
+chocobochallange = None
+buddyskill = None
 actions = None
-actions_trans = None
-actiontransient_trans = None
+actiontransient = None
 traits = None
-traits_trans = None
-traitstransient_trans = None
+traitstransient = None
 job_translations = None
 
 
-def cb_load_global_data(cb_actions, cb_actions_trans, cb_actiontransient_trans, cb_traits, cb_traits_trans, cb_traitstransient_trans):
-    global chocoboskills_trans
-    global chocoboitems_trans
-    global chocobochallange_trans
-    global buddyskill_raw
+def cb_load_global_data(cb_actions, cb_actiontransient, cb_traits, cb_traitstransient):
+    global chocoboskills
+    global chocoboitems
+    global chocobochallange
+    global buddyskill
     global actions
-    global actions_trans
-    global actiontransient_trans
+    global actiontransient
     global traits
-    global traits_trans
-    global traitstransient_trans
+    global traitstransient
     origin = os.getcwd()
     os.chdir("..")
-    storeFilesInTmp(True)
+    storeFilesInTmp(False)
 
     actions = cb_actions
-    actions_trans = cb_actions_trans
-    actiontransient_trans = cb_actiontransient_trans
+    actiontransient = cb_actiontransient
     traits = cb_traits
-    traits_trans = cb_traits_trans
-    traitstransient_trans = cb_traitstransient_trans
-    chocoboskills_trans = loadDataTheQuickestWay("chocoboraceability", translate=True)
-    chocoboitems_trans = loadDataTheQuickestWay("chocoboraceitem", translate=True)
-    chocobochallange_trans = loadDataTheQuickestWay("chocoboracechallenge", translate=True)
-    buddyskill_raw = loadDataTheQuickestWay("buddyskill.json", exd="raw-exd-all")
+    traitstransient = cb_traitstransient
+    chocoboskills = loadDataTheQuickestWay("ChocoboRaceAbility.json")
+    chocoboitems = loadDataTheQuickestWay("ChocoboRaceItem.json")
+    chocobochallange = loadDataTheQuickestWay("ChocoboRaceChallenge.json")
+    buddyskill = loadDataTheQuickestWay("BuddySkill.json")
+
     os.chdir(origin)
 
 
 def addChocoboPartnerSkills():
     global actions
-    global actions_trans
-    global actiontransient_trans
+    global actions
+    global actiontransient
 
-    global buddyskill_raw
-    test = [ [ x['Attacker'], x['Defender'], x['Healer'] ] for key, x in buddyskill_raw.items() if x['IsActive'] == "True" and not key == "0" ]
+    global buddyskill
+    test = [ [ x['Attacker']['row_id'], x['Defender']['row_id'], x['Healer']['row_id'] ] for key, x in buddyskill.items() if x['IsActive'] == "True" and not key == "0" ]
+
     chocobo_skills = []
     for x in test:
         chocobo_skills += x
@@ -61,26 +57,26 @@ def addChocoboPartnerSkills():
     result = ""
     result += "    attacks:\n"
     for key, _ in ordered.items():
-        t = actions_trans[key]
+        t = actions[key]
         result += '      - title:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "{t[f"Name_{lang}"]}"\n'
             job_translations[lang][f'Class_Skill_Name_{t["Name_en"]}'] = t[f"Name_{lang}"]
-        result += f'        icon: "/assets/img/game_assets{getImage(t["Icon"])}"\n'
+        result += f'        icon: "/assets/img/game_assets{getImage(t["Icon"]['path'])}"\n'
         #result += f'        level: "{actions[key]["Level"]}"\n'
         result += f'        title_id: "{key}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
-            result += f'          {lang}: "{deal_with_extras_in_text(actiontransient_trans[key][f"Description_{lang}"])}"\n'
-            job_translations[lang][f'Class_Skill_Desc_{t["Name_en"]}'] = deal_with_extras_in_text(actiontransient_trans[key][f"Description_{lang}"])
+            result += f'          {lang}: "{deal_with_extras_in_text(actiontransient[key][f"Description_{lang}"])}"\n'
+            job_translations[lang][f'Class_Skill_Desc_{t["Name_en"]}'] = deal_with_extras_in_text(actiontransient[key][f"Description_{lang}"])
         result += '        phases:\n'
         result += '          - phase: "01"\n'
     return result
 
 
-def addRennChocoboSkills_trans():
-    global chocoboskills_trans
-    ordered = OrderedDict(sorted(chocoboskills_trans.items(), key=lambda x: int(x[0])))
+def addRennChocoboSkills():
+    global chocoboskills
+    ordered = OrderedDict(sorted(chocoboskills.items(), key=lambda x: int(x[0])))
     result = ""
     for key, value in ordered.items():
         if value["Name_de"] == "":
@@ -91,11 +87,11 @@ def addRennChocoboSkills_trans():
             result += f'          {lang}: "{value[f"Name_{lang}"]}"\n'
             job_translations[lang][f'Class_Skill_Name_{value["Name_en"]}'] = value[f"Name_{lang}"]
         result += f'        title_id: "{key}"\n'
-        result += f'        icon: "/assets/img/game_assets{getImage(value["Icon"])}"\n'
+        result += f'        icon: "/assets/img/game_assets{getImage(value["Icon"]['path'])}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "{deal_with_extras_in_text(value[f"Description_{lang}"])}"\n'
-            job_translations[lang][f'Class_Skill_Desc_{value["Name_en"]}'] = deal_with_extras_in_text(actiontransient_trans[key][f"Description_{lang}"])
+            job_translations[lang][f'Class_Skill_Desc_{value["Name_en"]}'] = deal_with_extras_in_text(actiontransient[key][f"Description_{lang}"])
         result += '        phases:\n'
         result += '          - phase: "03"\n'
     return result
@@ -103,39 +99,41 @@ def addRennChocoboSkills_trans():
 
 def addChocoboPartnerTraits():
     global traits
-    global traits_trans
-    global traitstransient_trans
-    global buddyskill_raw
-    test = [ [x['Attacker'], x['Defender'], x['Healer']] for key, x in buddyskill_raw.items() if x['IsActive'] == "False" and not key == "0"]
+    global traits
+    global traitstransient
+    global buddyskill
+    #test = [ [x['Attacker'], x['Defender'], x['Healer']] for key, x in buddyskill.items() if x['IsActive'] == "False" and not key == "0"]
+    test = [ [ x['Attacker']['row_id'], x['Defender']['row_id'], x['Healer']['row_id'] ] for key, x in buddyskill.items() if x['IsActive'] == "False" and not key == "0" ]
+
     chocobo_traits = []
     for x in test:
         chocobo_traits += x
     chocobo_traits = sorted(chocobo_traits)
-    chocobo_traits_trans = { key:traits[key] for key in chocobo_traits }
-    ordered = OrderedDict(sorted(chocobo_traits_trans.items(), key=lambda x: int(getitem(x[1], 'Level'))))
+    chocobo_traits = { key:traits[key] for key in chocobo_traits }
+    ordered = OrderedDict(sorted(chocobo_traits.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     result = ""
     result += "    traits:\n"
     for key, _ in ordered.items():
-        t = traits_trans[key]
+        t = traits[key]
         result += '      - title:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "{t[f"Name_{lang}"]}"\n'
             job_translations[lang][f'Class_Trait_Name_{t["Name_en"]}'] = t[f"Name_{lang}"]
-        result += f'        icon: "/assets/img/game_assets{getImage(t["Icon"])}"\n'
+        result += f'        icon: "/assets/img/game_assets{getImage(t["Icon"]['path'])}"\n'
         result += f'        level: "{traits[key]["Level"]}"\n'
         result += f'        title_id: "{key}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
-            result += f'          {lang}: "{deal_with_extras_in_text(traitstransient_trans[key][f"Description_{lang}"])}"\n'
-            job_translations[lang][f'Class_Trait_Desc_{t["Name_en"]}'] = deal_with_extras_in_text(traitstransient_trans[key][f"Description_{lang}"])
+            result += f'          {lang}: "{deal_with_extras_in_text(traitstransient[key][f"Description_{lang}"])}"\n'
+            job_translations[lang][f'Class_Trait_Desc_{t["Name_en"]}'] = deal_with_extras_in_text(traitstransient[key][f"Description_{lang}"])
         result += '        phases:\n'
         result += '          - phase: "02"\n'
     return result
 
 
-def addRennChocoboItems_trans():
-    global chocoboitems_trans
-    ordered = OrderedDict(sorted(chocoboitems_trans.items(), key=lambda x: int(x[0])))
+def addRennChocoboItems():
+    global chocoboitems
+    ordered = OrderedDict(sorted(chocoboitems.items(), key=lambda x: int(x[0])))
     result = ""
     for key, value in ordered.items():
         if value["Name_de"] == "":
@@ -146,7 +144,7 @@ def addRennChocoboItems_trans():
             result += f'          {lang}: "{value[f"Name_{lang}"]}"\n'
             job_translations[lang][f'Class_Skill_Name_{value["Name_en"]}'] = value[f"Name_{lang}"]
         result += f'        title_id: "{key}"\n'
-        result += f'        icon: "/assets/img/game_assets{getImage(value["Icon"])}"\n'
+        result += f'        icon: "/assets/img/game_assets{getImage(value["Icon"]['path'])}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
             result += f'          {lang}: "{deal_with_extras_in_text(value[f"Description_{lang}"])}"\n'
@@ -157,25 +155,25 @@ def addRennChocoboItems_trans():
 
 
 def addRennChocoboMissions():
-    global chocobochallange_trans
-    ordered = OrderedDict(sorted(chocobochallange_trans.items(), key=lambda x: int(x[0])))
+    global chocobochallange
+    ordered = OrderedDict(sorted(chocobochallange.items(), key=lambda x: int(x[0])))
     result = ""
     for key, value in ordered.items():
-        if value["col_0_de"] == "":
+        if value["Unknown0_de"] == "":
             continue
         result += '      - title:\n'
         for lang in LANGUAGES:
-            result += f'          {lang}: "{value[f"col_0_{lang}"]}"\n'
-            job_translations[lang][f'Class_Skill_Name_{value["col_0_en"]}'] = value[f"col_0_{lang}"]
+            result += f'          {lang}: "{value[f"Unknown0_{lang}"]}"\n'
+            job_translations[lang][f'Class_Skill_Name_{value["Unknown0_en"]}'] = value[f"Unknown0_{lang}"]
         result += f'        title_id: "{key}"\n'
         result += '        phases:\n'
         result += '          - phase: "05"\n'
     return result
 
 
-def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations, callback_function, addExtraIcons):
+def addChocobo(actions, actiontransient, traits, traitstransient, klass_translations, callback_function, addExtraIcons):
     global job_translations
-    cb_load_global_data(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans)
+    cb_load_global_data(actions, actiontransient, traits, traitstransient)
 
     # prepare translation elements
     job_translations = {}
@@ -188,8 +186,6 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
         "Name_en": "chocobo",
         "Name_fr": "chocobo",
         "Name_ja": "チョコボ",
-        "Name_cn": "チョコボ",
-        "Name_ko": "초코보"
     }
     filecontent = ""
     filecontent += '---\n'
@@ -199,8 +195,6 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     filecontent += f'  en: "{job_d["Name_en"]}"\n'
     filecontent += f'  fr: "{job_d["Name_fr"]}"\n'
     filecontent += f'  ja: "{job_d["Name_ja"]}"\n'
-    filecontent += f'  cn: "{job_d["Name_cn"]}"\n'
-    filecontent += f'  ko: "{job_d["Name_ko"]}"\n'
     filecontent += 'layout: klassen\n'
     filecontent += 'page_type: guide\n'
     filecontent += f'roletypeinparty: "{job_d["Name_en"]}"\n'
@@ -233,8 +227,6 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     filecontent += f'    - term: "{job_d["Name_en"]}"\n'
     filecontent += f'    - term: "{job_d["Name_fr"]}"\n'
     filecontent += f'    - term: "{job_d["Name_ja"]}"\n'
-    filecontent += f'    - term: "{job_d["Name_cn"]}"\n'
-    filecontent += f'    - term: "{job_d["Name_ko"]}"\n'
     filecontent += 'sortid: 0\n'
     filecontent += 'order: 0\n'
     filecontent += 'plvl: 50\n'
@@ -245,9 +237,9 @@ def addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_tra
     filecontent += "    id: \"" + "boss0\"\n"
     # todo add chocobo stuff
     filecontent += addChocoboPartnerSkills()
-    filecontent += addRennChocoboSkills_trans()
+    filecontent += addRennChocoboSkills()
     # addRennChocoboStatus()
-    filecontent += addRennChocoboItems_trans()
+    filecontent += addRennChocoboItems()
     filecontent += addRennChocoboMissions()
     filecontent += addChocoboPartnerTraits()
     filecontent += "    sequence:" + "\n"

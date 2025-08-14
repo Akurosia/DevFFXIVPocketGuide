@@ -6,31 +6,31 @@ from glob import glob
 from ffxiv_aku import loadDataTheQuickestWay, os, storeFilesInTmp
 
 logdata = None
-craftactions_trans = None
-actions_trans = None
-items_trans = None
-aozaction_trans = None
-aozactions_trans = None
+craftactions = None
+actions = None
+items = None
+aozaction = None
+aozactions = None
 aozactiontransient = None
 
 
-def blu_load_global_data(blu_craftactions_trans, blu_actions_trans, blu_items_trans, blu_logdata):
+def blu_load_global_data(blu_craftactions, blu_actions, blu_items, blu_logdata):
     global logdata
-    global actions_trans
-    global aozaction_trans
-    global aozactions_trans
+    global actions
+    global aozaction
+    global aozactions
     global aozactiontransient
-    global craftactions_trans
-    global items_trans
+    global craftactions
+    global items
     origin = os.getcwd()
     os.chdir("..")
-    storeFilesInTmp(True)
-    actions_trans = blu_actions_trans
-    aozaction_trans = loadDataTheQuickestWay("aozactiontransient", translate=True)
-    aozactions_trans = loadDataTheQuickestWay("aozaction", translate=True)
+    storeFilesInTmp(False)
+    actions = blu_actions
+    aozaction = loadDataTheQuickestWay("AozActionTransient")
+    aozactions = loadDataTheQuickestWay("AozAction")
     aozactiontransient = loadDataTheQuickestWay("AozActionTransient")
-    craftactions_trans = blu_craftactions_trans
-    items_trans = blu_items_trans
+    craftactions = blu_craftactions
+    items = blu_items
     logdata = blu_logdata
     os.chdir(origin)
 
@@ -63,8 +63,8 @@ def get_play_in_locations(locations):
     return sorted(new_locations, key=lambda x: x['Ort'])
 
 
-def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_trans, logdata, klass_translations):
-    blu_load_global_data(craftactions_trans, actions_trans, items_trans, logdata)
+def addBlueAttackDetails(job_data, craftactions, actions, items, logdata, klass_translations):
+    blu_load_global_data(craftactions, actions, items, logdata)
     result = ""
     result += "    attacks:\n"
     # get special aoz action data from correct files e.g. number in blu spell book and description
@@ -86,15 +86,15 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
         "Kraftfeld": "120 Zauber gelernt"
     }
     for x, y in job_data.items():
-        for key, value in aozactions_trans.items():
-            if y['Name']['de'] == value['Name_de']:
-                if not aozactiontransient[key]['Location'] == "":
-                    job_data[x]["Location"] = {"Ort": aozactiontransient[key]['Location'], "Gegner": "(InGame Hinweis)"}
+        for key, value in aozactions.items():
+            if y['Name']['de'] == value['Action']['Name_de']:
+                if not aozactiontransient[key]['Location'].get('Name_de', "") == "":
+                    job_data[x]["Location"] = {"Ort": aozactiontransient[key]['Location']['Name_de'], "Gegner": "(InGame Hinweis)"}
                 job_data[x]["Number"] = job_data[x]["Level"]
                 job_data[x]["Level"] = aozactiontransient[key]['Number']
 
                 for lang in LANGUAGES:
-                    job_data[x]["Description"][lang] += "\n\n<br/>#########################################<br/>\n\n" + deal_with_extras_in_text(aozaction_trans[key][f'Description_{lang}'])
+                    job_data[x]["Description"][lang] += "\n\n<br/>#########################################<br/>\n\n" + deal_with_extras_in_text(aozaction[key][f'Description_{lang}'])
             #Special cases to sort in these 2 skills
             elif y['Name']['de'] == "Weißer Tod":
                 job_data[x]["Number"] = job_data[x]["Level"]
@@ -117,9 +117,9 @@ def addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_tran
                 locations.append(skill_data['Location'])
             name = {}
             for lang in LANGUAGES:
-                name[lang] = deal_with_extras_in_text(actions_trans.get(skill_data["Id"], {}).get(f"Name_{lang}", ""))
+                name[lang] = deal_with_extras_in_text(actions.get(skill_data["Id"], {}).get(f"Name_{lang}", ""))
             if name["en"] == "":
-                name["en"] = craftactions_trans[skill_data["Id"] + ".0"]["Name_en"]
+                name["en"] = craftactions[skill_data["Id"] + ".0"]["Name_en"]
             level = skill_data['Level']
             #
             locations = getBLULocationsFromLogdata(skill_data["Name"]['de'], locations)
@@ -234,9 +234,9 @@ def getBLULocationsFromLogdata(name, locations):
 
 
 def get_blue_totem_skills():
-    global items_trans
+    global items
     result = ["Wasserkanone"]
-    for key, value in items_trans.items():
+    for key, value in items.items():
         if "Totem der Blaumagie:" in value['Name_de']:
             result.append(value['Name_de'].replace("Totem der Blaumagie: ", ""))
     return result

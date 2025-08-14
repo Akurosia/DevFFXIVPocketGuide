@@ -5,50 +5,21 @@ from collections import OrderedDict
 from operator import getitem
 from typing import Any, Literal
 from ffxiv_aku import print_color_red, gear_get, getLevel, deal_with_extras_in_text, readJsonFile, print_pretty_json, writeJsonFile
-from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata, print_color_green
+from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickestWay, get_any_Logdata, print_color_green, getCoordsFromLocationLevel
 
 try:
+    from .helper import *
     from .convert_skills_to_guide_form_helper.chocobo import addChocobo
-except:
-    from convert_skills_to_guide_form_helper.chocobo import addChocobo
-try:
     from .convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, LANGUAGES_MAPPING
-except:
-    from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, LANGUAGES_MAPPING
-try:
     from .convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
-except:
-    from convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
-try:
     from .convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
 except:
+    from helper import *
+    from convert_skills_to_guide_form_helper.chocobo import addChocobo
+    from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, LANGUAGES_MAPPING
+    from convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
     from convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
 
-allPartyMittigation = {}
-skills = None
-pvpskills = None
-logdata = None
-cj = None
-cjs = None
-actions = None
-action_trans = None
-actions_trans = None
-craftactions_trans = None
-status_trans = None
-status = None
-traits = None
-traits_trans = None
-traitstransient_trans = None
-quests = None
-quests_trans = None
-levels = None
-maps = None
-leves = None
-trans_leves = None
-craftleves = None
-addon_trans = None
-items_trans = None
-bannertimeline = None
 
 disable_print = True
 status_ncj = None
@@ -72,70 +43,16 @@ def write_class_translation_data(data: dict) -> None:
     os.chdir(origin)
 
 
-def load_global_data() -> None:
-    global skills
-    global pvpskills
-    global logdata
-    global addon_trans
-    global cjs_trans
-    global cjs
-    global actions
-    global actions_trans
-    global actiontransient_trans
-    global craftactions_trans
-    global status_trans
-    global status
-    global traits
-    global traits_trans
-    global traitstransient_trans
-    global quests
-    global quests_trans
-    global levels
-    global maps
-    global leves
-    global trans_leves
-    global craftleves
-    global items_trans
-    global bannertimeline
-
-    storeFilesInTmp(False)
-    logdata = get_any_Logdata()
-    storeFilesInTmp(True)
-    skills = get_skills_for_player()
-    pvpskills = get_skills_for_player(True)
-    cjs_trans = loadDataTheQuickestWay("classjob", translate=True)
-    cjs = loadDataTheQuickestWay("ClassJob")
-    actions = loadDataTheQuickestWay("action")
-    addon_trans = loadDataTheQuickestWay("addon", translate=True)
-    actions_trans = loadDataTheQuickestWay("action", translate=True)
-    actiontransient_trans = loadDataTheQuickestWay("actiontransient", translate=True)
-    craftactions_trans = loadDataTheQuickestWay("craftaction", translate=True)
-    status_trans = loadDataTheQuickestWay("status", translate=True)
-    status = loadDataTheQuickestWay("Status")
-    traits = loadDataTheQuickestWay("Trait")
-    traits_trans = loadDataTheQuickestWay("trait", translate=True)
-    traitstransient_trans = loadDataTheQuickestWay("TraitTransient", translate=True)
-    quests = loadDataTheQuickestWay("Quest")
-    quests_trans = loadDataTheQuickestWay("quest", translate=True)
-    items_trans = loadDataTheQuickestWay("item", translate=True)
-    levels = loadDataTheQuickestWay("Level.json")
-    maps = loadDataTheQuickestWay("Map.json")
-    leves = loadDataTheQuickestWay("leve")
-    trans_leves = loadDataTheQuickestWay("leve", translate=True)
-    craftleves = loadDataTheQuickestWay("craftleve.json")
-    bannertimeline = loadDataTheQuickestWay("BannerTimeline")
-
-
 def convertJobToAbrev(job):
-    global cjs_trans
+    global classjob
     global cjs
     job_abbr = None
     class_abbr = None
-    for key, value in cjs_trans.items():
+    for key, value in classjob.items():
         if value['Name_de'] == job:
             job_abbr = value['Abbreviation_de']
-    _class = [v['ClassJob']['Parent'] for k, v in cjs.items() if v["Name"]['Value'] == job][0]
-    for key2, value2 in cjs_trans.items():
+    _class = [v['ClassJobParent']['Name_de'] for k, v in classjob.items() if v["Name_de"] == job][0]
+    for key2, value2 in classjob.items():
         if value2['Name_de'] == _class:
             class_abbr = value2['Abbreviation_de']
 
@@ -145,8 +62,8 @@ def convertJobToAbrev(job):
 
 
 def addAttackDetails(job_data, pvp: bool=False):
-    global actions_trans
-    global craftactions_trans
+    global action
+    global craftactions
     global job_translations
     result = ""
     attack_skills = []
@@ -161,10 +78,10 @@ def addAttackDetails(job_data, pvp: bool=False):
     for _id, skill_data in job_data.items():
         name = {}
         for lang in LANGUAGES:
-            name[lang] = deal_with_extras_in_text(actions_trans.get(skill_data["Id"], {}).get(f"Name_{lang}", "").replace("\n", "</br>").replace("</br></br>", "</br>"))
+            name[lang] = deal_with_extras_in_text(action.get(skill_data["Id"], {}).get(f"Name_{lang}", "").replace("\n", "</br>").replace("</br></br>", "</br>"))
         if name["en"] == "":
             for lang in LANGUAGES:
-                name[lang] = deal_with_extras_in_text(craftactions_trans[skill_data["Id"]][f"Name_{lang}"].replace("\n", "</br>").replace("</br></br>", "</br>"))
+                name[lang] = deal_with_extras_in_text(craftactions[skill_data["Id"]][f"Name_{lang}"].replace("\n", "</br>").replace("</br></br>", "</br>"))
         level: str | Literal['0'] = "0" if skill_data['Level'] == "99999" else skill_data['Level']
 
         tpye_damage: None | Literal['Schaden'] = "Schaden" if skill_data["IsDamageSkill"] else None
@@ -177,7 +94,6 @@ def addAttackDetails(job_data, pvp: bool=False):
             if "all party" in skill_data["Description"]["en"] or "nearby party" in skill_data["Description"]["en"]:
                 type_shield = "G-Schild-Mitigation"
         result += '      - title:\n'
-
         attack_skills.append(name['de'])
         for lang in LANGUAGES:
             result += f'          {lang}: "{name[lang]}"\n'
@@ -219,7 +135,7 @@ def addAttackDetails(job_data, pvp: bool=False):
 
 def addOldStatusDetails(job, job_abb) -> str:
     global logdata
-    global status_trans
+    global status
     global status_ncj
     global status
     result: str = ""
@@ -234,7 +150,7 @@ def addOldStatusDetails(job, job_abb) -> str:
             _id = str(int(key, 16))
             result += '      - title:\n'
             for lang in LANGUAGES:
-                result += f'          {lang}: "' + deal_with_extras_in_text(status_trans[_id][f"Name_{lang}"]) + '"\n'
+                result += f'          {lang}: "' + deal_with_extras_in_text(status[_id][f"Name_{lang}"]) + '"\n'
             result += f'        title_id: "{key}"\n'
             if "_hr1" in getImage(s["icon"]):
                 result += f'        icon: "/assets/img/game_assets{getImage(s["icon"])}"\n'
@@ -242,7 +158,7 @@ def addOldStatusDetails(job, job_abb) -> str:
                 result += f'        icon: "/assets/img/game_assets{getImage(s["icon"]).replace(".webp", "_hr1.webp")}"\n'
             result += '        description:\n'
             for lang in LANGUAGES:
-                result += f'          {lang}: "' + deal_with_extras_in_text(status_trans[_id][f"Description_{lang}"]) + '"\n'
+                result += f'          {lang}: "' + deal_with_extras_in_text(status[_id][f"Description_{lang}"]) + '"\n'
             if s.get('buff', None):
                 result += f'        buff: {s["buff"]}\n'
             else:
@@ -253,9 +169,9 @@ def addOldStatusDetails(job, job_abb) -> str:
 
             if s.get('was_added_by_action', None):
                 result += '        added_by:\n'
-                result += '          icon: "' + getImage(actions_trans[str(int(s['was_added_by_action'], 16))]['Icon'].replace("ui/icon/", "")) + '"\n'
+                result += '          icon: "' + getImage(actions[str(int(s['was_added_by_action'], 16))]['Icon'].replace("ui/icon/", "")) + '"\n'
                 for lang in LANGUAGES:
-                    result += f'          {lang}: "' + getImage(actions_trans[str(int(s['was_added_by_action'], 16))][f'Name_{lang}']) + '"\n'
+                    result += f'          {lang}: "' + getImage(actions[str(int(s['was_added_by_action'], 16))][f'Name_{lang}']) + '"\n'
             result += '        phases:\n'
             result += '          - phase: "02"\n'
     return result
@@ -267,33 +183,33 @@ def addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, boz
     result = ""
     result += "    debuffs:\n"
     for key, value in status.items():
-        if job_abb not in value['ClassJobCategory']:
+        if job_abb not in value['ClassJobCategory']['Name_de']:
             continue
         con = False
         # validate if skill is either a pvp skill or a normal skill
-        if value['Name'] in attack_skills:
+        if value['Name_de'] in attack_skills:
             con = True
-        if value['Name'] in pvp_skills:
+        if value['Name_de'] in pvp_skills:
             con = True
         if not con:
             #print(value['Name'])
             continue
         result += '      - title:\n'
         for lang in LANGUAGES:
-            tmp_name = deal_with_extras_in_text(status_trans[key][f"Name_{lang}"])
+            tmp_name = deal_with_extras_in_text(status[key][f"Name_{lang}"])
             result += f'          {lang}: "' + tmp_name + '"\n'
-            job_translations[lang][f'Class_Status_Name_{deal_with_extras_in_text(status_trans[key]["Name_en"])}'] = tmp_name
-        result += f'        title_id: "{status_trans[key]['0xID']}"\n'
-        image = getImage(status_trans[key]["Icon"])
+            job_translations[lang][f'Class_Status_Name_{deal_with_extras_in_text(status[key]["Name_en"])}'] = tmp_name
+        result += f'        title_id: "{str(hex(int(key))).upper().replace("0X", "")}"\n'
+        image = getImage(status[key]["Icon"]['path'])
         if "_hr1" in image:
             result += f'        icon: "/assets/img/game_assets{image}"\n'
         else:
             result += f'        icon: "/assets/img/game_assets{image.replace(".webp", "_hr1.webp")}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
-            tmp_desc = deal_with_extras_in_text(status_trans[key][f"Description_{lang}"])
+            tmp_desc = deal_with_extras_in_text(status[key][f"Description_{lang}"])
             result += f'          {lang}: "' + tmp_desc + '"\n'
-            job_translations[lang][f'Class_Status_Desc_{deal_with_extras_in_text(status_trans[key]["Name_en"])}'] = tmp_desc
+            job_translations[lang][f'Class_Status_Desc_{deal_with_extras_in_text(status[key]["Name_en"])}'] = tmp_desc
         buff = "buff" if str(status[str(key)]['StatusCategory']) == "1" else "debuff"
         result += f'        buff: {buff}\n'
         result += '        phases:\n'
@@ -307,26 +223,26 @@ def addTraitDetails(job):
 
     result = ""
     result += "    traits:\n"
-    _class = [v['ClassJob']['Parent'] for k, v in cjs.items() if v["Name"]['Value'] == job]
-    traits_transs = {k: v for k, v in traits.items() if v["ClassJob"] in ([job] + _class)}
-    job_trait_data = OrderedDict(sorted(traits_transs.items(), key=lambda x: int(getitem(x[1], 'Level'))))
+    _class = [v['ClassJobParent']['Name_de'] for k, v in classjob.items() if v["Name_de"] == job]
+    traits_t = {k: v for k, v in traits.items() if v["ClassJob"]['Name_de'] in ([job] + _class)}
+    job_trait_data = OrderedDict(sorted(traits_t.items(), key=lambda x: int(getitem(x[1], 'Level'))))
     for _id, trait_data in job_trait_data.items():
-        if not trait_data.get("Icon", None):
+        if not trait_data.get("Icon", {}).get("path", None):
             continue
         level = "0" if trait_data['Level'] == "99999" else trait_data['Level']
         result += '      - title:\n'
         for lang in LANGUAGES:
-            tmp_trait = deal_with_extras_in_text(traits_trans[_id][f"Name_{lang}"])
+            tmp_trait = deal_with_extras_in_text(traits[_id][f"Name_{lang}"])
             result += f'          {lang}: "' + tmp_trait + '"\n'
-            job_translations[lang][f'Class_Trait_Name_{deal_with_extras_in_text(traits_trans[_id]["Name_en"]) }'] = tmp_trait
+            job_translations[lang][f'Class_Trait_Name_{deal_with_extras_in_text(traits[_id]["Name_en"]) }'] = tmp_trait
         result += f'        title_id: "{_id.split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
-        result += f'        icon: "/assets/img/game_assets{getImage(trait_data["Icon"].replace(".tex", "_hr1.webp"))}"\n'
+        result += f'        icon: "/assets/img/game_assets{getImage(trait_data["Icon"]['path'].replace(".tex", "_hr1.webp"))}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
-            tmp_trait = deal_with_extras_in_text(traitstransient_trans[_id][f"Description_{lang}"])
+            tmp_trait = deal_with_extras_in_text(traitstransient[_id][f"Description_{lang}"])
             result += f'          {lang}: "' + tmp_trait + '"\n'
-            job_translations[lang][f'Class_Trait_Desc_{deal_with_extras_in_text(traits_trans[_id]["Name_en"]) }'] = tmp_trait
+            job_translations[lang][f'Class_Trait_Desc_{deal_with_extras_in_text(traits[_id]["Name_en"]) }'] = tmp_trait
 
         result += '        phases:\n'
         result += '          - phase: "03"\n'
@@ -334,8 +250,8 @@ def addTraitDetails(job):
 
 
 def translatename(name, lang="en"):
-    global trans_leves
-    for y, x in trans_leves.items():
+    global leves
+    for y, x in leves.items():
         if x["Name_de"] == name:
             return x[f"Name_{lang}"]
 
@@ -346,26 +262,23 @@ def getCrafterLeves():
     final_results = {}
     for leve_id, leve in leves.items():
         new_leve_id = int(leve_id)
-
-        if "Fertigungserlasse" not in leve["JournalGenre"]:
+        if "Fertigungserlasse" not in leve["JournalGenre"]['Name_de']:
             continue
         for cleve_id, cleve in craftleves.items():
-            if leve["Name"] == cleve["Leve"]:
-                if not final_results.get(leve["JournalGenre"], None):
-                    final_results[leve["JournalGenre"]] = {}
-                final_results[leve["JournalGenre"]][new_leve_id] = {
-                    "Name_DE": leve["Name"],
-                    "Name_EN": translatename(leve["Name"], "en"),
-                    "Name_FR": translatename(leve["Name"], "fr"),
-                    "Name_JA": translatename(leve["Name"], "ja"),
-                    "Name_CN": translatename(leve["Name"], "cn"),
-                    "Name_KO": translatename(leve["Name"], "ko"),
+            if leve["Name_de"] == cleve["Leve"]["Name_de"]:
+                if not final_results.get(leve["JournalGenre"]['Name_de'], None):
+                    final_results[leve["JournalGenre"]['Name_de']] = {}
+                final_results[leve["JournalGenre"]['Name_de']][new_leve_id] = {
+                    "Name_DE": leve["Name_de"],
+                    "Name_EN": translatename(leve["Name_de"], "en"),
+                    "Name_FR": translatename(leve["Name_de"], "fr"),
+                    "Name_JA": translatename(leve["Name_de"], "ja"),
                     "0xID": hex(new_leve_id)[2:].upper(),
                     "ID": str(new_leve_id),
-                    "item": cleve['Item']["0"],
-                    "item_amount": int(cleve['ItemCount']["0"]) + int(cleve['ItemCount']["1"]) + int(cleve['ItemCount']["2"]),
+                    "item": cleve['Item'][0]['Name_de'],
+                    "item_amount": int(cleve['ItemCount'][0]) + int(cleve['ItemCount'][1]) + int(cleve['ItemCount'][2]),
                     "level": leve['ClassJobLevel'],
-                    "Start_Leve_Zone": leve['PlaceName']['Issued'],
+                    "Start_Leve_Zone": leve['PlaceNameIssued']['Name_de'],
                     "Start_Leve_NPC": leve['LeveClient'],
                     "Freibriefanzahl": leve["AllowanceCost"],
                     "Wiederholbar": (int(cleve["Repeats"]) + 1) if cleve["Repeats"] != "0" else 1,
@@ -382,17 +295,15 @@ def getGathererLeves():
     for leve_id, leve in leves.items():
         new_leve_id = int(str(int(leve_id.split(".")[0])))
 
-        if "Sammelerlasse" not in leve["JournalGenre"]:
+        if "Sammelerlasse" not in leve["JournalGenre"]['Name_de']:
             continue
-        if not final_results.get(leve["JournalGenre"], None):
-            final_results[leve["JournalGenre"]] = {}
-        final_results[leve["JournalGenre"]][new_leve_id] = {
-            "Name_DE": leve["Name"],
-            "Name_EN": translatename(leve["Name"], "en"),
-            "Name_FR": translatename(leve["Name"], "fr"),
-            "Name_JA": translatename(leve["Name"], "ja"),
-            "Name_CN": translatename(leve["Name"], "cn"),
-            "Name_KO": translatename(leve["Name"], "ko"),
+        if not final_results.get(leve["JournalGenre"]['Name_de'], None):
+            final_results[leve["JournalGenre"]['Name_de']] = {}
+        final_results[leve["JournalGenre"]['Name_de']][new_leve_id] = {
+            "Name_DE": leve["Name_de"],
+            "Name_EN": translatename(leve["Name_de"], "en"),
+            "Name_FR": translatename(leve["Name_de"], "fr"),
+            "Name_JA": translatename(leve["Name_de"], "ja"),
             "0xID": hex(new_leve_id)[2:].upper(),
             "ID": str(new_leve_id),
             "item": "",
@@ -400,7 +311,7 @@ def getGathererLeves():
             #"item": cleve['Item[0]'],
             #"item_amount": cleve['ItemCount[0]'],
             "level": leve['ClassJobLevel'],
-            "Start_Leve_Zone": leve['PlaceName']['Issued'],
+            "Start_Leve_Zone": leve['PlaceNameIssued']['Name_de'],
             "Start_Leve_NPC": leve['LeveClient'],
             "Freibriefanzahl": leve["AllowanceCost"],
             #"Wiederholbar": True if cleve["Repeats"] != "0" else False,
@@ -448,34 +359,34 @@ def addQuestkDetails(job, pvp):
     newjob, newclass = convertJobToAbrev(job)
     klassenquests = {}
     for key, quest in quests.items():
-        if "Restaurierung der Reliktwaffen" in quest['Name']:
+        if "Restaurierung der Reliktwaffen" in quest['Name_de']:
             continue
-        if quest['ClassJobCategory']["0"] in [newjob, newclass] or quest['ClassJobCategory']["1"] in [newjob, newclass]:
+        if quest['ClassJobCategory0']['Name_de'] in [newjob, newclass] or quest['ClassJobCategory1']['Name_de'] in [newjob, newclass]:
             # print(" \t" + quest['Name'])
-            if quest['Issuer']['Location'] == "":
+            if quest['IssuerLocation'].get('row_id', "0") == "0":
                 continue
             level_data = {}
             try:
-                level_data = getLevel(quest['Issuer']['Location'])
+                level_data = getCoordsFromLocationLevel(quest['IssuerLocation'])
                 if level_data is None or level_data == "{}":
                     continue
             except Exception as e:
                 print(f"Error in addQuestkDetails: {e}")
                 pass
-            place = f"{level_data['region']} > {quest['PlaceName']}"
+            place = f"{level_data['region']} > {quest['PlaceName']['Name_de']}"
             if level_data['placename'] not in place:
                 place + f" > {level_data['placename']}"
             newquest = {
-                "name": quest['Name'],
+                "name": quest['Name_de'],
                 "id": key,
-                "expansion": quest['Expansion'],
-                "level": int(quest['ClassJobLevel']["0"]),
-                "Icon": quest['Icon']['Value'].replace('.tex', "_hr1.webp"),
+                "expansion": quest['Expansion']['Name_de'],
+                "level": int(quest['ClassJobLevel'][0]),
+                "Icon": quest['Icon']['path'].replace('.tex', "_hr1.webp"),
                 "place": place,
-                "previousquest": [quest['PreviousQuest']["0"], quest['PreviousQuest']["1"], quest['PreviousQuest']["2"]],
-                "journalgenre": quest['JournalGenre'],
+                "previousquest": [quest['PreviousQuest'][0], quest['PreviousQuest'][1], quest['PreviousQuest'][2]],
+                "journalgenre": quest['JournalGenre']['Name_de'],
                 "issuer_location_": f"X: {level_data['x']} / Y: {level_data['y']}",
-                "issuer_start_": quest['Issuer']['Start']
+                "issuer_start_": quest['IssuerStart']['Singular_de']
             }
             if klassenquests.get(newquest['level'], None):
                 klassenquests[newquest['level'] + 0.1] = newquest
@@ -487,12 +398,10 @@ def addQuestkDetails(job, pvp):
         quest = klassenquests[_level]
         for lang in LANGUAGES:
             name = {
-                "de": quests_trans.get(quest["id"], {}).get("Name_de", "").replace(" ", "").replace(" ", ""),
-                "en": quests_trans.get(quest["id"], {}).get("Name_en", "").replace(" ", "").replace(" ", ""),
-                "fr": quests_trans.get(quest["id"], {}).get("Name_fr", "").replace(" ", "").replace(" ", ""),
-                "ja": quests_trans.get(quest["id"], {}).get("Name_ja", "").replace(" ", "").replace(" ", ""),
-                "cn": quests_trans.get(quest["id"], {}).get("Name_cn", "").replace(" ", "").replace(" ", ""),
-                "ko": quests_trans.get(quest["id"], {}).get("Name_ko", "").replace(" ", "").replace(" ", "")
+                "de": quests.get(quest["id"], {}).get("Name_de", "").replace(" ", "").replace(" ", ""),
+                "en": quests.get(quest["id"], {}).get("Name_en", "").replace(" ", "").replace(" ", ""),
+                "fr": quests.get(quest["id"], {}).get("Name_fr", "").replace(" ", "").replace(" ", ""),
+                "ja": quests.get(quest["id"], {}).get("Name_ja", "").replace(" ", "").replace(" ", ""),
             }
         level = "0" if quest['level'] == "99999" else quest['level']
         # desc = skill_data["Description"].replace("\n", "</br>")
@@ -585,10 +494,10 @@ ExtraIcons: dict[str, list[str]] = {
 }
 
 def getQuestName(job):
-    for key, value in cjs.items():
-        if job == value['Name']['Value']:
-            if not value['UnlockQuest'] == "0":
-                return value['UnlockQuest']
+    for key, value in classjob.items():
+        if job == value['Name_de']:
+            if not value['UnlockQuest'].get('Name_de', "0") == "0":
+                return value['UnlockQuest']['Name_de']
             return ""
     return ""
 
@@ -599,18 +508,18 @@ def getStatusFromFile(ncj):
     for k in klc:
         default_status[k] = {}
     for key, s in status.items():
-        if s['ClassJobCategory'] in klc:
-            default_status[s['ClassJobCategory']][str(hex(int(key)))[2:].upper()] = {
-                "name": s['Name'],
-                "icon": s['Icon'],
+        if s['ClassJobCategory']['Name_de'] in klc:
+            default_status[s['ClassJobCategory']['Name_de']][str(hex(int(key)))[2:].upper()] = {
+                "name": s['Name_de'],
+                "icon": s['Icon']['path'],
                 "buff": "buff" if str(s['StatusCategory']) == "1" else "debuff",
                 "duration": None
             }
-        elif s['ClassJobCategory'] == "Handwerker":
+        elif s['ClassJobCategory']['Name_de'] == "Handwerker":
             for crafter in ['ZMR', 'GRS', 'PLA', 'GLD', 'GER', 'WEB', 'ALC', 'GRM']:
                 default_status[crafter][str(hex(int(key)))[2:].upper()] = {
-                    "name": s['Name'],
-                    "icon": s['Icon'],
+                    "name": s['Name_de'],
+                    "icon": s['Icon']['path'],
                     "buff": "buff" if str(s['StatusCategory']) == "1" else "debuff",
                     "duration": None
                 }
@@ -618,19 +527,19 @@ def getStatusFromFile(ncj):
 
 
 def get_classJobKeyMapping() -> dict[Any, Any]:
-    global cjs
+    global classjob
     results = {}
-    for key, value in cjs.items():
-        results[value['Name']['Value']] = key
+    for key, value in classjob.items():
+        results[value['Name_de']] = key
     return results
 
 kristall_list = {}
 def getJobKristall(job):
     global kristall_list
     if kristall_list == {}:
-        for key, item in items_trans.items():
+        for key, item in items.items():
             if item['Name_de'].endswith("-Kristall"):
-                kristall_list[item['Name_de'].replace("-Kristall", "")] = item['Icon']
+                kristall_list[item['Name_de'].replace("-Kristall", "")] = item['Icon']['path']
     if kristall_list.get(job, kristall_list.get(job+'n', kristall_list.get(job+'en', kristall_list.get(job[:-1]+'n', None)))):
         image = getImage(kristall_list.get(job, kristall_list.get(job+'n', kristall_list.get(job+'en', kristall_list.get(job[:-1]+'n', None)))))
         return f'jobkristall: "/assets/img/game_assets{image}"\n'
@@ -657,10 +566,11 @@ def getIconForJob(job_abb):
     icon = ""
     # bannertimeline is used as all class icons are in there technicly
     for key, value in bannertimeline.items():
-        if value["AcceptClassJobCategory"] == job_abb:
-            return getImage(value["Icon"])
+        if value["AcceptClassJobCategory"]['Name_de'] == job_abb:
+            return getImage(value["Icon"]['path'])
     if additionalJobIcons.get(job_abb, None):
         return getImage("062000/" + additionalJobIcons[job_abb] + ".webp")
+    print_color_red(f"Error: {job_abb=}")
     return icon
 
 # these are the classes before they are job and usually dont need change
@@ -707,13 +617,13 @@ def addExtraIcons(_type: str, jobicon: str, classicon: str) -> str:
 
 
 def addKlassJobs():
-    global cjs_trans
-    global cjs
-    global addon_trans
+    global classjob
+    global addon
     global status_ncj
     global additionalClassIcons
     global job_translations
     global klass_translations
+    allPartyMittigation={}
     partybonus = {
         "0": "",
         "1": "1082",
@@ -727,12 +637,13 @@ def addKlassJobs():
     # for job, job_data in skills.items():
     all_crafter_leves = getCrafterLeves()
     all_gatherer_leves = getGathererLeves()
-    prepare_eureka_bozja_data(actions, status, status_trans, actions_trans, actiontransient_trans, cjs)
+
+    prepare_eureka_bozja_data(action, status,  classjob)
     eureka_actions = getEurekaActionDetails()
     bozja_actions = getBozjaActionDetails()
     #print_color_yellow(pretty_json(bozja_actions))
     cj_key_lookup = get_classJobKeyMapping()
-    ncj = sorted(cjs_trans.items(), key=lambda item: int(item[0].split(".")[0]))
+    ncj = sorted(classjob.items(), key=lambda item: int(item[0].split(".")[0]))
     status_ncj = getStatusFromFile(ncj)
 
     counter = 0
@@ -741,22 +652,24 @@ def addKlassJobs():
     for k in ncj:
         job_d = k[1]
         job = job_d['Name_de']
+        if job == "":
+            continue
         job_abb = job_d['Abbreviation_de']
         job_data = skills.get(job, None)
-        job_data_pvp = pvpskills.get(job, None)
-        job_party_bonus = str(cjs[k[0]]['PartyBonus'])
-        if job in ["Ninja", "Viper"]:
-            job_party_bonus = "3"
         if not job_data:
             continue
-        if job_d['0xID'] == "0":
+        job_data_pvp = pvpskills.get(job, None)
+        job_party_bonus = str(classjob[k[0]]['PartyBonus'])
+        if job in ["Ninja", "Viper"]:
+            job_party_bonus = "3"
+        if job_d['row_id'] == "0":
             continue
         allPartyMittigation[job] = []
         counter += 1
-        #if not job == "Dunkelritter":
+        #if not job == "Zimmerer":
         #    continue
-        base_class: str = cjs[k[0]]["ClassJob"]['Parent'] if not cjs[k[0]]["ClassJob"]['Parent'] == job else ""
-        print_color_red(job)
+        base_class: str = classjob[k[0]]["ClassJobParent"]['Name_de'] if not classjob[k[0]]["ClassJobParent"]['Name_de'] == job else ""
+        print_color_red(f"{job=}")
 
         # prepare translation elements
         job_translations = {}
@@ -775,21 +688,22 @@ def addKlassJobs():
         filecontent = ""
         filecontent += '---\n'
         filecontent += 'wip: "True"\n'
-        full_title_en = f'{job_d["Name_en"].title()} ({cjs_trans[cj_key_lookup[base_class]]["Name_en"].title()})' if base_class else job_d["Name_en"].title()
+        full_title_en = f'{job_d["Name_en"].title()} ({classjob[cj_key_lookup[base_class]]["Name_en"].title()})' if base_class else job_d["Name_en"].title()
         filecontent += 'title:\n'
         for lang in LANGUAGES:
-            full_title = f'{job_d[f"Name_{lang}"].title()} ({cjs_trans[cj_key_lookup[base_class]]["Name_"+lang].title()})' if base_class else job_d[f"Name_{lang}"].title()
+            full_title = f'{job_d[f"Name_{lang}"].title()} ({classjob[cj_key_lookup[base_class]]["Name_"+lang].title()})' if base_class else job_d[f"Name_{lang}"].title()
             filecontent += f'  {lang}: "{full_title}"\n'
             klass_translations[lang][f'Sidebar_Title_Full_{full_title_en}'] = full_title
             klass_translations[lang][f'Content_Title_{full_title_en}'] = full_title
 
         filecontent += 'layout: klassen\n'
         filecontent += 'page_type: guide\n'
-        roletypeinparty_en_name_key = f'{addon_trans[partybonus[job_party_bonus]]["Text_en"].title()}'
-        #roletypeinparty_de_name_key = f'{addon_trans[partybonus[job_party_bonus]][f"Text_de"].title()}'
+
+        roletypeinparty_en_name_key = f'{addon[partybonus[job_party_bonus]]["Text_en"].title()}'
+        #roletypeinparty_de_name_key = f'{addon[partybonus[job_party_bonus]][f"Text_de"].title()}'
         filecontent += f'roletypeinparty: "{roletypeinparty_en_name_key}"\n'
         for lang in LANGUAGES:
-            klass_translations[lang][f'Sidebar_Role_{roletypeinparty_en_name_key}'] = f'{addon_trans[partybonus[job_party_bonus]][f"Text_{lang}"].title()}'
+            klass_translations[lang][f'Sidebar_Role_{roletypeinparty_en_name_key}'] = f'{addon[partybonus[job_party_bonus]][f"Text_{lang}"].title()}'
         filecontent += 'categories: "klassenjobs"\n'
         filecontent += 'difficulty: "Normal"\n'
         filecontent += 'instanceType: "klassenjobs"\n'
@@ -824,7 +738,7 @@ def addKlassJobs():
             if roleicons.get(roletypeinparty_en_name_key, None):
                 filecontent += f'roleicon: "/assets/img/game_assets/{getImage(roleicons[roletypeinparty_en_name_key])}"\n'
                 if roletypeinparty_en_name_key == "Healer":
-                    healicon, healname = roleiconsextra[cjs[k[0]]["col_46"]]
+                    healicon, healname = roleiconsextra[classjob[k[0]]["Unknown11"]]
                     filecontent += f'roleiconextra:\n'
                     filecontent += f'    - name: "{healname}"\n'
                     filecontent += f'      icon: "{healicon}"\n'
@@ -847,7 +761,7 @@ def addKlassJobs():
         for lang in LANGUAGES:
             filecontent += f'    - term: "{job_d[f"Name_{lang}"].title()}"\n'
             if base_class:
-                filecontent += f'    - term: "{cjs_trans[cj_key_lookup[base_class]]["Name_"+lang].title()}"\n'
+                filecontent += f'    - term: "{classjob[cj_key_lookup[base_class]]["Name_"+lang].title()}"\n'
         filecontent += f'sortid: {counter}\n'
         filecontent += f'order: {counter}\n'
         filecontent += f'plvl: {maxlvl}\n'
@@ -866,17 +780,17 @@ def addKlassJobs():
             klass_translations[lang][f'Sidebar_LodestoneURL_{full_title_en}'] = f'https://{n_lang}.finalfantasyxiv.com/jobguide/{job_d["Name_en"].replace(" ", "").lower()}/'
 
         if base_class:
-            filecontent += f'base_class: "{cjs_trans[cj_key_lookup[base_class]]["Name_en"].title()}"\n'
-            baseclass_en_name_key = cjs_trans[cj_key_lookup[base_class]]["Name_en"].title()
+            filecontent += f'base_class: "{classjob[cj_key_lookup[base_class]]["Name_en"].title()}"\n'
+            baseclass_en_name_key = classjob[cj_key_lookup[base_class]]["Name_en"].title()
             for lang in LANGUAGES:
-                klass_translations[lang][f'Sidebar_BaseClass_{baseclass_en_name_key}'] = cjs_trans[cj_key_lookup[base_class]]["Name_"+lang].title()
+                klass_translations[lang][f'Sidebar_BaseClass_{baseclass_en_name_key}'] = classjob[cj_key_lookup[base_class]]["Name_"+lang].title()
 
         # ugly step to create translation file for abbreviations
 
-        abbreviations = f"{cjs_trans[cj_key_lookup[base_class]]["Abbreviation_en"]}, {job_d["Abbreviation_en"]}" if base_class else job_d["Abbreviation_en"]
+        abbreviations = f"{classjob[cj_key_lookup[base_class]]["Abbreviation_en"]}, {job_d["Abbreviation_en"]}" if base_class else job_d["Abbreviation_en"]
         filecontent += f'abbreviations: "{abbreviations}"\n'
         for lang in LANGUAGES:
-            abbreviations_v = f"{cjs_trans[cj_key_lookup[base_class]]["Abbreviation_"+lang]}, {job_d["Abbreviation_"+lang]}" if base_class else job_d["Abbreviation_"+lang]
+            abbreviations_v = f"{classjob[cj_key_lookup[base_class]]["Abbreviation_"+lang]}, {job_d["Abbreviation_"+lang]}" if base_class else job_d["Abbreviation_"+lang]
             klass_translations[lang][f'Sidebar_ClassShort_{abbreviations}'] = abbreviations_v
 
         filecontent += "bosses:\n"
@@ -887,7 +801,7 @@ def addKlassJobs():
             klass_translations[lang][f'Content_Title_{title_en}'] = job_d[f"Name_{lang}"].title()
         filecontent += "    id: \"" + "boss" + str(counter) + "\"\n"
         if job == "Blaumagier":
-            x, job_translations = addBlueAttackDetails(job_data, craftactions_trans, actions_trans, items_trans, logdata, job_translations)
+            x, job_translations = addBlueAttackDetails(job_data, craftactions, action, items, logdata, job_translations)
             filecontent += x
         else:
             attack_text, attack_skills = addAttackDetails(job_data)
@@ -958,10 +872,9 @@ def write_class_translation_file(job_translations, classname):
 def run():
     os.chdir("..")
     get_class_translation_data()
-    load_global_data()
     os.chdir("_posts")
     addKlassJobs()
-    addChocobo(actions, actions_trans, actiontransient_trans, traits, traits_trans, traitstransient_trans, klass_translations, write_class_translation_file, addExtraIcons)
+    addChocobo(action,  actiontransient, traits, traitstransient, klass_translations, write_class_translation_file, addExtraIcons)
     write_class_translation_data(klass_translations)
 
 

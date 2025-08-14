@@ -4,7 +4,7 @@ from ffxiv_aku import *
 from ffxiv_aku import loadDataTheQuickestWay, false, true, wrap_in_color_green, wrap_in_color_red
 try:
     from .convert_skills_to_guide_form_helper.helper import getImage
-    from .helper import getImage
+    from .helper import *
 except:
     from convert_skills_to_guide_form_helper.helper import *
     from helper import *
@@ -263,6 +263,7 @@ def main():
 
 
 def run():
+    print(os.getcwd())
     global patched_data
     if "python_scripts" not in os.getcwd():
         os.chdir("python_scripts")
