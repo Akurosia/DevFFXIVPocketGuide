@@ -107,10 +107,10 @@ def get_achivment_per_categorie(basic_cat):
                         },
                         "order": order_id,
                         "icon": getImage(value['Icon']),
-                        "item": value['Item'],
-                        "key": value['Key'],
+                        "item": value['Item']['Name_de'],
+                        "key": value['Key']['value'],
                         "points": value['Points'],
-                        "title": value['Title'],
+                        "title": value['Title']['Masculine_de'],
                         "type": value['Type']
                     }
     return cat
