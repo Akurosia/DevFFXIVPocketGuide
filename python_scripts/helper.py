@@ -3,11 +3,11 @@
 # coding: utf8
 import os
 import sys
-import shutil
+from pathlib import Path
 import math
 from dataclasses import dataclass, field
 from typing import List, Any, Dict
-from ffxiv_aku import print_color_red, print_color_green, print_color_yellow, convert_single_image
+from ffxiv_aku import print_color_red, print_color_green, print_color_yellow, convert_single_image, print_color_blue
 try:
     from python_scripts.fileimports import *
 except Exception:
@@ -79,65 +79,129 @@ class EntryType(dict):
     def __setitem__(self, key: str, value: Any) -> None:
         setattr(self, key, value)
 
-def getImage(image: str, _type: str="icon") -> str:
-    if image is None or image == "":
+# --- path helpers ---
+def get_repo_root() -> Path:
+    """Find repo root by looking for 'assets' folder upward from cwd."""
+    p = Path.cwd()
+    while p != p.parent:  # stop at filesystem root
+        if (p / "assets").exists():
+            return p
+        p = p.parent
+    return Path.cwd()  # fallback if not found
+
+REPO_ROOT = get_repo_root()
+
+def project_path_from_assets_like(url_path: str) -> Path:
+    return REPO_ROOT / url_path.lstrip("/")
+
+def path_exists_in_assets(url_path: str) -> bool:
+    return project_path_from_assets_like(url_path).exists()
+
+def is_repo_root() -> bool:
+    # your repo is named DevFFXIVPocketGuide per your message
+    return Path.cwd().name == "DevFFXIVPocketGuide"
+
+#--- main API ---
+def getImage(image: str, _type: str = "icon") -> str:
+    """
+    Resolve the correct image path and ensure a HR webp exists, cross-platform.
+    Returns a URL-ish path starting with '/assets/...'.
+    """
+
+    if not image:  # None or ""
         return ""
+
+    if "assets/img/content" in image:
+        return image
+
+    # dict support
     if isinstance(image, dict):
         image = image.get("path_hr1", image)
+
+    # cleanup
+    image = image.replace("\\", "/")
     if image.startswith("/../"):
         image = image.replace("/../", "/")
-    # exit early if corret name format is found and file exixsts
-    if "_hr1" in image and os.path.exists(".." + image) or "/content/" in image and os.path.exists(".." + image) or image == "/assets/img/test.webp":
+
+    # Early exit when already good and present
+    if (
+        (("_hr1" in image) or ("/content/" in image)) and path_exists_in_assets(image)
+    ) or image == "/assets/img/test.webp":
         return image
-    # get propper image extention as _hr1.png
-    image = image.replace(".webp", ".png")
-    image = image.replace(".tex", ".png")
-    image = image.replace("test.jpg", "test.webp")
+
+    # Normalize extensions
+    image = image.replace(".webp", ".png").replace(".tex", ".png").replace("test.jpg", "test.webp")
+
+    # Ensure _hr1 for non-map
+    if "_hr1" not in image and _type != "map":
+        if image.lower().endswith(".png"):
+            image = image[:-4] + "_hr1.png"
+
+    # For icons drop 'ui/icon/' prefix if present
     if _type == "icon":
-        image = image.replace(f"ui/{_type}/", "")
-    image = copy_and_return_image_as_hr(img=image, _type=_type)
-    if not image.startswith("/"):
-        image = "/" + image
-    print_color_yellow(".." + image)
-    if not os.path.exists(".." + image):
-        image = image.replace("_hr1.webp", ".webp")
-        print_color_green(image)
-    return image
+        image = image.replace("ui/icon/", "").replace("ui/{}/".format(_type), "")
+    # Create/copy/convert and get a repo-relative assets path (no leading slash)
+    repo_rel = copy_and_return_image_as_hr(img=image, _type=_type)  # e.g. 'assets/img/game_assets/061000/061880_hr1.webp'
+    # Make it URL-ish
+    url_path = "/" + repo_rel.lstrip("/")
+    # Debug: show real resolved path & existence
+    abs_path = project_path_from_assets_like(url_path)
+    # Fallback to non-hr if hr missing
+    if not abs_path.exists():
+        url_path = url_path.replace("_hr1.webp", ".webp")
+        print_color_green(url_path)
+    return url_path
 
+def copy_and_return_image_as_hr(img: str, _type: str = "icon") -> str:
+    """
+    Ensure a webp is present in assets/img/game_assets[/map]/..., converting from source if needed.
+    Returns a repo-relative path like 'assets/img/game_assets/061000/061880_hr1.webp'
+    """
 
-def copy_and_return_image_as_hr(img: str, _type: str="icon") -> str:
-    if "_hr1" not in img and not _type == "map":
-        img = img.replace(".png", "_hr1.png")
+    # Strip any site prefix and *remove leading slash* so joins don't reset the base path
+    img = img.replace("/assets/img/game_assets", "").replace("\\", "/").lstrip("/")
 
-    img = img.replace("/assets/img/game_assets", "")
-
-    basepath = None
-    if os.name == 'nt':
-        basepath = "P:/extras/images/ui/"
+    # Source base path by OS
+    if os.name == "nt":
+        basepath = Path("P:/extras/images/ui")
     elif sys.platform.startswith("linux"):
-        basepath = "/var/www/ffxiv/extras/images/ui/"
+        basepath = Path("/var/www/ffxiv/extras/images/ui")
     elif sys.platform == "darwin":
-        basepath = "/Volumes/FFXIV/extras/images/ui/"
-
-    filename = f"{basepath}{_type}/" + img
-    filename = filename.replace("//", "/")
-    if os.path.exists(filename):
-        new_path = "../assets/img/game_assets/"
-        if os.getcwd().endswith("DevFFXIVPocketGuide"):
-            new_path = "assets/img/game_assets/"
-        if _type == "map":
-            new_path += "map/"
-        full_filepath: str = (new_path + img.replace(".png", ".webp")).replace("//", "/")
-        if not os.path.exists(full_filepath):
-            if not os.path.exists(os.path.dirname(new_path + img)):
-                os.makedirs(os.path.dirname(new_path + img))
-            convert_single_image(filename, replace_dir=(f"{basepath}{_type}/", new_path))
-            #shutil.copyfile(filename, new_path + img)
-        img = full_filepath
+        basepath = Path("/Volumes/FFXIV/extras/images/ui")
     else:
-        print_color_red(f"Filename not found: {filename}")
-    return img.replace(".png", ".webp").replace("../", "")
+        basepath = Path("extras/images/ui")  # fallback
 
+    # Full source file (png is your source format)
+    # IMPORTANT: img must NOT start with '/', otherwise this would discard basepath/_type
+    src_path = (basepath / _type / img).with_suffix(".png")
+
+    # Destination root inside repo
+    dest_root = Path("assets/img/game_assets")
+    if not is_repo_root():
+        # allow running from parent folder as in your original code
+        dest_root = Path("../assets/img/game_assets")
+
+    if _type == "map":
+        dest_root = dest_root / "map"
+
+    # Destination full path as webp
+    dest_path = (dest_root / img).with_suffix(".webp")
+
+    # Convert/copy if source exists and dest missing
+    if src_path.exists():
+        if not dest_path.exists():
+            dest_path.parent.mkdir(parents=True, exist_ok=True)
+            # convert_single_image expects a filename and a replace_dir tuple just like your original code
+            # We pass posix-style strings to keep it consistent across OSes.
+            convert_single_image(
+                src_path.as_posix(),
+                replace_dir=((basepath / _type).as_posix() + "/", dest_root.as_posix().rstrip("/") + "/"),
+            )
+    else:
+        print_color_red(f"Filename not found: {src_path.as_posix()}")
+
+    # Return repo-relative path (strip any leading ../ that might exist)
+    return dest_path.as_posix().replace("../", "")
 
 def uglyContentNameFix(name: str, instanceType: str="", difficulty: str="") -> str:
     if difficulty == "Fatal" and instanceType == "ultimate" and "fatal" not in name.lower():

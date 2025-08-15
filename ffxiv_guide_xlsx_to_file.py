@@ -11,6 +11,7 @@ import traceback
 from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, storeFilesInTmp, sortJsonData, print_color_red
 os.system('cls')
 from python_scripts.header import addHeader
+from python_scripts.helper import *
 from python_scripts.guide import addGuide
 from python_scripts.fileimports import logdata, logdata_lower
 from python_scripts.helper import uglyContentNameFix, getContentName, EntryType
@@ -51,6 +52,61 @@ translations:dict[str, dict[str, dict[str, str]]] = {
     "fr": {},
     "ja": {}
 }
+
+def get_files_from_templates():
+    files = [
+        "/062000/062585_hr1.webp",
+        "/061000/061757_hr1.webp",
+        "/061000/061828_hr1.webp",
+        "/060000/060453_hr1.webp",
+        "/000000/000046_hr1.webp",
+        "/000000/000029_hr1.webp",
+        "/061000/061759_hr1.webp",
+        "/061000/061432_hr1.webp",
+        "/061000/061835_hr1.webp",
+        "/061000/061822_hr1.webp",
+        "/061000/061821_hr1.webp",
+        "/061000/061723_hr1.webp",
+        "/061000/061767_hr1.webp",
+        "/000000/000115_hr1.webp",
+        "/061000/061723_hr1.webp",
+        "/000000/000036_hr1.webp",
+        "/061000/061834_hr1.webp",
+        "/061000/061540_hr1.webp",
+        "/061000/061801_hr1.webp",
+        "/061000/061804_hr1.webp",
+        "/061000/061802_hr1.webp",
+        "/061000/061832_hr1.webp",
+        "/061000/061844_hr1.webp",
+        "/061000/061850_hr1.webp",
+        "/061000/061846_hr1.webp",
+        "/061000/061837_hr1.webp",
+        "/061000/061836_hr1.webp",
+        "/061000/061824_hr1.webp",
+        "/061000/061803_hr1.webp",
+        "/061000/061808_hr1.webp",
+        "/061000/061806_hr1.webp",
+        "/061000/061823_hr1.webp",
+        "/052000/052474_hr1.webp",
+        "/061000/061533_hr1.webp",
+        "/061000/061875_hr1.webp",
+        "/061000/061876_hr1.webp",
+        "/061000/061877_hr1.webp",
+        "/061000/061878_hr1.webp",
+        "/061000/061879_hr1.webp",
+        "/061000/061880_hr1.webp",
+        "/071000/071221_hr1.webp",
+        "/071000/071201_hr1.webp",
+        "/071000/071222_hr1.webp",
+        "/071000/071281_hr1.webp",
+        "/060000/060552_hr1.webp",
+        "/061000/061436_hr1.webp",
+        "/062000/062951_hr1.webp",
+        "/062000/062952_hr1.webp",
+        "/062000/062953_hr1.webp",
+    ]
+    for file in files:
+        getImage(file)
 
 def translate_content_files(entry: EntryType) -> None:
     global translations
@@ -252,7 +308,6 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
             logger.critical(msg)
             traceback.print_exception(*sys.exc_info())
 
-
 def main() -> None:
     global translations
     logger.critical('START')
@@ -306,4 +361,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     print(f"[MAIN:if] {sys.version}")
-    main()
+    #main()
+    get_files_from_templates()
