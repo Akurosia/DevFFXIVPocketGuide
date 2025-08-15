@@ -361,5 +361,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     print(f"[MAIN:if] {sys.version}")
-    #main()
+    main()
     get_files_from_templates()
