@@ -261,7 +261,7 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
         i = int(key)
         try:
             debug_row_number = i
-            if True:
+            if not True:
                 #if debug_row_number < 700 :
                 #if debug_row_number not in [354, 581, 787, 788, 818, 821]:
                 if debug_row_number not in [852]:
