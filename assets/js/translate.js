@@ -2,7 +2,7 @@
 translate_getSearchCategories();
 translate_loadFromLocalStorage();
 
-languages = ["_en","_de","_fr","_ja","_cn","_ko"]
+languages = ["_en","_de","_fr","_ja"]
 
 function translate_loadFromLocalStorage(){
   if(localStorage.getItem('translate_ffxiv_term') !== null){
