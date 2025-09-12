@@ -230,7 +230,7 @@ function getTableColumns(header_json){
     // if an icon is available, make sure its at position [1]
     if (columns[1] != "Icon" && columns.includes("Icon")){
         columns = columns.filter(item => item !== "Icon")
-        columns.splice(1, 0, "Icon")
+        columns.splice(2, 0, "Icon")
     }
     // creates the final columns with all languages in order
     r_columns = []
@@ -244,10 +244,8 @@ function getTableColumns(header_json){
     for (var element in r_columns){
         columns = columns.filter(item => item !== r_columns[element])
     }
-    //turn array around so description is always last and name/text/singular is first
-    columns.reverse();
-    for (var lang in languages){
-        for (var element in columns){
+    for (var element in columns){
+        for (var lang in languages){
             r_columns.push(columns[element].substring(0, columns[element].length - 1) + languages[lang])
         }
     }
