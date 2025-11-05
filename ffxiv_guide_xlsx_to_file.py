@@ -200,7 +200,7 @@ def getDataFromLogfile(entry: dict[str, Any]):
     # get correct title capitalization to read data from logdata
     title = uglyContentNameFix(entry["titles"]['de'].title(), entry["instanceType"], entry["difficulty"])
     # get the latest data from logdata
-    if not entry["titles"]['de'] == "" and logdata_lower.get(entry["titles"]['de'].lower()):
+    if not entry["titles"]['de'] == "" and logdata_lower.get(title.lower()):
         try:
             logdata_instance_content = dict(logdata[getContentName(title, lang="de")])
         except Exception:
@@ -261,10 +261,10 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
         i = int(key)
         try:
             debug_row_number = i
-            if not True:
+            if True:
                 #if debug_row_number < 700 :
                 #if debug_row_number not in [354, 581, 787, 788, 818, 821]:
-                if debug_row_number not in [852]:
+                if debug_row_number not in [803, 804]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(value, i, orderedContent)

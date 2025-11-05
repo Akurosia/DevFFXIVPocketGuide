@@ -217,6 +217,8 @@ def uglyContentNameFix(name: str, instanceType: str="", difficulty: str="") -> s
         name = f"{name} ({difficulty.lower()})"
     elif name in ["Krieger des Lichts"] and difficulty.lower() == "extrem":
         name = f"{name} ({difficulty.lower()})"
+    elif name in ["Jagd Auf Wächter-Arkveld"] and difficulty.lower() == "schwer":
+        name = f"{name} ({difficulty.lower()})"
     # handle edge cases PvP
     elif "(Flechtenhain)" in name:
         name = name.replace("(Flechtenhain)", "")
