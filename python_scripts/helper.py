@@ -248,7 +248,7 @@ def getContentName(name: str, lang: str ="en", difficulty: str="", instanceType:
     except KeyError:
         traceback.print_exc()
         pass
-    print_color_red("Could not translate: " + name)
+    print_color_red(f"Could not translate: {name=} ({lang=})")
     return ""
 
 
