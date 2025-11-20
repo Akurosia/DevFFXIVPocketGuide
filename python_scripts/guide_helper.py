@@ -191,8 +191,8 @@ def get_fixed_status_description(_id):
         return {"en": f"Unknown_{_id}"}
 
 
-ids_to_replace1: list[str] = ["10742", "11399", "13057"]
-ids_to_replace2: list[str] = ["10744", "11402", "13058"]
+ids_to_replace1: list[str] = ["10742", "11399", "13057", "13843"]
+ids_to_replace2: list[str] = ["10744", "11402", "13058", "13844"]
 def getBnpcNameFromID(_id, article_name, german_name, lang="en"):
     global ids_to_replace
     bnpc_new_name = ""
@@ -213,6 +213,8 @@ def getBnpcNameFromID(_id, article_name, german_name, lang="en"):
         elif _id in ids_to_replace2:
             german_name = german_name.replace(" ii", "")
             extra = " II"
+        elif german_name.endswith(" II"):
+            print_color_blue("Check ID in guide_helper/ids_to_replace2")
         # TODO check here why its not working
         m = re.search(german_name, bnpc_new_name, re.IGNORECASE)
         n = re.search(article_name, bnpc_new_name, re.IGNORECASE)
@@ -428,6 +430,10 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     if old_attack.get('title', {}).get('de', None) == attack['name']:
                         attack_index = i
                         break
+                #if not attack_index:
+                    #print_color_red(f"[DEBUG] {attack['name']=} was not found in old_enemy_data")
+                    # print(old_enemy_data['attacks'])
+                #    continue
                 tmp_attack = old_enemy_data['attacks'][attack_index]
                 # add new attack
                 tmp = {
