@@ -150,118 +150,136 @@ function scrollToElement(element) {
 
         });
 
-        // FFXIV Guide Filters =================================================
-        $("#guideFilter").keyup(function(e) {
+// Keep track of disabled expansions
+var disabledExpansions = {};
 
-            var input = this.value.toLowerCase().trim()
-            var terms = input.split(" ");
-            $(".index .index__list, \
-              .index .index__list_quests, \
-              .index .index__list_achivments, \
-              .index_attack .index__list_attack, \
-              .index_debuff .index__list_debuff, \
-              .index_eureka .index__list_eureka, \
-              .index_bozja .index__list_bozja, \
-              .index_trait .index__list_trait, \
-              .index_leve .index__list_leve, \
-              .index_quest .index__list_quest").each(function(e) {
+// Toggle expansion buttons
+$(document).on("click", ".expansion-toggle", function () {
+    var $btn = $(this);
+    var expansion = $btn.data("expansion");
 
-                $(this).find(".summary").each(function(e) {
+    $btn.toggleClass("inactive");
 
-                    var headingText  =  $(this).find(".index-item__title").data("terms").toLowerCase();
+    if ($btn.hasClass("inactive")) {
+        disabledExpansions[expansion] = true;
+    } else {
+        delete disabledExpansions[expansion];
+    }
 
-                    /*
-                    This is currently setup for "OR" or "ANY" searching.
-                    If any phrase matches the item will be shown. You can switch
-                    this to "AND" or "ALL" searching by doing the following:
-                    1. change the declaration of show to true by default.
-                    2. negate the conditional in the forEach example:
-                        if ( !(headingText.indexOf(term.trim()) >= 0) ) {
-                    3. change the assignment inside the conditional to false
-                    */
+    runGuideFilter(); // re-run filter whenever a toggle changes
+});
 
-                    var show = true;
+// Prevent submitting with Enter
+$('#guideFilter').on('keyup keypress', function (e) {
+    var keyCode = e.keyCode || e.which;
+    if (keyCode === 13) {
 
-                    terms.forEach(function(term){
-                        if ( !(headingText.indexOf(term.trim()) >= 0) ) {
-                            show = false;
-                        }
-                    });
+        if ($(".site-grid__sidebar").hasClass("active")) {
+            $(".sidebar__trigger").removeClass("active");
+            $(".site-grid__sidebar-overlay").removeClass("active");
+            $(".site-grid__sidebar").removeClass("active");
+        }
 
-                    if (show) {
-                        $(this).show();
-                        $(this).addClass("show");
+        var top = $('body').position().top;
+        $('html,body').scrollTop(top);
+
+        e.preventDefault();
+        document.activeElement.blur();
+        return false;
+    }
+});
+
+// Run filter on typing
+$("#guideFilter").on("keyup", function (e) {
+    runGuideFilter();
+    e.preventDefault();
+});
+
+function runGuideFilter() {
+    console.log(disabledExpansions);
+    var input = $("#guideFilter").val().toLowerCase().trim();
+    var terms = input ? input.split(" ") : [];
+
+    $(".index .index__list, \
+      .index .index__list_quests, \
+      .index .index__list_achivments, \
+      .index_attack .index__list_attack, \
+      .index_debuff .index__list_debuff, \
+      .index_eureka .index__list_eureka, \
+      .index_bozja .index__list_bozja, \
+      .index_trait .index__list_trait, \
+      .index_leve .index__list_leve, \
+      .index_quest .index__list_quest").each(function () {
+
+        var $list = $(this);
+        var listExpansion = $list.attr("data-expansion"); // category-level expansion (may be undefined)
+        var hasVisibleSummary = false;
+
+        $list.find(".summary").each(function () {
+            var $summary = $(this);
+
+            // Prefer per-item expansion, fall back to list expansion
+            var itemExpansion = $summary.data("expansion") || listExpansion;
+            var isDisabledByExpansion = !!disabledExpansions[itemExpansion];
+
+            var headingText = $summary
+                .find(".index-item__title")
+                .data("terms")
+                .toLowerCase();
+
+            // Start with expansion state
+            var show = !isDisabledByExpansion;
+
+            // Apply text terms if expansion is enabled
+            if (show && terms.length > 0) {
+                terms.forEach(function (term) {
+                    term = term.trim();
+                    if (term && headingText.indexOf(term) === -1) {
+                        show = false;
                     }
-                    else {
-                        $(this).hide();
-                        $(this).removeClass("show");
-                    }
-
                 });
-
-                if($(this).find(".summary.show").length) {
-                    var expansion = $(this).attr("data-expansion");
-                    $(this).show();
-                    $(".index-divider").each(function(e) {
-                        if ($(this).attr("data-expansion") == expansion) {
-                            $(this).show();
-                        }
-                    });
-                }
-                else {
-                    var expansion = $(this).attr("data-expansion");
-                    $(this).hide();
-                    $(".index-divider").each(function(e) {
-                        if ($(this).attr("data-expansion") == expansion) {
-                            $(this).hide();
-                        }
-                    });
-                }
-
-            });
-
-            if(terms == "") {
-                $("#shadowbringersTitle").show();
-                $("#shadowbringersContent").show();
-            }
-            else {
-                $("#shadowbringersTitle").hide();
-                $("#shadowbringersContent").hide();
             }
 
-            if($(".summary.show").length) {
-                $(".index-null-state").hide();
+            if (show) {
+                $summary.show().addClass("show");
+                hasVisibleSummary = true;
+            } else {
+                $summary.hide().removeClass("show");
             }
-            else {
-                $(".index-null-state").show();
-            }
-
-            // Prevents the user from submitting the form with the enter key.
-            $('#guideFilter').on('keyup keypress', function(e) {
-                var keyCode = e.keyCode || e.which;
-                if (keyCode === 13) {
-
-                    if ($(".site-grid__sidebar").hasClass("active")) {
-                        $(".sidebar__trigger").removeClass("active");
-                        $(".site-grid__sidebar-overlay").removeClass("active");
-                        $(".site-grid__sidebar").removeClass("active");
-                    }
-
-                    var top = $('body').position().top;
-                    $('html,body').scrollTop(top);
-
-                    e.preventDefault();
-
-                    document.activeElement.blur();
-
-                    return false;
-
-                }
-            });
-
-            e.preventDefault();
-
         });
+
+        // Show/hide list + divider based on whether it has any visible items
+        if (hasVisibleSummary) {
+            $list.show();
+            if (listExpansion) {
+                $(".index-divider[data-expansion='" + listExpansion + "']").show();
+            }
+        } else {
+            $list.hide();
+            if (listExpansion) {
+                $(".index-divider[data-expansion='" + listExpansion + "']").hide();
+            }
+        }
+    });
+
+    // Shadowbringers block (adapt as needed)
+    if (!input) {
+        $("#shadowbringersTitle").show();
+        $("#shadowbringersContent").show();
+    } else {
+        $("#shadowbringersTitle").hide();
+        $("#shadowbringersContent").hide();
+    }
+
+    // Null state
+    if ($(".summary.show").length) {
+        $(".index-null-state").hide();
+    } else {
+        $(".index-null-state").show();
+    }
+}
+
+
 
         // FFXIV Guide Accordions only arrow ==============================================
         $("[class*='Dropdown material-icons']").on("click", function(e) {

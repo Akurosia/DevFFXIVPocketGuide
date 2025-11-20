@@ -12,12 +12,7 @@
                 {% include header.html %}
                 {% if page.page_type == "index" %}
                     <!-- Search Bar -->
-                    <div class="search">
-                        <form class="search__form">
-                            <label for="guideFilter" data-translate="Searchbar_Example_Text">Nach einem Guide suchen...</label>
-                            <input id="guideFilter" placeholder="Windäther, Elpis, Raid, Aglaia, etc..." type="text"/>
-                        </form>
-                    </div>
+                    {% include presets/search.html searchPrefill="quests" %}
                     <!-- END Search Bar -->
                 {% endif %}
                 {% include quests/index.html %}

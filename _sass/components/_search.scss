@@ -25,7 +25,7 @@
     }
 
     label {
-        color: $palette--black;
+        color: $palette--white;
         display: block;
         font-family: $font-aktiv;
         font-size: $font-scale--small;
@@ -36,7 +36,7 @@
 
     input {
         border: 1px solid $palette--black;
-        border-radius: 3px;
+        border-radius: 20px;
         color: $font-black;
         display: block;
         font-family: $font-aktiv;

@@ -2,42 +2,65 @@
         {%- case x -%}
             {%- when "dt" -%}
             <!-- Dawntrail Guide Index ============================================ -->
+                {%- assign x_shortid = "dt" -%}
                 {%- assign x_id = "dawntrail" -%}
                 {%- assign x_title = "7.x - Dawntrail" -%}
                 {%- assign categories = site.categories.dt -%}
+                {%- assign expacicon = "061000/061880_hr1.webp" -%}
+                {%- assign expacimage = "uld/title_logo700_hr1.tex.webp" -%}
             {%- when "ew" -%}
             <!-- Endwalker Guide Index ============================================ -->
+                {%- assign x_shortid = "ew" -%}
                 {%- assign x_id = "endwalker" -%}
                 {%- assign x_title = "6.x - Endwalker" -%}
                 {%- assign categories = site.categories.ew -%}
+                {%- assign expacicon = "061000/061879_hr1.webp" -%}
+                {%- assign expacimage = "uld/title_logo600_hr1.tex.webp" -%}
             {%- when "shb" -%}
             <!-- Shadowbringers Guide Index ============================================ -->
+                {%- assign x_shortid = "shb" -%}
                 {%- assign x_id = "shadowbringers" -%}
                 {%- assign x_title = "5.x - Shadowbringers" -%}
                 {%- assign categories = site.categories.shb -%}
+                {%- assign expacicon = "061000/061878_hr1.webp" -%}
+                {%- assign expacimage = "uld/title_logo500_hr1.tex.webp" -%}
             {%- when "sb" -%}
             <!-- Stormblood Guide Index ============================================ -->
+                {%- assign x_shortid = "sb" -%}
                 {%- assign x_id = "stormblood" -%}
                 {%- assign x_title = "4.x - Stormblood" -%}
                 {%- assign categories = site.categories.sb -%}
+                {%- assign expacicon = "061000/061877_hr1.webp" -%}
+                {%- assign expacimage = "uld/title_logo400_hr1.tex.webp" -%}
             {%- when "hw" -%}
             <!-- Heavensward Guide Index ============================================ -->
+                {%- assign x_shortid = "hw" -%}
                 {%- assign x_id = "heavensward" -%}
                 {%- assign x_title = "3.x - Heavensward" -%}
                 {%- assign categories = site.categories.hw -%}
+                {%- assign expacicon = "061000/061876_hr1.webp" -%}
+                {%- assign expacimage = "uld/title_logo300_hr1.tex.webp" -%}
             {%- when "arr" -%}
             <!-- A Realm Reborn Guide Index ============================================ -->
+                {%- assign x_shortid = "arr" -%}
                 {%- assign x_id = "a_realm_reborn" -%}
                 {%- assign x_title = "2.x - A Realm Reborn" -%}
                 {%- assign categories = site.categories.arr -%}
+                {%- assign expacicon = "061000/061875_hr1.webp" -%}
+                {%- assign expacimage = "uld/title_logo_hr1.tex.webp" -%}
             {%- when "ffxiv" -%}
             <!-- A Realm Reborn Guide Index ============================================ -->
+                {%- assign x_shortid = "ffxiv" -%}
                 {%- assign x_id = "final_fantasy_1_0" -%}
                 {%- assign x_title = "1.x - Final Fantasy 14" -%}
+                {%- assign expacicon = "061000/061533_hr1.webp" -%}
+                {%- assign expacimage = "uld/title_logoonline_hr1.tex.webp" -%}
             {%- when "klassenjobs" -%}
             <!-- Klassen Guide Index ============================================ -->
-                {%- assign x_title = "Klassen und Jobs" -%}
+                {%- assign x_shortid = "klassenjobs" -%}
                 {%- assign x_id = "klassenjobs" -%}
+                {%- assign x_title = "Klassen und Jobs" -%}
                 {%- assign categories = site.categories.klassenjobs -%}
+                {%- assign expacicon = "" -%} {%- assign expacimage = "" -%}
         {%- endcase -%}
 <!-- END Include from _includes/helper/handle_version_switchcase -->

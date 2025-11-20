@@ -12,12 +12,7 @@
                 {% include header.html %}
                 {% if page.page_type == "index" %}
                     <!-- Search Bar -->
-                    <div class="search">
-                        <form class="search__form">
-                            <label for="guideFilter" data-translate="Searchbar_Example_Text">Nach einem Guide suchen...</label>
-                            <input id="guideFilter" placeholder="Test" type="text"/>
-                        </form>
-                    </div>
+                    {% include presets/search.html searchPrefill="achievment" %}
                     <!-- END Search Bar -->
                 {% endif %}
                 {% include achivments/index.html %}

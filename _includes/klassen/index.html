@@ -1,5 +1,6 @@
 <!-- Include from _includes/klassen/index -->
 <div class="index">
+
     <div class="sort_by_expac" style="display: none">
         {%- assign my_array = site.ffxiv_expansion_list | split: ',' -%}
         {%- for x in my_array -%}
@@ -21,6 +22,7 @@
             {%- endif -%}
         {%- endfor -%}
     </div>
+
     <div class="sort_by_type">
         {%- assign categories = site.categories.klassenjobs -%}
         {%- assign expac = "" -%}

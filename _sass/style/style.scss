@@ -1880,3 +1880,28 @@ ion-icon {
     @import "style/_style_media_min_with_rest.scss";
 
 // Style CSS ====================================================================
+
+
+.expansion-toggles {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.expansion-toggle {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.expansion-toggle img {
+    width: 32px;
+    height: 32px;
+    transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.expansion-toggle.inactive img {
+    filter: grayscale(100%);
+    opacity: 0.4;
+}

@@ -1,0 +1,38 @@
+
+
+{%- assign prefillexpac = "Dawntrail, M8S, Necron, Mounts, Minions" -%}
+
+{%- if include.searchPrefill == "dalamud" -%}
+    {%- assign searchPrefill2 = "Windäther, Elpis, Raid, Aglaia, etc..." -%}
+{%- elsif include.searchPrefill == "links" -%}
+    {%- assign searchPrefill2 = prefillexpac | prepend: "!" | append: ", etc..." -%}
+{%- elsif include.searchPrefill == "achievment" -%}
+    {%- assign searchPrefill2 = prefillexpac | prepend: "!" | append: ", etc..." -%}
+{%- elsif include.searchPrefill == "quests" -%}
+    {%- assign searchPrefill2 = "Windäther, Elpis, Raid, Aglaia, etc..." -%}
+{%- elsif include.searchPrefill == "klassen" -%}
+    {%- assign searchPrefill2 = prefillexpac | append: ", etc..." -%}
+{%- elsif include.searchPrefill == "index" -%}
+    {%- assign searchPrefill2 = prefillexpac | append: ", etc..." -%}
+{%- elsif include.searchPrefill == "treasure" -%}
+    {%- assign searchPrefill2 = prefillexpac | append: ", etc..." -%}
+{%- else -%}
+    {%- assign searchPrefill2 = prefillexpac | append: ", etc..." -%}
+{%- endif -%}
+
+<div class="search">
+    <form class="search__form">
+        <label for="guideFilter" data-translate="Searchbar_Example_Text">Nach einem Guide suchen...</label>
+        <div class="expansion-toggles">
+            <input id="guideFilter" placeholder="{{searchPrefill2}}" type="text"/>
+            {%- assign my_array = site.ffxiv_expansion_list | split: ',' -%}
+            {%- for x in my_array -%}
+                {% include helper/handle_version_switchcase.html %}
+                <!-- Example: {{x_title}} -->
+                <button type="button" class="expansion-toggle active" data-expansion="{{x_shortid}}" title="{{x_title}}">
+                    <img loading="lazy" class="role-icon" src="/assets/img/game_assets/{{expacicon}}" alt="{{x_title}}">
+                </button>
+            {%- endfor -%}
+        </div>
+    </form>
+</div>
