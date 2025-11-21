@@ -57,7 +57,7 @@ def get_pomanders():
     pomander_table += """                            </tbody>
                         </table>
                     </div>\n"""
-    print(pomander_table)
+    return pomander_table
 
 
 def get_stones_demis():
@@ -125,7 +125,7 @@ def get_stones_demis():
     pomander_table += """                            </tbody>
                         </table>
                     </div>\n"""
-    print(pomander_table)
+    return pomander_table
 
 if __name__ == "__main__":
-    get_stones_demis()
+    print(get_stones_demis())
