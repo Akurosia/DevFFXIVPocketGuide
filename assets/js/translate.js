@@ -4,6 +4,25 @@ translate_loadFromLocalStorage();
 
 languages = ["_en","_de","_fr","_ja"]
 
+function applyImageFallback(img) {
+    img.addEventListener("error", function handleError() {
+        // Prevent infinite loop
+        img.removeEventListener("error", handleError);
+
+        const src = img.getAttribute("src");
+        const parts = src.split("/");
+
+        // Expect: .../ui/icon/121000/121753_hr1.png
+        const filename = parts.pop();       // 121753_hr1.png
+        const folder   = parts.pop();       // 121000
+
+        // Build fallback: insert "de" folder
+        const fallback = parts.join("/") + "/" + folder + "/de/" + filename;
+
+        img.src = fallback;
+    });
+}
+
 function translate_loadFromLocalStorage(){
   if(localStorage.getItem('translate_ffxiv_term') !== null){
     document.getElementById("searchValue").value = localStorage.getItem('translate_ffxiv_term');
@@ -91,6 +110,7 @@ async function translate_search(){
         // sort elements
     });
     console.log("Done")
+    document.querySelectorAll("img[src*='ui/icon']").forEach(applyImageFallback);
 }
 
 function order_divs_at_the_end(){
