@@ -63,7 +63,7 @@ def add_Mechanic(data, entry=None):
     else:
         # this block prefills deep dungon preset
         if entry:
-            if entry["instanceType"] is "potd" and 'preset: "DeedDungeonTraps"' not in guide_data:
+            if entry["instanceType"] == "potd" and 'preset: "DeedDungeonTraps"' not in guide_data:
                 guide_data += '  - preset: "DeedDungeonTraps"\n'
         # this block prefills deep dungon preset
 

@@ -94,15 +94,13 @@ def get_stones_demis():
             elif item_data[f'{fields[0]}_de'] in ["Todesbeeren", "Handvoll Wandelwurz", "Handvoll Sakralharz"]:
                 additions = " (PT Only)"
                 before = '{%- if page.contentname == "Pilgrim\'s Traverse" -%}'
-            elif item_data[f'{fields[0]}_de'] in ["", "", ""]:
+            elif item_data[f'{fields[0]}_de'] in ["Demiklon-Unei", "Demiklon-Doga", "Demiklon-Zwiebelritter"]:
                 additions = " (EO Only)"
                 before = '{%- if page.contentname == "Eureka Orthos" -%}'
-            elif item_data[f'{fields[0]}_de'] in ["", "", ""]:
+            elif item_data[f'{fields[0]}_de'] in ["Ifrit-Zauberstein", "Titan-Zauberstein", "Garuda-Zauberstein", "Odin-Zauberstein"]:
                 additions = " (HoH Only)"
                 before = '{%- if page.contentname == "Heaven-on-High" -%}'
-            elif item_data[f'{fields[0]}_de'] in ["", "", ""]:
-                additions = " (PotD Only)"
-                before = '{%- if page.contentname == "The Palace of the Dead" -%}'
+
             if before:
                 after = "{%- endif -%}"
 
