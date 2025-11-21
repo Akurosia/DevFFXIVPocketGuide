@@ -262,9 +262,9 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
         try:
             debug_row_number = i
             if not True:
-                #if debug_row_number < 700 :
+                #if debug_row_number < 800 :
                 #if debug_row_number not in [354, 581, 787, 788, 818, 821]:
-                if debug_row_number not in [825]:
+                if debug_row_number not in [847]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(value, i, orderedContent)

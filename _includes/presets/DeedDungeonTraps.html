@@ -1,5 +1,6 @@
 <!-- Include from _includes/presets/DeedDungeonTraps -->
-                <div class="guide__accordion-copy-wrapper">
+                <!-- traps -->
+                <div class="guide__accordion-copy-wrapper akutables">
                     <h3 class="guide__accordion-title">Tiefes Gewölbe Fallen</h3>
                     <div class="guide__mechanics-wrapper">
                         <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
@@ -10,78 +11,836 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                {%- if page.contentname == "The Palace of the Dead" -%}<tr>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">Toading Trap (The Palace of the Dead)</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">Froschfalle (Palast der Toten)</span>
                                         <span class="lang-toggle lang-toogle-fr" style="display: none;">Piège Batracien (Palais des morts)</span>
                                         <span class="lang-toggle lang-toogle-ja" style="display: none;">トードトラップ (死者の宮殿)</span>
-                                        <span class="lang-toggle lang-toogle-cn" style="display: none;">蛙变陷阱 (死者宫殿)</span>
-                                        <span class="lang-toggle lang-toogle-ko" style="display: none;">두꺼비 함정 (망자의 궁전)</span>
                                     </td>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Froschfalle.png" alt="Froschfalle.png"/></td>
-                            </tr>
-                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Froschfalle.webp" alt="Froschfalle.webp"/></td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "Heaven-on-High" -%}<tr>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">Odder Trap (Heaven-on-High)</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">Otterfalle (Himmelssäule)</span>
                                         <span class="lang-toggle lang-toogle-fr" style="display: none;">Piège Loutre Choute (Pilier des Cieux)</span>
                                         <span class="lang-toggle lang-toogle-ja" style="display: none;">ウソウソトラップ (アメノミハシラ)</span>
-                                        <span class="lang-toggle lang-toogle-cn" style="display: none;">獭獭陷阱 (天之御柱)</span>
-                                        <span class="lang-toggle lang-toogle-ko" style="display: none;">달달이 함정 (천궁탑)</span>
                                     </td>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Otterfalle.png" alt="Otterfalle.png"/></td></tr>
-                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Otterfalle.webp" alt="Otterfalle.webp"/></td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "Eureka Orthos" -%}<tr>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">Owling Trap (Eureka Orthos)</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">Eulettenfalle (Eureka Orthos)</span>
                                         <span class="lang-toggle lang-toogle-fr" style="display: none;">Piège Du Bébé Hibou (Eurêka Orthos)</span>
                                         <span class="lang-toggle lang-toogle-ja" style="display: none;">オウレットトラップ (オルト・エウレカ)</span>
-                                        <span class="lang-toggle lang-toogle-cn" style="display: none;">Unknown_7E77</span>
-                                        <span class="lang-toggle lang-toogle-ko" style="display: none;">Unknown_7E77</span>
                                     </td>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Eulettenfalle.png" alt="Eulettenfalle.png"/></td></tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Eulettenfalle.webp" alt="Eulettenfalle.webp"/></td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "Pilgrim's Traverse" -%}<tr>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Fae Trap (Pilgrim's Traverse)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Feenfalle (Pilgers Pfad)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Piège féérique (Le Sanctuaire des pèlerins)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">妖精トラップ (ピルグリム・トラバース)</span>
+                                    </td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Feenfalle.webp" alt="Feenfalle.webp"/></td>
+                                </tr>{%- endif -%}
                                 <tr>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">Impeding Trap</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">Hinderfalle</span>
                                         <span class="lang-toggle lang-toogle-fr" style="display: none;">Piège Inhibant</span>
                                         <span class="lang-toggle lang-toogle-ja" style="display: none;">阻害トラップ</span>
-                                        <span class="lang-toggle lang-toogle-cn" style="display: none;">妨碍陷阱</span>
-                                        <span class="lang-toggle lang-toogle-ko" style="display: none;">방해 함정</span>
                                     </td>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Hinderfalle.png" alt="Hinderfalle.png"/></td></tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Hinderfalle.webp" alt="Hinderfalle.webp"/></td>
+                                </tr>
                                 <tr>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">Landmine</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">Mine</span>
                                         <span class="lang-toggle lang-toogle-fr" style="display: none;">Mine</span>
                                         <span class="lang-toggle lang-toogle-ja" style="display: none;">地雷</span>
-                                        <span class="lang-toggle lang-toogle-cn" style="display: none;">地雷</span>
-                                        <span class="lang-toggle lang-toogle-ko" style="display: none;">지뢰</span>
                                     </td>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Landmine.png" alt="Landmine.png"/></td></tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Landmine.webp" alt="Landmine.webp"/></td>
+                                </tr>
                                 <tr>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">Enfeebling Trap</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">Schwächfalle</span>
                                         <span class="lang-toggle lang-toogle-fr" style="display: none;">Piège Affaiblissant</span>
                                         <span class="lang-toggle lang-toogle-ja" style="display: none;">弱体トラップ</span>
-                                        <span class="lang-toggle lang-toogle-cn" style="display: none;">弱化陷阱</span>
-                                        <span class="lang-toggle lang-toogle-ko" style="display: none;">약화 함정</span>
                                     </td>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Schwächefalle.png" alt="Schwächefalle.png"/></td></tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Schwächefalle.webp" alt="Schwächefalle.webp"/></td>
+                                </tr>
                                 <tr>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">Luring Trap</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">Ziehfalle</span>
                                         <span class="lang-toggle lang-toogle-fr" style="display: none;">Piège Attracteur</span>
                                         <span class="lang-toggle lang-toogle-ja" style="display: none;">誘引トラップ</span>
-                                        <span class="lang-toggle lang-toogle-cn" style="display: none;">诱饵陷阱</span>
-                                        <span class="lang-toggle lang-toogle-ko" style="display: none;">유인 함정</span>
                                     </td>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Ziehfalle.png" alt="Ziehfalle.png"/></td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 100px" src="/assets/img/content/potd/Ziehfalle.webp" alt="Ziehfalle.webp"/></td>
                                 </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                <!-- magicstones/demis -->
+                    <h3 class="guide__accordion-title">Tiefes Gewölbe Steine/Demis</h3>
+                    <div class="guide__mechanics-wrapper">
+                        <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
+                            <thead>
+                                <tr>
+                                    <td>Icon</td>
+                                    <td>Name</td>
+                                    <td>Tooltip</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027966_hr1.webp" alt="Inferno Magicite"/></td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Inferno Magicite</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Ifrit-Zauberstein</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Magilithe d'Ifrit</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">イフリートの魔石</span>
+                                        </td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Creates a simulacrum of Ifrit, Lord of the Inferno, based off the wielder's memories of past encounters with the primal.</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Erschafft aus den Erinnerungen seines Trägers ein Abbild des flammenden Primae.</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Un objet enchanté qui utilise une technique ancestrale pour sonder les souvenirs de celui qui en fait usage afin de recréer un simulacre du Primordial des flammes infernales.</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">イフリートを召喚する魔石。古代の秘術により、使用者の記憶から擬似的に蛮神を再現する。</span>
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027967_hr1.webp" alt="Crag Magicite"/></td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Crag Magicite</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Titan-Zauberstein</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Magilithe de Titan</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">タイタンの魔石</span>
+                                        </td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Creates a simulacrum of Titan, Lord of Crags, based off the wielder's memories of past encounters with the primal.</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Erschafft aus den Erinnerungen seines Trägers ein Abbild des Primae der Kobolde.</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Un objet enchanté qui utilise une technique ancestrale pour sonder les souvenirs de celui qui en fait usage afin de recréer un simulacre du Primordial des tremblements dévastateurs.</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">タイタンを召喚する魔石。古代の秘術により、使用者の記憶から擬似的に蛮神を再現する。</span>
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027968_hr1.webp" alt="Vortex Magicite"/></td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Vortex Magicite</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Garuda-Zauberstein</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Magilithe de Garuda</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">ガルーダの魔石</span>
+                                        </td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Creates a simulacrum of Garuda, Lady of the Vortex, based off the wielder's memories of past encounters with the primal.</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Erschafft aus den Erinnerungen seines Trägers ein Abbild des Primae der Winde.</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Un objet enchanté qui utilise une technique ancestrale pour sonder les souvenirs de celui qui en fait usage afin de recréer un simulacre du Primordial des rafales cinglantes.</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">ガルーダを召喚する魔石。古代の秘術により、使用者の記憶から擬似的に蛮神を再現する。</span>
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027969_hr1.webp" alt="Elder Magicite"/></td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Elder Magicite</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Odin-Zauberstein</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Magilithe d'Odin</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">オーディンの魔石</span>
+                                        </td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Creates a simulacrum of Odin based off the wielder's memories of past encounters with the elder primal.</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Erschafft aus den Erinnerungen seines Trägers ein Abbild des berittenen Primae.</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Un objet enchanté qui utilise une technique ancestrale pour sonder les souvenirs de celui qui en fait usage afin de recréer un simulacre du Chevalier des ombres.</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">オーディンを召喚する魔石。古代の秘術により、使用者の記憶から擬似的に蛮神を再現する。</span>
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027975_hr1.webp" alt="Poisonfruit Incense"/></td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Poisonfruit Incense</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Todesbeeren</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Encens de genévrier de la fatalité</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">ジュニパーの香・宿命</span>
+                                        </td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Juniper incense burned by the deceased in accordance with First Light funereal practices. Summons the faerie king to sentence all foes to death.</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Dieser Wacholderweihrauch wird in Kirchen des Strahlenden Lichts bei Beerdigungen verwendet. Verbrenne ihn in deinem Räucherfass, um den Feenkönig zu rufen und deine Gegner mit dem Tod zu bestrafen.</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Cet encens de genévrier est brûlé en l'honneur des morts lors de leur enterrement dans l'église de l'Aurore.
+Il permet d'invoquer le Monarque féérique pour condamner à mort toutes les créatures hostiles.</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">光耀教会において、葬送される死者の周りで焚かれたジュニパーの香。
+妖精王を招き、立ちはだかる者に死すべき定めを示す。</span>
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027970_hr1.webp" alt="Unei demiclone"/></td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Unei demiclone</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Demiklon-Unei</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">semi-clone d'Unéi</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;"></span>
+                                        </td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">A tomestone containing data on Unei. Read the data with the demiclone generator to enable the creation of an Unei demiclone.</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Ein allagischer Stein mit Uneis Daten. Liest man ihn in den Demiklon-Generator ein, wird eine Unei generiert.</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Un mémoquartz contenant les données pour un semi-clone d'Unéi. À utiliser avec votre générateur pour créer le semi-clone.</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">ウネのデータが収められたトームストーン。デミクローン・ジェネレーターで読み取ることで、デミクローン・ウネを召喚できる。</span>
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027971_hr1.webp" alt="Doga demiclone"/></td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Doga demiclone</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Demiklon-Doga</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">semi-clone de Doga</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;"></span>
+                                        </td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">A tomestone containing data on Doga. Read the data with the demiclone generator to enable the creation of a Doga demiclone.</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Ein allagischer Stein mit Dogas Daten. Liest man ihn in den Demiklon-Generator ein, wird ein Doga generiert.</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Un mémoquartz contenant les données pour un semi-clone de Doga. À utiliser avec votre générateur pour créer le semi-clone.</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">ドーガのデータが収められたトームストーン。デミクローン・ジェネレーターで読み取ることで、デミクローン・ドーガを召喚できる。</span>
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027972_hr1.webp" alt="onion knight demiclone"/></td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">onion knight demiclone</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Demiklon-Zwiebelritter</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">semi-clone de chevalier Oignon</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;"></span>
+                                        </td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">A tomestone containing data on onion knights. Read the data with the demiclone generator to enable the creation of an onion knight demiclone.</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Ein allagischer Stein mit den Daten eines Zwiebelritters. Liest man ihn in den Demiklon-Generator ein, wird ein Zwiebelritter generiert.</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Un mémoquartz contenant les données pour un semi-clone de chevalier Oignon. À utiliser avec votre générateur pour créer le semi-clone.</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">オニオンナイトのデータが収められたトームストーン。デミクローン・ジェネレーターで読み取ることで、デミクローン・オニオンナイトを召喚できる 。</span>
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027973_hr1.webp" alt="piece of mazeroot incense"/></td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">piece of mazeroot incense</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Handvoll Wandelwurz</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">bâton d'encens de genévrier de la sagacité</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;"></span>
+                                        </td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Juniper incense burned by the deceased in accordance with First Light funereal practices. Summons the faerie king to illuminate the path ahead.</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Dieser Wacholderweihrauch wird in Kirchen des Strahlenden Lichts bei Beerdigungen verwendet. Verbrenne ihn in deinem Räucherfass, um Feo Ul zu rufen und dir den Weg weisen zu lassen.</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Cet encens de genévrier est brûlé en l'honneur des morts lors de leur enterrement dans l'église de l'Aurore.
+Il permet d'invoquer le Monarque féérique pour éclairer le chemin des pèlerins.</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">光耀教会において、葬送される死者の周りで焚かれたジュニパーの香。
+妖精王を招き、明敏の月明かりで巡礼路を照らす。</span>
+                                        </td>
+                                    </tr>
+                                <tr>
+                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027974_hr1.webp" alt="piece of barkbalm incense"/></td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">piece of barkbalm incense</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Handvoll Sakralharz</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">bâton d'encens de genévrier de la quiétude</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;"></span>
+                                        </td>
+                                        <td>
+                                            <span class="lang-toggle lang-toogle-en" style="display: none;">Juniper incense burned by the deceased in accordance with First Light funereal practices. Summons the faerie king for a blessing of rejuvenation.</span>
+                                            <span class="lang-toggle lang-toogle-de" style="display: none;">Dieser Wacholderweihrauch wird in Kirchen des Strahlenden Lichts bei Beerdigungen verwendet. Verbrenne ihn in deinem Räucherfass, um Feo Ul zu rufen und dich segnen zu lassen.</span>
+                                            <span class="lang-toggle lang-toogle-fr" style="display: none;">Cet encens de genévrier est brûlé en l'honneur des morts lors de leur enterrement dans l'église de l'Aurore.
+Il permet d'invoquer le Monarque féérique pour obtenir sa bénédiction.</span>
+                                            <span class="lang-toggle lang-toogle-ja" style="display: none;">光耀教会において、葬送される死者の周りで焚かれたジュニパーの香。
+妖精王を招き、安寧の月明かりで巡礼者を祝福する。</span>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                <!-- pommander -->
+                    <h3 class="guide__accordion-title">Tiefes Gewölbe Tongefäße</h3>
+                    <div class="guide__mechanics-wrapper">
+                        <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
+                            <thead>
+                                <tr>
+                                    <td>Icon</td>
+                                    <td>Name</td>
+                                    <td>Tooltip</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027901_hr1.webp" alt="Pomander of Safety"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Safety</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß des Siegelbruchs</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de désamorçage</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:呪印解除</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Removes all traps from the current floor.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Entfernt alle Fallen der aktuellen Ebene.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Désamorce tous les pièges du sous-sol actuelle.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層のトラップを、すべて消去する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027902_hr1.webp" alt="Pomander of Sight"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Sight</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Sicht</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de localisation</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:サイトロ</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Reveals the current floor's map and the location of all hidden traps.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Enthüllt die gesamte Karte der aktuellen Ebene und macht alle Fallen sichtbar.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Révèle la carte du sous-sol actuelle et rend visibles les pièges qui s'y trouvent.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層のマップをすべて開示し、トラップを可視化する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027903_hr1.webp" alt="Pomander of Strength"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Strength</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Stärkung</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de puissance</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:自己強化</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Increases damage dealt and HP recovered via healing magic by 30%.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Erhöht den eigenen ausgeteilten Schaden und die Wirkung von Heilmagie um 30 %.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Augmente de 30% les dégâts que vous infligez et l'effet de vos sorts curatifs.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身の与ダメージと回復魔法の回復量を30%上昇する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027904_hr1.webp" alt="Pomander of Steel"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Steel</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Abwehr</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de protection</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:防御強化</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Decreases damage received by 40%.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verringert den eigenen erlittenen Schaden um 40 %.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Réduit de 40% les dégâts que vous subissez.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身の被ダメージを40%軽減する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027905_hr1.webp" alt="Pomander of Affluence"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Affluence</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Schätze</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de décèlement</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:宝箱増加</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Increases the number of treasure coffers in the next floor.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Erhöht die Zahl der Schatztruhen auf der nächsten Ebene.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Augmente le nombre de coffres au trésor du sous-sol suivante.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">次の階層の宝箱配置数を増加する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027906_hr1.webp" alt="Pomander of Flight"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Flight</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß des Feindtods</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de sécurisation</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:敵排除</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Decreases the number of enemies in the next floor.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verringert die Zahl der Gegner auf der nächsten Ebene.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Réduit le nombre d'ennemis du sous-sol suivante.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">次の階層の敵を減少させる。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027907_hr1.webp" alt="Pomander of Alteration"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Alteration</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Feindwandlung</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique d'affaiblissement</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:敵変化</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Changes the enemy occupying a random room in the next floor into a mimic or a mandragora.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verwandelt die Gegner in einem der Räume auf der nächsten Ebene in Mimiks oder Mandragoras.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Transforme en mimic ou en mandragore les ennemis d'une des salles du sous-sol suivante.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">次の階層のいずれかの部屋の敵を、ミミックかマンドラゴラに変化させる。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027908_hr1.webp" alt="Pomander of Purity"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Purity</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Entzauberung</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique d'anti-maléfice</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:解呪</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Removes the Pox status.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Hebt den Status Verwünschung auf.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Dissipe l'altération d'état Maléfice.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">ステータス「呪詛」を解除する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027909_hr1.webp" alt="Pomander of Fortune"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Fortune</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß des Glücks</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de chance</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:運気上昇</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Increases the chance enemies in the current floor will drop treasure coffers.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Erhöht die Chance, dass beim Sieg über Gegner auf der aktuellen Ebene eine Schatztruhe erscheint.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Augmente les chances qu'un coffre au trésor apparaisse lorsqu'un ennemi du sous-sol actuelle est vaincu.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層において、敵を倒した際の宝箱出現率を上昇する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027910_hr1.webp" alt="Pomander of Witching"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Witching</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Wandlung</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de mutation</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:形態変化</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Transforms all targets within range into a frog, imp, or chicken.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verwandelt Gegner in deiner Nähe in Frösche, Flusskobolde oder Hühner.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Transforme en crapaud, kappa ou poulet les ennemis qui s'approchent de vous.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身を中心にした範囲内に入った対象を、カエル、カッパ、ニワトリ状態にする。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027911_hr1.webp" alt="Pomander of Serenity"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Serenity</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Enthexung</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de dissipation</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:魔法効果解除</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Removes all enchantments from the current floor.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Hebt alle Effekte der aktuellen Ebene auf.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Dissipe tous les effets magiques du sous-sol actuelle.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層の魔法効果を、すべて消去する。</span>
+                                    </td>
+                                </tr>
+                                {%- if page.contentname == "The Palace of the Dead" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027912_hr1.webp" alt="Pomander of Rage"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Rage (PotD Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Manticoren (PotD Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de manticore (PotD Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:マンティコア化 (PotD Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Transforms user into a manticore.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verwandelt dich in eine Manticore.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Vous transforme en manticore.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身がマンティコアに変化する。</span>
+                                    </td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "The Palace of the Dead" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027913_hr1.webp" alt="Pomander of Lust"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Lust (PotD Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Sukkuben (PotD Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de succube (PotD Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:サキュバス化 (PotD Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Transforms user into a succubus.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verwandelt dich in einen Sukkubus.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Vous transforme en succube.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身がサキュバスに変化する。</span>
+                                    </td>
+                                </tr>{%- endif -%}
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027916_hr1.webp" alt="Pomander of Intuition"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Intuition</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß des Finders</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique d'intuition</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:財宝感知</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Reveals the current floor's hidden treasure.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Enthüllt verborgene Schätze auf der aktuellen Ebene. Der Effekt endet, wenn ein Schatz gefunden wurde.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Indique l'emplacement des trésors cachés. L'effet dure jusqu'à la découverte d'un de ces trésors.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">埋もれた財宝の在処を示す。この効果は、埋もれた財宝を発見するまで持続する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027914_hr1.webp" alt="Pomander of Raising"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Raising</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß des Lebens</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de résurrection</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:リレイズ</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Instantly raises the first party member to be KO'd.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Belebt das nächste Gruppenmitglied, das kampfunfähig wird.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Ranime le premier équipier qui a été rendu inconscient.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">最初に戦闘不能状態になったパーティメンバーを蘇生する。</span>
+                                    </td>
+                                </tr>
+                                {%- if page.contentname == "The Palace of the Dead" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027915_hr1.webp" alt="Pomander of Resolution"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Resolution (PotD Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Kuribu (PotD Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de Kuribu (PotD Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:クリブ化 (PotD Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Transforms user into Kuribu.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verwandelt dich in eine Kuribu.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Vous transforme en Kuribu.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身がクリブに変化する。</span>
+                                    </td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "Heaven-on-High" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027919_hr1.webp" alt="Pomander of Frailty"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Frailty (HoH Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Feindschwächung (HoH Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique d'incapacité (HoH Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:敵弱体 (HoH Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Weakens all enemies in current floor.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Schwächt die Abwehr aller Gegner auf der aktuellen Ebene.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Inflige Capacité de combat réduite aux ennemis du sous-sol actuelle.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層にいる敵を、攻防低下状態にする。</span>
+                                    </td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "Heaven-on-High" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027917_hr1.webp" alt="Pomander of Concealment"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Concealment (HoH Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß des Verschwindens (HoH Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique d'invisibilité (HoH Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:バニシュ (HoH Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Renders party invisible to enemies and traps.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Belegt alle Gruppenmitglieder mit dem Status Verschwunden.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Rend tous les membres de l'équipe invisibles.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身とパーティメンバーを、バニシュ状態にする。</span>
+                                    </td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "Heaven-on-High" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027918_hr1.webp" alt="Pomander of Petrification"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Petrification (HoH Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Feindversteinerung (HoH Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de pétrification (HoH Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:敵石化 (HoH Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Turns all enemies in current floor to stone.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Versteinert alle Gegner auf der aktuellen Ebene.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Inflige Pétrification aux ennemis du sous-sol actuelle.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層にいる敵を、石化状態にする。</span>
+                                    </td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "Eureka Orthos" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027920_hr1.webp" alt="Protomander of Lethargy"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Lethargy (EO Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß der Trägheit (EO Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de ralentissement (EO Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:スロウガ (EO Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Slows all enemies in the current floor.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verlangsamt alle Gegner auf der aktuellen Ebene.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Inflige Méga Lenteur aux ennemis du sous-sol actuelle.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層にいる敵を、スロウガ状態にする。 </span>
+                                    </td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "Eureka Orthos" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027921_hr1.webp" alt="Protomander of Storms"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Storms (EO Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß der Schwäche (EO Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de Charybde (EO Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:ミールストーム (EO Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Reduces the HP of all enemies in the current floor to a single digit.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verringert die LP aller Gegner der aktuellen Ebene auf 1.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Réduit à un seul chiffre les PV des ennemis du sous-sol actuelle.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層にいる敵のＨＰを1桁にする。</span>
+                                    </td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "Eureka Orthos" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027922_hr1.webp" alt="Protomander of Dread"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Dread (EO Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß der Macht (EO Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de cuirassé Dreadnaught (EO Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:ドレッドノート化 (EO Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Transforms user into a dreadnaught.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verwandelt dich in einen Brummonauten.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Vous transforme en cuirassé Dreadnaught.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身がドレッドノートに変化する。</span>
+                                    </td>
+                                </tr>{%- endif -%}
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027901_hr1.webp" alt="Protomander of Safety"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Safety</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß des Siegelbruchs</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de désamorçage</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:呪印解除</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Removes all traps from the current floor.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Entfernt alle Fallen der aktuellen Ebene.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Désamorce tous les pièges du sous-sol actuelle.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層のトラップを、すべて消去する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027902_hr1.webp" alt="Protomander of Sight"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Sight</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß der Sicht</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de localisation</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:サイトロ</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Reveals the current floor's map and the location of all hidden traps.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Enthüllt die gesamte Karte der aktuellen Ebene und macht alle Fallen sichtbar.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Révèle la carte du sous-sol actuelle et rend visibles les pièges qui s'y trouvent.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層のマップをすべて開示し、トラップを可視化する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027903_hr1.webp" alt="Protomander of Strength"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Strength</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß der Stärkung</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de puissance</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:自己強化</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Increases damage dealt and HP recovered via healing magic by 30%.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Erhöht den eigenen ausgeteilten Schaden und die Wirkung von Heilmagie um 30 %.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Augmente de 30% les dégâts que vous infligez et l'effet de vos sorts curatifs.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身の与ダメージと回復魔法の回復量を30%上昇する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027904_hr1.webp" alt="Protomander of Steel"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Steel</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß der Abwehr</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de protection</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:防御強化</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Decreases damage received by 40%.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verringert den eigenen erlittenen Schaden um 40 %.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Réduit de 40% les dégâts que vous subissez.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身の被ダメージを40%軽減する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027905_hr1.webp" alt="Protomander of Affluence"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Affluence</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß der Schätze</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de décèlement</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:宝箱増加</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Increases the number of treasure coffers in the next floor.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Erhöht die Zahl der Schatztruhen auf der nächsten Ebene.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Augmente le nombre de coffres au trésor du sous-sol suivante.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">次の階層の宝箱配置数を増加する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027906_hr1.webp" alt="Protomander of Flight"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Flight</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß des Feindtods</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de sécurisation</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:敵排除</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Decreases the number of enemies in the next floor.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verringert die Zahl der Gegner auf der nächsten Ebene.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Réduit le nombre d'ennemis du sous-sol suivante.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">次の階層の敵を減少させる。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027907_hr1.webp" alt="Protomander of Alteration"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Alteration</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß der Feindwandlung</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet d'affaiblissement</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:敵変化</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Changes the enemy occupying a random room in the next floor into a mimic or a mandragora.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verwandelt die Gegner in einem der Räume auf der nächsten Ebene in Mimiks oder Mandragoras.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Transforme en mimic ou en mandragore les ennemis d'une des salles du sous-sol suivante.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">次の階層のいずれかの部屋の敵を、ミミックかマンドラゴラに変化させる。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027908_hr1.webp" alt="Protomander of Purity"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Purity</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß der Entzauberung</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet d'anti-maléfice</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:解呪</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Removes the Pox status.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Hebt den Status Verwünschung auf.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Dissipe l'altération d'état Maléfice.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">ステータス「呪詛」を解除する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027909_hr1.webp" alt="Protomander of Fortune"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Fortune</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß des Glücks</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de chance</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:運気上昇</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Increases the chance enemies in the current floor will drop treasure coffers.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Erhöht die Chance, dass beim Sieg über Gegner auf der aktuellen Ebene eine Schatztruhe erscheint.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Augmente les chances qu'un coffre au trésor apparaisse lorsqu'un ennemi du sous-sol actuelle est vaincu.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層において、敵を倒した際の宝箱出現率を上昇する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027910_hr1.webp" alt="Protomander of Witching"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Witching</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß der Wandlung</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de mutation</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:形態変化</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Transforms all targets within range into a frog, imp, or chicken.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verwandelt Gegner in deiner Nähe in Frösche, Flusskobolde oder Hühner.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Transforme en crapaud, kappa ou poulet les ennemis qui s'approchent de vous.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身を中心にした範囲内に入った対象を、カエル、カッパ、ニワトリ状態にする。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027911_hr1.webp" alt="Protomander of Serenity"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Serenity</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß der Enthexung</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de dissipation</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:魔法効果解除</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Removes all enchantments from the current floor.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Hebt alle Effekte der aktuellen Ebene auf.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Dissipe tous les effets magiques du sous-sol actuelle.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">現在の階層の魔法効果を、すべて消去する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027916_hr1.webp" alt="Protomander of Intuition"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Intuition</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß des Finders</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet d'intuition</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:財宝感知</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Reveals the current floor's hidden treasure.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Enthüllt verborgene Schätze auf der aktuellen Ebene. Der Effekt endet, wenn ein Schatz gefunden wurde.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Indique l'emplacement des trésors cachés. L'effet dure jusqu'à la découverte d'un de ces trésors.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">埋もれた財宝の在処を示す。この効果は、埋もれた財宝を発見するまで持続する。</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027914_hr1.webp" alt="Protomander of Raising"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Protomander of Raising</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Ätherogefäß des Lebens</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Magismobjet de résurrection</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔科学器:リレイズ</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Instantly raises the first party member to be KO'd.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Belebt das nächste Gruppenmitglied, das kampfunfähig wird.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Ranime le premier équipier qui a été rendu inconscient.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">最初に戦闘不能状態になったパーティメンバーを蘇生する。</span>
+                                    </td>
+                                </tr>
+                                {%- if page.contentname == "Pilgrim's Traverse" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027923_hr1.webp" alt="Pomander of Haste"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Haste (PT Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Hast (PT Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de hâte (PT Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:ヘイスト (PT Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Renders party able to swiftly execute weaponskills, spells, and auto-attacks.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Verleiht allen Gruppenmitgliedern den Status Hast.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Octroie Hâte à tous les membres de l'équipe.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身とパーティメンバーを、ヘイスト状態にする。</span>
+                                    </td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "Pilgrim's Traverse" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027924_hr1.webp" alt="Pomander of Purification"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Purification (PT Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Reinigung (PT Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de purification (PT Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:浄化の守り (PT Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Removes all curable status ailments from the party, and erects a barrier against the next status ailment suffered.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Hebt bei allen Gruppenmitgliedern alle negativen Statuseffekte (sofern entfernbar) auf und schützt vor dem nächsten negativen Statuseffekt.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Dissipe toutes les altérations d'état soignables de tous les membres de l'équipe, et protège contre l'altération d'état suivante à l'aide d'une barrière.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">自身とパーティメンバーの解除可能な状態異常効果をすべて解除し、次に受ける1回の状態異常効果を防ぐバリアを張る。</span>
+                                    </td>
+                                </tr>{%- endif -%}
+                                {%- if page.contentname == "Pilgrim's Traverse" -%}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/027000/027925_hr1.webp" alt="Pomander of Devotion"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Pomander of Devotion (PT Only)</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Tongefäß der Weisung (PT Only)</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Poterie magique de dévotion (PT Only)</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">魔土器:巡礼の導き (PT Only)</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">Guarantees a votive candelabra in the next floor.</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">Erzeugt auf der nächsten Ebene einen Leuchter.</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">Garantit la présence d'un candélabre de l'Aurore dans le sous-sol suivante.</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">次の階層に必ず「光耀の燭台」が出現する。</span>
+                                    </td>
+                                </tr>{%- endif -%}
                             </tbody>
                         </table>
                     </div>

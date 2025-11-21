@@ -51,16 +51,22 @@ def check_Mechanics(entry: ENTRY_DATA, old_mechanics):
             else:
                 mechanic['title'] = m
 
-            guide_data += add_Mechanic(mechanic)
+            guide_data += add_Mechanic(mechanic, entry)
             counter += 1
     return guide_data
 
 
-def add_Mechanic(data):
+def add_Mechanic(data, entry=None):
     guide_data = ""
     if data.get("preset"):
         guide_data += f"  - preset: \"{data['preset']}\"\n"
     else:
+        # this block prefills deep dungon preset
+        if entry:
+            if entry["instanceType"] is "potd" and 'preset: "DeedDungeonTraps"' not in guide_data:
+                guide_data += '  - preset: "DeedDungeonTraps"\n'
+        # this block prefills deep dungon preset
+
         guide_data += "  - title:\n"
         x = data['title'] if isinstance(data['title'], dict) else {'de': data['title']}
         for lang in LANGUAGES:
