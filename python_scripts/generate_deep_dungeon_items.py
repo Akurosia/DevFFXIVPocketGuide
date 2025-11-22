@@ -137,7 +137,7 @@ def get_traps():
                                 </tr>
                             </tbody>
                         </table>
-                    </div\n"""
+                    </div>\n"""
 
 def get_pomanders():
     pomander_table = """                <!-- pommander -->
@@ -266,7 +266,7 @@ def get_stones_demis():
     return pomander_table
 
 if __name__ == "__main__":
-    with open("test.html", "w", encoding="utf8") as f:
+    with open("../_includes/presets/DeedDungeonTraps.html", "w", encoding="utf8") as f:
         f.write("""<!-- Include from _includes/presets/DeedDungeonTraps -->
                 <div class="guide__accordion-copy-wrapper akutables">""")
         f.write(get_traps())
