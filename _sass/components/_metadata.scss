@@ -3,6 +3,7 @@
     // Guide Metadata
 
 // =============================================================================
+    @use "sass:color";
 .guide-metadata {
 
     background: $palette-aku-verydarkBG;
@@ -41,7 +42,7 @@
 }
 
 #guideFilter {
-    background-color: darken($palette--white, 70%);
+    background-color: color.adjust($palette--white, $lightness: -70%);
     color: white;
 }
 

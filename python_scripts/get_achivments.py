@@ -68,13 +68,13 @@ def get_achivment_categories():
             continue
         a_kind_name = value['AchievementKind']['Name_de']
 
-        print(f" IS {a_kind_name} in {cat.keys()}")
+        # add main category if not available
         if not cat.get(a_kind_name, None):
             cat[a_kind_name] = {}
-        print_color_blue(cat)
 
-
+        # add sub category to main category
         cat[a_kind_name][int(value['row_id'])] = { "Name": value['Name_de'], "achievements": {} }
+
         for lang in LANGUAGES:
             if not translations[lang].get("achievments", None):
                 translations[lang]["achievments"] = {}

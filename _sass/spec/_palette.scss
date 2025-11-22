@@ -6,6 +6,7 @@
 
 // Greyscale
 
+    @use "sass:color";
     $palette--white: #FFFFFF;
     $palette--black: #1E1E1E;
 
@@ -43,4 +44,4 @@
     $palette-aku-notsoverydarkBG: #212121;
     $palette-aku-notsodarkBG: #282828;
     $palette-aku-slightdarkBG: rgb(30, 32, 33);
-    $palette-aku-normaldarkBG: darken($palette--white, 80%);
+    $palette-aku-normaldarkBG: color.adjust($palette--white, $lightness: -80%);

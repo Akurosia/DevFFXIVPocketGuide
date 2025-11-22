@@ -4,6 +4,7 @@
 
 // =============================================================================
 
+    @use "sass:color";
 .index-divider {
     padding: calc(#{$unit} * 3) 0;
     position: relative;
@@ -31,7 +32,7 @@
 }
 
 .index-divider__title {
-    background: darken($palette--white, 60%);
+    background: color.adjust($palette--white, $lightness: -60%);
     background: #1e2021;
     border-radius: 25px;
     color: $font-white;

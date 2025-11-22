@@ -78,3 +78,7 @@ sass:
     load_paths:
         - _sass
     style: compressed
+    silence_deprecations:
+        - import
+        - legacy-js-api
+    quiet_deps: true
