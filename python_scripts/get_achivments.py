@@ -66,9 +66,15 @@ def get_achivment_categories():
     for key, value in achivmentcategory.items():
         if value['AchievementKind'].get('Name_de', '') == "":
             continue
-        if not cat.get(value['AchievementKind'].get('Name_de', ''), None):
-            cat[value['AchievementKind'].get('Name_de', '')] = {}
-        cat[value['AchievementKind'].get('Name_de', '')][int(value['AchievementKind']['Order'])] = { "Name": value['Name_de'], "achievements": {} }
+        a_kind_name = value['AchievementKind']['Name_de']
+
+        print(f" IS {a_kind_name} in {cat.keys()}")
+        if not cat.get(a_kind_name, None):
+            cat[a_kind_name] = {}
+        print_color_blue(cat)
+
+
+        cat[a_kind_name][int(value['row_id'])] = { "Name": value['Name_de'], "achievements": {} }
         for lang in LANGUAGES:
             if not translations[lang].get("achievments", None):
                 translations[lang]["achievments"] = {}
@@ -179,7 +185,9 @@ def write_yaml_data_for_guide(kind, a_data):
 def run():
     print(f"[ACHIEVMENTS] Script runs from: {os.getcwd()}")
     kind = get_achivment_kind()
+
     cat = get_achivment_categories()
+    #print_pretty_json(cat)
     a_data = get_achivment_per_categorie(cat)
     write_yaml_data_for_guide(kind, a_data)
     print("[ACHIEVMENTS] Done Achivments!")
