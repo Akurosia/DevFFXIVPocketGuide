@@ -2,7 +2,7 @@ from ffxiv_aku import *
 from helper import getImage
 
 def get_traps():
-    return """
+    text = """
                 <!-- traps -->
                     <h3 class="guide__accordion-title">Tiefes Gewölbe Fallen</h3>
                     <div class="guide__mechanics-wrapper">
@@ -138,6 +138,7 @@ def get_traps():
                             </tbody>
                         </table>
                     </div>\n"""
+    return text
 
 def get_pomanders():
     pomander_table = """                <!-- pommander -->
@@ -265,6 +266,109 @@ def get_stones_demis():
                     </div>\n"""
     return pomander_table
 
+def get_statuis():
+    pomander_table = """                <!-- status -->
+                    <h3 class="guide__accordion-title">Tiefes Gewölbe Status</h3>
+                    <div class="guide__mechanics-wrapper">
+                        <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
+                            <thead>
+                                <tr>
+                                    <td>Icon</td>
+                                    <td>ScreenImage</td>
+                                    <td>Name</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>\n"""
+    deepdungeon_status = loadDataTheQuickestWay("DeepDungeonStatus.json")
+
+    for item_key, item_data in deepdungeon_status.items():
+        # this magic sets the fields acording to the sheet
+        additions = ""
+        before = ""
+        after = ""
+        if item_data["Name"]['Name_de'] == "":
+            continue
+        if before:
+            after = "{%- endif -%}"
+
+        icon = item_data['Name']['Icon']['path_hr1'].replace(".tex", ".webp").replace("ui/icon/", "")
+        icon2 = item_data['ScreenImage']['Image']['path_hr1'].replace(".tex", ".webp").replace("ui/icon/", "").replace("121000/", "121000/de/")
+        item_data['ScreenImage']['Image']['path_hr1'] = item_data['ScreenImage']['Image']['path_hr1'].replace("/121000/", "/121000/de/")
+
+        getImage(item_data['Name']['Icon'])
+        getImage(item_data['ScreenImage']['Image'])
+        pomander_table += f"""                                {before}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon}" alt="{item_data["Name"]['Name_en']}"/></td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon2}" alt="{item_data["Name"]['Name_en']}"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data["Name"]['Name_en']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data["Name"]['Name_de']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data["Name"]['Name_fr']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data["Name"]['Name_ja']}{additions}</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data["Name"]['Description_en']}</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data["Name"]['Description_de']}</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data["Name"]['Description_fr']}</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data["Name"]['Description_ja']}</span>
+                                    </td>
+                                </tr>{after}\n"""
+
+    pomander_table += """                            </tbody>
+                        </table>
+                    </div>\n"""
+    return pomander_table
+
+def get_floor():
+    pomander_table = """                <!-- FloorEffectUI -->
+                    <h3 class="guide__accordion-title">Tiefes Gewölbe FloorEffectUI</h3>
+                    <div class="guide__mechanics-wrapper">
+                        <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
+                            <thead>
+                                <tr>
+                                    <td>Icon</td>
+                                    <td>Name</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>\n"""
+    deepdungeon_floor = loadDataTheQuickestWay("DeepDungeonFloorEffectUI.json")
+
+    for item_key, item_data in deepdungeon_floor.items():
+        # this magic sets the fields acording to the sheet
+        additions = ""
+        before = ""
+        after = ""
+        if item_data['Name_de'] == "":
+            continue
+        if before:
+            after = "{%- endif -%}"
+
+        icon = item_data['Icon']['path_hr1'].replace(".tex", ".webp").replace("ui/icon/", "")
+
+        getImage(item_data['Icon'])
+        pomander_table += f"""                                {before}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon}" alt="{item_data['Name_en']}"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['Name_en']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['Name_de']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data['Name_fr']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data['Name_ja']}{additions}</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['Description_en']}</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['Description_de']}</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data['Description_fr']}</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data['Description_ja']}</span>
+                                    </td>
+                                </tr>{after}\n"""
+
+    pomander_table += """                            </tbody>
+                        </table>
+                    </div>\n"""
+    return pomander_table
+
 if __name__ == "__main__":
     with open("../_includes/presets/DeedDungeonTraps.html", "w", encoding="utf8") as f:
         f.write("""<!-- Include from _includes/presets/DeedDungeonTraps -->
@@ -272,5 +376,7 @@ if __name__ == "__main__":
         f.write(get_traps())
         f.write(get_pomanders())
         f.write(get_stones_demis())
+        f.write(get_statuis())
+        f.write(get_floor())
         f.write("""                </div>
 <!-- END Include from _includes/presets/DeedDungeonTraps -->""")
