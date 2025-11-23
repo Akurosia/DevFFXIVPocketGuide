@@ -369,6 +369,61 @@ def get_floor():
                     </div>\n"""
     return pomander_table
 
+
+def get_gimmic():
+    pomander_table = """                <!-- 4GimmickEffect -->
+                    <h3 class="guide__accordion-title">Tiefes Gewölbe 4GimmickEffect</h3>
+                    <div class="guide__mechanics-wrapper">
+                        <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
+                            <thead>
+                                <tr>
+                                    <td>Icon</td>
+                                    <td>Name</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>\n"""
+    deepdungeon_gimmic = loadDataTheQuickestWay("DeepDungeon4GimmickEffect.json")
+
+    for item_key, item_data in deepdungeon_gimmic.items():
+        # this magic sets the fields acording to the sheet
+        additions = ""
+        before = ""
+        after = ""
+        if item_data['tUnknown0_de'] == "":
+            continue
+        if before:
+            after = "{%- endif -%}"
+
+        _iid = f"{item_data['Unknown0_de']:>06}"
+        icon = {
+            "id": f"{_iid}",
+            "path": f"ui/icon/{_iid[:3]}000/{_iid}.tex",
+            "path_hr1": f"ui/icon/{_iid[:3]}000/{_iid}_hr1.tex".replace(".tex", ".webp").replace("ui/icon/", "")
+        }
+
+        getImage(icon)
+        pomander_table += f"""                                {before}<tr>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon['path_hr1']}" alt="{item_data['tUnknown0_en']}"/></td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['tUnknown0_en']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['tUnknown0_de']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data['tUnknown0_fr']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data['tUnknown0_ja']}{additions}</span>
+                                    </td>
+                                    <td>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['Unknown1_en']}</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['Unknown1_de']}</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data['Unknown1_fr']}</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data['Unknown1_ja']}</span>
+                                    </td>
+                                </tr>{after}\n"""
+
+    pomander_table += """                            </tbody>
+                        </table>
+                    </div>\n"""
+    return pomander_table
+
 if __name__ == "__main__":
     with open("../_includes/presets/DeedDungeonTraps.html", "w", encoding="utf8") as f:
         f.write("""<!-- Include from _includes/presets/DeedDungeonTraps -->
@@ -378,5 +433,6 @@ if __name__ == "__main__":
         f.write(get_stones_demis())
         f.write(get_statuis())
         f.write(get_floor())
+        f.write(get_gimmic())
         f.write("""                </div>
 <!-- END Include from _includes/presets/DeedDungeonTraps -->""")
