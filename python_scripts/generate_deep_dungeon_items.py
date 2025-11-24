@@ -4,7 +4,11 @@ from helper import getImage
 def get_traps():
     text = """
                 <!-- traps -->
-                    <h3 class="guide__accordion-title">Tiefes Gewölbe Fallen</h3>
+                <div class="guide__accordion-trigger--02-grid" id="add-trap">
+                    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important" role="img" class="md icon-large flip-rtl hydrated"></ion-icon></i>
+                    <div class="EnemyNames"><h3 class="guide__accordion-trigger-title">Tiefes Gewölbe Fallen</h3></div>
+                </div>
+                <div class="guide__accordion-content--02">
                     <div class="guide__mechanics-wrapper">
                         <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
                             <thead>
@@ -137,12 +141,17 @@ def get_traps():
                                 </tr>
                             </tbody>
                         </table>
-                    </div>\n"""
+                    </div>
+                </div>\n"""
     return text
 
 def get_pomanders():
     pomander_table = """                <!-- pommander -->
-                    <h3 class="guide__accordion-title">Tiefes Gewölbe Tongefäße</h3>
+                <div class="guide__accordion-trigger--02-grid" id="add-trap">
+                    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important" role="img" class="md icon-large flip-rtl hydrated"></ion-icon></i>
+                    <div class="EnemyNames"><h3 class="guide__accordion-trigger-title">Tiefes Gewölbe Tongefäße</h3></div>
+                </div>
+                <div class="guide__accordion-content--02">
                     <div class="guide__mechanics-wrapper">
                         <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
                             <thead>
@@ -195,13 +204,18 @@ def get_pomanders():
                                 </tr>{after}\n"""
     pomander_table += """                            </tbody>
                         </table>
-                    </div>\n"""
+                    </div>
+                </div>\n"""
     return pomander_table
 
 
 def get_stones_demis():
     pomander_table = """                <!-- magicstones/demis -->
-                    <h3 class="guide__accordion-title">Tiefes Gewölbe Steine/Demis</h3>
+                <div class="guide__accordion-trigger--02-grid" id="add-trap">
+                    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important" role="img" class="md icon-large flip-rtl hydrated"></ion-icon></i>
+                    <div class="EnemyNames"><h3 class="guide__accordion-trigger-title">Tiefes Gewölbe Steine/Demis</h3></div>
+                </div>
+                <div class="guide__accordion-content--02">
                     <div class="guide__mechanics-wrapper">
                         <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
                             <thead>
@@ -263,12 +277,17 @@ def get_stones_demis():
 
     pomander_table += """                            </tbody>
                         </table>
-                    </div>\n"""
+                    </div>
+                </div>\n"""
     return pomander_table
 
 def get_statuis():
     pomander_table = """                <!-- status -->
-                    <h3 class="guide__accordion-title">Tiefes Gewölbe Status</h3>
+                <div class="guide__accordion-trigger--02-grid" id="add-trap">
+                    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important" role="img" class="md icon-large flip-rtl hydrated"></ion-icon></i>
+                    <div class="EnemyNames"><h3 class="guide__accordion-trigger-title">Tiefes Gewölbe Status</h3></div>
+                </div>
+                <div class="guide__accordion-content--02">
                     <div class="guide__mechanics-wrapper">
                         <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
                             <thead>
@@ -317,12 +336,17 @@ def get_statuis():
 
     pomander_table += """                            </tbody>
                         </table>
-                    </div>\n"""
+                    </div>
+                </div>\n"""
     return pomander_table
 
 def get_floor():
     pomander_table = """                <!-- FloorEffectUI -->
-                    <h3 class="guide__accordion-title">Tiefes Gewölbe FloorEffectUI</h3>
+                <div class="guide__accordion-trigger--02-grid" id="add-trap">
+                    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important" role="img" class="md icon-large flip-rtl hydrated"></ion-icon></i>
+                    <div class="EnemyNames"><h3 class="guide__accordion-trigger-title">Tiefes Gewölbe FloorEffectUI</h3></div>
+                </div>
+                <div class="guide__accordion-content--02">
                     <div class="guide__mechanics-wrapper">
                         <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
                             <thead>
@@ -366,13 +390,18 @@ def get_floor():
 
     pomander_table += """                            </tbody>
                         </table>
-                    </div>\n"""
+                    </div>
+                </div>\n"""
     return pomander_table
 
 
 def get_gimmic():
     pomander_table = """                <!-- 4GimmickEffect -->
-                    <h3 class="guide__accordion-title">Tiefes Gewölbe 4GimmickEffect</h3>
+                <div class="guide__accordion-trigger--02-grid" id="add-trap">
+                    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important" role="img" class="md icon-large flip-rtl hydrated"></ion-icon></i>
+                    <div class="EnemyNames"><h3 class="guide__accordion-trigger-title">Tiefes Gewölbe 4GimmickEffect</h3></div>
+                </div>
+                <div class="guide__accordion-content--02">
                     <div class="guide__mechanics-wrapper">
                         <table class="table-striped table-dark bg-charcoal text-light" style="text-align: center">
                             <thead>
@@ -421,7 +450,8 @@ def get_gimmic():
 
     pomander_table += """                            </tbody>
                         </table>
-                    </div>\n"""
+                    </div>
+                </div>\n"""
     return pomander_table
 
 if __name__ == "__main__":
