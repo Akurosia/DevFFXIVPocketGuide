@@ -1,0 +1,51 @@
+{
+    "id": "lanoscea",
+    "name": "La Noscea",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images/ui/map/s1f/s1f1%20-%20Zentrales%20La%20Noscea.png",
+    "size": [2048, 2048],
+    "defaultZoom": -1.2,
+    "minZoom": -1.2,
+    "maxZoom": 1.7,
+    "categories": [
+        { "id": "ore", "name": "Ore Node", "color": "#f59e0b" },
+        { "id": "herb", "name": "Herb Node", "color": "#22c55e" },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#22c55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "markers": [
+        {
+            "id": "1",
+            "name": "Copper Ore",
+            "category": "ore",
+            "position": [512, 768],
+            "description": "Lv. 5 mining node"
+        },
+        {
+            "id": "1",
+            "name": "Copper Ore2",
+            "category": "herb",
+            "position": [582, 1268],
+            "description": "Lv. 5 mining node"
+        }
+
+    ],
+    "areas": [
+        {
+            "id": "zone-1",
+            "name": "Central Field",
+            "category": "gathering-zone",
+            "description": "Level 10–15 gathering area",
+            "points": [
+                [500, 400],
+                [800, 420],
+                [820, 650],
+                [480, 640]
+            ]
+        }
+    ]
+}

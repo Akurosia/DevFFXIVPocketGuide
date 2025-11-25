@@ -419,12 +419,12 @@ def get_gimmic():
         additions = ""
         before = ""
         after = ""
-        if item_data['tUnknown0_de'] == "":
+        if item_data['Name_de'] == "":
             continue
         if before:
             after = "{%- endif -%}"
 
-        _iid = f"{item_data['Unknown0_de']:>06}"
+        _iid = f"{item_data['Icon_de']:>06}"
         icon = {
             "id": f"{_iid}",
             "path": f"ui/icon/{_iid[:3]}000/{_iid}.tex",
@@ -433,18 +433,18 @@ def get_gimmic():
 
         getImage(icon)
         pomander_table += f"""                                {before}<tr>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon['path_hr1']}" alt="{item_data['tUnknown0_en']}"/></td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon['path_hr1']}" alt="{item_data['Name_en']}"/></td>
                                     <td>
-                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['tUnknown0_en']}{additions}</span>
-                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['tUnknown0_de']}{additions}</span>
-                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data['tUnknown0_fr']}{additions}</span>
-                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data['tUnknown0_ja']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['Name_en']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['Name_de']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data['Name_fr']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data['Name_ja']}{additions}</span>
                                     </td>
                                     <td>
-                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['Unknown1_en']}</span>
-                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['Unknown1_de']}</span>
-                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data['Unknown1_fr']}</span>
-                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data['Unknown1_ja']}</span>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['Description_en']}</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['Description_de']}</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data['Description_fr']}</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data['Description_ja']}</span>
                                     </td>
                                 </tr>{after}\n"""
 
