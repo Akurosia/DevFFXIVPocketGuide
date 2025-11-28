@@ -1,0 +1,577 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "zadnor",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4b/n4b6 - Zadnor-Hochebene.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Der Geistertrupp",
+            "category": "ce_gegner_wellen",
+            "position": [
+                1523.51,
+                224.77999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Halb Pferd, halb Garlear",
+            "category": "ce_gegner_wellen",
+            "position": [
+                274.73,
+                234.76999999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Gepanzerte Zenturie",
+            "category": "ce_gegner_wellen",
+            "position": [
+                714.3,
+                1443.59
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die allergrößte Bestienbändigerin aller Zeiten",
+            "category": "boss_besiegen",
+            "position": [
+                1155.37,
+                224.77999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ketzer Fabineau gibt sich die Ehre",
+            "category": "boss_besiegen",
+            "position": [
+                1090.44,
+                383.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mörderischer Onmyoji",
+            "category": "boss_besiegen",
+            "position": [
+                1193.83,
+                523.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rückkehr des Magitek-Soldaten",
+            "category": "boss_besiegen",
+            "position": [
+                1353.68,
+                634.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Größtmöglicher anzunehmender Unfall",
+            "category": "boss_besiegen",
+            "position": [
+                310.20000000000005,
+                654.86
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bestien aus der Vorzeit",
+            "category": "boss_besiegen",
+            "position": [
+                380.13,
+                372.64
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Endkampf mit dem Ketzer",
+            "category": "boss_besiegen",
+            "position": [
+                193.80999999999995,
+                834.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gesucht: Der mörderische Meister",
+            "category": "boss_besiegen",
+            "position": [
+                532.98,
+                713.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Magitek-Soldat schlägt zurück",
+            "category": "boss_besiegen",
+            "position": [
+                353.15999999999997,
+                897.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rettende Hiebe",
+            "category": "boss_besiegen",
+            "position": [
+                310.20000000000005,
+                654.86
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Endkampf mit dem Puppenspieler",
+            "category": "boss_besiegen",
+            "position": [
+                532.98,
+                713.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Allergrößte gibt nicht auf",
+            "category": "boss_besiegen",
+            "position": [
+                1223.31,
+                1382.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Schillernde und ihr Schoßhund",
+            "category": "boss_besiegen",
+            "position": [
+                678.8399999999999,
+                1576.96
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Farbe des Blutes",
+            "category": "boss_besiegen",
+            "position": [
+                967.56,
+                1269.76
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Haltet den Onmyoji!",
+            "category": "boss_besiegen",
+            "position": [
+                1223.31,
+                1382.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dunkelfürst Famfrit",
+            "category": "boss_besiegen",
+            "position": [
+                1223.31,
+                1382.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eine goldene Gelegenheit",
+            "category": "boss_besiegen",
+            "position": [
+                783.73,
+                1254.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Verstärkung für die Mech-Einheit",
+            "category": "boss_besiegen",
+            "position": [
+                783.73,
+                1254.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rettende Hiebe Teil 2",
+            "category": "boss_besiegen",
+            "position": [
+                678.8399999999999,
+                1576.96
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Oboro auf der Jagd",
+            "category": "sammeln",
+            "position": [
+                1090.44,
+                383.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Energie für Seiryu Zwo",
+            "category": "sammeln",
+            "position": [
+                353.15999999999997,
+                897.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Beobachten verboten",
+            "category": "gegner_wellen",
+            "position": [
+                1420.6100000000001,
+                325.67999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eiskalte Begegnung",
+            "category": "gegner_wellen",
+            "position": [
+                1193.83,
+                538.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lass die Puppen tanzen",
+            "category": "gegner_wellen",
+            "position": [
+                1155.37,
+                224.77999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Was du heute kannst besorgen",
+            "category": "gegner_wellen",
+            "position": [
+                967.56,
+                1269.76
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Magitek-Maschinen en masse",
+            "category": "gegner_wellen",
+            "position": [
+                555.96,
+                1419.6100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schwarzbrands Testflug",
+            "category": "ce_boss_besiegen",
+            "position": [
+                784.23,
+                1253.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Shemhazai der Verräter",
+            "category": "ce_boss_besiegen",
+            "position": [
+                964.06,
+                224.77999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hedetet, Stachel des Karglands",
+            "category": "ce_boss_besiegen",
+            "position": [
+                804.21,
+                494.52
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hanbi, König im Exil",
+            "category": "ce_boss_besiegen",
+            "position": [
+                634.38,
+                794.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eiswolf Hrodvitnir",
+            "category": "ce_boss_besiegen",
+            "position": [
+                194.80999999999995,
+                834.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dämonid Belias",
+            "category": "ce_boss_besiegen",
+            "position": [
+                474.53999999999996,
+                1024.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Alkonost, schrecklich und gefiedert",
+            "category": "ce_boss_besiegen",
+            "position": [
+                544.47,
+                1713.33
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hashmallim der Einiger",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1348.68,
+                614.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Regenbogenschlange Ayida",
+            "category": "ce_boss_besiegen",
+            "position": [
+                824.2,
+                1603.4299999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hyper-Dabog, Stärkster unter Stärksten",
+            "category": "ce_solo_kampf",
+            "position": [
+                1273.76,
+                314.69000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Menenius, Tribunus der IV. Legion",
+            "category": "ce_solo_kampf",
+            "position": [
+                214.78999999999996,
+                504.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Revanche: Lyon der Bestienkönig",
+            "category": "ce_solo_kampf",
+            "position": [
+                1073.95,
+                1433.6
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Zadnor",
+    "size": [
+        2048,
+        2048
+    ]
+}

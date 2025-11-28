@@ -1,0 +1,367 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "eureka-anemos",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/z3f/z3fa - Eureka Anemos.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Herr Kaiser",
+            "category": "notorious_monsters",
+            "position": [
+                807.21,
+                987.54
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein windiger Kerl",
+            "category": "notorious_monsters",
+            "position": [
+                320.19000000000005,
+                1016.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schlafende Drachen soll man nicht wecken",
+            "category": "notorious_monsters",
+            "position": [
+                1719.3200000000002,
+                1026.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schmerzvoller Hüftschwung",
+            "category": "notorious_monsters",
+            "position": [
+                649.37,
+                978.04
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zurück zu den Toten",
+            "category": "notorious_monsters",
+            "position": [
+                1243.79,
+                745.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ich will so bleiben wie ich bin",
+            "category": "notorious_monsters",
+            "position": [
+                684.3299999999999,
+                1328.7
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gerippeimpfung empfohlen",
+            "category": "notorious_monsters",
+            "position": [
+                598.4200000000001,
+                1434.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Den Ball halte flach, den Witz lieber nicht",
+            "category": "notorious_monsters",
+            "position": [
+                1362.67,
+                1083.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Große Probleme auf kleiner Insel",
+            "category": "notorious_monsters",
+            "position": [
+                1277.75,
+                1361.17
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Königreich für kein Lama",
+            "category": "notorious_monsters",
+            "position": [
+                330.17999999999995,
+                768.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wütend wie ein Hurrikan",
+            "category": "notorious_monsters",
+            "position": [
+                1197.83,
+                1185.34
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Widerlegte Weisheit",
+            "category": "notorious_monsters",
+            "position": [
+                338.16999999999996,
+                1203.82
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Heizkostenreduzierung",
+            "category": "notorious_monsters",
+            "position": [
+                1696.8400000000001,
+                1142.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Futterneid",
+            "category": "notorious_monsters",
+            "position": [
+                1405.13,
+                1444.59
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kopflos",
+            "category": "notorious_monsters",
+            "position": [
+                941.08,
+                1435.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ränkeschmiede",
+            "category": "notorious_monsters",
+            "position": [
+                1241.29,
+                955.0699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Raus aus meinem Revier",
+            "category": "notorious_monsters",
+            "position": [
+                907.11,
+                1116.91
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vernichtendes Unkraut",
+            "category": "notorious_monsters",
+            "position": [
+                1045.98,
+                1371.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zahlenmäßige Überlegenheit",
+            "category": "notorious_monsters",
+            "position": [
+                1116.41,
+                982.04
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Küssen verboten",
+            "category": "notorious_monsters",
+            "position": [
+                1446.09,
+                728.79
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Eureka Anemos",
+    "size": [
+        2048,
+        2048
+    ]
+}

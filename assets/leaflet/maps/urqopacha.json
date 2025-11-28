@@ -1,0 +1,347 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "urqopacha",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/y6f/y6f1 - Urqopacha.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Unerwünschte Rasenmäher",
+            "category": "kill_enemies",
+            "position": [
+                874.15,
+                1695.3400000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hungrig wie die Wölfe",
+            "category": "kill_enemies",
+            "position": [
+                798.22,
+                1307.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hunger bringt Kummer",
+            "category": "kill_enemies",
+            "position": [
+                1587.95,
+                1320.21
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zornige Zugvögel",
+            "category": "kill_enemies",
+            "position": [
+                1126.9,
+                1410.12
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Anarcho-Agaven",
+            "category": "kill_enemies",
+            "position": [
+                1245.78,
+                1605.9299999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unkrautvernichtung",
+            "category": "kill_enemies",
+            "position": [
+                648.37,
+                1684.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Junge Hitzköpfe",
+            "category": "kill_enemies",
+            "position": [
+                1768.27,
+                751.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mörderische Meute",
+            "category": "kill_enemies",
+            "position": [
+                933.09,
+                667.35
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wider die Wasserverschmutzung",
+            "category": "kill_enemies",
+            "position": [
+                365.14,
+                943.58
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Wind, das höllische Kind",
+            "category": "kill_enemies",
+            "position": [
+                745.77,
+                973.55
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Salziges Stelldichein",
+            "category": "kill_enemies",
+            "position": [
+                1098.43,
+                722.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Böses Blut",
+            "category": "kill_enemies",
+            "position": [
+                1380.65,
+                703.31
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Racaqurq die tanzende Flamme",
+            "category": "kill_boss",
+            "position": [
+                1223.8,
+                1206.32
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Panaq-Attacke",
+            "category": "kill_boss",
+            "position": [
+                1548.99,
+                1041.98
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Durzurgir die Sturmreiterin",
+            "category": "kill_boss",
+            "position": [
+                745.77,
+                973.55
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wagemut, der gut nicht tut",
+            "category": "kill_boss",
+            "position": [
+                1098.43,
+                722.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hiebe für die Bohnendiebe",
+            "category": "defense",
+            "position": [
+                969.05,
+                1578.96
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Es kratzt mich gewaltig",
+            "category": "defense",
+            "position": [
+                1178.85,
+                858.66
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Urqopacha",
+    "size": [
+        2048,
+        2048
+    ]
+}

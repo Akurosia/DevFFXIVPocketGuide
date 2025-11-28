@@ -1,0 +1,327 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "garlemald",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/m5f/m5f2 - Garlemald.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Reinwaschung eines Ingenieurs: Gefangen in der Todesmaschine",
+            "category": "kill_boss",
+            "position": [
+                819.2,
+                936.59
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der rosige Tod Heliogabalus",
+            "category": "kill_boss",
+            "position": [
+                1170.8600000000001,
+                727.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der goldene Riese Seneca",
+            "category": "kill_boss",
+            "position": [
+                1009.01,
+                1697.3400000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Reinwaschung eines Ingenieurs: Nieder mit den Maschinen",
+            "category": "defense",
+            "position": [
+                1254.77,
+                1136.39
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Riesen im Nebel",
+            "category": "defense",
+            "position": [
+                771.75,
+                792.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gleich vergess ich mich",
+            "category": "kill_enemies",
+            "position": [
+                590.9200000000001,
+                738.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Brennstoffsicherung",
+            "category": "kill_enemies",
+            "position": [
+                1357.67,
+                517.49
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Alma-Affenmänner",
+            "category": "kill_enemies",
+            "position": [
+                1477.56,
+                716.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eine eisige Falle",
+            "category": "kill_enemies",
+            "position": [
+                1169.3600000000001,
+                1049.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Reinwaschung eines Ingenieurs: Auto-Gabriels",
+            "category": "kill_enemies",
+            "position": [
+                520.49,
+                1536.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rotulas auf Abwegen",
+            "category": "kill_enemies",
+            "position": [
+                911.61,
+                1555.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hunde, die bellen, beißen auch",
+            "category": "kill_enemies",
+            "position": [
+                677.8399999999999,
+                1284.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Morden ist des Wand'rers Lust",
+            "category": "kill_enemies",
+            "position": [
+                693.8199999999999,
+                1476.06
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Folgen des Krieges",
+            "category": "kill_enemies",
+            "position": [
+                1365.67,
+                1383.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Reinwaschung eines Ingenieurs: Metatron",
+            "category": "notorious_monster",
+            "position": [
+                519.49,
+                1538.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hilfe bei der Reparatur",
+            "category": "collect",
+            "position": [
+                991.03,
+                1341.19
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Garlemald",
+    "size": [
+        2048,
+        2048
+    ]
+}

@@ -1,0 +1,317 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "mare-lamentorum",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/u5f/u5f1 - Mare Lamentorum.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Langohren des Mondes: Explosive Eindringlinge",
+            "category": "kill_enemies",
+            "position": [
+                1410.62,
+                1449.58
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Langohren des Mondes: Reiniger-Rabatz",
+            "category": "kill_enemies",
+            "position": [
+                646.37,
+                1651.3899999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sicheln aus dem Zwielicht",
+            "category": "kill_enemies",
+            "position": [
+                855.16,
+                492.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Keine Freude für die Fungi",
+            "category": "kill_enemies",
+            "position": [
+                1177.85,
+                348.15999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lunatender-Liebe",
+            "category": "kill_enemies",
+            "position": [
+                289.22,
+                397.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Angriff der Droiden",
+            "category": "kill_enemies",
+            "position": [
+                1596.94,
+                719.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Besuch von der dunklen Seite",
+            "category": "kill_enemies",
+            "position": [
+                1316.71,
+                531.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unverlässlicher Support",
+            "category": "kill_enemies",
+            "position": [
+                476.03999999999996,
+                1049.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Harsches Mondhabitat",
+            "category": "kill_enemies",
+            "position": [
+                1111.91,
+                996.53
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Garantiezeitraum abgelaufen",
+            "category": "kill_enemies",
+            "position": [
+                462.54999999999995,
+                1423.6100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wertlose Wärter",
+            "category": "kill_enemies",
+            "position": [
+                1716.8200000000002,
+                1667.87
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Langohren des Mondes: Reif für die Tonne",
+            "category": "kill_boss",
+            "position": [
+                519.99,
+                1756.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Weißer Gigant",
+            "category": "kill_boss",
+            "position": [
+                479.53,
+                525.49
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Plan des Schmarotzers",
+            "category": "kill_boss",
+            "position": [
+                709.31,
+                841.6800000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sauer macht süchtig",
+            "category": "collect",
+            "position": [
+                911.11,
+                969.55
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Mare Lamentorum",
+    "size": [
+        2048,
+        2048
+    ]
+}

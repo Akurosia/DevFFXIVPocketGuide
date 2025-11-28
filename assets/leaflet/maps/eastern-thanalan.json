@@ -1,0 +1,367 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "eastern-thanalan",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/w1f/w1f3 - Östliches Thanalan.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Rendezvous mit dem Tod",
+            "category": "kill_enemies",
+            "position": [
+                1074.95,
+                1038.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Räuber und Gendarm",
+            "category": "kill_enemies",
+            "position": [
+                1074.95,
+                1038.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Seeungeheuer bitte anleinen",
+            "category": "kill_enemies",
+            "position": [
+                804.21,
+                610.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Badelust, Badefrust",
+            "category": "kill_enemies",
+            "position": [
+                562.95,
+                739.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Endymien sind los",
+            "category": "kill_enemies",
+            "position": [
+                497.01,
+                1252.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kopfgeldjäger",
+            "category": "kill_enemies",
+            "position": [
+                544.97,
+                1143.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefährliche Jagdgründe",
+            "category": "kill_enemies",
+            "position": [
+                1207.32,
+                1071.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bewölkt bis gefräßig",
+            "category": "kill_enemies",
+            "position": [
+                1332.2,
+                1237.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lunantishees in der Luft",
+            "category": "kill_enemies",
+            "position": [
+                644.87,
+                1061.96
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lunantishees in der Luft",
+            "category": "kill_enemies",
+            "position": [
+                829.69,
+                893.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ränkeschmiede",
+            "category": "kill_enemies",
+            "position": [
+                1245.78,
+                863.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Raus aus meinem Revier",
+            "category": "kill_enemies",
+            "position": [
+                1395.6399999999999,
+                926.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kopfgeldjäger",
+            "category": "kill_boss",
+            "position": [
+                661.85,
+                1240.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bewölkt bis gefräßig",
+            "category": "kill_boss",
+            "position": [
+                1269.76,
+                1009.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vernichtendes Unkraut",
+            "category": "kill_boss",
+            "position": [
+                1320.21,
+                894.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zahlenmäßige Überlegenheit",
+            "category": "kill_boss",
+            "position": [
+                1456.08,
+                820.2
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Revierkämpfe",
+            "category": "kill_boss",
+            "position": [
+                1359.67,
+                1259.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der goldene Riese Seneca",
+            "category": "kill_boss",
+            "position": [
+                1504.03,
+                785.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ich will so bleiben wie ich bin",
+            "category": "defense",
+            "position": [
+                820.7,
+                918.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Reis stampfen, Herzen erobern",
+            "category": "collect",
+            "position": [
+                830.19,
+                913.61
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Eastern Thanalan",
+    "size": [
+        2048,
+        2048
+    ]
+}

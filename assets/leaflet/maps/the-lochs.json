@@ -1,0 +1,537 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "the-lochs",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/g3f/g3f3 - Das Fenn.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Höllenross",
+            "category": "kill_boss",
+            "position": [
+                182.82000000000005,
+                1319.71
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Höllenross",
+            "category": "kill_boss",
+            "position": [
+                1423.1100000000001,
+                1614.42
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Höllenross",
+            "category": "kill_boss",
+            "position": [
+                775.24,
+                975.55
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der forsche Frosch",
+            "category": "kill_boss",
+            "position": [
+                1054.47,
+                507.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die tragische Jungfrau",
+            "category": "kill_boss",
+            "position": [
+                1457.08,
+                1339.69
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Duft des Todes",
+            "category": "kill_boss",
+            "position": [
+                892.63,
+                1431.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zwei Hohe Berge",
+            "category": "kill_boss",
+            "position": [
+                1044.48,
+                831.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kurrea, der abgrundtief Hässliche",
+            "category": "kill_boss",
+            "position": [
+                917.1,
+                1013.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wurzelbehandlung mit Blutverlust",
+            "category": "kill_boss",
+            "position": [
+                497.01,
+                1207.82
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Lehmmann-Schock",
+            "category": "kill_boss",
+            "position": [
+                184.82000000000005,
+                743.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Brust oder Keule",
+            "category": "kill_boss",
+            "position": [
+                1272.26,
+                489.52
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hauch des Todes",
+            "category": "kill_boss",
+            "position": [
+                695.8199999999999,
+                1432.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Verrückt vor Schmerz",
+            "category": "kill_boss",
+            "position": [
+                628.39,
+                916.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Seldmonster",
+            "category": "kill_boss",
+            "position": [
+                896.62,
+                703.31
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vorsicht, bissig",
+            "category": "kill_boss",
+            "position": [
+                1294.24,
+                709.81
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das wandelnde Erdbeben",
+            "category": "kill_boss",
+            "position": [
+                578.9300000000001,
+                740.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Auferstehung des Königs",
+            "category": "kill_boss",
+            "position": [
+                552.46,
+                1728.31
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dämpfer am Seldsee",
+            "category": "kill_enemies",
+            "position": [
+                1110.92,
+                640.87
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Froschbelästigung",
+            "category": "kill_enemies",
+            "position": [
+                1489.05,
+                560.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "999 Stufen in den Tod",
+            "category": "kill_enemies",
+            "position": [
+                960.56,
+                1294.74
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Versalzene Ruinen",
+            "category": "kill_enemies",
+            "position": [
+                384.12,
+                830.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schaltet den Schmerz an, schnell",
+            "category": "kill_enemies",
+            "position": [
+                880.14,
+                441.07000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eine ist keine, zwei sind der Tod",
+            "category": "kill_enemies",
+            "position": [
+                1176.35,
+                958.06
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bis zum letzten Tropfen",
+            "category": "kill_enemies",
+            "position": [
+                1226.3,
+                1636.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ich bin ein Phoebad - Holt mich hier raus!",
+            "category": "kill_enemies",
+            "position": [
+                1190.34,
+                547.47
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Nanka-Zanker",
+            "category": "kill_enemies",
+            "position": [
+                613.9,
+                1208.82
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bienen und Blumen und Saprias",
+            "category": "kill_enemies",
+            "position": [
+                320.19000000000005,
+                1613.42
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Königin Edilas Vermächtnis",
+            "category": "kill_enemies",
+            "position": [
+                486.03,
+                1450.08
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Stier mich nicht an!",
+            "category": "kill_enemies",
+            "position": [
+                1383.65,
+                1152.87
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Grab der Könige",
+            "category": "kill_enemies",
+            "position": [
+                1275.25,
+                1459.08
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Senklochsauger",
+            "category": "kill_enemies",
+            "position": [
+                1409.12,
+                325.17999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mit Kind und Egel",
+            "category": "kill_enemies",
+            "position": [
+                693.3199999999999,
+                1111.41
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Nachwehen der Katastrophe",
+            "category": "kill_enemies",
+            "position": [
+                661.85,
+                537.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Respektlose Gäste",
+            "category": "kill_enemies",
+            "position": [
+                757.26,
+                1701.3400000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Verirrte Schatten",
+            "category": "kill_enemies",
+            "position": [
+                680.3399999999999,
+                1782.76
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Chukwas Rache",
+            "category": "notype",
+            "position": [
+                604.4100000000001,
+                1223.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schmetterlingseffekt",
+            "category": "notype",
+            "position": [
+                329.67999999999995,
+                1623.4099999999999
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "The Lochs",
+    "size": [
+        2048,
+        2048
+    ]
+}

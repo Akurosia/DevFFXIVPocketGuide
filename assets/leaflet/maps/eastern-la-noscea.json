@@ -1,0 +1,527 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "eastern-la-noscea",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f3 - Östliches La Noscea.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Tag der Tentakel",
+            "category": "kill_boss",
+            "position": [
+                1801.74,
+                739.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Knallomat gegen Superhai",
+            "category": "kill_boss",
+            "position": [
+                1780.26,
+                704.31
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Angriff der Eis-Knallomaten",
+            "category": "kill_boss",
+            "position": [
+                1784.26,
+                727.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mit Federn macht man Mäuse",
+            "category": "kill_boss",
+            "position": [
+                1502.53,
+                340.66999999999996
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Schlag auf Schlag",
+            "category": "kill_boss",
+            "position": [
+                857.16,
+                692.8199999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Aug in Aug mit der Düsternis",
+            "category": "kill_boss",
+            "position": [
+                794.72,
+                520.49
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Schlacht gegen die Schlächter",
+            "category": "kill_boss",
+            "position": [
+                886.13,
+                842.1800000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Westliches Himmelsang: 4. Phase - Beginn",
+            "category": "kill_boss",
+            "position": [
+                1492.04,
+                350.65999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eins, zwei, Sittenpolizei",
+            "category": "kill_boss",
+            "position": [
+                1494.54,
+                654.36
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Seeungeheuer bitte anleinen",
+            "category": "kill_boss",
+            "position": [
+                1551.98,
+                713.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Über den Fisch gezogen",
+            "category": "kill_enemies",
+            "position": [
+                1711.33,
+                807.71
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gar nicht so harmlos",
+            "category": "kill_enemies",
+            "position": [
+                814.7,
+                863.66
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Grimmiges Beißendes",
+            "category": "kill_enemies",
+            "position": [
+                736.78,
+                723.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Skandal im Sperrgebiet",
+            "category": "kill_enemies",
+            "position": [
+                1388.6399999999999,
+                402.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ehrenwache",
+            "category": "kill_enemies",
+            "position": [
+                1441.09,
+                314.19000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ergreifendes Opfer",
+            "category": "kill_enemies",
+            "position": [
+                1519.02,
+                717.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Etwas von allem",
+            "category": "kill_enemies",
+            "position": [
+                1328.2,
+                656.36
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Schlag auf Schlag",
+            "category": "kill_enemies",
+            "position": [
+                1153.37,
+                1071.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Schlächter aus dem Nichts",
+            "category": "kill_enemies",
+            "position": [
+                829.19,
+                521.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Nichts als Untote",
+            "category": "kill_enemies",
+            "position": [
+                895.63,
+                402.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rotulas auf Abwegen",
+            "category": "kill_enemies",
+            "position": [
+                967.06,
+                490.52
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Verrückt nach dir",
+            "category": "kill_enemies",
+            "position": [
+                1494.54,
+                654.36
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zündeln verboten",
+            "category": "kill_enemies",
+            "position": [
+                1551.98,
+                713.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Heiße Gewässer",
+            "category": "kill_enemies",
+            "position": [
+                1561.48,
+                418.59000000000003
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Grillpartysprenger",
+            "category": "defense",
+            "position": [
+                1697.3400000000001,
+                802.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Milchrausch",
+            "category": "defense",
+            "position": [
+                1033.99,
+                910.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Drosseln rocken den Kreuzgang",
+            "category": "defense",
+            "position": [
+                1543.99,
+                397.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Badelust, Badefrust",
+            "category": "defense",
+            "position": [
+                1495.04,
+                764.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Räuber mit den Scherenhänden",
+            "category": "defense",
+            "position": [
+                1582.95,
+                440.57000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unser Strand muss schöner werden",
+            "category": "collect",
+            "position": [
+                1698.8400000000001,
+                790.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Abgelenkt",
+            "category": "collect",
+            "position": [
+                996.53,
+                498.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Illegaler Holzexport",
+            "category": "collect",
+            "position": [
+                1556.48,
+                882.14
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Das Nichts ist los!",
+            "category": "collect",
+            "position": [
+                765.75,
+                723.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Und ne Buddel voll Rum",
+            "category": "collect",
+            "position": [
+                1495.04,
+                764.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Kopf zu groß",
+            "category": "escort",
+            "position": [
+                1461.07,
+                635.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Den Ball halte flach, den Witz lieber nicht",
+            "category": "notype",
+            "position": [
+                1498.54,
+                899.12
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Eastern La Noscea",
+    "size": [
+        2048,
+        2048
+    ]
+}

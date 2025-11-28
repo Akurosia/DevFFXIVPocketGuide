@@ -1,0 +1,297 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "living-memory",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/x6f/x6f3 - Lebende Erinnerung.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Eindringlinge aus Asylkan",
+            "category": "kill_enemies",
+            "position": [
+                745.77,
+                1290.74
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wasser marsch",
+            "category": "kill_enemies",
+            "position": [
+                362.65,
+                397.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Alles andere als fade, diese Parade",
+            "category": "kill_enemies",
+            "position": [
+                1736.3,
+                388.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Versunkene Welt",
+            "category": "kill_enemies",
+            "position": [
+                1509.03,
+                527.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Grüne Gehirne",
+            "category": "kill_boss",
+            "position": [
+                303.20000000000005,
+                1650.8899999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aus den eigenen Reihen",
+            "category": "kill_boss",
+            "position": [
+                1202.83,
+                1804.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Scharlachrotes Streitross",
+            "category": "kill_boss",
+            "position": [
+                1282.25,
+                1317.71
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mordendes Maskottchen",
+            "category": "kill_boss",
+            "position": [
+                1814.73,
+                431.08000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schützenswerte Samen",
+            "category": "collect",
+            "position": [
+                311.70000000000005,
+                1345.69
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Was bleibt, ist die Erinnerung",
+            "category": "collect",
+            "position": [
+                1315.72,
+                1662.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Von ganz unten hochgearbeitet",
+            "category": "notorious_monster",
+            "position": [
+                364.64,
+                399.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bizarres Zwischenspiel",
+            "category": "notorious_monster",
+            "position": [
+                1738.3,
+                389.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mehr Sicherheit für Kanalstadt",
+            "category": "defense",
+            "position": [
+                526.99,
+                380.63
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Living Memory",
+    "size": [
+        2048,
+        2048
+    ]
+}

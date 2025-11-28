@@ -1,0 +1,566 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap",
+            "name": "Treasure Map",
+            "group": "treasuremap",
+            "groupName": "treasuremap",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "lower-la-noscea",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f2 - Unteres La Noscea.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Her mit den Mampf- und Mümmel-Mochi!",
+            "category": "collect",
+            "position": [
+                901.62,
+                301.21000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Reis stampfen, Herzen erobern",
+            "category": "collect",
+            "position": [
+                901.62,
+                301.71000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mehr Reis stampfen, mehr Herzen erobern",
+            "category": "collect",
+            "position": [
+                901.62,
+                301.21000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampfhunde von der Leine gelassen",
+            "category": "collect",
+            "position": [
+                901.62,
+                301.21000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Für unsere Pioniere ",
+            "category": "kill_boss",
+            "position": [
+                936.59,
+                228.77999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Beschwörer des Herrn der Felsen",
+            "category": "kill_boss",
+            "position": [
+                1246.28,
+                821.2
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Happen für Cassie",
+            "category": "kill_boss",
+            "position": [
+                1006.52,
+                172.33000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Retter des Chocobo-Waldes",
+            "category": "kill_boss",
+            "position": [
+                976.05,
+                426.08000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Keine Fragen. Renn.",
+            "category": "kill_enemies",
+            "position": [
+                1703.8400000000001,
+                1308.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schwere Entscheidung",
+            "category": "kill_enemies",
+            "position": [
+                1050.47,
+                354.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Jetzt oder nie",
+            "category": "kill_enemies",
+            "position": [
+                1522.51,
+                1339.69
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Federfall-Quartier: 7. Phase - Beginn",
+            "category": "kill_enemies",
+            "position": [
+                1298.23,
+                1228.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Grenzschutz",
+            "category": "defense",
+            "position": [
+                998.52,
+                159.34000000000003
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schmerzvoller Hüftschwung",
+            "category": "defense",
+            "position": [
+                892.63,
+                327.67999999999995
+            ],
+            "description": ""
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1086.6,
+                843.2
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1472.6,
+                1030.5
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                951.6,
+                482.0
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Steinbockleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1421.5,
+                1409.7
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Steinbockleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1188.9,
+                734.2
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Steinbockleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1403.8,
+                1283.0
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Krötenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1452.8,
+                1172.1
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Krötenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1125.8,
+                944.8
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Krötenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                932.4,
+                358.79999999999995
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Keilerleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1047.1,
+                297.0
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Keilerleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1299.4,
+                1011.3
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Keilerleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1373.2,
+                1089.6
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Basiliskenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1646.9,
+                1302.0
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Basiliskenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1178.3,
+                863.7
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Basiliskenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1015.7,
+                564.5
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Geheimnisvolle Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1674.0,
+                1380.7
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Geheimnisvolle Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1129.7,
+                143.10000000000002
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Unversteckte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1242.0,
+                994.5
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Unversteckte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1531.9,
+                1261.2
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Schatzkarte aus der Thorne-Ära/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1226.3,
+                886.6
+            ]
+        },
+        {
+            "type": "treasuremap",
+            "imageUrl": "/assets/img/TreasureMaps/Schatzkarte aus der Thorne-Ära/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1651.1,
+                1223.0
+            ]
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Lower La Noscea",
+    "size": [
+        2048,
+        2048
+    ]
+}

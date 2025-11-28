@@ -1,0 +1,397 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "the-raktika-greatwood",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f5 - Der Große Wald Rak'tika.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Waldpatrouille: Mysteriöse Echos",
+            "category": "kill_enemies",
+            "position": [
+                1554.48,
+                1093.93
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waldpatrouille: Abscheuliche Kriecher",
+            "category": "kill_enemies",
+            "position": [
+                1573.96,
+                818.7
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gift, Galle und Gekröse",
+            "category": "kill_enemies",
+            "position": [
+                592.9200000000001,
+                582.4300000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "In der Not frisst der Raptor Schlangen",
+            "category": "kill_enemies",
+            "position": [
+                812.21,
+                472.53999999999996
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Düster gegen Dunkel",
+            "category": "kill_enemies",
+            "position": [
+                625.89,
+                343.15999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Nestbau, nein danke!",
+            "category": "kill_enemies",
+            "position": [
+                1312.72,
+                1561.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waldpatrouille: Federn rupfen ",
+            "category": "collect",
+            "position": [
+                1130.4,
+                611.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Flamingos füttern verboten!",
+            "category": "collect",
+            "position": [
+                741.78,
+                279.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Denkt doch an den Denkmalschutz!",
+            "category": "collect",
+            "position": [
+                1122.9,
+                1374.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waldpatrouille: Ende einer langen Wacht",
+            "category": "defense",
+            "position": [
+                1225.8,
+                1017.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Salmet, das Sorgenkind",
+            "category": "defense",
+            "position": [
+                1355.18,
+                1401.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waldpatrouille: 1. Tojilianischer Krieg",
+            "category": "kill_boss",
+            "position": [
+                1706.33,
+                901.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waldpatrouille: 2. Tojilianischer Krieg",
+            "category": "kill_boss",
+            "position": [
+                1499.04,
+                977.55
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waldpatrouille: 2. Tojilianischer Krieg",
+            "category": "kill_boss",
+            "position": [
+                1366.17,
+                962.06
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waldpatrouille: 3. Tojilianischer Krieg",
+            "category": "kill_boss",
+            "position": [
+                1398.13,
+                777.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waldpatrouille: 3. Tojilianischer Krieg",
+            "category": "kill_boss",
+            "position": [
+                1263.77,
+                727.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waldpatrouille: Der Fall Tojils",
+            "category": "kill_boss",
+            "position": [
+                1185.84,
+                375.63
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zweite Chance für Chantico",
+            "category": "kill_boss",
+            "position": [
+                662.35,
+                672.8399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Angriff der Killertomatl",
+            "category": "kill_boss",
+            "position": [
+                453.05999999999995,
+                328.17999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Celeno der Zwei Gesichter",
+            "category": "kill_boss",
+            "position": [
+                1069.46,
+                1507.03
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Auge auf Abwegen",
+            "category": "kill_boss",
+            "position": [
+                978.54,
+                1455.08
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waldpatrouille: 3. Tojilianischer Krieg",
+            "category": "notorious_monster",
+            "position": [
+                1238.79,
+                739.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waldpatrouille: Der Fall Tojils",
+            "category": "notorious_monster",
+            "position": [
+                1173.85,
+                379.63
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "The Rak'tika Greatwood",
+    "size": [
+        2048,
+        2048
+    ]
+}

@@ -1,0 +1,317 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "sinus-ardorum",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/c1w/c1w1 - Sinus Ardorum.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Mondtor-Station: Erweiterung I",
+            "category": "concerted_works",
+            "position": [
+                1024.0,
+                1024.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kosmozapper: Bauunterstützung I",
+            "category": "concerted_works",
+            "position": [
+                1024.0,
+                1024.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Habitationsmodul: Bauunterstützung I",
+            "category": "concerted_works",
+            "position": [
+                1125.9,
+                956.5699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kosmoport: Bauunterstützung I",
+            "category": "concerted_works",
+            "position": [
+                954.0699999999999,
+                1101.92
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sternenhangar: Erweiterung I",
+            "category": "concerted_works",
+            "position": [
+                1086.94,
+                1085.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tunnel: Aushubarbeiten I",
+            "category": "concerted_works",
+            "position": [
+                920.6,
+                274.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tunnel: Aushubarbeiten II",
+            "category": "concerted_works",
+            "position": [
+                879.64,
+                274.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mondtor-Station: Erweiterung II",
+            "category": "concerted_works",
+            "position": [
+                1024.0,
+                1024.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Energisierungswerke: Erweiterung",
+            "category": "concerted_works",
+            "position": [
+                975.05,
+                917.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hydrofizierungswerke: Erweiterung",
+            "category": "concerted_works",
+            "position": [
+                910.61,
+                996.03
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sternenhangar: Erweiterung II",
+            "category": "concerted_works",
+            "position": [
+                1086.94,
+                1087.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kosmoport: Bauunterstützung II",
+            "category": "concerted_works",
+            "position": [
+                953.0699999999999,
+                1097.93
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lift: Vorbereitungsarbeiten I",
+            "category": "concerted_works",
+            "position": [
+                1328.7,
+                1375.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lift: Vorbereitungsarbeiten II",
+            "category": "concerted_works",
+            "position": [
+                1350.68,
+                1348.18
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Expansion der Stationsstrukturen",
+            "category": "concerted_works",
+            "position": [
+                1024.0,
+                1024.0
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Sinus Ardorum",
+    "size": [
+        2048,
+        2048
+    ]
+}

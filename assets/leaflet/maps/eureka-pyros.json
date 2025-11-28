@@ -1,0 +1,357 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "eureka-pyros",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/z3f/z3fc - Eureka Pyros.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Leukosia, das eisige Wehklagen",
+            "category": "notorious_monsters",
+            "position": [
+                1312.72,
+                794.72
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Flauros, die grausame Sturmbestie",
+            "category": "notorious_monsters",
+            "position": [
+                1395.6399999999999,
+                625.89
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Sophist und seine Meute",
+            "category": "notorious_monsters",
+            "position": [
+                1556.48,
+                522.49
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mörderische Marionetten",
+            "category": "notorious_monsters",
+            "position": [
+                1101.92,
+                236.26999999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Askalaphos, tödliche Wissbegier",
+            "category": "notorious_monsters",
+            "position": [
+                913.61,
+                635.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aus den Tiefen des Abyssus",
+            "category": "notorious_monsters",
+            "position": [
+                843.1800000000001,
+                1394.1399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aetolus, Herr der Blitze",
+            "category": "notorious_monsters",
+            "position": [
+                456.54999999999995,
+                1388.1399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lesath, der Lavaskorpion",
+            "category": "notorious_monsters",
+            "position": [
+                581.4300000000001,
+                1543.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eldthurs, der feurige Gigant",
+            "category": "notorious_monsters",
+            "position": [
+                711.31,
+                1776.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die trauernde Sturmschwalbe",
+            "category": "notorious_monsters",
+            "position": [
+                1015.51,
+                1487.55
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wüterix, der Söldner",
+            "category": "notorious_monsters",
+            "position": [
+                1041.48,
+                1680.3600000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Donnernder Dux",
+            "category": "notorious_monsters",
+            "position": [
+                1322.21,
+                1651.3899999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Axt im Walde",
+            "category": "notorious_monsters",
+            "position": [
+                1466.07,
+                1528.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Glaukopis und ihre geflügelten Töchter",
+            "category": "notorious_monsters",
+            "position": [
+                1551.98,
+                1339.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zwillinge wider Willen",
+            "category": "notorious_monsters",
+            "position": [
+                523.99,
+                382.63
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eisiges Wolfsgeheul",
+            "category": "notorious_monsters",
+            "position": [
+                1152.37,
+                592.9200000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Penthesilea, Königin der Flammenfeen",
+            "category": "notorious_monsters",
+            "position": [
+                1746.29,
+                1801.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Glückliche Glückshasen",
+            "category": "notorious_monsters",
+            "position": [
+                1146.88,
+                787.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Versteinerte Glückshasen",
+            "category": "notorious_monsters",
+            "position": [
+                1196.33,
+                1539.0
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Eureka Pyros",
+    "size": [
+        2048,
+        2048
+    ]
+}

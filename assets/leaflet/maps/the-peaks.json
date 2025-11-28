@@ -1,0 +1,487 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "the-peaks",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/g3f/g3f2 - Die Zinnen.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Der freundliche Nager von nebenan",
+            "category": "escort",
+            "position": [
+                536.98,
+                1541.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der unfreundliche Nager von nebenan",
+            "category": "kill_enemies",
+            "position": [
+                598.9200000000001,
+                1345.69
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Feldmäuse in groß",
+            "category": "kill_enemies",
+            "position": [
+                951.0699999999999,
+                1382.65
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Einfach nur zum Heulen",
+            "category": "kill_enemies",
+            "position": [
+                991.03,
+                1758.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kinder der Plage",
+            "category": "kill_enemies",
+            "position": [
+                844.6800000000001,
+                1520.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Waffentruhe zu Waffenruhe",
+            "category": "kill_enemies",
+            "position": [
+                905.12,
+                1317.71
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Alter Falter",
+            "category": "kill_enemies",
+            "position": [
+                509.5,
+                1756.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gern auch Gammelfleisch",
+            "category": "kill_enemies",
+            "position": [
+                1196.33,
+                1409.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wenn der große Hunger kommt",
+            "category": "kill_enemies",
+            "position": [
+                780.74,
+                664.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Plötzliches Heimweh",
+            "category": "kill_enemies",
+            "position": [
+                631.88,
+                278.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zum Greifen nah",
+            "category": "kill_enemies",
+            "position": [
+                688.3299999999999,
+                832.69
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Staub, Staub, überall Staub!",
+            "category": "kill_enemies",
+            "position": [
+                475.03999999999996,
+                1368.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Und was sich reimt, ist Bhut",
+            "category": "kill_enemies",
+            "position": [
+                1027.5,
+                1637.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Genug genagt!",
+            "category": "kill_boss",
+            "position": [
+                598.9200000000001,
+                1345.69
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefräßiges Chapuli",
+            "category": "kill_boss",
+            "position": [
+                308.20000000000005,
+                1395.6399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mit dem Kopf durch den Wald",
+            "category": "kill_boss",
+            "position": [
+                1317.71,
+                1330.7
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lila Lethargie",
+            "category": "kill_boss",
+            "position": [
+                640.87,
+                1695.8400000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein flotter Schnitt",
+            "category": "kill_boss",
+            "position": [
+                1115.91,
+                1629.9099999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Klotz, der aus der Hölle kam",
+            "category": "kill_boss",
+            "position": [
+                1685.35,
+                1659.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zum Fressen gern",
+            "category": "kill_boss",
+            "position": [
+                595.9200000000001,
+                581.9300000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hunba, hunba, hunba, tätärä!",
+            "category": "kill_boss",
+            "position": [
+                728.79,
+                574.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hyperventilation",
+            "category": "kill_boss",
+            "position": [
+                1041.98,
+                1337.69
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hals- und Genickbruch",
+            "category": "kill_boss",
+            "position": [
+                1287.74,
+                819.7
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Feuer ist für Motten nichts",
+            "category": "kill_boss",
+            "position": [
+                740.78,
+                1551.98
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fünf ist Trümpf",
+            "category": "kill_boss",
+            "position": [
+                1113.91,
+                601.9100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fünf nahrhafte Jahre",
+            "category": "kill_boss",
+            "position": [
+                1360.17,
+                541.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Und täglich grüßt das Nagetier",
+            "category": "defense",
+            "position": [
+                719.3,
+                1710.83
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vergissmeinnicht",
+            "category": "defense",
+            "position": [
+                1169.8600000000001,
+                368.64
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Definitionssache",
+            "category": "defense",
+            "position": [
+                427.58000000000004,
+                1603.9299999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die grauen Panteras",
+            "category": "defense",
+            "position": [
+                854.67,
+                361.65
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Federn lassen",
+            "category": "collect",
+            "position": [
+                1228.8,
+                683.8299999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Brennpunkt Reifstein",
+            "category": "chase",
+            "position": [
+                674.8399999999999,
+                778.24
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "The Peaks",
+    "size": [
+        2048,
+        2048
+    ]
+}

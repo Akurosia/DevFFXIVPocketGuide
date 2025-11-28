@@ -1,0 +1,347 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "kholusia",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f2 - Kholusia.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Ein formidabler Kampf: Die Bedrohung",
+            "category": "defense",
+            "position": [
+                1080.94,
+                1411.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein formidabler Kampf: Ein finsterer Plan",
+            "category": "defense",
+            "position": [
+                1237.29,
+                1079.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rallen haben scharfe Krallen",
+            "category": "defense",
+            "position": [
+                858.66,
+                560.95
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Räuberplage in Eintracht",
+            "category": "defense",
+            "position": [
+                879.64,
+                1145.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Krieg der Baumeister: Duell der Giganten",
+            "category": "defense",
+            "position": [
+                759.76,
+                1051.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein formidabler Kampf: Der Gigant",
+            "category": "kill_boss",
+            "position": [
+                1635.9,
+                1035.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Im Land der Donnerwürmer",
+            "category": "kill_boss",
+            "position": [
+                525.99,
+                1346.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Räuberplage in Stillwasser",
+            "category": "kill_enemies",
+            "position": [
+                1531.5,
+                840.6800000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Räuberplage in Stillwasser",
+            "category": "kill_enemies",
+            "position": [
+                1790.75,
+                892.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Räuberplage in Werfting",
+            "category": "kill_enemies",
+            "position": [
+                598.9200000000001,
+                723.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Räuberplage in Werfting",
+            "category": "kill_enemies",
+            "position": [
+                857.66,
+                728.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ungebetener Besuch aus der Tiefe",
+            "category": "kill_enemies",
+            "position": [
+                1520.02,
+                425.58000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Frech und flügge",
+            "category": "kill_enemies",
+            "position": [
+                1205.32,
+                739.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefährlicher Beifang",
+            "category": "kill_enemies",
+            "position": [
+                371.64,
+                568.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Total durchgeklopft",
+            "category": "kill_enemies",
+            "position": [
+                1121.4,
+                1642.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Drahtige Dissonanzen",
+            "category": "kill_enemies",
+            "position": [
+                702.81,
+                1597.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Krieg der Baumeister: Testphase",
+            "category": "kill_enemies",
+            "position": [
+                849.17,
+                1360.67
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Krieg der Baumeister: Konstruktionsphase",
+            "category": "collect",
+            "position": [
+                1234.29,
+                1249.78
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Kholusia",
+    "size": [
+        2048,
+        2048
+    ]
+}

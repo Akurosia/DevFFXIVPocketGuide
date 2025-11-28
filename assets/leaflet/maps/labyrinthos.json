@@ -1,0 +1,327 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "labyrinthos",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/k5f/k5f1 - Labyrinthos.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Lagebericht: Keimlinge auf der Flucht",
+            "category": "kill_enemies",
+            "position": [
+                1625.9099999999999,
+                1353.18
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Heimkehr der Spinnen",
+            "category": "kill_enemies",
+            "position": [
+                758.76,
+                1763.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Knuddeliges Grünzeug",
+            "category": "kill_enemies",
+            "position": [
+                1380.15,
+                1700.3400000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fressen statt gefressen werden",
+            "category": "kill_enemies",
+            "position": [
+                1112.41,
+                1511.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bergkröten auf der Flucht",
+            "category": "kill_enemies",
+            "position": [
+                1455.08,
+                1010.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lagebericht: Kristalline Gefahr",
+            "category": "kill_enemies",
+            "position": [
+                1130.9,
+                507.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lagebericht: Mutierter Kristall",
+            "category": "kill_enemies",
+            "position": [
+                854.67,
+                177.83000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gestalt gewordener Äther",
+            "category": "kill_enemies",
+            "position": [
+                264.74,
+                508.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gallertartige Umweltverschmutzer",
+            "category": "kill_enemies",
+            "position": [
+                412.6,
+                311.20000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Äther-Nesthocker",
+            "category": "kill_enemies",
+            "position": [
+                1153.87,
+                944.58
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lagebericht: Der Keimling wächst nicht weit vom Stamm",
+            "category": "kill_boss",
+            "position": [
+                1435.6,
+                843.1800000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eiskalte Attentäterin",
+            "category": "kill_boss",
+            "position": [
+                1529.51,
+                1657.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Nimmersatte Fraelissa",
+            "category": "kill_boss",
+            "position": [
+                537.97,
+                1101.92
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schaumkraut bleibt Schaumkraut",
+            "category": "defense",
+            "position": [
+                671.3399999999999,
+                1629.4099999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Natürliches Feuchtigkeitsmittel",
+            "category": "collect",
+            "position": [
+                1095.43,
+                315.69000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vom Sturm verweht",
+            "category": "collect",
+            "position": [
+                362.15,
+                898.62
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Labyrinthos",
+    "size": [
+        2048,
+        2048
+    ]
+}

@@ -1,0 +1,307 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "eureka-hydatos",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/z3f/z3fd - Eureka Hydatos.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Kalamari, die unheimliche Sepia",
+            "category": "notorious_monsters",
+            "position": [
+                505.51,
+                837.1800000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Knochenschädel Stegodon",
+            "category": "notorious_monsters",
+            "position": [
+                453.05999999999995,
+                1205.32
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tränenkönig Molek",
+            "category": "notorious_monsters",
+            "position": [
+                346.65999999999997,
+                991.03
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Piasa, der Paradiesvogel",
+            "category": "notorious_monsters",
+            "position": [
+                286.72,
+                1378.65
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Frosticore, die Klauenbestie",
+            "category": "notorious_monsters",
+            "position": [
+                342.16999999999996,
+                792.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Blutdurst",
+            "category": "notorious_monsters",
+            "position": [
+                1231.8,
+                1286.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Schmiedemeister des Äthers, König Goldemar",
+            "category": "notorious_monsters",
+            "position": [
+                1394.6399999999999,
+                916.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vegetarischer Karnivor",
+            "category": "notorious_monsters",
+            "position": [
+                1816.73,
+                743.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Baron Feuermähne",
+            "category": "notorious_monsters",
+            "position": [
+                1577.96,
+                859.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ceto, die Gorgonenkönigin",
+            "category": "notorious_monsters",
+            "position": [
+                1771.77,
+                1428.1100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sondereinsatzkommando „Baldesions Arsenal“",
+            "category": "notorious_monsters",
+            "position": [
+                898.12,
+                660.36
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Kristallwächter",
+            "category": "notorious_monsters",
+            "position": [
+                1587.95,
+                1117.91
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ovni, die unerkannte Bedrohung",
+            "category": "notorious_monsters",
+            "position": [
+                1289.74,
+                646.37
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Planschende Glückshasen",
+            "category": "notorious_monsters",
+            "position": [
+                653.86,
+                1026.5
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Eureka Hydatos",
+    "size": [
+        2048,
+        2048
+    ]
+}

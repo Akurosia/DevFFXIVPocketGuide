@@ -1,0 +1,397 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "east-shroud",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/f1f/f1f2 - Ostwald.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Wehrhafte Delikatesse",
+            "category": "defense",
+            "position": [
+                527.48,
+                883.14
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kreuzkarst-Spalier: Dritte Phase - Abschluss",
+            "category": "defense",
+            "position": [
+                1319.71,
+                1013.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Botanische Revolution",
+            "category": "kill_boss",
+            "position": [
+                1001.02,
+                604.4100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unerwünschtes Unkraut",
+            "category": "kill_boss",
+            "position": [
+                1282.25,
+                1009.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aus Kameradschaft",
+            "category": "kill_boss",
+            "position": [
+                1117.41,
+                592.9200000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Comeback mit Knall",
+            "category": "kill_boss",
+            "position": [
+                1117.91,
+                609.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Platz der Habenichtse: Erste Phase - Abschluss",
+            "category": "kill_boss",
+            "position": [
+                1107.92,
+                1041.98
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kreuzkarst-Spalier: Vierte Phase - Beginn",
+            "category": "kill_boss",
+            "position": [
+                1565.97,
+                1050.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Estrade der Sankt Roelle: Dritte Phase - Beginn",
+            "category": "kill_boss",
+            "position": [
+                1573.46,
+                1377.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Genist: Erste Phase",
+            "category": "kill_boss",
+            "position": [
+                1408.12,
+                1473.06
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Genist: Siebte Phase - Beginn",
+            "category": "kill_boss",
+            "position": [
+                997.03,
+                1561.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Östliches Himmelsang: 2. Phase - Abschluss",
+            "category": "kill_boss",
+            "position": [
+                1420.6100000000001,
+                1025.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Östliches Himmelsang: 3. Phase - Beginn",
+            "category": "kill_boss",
+            "position": [
+                1115.41,
+                1182.35
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kind der heißen Quellen",
+            "category": "kill_enemies",
+            "position": [
+                1022.5,
+                768.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hab Vivian satt",
+            "category": "kill_enemies",
+            "position": [
+                985.04,
+                611.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Comeback mit Knall",
+            "category": "kill_enemies",
+            "position": [
+                588.9200000000001,
+                777.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Platz der Habenichtse: Erste Phase - Beginn",
+            "category": "kill_enemies",
+            "position": [
+                1237.79,
+                957.0699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kreuzkarst-Spalier: Dritte Phase - Beginn",
+            "category": "kill_enemies",
+            "position": [
+                1331.2,
+                1045.98
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Estrade der Sankt Roelle: Zweite Phase",
+            "category": "kill_enemies",
+            "position": [
+                1390.1399999999999,
+                1249.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Estrade der Sankt Roelle: Vierte Phase",
+            "category": "kill_enemies",
+            "position": [
+                1178.35,
+                1558.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Genist: Sechste Phase - Beginn",
+            "category": "kill_enemies",
+            "position": [
+                1136.39,
+                1372.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Comeback mit Knall",
+            "category": "escort",
+            "position": [
+                840.6800000000001,
+                749.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Platz der Habenichtse: Dritte Phase - Abschluss",
+            "category": "collect",
+            "position": [
+                1307.72,
+                863.66
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "East Shroud",
+    "size": [
+        2048,
+        2048
+    ]
+}

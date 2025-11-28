@@ -1,0 +1,407 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "western-la-noscea",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f4 - Westliches La Noscea.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Nicht ohne meine Eier",
+            "category": "escort",
+            "position": [
+                1247.78,
+                812.71
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vorboten des Chaos",
+            "category": "kill_boss",
+            "position": [
+                1596.44,
+                687.8299999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Steingolem aus einer anderen Welt",
+            "category": "kill_boss",
+            "position": [
+                1492.04,
+                617.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Krieger, grüß mir die Sonne",
+            "category": "kill_boss",
+            "position": [
+                1786.76,
+                660.36
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Molchaugen, Unkenzehen",
+            "category": "kill_boss",
+            "position": [
+                1278.25,
+                968.05
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Schrecken der Chocobos",
+            "category": "kill_boss",
+            "position": [
+                782.74,
+                332.67999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Alles oder Nichts",
+            "category": "kill_boss",
+            "position": [
+                987.04,
+                1134.89
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aus den Tiefen des Abyssus",
+            "category": "kill_boss",
+            "position": [
+                882.14,
+                1008.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aetolus, Herr der Blitze",
+            "category": "kill_boss",
+            "position": [
+                877.64,
+                1147.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die trauernde Sturmschwalbe",
+            "category": "kill_boss",
+            "position": [
+                640.37,
+                1256.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Donnernder Dux",
+            "category": "kill_boss",
+            "position": [
+                667.35,
+                367.14
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Axt im Walde",
+            "category": "kill_boss",
+            "position": [
+                808.71,
+                1315.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hunde, die bellen, beißen auch",
+            "category": "kill_boss",
+            "position": [
+                550.96,
+                298.21000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Herr des Chaos",
+            "category": "kill_enemies",
+            "position": [
+                1682.8600000000001,
+                641.37
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Golems aus einer anderen Welt",
+            "category": "kill_enemies",
+            "position": [
+                1151.38,
+                922.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Melancholie und die unendliche Unersättlichkeit",
+            "category": "kill_enemies",
+            "position": [
+                1614.92,
+                644.37
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Er kam von Weitem übers Meer",
+            "category": "kill_enemies",
+            "position": [
+                1443.59,
+                798.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein ganz großer Spinner",
+            "category": "kill_enemies",
+            "position": [
+                1097.43,
+                912.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Zwielichtige Seelen",
+            "category": "kill_enemies",
+            "position": [
+                991.03,
+                1136.89
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Askalaphos, tödliche Wissbegier",
+            "category": "kill_enemies",
+            "position": [
+                886.13,
+                1007.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eldthurs, der feurige Gigant",
+            "category": "kill_enemies",
+            "position": [
+                827.69,
+                1291.74
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wüterix, der Söldner",
+            "category": "kill_enemies",
+            "position": [
+                774.24,
+                481.53
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Steingolem aus einer anderen Welt",
+            "category": "collect",
+            "position": [
+                1285.24,
+                950.5699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das große Stinken",
+            "category": "defense",
+            "position": [
+                1183.84,
+                873.65
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Western La Noscea",
+    "size": [
+        2048,
+        2048
+    ]
+}

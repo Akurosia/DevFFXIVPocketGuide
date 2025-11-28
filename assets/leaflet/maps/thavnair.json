@@ -1,0 +1,337 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "thavnair",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/m5f/m5f1 - Thavnair.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Im Dienste der Mrga: Blasphemie",
+            "category": "kill_boss",
+            "position": [
+                415.59000000000003,
+                213.28999999999996
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kanabhuti, der Fluch des Dschungels",
+            "category": "kill_boss",
+            "position": [
+                845.17,
+                1113.91
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Valin der Tyrann",
+            "category": "kill_boss",
+            "position": [
+                1191.34,
+                1099.43
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Duft der Alchemie: Gefahr im Blumenbeet",
+            "category": "collect",
+            "position": [
+                1023.5,
+                1544.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Gaja sind Gaga!",
+            "category": "kill_enemies",
+            "position": [
+                841.1800000000001,
+                716.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ich bin ein Vaalaras!",
+            "category": "kill_enemies",
+            "position": [
+                681.8299999999999,
+                533.98
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zitterpartie",
+            "category": "kill_enemies",
+            "position": [
+                961.56,
+                179.82000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gift und Galle",
+            "category": "kill_enemies",
+            "position": [
+                783.24,
+                1647.8899999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Duft der Alchemie: Gefahrvoller Heimweg",
+            "category": "kill_enemies",
+            "position": [
+                654.86,
+                1246.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Giftiges Spiel",
+            "category": "kill_enemies",
+            "position": [
+                1340.69,
+                1566.47
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hinter dem Schleier lauert der Tod",
+            "category": "kill_enemies",
+            "position": [
+                1489.05,
+                1127.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Wunder vom Ksiroda",
+            "category": "kill_enemies",
+            "position": [
+                1460.57,
+                816.7
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wenn das Abendessen davonfliegt",
+            "category": "kill_enemies",
+            "position": [
+                1273.26,
+                1365.67
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Geifernde Affenbande",
+            "category": "kill_enemies",
+            "position": [
+                1191.84,
+                744.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Im Dienste der Mrga: Stoßgebet",
+            "category": "kill_enemies",
+            "position": [
+                1099.43,
+                934.59
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der kleine Junge und das Meer",
+            "category": "defense",
+            "position": [
+                361.65,
+                1328.2
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Im Dienste der Mrga: Pilger in Not",
+            "category": "defense",
+            "position": [
+                1665.37,
+                725.29
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Thavnair",
+    "size": [
+        2048,
+        2048
+    ]
+}

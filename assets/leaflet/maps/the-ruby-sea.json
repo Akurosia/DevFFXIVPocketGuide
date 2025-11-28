@@ -1,0 +1,467 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "the-ruby-sea",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/e3f/e3f1 - Rubinsee.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Das Mädchen mit dem nassen Haar",
+            "category": "kill_boss",
+            "position": [
+                1650.3899999999999,
+                1558.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Für immer und immer",
+            "category": "kill_boss",
+            "position": [
+                1575.46,
+                1084.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Langfinger Lang",
+            "category": "kill_boss",
+            "position": [
+                486.03,
+                1724.3200000000002
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schnipp-schnapp, Kopf ab!",
+            "category": "kill_boss",
+            "position": [
+                1500.04,
+                803.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Agnis Philosophie",
+            "category": "kill_boss",
+            "position": [
+                1137.39,
+                303.70000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Prinzessin Yahiro",
+            "category": "kill_boss",
+            "position": [
+                1265.26,
+                614.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Berg von einem Gyuki",
+            "category": "kill_boss",
+            "position": [
+                851.17,
+                1756.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Junge, Junge, diese Rotpanzer",
+            "category": "kill_boss",
+            "position": [
+                961.56,
+                1874.17
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sogenbis Sühne",
+            "category": "kill_boss",
+            "position": [
+                1261.77,
+                1803.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Samurai aus den Bergen",
+            "category": "kill_boss",
+            "position": [
+                693.3199999999999,
+                1834.71
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fürstlicher Appetit",
+            "category": "kill_boss",
+            "position": [
+                844.6800000000001,
+                1630.4099999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Stinkevögel",
+            "category": "kill_enemies",
+            "position": [
+                1369.66,
+                601.9100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Pool-Party",
+            "category": "kill_enemies",
+            "position": [
+                1616.92,
+                829.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Überfall auf die Korallentafeln",
+            "category": "kill_enemies",
+            "position": [
+                1622.92,
+                1811.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kriecher aus der Tiefe",
+            "category": "kill_enemies",
+            "position": [
+                1826.22,
+                1020.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unglücksraben",
+            "category": "kill_enemies",
+            "position": [
+                404.11,
+                1769.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bomber oder Fisch?",
+            "category": "kill_enemies",
+            "position": [
+                1406.63,
+                451.55999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kriegsherrin der Rotpanzer",
+            "category": "kill_enemies",
+            "position": [
+                1342.19,
+                645.37
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Magische Muscheln",
+            "category": "kill_enemies",
+            "position": [
+                1697.8400000000001,
+                834.6800000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vom Nordwind gebracht",
+            "category": "kill_enemies",
+            "position": [
+                1679.8600000000001,
+                1190.84
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Jetzt gibt's Tote",
+            "category": "kill_enemies",
+            "position": [
+                1690.35,
+                1318.21
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Haie im Anflug",
+            "category": "kill_enemies",
+            "position": [
+                687.3299999999999,
+                1622.42
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rette die Fische - und die Fischer!",
+            "category": "kill_enemies",
+            "position": [
+                1103.42,
+                1810.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Einfach mal treiben lassen",
+            "category": "kill_enemies",
+            "position": [
+                1437.1,
+                358.65
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "12½ Rochen",
+            "category": "kill_enemies",
+            "position": [
+                1693.35,
+                926.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rubinrote Korallen",
+            "category": "collect",
+            "position": [
+                1408.62,
+                1716.3200000000002
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schatzsuche",
+            "category": "collect",
+            "position": [
+                357.65,
+                597.4200000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampfrochen",
+            "category": "defense",
+            "position": [
+                966.56,
+                505.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Des Wahnsinns fette Beute",
+            "category": "defense",
+            "position": [
+                850.67,
+                1756.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eingekesselt",
+            "category": "defense",
+            "position": [
+                689.3299999999999,
+                1837.71
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "The Ruby Sea",
+    "size": [
+        2048,
+        2048
+    ]
+}

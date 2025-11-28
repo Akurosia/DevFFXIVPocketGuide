@@ -1,0 +1,327 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "elpis",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n5f/n5f1 - Elpis.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Beobachtung: ",
+            "category": "kill_enemies",
+            "position": [
+                364.64,
+                670.35
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefährdetes Gleichgewicht",
+            "category": "kill_enemies",
+            "position": [
+                1369.66,
+                639.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schmetterlinge schmettern",
+            "category": "kill_enemies",
+            "position": [
+                214.78999999999996,
+                450.05999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eine Lektion fürs Leben",
+            "category": "kill_enemies",
+            "position": [
+                469.53999999999996,
+                307.20000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Himmeldonnerwetter!",
+            "category": "kill_enemies",
+            "position": [
+                1026.0,
+                1013.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Entsorgung: Das bekannte Unbekannte",
+            "category": "kill_enemies",
+            "position": [
+                427.08000000000004,
+                907.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Adel verpflichtet - eigentlich",
+            "category": "kill_enemies",
+            "position": [
+                1495.04,
+                1432.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ruhet in Frieden",
+            "category": "kill_enemies",
+            "position": [
+                378.63,
+                1111.91
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Alles hat seinen Platz",
+            "category": "kill_enemies",
+            "position": [
+                644.37,
+                1250.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bitte nicht trinken",
+            "category": "kill_enemies",
+            "position": [
+                1720.8200000000002,
+                1218.31
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Beobachtung: Io",
+            "category": "kill_boss",
+            "position": [
+                364.64,
+                670.35
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die schwebenden Bäume",
+            "category": "kill_boss",
+            "position": [
+                936.59,
+                606.9100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Entsorgung: Ur-Kyklops",
+            "category": "kill_boss",
+            "position": [
+                427.08000000000004,
+                907.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schlechten Appetit!",
+            "category": "kill_boss",
+            "position": [
+                1344.19,
+                1824.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fliegende Fressfeinde",
+            "category": "defense",
+            "position": [
+                1481.55,
+                831.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sokles' Zorn",
+            "category": "collect",
+            "position": [
+                1296.23,
+                1363.17
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Elpis",
+    "size": [
+        2048,
+        2048
+    ]
+}

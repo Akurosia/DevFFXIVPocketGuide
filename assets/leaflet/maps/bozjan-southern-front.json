@@ -1,0 +1,637 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "bozjan-southern-front",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4b/n4b4 - Bozja-Südfront.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Peeriefool, das faule Gemüse",
+            "category": "ce_boss_besiegen",
+            "position": [
+                809.21,
+                749.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Verteidigungsmaschine Patriot",
+            "category": "ce_boss_besiegen",
+            "position": [
+                659.36,
+                1033.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die bösen Blicke der Eale",
+            "category": "ce_boss_besiegen",
+            "position": [
+                444.57000000000005,
+                1183.84
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dáinsleif, Bestie aus Eisen",
+            "category": "ce_boss_besiegen",
+            "position": [
+                664.35,
+                1183.84
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Im Schatten von Modell X",
+            "category": "ce_boss_besiegen",
+            "position": [
+                999.02,
+                1208.82
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der untote Chlevnik",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1128.9,
+                1353.68
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die drei Mäuler des Canis dirus",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1048.98,
+                649.37
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vigil, Feuerkraft hoch zehn",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1343.69,
+                599.4100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Akbaba, Tod von oben",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1718.3200000000002,
+                789.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Spartoi der Gefürchtete",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1543.49,
+                1218.81
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Rote Meteor und seine Meute",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1288.74,
+                1178.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sartauvoir Eisenfeuer",
+            "category": "ce_solo_kampf",
+            "position": [
+                884.14,
+                1303.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gabriel, die stählerne Schwinge",
+            "category": "ce_solo_kampf",
+            "position": [
+                1528.51,
+                759.26
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lyon der Bestienkönig",
+            "category": "ce_solo_kampf",
+            "position": [
+                1108.92,
+                1068.96
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Taktisches Gemetzel",
+            "category": "gegner_wellen",
+            "position": [
+                959.06,
+                753.26
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Nichts als Schrott",
+            "category": "gegner_wellen",
+            "position": [
+                1170.3600000000001,
+                718.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wer rastet, der blutet",
+            "category": "gegner_wellen",
+            "position": [
+                1170.3600000000001,
+                718.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Auf zum Gegenangriff",
+            "category": "gegner_wellen",
+            "position": [
+                1340.19,
+                633.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Linientreue um jeden Preis",
+            "category": "gegner_wellen",
+            "position": [
+                1632.9099999999999,
+                628.39
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dem Rüpel seine Meute",
+            "category": "gegner_wellen",
+            "position": [
+                1380.65,
+                787.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ungeheuerlich!",
+            "category": "gegner_wellen",
+            "position": [
+                818.2,
+                758.76
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Nächstenliebe, Nächstenhiebe",
+            "category": "gegner_wellen",
+            "position": [
+                1380.65,
+                787.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rache ist Blutwurst",
+            "category": "gegner_wellen",
+            "position": [
+                1483.55,
+                984.04
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Großes Federlassen",
+            "category": "gegner_wellen",
+            "position": [
+                1296.23,
+                1173.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Verhinderte Wartung",
+            "category": "gegner_wellen",
+            "position": [
+                830.69,
+                929.09
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unfreundlicher Besuch",
+            "category": "gegner_wellen",
+            "position": [
+                830.69,
+                929.09
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zurück ins Nichts",
+            "category": "gegner_wellen",
+            "position": [
+                1216.81,
+                957.56
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Revierkämpfe",
+            "category": "gegner_wellen",
+            "position": [
+                991.53,
+                1364.17
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein rüpelhaftes Großmaul",
+            "category": "gegner_wellen",
+            "position": [
+                516.5,
+                1339.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "... fällt selbst hinein",
+            "category": "gegner_wellen",
+            "position": [
+                1171.8600000000001,
+                1233.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Geruch der Angst",
+            "category": "gegner_wellen",
+            "position": [
+                512.5,
+                1078.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eine neue Unordnung",
+            "category": "gegner_wellen",
+            "position": [
+                662.85,
+                1188.34
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vor die Hunde gekommen",
+            "category": "gegner_wellen",
+            "position": [
+                653.36,
+                1314.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ende Gelände",
+            "category": "gegner_wellen",
+            "position": [
+                512.5,
+                1078.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Husch, ins Körbchen!",
+            "category": "boss_besiegen",
+            "position": [
+                959.06,
+                753.26
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schufter-10 wird verschrottet",
+            "category": "boss_besiegen",
+            "position": [
+                1632.9099999999999,
+                628.39
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gewaltsame Arbeitsniederlegung",
+            "category": "boss_besiegen",
+            "position": [
+                1483.55,
+                984.04
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der stärkste aller Pyromanten",
+            "category": "boss_besiegen",
+            "position": [
+                856.66,
+                1052.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Ende einer schillernden Karriere",
+            "category": "boss_besiegen",
+            "position": [
+                1171.8600000000001,
+                1233.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gewaltsame Arbeitsniederlegung - Plan B",
+            "category": "boss_besiegen",
+            "position": [
+                988.53,
+                1198.33
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Neu und besser",
+            "category": "boss_besiegen",
+            "position": [
+                653.36,
+                1314.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Auf und ab",
+            "category": "boss_besiegen",
+            "position": [
+                664.35,
+                1188.84
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Llofii die Ausgebüxte",
+            "category": "verteidigen",
+            "position": [
+                1529.51,
+                1236.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Jedes Leben zählt",
+            "category": "verteidigen",
+            "position": [
+                856.66,
+                1052.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aufräumen im Dienst der Wissenschaft",
+            "category": "sammeln",
+            "position": [
+                1216.81,
+                957.56
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Deins wird meins",
+            "category": "sammeln",
+            "position": [
+                991.53,
+                1364.17
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Flammenden Hundert",
+            "category": "ce_gegner_wellen",
+            "position": [
+                979.04,
+                884.14
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Bozjan Southern Front",
+    "size": [
+        2048,
+        2048
+    ]
+}

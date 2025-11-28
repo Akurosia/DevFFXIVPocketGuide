@@ -1,0 +1,327 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "yak-tel",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/y6f/y6f3 - Yak T'el.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Zahlenmäßig unterlegen",
+            "category": "defense",
+            "position": [
+                672.8399999999999,
+                1279.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Spediteur hat's schwer",
+            "category": "defense",
+            "position": [
+                1158.37,
+                276.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ruhm oder Leben",
+            "category": "kill_boss",
+            "position": [
+                680.8399999999999,
+                1199.33
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Denn sie wissen noch immer nicht, was sie tun",
+            "category": "kill_boss",
+            "position": [
+                1655.38,
+                1182.84
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Darf ich bitten?",
+            "category": "kill_boss",
+            "position": [
+                715.8,
+                594.9200000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Doktor Motte",
+            "category": "kill_boss",
+            "position": [
+                958.56,
+                875.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schlingelpflanzen",
+            "category": "kill_enemies",
+            "position": [
+                1346.19,
+                1477.56
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Denn sie wussten nicht, was sie tun",
+            "category": "kill_enemies",
+            "position": [
+                1432.1,
+                1295.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Je mehr, desto lustiger",
+            "category": "kill_enemies",
+            "position": [
+                1007.52,
+                1389.6399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Viel gefragte Früchte",
+            "category": "kill_enemies",
+            "position": [
+                359.15,
+                1258.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefährlicher Wald",
+            "category": "kill_enemies",
+            "position": [
+                779.74,
+                1597.94
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zeittotstecherei",
+            "category": "kill_enemies",
+            "position": [
+                723.79,
+                581.9300000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Bananenkriege",
+            "category": "kill_enemies",
+            "position": [
+                1335.7,
+                636.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kapitale Killer",
+            "category": "kill_enemies",
+            "position": [
+                1659.38,
+                611.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wundersame Wivren",
+            "category": "kill_enemies",
+            "position": [
+                677.3399999999999,
+                414.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Penetrante Pilze",
+            "category": "collect",
+            "position": [
+                1467.07,
+                354.65
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Yak T'el",
+    "size": [
+        2048,
+        2048
+    ]
+}

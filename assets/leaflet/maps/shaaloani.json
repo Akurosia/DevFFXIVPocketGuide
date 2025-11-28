@@ -1,0 +1,337 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "shaaloani",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/x6f/x6f1 - Shaaloani.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Gar nicht so feige Kaktoren",
+            "category": "kill_enemies",
+            "position": [
+                1384.65,
+                479.03
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Akute Brandgefahr",
+            "category": "kill_enemies",
+            "position": [
+                982.04,
+                989.53
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Urzeitliche Vögel",
+            "category": "kill_enemies",
+            "position": [
+                1037.49,
+                565.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wild ist die Wildnis",
+            "category": "kill_enemies",
+            "position": [
+                1315.72,
+                734.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Künder seines Erwachens",
+            "category": "kill_enemies",
+            "position": [
+                1123.4,
+                473.03999999999996
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Erwachen rückt näher",
+            "category": "kill_enemies",
+            "position": [
+                1397.1399999999999,
+                1211.32
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Seeungeheuer",
+            "category": "kill_enemies",
+            "position": [
+                1695.3400000000001,
+                1579.46
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hüter der Herde",
+            "category": "kill_enemies",
+            "position": [
+                1313.22,
+                981.54
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Geboren aus Flammen",
+            "category": "kill_boss",
+            "position": [
+                642.87,
+                887.63
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Totgesagte leben länger",
+            "category": "kill_boss",
+            "position": [
+                535.98,
+                1282.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "In den sandigen Schlund",
+            "category": "kill_boss",
+            "position": [
+                1076.95,
+                1844.2
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Lügenfresser",
+            "category": "kill_boss",
+            "position": [
+                1555.48,
+                1053.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Brachialer Bulle",
+            "category": "kill_boss",
+            "position": [
+                1142.38,
+                1284.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Backenhaar so wunderbar",
+            "category": "collect",
+            "position": [
+                928.59,
+                859.66
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vorbereitung der Jagd",
+            "category": "collect",
+            "position": [
+                993.03,
+                1675.3600000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mit Blut fängt man Schlangen",
+            "category": "defense",
+            "position": [
+                994.03,
+                1673.37
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fang in Gefahr",
+            "category": "defense",
+            "position": [
+                1697.3400000000001,
+                1376.16
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Shaaloani",
+    "size": [
+        2048,
+        2048
+    ]
+}

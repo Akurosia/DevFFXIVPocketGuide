@@ -1,0 +1,307 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "outer-la-noscea",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f6 - Äußeres La Noscea.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Versteinerte Glückshasen",
+            "category": "kill_enemies",
+            "position": [
+                808.71,
+                1284.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Frosticore, die Klauenbestie",
+            "category": "kill_enemies",
+            "position": [
+                1001.52,
+                1286.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schrecken der Tiefsee Archaeotania: Zumshs Ritual",
+            "category": "kill_enemies",
+            "position": [
+                869.15,
+                1312.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die mechanischen Krieger",
+            "category": "kill_boss",
+            "position": [
+                752.76,
+                1336.2
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tränenkönig Molek",
+            "category": "kill_boss",
+            "position": [
+                1106.92,
+                1492.04
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Piasa, der Paradiesvogel",
+            "category": "kill_boss",
+            "position": [
+                1208.82,
+                1275.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Blutdurst",
+            "category": "kill_boss",
+            "position": [
+                1206.32,
+                1203.32
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Planschende Glückshasen",
+            "category": "kill_boss",
+            "position": [
+                686.8299999999999,
+                1163.8600000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schrecken der Tiefsee Archaeotania: Luntenschwarm",
+            "category": "kill_boss",
+            "position": [
+                673.3399999999999,
+                1324.21
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schrecken der Tiefsee Archaeotania: Köder",
+            "category": "kill_boss",
+            "position": [
+                1168.3600000000001,
+                1778.26
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schrecken der Tiefsee Archaeotania: Die Bestie",
+            "category": "kill_boss",
+            "position": [
+                1048.48,
+                1800.74
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Halimede, lumineszente Schönheit",
+            "category": "kill_boss",
+            "position": [
+                1095.43,
+                1536.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Reinwaschung eines Ingenieurs: Metatron",
+            "category": "kill_boss",
+            "position": [
+                1047.48,
+                1800.74
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schrecken der Tiefsee Archaeotania: Dunkle Grotten",
+            "category": "defense",
+            "position": [
+                1058.97,
+                1222.31
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Outer La Noscea",
+    "size": [
+        2048,
+        2048
+    ]
+}

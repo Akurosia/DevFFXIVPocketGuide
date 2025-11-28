@@ -1,0 +1,377 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "middle-la-noscea",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f1 - Zentrales La Noscea.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Her mit den Mampf- und Mümmel-Mochi!",
+            "category": "collect",
+            "position": [
+                1151.38,
+                785.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Reis stampfen, Herzen erobern",
+            "category": "collect",
+            "position": [
+                1151.38,
+                785.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mehr Reis stampfen, mehr Herzen erobern",
+            "category": "collect",
+            "position": [
+                1151.38,
+                785.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampfhunde von der Leine gelassen",
+            "category": "collect",
+            "position": [
+                1151.38,
+                785.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein zäher Gegner",
+            "category": "kill_boss",
+            "position": [
+                1151.38,
+                785.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Geschmack an Wein und Unrecht",
+            "category": "kill_boss",
+            "position": [
+                765.75,
+                1389.1399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wertlose Wärter",
+            "category": "kill_boss",
+            "position": [
+                1040.48,
+                1161.87
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mach das Mochi tot oder ein Gozu sieht rot",
+            "category": "holiday_limited_time",
+            "position": [
+                1151.38,
+                795.72
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hilfe, der Tiger ist los!",
+            "category": "holiday_limited_time",
+            "position": [
+                1150.88,
+                793.72
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zeremonienverderber",
+            "category": "kill_enemies",
+            "position": [
+                1060.46,
+                1062.46
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ifrit nahm sein Leben",
+            "category": "kill_enemies",
+            "position": [
+                655.36,
+                1356.68
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Verwüsten verboten",
+            "category": "kill_enemies",
+            "position": [
+                1143.88,
+                1172.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Blutige Aussichten",
+            "category": "kill_enemies",
+            "position": [
+                1191.84,
+                734.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kein Glückstag",
+            "category": "kill_enemies",
+            "position": [
+                1093.43,
+                888.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Glüxi Grün",
+            "category": "kill_enemies",
+            "position": [
+                810.21,
+                1599.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Nach Hause teleportieren",
+            "category": "kill_enemies",
+            "position": [
+                742.77,
+                1488.55
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schlacht am Norddamm",
+            "category": "kill_enemies",
+            "position": [
+                1020.0,
+                969.55
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Totengeleit",
+            "category": "kill_enemies",
+            "position": [
+                909.61,
+                1055.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tumult am ersten Tor",
+            "category": "defense",
+            "position": [
+                1009.01,
+                1317.21
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schlafende Drachen soll man nicht wecken",
+            "category": "defense",
+            "position": [
+                1174.35,
+                784.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aufklärung am Norddamm",
+            "category": "notype",
+            "position": [
+                749.27,
+                1648.3899999999999
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Middle La Noscea",
+    "size": [
+        2048,
+        2048
+    ]
+}

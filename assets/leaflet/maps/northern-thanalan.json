@@ -1,0 +1,347 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "northern-thanalan",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/w1f/w1f5 - Nördliches Thanalan.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Die Schlitzer vom Diadem",
+            "category": "kill_boss",
+            "position": [
+                1212.82,
+                1076.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Höllenross",
+            "category": "kill_boss",
+            "position": [
+                894.13,
+                1378.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Genist: Sechste Phase - Beginn",
+            "category": "kill_boss",
+            "position": [
+                963.06,
+                1222.81
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Genist: Sechste Phase - Abschluss",
+            "category": "kill_boss",
+            "position": [
+                1209.32,
+                920.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rache ist Blutwurst",
+            "category": "kill_boss",
+            "position": [
+                820.2,
+                1363.17
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fabelwesen in Aufruhr",
+            "category": "kill_enemies",
+            "position": [
+                1184.34,
+                1039.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fabelwesen in Aufruhr",
+            "category": "kill_enemies",
+            "position": [
+                838.6800000000001,
+                1178.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Genist: Siebte Phase - Beginn",
+            "category": "kill_enemies",
+            "position": [
+                1087.44,
+                934.09
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Genist: Siebte Phase - Abschluss",
+            "category": "kill_enemies",
+            "position": [
+                1090.93,
+                861.66
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wer rastet, der blutet",
+            "category": "kill_enemies",
+            "position": [
+                754.76,
+                1174.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Auf zum Gegenangriff",
+            "category": "kill_enemies",
+            "position": [
+                988.04,
+                760.26
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dem Rüpel seine Meute",
+            "category": "kill_enemies",
+            "position": [
+                1267.26,
+                978.54
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ginkos Opfergaben",
+            "category": "collect",
+            "position": [
+                895.13,
+                1294.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schau mir in die Augen",
+            "category": "collect",
+            "position": [
+                1073.45,
+                950.0699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Linientreue um jeden Preis",
+            "category": "escort",
+            "position": [
+                1041.48,
+                626.39
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ungeheuerlich!",
+            "category": "notype",
+            "position": [
+                1248.78,
+                999.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schufter-10 wird verschrottet",
+            "category": "notype",
+            "position": [
+                1248.78,
+                999.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Nächstenliebe, Nächstenhiebe",
+            "category": "notype",
+            "position": [
+                1248.78,
+                999.02
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Northern Thanalan",
+    "size": [
+        2048,
+        2048
+    ]
+}

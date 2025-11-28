@@ -1,0 +1,357 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "eureka-pagos",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/z3f/z3fb - Eureka Pagos.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Eiskalte Königin",
+            "category": "notorious_monsters",
+            "position": [
+                1034.99,
+                782.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mächtig unter Dampf",
+            "category": "notorious_monsters",
+            "position": [
+                443.57000000000005,
+                1147.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Asche zu Asche",
+            "category": "notorious_monsters",
+            "position": [
+                1454.08,
+                606.9100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mächtig gewurmt",
+            "category": "notorious_monsters",
+            "position": [
+                1593.44,
+                733.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Verheerende Schmelze",
+            "category": "notorious_monsters",
+            "position": [
+                1598.94,
+                1021.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Stumme Schreie",
+            "category": "notorious_monsters",
+            "position": [
+                475.53999999999996,
+                1545.49
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das wahre Schneekleid trag ich",
+            "category": "notorious_monsters",
+            "position": [
+                809.71,
+                1290.74
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Unzertrennlichen",
+            "category": "notorious_monsters",
+            "position": [
+                644.87,
+                1160.87
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wem die Stunde schlägt",
+            "category": "notorious_monsters",
+            "position": [
+                1250.28,
+                1087.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Jetzt geht's rund",
+            "category": "notorious_monsters",
+            "position": [
+                389.62,
+                1325.71
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Den Tiger rauslassen",
+            "category": "notorious_monsters",
+            "position": [
+                1275.25,
+                1250.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eindeutiges Omen",
+            "category": "notorious_monsters",
+            "position": [
+                1502.53,
+                1173.35
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tränen voll Hass",
+            "category": "notorious_monsters",
+            "position": [
+                1136.39,
+                845.67
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eisige Klingen",
+            "category": "notorious_monsters",
+            "position": [
+                1745.8,
+                1161.37
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Es kann nur eine geben",
+            "category": "notorious_monsters",
+            "position": [
+                1063.46,
+                1383.65
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schau mir in die Augen",
+            "category": "notorious_monsters",
+            "position": [
+                1398.63,
+                980.54
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bibbernde Glückshasen",
+            "category": "notorious_monsters",
+            "position": [
+                856.16,
+                721.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gierige Glückshasen",
+            "category": "notorious_monsters",
+            "position": [
+                978.54,
+                1034.49
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Leserotte",
+            "category": "notorious_monsters",
+            "position": [
+                1249.28,
+                727.79
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Eureka Pagos",
+    "size": [
+        2048,
+        2048
+    ]
+}

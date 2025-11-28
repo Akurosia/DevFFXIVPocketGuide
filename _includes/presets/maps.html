@@ -1,3 +1,14 @@
+{% assign mapfile = "/assets/leaflet/maps/" | append: include.maptype | append: ".json" %}
+{% assign file_exists = false %}
+
+{% for f in site.static_files %}
+  {% if f.path == mapfile %}
+    {% assign file_exists = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+{% if file_exists %}
+
 {%- comment -%}
 Usage:
 
@@ -6,61 +17,22 @@ Usage:
 Expects a JSON file at:
   /assets/leaflet/maps/{{ maptype }}.json
 
-JSON shape compatible with the original config tool, e.g.:
+Treasure map marker (fixed map area, toggleable + searchable, now always appears in legend):
 
 {
-  "id": "lanoscea",
-  "name": "La Noscea",
-  "imageUrl": "https://ff14.akurosiakamo.de/extras/images/ui/map/s1f/s1f1%20-%20Zentrales%20La%20Noscea.png",
-  "size": [2048, 2048],
-  "minZoom": -1,
-  "maxZoom": 2,
-  "defaultZoom": 0,
-  "categories": [
-    { "id": "ore", "name": "Ore Node", "color": "#f59e0b", "group": "Nodes", "groupName": "Nodes" },
-    { "id": "herb", "name": "Herb Node", "color": "#22c55e", "group": "Nodes", "groupName": "Nodes" },
-    {
-      "id": "gathering-zone",
-      "name": "Gathering Zone",
-      "color": "#22c55e",
-      "group": "Zones",
-      "groupName": "Zones"
-    }
-  ],
-  "markers": [
-    {
-      "id": "1",
-      "name": "Copper Ore",
-      "category": "ore",
-      "position": [512, 768],
-      "description": "Lv. 5 mining node"
-    }
-  ],
-  "areas": [
-    {
-      "id": "zone-1",
-      "name": "Central Field",
-      "category": "gathering-zone",
-      "description": "Level 10–15 gathering area",
-      "points": [
-        [500, 400],
-        [800, 420],
-        [820, 650],
-        [480, 640]
-      ]
-    }
-  ]
+  "id": "tm-1",
+  "name": "Treasure Map 1",
+  "category": "treasuremap",
+  "type": "treasuremap",
+  "imageUrl": "/assets/leaflet/treasures/map1.png",
+  "position": [900, 1100],   // center (x,y) in map pixels
+  "size": [400, 400],        // width/height in map pixels (optional, defaults 256x256)
+  "description": "Dig here!"
 }
 
-Markers search fields:
-- name
-- category (id / label)
-- description
-
-Areas search fields:
-- name
-- category (id / label)
-- description
+If a marker (including treasuremaps) or area uses a category id that is NOT defined
+in `categories`, this file now auto-creates a default category for it so that it
+appears in the legend and can be toggled and searched.
 {%- endcomment -%}
 
 <div class="gm-wrap"
@@ -91,7 +63,6 @@ Areas search fields:
       crossorigin=""/>
 
 <style>
-/* outer wrapper – centers the whole block in the page */
 .gm-wrap {
   width: 100%;
   display: flex;
@@ -101,7 +72,6 @@ Areas search fields:
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* inner panel */
 .gm-inner {
   --gm-bg: var(--panel, #050814);
   --gm-border: var(--line, #1f2937);
@@ -118,7 +88,6 @@ Areas search fields:
   color: var(--gm-text);
 }
 
-/* header */
 .gm-header {
   display: flex;
   align-items: center;
@@ -132,14 +101,12 @@ Areas search fields:
   font-weight: 500;
 }
 
-/* main layout: sidebar left, map right */
 .gm-body {
   display: flex;
   align-items: stretch;
   gap: 8px;
 }
 
-/* sidebar */
 .gm-sidebar {
   width: 220px;
   max-width: 40%;
@@ -151,7 +118,6 @@ Areas search fields:
   max-height: 75vh;
 }
 
-/* search */
 .gm-search {
   margin-bottom: 2px;
 }
@@ -167,7 +133,6 @@ Areas search fields:
   font-size: 11px;
 }
 
-/* show/hide buttons */
 .gm-legend-controls {
   display: flex;
   flex-wrap: wrap;
@@ -185,7 +150,6 @@ Areas search fields:
   color: var(--gm-text);
 }
 
-/* category groups */
 .gm-groups {
   display: flex;
   flex-direction: column;
@@ -237,7 +201,7 @@ Areas search fields:
   align-items: center;
   gap: 4px;
   cursor: pointer;
-  padding-left: 14px; /* indent under group */
+  padding-left: 14px;
 }
 
 .gm-cat input[type="checkbox"] {
@@ -246,12 +210,16 @@ Areas search fields:
   height: 10px;
 }
 
+/* Legend icon/dot */
 .gm-cat-color {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
   background: #9ca3af;
   flex-shrink: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .gm-cat-label {
@@ -264,7 +232,6 @@ Areas search fields:
   opacity: 0.8;
 }
 
-/* map canvas */
 .gm-map {
   position: relative;
   flex: 1;
@@ -275,19 +242,54 @@ Areas search fields:
   overflow: hidden;
 }
 
-/* Leaflet base */
+/* Zone selector (top-right) */
+.gm-zone-switcher {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  padding: 2px 6px;
+  font-size: 11px;
+}
+
+.gm-zone-switcher select {
+  background: transparent;
+  border: none;
+  color: #e5e7eb;
+  font-size: 11px;
+  outline: none;
+}
+
+/* Mouse coordinates (bottom-left) */
+.gm-coords {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  padding: 2px 8px;
+  font-size: 10px;
+  pointer-events: none;
+  color: #e5e7eb;
+  min-width: 90px;
+  text-align: left;
+}
+
 .leaflet-container {
   background: #020617;
 }
 
-/* error text */
 .gm-error {
   font-size: 12px;
   color: #f97373;
   margin-top: 4px;
 }
 
-/* small screen: put sidebar above map */
 @media (max-width: 768px) {
   .gm-body {
     flex-direction: column;
@@ -300,13 +302,9 @@ Areas search fields:
 }
 </style>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
-
 <script>
 (function () {
-  function makeIcon(color) {
+  function makeColorIcon(color) {
     var c = color || "#60a5fa";
     var svg = encodeURIComponent(
       "<svg xmlns='http://www.w3.org/2000/svg' width='28' height='36' viewBox='0 0 28 36'>" +
@@ -324,16 +322,94 @@ Areas search fields:
     });
   }
 
+  function getCategoryIcon(cat, fallbackColor) {
+    if (!cat) return makeColorIcon(fallbackColor);
+    if (cat._leafletIcon) return cat._leafletIcon;
+
+    var url = cat.iconUrl || cat.icon;
+    if (!url) {
+      cat._leafletIcon = makeColorIcon(cat.color || fallbackColor);
+      return cat._leafletIcon;
+    }
+
+    var size = cat.iconSize || null;
+    var baseW = size ? size[0] : 32;
+    var baseH = size ? size[1] : 32;
+
+    var iconAnchor = cat.iconAnchor || [baseW / 2, baseH / 2];
+    var popupAnchor = cat.popupAnchor || [0, -baseH / 2];
+
+    var opts = {
+      iconUrl: url,
+      iconAnchor: iconAnchor,
+      popupAnchor: popupAnchor
+    };
+    if (size) {
+      opts.iconSize = size;
+    }
+
+    cat._leafletIcon = L.icon(opts);
+    return cat._leafletIcon;
+  }
+
+  function normalizeZones(raw) {
+    if (raw && raw.imageUrl) {
+      return [{
+        id: raw.id || "default",
+        label: raw.name || raw.id || "Map",
+        cfg: raw
+      }];
+    }
+
+    var zones = [];
+
+    if (raw && raw.zones && typeof raw.zones === "object") {
+      Object.keys(raw.zones).forEach(function (key) {
+        var z = raw.zones[key];
+        if (!z || !z.imageUrl || !Array.isArray(z.size)) return;
+        zones.push({
+          id: z.id || key,
+          label: z.name || z.id || key,
+          cfg: z
+        });
+      });
+      if (zones.length) return zones;
+    }
+
+    if (raw && typeof raw === "object") {
+      Object.keys(raw).forEach(function (key) {
+        var z = raw[key];
+        if (!z || typeof z !== "object") return;
+        if (!z.imageUrl || !Array.isArray(z.size)) return;
+        zones.push({
+          id: z.id || key,
+          label: z.name || z.id || key,
+          cfg: z
+        });
+      });
+    }
+
+    if (!zones.length && raw) {
+      zones.push({
+        id: raw.id || "default",
+        label: raw.name || raw.id || "Map",
+        cfg: raw
+      });
+    }
+
+    return zones;
+  }
+
   function initEmbed(root) {
     if (!window.L || !root) return;
     if (root.dataset.gmInitialized === "1") return;
     root.dataset.gmInitialized = "1";
 
-    var mapUrl  = root.getAttribute("data-map-url");
-    var titleEl = root.querySelector(".gm-title");
-    var groupsHost = root.querySelector(".gm-groups");
-    var mapHost = root.querySelector(".gm-map");
-    var controlsHost = root.querySelector(".gm-legend-controls");
+    var mapUrl      = root.getAttribute("data-map-url");
+    var titleEl     = root.querySelector(".gm-title");
+    var groupsHost  = root.querySelector(".gm-groups");
+    var mapHost     = root.querySelector(".gm-map");
+    var controlsHost= root.querySelector(".gm-legend-controls");
     var searchInput = root.querySelector(".gm-search-input");
 
     if (!mapUrl) {
@@ -346,42 +422,88 @@ Areas search fields:
         if (!res.ok) throw new Error("HTTP " + res.status);
         return res.json();
       })
-      .then(function (cfg) {
-        if (!cfg || !cfg.imageUrl || !Array.isArray(cfg.size)) {
-          throw new Error("Invalid map JSON");
+      .then(function (rawCfg) {
+        var zones = normalizeZones(rawCfg);
+        if (!zones.length) {
+          throw new Error("No valid zones in JSON");
         }
 
-        if (titleEl) {
-          titleEl.textContent = cfg.name || cfg.id || "Map";
+        var firstZoneCfg = zones[0].cfg;
+        if (!firstZoneCfg || !firstZoneCfg.imageUrl || !Array.isArray(firstZoneCfg.size)) {
+          throw new Error("Invalid first zone JSON");
         }
 
-        var size = cfg.size;
-        var w = Number(size[0]);
-        var h = Number(size[1]);
-        if (!isFinite(w) || !isFinite(h)) {
-          throw new Error("Invalid size in map JSON");
+        var size0 = firstZoneCfg.size;
+        var w0 = Number(size0[0]);
+        var h0 = Number(size0[1]);
+        if (!isFinite(w0) || !isFinite(h0)) {
+          throw new Error("Invalid size in first zone JSON");
         }
 
-        var bounds = [[0, 0], [h, w]];
+        var bounds0 = [[0, 0], [h0, w0]];
 
         var map = L.map(mapHost, {
           crs: L.CRS.Simple,
           zoomControl: true,
-          minZoom: (typeof cfg.minZoom === "number") ? cfg.minZoom : -2,
-          maxZoom: (typeof cfg.maxZoom === "number") ? cfg.maxZoom : 2,
+          minZoom: (typeof firstZoneCfg.minZoom === "number") ? firstZoneCfg.minZoom : -2,
+          maxZoom: (typeof firstZoneCfg.maxZoom === "number") ? firstZoneCfg.maxZoom : 2,
           zoomSnap: 0.25,
           zoomDelta: 0.25,
           wheelPxPerZoomLevel: 300,
-          maxBounds: bounds,
+          maxBounds: bounds0,
           maxBoundsViscosity: 0.9
         });
 
-        L.imageOverlay(cfg.imageUrl, bounds).addTo(map);
-
+        var currentZoneIndex = 0;
+        var currentCfgForView = null;
         var initialViewSet = false;
+        var baseOverlay = null;
+
+        var categories = [];
+        var markers = [];
+        var areas = [];
+
+        var categoryActive = Object.create(null);
+        var markerLayerByCat = Object.create(null);
+        var baseMarkerLayer = L.layerGroup().addTo(map);
+
+        var markerEntries = [];
+        var treasureEntries = [];
+        var areaEntries = [];
+        var searchTerm = "";
+
+        var coordsEl = document.createElement("div");
+        coordsEl.className = "gm-coords";
+        coordsEl.textContent = "x: -, y: -";
+        mapHost.appendChild(coordsEl);
+
+        map.on("mousemove", function (e) {
+          if (!e.latlng) return;
+          var px = Math.round(e.latlng.lng);
+          var py = Math.round(e.latlng.lat);
+          coordsEl.textContent = "x: " + px + ", y: " + py;
+        });
+
+        map.on("mouseout", function () {
+          coordsEl.textContent = "x: -, y: -";
+        });
+
+        function catById(id) {
+          return categories.find(function (c) { return c.id === id; }) || null;
+        }
+
         function applyInitialView() {
-          if (initialViewSet) return;
+          if (!currentCfgForView) return;
           if (!mapHost.offsetWidth || !mapHost.offsetHeight) return;
+
+          var size = currentCfgForView.size || firstZoneCfg.size;
+          if (!Array.isArray(size)) return;
+
+          var w = Number(size[0]);
+          var h = Number(size[1]);
+          if (!isFinite(w) || !isFinite(h)) return;
+
+          var bounds = [[0, 0], [h, w]];
 
           initialViewSet = true;
           map.invalidateSize();
@@ -389,12 +511,14 @@ Areas search fields:
           var centerLat = h / 2;
           var centerLng = w / 2;
           var zoom;
-          if (typeof cfg.defaultZoom === "number") {
-            zoom = cfg.defaultZoom;
+          if (typeof currentCfgForView.defaultZoom === "number") {
+            zoom = currentCfgForView.defaultZoom;
           } else {
             zoom = map.getBoundsZoom(bounds, true);
           }
+
           map.setView([centerLat, centerLng], zoom);
+          map.setMaxBounds(bounds);
         }
 
         setTimeout(applyInitialView, 0);
@@ -412,33 +536,9 @@ Areas search fields:
           });
         }
 
-        var categories = Array.isArray(cfg.categories) ? cfg.categories.slice() : [];
-        var markers    = Array.isArray(cfg.markers)    ? cfg.markers.slice()    : [];
-        var areas      = Array.isArray(cfg.areas)      ? cfg.areas.slice()      : [];
-
-        var categoryActive = Object.create(null);
-        categories.forEach(function (c) {
-          categoryActive[c.id] = true;
-        });
-
-        var markerLayerByCat = Object.create(null);
-        categories.forEach(function (cat) {
-          markerLayerByCat[cat.id] = L.layerGroup().addTo(map);
-        });
-        var baseMarkerLayer = L.layerGroup().addTo(map);
-
-        var markerEntries = [];
-        var areaEntries   = [];
-        var searchTerm    = "";
-
-        function catById(id) {
-          return categories.find(function (c) { return c.id === id; }) || null;
-        }
-
         function recomputeVisibility() {
           var term = searchTerm;
 
-          // Markers
           markerEntries.forEach(function (entry) {
             var activeCat = true;
             if (entry.categoryId && Object.prototype.hasOwnProperty.call(categoryActive, entry.categoryId)) {
@@ -458,7 +558,23 @@ Areas search fields:
             }
           });
 
-          // Areas
+          treasureEntries.forEach(function (entry) {
+            var activeCat = true;
+            if (entry.categoryId && Object.prototype.hasOwnProperty.call(categoryActive, entry.categoryId)) {
+              activeCat = !!categoryActive[entry.categoryId];
+            }
+            var matchSearch = !term || (entry.searchText && entry.searchText.indexOf(term) !== -1);
+            var shouldShow = activeCat && matchSearch;
+
+            var ov = entry.overlay;
+            var has = map.hasLayer(ov);
+            if (shouldShow && !has) {
+              ov.addTo(map);
+            } else if (!shouldShow && has) {
+              map.removeLayer(ov);
+            }
+          });
+
           areaEntries.forEach(function (entry) {
             var activeCat = true;
             if (entry.categoryId && Object.prototype.hasOwnProperty.call(categoryActive, entry.categoryId)) {
@@ -482,112 +598,6 @@ Areas search fields:
           recomputeVisibility();
         }
 
-        // MARKERS
-        markers.forEach(function (m) {
-          var px, py;
-          if (Array.isArray(m.position)) {
-            px = Number(m.position[0]);
-            py = Number(m.position[1]);
-          } else {
-            px = Number(m.x);
-            py = Number(m.y);
-          }
-          if (!isFinite(px) || !isFinite(py)) return;
-
-          var lat = py;
-          var lng = px;
-
-          var cat = catById(m.category);
-          var color = (cat && cat.color) || "#60a5fa";
-
-          var marker = L.marker([lat, lng], { icon: makeIcon(color) });
-
-          var catId = m.category || "";
-          var catLabel = cat ? (cat.name || cat.id || "") : "";
-          var name = m.name || "";
-          var desc = m.description || "";
-          var searchText = (name + " " + catId + " " + catLabel + " " + desc).toLowerCase();
-
-          var html = "<strong>" + (name || "Marker") + "</strong>";
-          if (catLabel) {
-            html += "<br><span style=\"font-size:11px;opacity:0.9\">" + catLabel + "</span>";
-          }
-          if (desc) {
-            html += "<br><span style=\"font-size:11px;opacity:0.9\">" + desc + "</span>";
-          }
-          if (m.url) {
-            var u = String(m.url);
-            html += "<br><a href=\"" + u + "\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"font-size:11px;\">Open link</a>";
-          }
-
-          marker.bindPopup(html, {
-            autoPan: true,
-            closeButton: true,
-            maxWidth: 260
-          });
-
-          var layer = catId && markerLayerByCat[catId] ? markerLayerByCat[catId] : baseMarkerLayer;
-
-          markerEntries.push({
-            marker: marker,
-            categoryId: catId || null,
-            searchText: searchText,
-            layer: layer
-          });
-        });
-
-        // AREAS (polygons)
-        areas.forEach(function (a) {
-          if (!Array.isArray(a.points) || !a.points.length) return;
-
-          var latlngs = a.points.map(function (pt) {
-            if (!Array.isArray(pt) || pt.length < 2) return null;
-            var x = Number(pt[0]);
-            var y = Number(pt[1]);
-            if (!isFinite(x) || !isFinite(y)) return null;
-            return [y, x];
-          }).filter(function (p) { return !!p; });
-
-          if (!latlngs.length) return;
-
-          var cat = catById(a.category);
-          var color = (cat && cat.color) || "#f97316";
-
-          var poly = L.polygon(latlngs, {
-            color: color,
-            fillColor: color,
-            weight: 2,
-            fillOpacity: 0.4
-          });
-
-          var catId = a.category || "";
-          var catLabel = cat ? (cat.name || cat.id || "") : "";
-          var name = a.name || "";
-          var desc = a.description || "";
-          var searchText = (name + " " + catId + " " + catLabel + " " + desc).toLowerCase();
-
-          var html = "<strong>" + (name || "Area") + "</strong>";
-          if (catLabel) {
-            html += "<br><span style=\"font-size:11px;opacity:0.9\">" + catLabel + "</span>";
-          }
-          if (desc) {
-            html += "<br><span style=\"font-size:11px;opacity:0.9\">" + desc + "</span>";
-          }
-
-          poly.bindPopup(html, {
-            autoPan: true,
-            closeButton: true,
-            maxWidth: 260
-          });
-
-          areaEntries.push({
-            poly: poly,
-            categoryId: catId || null,
-            searchText: searchText
-          });
-        });
-
-        // LEGEND / GROUPS
         function buildGroupsMeta() {
           var groups = {};
           categories.forEach(function (cat) {
@@ -603,8 +613,8 @@ Areas search fields:
 
         function buildLegend() {
           if (!groupsHost) return;
-          var totals = {};
 
+          var totals = {};
           markers.forEach(function (m) {
             if (!m.category) return;
             totals[m.category] = (totals[m.category] || 0) + 1;
@@ -616,8 +626,16 @@ Areas search fields:
 
           groupsHost.innerHTML = "";
           var groups = buildGroupsMeta();
+          var anyGroupHasEntries = false;
 
           groups.forEach(function (g) {
+            var groupTotal = g.categories.reduce(function (acc, cat) {
+              return acc + (totals[cat.id] || 0);
+            }, 0);
+
+            if (!groupTotal) return;
+            anyGroupHasEntries = true;
+
             var groupDiv = document.createElement("div");
             groupDiv.className = "gm-group";
 
@@ -640,10 +658,7 @@ Areas search fields:
 
             var groupCount = document.createElement("span");
             groupCount.className = "gm-group-count";
-            var total = g.categories.reduce(function (acc, cat) {
-              return acc + (totals[cat.id] || 0);
-            }, 0);
-            groupCount.textContent = String(total);
+            groupCount.textContent = String(groupTotal);
 
             header.appendChild(left);
             header.appendChild(groupCount);
@@ -655,6 +670,7 @@ Areas search fields:
             groupCb.addEventListener("change", function () {
               var on = groupCb.checked;
               g.categories.forEach(function (cat) {
+                if (!(totals[cat.id] > 0)) return;
                 var cCb = groupsHost.querySelector('input[data-cat-id="' + cat.id + '"]');
                 if (cCb) cCb.checked = on;
                 toggleCategory(cat.id, on);
@@ -662,6 +678,9 @@ Areas search fields:
             });
 
             g.categories.forEach(function (cat) {
+              var catTotal = totals[cat.id] || 0;
+              if (!catTotal) return;
+
               var item = document.createElement("label");
               item.className = "gm-cat";
 
@@ -672,7 +691,14 @@ Areas search fields:
 
               var dot = document.createElement("span");
               dot.className = "gm-cat-color";
-              if (cat.color) dot.style.backgroundColor = cat.color;
+
+              var iconUrl = cat.iconUrl || cat.icon;
+              if (iconUrl) {
+                dot.style.backgroundImage = "url(" + iconUrl + ")";
+                dot.style.backgroundColor = "transparent";
+              } else if (cat.color) {
+                dot.style.backgroundColor = cat.color;
+              }
 
               var text = document.createElement("span");
               text.className = "gm-cat-label";
@@ -680,7 +706,7 @@ Areas search fields:
 
               var cCount = document.createElement("span");
               cCount.className = "gm-cat-count";
-              cCount.textContent = String(totals[cat.id] || 0);
+              cCount.textContent = String(catTotal);
 
               cb.addEventListener("change", function () {
                 toggleCategory(cat.id, cb.checked);
@@ -693,22 +719,309 @@ Areas search fields:
               items.appendChild(item);
             });
 
+            if (items.childElementCount === 0) return;
+
             groupDiv.appendChild(items);
             groupsHost.appendChild(groupDiv);
           });
 
-          if (!categories.length) {
+          if (!anyGroupHasEntries) {
             var empty = document.createElement("div");
-            empty.textContent = "No categories";
+            empty.textContent = "No entries";
             empty.style.fontSize = "11px";
             empty.style.opacity = "0.8";
             groupsHost.appendChild(empty);
           }
         }
 
-        buildLegend();
+        function loadZoneByIndex(index) {
+          if (index < 0 || index >= zones.length) index = 0;
+          currentZoneIndex = index;
+          var zone = zones[index];
+          var cfg  = zone.cfg;
 
-        // Show/hide all buttons
+          currentCfgForView = cfg;
+          initialViewSet = false;
+
+          if (titleEl) {
+            titleEl.textContent = cfg.name || zone.label || zone.id || "Map";
+          }
+
+          if (baseOverlay) {
+            map.removeLayer(baseOverlay);
+            baseOverlay = null;
+          }
+
+          Object.keys(markerLayerByCat).forEach(function (cid) {
+            var lyr = markerLayerByCat[cid];
+            if (lyr) {
+              lyr.clearLayers();
+              map.removeLayer(lyr);
+            }
+          });
+
+          baseMarkerLayer.clearLayers();
+
+          areaEntries.forEach(function (entry) {
+            if (entry && entry.poly && map.hasLayer(entry.poly)) {
+              entry.poly.remove();
+            }
+          });
+
+          treasureEntries.forEach(function (entry) {
+            if (entry && entry.overlay && map.hasLayer(entry.overlay)) {
+              map.removeLayer(entry.overlay);
+            }
+          });
+
+          markerEntries = [];
+          treasureEntries = [];
+          areaEntries = [];
+
+          categories = Array.isArray(cfg.categories) ? cfg.categories.slice() : [];
+          markers    = Array.isArray(cfg.markers)    ? cfg.markers.slice()    : [];
+          areas      = Array.isArray(cfg.areas)      ? cfg.areas.slice()      : [];
+
+          // Auto-add categories for any category ids that appear in markers/areas
+          // but are missing from cfg.categories (e.g. treasuremaps).
+          var existingIds = Object.create(null);
+          categories.forEach(function (c) {
+            if (c && c.id) {
+              existingIds[c.id] = true;
+            }
+          });
+
+          function ensureCategory(id) {
+            if (!id || existingIds[id]) return;
+            existingIds[id] = true;
+            categories.push({
+              id: id,
+              name: id,
+              color: "#f97316",
+              group: "Misc",
+              groupName: "Misc"
+            });
+          }
+
+          markers.forEach(function (m) {
+            if (m.category) ensureCategory(m.category);
+          });
+          areas.forEach(function (a) {
+            if (a.category) ensureCategory(a.category);
+          });
+
+          categoryActive = Object.create(null);
+          categories.forEach(function (c) {
+            categoryActive[c.id] = true;
+          });
+
+          var size = cfg.size || firstZoneCfg.size;
+          var w = Number(size[0]);
+          var h = Number(size[1]);
+          if (!isFinite(w) || !isFinite(h)) {
+            throw new Error("Invalid size in zone JSON");
+          }
+          var bounds = [[0, 0], [h, w]];
+
+          baseOverlay = L.imageOverlay(cfg.imageUrl, bounds).addTo(map);
+          map.setMaxBounds(bounds);
+
+          markerLayerByCat = Object.create(null);
+          categories.forEach(function (cat) {
+            markerLayerByCat[cat.id] = L.layerGroup().addTo(map);
+          });
+
+          markers.forEach(function (m) {
+            var px, py;
+            if (Array.isArray(m.position)) {
+              px = Number(m.position[0]);
+              py = Number(m.position[1]);
+            } else {
+              px = Number(m.x);
+              py = Number(m.y);
+            }
+            if (!isFinite(px) || !isFinite(py)) return;
+
+            var lat = py;
+            var lng = px;
+
+            var catId = m.category || "";
+            var cat = catById(catId);
+            var color = (cat && cat.color) || "#60a5fa";
+
+            var catLabel = cat ? (cat.name || cat.id || "") : "";
+            var name = m.name || "";
+            var desc = m.description || "";
+            var searchText = (name + " " + catId + " " + catLabel + " " + desc).toLowerCase();
+
+            var html = "<strong>" + (name || "Marker") + "</strong>";
+            if (catLabel) {
+              html += "<br><span style=\"font-size:11px;opacity:0.9\">" + catLabel + "</span>";
+            }
+            if (desc) {
+              html += "<br><span style=\"font-size:11px;opacity:0.9\">" + desc + "</span>";
+            }
+            if (m.url) {
+              var u = String(m.url);
+              html += "<br><a href=\"" + u + "\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"font-size:11px;\">Open link</a>";
+            }
+
+            var layer = catId && markerLayerByCat[catId] ? markerLayerByCat[catId] : baseMarkerLayer;
+
+            if (m.type === "treasuremap") {
+              var imgUrl = m.imageUrl || m.iconUrl || m.url;
+              if (!imgUrl) {
+                var fallbackIcon = getCategoryIcon(cat, color);
+                var fallbackMarker = L.marker([lat, lng], { icon: fallbackIcon });
+                fallbackMarker.bindPopup(html, {
+                  autoPan: true,
+                  closeButton: true,
+                  maxWidth: 260
+                });
+                markerEntries.push({
+                  marker: fallbackMarker,
+                  categoryId: catId || null,
+                  searchText: searchText,
+                  layer: layer
+                });
+                return;
+              }
+
+              var sizeArr = Array.isArray(m.size) && m.size.length >= 2
+                ? m.size
+                : (m.width && m.height ? [m.width, m.height] : [256, 256]);
+
+              var wImg = Number(sizeArr[0]);
+              var hImg = Number(sizeArr[1]);
+              if (!isFinite(wImg) || !isFinite(hImg) || wImg <= 0 || hImg <= 0) {
+                wImg = 256;
+                hImg = 256;
+              }
+
+              var halfW = wImg / 2;
+              var halfH = hImg / 2;
+
+              var imgBounds = [
+                [lat - halfH, lng - halfW],
+                [lat + halfH, lng + halfW]
+              ];
+
+              var overlay = L.imageOverlay(imgUrl, imgBounds, {
+                opacity: typeof m.opacity === "number" ? m.opacity : 0.9,
+                interactive: true
+              });
+
+              overlay.bindPopup(html, {
+                autoPan: true,
+                closeButton: true,
+                maxWidth: 260
+              });
+
+              overlay.addTo(map);
+
+              treasureEntries.push({
+                overlay: overlay,
+                categoryId: catId || null,
+                searchText: searchText
+              });
+              return;
+            }
+
+            var icon = getCategoryIcon(cat, color);
+            var marker = L.marker([lat, lng], { icon: icon });
+
+            marker.bindPopup(html, {
+              autoPan: true,
+              closeButton: true,
+              maxWidth: 260
+            });
+
+            markerEntries.push({
+              marker: marker,
+              categoryId: catId || null,
+              searchText: searchText,
+              layer: layer
+            });
+          });
+
+          areas.forEach(function (a) {
+            if (!Array.isArray(a.points) || !a.points.length) return;
+
+            var latlngs = a.points.map(function (pt) {
+              if (!Array.isArray(pt) || pt.length < 2) return null;
+              var x = Number(pt[0]);
+              var y = Number(pt[1]);
+              if (!isFinite(x) || !isFinite(y)) return null;
+              return [y, x];
+            }).filter(function (p) { return !!p; });
+
+            if (!latlngs.length) return;
+
+            var catId = a.category || "";
+            var cat = catById(catId);
+            var color = (cat && cat.color) || "#f97316";
+
+            var poly = L.polygon(latlngs, {
+              color: color,
+              fillColor: color,
+              weight: 2,
+              fillOpacity: 0.4
+            });
+
+            var catLabel = cat ? (cat.name || cat.id || "") : "";
+            var name = a.name || "";
+            var desc = a.description || "";
+            var searchText = (name + " " + catId + " " + catLabel + " " + desc).toLowerCase();
+
+            var html = "<strong>" + (name || "Area") + "</strong>";
+            if (catLabel) {
+              html += "<br><span style=\"font-size:11px;opacity:0.9\">" + catLabel + "</span>";
+            }
+            if (desc) {
+              html += "<br><span style=\"font-size:11px;opacity:0.9\">" + desc + "</span>";
+            }
+
+            poly.bindPopup(html, {
+              autoPan: true,
+              closeButton: true,
+              maxWidth: 260
+            });
+
+            areaEntries.push({
+              poly: poly,
+              categoryId: catId || null,
+              searchText: searchText
+            });
+          });
+
+          buildLegend();
+          applyInitialView();
+          recomputeVisibility();
+        }
+
+        if (zones.length > 1) {
+          var switcher = document.createElement("div");
+          switcher.className = "gm-zone-switcher";
+
+          var select = document.createElement("select");
+          zones.forEach(function (z, idx) {
+            var opt = document.createElement("option");
+            opt.value = String(idx);
+            opt.textContent = z.label || z.id || ("Zone " + (idx + 1));
+            select.appendChild(opt);
+          });
+          select.value = "0";
+
+          select.addEventListener("change", function () {
+            var idx = parseInt(select.value, 10);
+            if (!isFinite(idx)) idx = 0;
+            loadZoneByIndex(idx);
+          });
+
+          switcher.appendChild(select);
+          mapHost.appendChild(switcher);
+        }
+
         if (controlsHost) {
           controlsHost.addEventListener("click", function (ev) {
             var btn = ev.target.closest(".gm-legend-button");
@@ -718,6 +1031,15 @@ Areas search fields:
 
             var show = action === "show-all";
             categories.forEach(function (cat) {
+              var total = 0;
+              markers.forEach(function (m) {
+                if (m.category === cat.id) total++;
+              });
+              areas.forEach(function (a) {
+                if (a.category === cat.id) total++;
+              });
+              if (!total) return;
+
               var cb = groupsHost.querySelector('input[data-cat-id="' + cat.id + '"]');
               if (cb) cb.checked = show;
               toggleCategory(cat.id, show);
@@ -730,7 +1052,6 @@ Areas search fields:
           });
         }
 
-        // Search handling – filters markers and areas
         if (searchInput) {
           searchInput.addEventListener("input", function () {
             var v = searchInput.value || "";
@@ -739,8 +1060,7 @@ Areas search fields:
           });
         }
 
-        // initial visible state (all categories on, empty search)
-        recomputeVisibility();
+        loadZoneByIndex(0);
       })
       .catch(function (err) {
         if (titleEl) titleEl.textContent = "Map error";
@@ -764,3 +1084,6 @@ Areas search fields:
   }
 })();
 </script>
+
+
+{% endif %}

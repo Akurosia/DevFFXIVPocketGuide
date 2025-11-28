@@ -1,0 +1,407 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "azys-lla",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/a2f/a2f2 - Azys Lla.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Ultima: Ein Prototyp tankt auf",
+            "category": "kill_boss",
+            "position": [
+                1276.8805,
+                1810.353
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ultima: Ein Prototyp tankt auf",
+            "category": "kill_boss",
+            "position": [
+                248.0875000000001,
+                1138.8835
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ultima: Ein Prototyp tankt auf",
+            "category": "kill_boss",
+            "position": [
+                1802.6675,
+                1221.9325
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Fürst und der Richter",
+            "category": "kill_boss",
+            "position": [
+                815.6365,
+                1490.9915
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hungriges Hirn",
+            "category": "kill_boss",
+            "position": [
+                1407.857,
+                1753.8849999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Blinde Wut",
+            "category": "kill_boss",
+            "position": [
+                1665.5255,
+                1489.0915
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Chef ist sauer",
+            "category": "kill_boss",
+            "position": [
+                1613.3325,
+                360.6435
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Feuer mit Feuer bekämpfen",
+            "category": "kill_boss",
+            "position": [
+                540.8775,
+                501.1105
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Stheno abschreiben",
+            "category": "kill_boss",
+            "position": [
+                408.4760000000001,
+                1070.075
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der rotierende Turm von Azys Lla",
+            "category": "kill_boss",
+            "position": [
+                527.587,
+                1444.964
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lockere Schrauben",
+            "category": "defense",
+            "position": [
+                829.3925,
+                1210.542
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wir packen unseren Koffer",
+            "category": "kill_enemies",
+            "position": [
+                874.47,
+                1721.6135
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Empusen-Epidemie",
+            "category": "kill_enemies",
+            "position": [
+                1724.3685,
+                1791.847
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der giftgrüne Daumen",
+            "category": "kill_enemies",
+            "position": [
+                1616.6480000000001,
+                1643.3145
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wehe, wenn sie alleingelassen",
+            "category": "kill_enemies",
+            "position": [
+                1758.54,
+                899.246
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das bleibt lieber vergessen",
+            "category": "kill_enemies",
+            "position": [
+                1140.2135,
+                722.242
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Alle Klauen voll zu tun",
+            "category": "kill_enemies",
+            "position": [
+                1613.3325,
+                360.6435
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vertreibung aus Gamma-Ost",
+            "category": "kill_enemies",
+            "position": [
+                1714.878,
+                702.311
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vertreibung aus Gamma-West",
+            "category": "kill_enemies",
+            "position": [
+                1389.826,
+                528.1569999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vertreibung aus Gamma-Süd",
+            "category": "kill_enemies",
+            "position": [
+                1310.102,
+                243.90750000000003
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tödliche Unzurechnungsfähigkeit",
+            "category": "kill_enemies",
+            "position": [
+                283.6745000000001,
+                429.452
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ernter des Todes",
+            "category": "kill_enemies",
+            "position": [
+                571.724,
+                1243.754
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Seelenlose Grausamkeit",
+            "category": "kill_enemies",
+            "position": [
+                571.724,
+                684.755
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Reptilische Rächer",
+            "category": "kill_enemies",
+            "position": [
+                1452.9344999999998,
+                1513.7725
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Azys Lla",
+    "size": [
+        2048,
+        2048
+    ]
+}

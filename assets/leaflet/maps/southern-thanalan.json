@@ -1,0 +1,487 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "southern-thanalan",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/w1f/w1f4 - Südliches Thanalan.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Elementarer Wahnsinn",
+            "category": "kill_boss",
+            "position": [
+                1083.94,
+                1597.94
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wilde Jagd",
+            "category": "kill_boss",
+            "position": [
+                962.06,
+                1045.98
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Milbenbefall",
+            "category": "kill_boss",
+            "position": [
+                859.66,
+                862.66
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wurzel des Problems",
+            "category": "kill_boss",
+            "position": [
+                1166.8600000000001,
+                792.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Elementarer Wahnsinn",
+            "category": "kill_boss",
+            "position": [
+                1249.78,
+                375.63
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kinko in Gefahr",
+            "category": "kill_boss",
+            "position": [
+                1083.94,
+                1597.94
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Drosseln rocken den Kreuzgang",
+            "category": "kill_boss",
+            "position": [
+                1040.48,
+                1137.89
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eisige Klingen",
+            "category": "kill_boss",
+            "position": [
+                1580.46,
+                1120.91
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bibbernde Glückshasen",
+            "category": "kill_boss",
+            "position": [
+                1567.47,
+                1041.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gierige Glückshasen",
+            "category": "kill_boss",
+            "position": [
+                1549.49,
+                1130.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Ende einer schillernden Karriere",
+            "category": "kill_boss",
+            "position": [
+                1007.02,
+                1493.54
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fischersterben",
+            "category": "kill_enemies",
+            "position": [
+                966.06,
+                1676.3600000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unerwünschte Einwanderer",
+            "category": "kill_enemies",
+            "position": [
+                719.3,
+                1347.68
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Elementarer Wahnsinn",
+            "category": "kill_enemies",
+            "position": [
+                1010.01,
+                1258.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Milbenbefall",
+            "category": "kill_enemies",
+            "position": [
+                684.3299999999999,
+                485.03
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Einsamer Tiger",
+            "category": "kill_enemies",
+            "position": [
+                1146.38,
+                720.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bäume im Rausch des Wahnsinns",
+            "category": "kill_enemies",
+            "position": [
+                658.86,
+                176.33000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Elementarer Wahnsinn",
+            "category": "kill_enemies",
+            "position": [
+                759.76,
+                1496.04
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ausgefuchst",
+            "category": "kill_enemies",
+            "position": [
+                680.3399999999999,
+                586.4300000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Drosseln rocken den Kreuzgang",
+            "category": "kill_enemies",
+            "position": [
+                1040.98,
+                1135.89
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mächtig unter Dampf",
+            "category": "kill_enemies",
+            "position": [
+                778.24,
+                913.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Asche zu Asche",
+            "category": "kill_enemies",
+            "position": [
+                902.12,
+                759.26
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Jetzt geht's rund",
+            "category": "kill_enemies",
+            "position": [
+                1106.42,
+                1018.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Den Tiger rauslassen",
+            "category": "kill_enemies",
+            "position": [
+                1061.96,
+                845.17
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eindeutiges Omen",
+            "category": "kill_enemies",
+            "position": [
+                874.15,
+                1112.41
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tränen voll Hass",
+            "category": "kill_enemies",
+            "position": [
+                1437.1,
+                1121.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Es kann nur eine geben",
+            "category": "kill_enemies",
+            "position": [
+                766.25,
+                805.21
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hilfe bei der Reparatur",
+            "category": "kill_enemies",
+            "position": [
+                659.36,
+                175.83000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wilde Jagd",
+            "category": "collect",
+            "position": [
+                1169.8600000000001,
+                1473.06
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der große Purpurwurm Nimmersatt",
+            "category": "escort",
+            "position": [
+                919.6,
+                317.69000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Achtung, Hornfliegen!",
+            "category": "escort",
+            "position": [
+                836.1800000000001,
+                1205.82
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Skorpione beißen nicht",
+            "category": "defense",
+            "position": [
+                1098.93,
+                241.76
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Southern Thanalan",
+    "size": [
+        2048,
+        2048
+    ]
+}

@@ -1,0 +1,347 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "western-thanalan",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/w1f/w1f1 - Westliches Thanalan.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Der Ruf ihrer Stimmen",
+            "category": "kill_enemies",
+            "position": [
+                1142.88,
+                802.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Mourn-Massaker",
+            "category": "kill_enemies",
+            "position": [
+                1065.96,
+                678.8399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Quell des Unfriedens",
+            "category": "kill_enemies",
+            "position": [
+                865.65,
+                666.35
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wir müssen mal reden",
+            "category": "kill_enemies",
+            "position": [
+                1166.8600000000001,
+                1015.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Im Schweiße seiner Hühneraugen",
+            "category": "kill_enemies",
+            "position": [
+                641.37,
+                1732.81
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Vundo lässt nicht locker",
+            "category": "kill_enemies",
+            "position": [
+                1130.4,
+                798.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wahnsinn vorprogrammiert",
+            "category": "kill_enemies",
+            "position": [
+                1098.43,
+                1027.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ehrenduell mit dem Weißen",
+            "category": "kill_enemies",
+            "position": [
+                613.9,
+                1504.53
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Folgen des Krieges",
+            "category": "kill_enemies",
+            "position": [
+                670.35,
+                1756.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wiederkehrende Bugs",
+            "category": "kill_enemies",
+            "position": [
+                1076.95,
+                911.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tödliche Hufe",
+            "category": "defense",
+            "position": [
+                929.09,
+                762.26
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Hasspredigerin",
+            "category": "collect",
+            "position": [
+                858.66,
+                666.35
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Angriff der Naschkatzen",
+            "category": "kill_boss",
+            "position": [
+                1184.84,
+                1021.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Luftverbessernde Maßnahme",
+            "category": "kill_boss",
+            "position": [
+                1076.95,
+                911.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Böses Erwachen",
+            "category": "kill_boss",
+            "position": [
+                741.78,
+                1297.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wider die eigene Natur",
+            "category": "kill_boss",
+            "position": [
+                641.37,
+                1567.47
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dunkelschuppe III: Ein Drache gibt den Löffel ab",
+            "category": "kill_boss",
+            "position": [
+                669.85,
+                1756.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Kern des Problems",
+            "category": "escort",
+            "position": [
+                669.85,
+                1650.8899999999999
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Western Thanalan",
+    "size": [
+        2048,
+        2048
+    ]
+}

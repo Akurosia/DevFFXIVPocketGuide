@@ -1,0 +1,587 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "south-horn",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/o6b/o6b1 - Südliches Kreszentia.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Die Geißel des Geistes",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1323.71,
+                294.71000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zorn auf zwei Beinen",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1643.4,
+                224.77999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das messerscharfe Schicksal",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1703.3400000000001,
+                489.52
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das versiegelte Unheil",
+            "category": "ce_boss_besiegen",
+            "position": [
+                684.3299999999999,
+                224.77999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tödliche Schönheit",
+            "category": "ce_boss_besiegen",
+            "position": [
+                599.4100000000001,
+                959.06
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Von uralten Magien",
+            "category": "ce_boss_besiegen",
+            "position": [
+                224.77999999999997,
+                779.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Jäger aus alten Legenden",
+            "category": "ce_boss_besiegen",
+            "position": [
+                909.11,
+                1873.17
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefürchtetes Gebrüll",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1658.38,
+                1073.95
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mit absoluter Sicherheit",
+            "category": "ce_boss_besiegen",
+            "position": [
+                674.3399999999999,
+                1638.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Keine Gnade dem Gefieder",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1473.56,
+                1393.6399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Feilschen ums Verfluchte",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1093.93,
+                1573.46
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ausgebessert und verbessert",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1893.15,
+                844.1800000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das finsterste Feuer",
+            "category": "ce_boss_besiegen",
+            "position": [
+                454.55999999999995,
+                1188.84
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Turm des Blutes",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1078.95,
+                1024.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das schwarze Regiment",
+            "category": "ce_gegner_wellen",
+            "position": [
+                1473.56,
+                669.35
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die steinerne Staffel",
+            "category": "ce_gegner_wellen",
+            "position": [
+                1698.3400000000001,
+                1293.74
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Wogen glätten",
+            "category": "boss_besiegen",
+            "position": [
+                1183.84,
+                349.65999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Brocken statt Barren",
+            "category": "boss_besiegen",
+            "position": [
+                1393.6399999999999,
+                539.47
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Geißel Kreszentias",
+            "category": "boss_besiegen",
+            "position": [
+                794.22,
+                774.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dämonenvogel am Spieß",
+            "category": "boss_besiegen",
+            "position": [
+                479.53,
+                1618.42
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Los, Sisyphos, Donnerblitz!",
+            "category": "boss_besiegen",
+            "position": [
+                804.21,
+                989.03
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aspho ... asphy ... scheintot!",
+            "category": "boss_besiegen",
+            "position": [
+                969.05,
+                1348.68
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampf um Leben und Schweiß",
+            "category": "boss_besiegen",
+            "position": [
+                649.37,
+                364.64
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampf um Leben und Boden unter den Füßen",
+            "category": "boss_besiegen",
+            "position": [
+                429.58000000000004,
+                694.3199999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wächter des Lebens",
+            "category": "boss_besiegen",
+            "position": [
+                949.0699999999999,
+                469.53999999999996
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tückische Schönheit",
+            "category": "boss_besiegen",
+            "position": [
+                1103.92,
+                749.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Seelen sammeln für den bösen Zweck",
+            "category": "boss_besiegen",
+            "position": [
+                1433.6,
+                1038.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Freude im Pott",
+            "category": "notorious_monster",
+            "position": [
+                1218.81,
+                1243.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wunder im Pott",
+            "category": "notorious_monster",
+            "position": [
+                539.47,
+                499.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Wogen glätten",
+            "category": "kill_boss",
+            "position": [
+                1185.84,
+                348.15999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Brocken statt Barren",
+            "category": "kill_boss",
+            "position": [
+                1397.1399999999999,
+                538.47
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Geißel Kreszentias",
+            "category": "kill_boss",
+            "position": [
+                797.72,
+                770.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dämonenvogel am Spieß",
+            "category": "kill_boss",
+            "position": [
+                475.03999999999996,
+                1619.42
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Los, Sisyphos, Donnerblitz!",
+            "category": "kill_boss",
+            "position": [
+                800.72,
+                988.04
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aspho ... asphy ... scheintot!",
+            "category": "kill_boss",
+            "position": [
+                975.55,
+                1344.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampf um Leben und Schweiß",
+            "category": "kill_boss",
+            "position": [
+                653.86,
+                374.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampf um Leben und Boden unter den Füßen",
+            "category": "kill_boss",
+            "position": [
+                434.58000000000004,
+                691.3199999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wächter des Lebens",
+            "category": "kill_boss",
+            "position": [
+                952.5699999999999,
+                467.03999999999996
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tückische Schönheit",
+            "category": "kill_boss",
+            "position": [
+                1102.92,
+                746.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Seelen sammeln für den bösen Zweck",
+            "category": "kill_boss",
+            "position": [
+                1436.6,
+                1037.49
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Freude im Pott",
+            "category": "notorious_monsters",
+            "position": [
+                1223.8,
+                1239.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wunder im Pott",
+            "category": "notorious_monsters",
+            "position": [
+                542.97,
+                496.02
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "South Horn",
+    "size": [
+        2048,
+        2048
+    ]
+}

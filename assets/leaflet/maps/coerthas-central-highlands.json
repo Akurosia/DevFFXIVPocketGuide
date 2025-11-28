@@ -1,0 +1,557 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "coerthas-central-highlands",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/r1f/r1f1 - Zentrales Hochland von Coerthas.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Aushilfsjäger",
+            "category": "kill_enemies",
+            "position": [
+                1142.38,
+                675.8399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Aushilfsjäger jagen wieder",
+            "category": "kill_enemies",
+            "position": [
+                1428.1100000000001,
+                622.89
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fleischeslüste",
+            "category": "kill_enemies",
+            "position": [
+                1243.79,
+                1122.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Poststau",
+            "category": "kill_enemies",
+            "position": [
+                1243.29,
+                1077.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Schmuckraub",
+            "category": "kill_enemies",
+            "position": [
+                1132.39,
+                1363.17
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sonne des Schreckens",
+            "category": "kill_enemies",
+            "position": [
+                1559.48,
+                1459.57
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wer ließ die Hunde frei?",
+            "category": "kill_enemies",
+            "position": [
+                1299.73,
+                1340.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unglücksraben",
+            "category": "kill_enemies",
+            "position": [
+                433.58000000000004,
+                1101.92
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bomber oder Fisch?",
+            "category": "kill_enemies",
+            "position": [
+                865.16,
+                1209.32
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vom Nordwind gebracht",
+            "category": "kill_enemies",
+            "position": [
+                513.0,
+                648.87
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Berg von einem Gyuki",
+            "category": "kill_enemies",
+            "position": [
+                942.08,
+                589.4200000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Junge, Junge, diese Rotpanzer",
+            "category": "kill_enemies",
+            "position": [
+                424.59000000000003,
+                696.8199999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der unfreundliche Nager von nebenan",
+            "category": "kill_enemies",
+            "position": [
+                478.03,
+                1317.21
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Genug genagt!",
+            "category": "kill_enemies",
+            "position": [
+                574.44,
+                1171.3600000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Und täglich grüßt das Nagetier",
+            "category": "kill_enemies",
+            "position": [
+                1604.9299999999998,
+                1044.98
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "999 Stufen in den Tod",
+            "category": "kill_enemies",
+            "position": [
+                1285.24,
+                1686.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Völlig gaga",
+            "category": "kill_boss",
+            "position": [
+                1211.32,
+                957.0699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Stolze Kriegerinnen",
+            "category": "kill_boss",
+            "position": [
+                1669.37,
+                1409.12
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Langfinger Lang",
+            "category": "kill_boss",
+            "position": [
+                741.28,
+                1061.46
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampfrochen",
+            "category": "kill_boss",
+            "position": [
+                381.13,
+                1498.04
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kriegsherrin der Rotpanzer",
+            "category": "kill_boss",
+            "position": [
+                580.9300000000001,
+                916.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eingekesselt",
+            "category": "kill_boss",
+            "position": [
+                623.39,
+                785.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "12½ Rochen",
+            "category": "kill_boss",
+            "position": [
+                190.30999999999995,
+                1004.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fürstlicher Appetit",
+            "category": "kill_boss",
+            "position": [
+                1022.5,
+                1208.32
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Feldmäuse in groß",
+            "category": "kill_boss",
+            "position": [
+                1689.85,
+                1033.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Lehmmann-Schock",
+            "category": "kill_boss",
+            "position": [
+                1639.4,
+                916.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Versalzene Ruinen",
+            "category": "kill_boss",
+            "position": [
+                1286.74,
+                1687.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hauch des Todes",
+            "category": "kill_boss",
+            "position": [
+                1287.74,
+                1686.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schaltet den Schmerz an, schnell",
+            "category": "kill_boss",
+            "position": [
+                260.25,
+                995.03
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Verrückt vor Schmerz",
+            "category": "kill_boss",
+            "position": [
+                167.84000000000003,
+                1345.69
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eine ist keine, zwei sind der Tod",
+            "category": "kill_boss",
+            "position": [
+                734.78,
+                1081.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bis zum letzten Tropfen",
+            "category": "kill_boss",
+            "position": [
+                1653.88,
+                938.08
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein rüpelhaftes Großmaul",
+            "category": "kill_boss",
+            "position": [
+                735.28,
+                1080.94
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gewaltsame Arbeitsniederlegung - Plan B",
+            "category": "kill_boss",
+            "position": [
+                1460.07,
+                1680.3600000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ohne Moos mehr los",
+            "category": "defense",
+            "position": [
+                1256.27,
+                726.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Saat des Bösen",
+            "category": "defense",
+            "position": [
+                1323.21,
+                1535.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Klauen des Grauens",
+            "category": "collect",
+            "position": [
+                1560.48,
+                1756.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Brust oder Keule",
+            "category": "escort",
+            "position": [
+                1256.27,
+                1296.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Östliches Himmelsang: 2. Phase - Beginn",
+            "category": "notype",
+            "position": [
+                449.55999999999995,
+                699.3199999999999
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Coerthas Central Highlands",
+    "size": [
+        2048,
+        2048
+    ]
+}

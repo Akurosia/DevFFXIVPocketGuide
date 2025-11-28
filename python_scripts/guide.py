@@ -580,7 +580,7 @@ fateNames: dict[str, str] = {
 }
 additional_fate_data: dict[str, Any] = readJsonFile("python_scripts/FatesFromConsoleWiki.json")
 #https://raw.githubusercontent.com/ffxiv-teamcraft/ffxiv-teamcraft/ff19f1e379a9a222570174f81d68bbba1512a16c/libs/data/src/lib/json/fates.json
-def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) -> str:
+def add_fates(lfates: list[str], content_translations: dict[str, Any], entry) -> str:
     lguide_data: str = ""
     name = entry['titles']['en'].replace("the Forbidden Land, ", "")
     if name.startswith("the "):
@@ -724,7 +724,6 @@ def add_leves(lfates: list[str], content_translations: dict[str, Any], entry) ->
         lguide_data += '      - phase: "01"\n'
     return lguide_data
 
-
 # Notizen, Bosse und Adds
 def addGuide(entry: ENTRY_DATA, old_data, logdata_instance_content, lfates, content_translations):
     guide_data = ""
@@ -733,7 +732,7 @@ def addGuide(entry: ENTRY_DATA, old_data, logdata_instance_content, lfates, cont
     print_color_green(f"Work on '{entry['titles']['de']}'", disable_green_print)
     guide_data += check_Enemy(entry, "bosse", logdata_instance_content, old_data.get('bosses', {}), content_translations)
     guide_data += check_Enemy(entry, "adds", logdata_instance_content, old_data.get('adds', {}), content_translations)
-    guide_data += add_leves(lfates, content_translations, entry)
+    guide_data += add_fates(lfates, content_translations, entry)
     return guide_data
 
 

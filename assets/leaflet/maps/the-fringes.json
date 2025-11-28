@@ -1,0 +1,457 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "the-fringes",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/g3f/g3f1 - Abanisches Grenzland.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Training für Rekruten",
+            "category": "kill_enemies",
+            "position": [
+                391.12,
+                1275.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Training für Unteroffiziere",
+            "category": "kill_enemies",
+            "position": [
+                391.12,
+                1275.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Krokomania",
+            "category": "kill_enemies",
+            "position": [
+                567.45,
+                1540.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die mit den Bären tanzen",
+            "category": "kill_enemies",
+            "position": [
+                464.04999999999995,
+                1459.08
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Pflanzen mit großem Magen",
+            "category": "kill_enemies",
+            "position": [
+                538.47,
+                800.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Völlig gaga",
+            "category": "kill_enemies",
+            "position": [
+                1335.2,
+                1585.95
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fleischeslüste",
+            "category": "kill_enemies",
+            "position": [
+                469.03999999999996,
+                639.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ohne Moos mehr los",
+            "category": "kill_enemies",
+            "position": [
+                582.9300000000001,
+                1416.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dickes Ding",
+            "category": "kill_enemies",
+            "position": [
+                477.53,
+                1162.8600000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Finger weg!",
+            "category": "kill_enemies",
+            "position": [
+                1737.3,
+                618.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wer ließ die Hunde frei?",
+            "category": "kill_enemies",
+            "position": [
+                624.39,
+                1069.96
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Stolze Kriegerinnen",
+            "category": "kill_enemies",
+            "position": [
+                1535.5,
+                811.71
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Training für Offiziere",
+            "category": "kill_boss",
+            "position": [
+                391.12,
+                1275.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wiedergänger, Wiederkäuer",
+            "category": "kill_boss",
+            "position": [
+                537.97,
+                1271.76
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Angriff der Killerkrokos",
+            "category": "kill_boss",
+            "position": [
+                856.66,
+                1525.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Saat des Bösen",
+            "category": "kill_boss",
+            "position": [
+                684.8299999999999,
+                928.09
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ich glaub, ich spinne!",
+            "category": "kill_boss",
+            "position": [
+                832.19,
+                1224.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Unnahbare",
+            "category": "kill_boss",
+            "position": [
+                1437.6,
+                904.12
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hiebe aus Liebe",
+            "category": "kill_boss",
+            "position": [
+                1499.04,
+                1019.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die dicke Berda",
+            "category": "kill_boss",
+            "position": [
+                1336.2,
+                700.3199999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Klauen des Grauens",
+            "category": "kill_boss",
+            "position": [
+                1380.15,
+                1239.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sonne des Schreckens",
+            "category": "kill_boss",
+            "position": [
+                1497.04,
+                1035.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aushilfsjäger",
+            "category": "escort",
+            "position": [
+                1383.65,
+                1496.04
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Aushilfsjäger jagen wieder",
+            "category": "escort",
+            "position": [
+                1137.39,
+                1398.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dhara-Derby",
+            "category": "defense",
+            "position": [
+                1136.39,
+                1539.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Poststau",
+            "category": "defense",
+            "position": [
+                527.48,
+                981.04
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ameisenlöwenhunger",
+            "category": "defense",
+            "position": [
+                1535.5,
+                609.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Steinsplitterzeit",
+            "category": "collect",
+            "position": [
+                1291.24,
+                813.71
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Schmuckraub",
+            "category": "collect",
+            "position": [
+                1703.3400000000001,
+                792.73
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "The Fringes",
+    "size": [
+        2048,
+        2048
+    ]
+}

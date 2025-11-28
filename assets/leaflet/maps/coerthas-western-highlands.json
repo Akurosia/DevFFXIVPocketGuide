@@ -1,0 +1,397 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "coerthas-western-highlands",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/r2f/r2f1 - Westliches Hochland von Coerthas.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Zu Schilfe!",
+            "category": "kill_enemies",
+            "position": [
+                1287.321,
+                624.012
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Es regnet Kraklaws",
+            "category": "kill_enemies",
+            "position": [
+                1442.019,
+                615.4715000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Lied, sie alle zu binden",
+            "category": "kill_enemies",
+            "position": [
+                1148.279,
+                1001.7415
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Steinchensucher",
+            "category": "kill_enemies",
+            "position": [
+                1430.1535,
+                1118.4775
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Es ist Pilzsaison",
+            "category": "kill_enemies",
+            "position": [
+                875.42,
+                1065.8095
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rampensau",
+            "category": "kill_enemies",
+            "position": [
+                709.8064999999999,
+                1106.612
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wutkissen wider Willen",
+            "category": "kill_enemies",
+            "position": [
+                366.72350000000006,
+                1605.8274999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das geringere Übel",
+            "category": "kill_enemies",
+            "position": [
+                742.553,
+                1442.114
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unliebsame Nichtsgesandtschaft",
+            "category": "kill_enemies",
+            "position": [
+                1200.9565,
+                1239.0135
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampf gegen die Vorhut",
+            "category": "kill_enemies",
+            "position": [
+                886.8105,
+                1377.5805
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wettlauf mit dem Tod",
+            "category": "kill_enemies",
+            "position": [
+                1471.9155,
+                444.63300000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Nach Hause teleportieren",
+            "category": "kill_enemies",
+            "position": [
+                1432.0535,
+                538.5975
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eiskalte Killer",
+            "category": "kill_enemies",
+            "position": [
+                1033.918,
+                799.591
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Verführerisches Verderben",
+            "category": "kill_boss",
+            "position": [
+                1430.1535,
+                1118.4775
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wespenplage",
+            "category": "kill_boss",
+            "position": [
+                924.2975,
+                505.8510000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Maschinen auf Abwegen",
+            "category": "kill_boss",
+            "position": [
+                1239.8685,
+                1448.7545
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Im Auge des Betrachters",
+            "category": "kill_boss",
+            "position": [
+                1406.907,
+                727.9325000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Hungerspiele",
+            "category": "kill_boss",
+            "position": [
+                1200.9565,
+                1239.0135
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampf gegen die Hauptstreitmacht",
+            "category": "kill_boss",
+            "position": [
+                888.7105,
+                1377.1055000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Auf den Geschmack gekommen",
+            "category": "kill_boss",
+            "position": [
+                1240.8185,
+                849.8935
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Herzallerwertest",
+            "category": "kill_boss",
+            "position": [
+                1431.5785,
+                539.0725
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Heuchlerische Helden",
+            "category": "kill_boss",
+            "position": [
+                800.446,
+                1043.5035
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Erzfeind der Vollstrecker",
+            "category": "kill_boss",
+            "position": [
+                578.8395,
+                960.9295
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Coerthas Western Highlands",
+    "size": [
+        2048,
+        2048
+    ]
+}

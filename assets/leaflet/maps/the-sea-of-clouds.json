@@ -1,0 +1,417 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "the-sea-of-clouds",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/a2f/a2f1 - Abalathisches Wolkenmeer.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Angriff der Naschkatzen",
+            "category": "defense",
+            "position": [
+                661.404,
+                335.02200000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Vundo lässt nicht locker",
+            "category": "defense",
+            "position": [
+                767.6995000000001,
+                1621.4834999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Luftverbessernde Maßnahme",
+            "category": "kill_enemies",
+            "position": [
+                937.588,
+                533.8475
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Futterneid",
+            "category": "kill_enemies",
+            "position": [
+                1302.977,
+                555.2035000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eine Frage der Größe",
+            "category": "kill_enemies",
+            "position": [
+                1177.2255,
+                404.7805000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Früh übt sich, oder auch nicht",
+            "category": "kill_enemies",
+            "position": [
+                1385.076,
+                382.94950000000006
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Übermut der jungen Gundo",
+            "category": "kill_enemies",
+            "position": [
+                1403.5819999999999,
+                657.7085
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eindruck schinden",
+            "category": "kill_enemies",
+            "position": [
+                1581.536,
+                661.499
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Böses Erwachen",
+            "category": "kill_enemies",
+            "position": [
+                277.98400000000004,
+                1085.7404999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gebt her euer Leder",
+            "category": "kill_enemies",
+            "position": [
+                1208.547,
+                1610.1025
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Trimm zwei",
+            "category": "kill_enemies",
+            "position": [
+                1377.9605,
+                1370.9305
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rache für Kena Vanu",
+            "category": "kill_enemies",
+            "position": [
+                936.163,
+                1014.082
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Erspart uns den Mist",
+            "category": "kill_enemies",
+            "position": [
+                1685.9315,
+                353.528
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Traumfresser",
+            "category": "kill_enemies",
+            "position": [
+                989.3155,
+                1781.4065
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wir müssen mal reden",
+            "category": "kill_boss",
+            "position": [
+                934.738,
+                530.057
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein langer Fall",
+            "category": "kill_boss",
+            "position": [
+                1668.8505,
+                556.6285
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wider die eigene Natur",
+            "category": "kill_boss",
+            "position": [
+                983.1405,
+                1478.6509999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Knochenjägerin",
+            "category": "kill_boss",
+            "position": [
+                1082.7955,
+                1156.9145
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Primae müssen draußen bleiben",
+            "category": "kill_boss",
+            "position": [
+                936.163,
+                995.576
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Priester mit dem Vogel",
+            "category": "kill_boss",
+            "position": [
+                935.688,
+                1017.882
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wahnsinn vorprogrammiert",
+            "category": "kill_boss",
+            "position": [
+                466.84400000000005,
+                872.665
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vanu mit Soße",
+            "category": "kill_boss",
+            "position": [
+                1674.0659999999998,
+                1651.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Schrecken der Lüfte",
+            "category": "kill_boss",
+            "position": [
+                1736.7089999999998,
+                1407.002
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Kern des Problems",
+            "category": "collect",
+            "position": [
+                559.8585,
+                1496.682
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Im Schweiße seiner Hühneraugen",
+            "category": "escort",
+            "position": [
+                1304.402,
+                1592.537
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "The Sea of Clouds",
+    "size": [
+        2048,
+        2048
+    ]
+}

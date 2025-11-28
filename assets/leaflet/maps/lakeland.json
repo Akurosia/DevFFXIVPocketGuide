@@ -1,0 +1,317 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "lakeland",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f1 - Seenland.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Lauernde Nachtschatten",
+            "category": "kill_enemies",
+            "position": [
+                380.13,
+                1610.9299999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schleichende Nachtschatten",
+            "category": "kill_enemies",
+            "position": [
+                462.54999999999995,
+                989.03
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hinterhältige Warge",
+            "category": "kill_enemies",
+            "position": [
+                930.59,
+                1028.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefährliche Nachtschatten",
+            "category": "kill_enemies",
+            "position": [
+                824.2,
+                1503.53
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tödliche Nachtschatten",
+            "category": "kill_enemies",
+            "position": [
+                824.2,
+                1503.53
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Krakeelende Gremlins",
+            "category": "kill_enemies",
+            "position": [
+                1574.96,
+                1214.81
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das kleine Horrortor",
+            "category": "kill_enemies",
+            "position": [
+                1372.16,
+                952.0699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Drakonische Maßnahmen",
+            "category": "kill_boss",
+            "position": [
+                1674.8600000000001,
+                1619.92
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bestie in Wolfsgestalt",
+            "category": "kill_boss",
+            "position": [
+                681.3299999999999,
+                1169.3600000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Knackiges Chamäleon",
+            "category": "kill_boss",
+            "position": [
+                1008.52,
+                703.31
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Er ist Holzfäller und ihm geht's nicht gut",
+            "category": "collect",
+            "position": [
+                1044.48,
+                890.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rücksichtslose Nachtschatten",
+            "category": "defense",
+            "position": [
+                1170.3600000000001,
+                792.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Arglistige Nachtschatten",
+            "category": "defense",
+            "position": [
+                1224.3,
+                1468.57
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Händler zum Anbeißen",
+            "category": "defense",
+            "position": [
+                1224.3,
+                1468.57
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Anemositäten",
+            "category": "defense",
+            "position": [
+                1008.52,
+                703.31
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Lakeland",
+    "size": [
+        2048,
+        2048
+    ]
+}

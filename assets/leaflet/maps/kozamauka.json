@@ -1,0 +1,347 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "kozamauka",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/y6f/y6f2 - Kozama'uka.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Hammerharte Herausforderung",
+            "category": "kill_enemies",
+            "position": [
+                540.47,
+                1468.07
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Jeder Tegu ein Tegu zu viel",
+            "category": "kill_enemies",
+            "position": [
+                1663.38,
+                1141.39
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Zu Schilfe!",
+            "category": "kill_enemies",
+            "position": [
+                1011.01,
+                1289.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Es regnet Kraklaws",
+            "category": "kill_enemies",
+            "position": [
+                318.69000000000005,
+                1372.66
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Nichts als Lug und Betrug",
+            "category": "kill_enemies",
+            "position": [
+                1681.8600000000001,
+                641.87
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Geier ist gelandet",
+            "category": "kill_enemies",
+            "position": [
+                1108.42,
+                848.67
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefahr von unten",
+            "category": "kill_enemies",
+            "position": [
+                383.63,
+                1008.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wespenplage",
+            "category": "kill_enemies",
+            "position": [
+                210.78999999999996,
+                770.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Es ist Pilzsaison",
+            "category": "kill_enemies",
+            "position": [
+                261.24,
+                435.57000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Fische, die ich rief",
+            "category": "kill_boss",
+            "position": [
+                881.64,
+                1181.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Lied, sie alle zu binden",
+            "category": "kill_boss",
+            "position": [
+                1605.4299999999998,
+                1257.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Hackordnung der Pama-yawa",
+            "category": "kill_boss",
+            "position": [
+                1794.25,
+                1428.1100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Verführerisches Verderben",
+            "category": "kill_boss",
+            "position": [
+                1013.01,
+                608.9100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rampensau",
+            "category": "kill_boss",
+            "position": [
+                261.24,
+                435.57000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Auf das richtige Material kommt es an",
+            "category": "collect",
+            "position": [
+                1085.44,
+                1649.8899999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Steinchensucher",
+            "category": "collect",
+            "position": [
+                383.63,
+                1008.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Nicht euer Obst",
+            "category": "defense",
+            "position": [
+                1559.48,
+                1539.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ehrlich währt am längsten",
+            "category": "defense",
+            "position": [
+                1313.22,
+                824.69
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Kozama'uka",
+    "size": [
+        2048,
+        2048
+    ]
+}

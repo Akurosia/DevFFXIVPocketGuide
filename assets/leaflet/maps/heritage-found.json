@@ -1,0 +1,337 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "heritage-found",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/x6f/x6f2 - Ewiges Erbe.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Maschinen auf Abwegen",
+            "category": "kill_enemies",
+            "position": [
+                1447.09,
+                1409.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vom Regen in die Traufe",
+            "category": "kill_enemies",
+            "position": [
+                1543.99,
+                1223.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wutkissen wider Willen",
+            "category": "kill_enemies",
+            "position": [
+                1554.48,
+                582.9300000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Auf sie mit Geheul",
+            "category": "kill_enemies",
+            "position": [
+                1245.28,
+                943.58
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Helle Leuchte",
+            "category": "kill_enemies",
+            "position": [
+                1568.47,
+                1622.42
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Voll drauf eingeschlossen",
+            "category": "kill_enemies",
+            "position": [
+                1612.4299999999998,
+                716.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Durchgeknallte Schaltkreise",
+            "category": "kill_enemies",
+            "position": [
+                614.9,
+                1327.7
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Gesetz der Straße",
+            "category": "kill_enemies",
+            "position": [
+                614.9,
+                1327.7
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Erwachen der Bestie",
+            "category": "kill_enemies",
+            "position": [
+                412.1,
+                1361.17
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Leider konnten wir Ihr Paket nicht zustellen",
+            "category": "kill_enemies",
+            "position": [
+                852.17,
+                685.3299999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Massakrierende Maschinen",
+            "category": "kill_enemies",
+            "position": [
+                957.56,
+                460.04999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wie du mir, so ich dir",
+            "category": "kill_enemies",
+            "position": [
+                550.46,
+                1003.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Falsche Schlange",
+            "category": "kill_enemies",
+            "position": [
+                567.45,
+                513.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tod durch den Schnabel",
+            "category": "kill_boss",
+            "position": [
+                1223.8,
+                1372.66
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rache ist bitter",
+            "category": "kill_boss",
+            "position": [
+                1152.37,
+                368.64
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Bauer sucht Heilkraut",
+            "category": "collect",
+            "position": [
+                1737.3,
+                935.09
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aufräumen mit Methode",
+            "category": "collect",
+            "position": [
+                434.58000000000004,
+                343.15999999999997
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Heritage Found",
+    "size": [
+        2048,
+        2048
+    ]
+}

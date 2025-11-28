@@ -1,0 +1,597 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "the-azim-steppe",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/e3f/e3f3 - Azim-Steppe.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Gejagte Jäger",
+            "category": "kill_boss",
+            "position": [
+                543.97,
+                951.5699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Blutrünstiger Narantsetseg ",
+            "category": "kill_boss",
+            "position": [
+                1601.44,
+                868.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kalter Nordwind",
+            "category": "kill_boss",
+            "position": [
+                437.57000000000005,
+                580.9300000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wüstenvogel",
+            "category": "kill_boss",
+            "position": [
+                1712.83,
+                1224.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lautes Heulen in der Steppe",
+            "category": "kill_boss",
+            "position": [
+                785.23,
+                281.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Grasverderber",
+            "category": "kill_boss",
+            "position": [
+                957.56,
+                612.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Uneinsichtiger Falschspieler",
+            "category": "kill_boss",
+            "position": [
+                1484.55,
+                1105.42
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Königin der Brummer",
+            "category": "kill_boss",
+            "position": [
+                932.59,
+                531.98
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Keimling Undsiig",
+            "category": "kill_boss",
+            "position": [
+                1377.16,
+                682.3299999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eine Ausgeburt der Steppe",
+            "category": "kill_boss",
+            "position": [
+                1537.5,
+                489.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "In Stein gemeißelt",
+            "category": "kill_boss",
+            "position": [
+                583.9300000000001,
+                1358.67
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Khan der Gulo Gulo",
+            "category": "kill_boss",
+            "position": [
+                706.31,
+                502.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Stinker Stinkhaut",
+            "category": "kill_boss",
+            "position": [
+                1085.94,
+                1412.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tödliche Hauer",
+            "category": "kill_boss",
+            "position": [
+                1441.59,
+                947.5699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Auf Bardams Probe gestellt",
+            "category": "kill_boss",
+            "position": [
+                659.36,
+                1341.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rivalisierende Jäger",
+            "category": "kill_enemies",
+            "position": [
+                962.56,
+                1312.72
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schlanke Brummer",
+            "category": "kill_enemies",
+            "position": [
+                620.89,
+                673.3399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Jagdrudel",
+            "category": "kill_enemies",
+            "position": [
+                810.21,
+                459.54999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefräßiges Federvieh",
+            "category": "kill_enemies",
+            "position": [
+                556.46,
+                606.9100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Übers Ohr gehauen",
+            "category": "kill_enemies",
+            "position": [
+                811.71,
+                1572.46
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unerträglicher Gestank",
+            "category": "kill_enemies",
+            "position": [
+                1464.07,
+                1304.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefährliche Kröten",
+            "category": "kill_enemies",
+            "position": [
+                1345.69,
+                1246.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Feuriger Wüstenwind",
+            "category": "kill_enemies",
+            "position": [
+                499.51,
+                358.65
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fressen und gefressen werden",
+            "category": "kill_enemies",
+            "position": [
+                855.66,
+                710.31
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Steppe in Flammen",
+            "category": "kill_enemies",
+            "position": [
+                1120.91,
+                506.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Pflanzenwelt schlägt zurück",
+            "category": "kill_enemies",
+            "position": [
+                1667.37,
+                926.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "In der Gewalt der Buduga",
+            "category": "kill_enemies",
+            "position": [
+                1207.32,
+                1364.67
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Dzo-Jagd",
+            "category": "kill_enemies",
+            "position": [
+                1262.27,
+                772.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Herdenschutz",
+            "category": "kill_enemies",
+            "position": [
+                1692.85,
+                1103.92
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mammutaufgabe",
+            "category": "defense",
+            "position": [
+                1475.56,
+                1105.42
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Lebensgrundlage der Olkund",
+            "category": "defense",
+            "position": [
+                1475.56,
+                420.59000000000003
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Nomaden",
+            "category": "defense",
+            "position": [
+                1325.71,
+                588.9200000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Raubtiere",
+            "category": "defense",
+            "position": [
+                1249.28,
+                832.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Ausgehungert",
+            "category": "defense",
+            "position": [
+                1278.75,
+                823.7
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Ugund-Räuber",
+            "category": "defense",
+            "position": [
+                1534.5,
+                1021.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Mammuts",
+            "category": "defense",
+            "position": [
+                1628.4099999999999,
+                1142.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Matanga",
+            "category": "defense",
+            "position": [
+                1588.95,
+                1146.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Blutrache",
+            "category": "defense",
+            "position": [
+                1047.98,
+                1165.8600000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Verbündete",
+            "category": "defense",
+            "position": [
+                498.01,
+                1259.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Unerbittlich",
+            "category": "defense",
+            "position": [
+                497.01,
+                1238.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Schutz vor den Buduga",
+            "category": "escort",
+            "position": [
+                1210.32,
+                1356.18
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Schafsmilch",
+            "category": "collect",
+            "position": [
+                1262.77,
+                833.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Leben der Dataq: Anjana",
+            "category": "notype",
+            "position": [
+                514.5,
+                1248.78
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "The Azim Steppe",
+    "size": [
+        2048,
+        2048
+    ]
+}

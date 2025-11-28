@@ -1,0 +1,427 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "Fates2",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "the-churning-mists",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/d2f/d2f3 - Wallende Nebel.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Himmeldonnerwetter!",
+            "category": "kill_enemies",
+            "position": [
+                1264.065,
+                555.6785
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fliegende Fressfeinde",
+            "category": "kill_enemies",
+            "position": [
+                1370.8355,
+                762.104
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Vom Winde verlassen",
+            "category": "kill_enemies",
+            "position": [
+                1257.8995,
+                1149.799
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ahl Eins vergangener Ruhm",
+            "category": "kill_enemies",
+            "position": [
+                1199.5315,
+                1161.6645
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gluckenschreck des Glücks",
+            "category": "kill_enemies",
+            "position": [
+                787.1555000000001,
+                549.988
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sylphen-Schreck",
+            "category": "kill_enemies",
+            "position": [
+                787.1555000000001,
+                549.988
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gar nicht so feige Kaktoren",
+            "category": "kill_enemies",
+            "position": [
+                630.567,
+                1029.263
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Geboren aus Flammen",
+            "category": "kill_enemies",
+            "position": [
+                345.36750000000006,
+                1257.9945
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Totgesagte leben länger",
+            "category": "kill_enemies",
+            "position": [
+                339.202,
+                1406.527
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Rastabans Rage",
+            "category": "kill_enemies",
+            "position": [
+                650.9635000000001,
+                1466.7855
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Entsorgung: Das bekannte Unbekannte",
+            "category": "kill_boss",
+            "position": [
+                1499.437,
+                907.3115
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eine Spirale der Gewalt",
+            "category": "kill_boss",
+            "position": [
+                1361.345,
+                956.664
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Ende der Ewigkeit",
+            "category": "kill_boss",
+            "position": [
+                1549.2645,
+                1313.0375
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Urzeitliche Vögel",
+            "category": "kill_boss",
+            "position": [
+                921.457,
+                1274.1254999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Der Lügenfresser",
+            "category": "kill_boss",
+            "position": [
+                1175.335,
+                1711.6480000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hüter der Herde",
+            "category": "kill_boss",
+            "position": [
+                957.994,
+                968.0545
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unerwünschte Rasenmäher",
+            "category": "kill_boss",
+            "position": [
+                757.2685,
+                582.725
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ehrenduell mit dem Weißen",
+            "category": "kill_boss",
+            "position": [
+                497.2155,
+                343.0875
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sadistische Spiele",
+            "category": "kill_boss",
+            "position": [
+                1014.937,
+                1063.9095
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Entsorgung: Ur-Kyklops",
+            "category": "collect",
+            "position": [
+                1586.7514999999999,
+                1039.2285
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fang in Gefahr",
+            "category": "escort",
+            "position": [
+                850.2735,
+                720.3420000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Brachialer Bulle",
+            "category": "defense",
+            "position": [
+                595.4455,
+                914.902
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dunkelschuppe I: Ein Drache dreht auf",
+            "category": "defense",
+            "position": [
+                835.558,
+                1500.007
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dunkelschuppe II: Ein Drache dreht ab",
+            "category": "defense",
+            "position": [
+                835.558,
+                1500.007
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Dunkelschuppe III: Ein Drache gibt den Löffel ab",
+            "category": "defense",
+            "position": [
+                820.377,
+                1670.836
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aufpassdrachenkind",
+            "category": "defense",
+            "position": [
+                596.3955000000001,
+                939.108
+            ],
+            "description": ""
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "The Churning Mists",
+    "size": [
+        2048,
+        2048
+    ]
+}
