@@ -30,6 +30,8 @@ Important:
 <div class="gm-wrap"
       {%- if x == "FATEs" -%}
         data-gm-filter="group:FATEs"
+      {%- elsif page.slug -%}
+        data-gm-filter="{{ "cat:treasuremap_" | append: page.slug }} "
       {%- elsif x == "Zones" -%}
         data-gm-filter="group:Schatzkarten"
       {%- endif -%}
