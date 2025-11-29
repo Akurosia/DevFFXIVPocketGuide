@@ -1,0 +1,831 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "notorious_monster",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp"
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp"
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp"
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp"
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp"
+        },
+        {
+            "id": "notorious_monsters",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp"
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        },
+        {
+            "id": "treasuremap_vergilbte_lederkarte",
+            "name": "Vergilbte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_steinbockleder_karte",
+            "name": "Vergilbte Steinbockleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kroetenleder_karte",
+            "name": "Vergilbte Krötenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_keilerleder_karte",
+            "name": "Vergilbte Keilerleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_basiliskenleder_karte",
+            "name": "Vergilbte Basiliskenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_geheimnisvolle_karte",
+            "name": "Geheimnisvolle Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_unversteckte_lederkarte",
+            "name": "Unversteckte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_schatzkarte_aus_der_thorne_aera",
+            "name": "Schatzkarte aus der Thorne-Ära",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_archaeoleder_karte",
+            "name": "Vergilbte Archaeoleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_wyvernleder_karte",
+            "name": "Vergilbte Wyvernleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_drachenleder_karte",
+            "name": "Vergilbte Drachenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gaganaleder_karte",
+            "name": "Vergilbte Gaganaleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gazellenleder_karte",
+            "name": "Vergilbte Gazellenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schatzkarte_eines_meisterdiebes",
+            "name": "Vergilbte Schatzkarte eines Meisterdiebes",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_exotenleder_karte",
+            "name": "Vergilbte Exotenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_smilodonleder_karte",
+            "name": "Vergilbte Smilodonleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_glaucusleder_karte",
+            "name": "Vergilbte Glaucusleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_mythenleder_karte",
+            "name": "Vergilbte Mythenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gajaleder_schatzkarte",
+            "name": "Vergilbte Gajaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kumbhilaleder_schatzkarte",
+            "name": "Vergilbte Kumbhilaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_ophiotaurosleder_schatzkarte",
+            "name": "Vergilbte Ophiotaurosleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_legendenleder_karte",
+            "name": "Vergilbte Legendenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_sagenleder_karte",
+            "name": "Vergilbte Sagenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "name": "Vergilbte Schakalleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "name": "Vergilbte Br'aaxleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gargantualeder_karte",
+            "name": "Vergilbte Gargantualeder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "east-shroud",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/f1f/f1f2 - Ostwald.png",
+    "markers": [
+        {
+            "id": "1",
+            "name": "Wehrhafte Delikatesse",
+            "category": "defense",
+            "position": [
+                527.48,
+                883.14
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kreuzkarst-Spalier: Dritte Phase - Abschluss",
+            "category": "defense",
+            "position": [
+                1319.71,
+                1013.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Die Botanische Revolution",
+            "category": "kill_boss",
+            "position": [
+                1001.02,
+                604.4100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Unerwünschtes Unkraut",
+            "category": "kill_boss",
+            "position": [
+                1282.25,
+                1009.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Aus Kameradschaft",
+            "category": "kill_boss",
+            "position": [
+                1117.41,
+                592.9200000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Comeback mit Knall",
+            "category": "kill_boss",
+            "position": [
+                1117.91,
+                609.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Platz der Habenichtse: Erste Phase - Abschluss",
+            "category": "kill_boss",
+            "position": [
+                1107.92,
+                1041.98
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kreuzkarst-Spalier: Vierte Phase - Beginn",
+            "category": "kill_boss",
+            "position": [
+                1565.97,
+                1050.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Estrade der Sankt Roelle: Dritte Phase - Beginn",
+            "category": "kill_boss",
+            "position": [
+                1573.46,
+                1377.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Genist: Erste Phase",
+            "category": "kill_boss",
+            "position": [
+                1408.12,
+                1473.06
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Genist: Siebte Phase - Beginn",
+            "category": "kill_boss",
+            "position": [
+                997.03,
+                1561.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Östliches Himmelsang: 2. Phase - Abschluss",
+            "category": "kill_boss",
+            "position": [
+                1420.6100000000001,
+                1025.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Östliches Himmelsang: 3. Phase - Beginn",
+            "category": "kill_boss",
+            "position": [
+                1115.41,
+                1182.35
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kind der heißen Quellen",
+            "category": "kill_enemies",
+            "position": [
+                1022.5,
+                768.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hab Vivian satt",
+            "category": "kill_enemies",
+            "position": [
+                985.04,
+                611.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Comeback mit Knall",
+            "category": "kill_enemies",
+            "position": [
+                588.9200000000001,
+                777.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Platz der Habenichtse: Erste Phase - Beginn",
+            "category": "kill_enemies",
+            "position": [
+                1237.79,
+                957.0699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kreuzkarst-Spalier: Dritte Phase - Beginn",
+            "category": "kill_enemies",
+            "position": [
+                1331.2,
+                1045.98
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Estrade der Sankt Roelle: Zweite Phase",
+            "category": "kill_enemies",
+            "position": [
+                1390.1399999999999,
+                1249.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Estrade der Sankt Roelle: Vierte Phase",
+            "category": "kill_enemies",
+            "position": [
+                1178.35,
+                1558.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Das Genist: Sechste Phase - Beginn",
+            "category": "kill_enemies",
+            "position": [
+                1136.39,
+                1372.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Comeback mit Knall",
+            "category": "escort",
+            "position": [
+                840.6800000000001,
+                749.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Platz der Habenichtse: Dritte Phase - Abschluss",
+            "category": "collect",
+            "position": [
+                1307.72,
+                863.66
+            ],
+            "description": ""
+        },
+        {
+            "type": "treasuremap_vergilbte_lederkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                615.9,
+                936.6
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_lederkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                708.9,
+                640.0
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_lederkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1081.8,
+                841.4
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_steinbockleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Steinbockleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1138.7,
+                555.9
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_steinbockleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Steinbockleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1027.3,
+                824.6
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_steinbockleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Steinbockleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                819.6,
+                1010.6
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_kroetenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Krötenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1066.1,
+                589.1
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_kroetenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Krötenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                747.6,
+                916.0
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_kroetenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Krötenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1231.9,
+                949.1
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_keilerleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Keilerleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1309.3,
+                1000.5
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_keilerleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Keilerleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                832.6,
+                1129.4
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_keilerleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Keilerleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                595.7,
+                722.5
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_basiliskenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Basiliskenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                845.8,
+                859.7
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_basiliskenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Basiliskenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1385.4,
+                1176.3
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_basiliskenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Basiliskenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1374.3,
+                1056.8
+            ]
+        },
+        {
+            "type": "treasuremap_geheimnisvolle_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Geheimnisvolle Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                727.9,
+                1046.3
+            ]
+        },
+        {
+            "type": "treasuremap_geheimnisvolle_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Geheimnisvolle Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1219.8,
+                1556.0
+            ]
+        },
+        {
+            "type": "treasuremap_unversteckte_lederkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Unversteckte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                680.4,
+                775.4
+            ]
+        },
+        {
+            "type": "treasuremap_unversteckte_lederkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Unversteckte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1013.1,
+                1015.7
+            ]
+        },
+        {
+            "type": "treasuremap_schatzkarte_aus_der_thorne_aera",
+            "imageUrl": "/assets/img/TreasureMaps/Schatzkarte aus der Thorne-Ära/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                961.2,
+                745.9
+            ]
+        },
+        {
+            "type": "treasuremap_schatzkarte_aus_der_thorne_aera",
+            "imageUrl": "/assets/img/TreasureMaps/Schatzkarte aus der Thorne-Ära/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1064.8,
+                575.1
+            ]
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "East Shroud",
+    "size": [
+        2048,
+        2048
+    ]
+}
