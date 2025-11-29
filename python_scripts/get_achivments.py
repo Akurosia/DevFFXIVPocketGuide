@@ -1,6 +1,5 @@
 
 import copy
-import os
 import traceback
 from ffxiv_aku import get_any_Logdata, print_color_yellow, loadDataTheQuickestWay, print_color_red, pretty_json, print_pretty_json, writeJsonFile
 try:
@@ -24,6 +23,7 @@ translations = {
     "fr": {},
     "ja": {},
 }
+path_of_main_script = ""
 
 def translate_content_files(entry):
     global translations
@@ -42,7 +42,7 @@ def create_translation_files():
     #print_pretty_json(translations)
     for lang, cat_data in translations.items():
         for cat, data in cat_data.items():
-            writeJsonFile(f"assets/translations/achiements/{LANGUAGES_MAPPING[lang]}.json", data)
+            writeJsonFile(f"{path_of_main_script}/assets/translations/achiements/{LANGUAGES_MAPPING[lang]}.json", data)
 
 def get_achivment_kind():
     global translations
@@ -178,12 +178,14 @@ def write_yaml_data_for_guide(kind, a_data):
             pass
     doc_data += '---\n'
     create_translation_files()
-    with open("_posts/single_page_content/2013-01-01--2.0--1--achivments.md", "w", encoding="utf8") as f:
+    with open(f"{path_of_main_script}/_posts/single_page_content/2013-01-01--2.0--1--achivments.md", "w", encoding="utf8") as f:
         f.write(doc_data)
 
 
-def run():
-    print(f"[ACHIEVMENTS] Script runs from: {os.getcwd()}")
+def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
+    global path_of_main_script
+    path_of_main_script = main_script
+    print(f"[ACHIEVMENTS] Script runs from:")
     kind = get_achivment_kind()
 
     cat = get_achivment_categories()
@@ -194,7 +196,6 @@ def run():
 
 
 if __name__ == "__main__":
-    os.chdir("..")
     run()
 
 #{

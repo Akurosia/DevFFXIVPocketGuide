@@ -13,7 +13,7 @@ actiontransient = None
 traits = None
 traitstransient = None
 job_translations = None
-
+path_of_main_script = None
 
 def cb_load_global_data(cb_actions, cb_actiontransient, cb_traits, cb_traitstransient):
     global chocoboskills
@@ -24,10 +24,7 @@ def cb_load_global_data(cb_actions, cb_actiontransient, cb_traits, cb_traitstran
     global actiontransient
     global traits
     global traitstransient
-    origin = os.getcwd()
-    os.chdir("..")
     storeFilesInTmp(False)
-
     actions = cb_actions
     actiontransient = cb_actiontransient
     traits = cb_traits
@@ -36,8 +33,6 @@ def cb_load_global_data(cb_actions, cb_actiontransient, cb_traits, cb_traitstran
     chocoboitems = loadDataTheQuickestWay("ChocoboRaceItem.json")
     chocobochallange = loadDataTheQuickestWay("ChocoboRaceChallenge.json")
     buddyskill = loadDataTheQuickestWay("BuddySkill.json")
-
-    os.chdir(origin)
 
 
 def addChocoboPartnerSkills():
@@ -171,8 +166,10 @@ def addRennChocoboMissions():
     return result
 
 
-def addChocobo(actions, actiontransient, traits, traitstransient, klass_translations, callback_function, addExtraIcons):
+def addChocobo(main_script, actions, actiontransient, traits, traitstransient, klass_translations, callback_function, addExtraIcons):
+    global path_of_main_script
     global job_translations
+    path_of_main_script = main_script
     cb_load_global_data(actions, actiontransient, traits, traitstransient)
 
     # prepare translation elements
@@ -259,7 +256,7 @@ def addChocobo(actions, actiontransient, traits, traitstransient, klass_translat
 
     callback_function(job_translations, "chocobo")
 
-    filename = f"klassen_und_jobs/2013-01-01--2.0--0--{job}.md"
+    filename = f"{path_of_main_script}/_posts/klassen_und_jobs/2013-01-01--2.0--0--{job}.md"
     with open(filename, encoding="utf8") as f:
         doc = f.read()
     if not doc == filecontent:

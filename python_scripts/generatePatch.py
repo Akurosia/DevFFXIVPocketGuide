@@ -1,5 +1,3 @@
-import json
-import os
 from ffxiv_aku import *
 from datetime import datetime, date
 try:
@@ -15,22 +13,21 @@ LANGUAGES_MAPPING = {
     "fr": "fr-FR",
     "ja": "ja-JP"
 }
+path_of_main_script = ""
 klass_translations = None
+
+
 def get_class_translation_data():
     global klass_translations
     klass_translations = {}
     for lang in LANGUAGES:
-        klass_translations[lang] = readJsonFile(f'assets/translations/patches/{LANGUAGES_MAPPING[lang]}.json')
+        klass_translations[lang] = readJsonFile(f'{path_of_main_script}/assets/translations/patches/{LANGUAGES_MAPPING[lang]}.json')
         #klass_translations[lang] = {}
 
 
 def write_class_translation_data(data):
-    origin = os.getcwd()
-    os.chdir("..")
-    print(os.getcwd())
     for lang in LANGUAGES:
-        klass_translations[lang] = writeJsonFile(f'assets/translations/patches/{LANGUAGES_MAPPING[lang]}.json', data[lang])
-    os.chdir(origin)
+        klass_translations[lang] = writeJsonFile(f'{path_of_main_script}/assets/translations/patches/{LANGUAGES_MAPPING[lang]}.json', data[lang])
 
 
 def nextRelease(value):
@@ -98,7 +95,7 @@ def patches_overview():
         filecontent += f'    - "{patch}"\n'
     filecontent += '---\n'
 
-    filename = f"_pages/patches/index.html"
+    filename = f"{path_of_main_script}/_pages/patches/index.html"
     with open(filename, encoding="utf8") as f:
         doc = f.read()
     if not doc == filecontent:
@@ -141,7 +138,7 @@ def single_patch_file():
         filecontent += f'image: "/assets/img/titel-logo/{logos[n_version["pname"]]}"\n'
         filecontent += '---\n'
 
-        filename = f'_posts/patch_details/{n_version["date"].replace(".", "-")}--{str(int(key)+2)+".0"}--{key}-{value["Name_de"].lower().replace(" ", "_")}.html'
+        filename = f'{path_of_main_script}/_posts/patch_details/{n_version["date"].replace(".", "-")}--{str(int(key)+2)+".0"}--{key}-{value["Name_de"].lower().replace(" ", "_")}.html'
         try:
             with open(filename, encoding="utf8") as f:
                 doc = f.read()
@@ -153,17 +150,14 @@ def single_patch_file():
         #print(filecontent)
 
 
-def run():
-    if "_posts" in os.getcwd():
-        os.chdir("..")
+def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
+    global path_of_main_script
+    path_of_main_script = main_script
     get_class_translation_data()
     patches_overview()
     single_patch_file()
-    os.chdir("_posts")
     write_class_translation_data(klass_translations)
-    os.chdir("..")
 
 
 if __name__ == "__main__":
-    os.chdir("..")
     run()

@@ -15,6 +15,7 @@ except ImportError:
 
 file_location = os.path.dirname(os.path.realpath(__file__))
 patched_data = None
+path_of_main_script = ""
 
 # test()
 results = {}
@@ -137,7 +138,7 @@ def write(out, data):
 
 def getFinalData(results):
     global file_location
-    result_file = os.path.join(file_location, "..", "_posts", "single_page_content", "2013-01-01--2.0--1--quests.md")
+    result_file = os.path.join(path_of_main_script, "_posts", "single_page_content", "2013-01-01--2.0--1--quests.md")
     print_color_green(f"Write result to {result_file}")
     with open(result_file, "w", encoding="utf8") as out:
         write(out, "---")
@@ -262,20 +263,19 @@ def main():
             mresults[exp][_id] = new_element
 
 
-def run():
-    print(os.getcwd())
+def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
+    global path_of_main_script
     global patched_data
-    if "python_scripts" not in os.getcwd():
-        os.chdir("python_scripts")
+    path_of_main_script = main_script
 
-    with open("patchedBlueQuestData.json", "r", encoding="utf8") as f:
+    with open(f"{path_of_main_script}/python_scripts/patchedBlueQuestData.json", "r", encoding="utf8") as f:
         patched_data = json.load(f)
     main()
     getListOfMissingSideQuests(mresults)
     getFinalData(results)
 
     # this will sort the file
-    with open("patchedBlueQuestData.json", "w", encoding="utf8") as f:
+    with open(f"{path_of_main_script}/python_scripts/patchedBlueQuestData.json", "w", encoding="utf8") as f:
         json.dump(patched_data, f, sort_keys=True, indent=4, ensure_ascii=False)
 # if not error == []:
 #    print_pretty_json(error)

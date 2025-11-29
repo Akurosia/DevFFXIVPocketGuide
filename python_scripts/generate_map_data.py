@@ -84,6 +84,7 @@ fatemapping = {
 
 }
 fatemapping2 = {v:k for k,v in fatemapping.items()}
+path_of_main_script = ""
 
 def get_x_image(_id: str = "NoType"):
     # Load the overlay image (e.g., icon or stamp)
@@ -571,11 +572,15 @@ def generate_images():
         for tmap in maptypes:
             json_as_dict['categories'].append(tmap)
 
-        new_failename = "../assets/leaflet/maps/" + flug + ".json"
+        new_failename = f"{path_of_main_script}/assets/leaflet/maps/" + flug + ".json"
         writeJsonFile(new_failename, json_as_dict)
 
 
-from treasurespot import get_coords_later
+
+try:
+    from treasurespot import get_coords_later
+except:
+    from .treasurespot import get_coords_later
 coords = {}
 def get_treasuremaps(mapid, w, h):
     maps = []
@@ -605,7 +610,9 @@ def fix_special(merged_fates):
 
     return merged_fates
 
-def run() -> None:
+def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
+    global path_of_main_script
+    path_of_main_script = main_script
     try:
         tc_fates = get_data_from_teamcraft()
         #print_color_blue(tc_fates)
@@ -614,8 +621,8 @@ def run() -> None:
         merged_fates = fix_special(merged_fates)
         #print_pretty_json(merged_fates['Bozjan Southern Front'])
 
-        writeJsonFile("FatesFromConsoleWiki.json", merged_fates)
-        writeJsonFile(r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide\python_scripts\FatesFromConsoleWiki.json", merged_fates)
+        writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
+        #writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
         #writeJsonFile(r"C:\Users\Akurosia\Documents\GitHub\DevFFXIVPocketGuide\python_scripts\FatesFromConsoleWiki.json", merged_fates)
 
         print("[GAFD] Completed getting new Fates")

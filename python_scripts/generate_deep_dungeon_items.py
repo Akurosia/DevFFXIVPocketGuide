@@ -1,6 +1,10 @@
 from ffxiv_aku import *
-from helper import getImage
+try:
+    from helper import getImage
+except:
+    from .helper import getImage
 
+path_of_main_script = ""
 def get_traps():
     text = """
                 <!-- traps -->
@@ -454,8 +458,10 @@ def get_gimmic():
                 </div>\n"""
     return pomander_table
 
-if __name__ == "__main__":
-    with open("../_includes/presets/DeedDungeonTraps.html", "w", encoding="utf8") as f:
+def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
+    global path_of_main_script
+    path_of_main_script = main_script
+    with open(f"{path_of_main_script}/_includes/presets/DeedDungeonTraps.html", "w", encoding="utf8") as f:
         f.write("""<!-- Include from _includes/presets/DeedDungeonTraps -->
                 <div class="guide__accordion-copy-wrapper akutables">""")
         f.write(get_traps())
@@ -464,5 +470,8 @@ if __name__ == "__main__":
         f.write(get_statuis())
         f.write(get_floor())
         f.write(get_gimmic())
-        f.write("""                </div>
+        f.write("""            </div>
 <!-- END Include from _includes/presets/DeedDungeonTraps -->""")
+
+if __name__ == "__main__":
+    run()

@@ -14,6 +14,7 @@ except:
 
 result = {}
 nextQuest = {}
+path_of_main_script = ""
 
 def printQuest(data: dict[str, Any]) -> None:
     del data['AcceptBool']
@@ -134,13 +135,13 @@ def generate_new_quest_data() -> None:
     # fix first quest icon fpr js script later on
     newQuest['65575']['JournalGenre']['Icon'] = "ui/icon/071000/071201_hr1.webp"
 
-    writeJsonFile("../assets/quests_aku.json", newQuest)
+    writeJsonFile(f"{path_of_main_script}/assets/quests_aku.json", newQuest)
 
 ### sort quests like in JS
 
 def load_quests():
     try:
-        with open("../assets/quests_aku.json", 'r', encoding='utf-8') as f:
+        with open(f"{path_of_main_script}/assets/quests_aku.json", 'r', encoding='utf-8') as f:
             data = json.load(f)
             quests: dict[Any, Any] = {k: v for k, v in data.items() if v.get("JournalGenre", {}).get("Icon") == "ui/icon/071000/071201_hr1.webp"}
             return sort_quests(quests)
@@ -202,13 +203,14 @@ def search_quest(quests, query):
     print(f"Fortschritt: {progress_percentage:.2f}%")
 
 
-def run() -> None:
+def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
+    global path_of_main_script
+    path_of_main_script = main_script
     print("[MQF] Start MainQuestFinderr")
-    print(os.getcwd())
     generate_new_quest_data()
 
     sorted_quests = load_quests()
-    writeJsonFile("../assets/sorted_quests_aku.json", sorted_quests)
+    writeJsonFile(f"{path_of_main_script}/assets/sorted_quests_aku.json", sorted_quests)
 
 if __name__ == "__main__":
     run()

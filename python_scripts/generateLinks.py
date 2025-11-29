@@ -1,6 +1,7 @@
 import json
 import os
 
+path_of_main_script = ""
 
 def writeline(f, data):
     f.write(data)
@@ -52,7 +53,7 @@ def links():
             filecontent += f"          favicon: {entry['favicon']}\n"
     filecontent += '---\n'
 
-    filename = "_pages/links/index.html"
+    filename = f"{path_of_main_script}/_pages/links/index.html"
     with open(filename, encoding="utf8") as f:
         doc = f.read()
     if not doc == filecontent:
@@ -60,9 +61,9 @@ def links():
             f.write(filecontent)
 
 
-def run():
-    os.chdir("..")
-    print(os.getcwd())
+def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
+    global path_of_main_script
+    path_of_main_script = main_script
     links()
 
 

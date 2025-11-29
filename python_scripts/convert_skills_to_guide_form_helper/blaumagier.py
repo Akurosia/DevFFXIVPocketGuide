@@ -12,6 +12,7 @@ items = None
 aozaction = None
 aozactions = None
 aozactiontransient = None
+path_of_main_script = None
 
 
 def blu_load_global_data(blu_craftactions, blu_actions, blu_items, blu_logdata):
@@ -22,8 +23,6 @@ def blu_load_global_data(blu_craftactions, blu_actions, blu_items, blu_logdata):
     global aozactiontransient
     global craftactions
     global items
-    origin = os.getcwd()
-    os.chdir("..")
     storeFilesInTmp(False)
     actions = blu_actions
     aozaction = loadDataTheQuickestWay("AozActionTransient")
@@ -32,7 +31,6 @@ def blu_load_global_data(blu_craftactions, blu_actions, blu_items, blu_logdata):
     craftactions = blu_craftactions
     items = blu_items
     logdata = blu_logdata
-    os.chdir(origin)
 
 
 def get_play_in_locations(locations):
@@ -63,7 +61,9 @@ def get_play_in_locations(locations):
     return sorted(new_locations, key=lambda x: x['Ort'])
 
 
-def addBlueAttackDetails(job_data, craftactions, actions, items, logdata, klass_translations):
+def addBlueAttackDetails(main_script, job_data, craftactions, actions, items, logdata, klass_translations):
+    global path_of_main_script
+    path_of_main_script = main_script
     blu_load_global_data(craftactions, actions, items, logdata)
     result = ""
     result += "    attacks:\n"

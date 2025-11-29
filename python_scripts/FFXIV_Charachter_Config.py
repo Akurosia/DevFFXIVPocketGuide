@@ -9,6 +9,7 @@ try:
 except:
     from fileimports import *
 LANGUAGES: list[str] = ["de", "en", "fr", "ja"]
+path_of_main_script = ""
 #addon = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\Addon.json")
 
 @lru_cache(maxsize=None)
@@ -25,7 +26,7 @@ def search_addonlation(term: str) -> tuple[bool, str]:
 def run2() -> dict[str, Any]:
     #customdecoder = JSONDecoder(object_pairs_hook=OrderedDict)
 
-    with open(r"FFXIV_Charachter_Config.txt", encoding="utf8") as f:
+    with open(f"{path_of_main_script}/python_scripts/FFXIV_Charachter_Config.txt", encoding="utf8") as f:
         ldata: list[str] = f.readlines()
 
     lresults: dict[str, Any] = OrderedDict()
@@ -231,24 +232,16 @@ def custom_print_results(lresults: dict[str, Any], ltext: str = "", translations
     return ltext, translations
 
 
-def run(translations: dict[str, Any]) -> None:
-    if not "python_scripts" in os.getcwd():
-        if "_posts" in os.getcwd():
-            os.chdir('../python_scripts')
-
+def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide", translations: dict[str, Any]=None):
+    global path_of_main_script
+    path_of_main_script = main_script
     results: dict[str, Any] = run2()
-    #writeJsonFile("FFXIV_Charachter_Config.json", results)
-
-
     # the following code will print the result that is seen on the page in the end
     otext, translations = custom_print_results(lresults=results, ltext="", translations=translations)
-    with open('../_includes/single_pages/settings.html', "w", encoding="utf8") as f:
+    with open(f'{path_of_main_script}/_includes/single_pages/settings.html', "w", encoding="utf8") as f:
         f.write(otext)
-    if "python_scripts" in os.getcwd():
-        if "_posts" in os.getcwd():
-            os.chdir('../_posts')
     #print(translations)
 
 
 if __name__ == "__main__":
-    run({})
+    run(r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide", {})

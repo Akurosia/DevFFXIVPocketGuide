@@ -15,6 +15,7 @@ LANGUAGES_MAPPING: dict[str, str] = {
     "ja": "ja-JP",
 }
 klass_translations = None
+path_of_main_script = ""
 def get_class_translation_data():
     global klass_translations
     klass_translations = {}
@@ -25,7 +26,7 @@ def get_class_translation_data():
 
 def write_class_translation_data(data):
     for lang in LANGUAGES:
-        klass_translations[lang] = writeJsonFile(f'../assets/translations/itemsets/{LANGUAGES_MAPPING[lang]}.json', data[lang])
+        klass_translations[lang] = writeJsonFile(f'{path_of_main_script}/assets/translations/itemsets/{LANGUAGES_MAPPING[lang]}.json', data[lang])
 
 
 id_to_gear: dict[str, str] = {
@@ -56,10 +57,11 @@ def add_element(col_k: str, data: dict[str, str], row: str, r: dict[str, list[st
     row += f"        <td id='{i_name}' onclick='myFunction(this)'><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='{i_icon}' alt='{i_name}'></td>\n"
     return row, r
 
-def run():
+def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
+    global path_of_main_script
     global klass_translations
+    path_of_main_script = main_script
     print(f"[GIS] Start Get Item Set")
-    print(os.getcwd())
     get_class_translation_data()
     counter: int = 0
     setcompleted: list[str] = ["0"]
@@ -125,7 +127,7 @@ def run():
     #html += "</html>"
 
     write_class_translation_data(klass_translations)
-    with open("../_includes/single_pages/itemsets.html", "w", encoding="utf8") as f:
+    with open(f"{path_of_main_script}/_includes/single_pages/itemsets.html", "w", encoding="utf8") as f:
         f.write(html)
 
 if __name__ == "__main__":

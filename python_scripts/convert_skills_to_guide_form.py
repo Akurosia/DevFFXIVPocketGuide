@@ -26,6 +26,7 @@ status_ncj = None
 
 klass_translations = None
 job_translations = None
+path_of_main_script = ""
 
 def get_class_translation_data() -> None:
     global klass_translations
@@ -39,7 +40,7 @@ def write_class_translation_data(data: dict) -> None:
     origin: str = os.getcwd()
     os.chdir("..")
     for lang in LANGUAGES:
-        writeJsonFile(f'assets/translations/klassen/{LANGUAGES_MAPPING[lang]}.json', data[lang])
+        writeJsonFile(f'{path_of_main_script}/assets/translations/klassen/{LANGUAGES_MAPPING[lang]}.json', data[lang])
     os.chdir(origin)
 
 
@@ -801,7 +802,7 @@ def addKlassJobs():
             klass_translations[lang][f'Content_Title_{title_en}'] = job_d[f"Name_{lang}"].title()
         filecontent += "    id: \"" + "boss" + str(counter) + "\"\n"
         if job == "Blaumagier":
-            x, job_translations = addBlueAttackDetails(job_data, craftactions, action, items, logdata, job_translations)
+            x, job_translations = addBlueAttackDetails(path_of_main_script, job_data, craftactions, action, items, logdata, job_translations)
             filecontent += x
         else:
             attack_text, attack_skills = addAttackDetails(job_data)
@@ -846,7 +847,7 @@ def addKlassJobs():
         filecontent += '---\n'
 
         write_class_translation_file(job_translations, job_d['Name_en'])
-        filename = f"klassen_und_jobs/2013-01-01--2.0--{counter}--{job}.md"
+        filename = f"{path_of_main_script}/_posts/klassen_und_jobs/2013-01-01--2.0--{counter}--{job}.md"
         with open(filename, encoding="utf8") as f:
             doc = f.read()
         if not doc == filecontent:
@@ -856,7 +857,7 @@ def addKlassJobs():
 
 
 def write_class_translation_file(job_translations, classname):
-    filename_translation_location = f"../assets/translations/klassen/{classname}"
+    filename_translation_location = f"{path_of_main_script}/assets/translations/klassen/{classname}"
     if not os.path.exists(filename_translation_location):
         os.makedirs(filename_translation_location)
     for lang in LANGUAGES:
@@ -869,20 +870,15 @@ def write_class_translation_file(job_translations, classname):
             writeJsonFile(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json", job_translations[lang])
 
 
-def run():
-    os.chdir("..")
+def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
+    global path_of_main_script
+    path_of_main_script = main_script
     get_class_translation_data()
-    os.chdir("_posts")
     addKlassJobs()
-    addChocobo(action,  actiontransient, traits, traitstransient, klass_translations, write_class_translation_file, addExtraIcons)
+    addChocobo(main_script, action,  actiontransient, traits, traitstransient, klass_translations, write_class_translation_file, addExtraIcons)
     write_class_translation_data(klass_translations)
 
 
 if __name__ == "__main__":
     run()
     #test([{'Ort': 'Abyssos - Fünfter Kreis', 'Gegner': 'Proto-Karfunkel'}, {'Ort': 'Abyssos - Fünfter Kreis (episch)', 'Gegner': 'Proto-Karfunkel'}, {'Ort': 'Das Fenn', 'Gegner': 'Mahisha'}, {'Ort': 'Die Nichts-Arche', 'Gegner': 'Cuchulainn'}, {'Ort': 'Die Welt der Dunkelheit', 'Gegner': 'Cerberus'}, {'Ort': 'Himmelssäule (Ebenen 61-70)', 'Gegner': 'Kenko'}, {'Ort': 'Himmelssäule (Ebenen 81-90)', 'Gegner': 'Himmelssäulen-Gozu'}, {'Ort': 'Historisches Amdapor', 'Gegner': 'Verrottender Gourmet'}, {'Ort': 'Sankt Mocianne-Arboretum (schwer)', 'Gegner': 'Nullchu'}, {'Ort': 'Thavnair', 'Gegner': 'Yilan'}, {'Ort': 'Verschlungene Schatten 1', 'Gegner': '(InGame Hinweis)'}, {'Ort': 'Verschlungene Schatten 2 - 1', 'Gegner': 'Rafflesia'}, {'Ort': 'Verschlungene Schatten 3 - 4', 'Gegner': 'Schmerz Von Meracydia'}])
-
-
-
-
-

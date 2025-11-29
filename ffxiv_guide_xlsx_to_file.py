@@ -346,24 +346,38 @@ def main() -> None:
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
-        #aas.run()
-        csgf.run()
-        gl.run()
-        gp.run()
-        #ghm.run()
-        ga.run()
-        gbsq.run()
-        fcc.run(translations)
-        gis.run()
-        ts.run()
-        quests.run()
-        deepdungeon.run()
-        newmaps.run()
+        run_all(path_of_main_script, translations)
     create_translation_files()
     logger.critical('STOP')
 
+from concurrent.futures import ThreadPoolExecutor
+
+def run_all(path_of_main_script, translations):
+    tasks = [
+        #aas.run()
+        lambda: csgf.run(path_of_main_script),
+        lambda: gl.run(path_of_main_script),
+        lambda: gp.run(path_of_main_script),
+        # ghm.run(path_of_main_script),
+        lambda: ga.run(path_of_main_script),
+        lambda: gbsq.run(path_of_main_script),
+        lambda: fcc.run(path_of_main_script, translations),
+        lambda: gis.run(path_of_main_script),
+        lambda: ts.run(path_of_main_script),
+        lambda: quests.run(path_of_main_script),
+        lambda: deepdungeon.run(path_of_main_script),
+    ]
+
+    with ThreadPoolExecutor(max_workers=len(tasks)) as executor:
+        futures = [executor.submit(task) for task in tasks]
+
+        # optional: wait and raise if any failed
+        for f in futures:
+            f.result()
+    newmaps.run(path_of_main_script)
 
 if __name__ == "__main__":
+    path_of_main_script = os.getcwd()
     print(f"[MAIN:if] {sys.version}")
     main()
     get_files_from_templates()
