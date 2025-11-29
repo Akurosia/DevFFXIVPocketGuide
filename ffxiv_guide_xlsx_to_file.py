@@ -28,6 +28,8 @@ import python_scripts.FFXIV_Charachter_Config as fcc
 import python_scripts.get_item_sets as gis
 import python_scripts.treasurespot as ts
 import python_scripts.quests as quests
+import python_scripts.generate_deep_dungeon_items as deepdungeon
+import python_scripts.generate_map_data as newmaps
 import python_scripts.airship_and_submarine as aas
 
 logger: Logger = getLogger(50)
@@ -261,7 +263,7 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
         i = int(key)
         try:
             debug_row_number = i
-            if True:
+            if not True:
                 #if debug_row_number < 800 :
                 #if debug_row_number not in [354, 581, 787, 788, 818, 821]:
                 if debug_row_number not in [745]:
@@ -355,6 +357,8 @@ def main() -> None:
         gis.run()
         ts.run()
         quests.run()
+        deepdungeon.run()
+        newmaps.run()
     create_translation_files()
     logger.critical('STOP')
 
