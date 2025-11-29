@@ -468,8 +468,8 @@ def generate_images():
             fate_by_type[location][fate_data.get('Type', "NoType")].append(fate_id)
 
     for location, fate_type in fate_by_type.items():
-        if not location in ["Lower La Noscea"]:
-            continue
+        #if not location in ["Lower La Noscea"]:
+        #    continue
         _map_id = None
         for x, value in ttype.items():
             if value['PlaceName']['Name_en'] == location:
@@ -513,7 +513,6 @@ def generate_images():
             "categories": [
                 { "id": "ore", "name": "Ore Node", "color": "#f59e0b" },
                 { "id": "herb", "name": "Herb Node", "color": "#22c55e" },
-                { "id": "treasuremap", "name": "Treasure Map", "group": "treasuremap", "groupName": "treasuremap","color": "#22c55e" },
                 { "id": "fates", "name": "Notorious monster", "group": "Fates", "groupName": "Fates2", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp" },
                 { "id": "fates", "name": "Gegner Wellen", "group": "Fates", "groupName": "Fates2", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp" },
                 { "id": "fates", "name": "Boss besiegen", "group": "Fates", "groupName": "Fates2", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp" },
@@ -566,9 +565,12 @@ def generate_images():
                     json_as_dict['markers'].append({ "id": "1", "name": text, "category": fix_slug(_type), "position": [x,-y2+h/2], "description": "" })
 
         #json_as_dict['markers'].append({ "id": "zone-1", "name": "Central Field", "category": "gathering-zone", "description": "Level 10–15 gathering area", "points": [ [ 700, 400 ], [ 900, 420 ], [ 920, 650 ], [ 580, 640 ] ] })
-        tmaps = get_treasuremaps(_map_id, w, h)
+        tmaps, maptypes = get_treasuremaps(_map_id, w, h)
         for tmap in tmaps:
             json_as_dict['markers'].append(tmap)
+        for tmap in maptypes:
+            json_as_dict['categories'].append(tmap)
+
         new_failename = "../assets/leaflet/maps/" + flug + ".json"
         writeJsonFile(new_failename, json_as_dict)
 
@@ -577,6 +579,7 @@ from treasurespot import get_coords_later
 coords = {}
 def get_treasuremaps(mapid, w, h):
     maps = []
+    maptypes = []
     global coords
     if coords == {}:
         coords = get_coords_later({})
@@ -584,13 +587,14 @@ def get_treasuremaps(mapid, w, h):
         #if not treasuremapid == "1":
         #    continue
         item = treasurehuntrank[treasuremapid]['ItemName']['Name_de']
+        maptypes.append({ "id": f"treasuremap_{fix_slug(item)}", "name": f"{item}", "group": "treasuremap", "groupName": "Schatzkarten", "color": "#22c55e" })
         for treasuremapdata_mappid, treasuremapdata_data in treasuremapdata.items():
             if mapid in treasuremapdata_mappid:
                 for tmap in treasuremapdata_data:
                     tx = (tmap[0]) + w/2
                     ty = -(tmap[1]) + h/2
-                    maps.append({  "type": "treasuremap",  "imageUrl": f"/assets/img/TreasureMaps/{item}/empty_map.webp",  "size": [220, 200],  "position": [tx, ty]})
-    return maps
+                    maps.append({  "type": f"treasuremap_{fix_slug(item)}",  "imageUrl": f"/assets/img/TreasureMaps/{item}/empty_map.webp",  "size": [220, 200],  "position": [tx, ty]})
+    return maps, maptypes
 
 def fix_special(merged_fates):
     for zone in ['Zadnor', 'Bozjan Southern Front']:

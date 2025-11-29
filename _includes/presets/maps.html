@@ -17,22 +17,25 @@ Usage:
 Expects a JSON file at:
   /assets/leaflet/maps/{{ maptype }}.json
 
-Treasure map marker (fixed map area, toggleable + searchable, now always appears in legend):
+Treasure map marker (fixed map area, toggleable, searchable, and visible in legend):
 
 {
   "id": "tm-1",
   "name": "Treasure Map 1",
-  "category": "treasuremap",
-  "type": "treasuremap",
+  "type": "treasuremaps-dragonskin",  // must start with "treasuremaps"
+  "category": "treasuremaps-dragonskin",
   "imageUrl": "/assets/leaflet/treasures/map1.png",
-  "position": [900, 1100],   // center (x,y) in map pixels
-  "size": [400, 400],        // width/height in map pixels (optional, defaults 256x256)
+  "position": [900, 1100],            // center (x,y) in map pixels
+  "size": [400, 400],                 // width/height in map pixels (optional, defaults 256x256)
   "description": "Dig here!"
 }
 
-If a marker (including treasuremaps) or area uses a category id that is NOT defined
-in `categories`, this file now auto-creates a default category for it so that it
-appears in the legend and can be toggled and searched.
+Important:
+
+- For all markers (including treasuremaps), the effective category id is:
+    marker.category || marker.type
+- Treasuremap overlays are created when:
+    typeof marker.type === "string" && marker.type.startsWith("treasuremaps")
 {%- endcomment -%}
 
 <div class="gm-wrap"
@@ -352,6 +355,14 @@ appears in the legend and can be toggled and searched.
     return cat._leafletIcon;
   }
 
+  // Effective category id for markers: category || type
+  function resolveMarkerCategoryId(m) {
+    if (!m) return "";
+    if (m.category) return m.category;
+    if (m.type) return m.type;
+    return "";
+  }
+
   function normalizeZones(raw) {
     if (raw && raw.imageUrl) {
       return [{
@@ -616,8 +627,9 @@ appears in the legend and can be toggled and searched.
 
           var totals = {};
           markers.forEach(function (m) {
-            if (!m.category) return;
-            totals[m.category] = (totals[m.category] || 0) + 1;
+            var cid = resolveMarkerCategoryId(m);
+            if (!cid) return;
+            totals[cid] = (totals[cid] || 0) + 1;
           });
           areas.forEach(function (a) {
             if (!a.category) return;
@@ -782,8 +794,6 @@ appears in the legend and can be toggled and searched.
           markers    = Array.isArray(cfg.markers)    ? cfg.markers.slice()    : [];
           areas      = Array.isArray(cfg.areas)      ? cfg.areas.slice()      : [];
 
-          // Auto-add categories for any category ids that appear in markers/areas
-          // but are missing from cfg.categories (e.g. treasuremaps).
           var existingIds = Object.create(null);
           categories.forEach(function (c) {
             if (c && c.id) {
@@ -804,7 +814,8 @@ appears in the legend and can be toggled and searched.
           }
 
           markers.forEach(function (m) {
-            if (m.category) ensureCategory(m.category);
+            var cid = resolveMarkerCategoryId(m);
+            if (cid) ensureCategory(cid);
           });
           areas.forEach(function (a) {
             if (a.category) ensureCategory(a.category);
@@ -845,14 +856,14 @@ appears in the legend and can be toggled and searched.
             var lat = py;
             var lng = px;
 
-            var catId = m.category || "";
+            var catId = resolveMarkerCategoryId(m);
             var cat = catById(catId);
             var color = (cat && cat.color) || "#60a5fa";
 
             var catLabel = cat ? (cat.name || cat.id || "") : "";
             var name = m.name || "";
             var desc = m.description || "";
-            var searchText = (name + " " + catId + " " + catLabel + " " + desc).toLowerCase();
+            var searchText = (name + " " + (catId || "") + " " + catLabel + " " + desc).toLowerCase();
 
             var html = "<strong>" + (name || "Marker") + "</strong>";
             if (catLabel) {
@@ -868,7 +879,8 @@ appears in the legend and can be toggled and searched.
 
             var layer = catId && markerLayerByCat[catId] ? markerLayerByCat[catId] : baseMarkerLayer;
 
-            if (m.type === "treasuremap") {
+            // Treasuremaps: type must start with "treasuremaps"
+            if (typeof m.type === "string" && m.type.startsWith("treasuremap_")) {
               var imgUrl = m.imageUrl || m.iconUrl || m.url;
               if (!imgUrl) {
                 var fallbackIcon = getCategoryIcon(cat, color);
@@ -971,7 +983,7 @@ appears in the legend and can be toggled and searched.
             var catLabel = cat ? (cat.name || cat.id || "") : "";
             var name = a.name || "";
             var desc = a.description || "";
-            var searchText = (name + " " + catId + " " + catLabel + " " + desc).toLowerCase();
+            var searchText = (name + " " + (catId || "") + " " + catLabel + " " + desc).toLowerCase();
 
             var html = "<strong>" + (name || "Area") + "</strong>";
             if (catLabel) {
@@ -1033,7 +1045,8 @@ appears in the legend and can be toggled and searched.
             categories.forEach(function (cat) {
               var total = 0;
               markers.forEach(function (m) {
-                if (m.category === cat.id) total++;
+                var cid = resolveMarkerCategoryId(m);
+                if (cid === cat.id) total++;
               });
               areas.forEach(function (a) {
                 if (a.category === cat.id) total++;
