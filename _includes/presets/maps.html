@@ -27,8 +27,14 @@ Important:
     typeof marker.type === "string" && marker.type.startsWith("treasuremaps")
 {%- endcomment -%}
 
-<div class="gm-wrap" data-gm-preset="fates"
-     data-map-url="{{ '/assets/leaflet/maps/' | append: include.maptype | append: '.json' | relative_url }}">
+<div class="gm-wrap"
+      {%- if x == "FATEs" -%}
+        data-gm-filter="group:FATEs"
+      {%- elsif x == "Zones" -%}
+        data-gm-filter="group:Schatzkarten"
+      {%- endif -%}
+        data-gm-filter-mode="only"
+      data-map-url="{{ '/assets/leaflet/maps/' | append: include.maptype | append: '.json' | relative_url }}">
   <div class="gm-inner">
     <div class="gm-header">
       <span class="gm-title">Loading map…</span>
@@ -1086,26 +1092,3 @@ Important:
 })();
 </script>
 <!-- Example usage on a Jekyll page (PUT THIS BEFORE the script below) -->
-<script>
-  // Global presets (you can define as many as you like)
-  // mode: "only"  -> only these categories are ON, all others OFF
-  // mode: "except"-> these categories are OFF, all others ON
-  window.GM_PRESETS = {
-    // Applied to all maps without an explicit data-gm-preset
-    "fates": {
-      mode: "only",
-      categories: [
-        "Fates",
-        "collect",
-      ]
-    },
-
-    // Example: only treasuremaps on some maps
-    "treasure": {
-      mode: "only",
-      categories: [
-        "treasuremaps",
-      ]
-    }
-  };
-</script>
