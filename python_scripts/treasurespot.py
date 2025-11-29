@@ -309,6 +309,7 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
             _extra, full_placename, output_path, modified_image, placename = code_for_image(overlay_id, posible_maps, location, item_name)
 
             _post += f'  - zonename: "{full_placename["Name_en"]}"\n'
+            _post += f'    zoneslug: "{fix_slug(full_placename["Name_en"]).replace("_", "-")}"\n'
             for lang in LANGUAGES:
                 map_translations[lang][f'Map_Section_{full_placename["Name_"+"en"]}'] = full_placename["Name_"+lang]
             _post += f'    fullimage: "/assets/img/TreasureMaps/{item_name}/{placename}/{placename}.webp"\n'

@@ -1,0 +1,106 @@
+<script>
+(function () {
+  // Helper: apply one preset to a single map wrapper
+  function applyPresetToWrap(wrap, preset) {
+    if (!preset || !preset.categories || !preset.categories.length) return false;
+
+    var groupsHost = wrap.querySelector(".gm-groups");
+    if (!groupsHost) return false;
+
+    var catCheckboxes = groupsHost.querySelectorAll(".gm-cat input[data-cat-id]");
+    if (!catCheckboxes.length) return false;
+
+    var mode = preset.mode === "except" ? "except" : "only";
+    var wanted = {};
+    preset.categories.forEach(function (id) {
+      wanted[String(id)] = true;
+    });
+
+    // Toggle all category checkboxes
+    catCheckboxes.forEach(function (cb) {
+      var catId = cb.getAttribute("data-cat-id");
+      if (!catId) return;
+
+      var shouldCheck;
+      if (mode === "only") {
+        shouldCheck = !!wanted[catId];
+      } else {
+        // "except"
+        shouldCheck = !wanted[catId];
+      }
+
+      if (cb.checked !== shouldCheck) {
+        cb.checked = shouldCheck;
+        // Trigger the existing change handler in map.html
+        cb.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    });
+
+    // Update group checkboxes (so they visually match the state)
+    var groups = groupsHost.querySelectorAll(".gm-group");
+    groups.forEach(function (group) {
+      var grpCb = group.querySelector(".gm-group-header input[type='checkbox']");
+      if (!grpCb) return;
+
+      var groupCats = group.querySelectorAll(".gm-cat input[data-cat-id]");
+      if (!groupCats.length) return;
+
+      var allOn = Array.from(groupCats).every(function (c) { return c.checked; });
+      var anyOn = Array.from(groupCats).some(function (c) { return c.checked; });
+
+      grpCb.checked = allOn;
+      grpCb.indeterminate = !allOn && anyOn;
+    });
+
+    return true;
+  }
+
+  // Apply presets to all maps on the page
+  function applyPresetsToAllMaps() {
+    var presets = window.GM_PRESETS || {};
+    var wraps = document.querySelectorAll(".gm-wrap");
+    if (!wraps.length) return;
+
+    wraps.forEach(function (wrap, idx) {
+      var key = wrap.getAttribute("data-gm-preset") || "default";
+      var preset = presets[key];
+      if (!preset) return;
+
+      applyPresetToWrap(wrap, preset);
+    });
+  }
+
+  // Wait until legends are built (maps load JSON asynchronously)
+  function waitAndApply(attempt) {
+    attempt = attempt || 0;
+    if (attempt > 50) return; // ~10 seconds max (50 * 200ms)
+
+    var wraps = document.querySelectorAll(".gm-wrap");
+    if (!wraps.length) {
+      setTimeout(function () { waitAndApply(attempt + 1); }, 200);
+      return;
+    }
+
+    // Check if at least one map has its legend built
+    var anyReady = Array.from(wraps).some(function (wrap) {
+      var host = wrap.querySelector(".gm-groups");
+      return host && host.children.length > 0;
+    });
+
+    if (!anyReady) {
+      setTimeout(function () { waitAndApply(attempt + 1); }, 200);
+      return;
+    }
+
+    applyPresetsToAllMaps();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      waitAndApply(0);
+    });
+  } else {
+    waitAndApply(0);
+  }
+})();
+</script>

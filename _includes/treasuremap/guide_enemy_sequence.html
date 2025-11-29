@@ -9,7 +9,8 @@
     </div>
 </div>
 <div class="guide__accordion-content--03">
-    {% assign mapfile = "/assets/leaflet/maps/" | append: zone.zonename | append: ".json" %}
+    {% assign mapfile = "/assets/leaflet/maps/" | append: zone.zoneslug | append: ".json" %}
+    <span>{{mapfile}}</span>
     {% assign file_exists = false %}
 
     {% for f in site.static_files %}
@@ -19,14 +20,9 @@
       {% endif %}
     {% endfor %}
     {% if file_exists %}
-        {%- include presets/maps.html maptype=zone.zonename -%}
+        {%- include presets/maps.html maptype=zone.zoneslug -%}
     {%- endif -%}
 
-    {%- if zone.fullimage -%}
-        <div class="guide__attack-image-item">
-            <img loading="lazy" style="object-fit: scale-down; height: 400px; cursor: pointer;" src="{{zone.fullimage}}" alt="{{ zone.fullimage }}"/>
-        </div>
-    {%- endif -%}
     {%- if zone.subimage -%}
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
         {%- for image in zone.subimage -%}
