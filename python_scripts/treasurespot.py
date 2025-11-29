@@ -184,7 +184,7 @@ def code_for_image(overlay_id, posible_maps, location, item_name):
     overlay_cropped.paste(overlay_x_cropped, (x_off-xx_off, y_off-xy_off), overlay_x_cropped if overlay_x_cropped.mode == 'RGBA' else None)
 
     # the followign block will save the empty map for leaflet usage
-    tmp_out: str = f"../assets/img/treasuremaps/{item_name}/"
+    tmp_out: str = f"../assets/img/TreasureMapss/{item_name}/"
     if not os.path.exists(tmp_out):
         os.makedirs(tmp_out)
     if not os.path.exists(tmp_out + f"empty_map.webp"):
@@ -197,7 +197,7 @@ def code_for_image(overlay_id, posible_maps, location, item_name):
         x, y , placename = coord
         full_placename = get_placename(placename)
 
-        output_path: str = f"../assets/img/treasuremaps/{item_name}/{placename}/"
+        output_path: str = f"../assets/img/TreasureMapss/{item_name}/{placename}/"
         x+= w/2
         y+= h/2
         modified_image.paste(overlay_cropped, (int(x)-x_off, int(y)-y_off), overlay_cropped if overlay_cropped.mode == 'RGBA' else None)
@@ -311,10 +311,10 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
             _post += f'  - zonename: "{full_placename["Name_en"]}"\n'
             for lang in LANGUAGES:
                 map_translations[lang][f'Map_Section_{full_placename["Name_"+"en"]}'] = full_placename["Name_"+lang]
-            _post += f'    fullimage: "/assets/img/treasuremaps/{item_name}/{placename}/{placename}.webp"\n'
+            _post += f'    fullimage: "/assets/img/TreasureMapss/{item_name}/{placename}/{placename}.webp"\n'
             _post += f'    subimage:\n'
             for img in _extra:
-                _post += f'      - "/assets/img/treasuremaps/{item_name}/{placename}/{img}.webp"\n'
+                _post += f'      - "/assets/img/TreasureMapss/{item_name}/{placename}/{img}.webp"\n'
             # Generate output file name and save the image
             if not os.path.exists(output_path):
                 os.makedirs(output_path)
