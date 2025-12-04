@@ -840,3 +840,147 @@
   }
 })();
 </script>
+<!-- Put this AFTER your existing map.html include (and after Leaflet + main script) -->
+<script>
+(function () {
+  function parseFilterSpec(str) {
+    if (!str) return null;
+    var tokens = String(str).split(/[;,]+/).map(function (s) { return s.trim(); }).filter(Boolean);
+    if (!tokens.length) return null;
+
+    var tests = [];
+    tokens.forEach(function (tok) {
+      var parts = tok.split(":", 2);
+      var kind = (parts[0] || "").toLowerCase();
+      var value = (parts[1] || "").trim();
+      if (!value) return;
+
+      if (kind === "cat" || kind === "category") {
+        tests.push({ kind: "cat", value: value });
+      } else if (kind === "group") {
+        tests.push({ kind: "group", value: value });
+      } else if (kind === "ele" || kind === "element" || kind === "id") {
+        tests.push({ kind: "ele", value: value });
+      }
+    });
+
+    if (!tests.length) return null;
+    return tests;
+  }
+
+  function categoryMatchesTest(catId, groupLabel, test) {
+    var val = test.value;
+    if (!val) return false;
+
+    if (test.kind === "ele") {
+      // exact category id
+      return catId === val;
+    }
+
+    if (test.kind === "cat") {
+      // prefix or exact match on category id
+      return catId === val || catId.indexOf(val) === 0;
+    }
+
+    if (test.kind === "group") {
+      if (!groupLabel) return false;
+      return groupLabel.trim().toLowerCase() === val.trim().toLowerCase();
+    }
+
+    return false;
+  }
+
+  function applyFilterToWrap(wrap) {
+    var specStr = wrap.getAttribute("data-gm-filter");
+    if (!specStr) return false;
+
+    var tests = parseFilterSpec(specStr);
+    if (!tests || !tests.length) return false;
+
+    var modeAttr = wrap.getAttribute("data-gm-filter-mode");
+    var mode = (modeAttr === "except") ? "except" : "only"; // default: only
+
+    var groupsHost = wrap.querySelector(".gm-groups");
+    if (!groupsHost) return false;
+
+    var catCheckboxes = groupsHost.querySelectorAll(".gm-cat input[data-cat-id]");
+    if (!catCheckboxes.length) return false;
+
+    catCheckboxes.forEach(function (cb) {
+      var catId = cb.getAttribute("data-cat-id") || "";
+      var groupEl = cb.closest(".gm-group");
+      var groupLabelEl = groupEl ? groupEl.querySelector(".gm-group-label") : null;
+      var groupLabel = groupLabelEl ? groupLabelEl.textContent || "" : "";
+
+      var matched = tests.some(function (t) {
+        return categoryMatchesTest(catId, groupLabel, t);
+      });
+
+      var shouldCheck = (mode === "only") ? matched : !matched;
+
+      if (cb.checked !== shouldCheck) {
+        cb.checked = shouldCheck;
+        cb.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    });
+
+    // Sync group checkboxes (FATEs / Treasuremaps groups etc.)
+    var groups = groupsHost.querySelectorAll(".gm-group");
+    groups.forEach(function (group) {
+      var grpCb = group.querySelector(".gm-group-header input[type='checkbox']");
+      if (!grpCb) return;
+
+      var groupCats = group.querySelectorAll(".gm-cat input[data-cat-id]");
+      if (!groupCats.length) return;
+
+      var allOn = Array.from(groupCats).every(function (c) { return c.checked; });
+      var anyOn = Array.from(groupCats).some(function (c) { return c.checked; });
+
+      grpCb.checked = allOn;
+      grpCb.indeterminate = !allOn && anyOn;
+    });
+
+    return true;
+  }
+
+  function applyFiltersToAllMaps() {
+    var wraps = document.querySelectorAll(".gm-wrap");
+    if (!wraps.length) return;
+
+    wraps.forEach(function (wrap) {
+      applyFilterToWrap(wrap);
+    });
+  }
+
+  function waitAndApply(attempt) {
+    attempt = attempt || 0;
+    if (attempt > 50) return; // ~10 seconds max
+
+    var wraps = document.querySelectorAll(".gm-wrap");
+    if (!wraps.length) {
+      setTimeout(function () { waitAndApply(attempt + 1); }, 200);
+      return;
+    }
+
+    var anyReady = Array.from(wraps).some(function (wrap) {
+      var host = wrap.querySelector(".gm-groups");
+      return host && host.children.length > 0;
+    });
+
+    if (!anyReady) {
+      setTimeout(function () { waitAndApply(attempt + 1); }, 200);
+      return;
+    }
+
+    applyFiltersToAllMaps();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      waitAndApply(0);
+    });
+  } else {
+    waitAndApply(0);
+  }
+})();
+</script>

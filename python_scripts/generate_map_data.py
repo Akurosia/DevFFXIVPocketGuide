@@ -2,6 +2,7 @@ from ffxiv_aku import *
 from typing import Any
 from bs4 import BeautifulSoup, Tag
 from ffxiv_aku import *
+from helper import getImage
 from PIL.ImageFile import ImageFile
 from PIL import ImageDraw, ImageFont, Image, ImageOps
 import traceback
@@ -48,6 +49,7 @@ def test():
             print('{ "id": "1", "name": "' + name + '", "category": "'+ fix_slug(name) +'", "position": ['+f'{x},{-y2+h/2}'+'], "description": "' + name + '" },')
 
 
+quest: dict[str, dict[str, str]] = loadDataTheQuickestWay("Quest.json")
 fates: dict[str, dict[str, str]] = loadDataTheQuickestWay("Fate.json", translate=False)
 fates_trans: dict[str, dict[str, str]] = loadDataTheQuickestWay("Fate.json", translate=True)
 ttype: dict[str, dict[str, str]] = loadDataTheQuickestWay("TerritoryType.json", translate=True)
@@ -57,6 +59,7 @@ ces_type: dict[str, dict[str, str]] = loadDataTheQuickestWay("DynamicEventType.j
 maps: dict[str, dict[str, str]] = loadDataTheQuickestWay("Map.json")
 fishingspot: dict[str, dict[str, str]] = loadDataTheQuickestWay("Fishingspot.json", translate=False)
 treasurehuntrank = loadDataTheQuickestWay("TreasureHuntRank.json")
+spearfishingspot: dict[str, dict[str, str]] = loadDataTheQuickestWay("SpearfishingNotebook.json", translate=False)
 fatemapping = {
         'ui/icon/060000/060852.tex': 'Notorious monster',
 
@@ -513,29 +516,40 @@ def generate_images():
             "minZoom": -1.2,
             "maxZoom": 1.7,
             "categories": [
-                { "id": "ore", "name": "Ore Node", "color": "#f59e0b" },
-                { "id": "herb", "name": "Herb Node", "color": "#22c55e" },
-                { "id": "notorious_monster", "name": "Notorious monster", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060852.tex?format=webp" },
-                { "id": "fates", "name": "Gegner Wellen", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060801.tex?format=webp" },
-                { "id": "fates", "name": "Boss besiegen", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060802.tex?format=webp" },
-                { "id": "fates", "name": "Sammeln", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060803.tex?format=webp" },
-                { "id": "fates", "name": "Verteidigen", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060804.tex?format=webp" },
-                { "id": "fates", "name": "NoType", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/000000/000000.tex?format=webp" },
-                { "id": "kill_enemies", "name": "Kill Enemies", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060501.tex?format=webp" },
-                { "id": "kill_boss", "name": "Kill Boss", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060502.tex?format=webp" },
-                { "id": "collect", "name": "Collect", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060503.tex?format=webp" },
-                { "id": "defense", "name": "Defense", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060504.tex?format=webp" },
-                { "id": "fates", "name": "Escort", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060505.tex?format=webp" },
-                { "id": "fates", "name": "Chase", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060506.tex?format=webp" },
-                { "id": "fates", "name": "Holiday (Limited Time", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060508.tex?format=webp" },
-                { "id": "fates", "name": "Concerted works", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060994.tex?format=webp" },
-                { "id": "notorious_monsters", "name": "Notorious monsters", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/060000/060958.tex?format=webp" },
-                { "id": "fates", "name": "Fete", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063926.tex?format=webp" },
-                { "id": "fates", "name": "CE Boss besiegen", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp" },
-                { "id": "fates", "name": "CE Solo Kampf", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp" },
-                { "id": "fates", "name": "CE Gegner Wellen", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web" },
-                { "id": "fishing_angel", "name": "Fishing - Angel", "group": "fishing_angel", "groupName": "Fishing" },
-                { "id": "gathering-zone", "name": "Gathering Zone", "color": "#FFc55e", "group": "Zones", "groupName": "Zones" }
+                {"id": "ore", "name": "Ore Node", "color": "#f59e0b"},
+                {"id": "herb", "name": "Herb Node", "color": "#22c55e"},
+                {"id": "notorious_monster", "name": "Notorious monster", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060852_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Gegner Wellen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060801_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Boss besiegen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060802_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Sammeln", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060803_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Verteidigen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060804_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "NoType", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/000000/000000_hr1.webp", "size": [30,30]},
+                {"id": "kill_enemies", "name": "Kill Enemies", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060501_hr1.webp", "size": [30,30]},
+                {"id": "kill_boss", "name": "Kill Boss", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060502_hr1.webp", "size": [30,30]},
+                {"id": "collect", "name": "Collect", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060503_hr1.webp", "size": [30,30]},
+                {"id": "defense", "name": "Defense", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060504_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Escort", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060505_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Chase", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060506_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Holiday (Limited Time", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060508_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Concerted works", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060994_hr1.webp", "size": [30,30]},
+                {"id": "notorious_monsters", "name": "Notorious monsters", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060958_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Fete", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/063000/063926_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "CE Boss besiegen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/063000/063909_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "CE Solo Kampf", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/063000/063910_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "CE Gegner Wellen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/063000/063911_hr1.webp", "size": [30,30]},
+
+                {"id": "quest_side", "name": "Quest - side", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/071000/071221_hr1.webp", "size": [40,40]},
+                {"id": "quest_main", "name": "Quest - main", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/071000/071201_hr1.webp", "size": [40,40]},
+                {"id": "quest_side_small", "name": "Quest - side_small", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/071000/071222_hr1.webp", "size": [40,40]},
+                {"id": "quest_blue", "name": "Quest - blue", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp", "size": [40,40]},
+                {"id": "quest_blue2", "name": "Quest - blu2e", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp", "size": [40,40]},
+                {"id": "quest_alt_sharliyan", "name": "Quest - alt_sharliyan", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/062000/062521_hr1.webp", "size": [40,40]},
+                {"id": "quest_tuliyollal", "name": "Quest - Tuliyollal", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/062000/062523_hr1.webp", "size": [40,40]},
+
+                {"id": "fishing_angel", "name": "Fishing - Angel", "group": "fishing", "groupName": "Fishing"},
+                {"id": "fishing_spear", "name": "Fishing - Speer", "group": "fishing", "groupName": "Fishing"},
+
+                {"id": "gathering-zone", "name": "Gathering Zone", "color": "#FFc55e", "group": "Zones", "groupName": "Zones"}
             ],
             "markers": [],
             "areas": []
@@ -577,6 +591,13 @@ def generate_images():
         tmaps = get_fishingspot(_map_id, w, h)
         for tmap in tmaps:
             json_as_dict['markers'].append(tmap)
+        tmaps = get_spearfishingspot(_map_id, w, h)
+        for tmap in tmaps:
+            json_as_dict['markers'].append(tmap)
+        tmaps = get_quest(_map_id, w, h)
+        for tmap in tmaps:
+            json_as_dict['markers'].append(tmap)
+
         new_failename = f"{path_of_main_script}/assets/leaflet/maps/" + flug + ".json"
         writeJsonFile(new_failename, json_as_dict)
 
@@ -637,6 +658,66 @@ def get_fishingspot(mapid, w, h):
         maps.append({  "type": "fishing_angel", "name": f"{name}", "imageUrl": "/assets/img/content/map/angel.webp", "size": [radius, radius],  "position": [x, h-y]})
     return maps
 
+spearfishdata = {}
+def get_spearfishingspot(mapid, w, h):
+    maps = []
+    global spearfishdata
+    if spearfishdata == {}:
+        for key, value in spearfishingspot.items():
+            try:
+                value['fields']['TerritoryType']['fields']['Map']['fields']['Id']
+            except:
+                continue
+            _map_id = value['fields']['TerritoryType']['fields']['Map']['fields']['Id']
+            placename_name = value['fields']['PlaceName']['fields']['Name']
+            radius = value['fields']['Radius']
+            if not spearfishdata.get(_map_id, None):
+                spearfishdata[_map_id] = {}
+            if not spearfishdata[_map_id].get(key, None):
+                spearfishdata[_map_id][key] = []
+            spearfishdata[_map_id][key].append((( value['fields']['X']), ( value['fields']['Y']), placename_name, round(radius/3, 1)))
+    if not spearfishdata.get(mapid, None):
+        return maps
+    for key, value in spearfishdata[mapid].items():
+        x, y, name, radius = value[0]
+        maps.append({  "type": "fishing_spear", "name": f"{name}", "imageUrl": "/assets/img/content/map/speer.webp", "size": [radius, radius],  "position": [x, h-y]})
+    return maps
+
+questdata = {}
+questtypes = {
+    "1":  ("side", "071000/071221_hr1.webp"),
+    "3":  ("main", "071000/071201_hr1.webp"),
+    "4":  ("side_small", "071000/071222_hr1.webp"),
+    "8":  ("blue", "071000/071341_hr1.webp"),
+    "10": ("blue2", "071000/071341_hr1.webp"),
+    "33": ("alt_sharliyan", "062000/062521_hr1.webp"),
+    "34": ("tuliyollal", "062000/062523_hr1.webp"),
+}
+def get_quest(mapid, w, h):
+    maps = []
+    global questdata
+    if questdata == {}:
+        for key, value in quest.items():
+            try:
+                value['IssuerLocation']['Map']['Id']
+            except:
+                continue
+            _map_id = value['IssuerLocation']['Map']['Id']
+            placename_name = value['Name_de']
+            if not questdata.get(_map_id, None):
+                questdata[_map_id] = {}
+            if not questdata[_map_id].get(key, None):
+                questdata[_map_id][key] = []
+            questtype = questtypes[value['EventIconType']['value']]
+            getImage(questtype[1])
+            questdata[_map_id][key].append((( value['IssuerLocation']['X']), ( value['IssuerLocation']['Z']), placename_name, questtype))
+    if not questdata.get(mapid, None):
+        return maps
+    for key, value in questdata[mapid].items():
+        x, y, name, questtype = value[0]
+
+        maps.append({  "type": f"quest_{questtype[0]}", "name": f"{name}", "position": [x+w/2, h/2-y]})
+    return maps
 
 def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
     global path_of_main_script
