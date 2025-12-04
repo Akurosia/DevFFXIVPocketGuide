@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -804,6 +810,97 @@
             "position": [
                 1692.3,
                 1561.9
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Watts (Oberlauf)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                400.0,
+                400.0
+            ],
+            "position": [
+                1300,
+                1378
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Weißölfälle",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1420,
+                1028
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Watts (Unterlauf)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                400.0,
+                400.0
+            ],
+            "position": [
+                1460,
+                748
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Zungenbrennerteich",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                400.0,
+                400.0
+            ],
+            "position": [
+                980,
+                888
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Kholusia (Westküste)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                600.0,
+                600.0
+            ],
+            "position": [
+                370,
+                338
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Bucht von Meerblick",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                790,
+                308
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Kholusia (Ostküste)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                600.0,
+                600.0
+            ],
+            "position": [
+                1710,
+                308
             ]
         }
     ],

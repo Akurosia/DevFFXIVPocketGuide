@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -340,56 +346,6 @@
     "markers": [
         {
             "id": "1",
-            "name": "Her mit den Mampf- und Mümmel-Mochi!",
-            "category": "collect",
-            "position": [
-                1151.38,
-                785.73
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Reis stampfen, Herzen erobern",
-            "category": "collect",
-            "position": [
-                1151.38,
-                785.73
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Mehr Reis stampfen, mehr Herzen erobern",
-            "category": "collect",
-            "position": [
-                1151.38,
-                785.23
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Kampfhunde von der Leine gelassen",
-            "category": "collect",
-            "position": [
-                1151.38,
-                785.73
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Ein zäher Gegner",
-            "category": "kill_boss",
-            "position": [
-                1151.38,
-                785.23
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
             "name": "Geschmack an Wein und Unrecht",
             "category": "kill_boss",
             "position": [
@@ -410,21 +366,11 @@
         },
         {
             "id": "1",
-            "name": "Mach das Mochi tot oder ein Gozu sieht rot",
-            "category": "holiday_limited_time",
+            "name": "Ein zäher Gegner",
+            "category": "kill_boss",
             "position": [
                 1151.38,
-                795.72
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Hilfe, der Tiger ist los!",
-            "category": "holiday_limited_time",
-            "position": [
-                1150.88,
-                793.72
+                785.23
             ],
             "description": ""
         },
@@ -540,11 +486,61 @@
         },
         {
             "id": "1",
-            "name": "Aufklärung am Norddamm",
-            "category": "notype",
+            "name": "Reis stampfen, Herzen erobern",
+            "category": "collect",
             "position": [
-                749.27,
-                1648.3899999999999
+                1151.38,
+                785.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mehr Reis stampfen, mehr Herzen erobern",
+            "category": "collect",
+            "position": [
+                1151.38,
+                785.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampfhunde von der Leine gelassen",
+            "category": "collect",
+            "position": [
+                1151.38,
+                785.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Her mit den Mampf- und Mümmel-Mochi!",
+            "category": "collect",
+            "position": [
+                1151.38,
+                785.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mach das Mochi tot oder ein Gozu sieht rot",
+            "category": "holiday_limited_time",
+            "position": [
+                1151.38,
+                795.72
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Hilfe, der Tiger ist los!",
+            "category": "holiday_limited_time",
+            "position": [
+                1150.88,
+                793.72
             ],
             "description": ""
         },
@@ -798,6 +794,84 @@
             "position": [
                 1008.5,
                 1118.7
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Zephyr-Schneise",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                884,
+                999
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Sommerfurt",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                682,
+                1314
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Schurkenstrom",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1054,
+                990
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Westlicher Agelyss",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                960,
+                1198
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Nymquell",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                861,
+                1355
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Flüsterklamm",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                989,
+                1490
             ]
         }
     ],

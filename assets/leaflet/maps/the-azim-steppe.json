@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -759,16 +765,6 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Das Leben der Dataq: Anjana",
-            "category": "notype",
-            "position": [
-                514.5,
-                1248.78
-            ],
-            "description": ""
-        },
-        {
             "type": "treasuremap_vergilbte_gaganaleder_karte",
             "imageUrl": "/assets/img/TreasureMaps/Vergilbte Gaganaleder-Karte/empty_map.webp",
             "size": [
@@ -1078,6 +1074,97 @@
             "position": [
                 195.79999999999995,
                 815.8
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Nem Khaal",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                1570,
+                578
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Hak Khaal",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1400,
+                1078
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Oberer Yat Khaal",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                846,
+                1158
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Azim Khaat",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                333.3,
+                333.3
+            ],
+            "position": [
+                1030,
+                978
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Tao Khaal",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                780,
+                1378
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Unterer Yat Khaal",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1080,
+                678
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Dotharl Khaa",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                575,
+                438
             ]
         }
     ],

@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -722,6 +728,58 @@
             "position": [
                 1631.0,
                 670.7
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Thaliak",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1052,
+                978
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Überlauf-Delta",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                400.0,
+                400.0
+            ],
+            "position": [
+                490,
+                788
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Thaliak-Oberlauf",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                266.7,
+                266.7
+            ],
+            "position": [
+                1042,
+                370
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Thaliak-Mittellauf",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                166.7,
+                166.7
+            ],
+            "position": [
+                931,
+                908
             ]
         }
     ],

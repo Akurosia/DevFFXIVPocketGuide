@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -632,6 +638,84 @@
             "position": [
                 1511.2,
                 1518.6
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Silbertränen-Nordufer",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1203,
+                1446
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Früher Frost",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                886,
+                1215
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Schlingwald",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                670,
+                1433
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Tiefer Schlingwald",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                595,
+                1520
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Singende Scherben",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1406,
+                1582
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Norden von Singende Scherben",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                1498,
+                1788
             ]
         }
     ],

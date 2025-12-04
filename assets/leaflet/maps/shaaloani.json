@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -490,16 +496,6 @@
         },
         {
             "id": "1",
-            "name": "Mit Blut fängt man Schlangen",
-            "category": "defense",
-            "position": [
-                994.03,
-                1673.37
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
             "name": "Fang in Gefahr",
             "category": "defense",
             "position": [
@@ -698,6 +694,58 @@
             "position": [
                 1232.8,
                 1109.2
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Niikwerepi",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1438,
+                1730
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Toari-See",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                333.3,
+                333.3
+            ],
+            "position": [
+                1524,
+                1411
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Westseite von Zorgor",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                333.3,
+                333.3
+            ],
+            "position": [
+                753,
+                188
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Ostseite von Zorgor",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                333.3,
+                333.3
+            ],
+            "position": [
+                1603,
+                188
             ]
         }
     ],

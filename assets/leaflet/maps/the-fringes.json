@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -914,6 +920,71 @@
             "position": [
                 728.7,
                 1261.4
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Timmonbach",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                525,
+                1188
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Dysterwaldt",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                366.7,
+                366.7
+            ],
+            "position": [
+                430,
+                648
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Schweif des Kometen",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                645,
+                548
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Velodyna",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                845,
+                1623
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Trugfluss",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1325,
+                1278
             ]
         }
     ],

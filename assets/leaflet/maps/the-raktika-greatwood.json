@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -549,26 +555,6 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Waldpatrouille: 3. Tojilianischer Krieg",
-            "category": "notorious_monster",
-            "position": [
-                1238.79,
-                739.28
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Waldpatrouille: Der Fall Tojils",
-            "category": "notorious_monster",
-            "position": [
-                1173.85,
-                379.63
-            ],
-            "description": ""
-        },
-        {
             "type": "treasuremap_vergilbte_smilodonleder_karte",
             "imageUrl": "/assets/img/TreasureMaps/Vergilbte Smilodonleder-Karte/empty_map.webp",
             "size": [
@@ -854,6 +840,84 @@
             "position": [
                 1174.0,
                 1324.0
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Schlangensee Tusi Mek'ta",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                600.0,
+                600.0
+            ],
+            "position": [
+                320,
+                663
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Blutkelch",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                435,
+                1058
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Lozatl",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                300.0,
+                300.0
+            ],
+            "position": [
+                750,
+                1023
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Mjrls Sehnsucht (Süden)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                400.0,
+                400.0
+            ],
+            "position": [
+                1150,
+                518
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Eidbund",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                340,
+                1288
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Mjrls Tränen",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1250,
+                263
             ]
         }
     ],

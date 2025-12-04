@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -340,26 +346,6 @@
     "markers": [
         {
             "id": "1",
-            "name": "Wunderbare Hasenparade",
-            "category": "holiday_limited_time",
-            "position": [
-                606.4200000000001,
-                1331.68
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Im Hühnerstall der Albträume",
-            "category": "holiday_limited_time",
-            "position": [
-                126.90000000000009,
-                1367.64
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
             "name": "Fröhliche Eiersuche",
             "category": "collect",
             "position": [
@@ -387,6 +373,52 @@
                 1517.5
             ],
             "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Wunderbare Hasenparade",
+            "category": "holiday_limited_time",
+            "position": [
+                606.4200000000001,
+                1331.68
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Im Hühnerstall der Albträume",
+            "category": "holiday_limited_time",
+            "position": [
+                126.90000000000009,
+                1367.64
+            ],
+            "description": ""
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Säuselschlucht",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1553,
+                1518
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Oberer Schwarztee-Bach",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                790,
+                1348
+            ]
         }
     ],
     "maxZoom": 1.7,

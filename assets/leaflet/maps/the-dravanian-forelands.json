@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -928,6 +934,110 @@
             "position": [
                 846.0,
                 475.1
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Hundertfacher Schrei",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1442,
+                1616
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Weiland",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1406,
+                1392
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Qualmende Öde",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1152,
+                870
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Auenfest",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                300.0,
+                300.0
+            ],
+            "position": [
+                1453,
+                1808
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Mourn",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                576,
+                1460
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "West-Mourn",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                410,
+                1738
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Alter Annex",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                876,
+                1582
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Halo",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                316,
+                1838
             ]
         }
     ],

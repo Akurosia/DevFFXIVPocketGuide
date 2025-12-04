@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -708,6 +714,45 @@
             "position": [
                 1662.4,
                 463.9
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Sternentiefe",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                967,
+                720
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "See der Chirwagur",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                950,
+                252
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Karvarhur die Erste",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                333.3,
+                333.3
+            ],
+            "position": [
+                265,
+                1082
             ]
         }
     ],

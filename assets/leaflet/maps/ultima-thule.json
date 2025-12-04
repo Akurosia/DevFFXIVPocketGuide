@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -754,6 +760,110 @@
             "position": [
                 587.3,
                 1427.4
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Apohelos 18-γ",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                994,
+                292
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Apohelos 18-β",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                426,
+                572
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Apohelos 18-α",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                298,
+                986
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Quell der Reue",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                698,
+                1520
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Domizil der Ea",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                250.0,
+                250.0
+            ],
+            "position": [
+                1079,
+                1659
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Limne 18",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                300.0,
+                300.0
+            ],
+            "position": [
+                212,
+                342
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Limne 3-α",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                300.0,
+                300.0
+            ],
+            "position": [
+                1824,
+                1642
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Limne 3-β",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1202,
+                1240
             ]
         }
     ],

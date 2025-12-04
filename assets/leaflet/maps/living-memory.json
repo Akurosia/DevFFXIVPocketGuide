@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -440,26 +446,6 @@
         },
         {
             "id": "1",
-            "name": "Von ganz unten hochgearbeitet",
-            "category": "notorious_monster",
-            "position": [
-                364.64,
-                399.61
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Bizarres Zwischenspiel",
-            "category": "notorious_monster",
-            "position": [
-                1738.3,
-                389.62
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
             "name": "Mehr Sicherheit für Kanalstadt",
             "category": "defense",
             "position": [
@@ -562,6 +548,84 @@
             "position": [
                 1203.2,
                 1752.9
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Das Ergründliche",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                311,
+                1383
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Quellen der Mu",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                578,
+                1523
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Leyknoten Aero",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                759,
+                1440
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Süden von Kanalstadt ",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                350.0,
+                350.0
+            ],
+            "position": [
+                665,
+                361
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Norden von Kanalstadt ",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                350.0,
+                350.0
+            ],
+            "position": [
+                425,
+                692
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Proto-Alexandria",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                166.7,
+                166.7
+            ],
+            "position": [
+                1871,
+                517
             ]
         }
     ],

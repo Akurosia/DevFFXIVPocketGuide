@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -719,16 +725,6 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Östliches Himmelsang: 2. Phase - Beginn",
-            "category": "notype",
-            "position": [
-                449.55999999999995,
-                699.3199999999999
-            ],
-            "description": ""
-        },
-        {
             "type": "treasuremap_vergilbte_lederkarte",
             "imageUrl": "/assets/img/TreasureMaps/Vergilbte Lederkarte/empty_map.webp",
             "size": [
@@ -954,6 +950,123 @@
             "position": [
                 735.6,
                 1157.6
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Coerthas",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                972,
+                570
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Hexenschlund",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1633,
+                1160
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Fuß des Schwertrückens",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                731,
+                1029
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Trauernde Heilige ",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1525,
+                1723
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Drachenkopf-Teich",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1344,
+                1252
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Daniffen-Pass",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                612,
+                959
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Eisloch",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                272,
+                968
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Schneekleid",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                108,
+                1034
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Wolkenmeer",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                660,
+                1428
             ]
         }
     ],

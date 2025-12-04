@@ -1,144 +1,842 @@
 <!-- Put this AFTER your existing map.html include (and after Leaflet + main script) -->
 <script>
+
 (function () {
-  function parseFilterSpec(str) {
-    if (!str) return null;
-    var tokens = String(str).split(/[;,]+/).map(function (s) { return s.trim(); }).filter(Boolean);
-    if (!tokens.length) return null;
-
-    var tests = [];
-    tokens.forEach(function (tok) {
-      var parts = tok.split(":", 2);
-      var kind = (parts[0] || "").toLowerCase();
-      var value = (parts[1] || "").trim();
-      if (!value) return;
-
-      if (kind === "cat" || kind === "category") {
-        tests.push({ kind: "cat", value: value });
-      } else if (kind === "group") {
-        tests.push({ kind: "group", value: value });
-      } else if (kind === "ele" || kind === "element" || kind === "id") {
-        tests.push({ kind: "ele", value: value });
-      }
+  function makeColorIcon(color) {
+    var c = color || "#60a5fa";
+    var svg = encodeURIComponent(
+      "<svg xmlns='http://www.w3.org/2000/svg' width='28' height='36' viewBox='0 0 28 36'>" +
+        "<g>" +
+          "<path d='M14 2a10 10 0 0 0-10 10c0 6 4 10 10 16 6-6 10-10 10-16A10 10 0 0 0 14 2z' fill='" + c + "' stroke='black' stroke-width='1.5'/>" +
+          "<circle cx='14' cy='12' r='4' fill='white' stroke='black' stroke-width='1'/>" +
+        "</g>" +
+      "</svg>"
+    );
+    return L.icon({
+      iconUrl: "data:image/svg+xml," + svg,
+      iconSize: [28, 36],
+      iconAnchor: [14, 34],
+      popupAnchor: [0, -30]
     });
-
-    if (!tests.length) return null;
-    return tests;
   }
 
-  function categoryMatchesTest(catId, groupLabel, test) {
-    var val = test.value;
-    if (!val) return false;
+  function getCategoryIcon(cat, fallbackColor) {
+    if (!cat) return makeColorIcon(fallbackColor);
+    if (cat._leafletIcon) return cat._leafletIcon;
 
-    if (test.kind === "ele") {
-      // exact category id
-      return catId === val;
+    var url = cat.imageUrl || cat.iconUrl || cat.icon;
+    if (!url) {
+      cat._leafletIcon = makeColorIcon(cat.color || fallbackColor);
+      return cat._leafletIcon;
     }
 
-    if (test.kind === "cat") {
-      // prefix or exact match on category id
-      return catId === val || catId.indexOf(val) === 0;
+    var size = null;
+    if (Array.isArray(cat.iconSize) && cat.iconSize.length >= 2) {
+      size = cat.iconSize;
+    } else if (Array.isArray(cat.size) && cat.size.length >= 2) {
+      size = cat.size;
     }
 
-    if (test.kind === "group") {
-      if (!groupLabel) return false;
-      return groupLabel.trim().toLowerCase() === val.trim().toLowerCase();
+    var baseW = size ? Number(size[0]) : 32;
+    var baseH = size ? Number(size[1]) : 32;
+    if (!isFinite(baseW) || baseW <= 0) baseW = 32;
+    if (!isFinite(baseH) || baseH <= 0) baseH = 32;
+
+    var iconAnchor = cat.iconAnchor || [baseW / 2, baseH / 2];   // center
+    var popupAnchor = cat.popupAnchor || [0, -baseH / 2];        // above center
+
+    var opts = {
+      iconUrl: url,
+      iconAnchor: iconAnchor,
+      popupAnchor: popupAnchor
+    };
+    if (size) {
+      opts.iconSize = [baseW, baseH];
     }
 
-    return false;
+    cat._leafletIcon = L.icon(opts);
+    return cat._leafletIcon;
   }
 
-  function applyFilterToWrap(wrap) {
-    var specStr = wrap.getAttribute("data-gm-filter");
-    if (!specStr) return false;
+  // Effective category id for markers: category || type
+  function resolveMarkerCategoryId(m) {
+    if (!m) return "";
+    if (m.category) return m.category;
+    if (m.type) return m.type;
+    return "";
+  }
 
-    var tests = parseFilterSpec(specStr);
-    if (!tests || !tests.length) return false;
+  function normalizeZones(raw) {
+    if (raw && raw.imageUrl) {
+      return [{
+        id: raw.id || "default",
+        label: raw.name || raw.id || "Map",
+        cfg: raw
+      }];
+    }
 
-    var modeAttr = wrap.getAttribute("data-gm-filter-mode");
-    var mode = (modeAttr === "except") ? "except" : "only"; // default: only
+    var zones = [];
 
-    var groupsHost = wrap.querySelector(".gm-groups");
-    if (!groupsHost) return false;
-
-    var catCheckboxes = groupsHost.querySelectorAll(".gm-cat input[data-cat-id]");
-    if (!catCheckboxes.length) return false;
-
-    catCheckboxes.forEach(function (cb) {
-      var catId = cb.getAttribute("data-cat-id") || "";
-      var groupEl = cb.closest(".gm-group");
-      var groupLabelEl = groupEl ? groupEl.querySelector(".gm-group-label") : null;
-      var groupLabel = groupLabelEl ? groupLabelEl.textContent || "" : "";
-
-      var matched = tests.some(function (t) {
-        return categoryMatchesTest(catId, groupLabel, t);
+    if (raw && raw.zones && typeof raw.zones === "object") {
+      Object.keys(raw.zones).forEach(function (key) {
+        var z = raw.zones[key];
+        if (!z || !z.imageUrl || !Array.isArray(z.size)) return;
+        zones.push({
+          id: z.id || key,
+          label: z.name || z.id || key,
+          cfg: z
+        });
       });
+      if (zones.length) return zones;
+    }
 
-      var shouldCheck = (mode === "only") ? matched : !matched;
+    if (raw && typeof raw === "object") {
+      Object.keys(raw).forEach(function (key) {
+        var z = raw[key];
+        if (!z || typeof z !== "object") return;
+        if (!z.imageUrl || !Array.isArray(z.size)) return;
+        zones.push({
+          id: z.id || key,
+          label: z.name || z.id || key,
+          cfg: z
+        });
+      });
+    }
 
-      if (cb.checked !== shouldCheck) {
-        cb.checked = shouldCheck;
-        cb.dispatchEvent(new Event("change", { bubbles: true }));
-      }
-    });
+    if (!zones.length && raw) {
+      zones.push({
+        id: raw.id || "default",
+        label: raw.name || raw.id || "Map",
+        cfg: raw
+      });
+    }
 
-    // Sync group checkboxes (FATEs / Treasuremaps groups etc.)
-    var groups = groupsHost.querySelectorAll(".gm-group");
-    groups.forEach(function (group) {
-      var grpCb = group.querySelector(".gm-group-header input[type='checkbox']");
-      if (!grpCb) return;
-
-      var groupCats = group.querySelectorAll(".gm-cat input[data-cat-id]");
-      if (!groupCats.length) return;
-
-      var allOn = Array.from(groupCats).every(function (c) { return c.checked; });
-      var anyOn = Array.from(groupCats).some(function (c) { return c.checked; });
-
-      grpCb.checked = allOn;
-      grpCb.indeterminate = !allOn && anyOn;
-    });
-
-    return true;
+    return zones;
   }
 
-  function applyFiltersToAllMaps() {
-    var wraps = document.querySelectorAll(".gm-wrap");
-    if (!wraps.length) return;
+  function initEmbed(root) {
+    if (!window.L || !root) return;
+    if (root.dataset.gmInitialized === "1") return;
+    root.dataset.gmInitialized = "1";
 
-    wraps.forEach(function (wrap) {
-      applyFilterToWrap(wrap);
-    });
-  }
+    var mapUrl      = root.getAttribute("data-map-url");
+    var titleEl     = root.querySelector(".gm-title");
+    var groupsHost  = root.querySelector(".gm-groups");
+    var mapHost     = root.querySelector(".gm-map");
+    var controlsHost= root.querySelector(".gm-legend-controls");
+    var searchInput = root.querySelector(".gm-search-input");
 
-  function waitAndApply(attempt) {
-    attempt = attempt || 0;
-    if (attempt > 50) return; // ~10 seconds max
-
-    var wraps = document.querySelectorAll(".gm-wrap");
-    if (!wraps.length) {
-      setTimeout(function () { waitAndApply(attempt + 1); }, 200);
+    if (!mapUrl) {
+      if (titleEl) titleEl.textContent = "No map URL configured";
       return;
     }
 
-    var anyReady = Array.from(wraps).some(function (wrap) {
-      var host = wrap.querySelector(".gm-groups");
-      return host && host.children.length > 0;
-    });
+    fetch(mapUrl, { cache: "no-cache" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (rawCfg) {
+        var zones = normalizeZones(rawCfg);
+        if (!zones.length) {
+          throw new Error("No valid zones in JSON");
+        }
 
-    if (!anyReady) {
-      setTimeout(function () { waitAndApply(attempt + 1); }, 200);
-      return;
-    }
+        var firstZoneCfg = zones[0].cfg;
+        if (!firstZoneCfg || !firstZoneCfg.imageUrl || !Array.isArray(firstZoneCfg.size)) {
+          throw new Error("Invalid first zone JSON");
+        }
 
-    applyFiltersToAllMaps();
+        var size0 = firstZoneCfg.size;
+        var w0 = Number(size0[0]);
+        var h0 = Number(size0[1]);
+        if (!isFinite(w0) || !isFinite(h0)) {
+          throw new Error("Invalid size in first zone JSON");
+        }
+
+        var bounds0 = [[0, 0], [h0, w0]];
+
+        var map = L.map(mapHost, {
+          crs: L.CRS.Simple,
+          zoomControl: true,
+          minZoom: (typeof firstZoneCfg.minZoom === "number") ? firstZoneCfg.minZoom : -2,
+          maxZoom: (typeof firstZoneCfg.maxZoom === "number") ? firstZoneCfg.maxZoom : 2,
+          zoomSnap: 0.25,
+          zoomDelta: 0.25,
+          wheelPxPerZoomLevel: 300,
+          maxBounds: bounds0,
+          maxBoundsViscosity: 0.9
+        });
+
+        var currentZoneIndex = 0;
+        var currentCfgForView = null;
+        var initialViewSet = false;
+        var baseOverlay = null;
+
+        var categories = [];
+        var markers = [];
+        var areas = [];
+
+        var categoryActive = Object.create(null);
+        var markerLayerByCat = Object.create(null);
+        var baseMarkerLayer = L.layerGroup().addTo(map);
+
+        var markerEntries = [];
+        var treasureEntries = [];
+        var areaEntries = [];
+        var searchTerm = "";
+
+        var coordsEl = document.createElement("div");
+        coordsEl.className = "gm-coords";
+        coordsEl.textContent = "x: -, y: -";
+        mapHost.appendChild(coordsEl);
+
+        map.on("mousemove", function (e) {
+          if (!e.latlng) return;
+          var px = Math.round(e.latlng.lng);
+          var py = Math.round(e.latlng.lat);
+          coordsEl.textContent = "x: " + px + ", y: " + py;
+        });
+
+        map.on("mouseout", function () {
+          coordsEl.textContent = "x: -, y: -";
+        });
+
+        function catById(id) {
+          return categories.find(function (c) { return c.id === id; }) || null;
+        }
+
+        function applyInitialView() {
+          if (!currentCfgForView) return;
+          if (!mapHost.offsetWidth || !mapHost.offsetHeight) return;
+
+          var size = currentCfgForView.size || firstZoneCfg.size;
+          if (!Array.isArray(size)) return;
+
+          var w = Number(size[0]);
+          var h = Number(size[1]);
+          if (!isFinite(w) || !isFinite(h)) return;
+
+          var bounds = [[0, 0], [h, w]];
+
+          initialViewSet = true;
+          map.invalidateSize();
+
+          var centerLat = h / 2;
+          var centerLng = w / 2;
+          var zoom;
+          if (typeof currentCfgForView.defaultZoom === "number") {
+            zoom = currentCfgForView.defaultZoom;
+          } else {
+            zoom = map.getBoundsZoom(bounds, true);
+          }
+
+          map.setView([centerLat, centerLng], zoom);
+          map.setMaxBounds(bounds);
+        }
+
+        setTimeout(applyInitialView, 0);
+
+        if (typeof ResizeObserver !== "undefined") {
+          var ro = new ResizeObserver(function () {
+            map.invalidateSize();
+            applyInitialView();
+          });
+          ro.observe(mapHost);
+        } else {
+          window.addEventListener("resize", function () {
+            map.invalidateSize();
+            applyInitialView();
+          });
+        }
+
+        function recomputeVisibility() {
+          var term = searchTerm;
+
+          markerEntries.forEach(function (entry) {
+            var activeCat = true;
+            if (entry.categoryId && Object.prototype.hasOwnProperty.call(categoryActive, entry.categoryId)) {
+              activeCat = !!categoryActive[entry.categoryId];
+            }
+            var matchSearch = !term || (entry.searchText && entry.searchText.indexOf(term) !== -1);
+            var shouldShow = activeCat && matchSearch;
+
+            var layer = entry.layer;
+            if (!layer) return;
+
+            var has = layer.hasLayer(entry.marker);
+            if (shouldShow && !has) {
+              layer.addLayer(entry.marker);
+            } else if (!shouldShow && has) {
+              layer.removeLayer(entry.marker);
+            }
+          });
+
+          treasureEntries.forEach(function (entry) {
+            var activeCat = true;
+            if (entry.categoryId && Object.prototype.hasOwnProperty.call(categoryActive, entry.categoryId)) {
+              activeCat = !!categoryActive[entry.categoryId];
+            }
+            var matchSearch = !term || (entry.searchText && entry.searchText.indexOf(term) !== -1);
+            var shouldShow = activeCat && matchSearch;
+
+            var ov = entry.overlay;
+            var has = map.hasLayer(ov);
+            if (shouldShow && !has) {
+              ov.addTo(map);
+            } else if (!shouldShow && has) {
+              map.removeLayer(ov);
+            }
+          });
+
+          areaEntries.forEach(function (entry) {
+            var activeCat = true;
+            if (entry.categoryId && Object.prototype.hasOwnProperty.call(categoryActive, entry.categoryId)) {
+              activeCat = !!categoryActive[entry.categoryId];
+            }
+            var matchSearch = !term || (entry.searchText && entry.searchText.indexOf(term) !== -1);
+            var shouldShow = activeCat && matchSearch;
+
+            var poly = entry.poly;
+            var has = map.hasLayer(poly);
+            if (shouldShow && !has) {
+              poly.addTo(map);
+            } else if (!shouldShow && has) {
+              poly.remove();
+            }
+          });
+        }
+
+        function toggleCategory(catId, show) {
+          categoryActive[catId] = !!show;
+          recomputeVisibility();
+        }
+
+        function buildGroupsMeta() {
+          var groups = {};
+          categories.forEach(function (cat) {
+            var gid = cat.group || cat.groupId || cat.group_id || "default";
+            var gname = cat.groupName || cat.group || cat.group_label || (gid === "default" ? "Categories" : gid);
+            if (!groups[gid]) {
+              groups[gid] = { id: gid, name: gname, categories: [] };
+            }
+            groups[gid].categories.push(cat);
+          });
+          return Object.values(groups);
+        }
+
+        function buildLegend() {
+          if (!groupsHost) return;
+
+          var totals = {};
+          markers.forEach(function (m) {
+            var cid = resolveMarkerCategoryId(m);
+            if (!cid) return;
+            totals[cid] = (totals[cid] || 0) + 1;
+          });
+          areas.forEach(function (a) {
+            if (!a.category) return;
+            totals[a.category] = (totals[a.category] || 0) + 1;
+          });
+
+          groupsHost.innerHTML = "";
+          var groups = buildGroupsMeta();
+          var anyGroupHasEntries = false;
+
+          groups.forEach(function (g) {
+            var groupTotal = g.categories.reduce(function (acc, cat) {
+              return acc + (totals[cat.id] || 0);
+            }, 0);
+
+            if (!groupTotal) return;
+            anyGroupHasEntries = true;
+
+            var groupDiv = document.createElement("div");
+            groupDiv.className = "gm-group";
+
+            var header = document.createElement("div");
+            header.className = "gm-group-header";
+
+            var left = document.createElement("div");
+            left.className = "gm-group-header-left";
+
+            var groupCb = document.createElement("input");
+            groupCb.type = "checkbox";
+            groupCb.checked = true;
+
+            var label = document.createElement("span");
+            label.className = "gm-group-label";
+            label.textContent = g.name;
+
+            left.appendChild(groupCb);
+            left.appendChild(label);
+
+            var groupCount = document.createElement("span");
+            groupCount.className = "gm-group-count";
+            groupCount.textContent = String(groupTotal);
+
+            header.appendChild(left);
+            header.appendChild(groupCount);
+            groupDiv.appendChild(header);
+
+            var items = document.createElement("div");
+            items.className = "gm-group-items";
+
+            groupCb.addEventListener("change", function () {
+              var on = groupCb.checked;
+              g.categories.forEach(function (cat) {
+                if (!(totals[cat.id] > 0)) return;
+                var cCb = groupsHost.querySelector('input[data-cat-id="' + cat.id + '"]');
+                if (cCb) cCb.checked = on;
+                toggleCategory(cat.id, on);
+              });
+            });
+
+            g.categories.forEach(function (cat) {
+              var catTotal = totals[cat.id] || 0;
+              if (!catTotal) return;
+
+              var item = document.createElement("label");
+              item.className = "gm-cat";
+
+              var cb = document.createElement("input");
+              cb.type = "checkbox";
+              cb.checked = true;
+              cb.setAttribute("data-cat-id", cat.id);
+
+              var dot = document.createElement("span");
+              dot.className = "gm-cat-color";
+
+              var iconUrl = cat.imageUrl || cat.iconUrl || cat.icon;
+              if (iconUrl) {
+                dot.style.backgroundImage = "url(" + iconUrl + ")";
+                dot.style.backgroundColor = "transparent";
+              } else if (cat.color) {
+                dot.style.backgroundColor = cat.color;
+              }
+
+              var text = document.createElement("span");
+              text.className = "gm-cat-label";
+              text.textContent = cat.name || cat.id;
+
+              var cCount = document.createElement("span");
+              cCount.className = "gm-cat-count";
+              cCount.textContent = String(catTotal);
+
+              cb.addEventListener("change", function () {
+                toggleCategory(cat.id, cb.checked);
+              });
+
+              item.appendChild(cb);
+              item.appendChild(dot);
+              item.appendChild(text);
+              item.appendChild(cCount);
+              items.appendChild(item);
+            });
+
+            if (items.childElementCount === 0) return;
+
+            groupDiv.appendChild(items);
+            groupsHost.appendChild(groupDiv);
+          });
+
+          if (!anyGroupHasEntries) {
+            var empty = document.createElement("div");
+            empty.textContent = "No entries";
+            empty.style.fontSize = "11px";
+            empty.style.opacity = "0.8";
+            groupsHost.appendChild(empty);
+          }
+
+          var mapId = root.getAttribute("data-map-id") || "";
+          try {
+            root.dispatchEvent(new CustomEvent("gmLegendReady", {
+              detail: {
+                root: root,
+                mapId: mapId,
+                categories: categories.slice()
+              }
+            }));
+          } catch (e) {}
+        }
+
+        function loadZoneByIndex(index) {
+          if (index < 0 || index >= zones.length) index = 0;
+          currentZoneIndex = index;
+          var zone = zones[index];
+          var cfg  = zone.cfg;
+
+          currentCfgForView = cfg;
+          initialViewSet = false;
+
+          if (titleEl) {
+            titleEl.textContent = cfg.name || zone.label || zone.id || "Map";
+          }
+
+          if (baseOverlay) {
+            map.removeLayer(baseOverlay);
+            baseOverlay = null;
+          }
+
+          Object.keys(markerLayerByCat).forEach(function (cid) {
+            var lyr = markerLayerByCat[cid];
+            if (lyr) {
+              lyr.clearLayers();
+              map.removeLayer(lyr);
+            }
+          });
+
+          baseMarkerLayer.clearLayers();
+
+          areaEntries.forEach(function (entry) {
+            if (entry && entry.poly && map.hasLayer(entry.poly)) {
+              entry.poly.remove();
+            }
+          });
+
+          treasureEntries.forEach(function (entry) {
+            if (entry && entry.overlay && map.hasLayer(entry.overlay)) {
+              map.removeLayer(entry.overlay);
+            }
+          });
+
+          markerEntries = [];
+          treasureEntries = [];
+          areaEntries = [];
+
+          categories = Array.isArray(cfg.categories) ? cfg.categories.slice() : [];
+          markers    = Array.isArray(cfg.markers)    ? cfg.markers.slice()    : [];
+          areas      = Array.isArray(cfg.areas)      ? cfg.areas.slice()      : [];
+
+          var existingIds = Object.create(null);
+          categories.forEach(function (c) {
+            if (c && c.id) {
+              existingIds[c.id] = true;
+            }
+          });
+
+          function ensureCategory(id) {
+            if (!id || existingIds[id]) return;
+            existingIds[id] = true;
+            categories.push({
+              id: id,
+              name: id,
+              color: "#f97316",
+              group: "Misc",
+              groupName: "Misc"
+            });
+          }
+
+          markers.forEach(function (m) {
+            var cid = resolveMarkerCategoryId(m);
+            if (cid) ensureCategory(cid);
+          });
+          areas.forEach(function (a) {
+            if (a.category) ensureCategory(a.category);
+          });
+
+          categoryActive = Object.create(null);
+          categories.forEach(function (c) {
+            categoryActive[c.id] = true;
+          });
+
+          var size = cfg.size || firstZoneCfg.size;
+          var w = Number(size[0]);
+          var h = Number(size[1]);
+          if (!isFinite(w) || !isFinite(h)) {
+            throw new Error("Invalid size in zone JSON");
+          }
+          var bounds = [[0, 0], [h, w]];
+
+          baseOverlay = L.imageOverlay(cfg.imageUrl, bounds).addTo(map);
+          map.setMaxBounds(bounds);
+
+          markerLayerByCat = Object.create(null);
+          categories.forEach(function (cat) {
+            markerLayerByCat[cat.id] = L.layerGroup().addTo(map);
+          });
+
+          markers.forEach(function (m) {
+            var px, py;
+            if (Array.isArray(m.position)) {
+              px = Number(m.position[0]);
+              py = Number(m.position[1]);
+            } else {
+              px = Number(m.x);
+              py = Number(m.y);
+            }
+            if (!isFinite(px) || !isFinite(py)) return;
+
+            var lat = py;
+            var lng = px;
+
+            var catId = resolveMarkerCategoryId(m);
+            var cat = catById(catId);
+            var color = (cat && cat.color) || "#60a5fa";
+
+            var catLabel = cat ? (cat.name || cat.id || "") : "";
+            var name = m.name || "";
+            var desc = m.description || "";
+            var searchText = (name + " " + (catId || "") + " " + catLabel + " " + desc).toLowerCase();
+
+            var html = "<strong>" + (name || "Marker") + "</strong>";
+            if (catLabel) {
+              html += "<br><span style=\"font-size:11px;opacity:0.9\">" + catLabel + "</span>";
+            }
+            if (desc) {
+              html += "<br><span style=\"font-size:11px;opacity:0.9\">" + desc + "</span>";
+            }
+            if (m.url) {
+              var u = String(m.url);
+              html += "<br><a href=\"" + u + "\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"font-size:11px;\">Open link</a>";
+            }
+
+            var layer = catId && markerLayerByCat[catId] ? markerLayerByCat[catId] : baseMarkerLayer;
+
+            // Treasuremaps: type must start with "treasuremap_"
+            if (typeof m.type === "string" && (m.type.startsWith("treasuremap_") || m.type.startsWith("fishing_"))  ) {
+              var imgUrl = m.imageUrl || m.iconUrl || m.url;
+              if (!imgUrl) {
+                var fallbackIcon = getCategoryIcon(cat, color);
+                var fallbackMarker = L.marker([lat, lng], { icon: fallbackIcon });
+                fallbackMarker.bindPopup(html, {
+                  autoPan: true,
+                  closeButton: true,
+                  maxWidth: 260
+                });
+                markerEntries.push({
+                  marker: fallbackMarker,
+                  categoryId: catId || null,
+                  searchText: searchText,
+                  layer: layer
+                });
+                return;
+              }
+
+              var sizeArr = Array.isArray(m.size) && m.size.length >= 2
+                ? m.size
+                : (m.width && m.height ? [m.width, m.height] : [256, 256]);
+
+              var wImg = Number(sizeArr[0]);
+              var hImg = Number(sizeArr[1]);
+              if (!isFinite(wImg) || !isFinite(hImg) || wImg <= 0 || hImg <= 0) {
+                wImg = 256;
+                hImg = 256;
+              }
+
+              var halfW = wImg / 2;
+              var halfH = hImg / 2;
+
+              var imgBounds = [
+                [lat - halfH, lng - halfW],
+                [lat + halfH, lng + halfW]
+              ];
+
+              var overlay = L.imageOverlay(imgUrl, imgBounds, {
+                opacity: typeof m.opacity === "number" ? m.opacity : 0.9,
+                interactive: true
+              });
+
+              overlay.bindPopup(html, {
+                autoPan: true,
+                closeButton: true,
+                maxWidth: 260
+              });
+
+              overlay.addTo(map);
+
+              treasureEntries.push({
+                overlay: overlay,
+                categoryId: catId || null,
+                searchText: searchText
+              });
+              return;
+            }
+
+            // Non-treasure markers:
+            // If marker.imageUrl is set, use it (optionally with marker.size),
+            // centered on the POI.
+            var icon;
+            if (m.imageUrl) {
+              var mSize = null;
+              if (Array.isArray(m.size) && m.size.length >= 2) {
+                mSize = m.size;
+              }
+
+              var baseW = mSize ? Number(mSize[0]) : 32;
+              var baseH = mSize ? Number(mSize[1]) : 32;
+              if (!isFinite(baseW) || baseW <= 0) baseW = 32;
+              if (!isFinite(baseH) || baseH <= 0) baseH = 32;
+
+              var iconOpts = {
+                iconUrl: m.imageUrl,
+                iconAnchor: [baseW / 2, baseH / 2], // center
+                popupAnchor: [0, -baseH / 2]        // above center
+              };
+              if (mSize) {
+                iconOpts.iconSize = [baseW, baseH];
+              }
+
+              icon = L.icon(iconOpts);
+            } else {
+              // Category-level icon (may have imageUrl and size)
+              icon = getCategoryIcon(cat, color);
+            }
+
+            var marker = L.marker([lat, lng], { icon: icon });
+
+            marker.bindPopup(html, {
+              autoPan: true,
+              closeButton: true,
+              maxWidth: 260
+            });
+
+            markerEntries.push({
+              marker: marker,
+              categoryId: catId || null,
+              searchText: searchText,
+              layer: layer
+            });
+          });
+
+          areas.forEach(function (a) {
+            if (!Array.isArray(a.points) || !a.points.length) return;
+
+            var latlngs = a.points.map(function (pt) {
+              if (!Array.isArray(pt) || pt.length < 2) return null;
+              var x = Number(pt[0]);
+              var y = Number(pt[1]);
+              if (!isFinite(x) || !isFinite(y)) return null;
+              return [y, x];
+            }).filter(function (p) { return !!p; });
+
+            if (!latlngs.length) return;
+
+            var catId = a.category || "";
+            var cat = catById(catId);
+            var color = (cat && cat.color) || "#f97316";
+
+            var poly = L.polygon(latlngs, {
+              color: color,
+              fillColor: color,
+              weight: 2,
+              fillOpacity: 0.4
+            });
+
+            var catLabel = cat ? (cat.name || cat.id || "") : "";
+            var name = a.name || "";
+            var desc = a.description || "";
+            var searchText = (name + " " + (catId || "") + " " + catLabel + " " + desc).toLowerCase();
+
+            var html = "<strong>" + (name || "Area") + "</strong>";
+            if (catLabel) {
+              html += "<br><span style=\"font-size:11px;opacity:0.9\">" + catLabel + "</span>";
+            }
+            if (desc) {
+              html += "<br><span style=\"font-size:11px;opacity:0.9\">" + desc + "</span>";
+            }
+
+            poly.bindPopup(html, {
+              autoPan: true,
+              closeButton: true,
+              maxWidth: 260
+            });
+
+            areaEntries.push({
+              poly: poly,
+              categoryId: catId || null,
+              searchText: searchText
+            });
+          });
+
+          buildLegend();
+          applyInitialView();
+          recomputeVisibility();
+        }
+
+        if (zones.length > 1) {
+          var switcher = document.createElement("div");
+          switcher.className = "gm-zone-switcher";
+
+          var select = document.createElement("select");
+          zones.forEach(function (z, idx) {
+            var opt = document.createElement("option");
+            opt.value = String(idx);
+            opt.textContent = z.label || z.id || ("Zone " + (idx + 1));
+            select.appendChild(opt);
+          });
+          select.value = "0";
+
+          select.addEventListener("change", function () {
+            var idx = parseInt(select.value, 10);
+            if (!isFinite(idx)) idx = 0;
+            loadZoneByIndex(idx);
+          });
+
+          switcher.appendChild(select);
+          mapHost.appendChild(switcher);
+        }
+
+        if (controlsHost) {
+          controlsHost.addEventListener("click", function (ev) {
+            var btn = ev.target.closest(".gm-legend-button");
+            if (!btn) return;
+            var action = btn.getAttribute("data-action");
+            if (!action) return;
+
+            var show = action === "show-all";
+            categories.forEach(function (cat) {
+              var total = 0;
+              markers.forEach(function (m) {
+                var cid = resolveMarkerCategoryId(m);
+                if (cid === cat.id) total++;
+              });
+              areas.forEach(function (a) {
+                if (a.category === cat.id) total++;
+              });
+              if (!total) return;
+
+              var cb = groupsHost.querySelector('input[data-cat-id="' + cat.id + '"]');
+              if (cb) cb.checked = show;
+              toggleCategory(cat.id, show);
+            });
+
+            var groupBoxes = groupsHost.querySelectorAll(".gm-group-header input[type='checkbox']");
+            groupBoxes.forEach(function (gCb) {
+              gCb.checked = show;
+            });
+          });
+        }
+
+        if (searchInput) {
+          searchInput.addEventListener("input", function () {
+            var v = searchInput.value || "";
+            searchTerm = v.trim().toLowerCase();
+            recomputeVisibility();
+          });
+        }
+
+        loadZoneByIndex(0);
+      })
+      .catch(function (err) {
+        if (titleEl) titleEl.textContent = "Map error";
+        var msg = document.createElement("div");
+        msg.className = "gm-error";
+        msg.textContent = "Failed to load map: " + err.message;
+        root.appendChild(msg);
+        console.error("[MapEmbed] Error loading", mapUrl, err);
+      });
+  }
+
+  function boot() {
+    var embeds = document.querySelectorAll(".gm-wrap");
+    embeds.forEach(initEmbed);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () {
-      waitAndApply(0);
-    });
+    document.addEventListener("DOMContentLoaded", boot);
   } else {
-    waitAndApply(0);
+    boot();
   }
 })();
 </script>

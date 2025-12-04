@@ -55,6 +55,7 @@ placename: dict[str, dict[str, str]] = loadDataTheQuickestWay("PlaceName.json", 
 ces: dict[str, dict[str, str]] = loadDataTheQuickestWay("DynamicEvent.json")
 ces_type: dict[str, dict[str, str]] = loadDataTheQuickestWay("DynamicEventType.json")
 maps: dict[str, dict[str, str]] = loadDataTheQuickestWay("Map.json")
+fishingspot: dict[str, dict[str, str]] = loadDataTheQuickestWay("Fishingspot.json", translate=False)
 treasurehuntrank = loadDataTheQuickestWay("TreasureHuntRank.json")
 fatemapping = {
         'ui/icon/060000/060852.tex': 'Notorious monster',
@@ -483,7 +484,7 @@ def generate_images():
                     _x_offset = float(_map['OffsetX'])
                     _y_offset = float(_map['OffsetY'])
 
-                    print_color_green(location)
+                    #print_color_green(location)
                     if location in ["Eureka Hydatos", "Bozjan Southern Front"]:
                         _x_offset = 0
                         _y_offset = 0
@@ -533,6 +534,7 @@ def generate_images():
                 { "id": "fates", "name": "CE Boss besiegen", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063909.tex?format=webp" },
                 { "id": "fates", "name": "CE Solo Kampf", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063910.tex?format=webp" },
                 { "id": "fates", "name": "CE Gegner Wellen", "group": "Fates", "groupName": "FATEs", "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web" },
+                { "id": "fishing_angel", "name": "Fishing - Angel", "group": "fishing_angel", "groupName": "Fishing" },
                 { "id": "gathering-zone", "name": "Gathering Zone", "color": "#FFc55e", "group": "Zones", "groupName": "Zones" }
             ],
             "markers": [],
@@ -540,8 +542,8 @@ def generate_images():
         }
 
         #print_color_red(baseimage)
-        print_color_red((fix_slug(location), _map_id, _map['OffsetX'], _map['OffsetY'], _map['SizeFactor']))
-        print()
+        #print_color_red((fix_slug(location), _map_id, _map['OffsetX'], _map['OffsetY'], _map['SizeFactor']))
+        #print()
         original_image: ImageFile = Image.open(baseimage)
         #print_pretty_json(fate_type)
         for _type, f_type in fate_type.items():
@@ -572,10 +574,11 @@ def generate_images():
         for tmap in maptypes:
             json_as_dict['categories'].append(tmap)
 
+        tmaps = get_fishingspot(_map_id, w, h)
+        for tmap in tmaps:
+            json_as_dict['markers'].append(tmap)
         new_failename = f"{path_of_main_script}/assets/leaflet/maps/" + flug + ".json"
         writeJsonFile(new_failename, json_as_dict)
-
-
 
 try:
     from treasurespot import get_coords_later
@@ -607,27 +610,52 @@ def fix_special(merged_fates):
             if not fate_data.get('Icon Objective', None):
                 icon = ces[fate_id]["EventType"]["IconObjective1"]['path']
                 merged_fates[zone][fate_id]['Type'] = fatemapping[icon]
-
     return merged_fates
+
+fishdata = {}
+def get_fishingspot(mapid, w, h):
+    maps = []
+    global fishdata
+    if fishdata == {}:
+        for key, value in fishingspot.items():
+            try:
+                value['fields']['TerritoryType']['fields']['Map']['fields']['Id']
+            except:
+                continue
+            _map_id = value['fields']['TerritoryType']['fields']['Map']['fields']['Id']
+            placename_name = value['fields']['PlaceName']['fields']['Name']
+            radius = value['fields']['Radius']
+            if not fishdata.get(_map_id, None):
+                fishdata[_map_id] = {}
+            if not fishdata[_map_id].get(key, None):
+                fishdata[_map_id][key] = []
+            fishdata[_map_id][key].append((( value['fields']['X']), ( value['fields']['Z']), placename_name, round(radius/3, 1)))
+    if not fishdata.get(mapid, None):
+        return maps
+    for key, value in fishdata[mapid].items():
+        x, y, name, radius = value[0]
+        maps.append({  "type": "fishing_angel", "name": f"{name}", "imageUrl": "/assets/img/content/map/angel.webp", "size": [radius, radius],  "position": [x, h-y]})
+    return maps
+
 
 def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
     global path_of_main_script
     path_of_main_script = main_script
-    try:
-        tc_fates = get_data_from_teamcraft()
-        #print_color_blue(tc_fates)
-        gw_fates = getLinksFromConsoleGamesWiki(0)
-        merged_fates = merge_fate_data(tc_fates, gw_fates)
-        merged_fates = fix_special(merged_fates)
-        #print_pretty_json(merged_fates['Bozjan Southern Front'])
-
-        writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
-        #writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
-        #writeJsonFile(r"C:\Users\Akurosia\Documents\GitHub\DevFFXIVPocketGuide\python_scripts\FatesFromConsoleWiki.json", merged_fates)
-
-        print("[GAFD] Completed getting new Fates")
-    except Exception as e:
-        traceback.print_exc()
+    #try:
+    #    tc_fates = get_data_from_teamcraft()
+    #    #print_color_blue(tc_fates)
+    #    gw_fates = getLinksFromConsoleGamesWiki(0)
+    #    merged_fates = merge_fate_data(tc_fates, gw_fates)
+    #    merged_fates = fix_special(merged_fates)
+    #    #print_pretty_json(merged_fates['Bozjan Southern Front'])
+#
+    #    writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
+    #    #writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
+    #    #writeJsonFile(r"C:\Users\Akurosia\Documents\GitHub\DevFFXIVPocketGuide\python_scripts\FatesFromConsoleWiki.json", merged_fates)
+#
+    #    print("[GAFD] Completed getting new Fates")
+    #except Exception as e:
+    #    traceback.print_exc()
     generate_images()
 
 

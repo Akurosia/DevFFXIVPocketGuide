@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -728,6 +734,32 @@
             "position": [
                 1141.5,
                 1283.2
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Himmelsstiege",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                744,
+                1532
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Bronzesee-Nordwestufer",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                166.7,
+                166.7
+            ],
+            "position": [
+                920,
+                1188
             ]
         }
     ],

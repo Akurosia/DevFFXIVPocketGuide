@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -489,36 +495,6 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Ungeheuerlich!",
-            "category": "notype",
-            "position": [
-                1248.78,
-                999.02
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Schufter-10 wird verschrottet",
-            "category": "notype",
-            "position": [
-                1248.78,
-                999.02
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Nächstenliebe, Nächstenhiebe",
-            "category": "notype",
-            "position": [
-                1248.78,
-                999.02
-            ],
-            "description": ""
-        },
-        {
             "type": "treasuremap_vergilbte_keilerleder_karte",
             "imageUrl": "/assets/img/TreasureMaps/Vergilbte Keilerleder-Karte/empty_map.webp",
             "size": [
@@ -636,6 +612,32 @@
             "position": [
                 1036.1,
                 855.1
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Erdseim-Felder",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                986,
+                920
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Blauer Dunst",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1156,
+                799
             ]
         }
     ],

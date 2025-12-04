@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -794,6 +800,123 @@
             "position": [
                 1307.2,
                 1650.8
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Yedlihmad",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1228,
+                284
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Thavnair-Küste",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                600.0,
+                600.0
+            ],
+            "position": [
+                428,
+                430
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Daemirs Bucht",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                438,
+                958
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Gallenerz-Feld",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                998,
+                1688
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Wächter-Torana",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                450.0,
+                450.0
+            ],
+            "position": [
+                1500,
+                1629
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Ksiroda",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                400.0,
+                400.0
+            ],
+            "position": [
+                1478,
+                1030
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Pavanas Reue",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                150.0,
+                150.0
+            ],
+            "position": [
+                1149,
+                1373
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Mayaquell",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                250.0,
+                250.0
+            ],
+            "position": [
+                1161,
+                861
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Duftende Wogen",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                300.0,
+                300.0
+            ],
+            "position": [
+                322,
+                1720
             ]
         }
     ],

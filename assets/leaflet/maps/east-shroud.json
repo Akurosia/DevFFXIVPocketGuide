@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -818,6 +824,71 @@
             "position": [
                 1064.8,
                 575.1
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Honigblumen-Steg",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                401,
+                954
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Lindgrüner Tropfen",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                973,
+                1023
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Quellenlauf-Bach",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1150,
+                834
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Sylphenland",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1250,
+                1062
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Dom der Einkehr",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                833,
+                1250
             ]
         }
     ],

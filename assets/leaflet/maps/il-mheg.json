@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -415,36 +421,6 @@
             "position": [
                 1165.3600000000001,
                 1221.31
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Lausbubengeschichten: Amaros",
-            "category": "defense",
-            "position": [
-                1313.72,
-                1598.44
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Lausbubengeschichten: Nu Mou",
-            "category": "defense",
-            "position": [
-                1458.58,
-                1443.59
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Lausbubengeschichten: Rowan",
-            "category": "defense",
-            "position": [
-                1173.85,
-                1218.81
             ],
             "description": ""
         },
@@ -814,6 +790,97 @@
             "position": [
                 1207.9,
                 1475.3
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Spiegelchen",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                300.0,
+                300.0
+            ],
+            "position": [
+                165,
+                983
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Großes Spiegelchen",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                800.0,
+                800.0
+            ],
+            "position": [
+                1000,
+                958
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Hochmütiges Kind",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1050,
+                1643
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Neidisches Kind",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1240,
+                1648
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Collards Schwäche",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1545,
+                983
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Verwöhntes Kind",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                400.0,
+                400.0
+            ],
+            "position": [
+                1395,
+                1423
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Tempel des Heiligen Fathric",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                300.0,
+                300.0
+            ],
+            "position": [
+                1695,
+                783
             ]
         }
     ],

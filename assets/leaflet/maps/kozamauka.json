@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -708,6 +714,110 @@
             "position": [
                 1564.5,
                 291.9
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Bopo'uihih",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                500.0,
+                500.0
+            ],
+            "position": [
+                482,
+                1478
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Hanu-Wasser",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                400.0,
+                400.0
+            ],
+            "position": [
+                1096,
+                1452
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Miyakabek'zu",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1411,
+                1498
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Taustaden",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1842,
+                436
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Poga-Ufer",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1948,
+                1344
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Ku'uxage",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                266.7,
+                266.7
+            ],
+            "position": [
+                1085,
+                1044
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Miyakabek'zoma",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                666.7,
+                666.7
+            ],
+            "position": [
+                672,
+                667
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Ligaka-Bruch",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                266.7,
+                266.7
+            ],
+            "position": [
+                1237,
+                520
             ]
         }
     ],

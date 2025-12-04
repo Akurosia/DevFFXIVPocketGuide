@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -340,46 +346,6 @@
     "markers": [
         {
             "id": "1",
-            "name": "Her mit den Mampf- und Mümmel-Mochi!",
-            "category": "collect",
-            "position": [
-                901.62,
-                301.21000000000004
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Reis stampfen, Herzen erobern",
-            "category": "collect",
-            "position": [
-                901.62,
-                301.71000000000004
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Mehr Reis stampfen, mehr Herzen erobern",
-            "category": "collect",
-            "position": [
-                901.62,
-                301.21000000000004
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Kampfhunde von der Leine gelassen",
-            "category": "collect",
-            "position": [
-                901.62,
-                301.21000000000004
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
             "name": "Für unsere Pioniere ",
             "category": "kill_boss",
             "position": [
@@ -475,6 +441,46 @@
             "position": [
                 892.63,
                 327.67999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Reis stampfen, Herzen erobern",
+            "category": "collect",
+            "position": [
+                901.62,
+                301.71000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Mehr Reis stampfen, mehr Herzen erobern",
+            "category": "collect",
+            "position": [
+                901.62,
+                301.21000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Kampfhunde von der Leine gelassen",
+            "category": "collect",
+            "position": [
+                901.62,
+                301.21000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Her mit den Mampf- und Mümmel-Mochi!",
+            "category": "collect",
+            "position": [
+                901.62,
+                301.21000000000004
             ],
             "description": ""
         },
@@ -728,6 +734,123 @@
             "position": [
                 1651.1,
                 1223.0
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Die Trauernde Witwe",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1188,
+                948
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Moraby-Bucht",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1294,
+                800
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Zedernwald-Ufer",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1712,
+                1198
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Moraby-Trockendocks",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1270,
+                376
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Oschons Fackel",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1174,
+                114
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Salzstrand",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                818,
+                296
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Kerzenwacht-Kai",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                980,
+                148
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Leeres Herz",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1049,
+                349
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Finstereisenmine",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                1321,
+                1314
             ]
         }
     ],

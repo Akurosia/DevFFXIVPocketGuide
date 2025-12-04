@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -908,6 +914,84 @@
             "position": [
                 979.4,
                 297.29999999999995
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Eil Tohm",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1700,
+                648
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Grünwarte",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                368,
+                464
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Westenwasser",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                166.7,
+                166.7
+            ],
+            "position": [
+                388,
+                1712
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Grundherren-Kolonie",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                400.0,
+                400.0
+            ],
+            "position": [
+                1362,
+                892
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Sohm Al-Wolkenmeer",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                333.3,
+                333.3
+            ],
+            "position": [
+                828,
+                180
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Tharl Oom Khash",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                914,
+                1792
             ]
         }
     ],

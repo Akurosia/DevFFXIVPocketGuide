@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -1072,6 +1078,136 @@
             "position": [
                 611.6,
                 588.7
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Nest des Reihers",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1690,
+                1398
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Weg des Reihers",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                1740,
+                1248
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Namai",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1425,
+                1318
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Prismenweiher",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                266.7,
+                266.7
+            ],
+            "position": [
+                1380,
+                1773
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Prismenschlucht",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                1535,
+                1738
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Burg Doma",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                166.7,
+                166.7
+            ],
+            "position": [
+                670,
+                1728
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Frachthafen",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                333.3,
+                333.3
+            ],
+            "position": [
+                520,
+                1398
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Einzig (Ost)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                333.3,
+                333.3
+            ],
+            "position": [
+                950,
+                888
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Einzig (West)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                500,
+                453
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Quelle am Pflaumenbaum",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1750,
+                908
             ]
         }
     ],

@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -708,6 +714,58 @@
             "position": [
                 1454.6,
                 762.1
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Murmellauf",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1268,
+                844
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Herbstkürbis-See",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1000,
+                866
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Stolzbach",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                990,
+                1058
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Tahtotl-See",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                840,
+                1108
             ]
         }
     ],

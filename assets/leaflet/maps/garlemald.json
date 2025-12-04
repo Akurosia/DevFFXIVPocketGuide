@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -480,16 +486,6 @@
         },
         {
             "id": "1",
-            "name": "Reinwaschung eines Ingenieurs: Metatron",
-            "category": "notorious_monster",
-            "position": [
-                519.49,
-                1538.5
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
             "name": "Hilfe bei der Reparatur",
             "category": "collect",
             "position": [
@@ -784,6 +780,32 @@
             "position": [
                 1417.7,
                 326.29999999999995
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Eblana-Schmelze",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                504,
+                564
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Geläuterter Lauf",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                600.0,
+                600.0
+            ],
+            "position": [
+                1100,
+                1640
             ]
         }
     ],

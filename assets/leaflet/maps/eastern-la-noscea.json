@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -340,111 +346,51 @@
     "markers": [
         {
             "id": "1",
-            "name": "Tag der Tentakel",
-            "category": "kill_boss",
+            "name": "Milchrausch",
+            "category": "defense",
             "position": [
-                1801.74,
-                739.28
+                1033.99,
+                910.11
             ],
             "description": ""
         },
         {
             "id": "1",
-            "name": "Knallomat gegen Superhai",
-            "category": "kill_boss",
+            "name": "Die Drosseln rocken den Kreuzgang",
+            "category": "defense",
             "position": [
-                1780.26,
-                704.31
+                1543.99,
+                397.61
             ],
             "description": ""
         },
         {
             "id": "1",
-            "name": "Angriff der Eis-Knallomaten",
-            "category": "kill_boss",
+            "name": "Badelust, Badefrust",
+            "category": "defense",
             "position": [
-                1784.26,
-                727.29
+                1495.04,
+                764.75
             ],
             "description": ""
         },
         {
             "id": "1",
-            "name": "Mit Federn macht man Mäuse",
-            "category": "kill_boss",
+            "name": "Räuber mit den Scherenhänden",
+            "category": "defense",
             "position": [
-                1502.53,
-                340.66999999999996
+                1582.95,
+                440.57000000000005
             ],
             "description": ""
         },
         {
             "id": "1",
-            "name": "Gefechtsübung: Schlag auf Schlag",
-            "category": "kill_boss",
+            "name": "Grillpartysprenger",
+            "category": "defense",
             "position": [
-                857.16,
-                692.8199999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Gefechtsübung: Aug in Aug mit der Düsternis",
-            "category": "kill_boss",
-            "position": [
-                794.72,
-                520.49
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Gefechtsübung: Schlacht gegen die Schlächter",
-            "category": "kill_boss",
-            "position": [
-                886.13,
-                842.1800000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Westliches Himmelsang: 4. Phase - Beginn",
-            "category": "kill_boss",
-            "position": [
-                1492.04,
-                350.65999999999997
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Eins, zwei, Sittenpolizei",
-            "category": "kill_boss",
-            "position": [
-                1494.54,
-                654.36
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Seeungeheuer bitte anleinen",
-            "category": "kill_boss",
-            "position": [
-                1551.98,
-                713.3
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Über den Fisch gezogen",
-            "category": "kill_enemies",
-            "position": [
-                1711.33,
-                807.71
+                1697.3400000000001,
+                802.22
             ],
             "description": ""
         },
@@ -580,61 +526,11 @@
         },
         {
             "id": "1",
-            "name": "Grillpartysprenger",
-            "category": "defense",
+            "name": "Über den Fisch gezogen",
+            "category": "kill_enemies",
             "position": [
-                1697.3400000000001,
-                802.22
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Milchrausch",
-            "category": "defense",
-            "position": [
-                1033.99,
-                910.11
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Die Drosseln rocken den Kreuzgang",
-            "category": "defense",
-            "position": [
-                1543.99,
-                397.61
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Badelust, Badefrust",
-            "category": "defense",
-            "position": [
-                1495.04,
-                764.75
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Räuber mit den Scherenhänden",
-            "category": "defense",
-            "position": [
-                1582.95,
-                440.57000000000005
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Unser Strand muss schöner werden",
-            "category": "collect",
-            "position": [
-                1698.8400000000001,
-                790.23
+                1711.33,
+                807.71
             ],
             "description": ""
         },
@@ -680,21 +576,121 @@
         },
         {
             "id": "1",
-            "name": "Ein Kopf zu groß",
-            "category": "escort",
+            "name": "Unser Strand muss schöner werden",
+            "category": "collect",
             "position": [
-                1461.07,
-                635.38
+                1698.8400000000001,
+                790.23
             ],
             "description": ""
         },
         {
             "id": "1",
-            "name": "Den Ball halte flach, den Witz lieber nicht",
-            "category": "notype",
+            "name": "Mit Federn macht man Mäuse",
+            "category": "kill_boss",
             "position": [
-                1498.54,
-                899.12
+                1502.53,
+                340.66999999999996
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Schlag auf Schlag",
+            "category": "kill_boss",
+            "position": [
+                857.16,
+                692.8199999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Aug in Aug mit der Düsternis",
+            "category": "kill_boss",
+            "position": [
+                794.72,
+                520.49
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gefechtsübung: Schlacht gegen die Schlächter",
+            "category": "kill_boss",
+            "position": [
+                886.13,
+                842.1800000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Westliches Himmelsang: 4. Phase - Beginn",
+            "category": "kill_boss",
+            "position": [
+                1492.04,
+                350.65999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Eins, zwei, Sittenpolizei",
+            "category": "kill_boss",
+            "position": [
+                1494.54,
+                654.36
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Seeungeheuer bitte anleinen",
+            "category": "kill_boss",
+            "position": [
+                1551.98,
+                713.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Tag der Tentakel",
+            "category": "kill_boss",
+            "position": [
+                1801.74,
+                739.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Knallomat gegen Superhai",
+            "category": "kill_boss",
+            "position": [
+                1780.26,
+                704.31
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Angriff der Eis-Knallomaten",
+            "category": "kill_boss",
+            "position": [
+                1784.26,
+                727.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Ein Kopf zu groß",
+            "category": "escort",
+            "position": [
+                1461.07,
+                635.38
             ],
             "description": ""
         },
@@ -948,6 +944,149 @@
             "position": [
                 1544.3,
                 474.70000000000005
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Südliche Rotgischt",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1595,
+                376
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Sonnenküste",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                266.7,
+                266.7
+            ],
+            "position": [
+                1593,
+                634
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Nördliche Rotgischt",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1600,
+                888
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Verborgener Wasserfall",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                1490,
+                948
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Östlicher Agelyss",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                959,
+                801
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Regenfänger-Rinne",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                973,
+                586
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Juggernaut",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                791,
+                498
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Mantisfall",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                717,
+                726
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Rhotano-See (Vorderdeck)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                1830,
+                958
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Rhotano-See (Achterdeck)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                1810,
+                898
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Insel des Ewigen Sommers (Nord)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1750,
+                768
             ]
         }
     ],

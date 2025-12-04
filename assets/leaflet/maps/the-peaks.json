@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -944,6 +950,84 @@
             "position": [
                 380.20000000000005,
                 469.6
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Grymm und Enid",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                260,
+                1348
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Träge Traufe",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1130,
+                1638
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Kerbelfall",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1580,
+                1768
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Ephor",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1550,
+                1248
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Bad des Bullen",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                400.0,
+                400.0
+            ],
+            "position": [
+                978,
+                466
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Baum der Buße",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                166.7,
+                166.7
+            ],
+            "position": [
+                410,
+                228
             ]
         }
     ],

@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -908,6 +914,71 @@
             "position": [
                 898.8,
                 491.0
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Echsenbach",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1036,
+                1344
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Zahar'ak",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1218,
+                1048
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Die Vergessene Oase",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                732,
+                552
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Sagolii-Wüste",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                568,
+                298
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Sagolii-Dünen",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1314,
+                252
             ]
         }
     ],

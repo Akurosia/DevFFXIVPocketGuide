@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -788,6 +794,58 @@
             "position": [
                 891.1,
                 866.1
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Nördliches Knochenbleich",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                632,
+                1064
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Südliches Knochenbleich",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                810,
+                858
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Yugr'am",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1232,
+                966
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Feuerwall",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1406,
+                864
             ]
         }
     ],

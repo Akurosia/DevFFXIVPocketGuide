@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -774,6 +780,45 @@
             "position": [
                 1090.2,
                 282.79999999999995
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der schönste Wald",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                800.0,
+                800.0
+            ],
+            "position": [
+                1578,
+                1554
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Chlorophos-Weiher",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1498,
+                488
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Frostkluft",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1090,
+                510
             ]
         }
     ],

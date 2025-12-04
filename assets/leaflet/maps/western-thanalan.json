@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -768,6 +774,110 @@
             "position": [
                 1273.4,
                 982.3
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Der Silberbasar",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                678,
+                622
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Bucht des Abendsterns",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                526,
+                1470
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Mondsichel-Bucht",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                728,
+                1138
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Nophicas Brunnen",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1174,
+                1020
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Tal der Spuren",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                808,
+                1314
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Kap Westwind",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                446,
+                1730
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Paratas Friede",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                702,
+                1779
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Mondtropfen-Höhle",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                850,
+                1745
             ]
         }
     ],

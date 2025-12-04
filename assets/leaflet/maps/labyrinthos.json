@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -784,6 +790,71 @@
             "position": [
                 1198.5,
                 1007.3
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Sammelbecken Nr. 1",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                150.0,
+                150.0
+            ],
+            "position": [
+                831,
+                1827
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Abflusskanal Nr. 1",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                300.0,
+                300.0
+            ],
+            "position": [
+                878,
+                1552
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Sammelbecken Nr. 2",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                150.0,
+                150.0
+            ],
+            "position": [
+                1561,
+                1639
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Abflusskanal Nr. 2",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                600.0,
+                600.0
+            ],
+            "position": [
+                1366,
+                1322
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Tiefer Graben",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                972,
+                1292
             ]
         }
     ],

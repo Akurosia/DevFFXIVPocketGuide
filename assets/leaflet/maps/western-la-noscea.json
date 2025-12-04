@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -828,6 +834,123 @@
             "position": [
                 1635.5,
                 583.5
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Tölpelturm-Siedlung",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1641,
+                506
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Schädeltal-Ufer",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1283,
+                750
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Halbstein",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                827,
+                1050
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Nördliche Phantominseln",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                673,
+                604
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Südliche Phantominseln",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                590,
+                288
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Leuchtturm Braubake",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                1456,
+                568
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Schiffsfriedhof",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                728,
+                296
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Sapsa-Laichplatz",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                806,
+                1310
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Hafen der Geborgenheit",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                638,
+                1440
             ]
         }
     ],

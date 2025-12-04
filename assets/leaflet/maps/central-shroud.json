@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -370,16 +376,6 @@
         },
         {
             "id": "1",
-            "name": "Knorrige Diebe",
-            "category": "kill_enemies",
-            "position": [
-                1217.81,
-                617.9
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
             "name": "Erst wimmeln, dann wimmern",
             "category": "kill_enemies",
             "position": [
@@ -435,6 +431,16 @@
             "position": [
                 1136.39,
                 903.12
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Knorrige Diebe",
+            "category": "kill_enemies",
+            "position": [
+                1217.81,
+                617.9
             ],
             "description": ""
         },
@@ -530,36 +536,6 @@
         },
         {
             "id": "1",
-            "name": "Fröhliche Hühnerjagd",
-            "category": "holiday_limited_time",
-            "position": [
-                1208.82,
-                614.4
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Gluckenschreck des Glücks",
-            "category": "holiday_limited_time",
-            "position": [
-                1208.82,
-                614.4
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Sylphen-Schreck",
-            "category": "holiday_limited_time",
-            "position": [
-                1210.82,
-                634.88
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
             "name": "Mach das Mochi tot oder ein Gozu sieht rot",
             "category": "collect",
             "position": [
@@ -585,6 +561,36 @@
             "position": [
                 1224.8,
                 617.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Fröhliche Hühnerjagd",
+            "category": "holiday_limited_time",
+            "position": [
+                1208.82,
+                614.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Gluckenschreck des Glücks",
+            "category": "holiday_limited_time",
+            "position": [
+                1208.82,
+                614.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1",
+            "name": "Sylphen-Schreck",
+            "category": "holiday_limited_time",
+            "position": [
+                1210.82,
+                634.88
             ],
             "description": ""
         },
@@ -838,6 +844,71 @@
             "position": [
                 1239.9,
                 1084.5
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Blattader",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1094,
+                990
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Spiegelsee",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1276,
+                650
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Immerschatten",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                730,
+                892
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Hoffnungs­schimmer-Teich",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                690,
+                1037
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Haukke-Herrenhaus",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                493,
+                941
             ]
         }
     ],

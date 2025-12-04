@@ -145,6 +145,12 @@
             "iconUrl": "https://v2.xivapi.com/api/asset/ui/icon/063000/063911.tex?format=web"
         },
         {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing_angel",
+            "groupName": "Fishing"
+        },
+        {
             "id": "gathering-zone",
             "name": "Gathering Zone",
             "color": "#FFc55e",
@@ -774,6 +780,97 @@
             "position": [
                 1457.9,
                 1049.6
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Flundergrotte",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                300.0,
+                300.0
+            ],
+            "position": [
+                510,
+                1768
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Seelenruh der Landler",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1835,
+                1748
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Caliban-Furche (Norden)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                545,
+                1553
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Calibans Nistplatz (Westen)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                260,
+                1423
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Calibans Nistplatz (Osten)",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                375,
+                1318
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Purpurhöhle",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1630,
+                568
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Norvrandt-Hang",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                300.0,
+                300.0
+            ],
+            "position": [
+                1400,
+                1353
             ]
         }
     ],
