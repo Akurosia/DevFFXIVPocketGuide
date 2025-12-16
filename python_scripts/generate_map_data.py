@@ -2,7 +2,10 @@ from ffxiv_aku import *
 from typing import Any
 from bs4 import BeautifulSoup, Tag
 from ffxiv_aku import *
-from helper import getImage
+try:
+    from .helper import getImage
+except:
+    from helper import getImage
 from PIL.ImageFile import ImageFile
 from PIL import ImageDraw, ImageFont, Image, ImageOps
 import traceback
