@@ -165,13 +165,16 @@ def getTablesFromConsoleGamesWiki(url: str, zone: str) -> dict[str, Any]:
             tmp['Fate Name'] = fixFateNames(tmp['Fate Name'])
             print(tmp['Fate Name'])
             for key, value in fates.items():
-                if tmp['Fate Name'].lower() == value['Name'].lower().strip():
+                if tmp['Fate Name'].lower() == value['fields']['Name'].lower().strip():
                     tmp["Fate ID"] = key
                     tmp["Fate Type"] = "Fate"
+                    break
             for key, value in ces.items():
+                print(value)
                 if tmp['Fate Name'].lower() == value['Name'].lower().strip():
                     tmp["Fate ID"] = key
                     tmp["Fate Type"] = "CE"
+                    break
             tmp = fix_fate_ids(tmp)
             result[tmp["Fate ID"]] = tmp
     return result
@@ -725,23 +728,28 @@ def get_quest(mapid, w, h):
 def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
     global path_of_main_script
     path_of_main_script = main_script
-    #try:
-    #    tc_fates = get_data_from_teamcraft()
-    #    #print_color_blue(tc_fates)
-    #    gw_fates = getLinksFromConsoleGamesWiki(0)
-    #    merged_fates = merge_fate_data(tc_fates, gw_fates)
-    #    merged_fates = fix_special(merged_fates)
-    #    #print_pretty_json(merged_fates['Bozjan Southern Front'])
-#
-    #    writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
-    #    #writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
-    #    #writeJsonFile(r"C:\Users\Akurosia\Documents\GitHub\DevFFXIVPocketGuide\python_scripts\FatesFromConsoleWiki.json", merged_fates)
-#
-    #    print("[GAFD] Completed getting new Fates")
-    #except Exception as e:
-    #    traceback.print_exc()
+    try:
+        tc_fates = get_data_from_teamcraft()
+        #print_color_blue(tc_fates)
+        gw_fates = getLinksFromConsoleGamesWiki(0)
+        merged_fates = merge_fate_data(tc_fates, gw_fates)
+        merged_fates = fix_special(merged_fates)
+        #print_pretty_json(merged_fates['Bozjan Southern Front'])
+
+        writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
+        #writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
+        #writeJsonFile(r"C:\Users\Akurosia\Documents\GitHub\DevFFXIVPocketGuide\python_scripts\FatesFromConsoleWiki.json", merged_fates)
+
+        print("[GAFD] Completed getting new Fates")
+    except Exception as e:
+        traceback.print_exc()
     generate_images()
 
+def get_base_images():
+    lst = ["061000/061879_hr1","061000/061880_hr1","061000/061878_hr1","061000/061877_hr1","061000/061876_hr1","061000/061875_hr1","061000/061533_hr1","000000/000046_hr1","000000/000115_hr1","056000/056935_hr1","057000/057357_hr1","060000/060453_hr1","061000/061432_hr1","061000/061723_hr1","061000/061757_hr1","061000/061759_hr1","061000/061767_hr1","061000/061821_hr1","061000/061822_hr1","061000/061828_hr1","061000/061834_hr1","061000/061835_hr1"]
+    for img in lst:
+        getImage(img)
 
 if __name__ == "__main__":
     run()
+    #get_base_images()
