@@ -504,8 +504,18 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/f1f/f1f1 - Tiefer Wald.png",
     "markers": [
         {
-            "id": "1",
-            "name": "Für Nachschub ist gesorgt",
+            "id": "120",
+            "name": "Dein Revier endet hier",
+            "category": "kill_enemies",
+            "position": [
+                1250.28,
+                1151.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "121",
+            "name": "Magische Pilze",
             "category": "kill_enemies",
             "position": [
                 1217.81,
@@ -514,8 +524,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Der kleine Nimmersatt",
+            "id": "122",
+            "name": "In die weite Welt hinein ",
             "category": "kill_enemies",
             "position": [
                 740.78,
@@ -524,8 +534,18 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Sechs richtige ... Arme",
+            "id": "124",
+            "name": "Umschwärmt",
+            "category": "kill_enemies",
+            "position": [
+                1320.21,
+                631.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "127",
+            "name": "Zorn der Mütter",
             "category": "kill_enemies",
             "position": [
                 1451.58,
@@ -534,8 +554,18 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Erst wimmeln, dann wimmern",
+            "id": "131",
+            "name": "Auf dem Präsentierteller",
+            "category": "kill_enemies",
+            "position": [
+                869.15,
+                1110.92
+            ],
+            "description": ""
+        },
+        {
+            "id": "138",
+            "name": "Kükenschutz",
             "category": "kill_enemies",
             "position": [
                 1096.93,
@@ -544,8 +574,18 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Heute Freund, morgen Feind",
+            "id": "139",
+            "name": "Wie neu gestorben",
+            "category": "kill_enemies",
+            "position": [
+                888.13,
+                725.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "140",
+            "name": "Ausgangssperre",
             "category": "kill_enemies",
             "position": [
                 1342.19,
@@ -554,8 +594,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Schlammschlacht",
+            "id": "141",
+            "name": "Vergebliche Liebesmüh",
             "category": "kill_enemies",
             "position": [
                 1069.46,
@@ -564,8 +604,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Wartung aller Waffen",
+            "id": "208",
+            "name": "Käfer außer Rand und Band",
             "category": "kill_enemies",
             "position": [
                 1405.13,
@@ -574,8 +614,18 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Platz der Habenichtse: Erste Phase - Beginn",
+            "id": "600",
+            "name": "Wurmige Ernte",
+            "category": "kill_enemies",
+            "position": [
+                699.8199999999999,
+                1213.32
+            ],
+            "description": ""
+        },
+        {
+            "id": "602",
+            "name": "Frieden ihrer Seele",
             "category": "kill_enemies",
             "position": [
                 592.4200000000001,
@@ -584,8 +634,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Federfall-Quartier: 3. Phase",
+            "id": "672",
+            "name": "Golems aus einer anderen Welt",
             "category": "kill_enemies",
             "position": [
                 1136.39,
@@ -594,7 +644,17 @@
             "description": ""
         },
         {
-            "id": "1",
+            "id": "707",
+            "name": "Lustige Eiersuche",
+            "category": "kill_enemies",
+            "position": [
+                699.8199999999999,
+                837.6800000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1325",
             "name": "Knorrige Diebe",
             "category": "kill_enemies",
             "position": [
@@ -604,8 +664,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Zwischen Ähren liegt Ehre",
+            "id": "123",
+            "name": "Wasseranomalie",
             "category": "kill_boss",
             "position": [
                 1135.89,
@@ -614,8 +674,48 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Oannes aus dem Grünenden Weiher",
+            "id": "125",
+            "name": "Fliegendes Verderben",
+            "category": "kill_boss",
+            "position": [
+                811.21,
+                985.54
+            ],
+            "description": ""
+        },
+        {
+            "id": "126",
+            "name": "Alphatier",
+            "category": "kill_boss",
+            "position": [
+                1526.51,
+                1047.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "128",
+            "name": "Alux eingekerkert",
+            "category": "kill_boss",
+            "position": [
+                1248.28,
+                833.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "137",
+            "name": "Blattblutbefall",
+            "category": "kill_boss",
+            "position": [
+                965.06,
+                555.96
+            ],
+            "description": ""
+        },
+        {
+            "id": "142",
+            "name": "Nicht zum Verzehr bestimmt",
             "category": "kill_boss",
             "position": [
                 688.8299999999999,
@@ -624,8 +724,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Den Spieß umdrehen",
+            "id": "196",
+            "name": "Der dunkle Reiter",
             "category": "kill_boss",
             "position": [
                 652.86,
@@ -634,8 +734,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Zum Haare raufen",
+            "id": "197",
+            "name": "Der dunkle Reiter",
             "category": "kill_boss",
             "position": [
                 695.8199999999999,
@@ -644,8 +744,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Nichts geht mehr",
+            "id": "209",
+            "name": "Essen macht durstig",
             "category": "kill_boss",
             "position": [
                 618.4,
@@ -654,8 +754,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Platz der Habenichtse: Zweite Phase - Beginn",
+            "id": "604",
+            "name": "Schadenfröhlich",
             "category": "kill_boss",
             "position": [
                 523.49,
@@ -664,8 +764,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Straßenblockade",
+            "id": "136",
+            "name": "Scharfer Drill",
             "category": "defense",
             "position": [
                 1154.37,
@@ -674,8 +774,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Gerippeimpfung empfohlen",
+            "id": "537",
+            "name": "Comeback mit Knall",
             "category": "defense",
             "position": [
                 1211.82,
@@ -684,7 +784,7 @@
             "description": ""
         },
         {
-            "id": "1",
+            "id": "933",
             "name": "Der Weg des Samurai",
             "category": "defense",
             "position": [
@@ -694,8 +794,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Mach das Mochi tot oder ein Gozu sieht rot",
+            "id": "601",
+            "name": "Dosis macht Gift",
             "category": "collect",
             "position": [
                 703.81,
@@ -704,8 +804,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Platz der Habenichtse: Erste Phase - Abschluss",
+            "id": "603",
+            "name": "Geheimnis des Lebens",
             "category": "collect",
             "position": [
                 536.48,
@@ -714,7 +814,7 @@
             "description": ""
         },
         {
-            "id": "1",
+            "id": "940",
             "name": "Reis stampfen, Herzen erobern",
             "category": "collect",
             "position": [
@@ -724,7 +824,7 @@
             "description": ""
         },
         {
-            "id": "1",
+            "id": "1594",
             "name": "Fröhliche Hühnerjagd",
             "category": "holiday_limited_time",
             "position": [
@@ -734,7 +834,7 @@
             "description": ""
         },
         {
-            "id": "1",
+            "id": "1856",
             "name": "Gluckenschreck des Glücks",
             "category": "holiday_limited_time",
             "position": [
@@ -744,7 +844,7 @@
             "description": ""
         },
         {
-            "id": "1",
+            "id": "1857",
             "name": "Sylphen-Schreck",
             "category": "holiday_limited_time",
             "position": [
