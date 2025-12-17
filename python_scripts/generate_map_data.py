@@ -164,17 +164,21 @@ def getTablesFromConsoleGamesWiki(url: str, zone: str) -> dict[str, Any]:
                     tmp[header[i]] = col.text.strip() # type: ignore
             tmp['Fate Name'] = fixFateNames(tmp['Fate Name'])
             print(tmp['Fate Name'])
+            found = False
             for key, value in fates.items():
                 if tmp['Fate Name'].lower() == value['fields']['Name'].lower().strip():
                     tmp["Fate ID"] = key
                     tmp["Fate Type"] = "Fate"
+                    found = True
                     break
             for key, value in ces.items():
-                print(value)
-                if tmp['Fate Name'].lower() == value['Name'].lower().strip():
+                if tmp['Fate Name'].lower() == value['Name_de'].lower().strip():
                     tmp["Fate ID"] = key
                     tmp["Fate Type"] = "CE"
+                    found = True
                     break
+            if not found:
+                continue
             tmp = fix_fate_ids(tmp)
             result[tmp["Fate ID"]] = tmp
     return result
