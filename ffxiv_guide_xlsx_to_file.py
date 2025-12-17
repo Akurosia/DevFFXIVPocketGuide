@@ -266,7 +266,7 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
             if not True:
                 #if debug_row_number < 800 :
                 #if debug_row_number not in [354, 581, 787, 788, 818, 821]:
-                if debug_row_number not in [29]:
+                if debug_row_number not in [7]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(value, i, orderedContent)
@@ -353,7 +353,7 @@ def main() -> None:
 from concurrent.futures import ThreadPoolExecutor
 
 def run_all(path_of_main_script, translations):
-    return
+    #return
     tasks = [
         #aas.run()
         lambda: csgf.run(path_of_main_script),
