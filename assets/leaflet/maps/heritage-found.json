@@ -504,12 +504,32 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/x6f/x6f2 - Ewiges Erbe.png",
     "markers": [
         {
+            "id": "1946",
+            "name": "Helle Leuchte",
+            "category": "kill_enemies",
+            "position": [
+                1568.47,
+                1622.42
+            ],
+            "description": ""
+        },
+        {
             "id": "1942",
             "name": "Maschinen auf Abwegen",
             "category": "kill_enemies",
             "position": [
                 1447.09,
                 1409.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1947",
+            "name": "Voll drauf eingeschlossen",
+            "category": "kill_enemies",
+            "position": [
+                1612.4299999999998,
+                716.3
             ],
             "description": ""
         },
@@ -544,32 +564,12 @@
             "description": ""
         },
         {
-            "id": "1946",
-            "name": "Helle Leuchte",
+            "id": "1955",
+            "name": "Wie du mir, so ich dir",
             "category": "kill_enemies",
             "position": [
-                1568.47,
-                1622.42
-            ],
-            "description": ""
-        },
-        {
-            "id": "1947",
-            "name": "Voll drauf eingeschlossen",
-            "category": "kill_enemies",
-            "position": [
-                1612.4299999999998,
-                716.3
-            ],
-            "description": ""
-        },
-        {
-            "id": "1950",
-            "name": "Durchgeknallte Schaltkreise",
-            "category": "kill_enemies",
-            "position": [
-                614.9,
-                1327.7
+                550.46,
+                1003.02
             ],
             "description": ""
         },
@@ -604,6 +604,16 @@
             "description": ""
         },
         {
+            "id": "1958",
+            "name": "Falsche Schlange",
+            "category": "kill_enemies",
+            "position": [
+                567.45,
+                513.0
+            ],
+            "description": ""
+        },
+        {
             "id": "1954",
             "name": "Massakrierende Maschinen",
             "category": "kill_enemies",
@@ -614,22 +624,12 @@
             "description": ""
         },
         {
-            "id": "1955",
-            "name": "Wie du mir, so ich dir",
+            "id": "1950",
+            "name": "Durchgeknallte Schaltkreise",
             "category": "kill_enemies",
             "position": [
-                550.46,
-                1003.02
-            ],
-            "description": ""
-        },
-        {
-            "id": "1958",
-            "name": "Falsche Schlange",
-            "category": "kill_enemies",
-            "position": [
-                567.45,
-                513.0
+                614.9,
+                1327.7
             ],
             "description": ""
         },

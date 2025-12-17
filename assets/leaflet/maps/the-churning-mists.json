@@ -504,122 +504,32 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/d2f/d2f3 - Wallende Nebel.png",
     "markers": [
         {
-            "id": "725",
-            "name": "Badeausflug",
-            "category": "kill_enemies",
+            "id": "755",
+            "name": "Immer auf die Kleinen",
+            "category": "kill_boss",
             "position": [
-                1264.065,
-                555.6785
+                757.2685,
+                582.725
             ],
             "description": ""
         },
         {
-            "id": "726",
-            "name": "Dumme Nuss",
-            "category": "kill_enemies",
+            "id": "753",
+            "name": "Ein großes Kupowetter",
+            "category": "kill_boss",
             "position": [
-                1370.8355,
-                762.104
+                957.994,
+                968.0545
             ],
             "description": ""
         },
         {
-            "id": "731",
-            "name": "Zum Fressen gern",
-            "category": "kill_enemies",
+            "id": "742",
+            "name": "Hindernis auf der Fahrbahn",
+            "category": "kill_boss",
             "position": [
-                1706.3375,
-                551.8785
-            ],
-            "description": ""
-        },
-        {
-            "id": "732",
-            "name": "Vorsicht Hochspannung",
-            "category": "kill_enemies",
-            "position": [
-                1547.8395,
-                426.12699999999995
-            ],
-            "description": ""
-        },
-        {
-            "id": "736",
-            "name": "Alle Hände voll zu tun",
-            "category": "kill_enemies",
-            "position": [
-                1257.8995,
-                1149.799
-            ],
-            "description": ""
-        },
-        {
-            "id": "737",
-            "name": "Vivel la Revolution",
-            "category": "kill_enemies",
-            "position": [
-                1199.5315,
-                1161.6645
-            ],
-            "description": ""
-        },
-        {
-            "id": "740",
-            "name": "Tanz mit den Drachen",
-            "category": "kill_enemies",
-            "position": [
-                787.1555000000001,
-                549.988
-            ],
-            "description": ""
-        },
-        {
-            "id": "741",
-            "name": "Tanz mit den Wolken",
-            "category": "kill_enemies",
-            "position": [
-                787.1555000000001,
-                549.988
-            ],
-            "description": ""
-        },
-        {
-            "id": "744",
-            "name": "Fjalar gegen den Rest der Welt",
-            "category": "kill_enemies",
-            "position": [
-                630.567,
-                1029.263
-            ],
-            "description": ""
-        },
-        {
-            "id": "746",
-            "name": "Brennt, Wyvern, brennt!",
-            "category": "kill_enemies",
-            "position": [
-                345.36750000000006,
-                1257.9945
-            ],
-            "description": ""
-        },
-        {
-            "id": "748",
-            "name": "Meliaden-Marmelade",
-            "category": "kill_enemies",
-            "position": [
-                339.202,
-                1406.527
-            ],
-            "description": ""
-        },
-        {
-            "id": "873",
-            "name": "Rastabans Rage",
-            "category": "kill_enemies",
-            "position": [
-                650.9635000000001,
-                1466.7855
+                976.025,
+                695.6705
             ],
             "description": ""
         },
@@ -630,6 +540,16 @@
             "position": [
                 1499.437,
                 907.3115
+            ],
+            "description": ""
+        },
+        {
+            "id": "874",
+            "name": "Sadistische Spiele",
+            "category": "kill_boss",
+            "position": [
+                1014.937,
+                1063.9095
             ],
             "description": ""
         },
@@ -654,16 +574,6 @@
             "description": ""
         },
         {
-            "id": "742",
-            "name": "Hindernis auf der Fahrbahn",
-            "category": "kill_boss",
-            "position": [
-                976.025,
-                695.6705
-            ],
-            "description": ""
-        },
-        {
             "id": "747",
             "name": "Tag der Abrechnung",
             "category": "kill_boss",
@@ -684,26 +594,6 @@
             "description": ""
         },
         {
-            "id": "753",
-            "name": "Ein großes Kupowetter",
-            "category": "kill_boss",
-            "position": [
-                957.994,
-                968.0545
-            ],
-            "description": ""
-        },
-        {
-            "id": "755",
-            "name": "Immer auf die Kleinen",
-            "category": "kill_boss",
-            "position": [
-                757.2685,
-                582.725
-            ],
-            "description": ""
-        },
-        {
             "id": "871",
             "name": "Ehrenduell mit dem Weißen",
             "category": "kill_boss",
@@ -714,62 +604,12 @@
             "description": ""
         },
         {
-            "id": "874",
-            "name": "Sadistische Spiele",
-            "category": "kill_boss",
-            "position": [
-                1014.937,
-                1063.9095
-            ],
-            "description": ""
-        },
-        {
-            "id": "728",
-            "name": "Teures Hobby",
-            "category": "collect",
-            "position": [
-                1586.7514999999999,
-                1039.2285
-            ],
-            "description": ""
-        },
-        {
-            "id": "752",
-            "name": "Putzkolonnen-Eskorte",
-            "category": "escort",
-            "position": [
-                850.2735,
-                720.3420000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "754",
-            "name": "Sonne gegen Schatten",
+            "id": "872",
+            "name": "Aufpassdrachenkind",
             "category": "defense",
             "position": [
-                595.4455,
-                914.902
-            ],
-            "description": ""
-        },
-        {
-            "id": "868",
-            "name": "Dunkelschuppe I: Ein Drache dreht auf",
-            "category": "defense",
-            "position": [
-                835.558,
-                1500.007
-            ],
-            "description": ""
-        },
-        {
-            "id": "869",
-            "name": "Dunkelschuppe II: Ein Drache dreht ab",
-            "category": "defense",
-            "position": [
-                835.558,
-                1500.007
+                596.3955000000001,
+                939.108
             ],
             "description": ""
         },
@@ -784,12 +624,172 @@
             "description": ""
         },
         {
-            "id": "872",
-            "name": "Aufpassdrachenkind",
+            "id": "868",
+            "name": "Dunkelschuppe I: Ein Drache dreht auf",
             "category": "defense",
             "position": [
-                596.3955000000001,
-                939.108
+                835.558,
+                1500.007
+            ],
+            "description": ""
+        },
+        {
+            "id": "754",
+            "name": "Sonne gegen Schatten",
+            "category": "defense",
+            "position": [
+                595.4455,
+                914.902
+            ],
+            "description": ""
+        },
+        {
+            "id": "869",
+            "name": "Dunkelschuppe II: Ein Drache dreht ab",
+            "category": "defense",
+            "position": [
+                835.558,
+                1500.007
+            ],
+            "description": ""
+        },
+        {
+            "id": "731",
+            "name": "Zum Fressen gern",
+            "category": "kill_enemies",
+            "position": [
+                1706.3375,
+                551.8785
+            ],
+            "description": ""
+        },
+        {
+            "id": "732",
+            "name": "Vorsicht Hochspannung",
+            "category": "kill_enemies",
+            "position": [
+                1547.8395,
+                426.12699999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "725",
+            "name": "Badeausflug",
+            "category": "kill_enemies",
+            "position": [
+                1264.065,
+                555.6785
+            ],
+            "description": ""
+        },
+        {
+            "id": "740",
+            "name": "Tanz mit den Drachen",
+            "category": "kill_enemies",
+            "position": [
+                787.1555000000001,
+                549.988
+            ],
+            "description": ""
+        },
+        {
+            "id": "737",
+            "name": "Vivel la Revolution",
+            "category": "kill_enemies",
+            "position": [
+                1199.5315,
+                1161.6645
+            ],
+            "description": ""
+        },
+        {
+            "id": "741",
+            "name": "Tanz mit den Wolken",
+            "category": "kill_enemies",
+            "position": [
+                787.1555000000001,
+                549.988
+            ],
+            "description": ""
+        },
+        {
+            "id": "736",
+            "name": "Alle Hände voll zu tun",
+            "category": "kill_enemies",
+            "position": [
+                1257.8995,
+                1149.799
+            ],
+            "description": ""
+        },
+        {
+            "id": "726",
+            "name": "Dumme Nuss",
+            "category": "kill_enemies",
+            "position": [
+                1370.8355,
+                762.104
+            ],
+            "description": ""
+        },
+        {
+            "id": "748",
+            "name": "Meliaden-Marmelade",
+            "category": "kill_enemies",
+            "position": [
+                339.202,
+                1406.527
+            ],
+            "description": ""
+        },
+        {
+            "id": "744",
+            "name": "Fjalar gegen den Rest der Welt",
+            "category": "kill_enemies",
+            "position": [
+                630.567,
+                1029.263
+            ],
+            "description": ""
+        },
+        {
+            "id": "873",
+            "name": "Rastabans Rage",
+            "category": "kill_enemies",
+            "position": [
+                650.9635000000001,
+                1466.7855
+            ],
+            "description": ""
+        },
+        {
+            "id": "746",
+            "name": "Brennt, Wyvern, brennt!",
+            "category": "kill_enemies",
+            "position": [
+                345.36750000000006,
+                1257.9945
+            ],
+            "description": ""
+        },
+        {
+            "id": "752",
+            "name": "Putzkolonnen-Eskorte",
+            "category": "escort",
+            "position": [
+                850.2735,
+                720.3420000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "728",
+            "name": "Teures Hobby",
+            "category": "collect",
+            "position": [
+                1586.7514999999999,
+                1039.2285
             ],
             "description": ""
         },

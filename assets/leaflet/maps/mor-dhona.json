@@ -504,16 +504,6 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/l1f/l1f1 - Mor Dhona.png",
     "markers": [
         {
-            "id": "512",
-            "name": "Aus Kameradschaft",
-            "category": "kill_enemies",
-            "position": [
-                882.14,
-                1666.37
-            ],
-            "description": ""
-        },
-        {
             "id": "514",
             "name": "Großreinemachen im Schlingwald",
             "category": "kill_enemies",
@@ -534,12 +524,12 @@
             "description": ""
         },
         {
-            "id": "520",
-            "name": "Wartung aller Waffen",
+            "id": "512",
+            "name": "Aus Kameradschaft",
             "category": "kill_enemies",
             "position": [
-                578.9300000000001,
-                1475.06
+                882.14,
+                1666.37
             ],
             "description": ""
         },
@@ -550,6 +540,16 @@
             "position": [
                 1242.79,
                 1547.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "520",
+            "name": "Wartung aller Waffen",
+            "category": "kill_enemies",
+            "position": [
+                578.9300000000001,
+                1475.06
             ],
             "description": ""
         },
@@ -594,32 +594,22 @@
             "description": ""
         },
         {
+            "id": "530",
+            "name": "Hab Vivian satt",
+            "category": "kill_boss",
+            "position": [
+                641.37,
+                1566.97
+            ],
+            "description": ""
+        },
+        {
             "id": "516",
             "name": "Nburus Bitterkeit",
             "category": "kill_boss",
             "position": [
                 734.78,
                 1381.65
-            ],
-            "description": ""
-        },
-        {
-            "id": "521",
-            "name": "Nichts geht mehr",
-            "category": "kill_boss",
-            "position": [
-                1503.53,
-                1840.2
-            ],
-            "description": ""
-        },
-        {
-            "id": "525",
-            "name": "Dione muss schweigen",
-            "category": "kill_boss",
-            "position": [
-                1441.09,
-                1373.16
             ],
             "description": ""
         },
@@ -634,22 +624,22 @@
             "description": ""
         },
         {
-            "id": "530",
-            "name": "Hab Vivian satt",
+            "id": "525",
+            "name": "Dione muss schweigen",
             "category": "kill_boss",
             "position": [
-                641.37,
-                1566.97
+                1441.09,
+                1373.16
             ],
             "description": ""
         },
         {
-            "id": "522",
-            "name": "Umkämpfter Kristallturm",
-            "category": "defense",
+            "id": "521",
+            "name": "Nichts geht mehr",
+            "category": "kill_boss",
             "position": [
-                1440.59,
-                1421.6100000000001
+                1503.53,
+                1840.2
             ],
             "description": ""
         },
@@ -660,6 +650,16 @@
             "position": [
                 1067.46,
                 1745.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "522",
+            "name": "Umkämpfter Kristallturm",
+            "category": "defense",
+            "position": [
+                1440.59,
+                1421.6100000000001
             ],
             "description": ""
         },

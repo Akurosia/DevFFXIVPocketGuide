@@ -514,16 +514,6 @@
             "description": ""
         },
         {
-            "id": "465",
-            "name": "Hart ist der Winter",
-            "category": "kill_enemies",
-            "position": [
-                1243.79,
-                1122.9
-            ],
-            "description": ""
-        },
-        {
             "id": "467",
             "name": "Domigator-Dompteur",
             "category": "kill_enemies",
@@ -534,12 +524,12 @@
             "description": ""
         },
         {
-            "id": "470",
-            "name": "Nichts da",
+            "id": "465",
+            "name": "Hart ist der Winter",
             "category": "kill_enemies",
             "position": [
-                1132.39,
-                1363.17
+                1243.79,
+                1122.9
             ],
             "description": ""
         },
@@ -564,12 +554,22 @@
             "description": ""
         },
         {
-            "id": "482",
-            "name": "Riesenumweg",
+            "id": "502",
+            "name": "Kanone gegen Svara",
             "category": "kill_enemies",
             "position": [
-                433.58000000000004,
-                1101.92
+                1285.24,
+                1686.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "470",
+            "name": "Nichts da",
+            "category": "kill_enemies",
+            "position": [
+                1132.39,
+                1363.17
             ],
             "description": ""
         },
@@ -584,42 +584,12 @@
             "description": ""
         },
         {
-            "id": "486",
-            "name": "Der Wille von Haillenarte",
+            "id": "482",
+            "name": "Riesenumweg",
             "category": "kill_enemies",
             "position": [
-                513.0,
-                648.87
-            ],
-            "description": ""
-        },
-        {
-            "id": "487",
-            "name": "Auf der Suche nach Wärme",
-            "category": "kill_enemies",
-            "position": [
-                942.08,
-                589.4200000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "489",
-            "name": "Zerstreuung für Pilger",
-            "category": "kill_enemies",
-            "position": [
-                424.59000000000003,
-                696.8199999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "496",
-            "name": "Auf Ruf der Drachen",
-            "category": "kill_enemies",
-            "position": [
-                478.03,
-                1317.21
+                433.58000000000004,
+                1101.92
             ],
             "description": ""
         },
@@ -634,6 +604,46 @@
             "description": ""
         },
         {
+            "id": "496",
+            "name": "Auf Ruf der Drachen",
+            "category": "kill_enemies",
+            "position": [
+                478.03,
+                1317.21
+            ],
+            "description": ""
+        },
+        {
+            "id": "486",
+            "name": "Der Wille von Haillenarte",
+            "category": "kill_enemies",
+            "position": [
+                513.0,
+                648.87
+            ],
+            "description": ""
+        },
+        {
+            "id": "489",
+            "name": "Zerstreuung für Pilger",
+            "category": "kill_enemies",
+            "position": [
+                424.59000000000003,
+                696.8199999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "487",
+            "name": "Auf der Suche nach Wärme",
+            "category": "kill_enemies",
+            "position": [
+                942.08,
+                589.4200000000001
+            ],
+            "description": ""
+        },
+        {
             "id": "498",
             "name": "Gestohlen Gut",
             "category": "kill_enemies",
@@ -644,22 +654,22 @@
             "description": ""
         },
         {
-            "id": "502",
-            "name": "Kanone gegen Svara",
-            "category": "kill_enemies",
+            "id": "466",
+            "name": "Astrologische Aufzeichnungen",
+            "category": "defense",
             "position": [
-                1285.24,
-                1686.85
+                1256.27,
+                726.79
             ],
             "description": ""
         },
         {
-            "id": "463",
-            "name": "Pech für schwarze Schafe",
-            "category": "kill_boss",
+            "id": "469",
+            "name": "Wölfe wittern Blut",
+            "category": "defense",
             "position": [
-                1319.71,
-                901.12
+                1323.21,
+                1535.0
             ],
             "description": ""
         },
@@ -674,12 +684,32 @@
             "description": ""
         },
         {
-            "id": "475",
-            "name": "Schluss mit Gargamelle",
+            "id": "463",
+            "name": "Pech für schwarze Schafe",
             "category": "kill_boss",
             "position": [
-                1669.37,
-                1409.12
+                1319.71,
+                901.12
+            ],
+            "description": ""
+        },
+        {
+            "id": "504",
+            "name": "Wehrlos vor Svara",
+            "category": "kill_boss",
+            "position": [
+                1287.74,
+                1686.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "503",
+            "name": "Feuer frei auf Svara",
+            "category": "kill_boss",
+            "position": [
+                1286.74,
+                1687.85
             ],
             "description": ""
         },
@@ -690,6 +720,46 @@
             "position": [
                 741.28,
                 1061.46
+            ],
+            "description": ""
+        },
+        {
+            "id": "494",
+            "name": "Rotgeflügelter Roc",
+            "category": "kill_boss",
+            "position": [
+                1022.5,
+                1208.32
+            ],
+            "description": ""
+        },
+        {
+            "id": "475",
+            "name": "Schluss mit Gargamelle",
+            "category": "kill_boss",
+            "position": [
+                1669.37,
+                1409.12
+            ],
+            "description": ""
+        },
+        {
+            "id": "507",
+            "name": "Mehr Augen, mehr Ärger",
+            "category": "kill_boss",
+            "position": [
+                734.78,
+                1081.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "493",
+            "name": "Späte Vergeltung",
+            "category": "kill_boss",
+            "position": [
+                190.30999999999995,
+                1004.02
             ],
             "description": ""
         },
@@ -724,26 +794,6 @@
             "description": ""
         },
         {
-            "id": "493",
-            "name": "Späte Vergeltung",
-            "category": "kill_boss",
-            "position": [
-                190.30999999999995,
-                1004.02
-            ],
-            "description": ""
-        },
-        {
-            "id": "494",
-            "name": "Rotgeflügelter Roc",
-            "category": "kill_boss",
-            "position": [
-                1022.5,
-                1208.32
-            ],
-            "description": ""
-        },
-        {
             "id": "499",
             "name": "Wilde Schwestern",
             "category": "kill_boss",
@@ -754,32 +804,22 @@
             "description": ""
         },
         {
+            "id": "508",
+            "name": "Beschwörer der Herrin der Winde",
+            "category": "kill_boss",
+            "position": [
+                1653.88,
+                938.08
+            ],
+            "description": ""
+        },
+        {
             "id": "500",
             "name": "Kein Holz für Natalan",
             "category": "kill_boss",
             "position": [
                 1639.4,
                 916.11
-            ],
-            "description": ""
-        },
-        {
-            "id": "503",
-            "name": "Feuer frei auf Svara",
-            "category": "kill_boss",
-            "position": [
-                1286.74,
-                1687.85
-            ],
-            "description": ""
-        },
-        {
-            "id": "504",
-            "name": "Wehrlos vor Svara",
-            "category": "kill_boss",
-            "position": [
-                1287.74,
-                1686.85
             ],
             "description": ""
         },
@@ -800,26 +840,6 @@
             "position": [
                 167.84000000000003,
                 1345.69
-            ],
-            "description": ""
-        },
-        {
-            "id": "507",
-            "name": "Mehr Augen, mehr Ärger",
-            "category": "kill_boss",
-            "position": [
-                734.78,
-                1081.44
-            ],
-            "description": ""
-        },
-        {
-            "id": "508",
-            "name": "Beschwörer der Herrin der Winde",
-            "category": "kill_boss",
-            "position": [
-                1653.88,
-                938.08
             ],
             "description": ""
         },
@@ -854,36 +874,6 @@
             "description": ""
         },
         {
-            "id": "466",
-            "name": "Astrologische Aufzeichnungen",
-            "category": "defense",
-            "position": [
-                1256.27,
-                726.79
-            ],
-            "description": ""
-        },
-        {
-            "id": "469",
-            "name": "Wölfe wittern Blut",
-            "category": "defense",
-            "position": [
-                1323.21,
-                1535.0
-            ],
-            "description": ""
-        },
-        {
-            "id": "472",
-            "name": "Wertschöpfung",
-            "category": "collect",
-            "position": [
-                1560.48,
-                1756.78
-            ],
-            "description": ""
-        },
-        {
             "id": "491",
             "name": "Horoskop für Drachenkopf",
             "category": "escort",
@@ -900,6 +890,16 @@
             "position": [
                 1256.27,
                 1296.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "472",
+            "name": "Wertschöpfung",
+            "category": "collect",
+            "position": [
+                1560.48,
+                1756.78
             ],
             "description": ""
         },

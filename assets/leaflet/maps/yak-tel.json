@@ -504,6 +504,146 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/y6f/y6f3 - Yak T'el.png",
     "markers": [
         {
+            "id": "1906",
+            "name": "Penetrante Pilze",
+            "category": "collect",
+            "position": [
+                1467.07,
+                354.65
+            ],
+            "description": ""
+        },
+        {
+            "id": "1897",
+            "name": "Schlingelpflanzen",
+            "category": "kill_enemies",
+            "position": [
+                1346.19,
+                1477.56
+            ],
+            "description": ""
+        },
+        {
+            "id": "1907",
+            "name": "Die Bananenkriege",
+            "category": "kill_enemies",
+            "position": [
+                1335.7,
+                636.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1898",
+            "name": "Denn sie wussten nicht, was sie tun",
+            "category": "kill_enemies",
+            "position": [
+                1432.1,
+                1295.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1903",
+            "name": "Zeittotstecherei",
+            "category": "kill_enemies",
+            "position": [
+                723.79,
+                581.9300000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1899",
+            "name": "Je mehr, desto lustiger",
+            "category": "kill_enemies",
+            "position": [
+                1007.52,
+                1389.6399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1909",
+            "name": "Kapitale Killer",
+            "category": "kill_enemies",
+            "position": [
+                1659.38,
+                611.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1900",
+            "name": "Viel gefragte Früchte",
+            "category": "kill_enemies",
+            "position": [
+                359.15,
+                1258.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1910",
+            "name": "Wundersame Wivren",
+            "category": "kill_enemies",
+            "position": [
+                677.3399999999999,
+                414.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "1901",
+            "name": "Gefährlicher Wald",
+            "category": "kill_enemies",
+            "position": [
+                779.74,
+                1597.94
+            ],
+            "description": ""
+        },
+        {
+            "id": "1902",
+            "name": "Denn sie wissen noch immer nicht, was sie tun",
+            "category": "kill_boss",
+            "position": [
+                1655.38,
+                1182.84
+            ],
+            "description": ""
+        },
+        {
+            "id": "1908",
+            "name": "Doktor Motte",
+            "category": "kill_boss",
+            "position": [
+                958.56,
+                875.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1904",
+            "name": "Darf ich bitten?",
+            "category": "kill_boss",
+            "position": [
+                715.8,
+                594.9200000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1896",
+            "name": "Ruhm oder Leben",
+            "category": "kill_boss",
+            "position": [
+                680.8399999999999,
+                1199.33
+            ],
+            "description": ""
+        },
+        {
             "id": "1895",
             "name": "Zahlenmäßig unterlegen",
             "category": "defense",
@@ -520,146 +660,6 @@
             "position": [
                 1158.37,
                 276.73
-            ],
-            "description": ""
-        },
-        {
-            "id": "1896",
-            "name": "Ruhm oder Leben",
-            "category": "kill_boss",
-            "position": [
-                680.8399999999999,
-                1199.33
-            ],
-            "description": ""
-        },
-        {
-            "id": "1902",
-            "name": "Denn sie wissen noch immer nicht, was sie tun",
-            "category": "kill_boss",
-            "position": [
-                1655.38,
-                1182.84
-            ],
-            "description": ""
-        },
-        {
-            "id": "1904",
-            "name": "Darf ich bitten?",
-            "category": "kill_boss",
-            "position": [
-                715.8,
-                594.9200000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1908",
-            "name": "Doktor Motte",
-            "category": "kill_boss",
-            "position": [
-                958.56,
-                875.15
-            ],
-            "description": ""
-        },
-        {
-            "id": "1897",
-            "name": "Schlingelpflanzen",
-            "category": "kill_enemies",
-            "position": [
-                1346.19,
-                1477.56
-            ],
-            "description": ""
-        },
-        {
-            "id": "1898",
-            "name": "Denn sie wussten nicht, was sie tun",
-            "category": "kill_enemies",
-            "position": [
-                1432.1,
-                1295.24
-            ],
-            "description": ""
-        },
-        {
-            "id": "1899",
-            "name": "Je mehr, desto lustiger",
-            "category": "kill_enemies",
-            "position": [
-                1007.52,
-                1389.6399999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1900",
-            "name": "Viel gefragte Früchte",
-            "category": "kill_enemies",
-            "position": [
-                359.15,
-                1258.77
-            ],
-            "description": ""
-        },
-        {
-            "id": "1901",
-            "name": "Gefährlicher Wald",
-            "category": "kill_enemies",
-            "position": [
-                779.74,
-                1597.94
-            ],
-            "description": ""
-        },
-        {
-            "id": "1903",
-            "name": "Zeittotstecherei",
-            "category": "kill_enemies",
-            "position": [
-                723.79,
-                581.9300000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1907",
-            "name": "Die Bananenkriege",
-            "category": "kill_enemies",
-            "position": [
-                1335.7,
-                636.88
-            ],
-            "description": ""
-        },
-        {
-            "id": "1909",
-            "name": "Kapitale Killer",
-            "category": "kill_enemies",
-            "position": [
-                1659.38,
-                611.9
-            ],
-            "description": ""
-        },
-        {
-            "id": "1910",
-            "name": "Wundersame Wivren",
-            "category": "kill_enemies",
-            "position": [
-                677.3399999999999,
-                414.1
-            ],
-            "description": ""
-        },
-        {
-            "id": "1906",
-            "name": "Penetrante Pilze",
-            "category": "collect",
-            "position": [
-                1467.07,
-                354.65
             ],
             "description": ""
         },

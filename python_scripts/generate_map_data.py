@@ -125,6 +125,7 @@ def load_url_as_bs4(url: str) -> BeautifulSoup:
 
 
 def getTablesFromConsoleGamesWiki(url: str, zone: str) -> dict[str, Any]:
+    print(url)
     soup: BeautifulSoup = load_url_as_bs4(url)
     main: Tag = soup.select(".mw-parser-output")[0] # type: ignore
     tables: list[Tag] = main.find_all("table", {"class":"location sortable table"}) # type: ignore
@@ -145,6 +146,7 @@ def getTablesFromConsoleGamesWiki(url: str, zone: str) -> dict[str, Any]:
                 h = "Location"
             header.append(h)
 
+        print(header)
         for row in entries:
             tmp: dict[str, Any] = {}
             cols = row.find_all("td") # type: ignore
@@ -165,8 +167,8 @@ def getTablesFromConsoleGamesWiki(url: str, zone: str) -> dict[str, Any]:
             tmp['Fate Name'] = fixFateNames(tmp['Fate Name'])
             print(tmp['Fate Name'])
             found = False
-            for key, value in fates.items():
-                if tmp['Fate Name'].lower() == value['fields']['Name'].lower().strip():
+            for key, value in fates_trans.items():
+                if tmp['Fate Name'].lower() == value['Name_en'].lower().strip():
                     tmp["Fate ID"] = key
                     tmp["Fate Type"] = "Fate"
                     found = True
@@ -288,8 +290,8 @@ def getLinksFromConsoleGamesWiki(createnew = False):
         zonename: str = zone.text.strip().replace(" FATEs", "")
         if zonename == "The Bozjan Southern Front":
             zonename = "Bozjan Southern Front"
-        if result.get(zonename, None):
-            continue
+        #if result.get(zonename, None):
+        #    continue
         try:
             print(zonename)
             if not result.get(zonename, None):
@@ -678,21 +680,21 @@ def get_quest(mapid, w, h):
 def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
     global path_of_main_script
     path_of_main_script = main_script
-    #try:
-    #    tc_fates = get_data_from_teamcraft()
-    #    #print_color_blue(tc_fates)
-    #    gw_fates = getLinksFromConsoleGamesWiki(0)
-    #    merged_fates = merge_fate_data(tc_fates, gw_fates)
-    #    merged_fates = fix_special(merged_fates)
-    #    #print_pretty_json(merged_fates['Bozjan Southern Front'])
-#
-    #    writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
-    #    #writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
-    #    #writeJsonFile(r"C:\Users\Akurosia\Documents\GitHub\DevFFXIVPocketGuide\python_scripts\FatesFromConsoleWiki.json", merged_fates)
-#
-    #    print("[GAFD] Completed getting new Fates")
-    #except Exception as e:
-    #    traceback.print_exc()
+    try:
+        tc_fates = get_data_from_teamcraft()
+        #print_color_blue(tc_fates)
+        gw_fates = getLinksFromConsoleGamesWiki(0)
+        merged_fates = merge_fate_data(tc_fates, gw_fates)
+        merged_fates = fix_special(merged_fates)
+        #print_pretty_json(merged_fates['Bozjan Southern Front'])
+
+        writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
+        #writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
+        #writeJsonFile(r"C:\Users\Akurosia\Documents\GitHub\DevFFXIVPocketGuide\python_scripts\FatesFromConsoleWiki.json", merged_fates)
+
+        print("[GAFD] Completed getting new Fates")
+    except Exception as e:
+        traceback.print_exc()
     generate_images()
 
 def get_base_images():

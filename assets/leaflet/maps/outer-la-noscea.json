@@ -504,42 +504,12 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f6 - Äußeres La Noscea.png",
     "markers": [
         {
-            "id": "580",
-            "name": "Basaltblockade",
-            "category": "kill_enemies",
+            "id": "591",
+            "name": "Ende eines Gerüchts",
+            "category": "kill_boss",
             "position": [
-                808.71,
-                1284.75
-            ],
-            "description": ""
-        },
-        {
-            "id": "583",
-            "name": "Ein prachtvoller Feind",
-            "category": "kill_enemies",
-            "position": [
-                714.3,
-                1533.0
-            ],
-            "description": ""
-        },
-        {
-            "id": "588",
-            "name": "Granaten in Sicht",
-            "category": "kill_enemies",
-            "position": [
-                1001.52,
-                1286.24
-            ],
-            "description": ""
-        },
-        {
-            "id": "593",
-            "name": "Keine Fragen. Renn.",
-            "category": "kill_enemies",
-            "position": [
-                869.15,
-                1312.22
+                686.8299999999999,
+                1163.8600000000001
             ],
             "description": ""
         },
@@ -554,12 +524,12 @@
             "description": ""
         },
         {
-            "id": "586",
-            "name": "Riecher für Erz",
+            "id": "594",
+            "name": "Fehlschöpfung",
             "category": "kill_boss",
             "position": [
-                1106.92,
-                1492.04
+                673.3399999999999,
+                1324.21
             ],
             "description": ""
         },
@@ -584,22 +554,32 @@
             "description": ""
         },
         {
-            "id": "591",
-            "name": "Ende eines Gerüchts",
+            "id": "586",
+            "name": "Riecher für Erz",
             "category": "kill_boss",
             "position": [
-                686.8299999999999,
-                1163.8600000000001
+                1106.92,
+                1492.04
             ],
             "description": ""
         },
         {
-            "id": "594",
-            "name": "Fehlschöpfung",
+            "id": "599",
+            "name": "Beschwörer des Herrn der Felsen",
             "category": "kill_boss",
             "position": [
-                673.3399999999999,
-                1324.21
+                1095.43,
+                1536.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "700",
+            "name": "Bezwinger des Bezwingers",
+            "category": "kill_boss",
+            "position": [
+                1047.48,
+                1800.74
             ],
             "description": ""
         },
@@ -624,22 +604,42 @@
             "description": ""
         },
         {
-            "id": "599",
-            "name": "Beschwörer des Herrn der Felsen",
-            "category": "kill_boss",
+            "id": "580",
+            "name": "Basaltblockade",
+            "category": "kill_enemies",
             "position": [
-                1095.43,
-                1536.5
+                808.71,
+                1284.75
             ],
             "description": ""
         },
         {
-            "id": "700",
-            "name": "Bezwinger des Bezwingers",
-            "category": "kill_boss",
+            "id": "583",
+            "name": "Ein prachtvoller Feind",
+            "category": "kill_enemies",
             "position": [
-                1047.48,
-                1800.74
+                714.3,
+                1533.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "593",
+            "name": "Keine Fragen. Renn.",
+            "category": "kill_enemies",
+            "position": [
+                869.15,
+                1312.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "588",
+            "name": "Granaten in Sicht",
+            "category": "kill_enemies",
+            "position": [
+                1001.52,
+                1286.24
             ],
             "description": ""
         },

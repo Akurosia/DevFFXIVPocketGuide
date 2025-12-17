@@ -504,12 +504,82 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/a2f/a2f2 - Azys Lla.png",
     "markers": [
         {
+            "id": "895",
+            "name": "Feuer mit Feuer bekämpfen",
+            "category": "kill_boss",
+            "position": [
+                540.8775,
+                501.1105
+            ],
+            "description": ""
+        },
+        {
             "id": "877",
             "name": "Ultima: Ein Prototyp tankt auf",
             "category": "kill_boss",
             "position": [
                 1276.8805,
                 1810.353
+            ],
+            "description": ""
+        },
+        {
+            "id": "890",
+            "name": "Der Chef ist sauer",
+            "category": "kill_boss",
+            "position": [
+                1613.3325,
+                360.6435
+            ],
+            "description": ""
+        },
+        {
+            "id": "901",
+            "name": "Der rotierende Turm von Azys Lla",
+            "category": "kill_boss",
+            "position": [
+                527.587,
+                1444.964
+            ],
+            "description": ""
+        },
+        {
+            "id": "885",
+            "name": "Blinde Wut",
+            "category": "kill_boss",
+            "position": [
+                1665.5255,
+                1489.0915
+            ],
+            "description": ""
+        },
+        {
+            "id": "898",
+            "name": "Stheno abschreiben",
+            "category": "kill_boss",
+            "position": [
+                408.4760000000001,
+                1070.075
+            ],
+            "description": ""
+        },
+        {
+            "id": "883",
+            "name": "Hungriges Hirn",
+            "category": "kill_boss",
+            "position": [
+                1407.857,
+                1753.8849999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "882",
+            "name": "Der Fürst und der Richter",
+            "category": "kill_boss",
+            "position": [
+                815.6365,
+                1490.9915
             ],
             "description": ""
         },
@@ -534,182 +604,12 @@
             "description": ""
         },
         {
-            "id": "882",
-            "name": "Der Fürst und der Richter",
-            "category": "kill_boss",
-            "position": [
-                815.6365,
-                1490.9915
-            ],
-            "description": ""
-        },
-        {
-            "id": "883",
-            "name": "Hungriges Hirn",
-            "category": "kill_boss",
-            "position": [
-                1407.857,
-                1753.8849999999998
-            ],
-            "description": ""
-        },
-        {
-            "id": "885",
-            "name": "Blinde Wut",
-            "category": "kill_boss",
-            "position": [
-                1665.5255,
-                1489.0915
-            ],
-            "description": ""
-        },
-        {
-            "id": "890",
-            "name": "Der Chef ist sauer",
-            "category": "kill_boss",
-            "position": [
-                1613.3325,
-                360.6435
-            ],
-            "description": ""
-        },
-        {
-            "id": "895",
-            "name": "Feuer mit Feuer bekämpfen",
-            "category": "kill_boss",
-            "position": [
-                540.8775,
-                501.1105
-            ],
-            "description": ""
-        },
-        {
-            "id": "898",
-            "name": "Stheno abschreiben",
-            "category": "kill_boss",
-            "position": [
-                408.4760000000001,
-                1070.075
-            ],
-            "description": ""
-        },
-        {
-            "id": "901",
-            "name": "Der rotierende Turm von Azys Lla",
-            "category": "kill_boss",
-            "position": [
-                527.587,
-                1444.964
-            ],
-            "description": ""
-        },
-        {
-            "id": "880",
-            "name": "Lockere Schrauben",
-            "category": "defense",
-            "position": [
-                829.3925,
-                1210.542
-            ],
-            "description": ""
-        },
-        {
             "id": "881",
             "name": "Wir packen unseren Koffer",
             "category": "kill_enemies",
             "position": [
                 874.47,
                 1721.6135
-            ],
-            "description": ""
-        },
-        {
-            "id": "884",
-            "name": "Empusen-Epidemie",
-            "category": "kill_enemies",
-            "position": [
-                1724.3685,
-                1791.847
-            ],
-            "description": ""
-        },
-        {
-            "id": "886",
-            "name": "Der giftgrüne Daumen",
-            "category": "kill_enemies",
-            "position": [
-                1616.6480000000001,
-                1643.3145
-            ],
-            "description": ""
-        },
-        {
-            "id": "887",
-            "name": "Wehe, wenn sie alleingelassen",
-            "category": "kill_enemies",
-            "position": [
-                1758.54,
-                899.246
-            ],
-            "description": ""
-        },
-        {
-            "id": "888",
-            "name": "Das bleibt lieber vergessen",
-            "category": "kill_enemies",
-            "position": [
-                1140.2135,
-                722.242
-            ],
-            "description": ""
-        },
-        {
-            "id": "889",
-            "name": "Alle Klauen voll zu tun",
-            "category": "kill_enemies",
-            "position": [
-                1613.3325,
-                360.6435
-            ],
-            "description": ""
-        },
-        {
-            "id": "891",
-            "name": "Vertreibung aus Gamma-Ost",
-            "category": "kill_enemies",
-            "position": [
-                1714.878,
-                702.311
-            ],
-            "description": ""
-        },
-        {
-            "id": "892",
-            "name": "Vertreibung aus Gamma-West",
-            "category": "kill_enemies",
-            "position": [
-                1389.826,
-                528.1569999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "893",
-            "name": "Vertreibung aus Gamma-Süd",
-            "category": "kill_enemies",
-            "position": [
-                1310.102,
-                243.90750000000003
-            ],
-            "description": ""
-        },
-        {
-            "id": "894",
-            "name": "Tödliche Unzurechnungsfähigkeit",
-            "category": "kill_enemies",
-            "position": [
-                283.6745000000001,
-                429.452
             ],
             "description": ""
         },
@@ -724,12 +624,62 @@
             "description": ""
         },
         {
-            "id": "899",
-            "name": "Seelenlose Grausamkeit",
+            "id": "891",
+            "name": "Vertreibung aus Gamma-Ost",
             "category": "kill_enemies",
             "position": [
-                571.724,
-                684.755
+                1714.878,
+                702.311
+            ],
+            "description": ""
+        },
+        {
+            "id": "886",
+            "name": "Der giftgrüne Daumen",
+            "category": "kill_enemies",
+            "position": [
+                1616.6480000000001,
+                1643.3145
+            ],
+            "description": ""
+        },
+        {
+            "id": "893",
+            "name": "Vertreibung aus Gamma-Süd",
+            "category": "kill_enemies",
+            "position": [
+                1310.102,
+                243.90750000000003
+            ],
+            "description": ""
+        },
+        {
+            "id": "888",
+            "name": "Das bleibt lieber vergessen",
+            "category": "kill_enemies",
+            "position": [
+                1140.2135,
+                722.242
+            ],
+            "description": ""
+        },
+        {
+            "id": "887",
+            "name": "Wehe, wenn sie alleingelassen",
+            "category": "kill_enemies",
+            "position": [
+                1758.54,
+                899.246
+            ],
+            "description": ""
+        },
+        {
+            "id": "894",
+            "name": "Tödliche Unzurechnungsfähigkeit",
+            "category": "kill_enemies",
+            "position": [
+                283.6745000000001,
+                429.452
             ],
             "description": ""
         },
@@ -740,6 +690,56 @@
             "position": [
                 1452.9344999999998,
                 1513.7725
+            ],
+            "description": ""
+        },
+        {
+            "id": "889",
+            "name": "Alle Klauen voll zu tun",
+            "category": "kill_enemies",
+            "position": [
+                1613.3325,
+                360.6435
+            ],
+            "description": ""
+        },
+        {
+            "id": "884",
+            "name": "Empusen-Epidemie",
+            "category": "kill_enemies",
+            "position": [
+                1724.3685,
+                1791.847
+            ],
+            "description": ""
+        },
+        {
+            "id": "899",
+            "name": "Seelenlose Grausamkeit",
+            "category": "kill_enemies",
+            "position": [
+                571.724,
+                684.755
+            ],
+            "description": ""
+        },
+        {
+            "id": "892",
+            "name": "Vertreibung aus Gamma-West",
+            "category": "kill_enemies",
+            "position": [
+                1389.826,
+                528.1569999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "880",
+            "name": "Lockere Schrauben",
+            "category": "defense",
+            "position": [
+                829.3925,
+                1210.542
             ],
             "description": ""
         },

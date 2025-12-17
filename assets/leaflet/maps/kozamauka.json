@@ -504,26 +504,6 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/y6f/y6f2 - Kozama'uka.png",
     "markers": [
         {
-            "id": "1924",
-            "name": "Hammerharte Herausforderung",
-            "category": "kill_enemies",
-            "position": [
-                540.47,
-                1468.07
-            ],
-            "description": ""
-        },
-        {
-            "id": "1925",
-            "name": "Jeder Tegu ein Tegu zu viel",
-            "category": "kill_enemies",
-            "position": [
-                1663.38,
-                1141.39
-            ],
-            "description": ""
-        },
-        {
             "id": "1927",
             "name": "Zu Schilfe!",
             "category": "kill_enemies",
@@ -544,12 +524,22 @@
             "description": ""
         },
         {
-            "id": "1933",
-            "name": "Nichts als Lug und Betrug",
+            "id": "1924",
+            "name": "Hammerharte Herausforderung",
             "category": "kill_enemies",
             "position": [
-                1681.8600000000001,
-                641.87
+                540.47,
+                1468.07
+            ],
+            "description": ""
+        },
+        {
+            "id": "1940",
+            "name": "Es ist Pilzsaison",
+            "category": "kill_enemies",
+            "position": [
+                261.24,
+                435.57000000000005
             ],
             "description": ""
         },
@@ -584,12 +574,42 @@
             "description": ""
         },
         {
-            "id": "1940",
-            "name": "Es ist Pilzsaison",
+            "id": "1925",
+            "name": "Jeder Tegu ein Tegu zu viel",
             "category": "kill_enemies",
             "position": [
-                261.24,
-                435.57000000000005
+                1663.38,
+                1141.39
+            ],
+            "description": ""
+        },
+        {
+            "id": "1933",
+            "name": "Nichts als Lug und Betrug",
+            "category": "kill_enemies",
+            "position": [
+                1681.8600000000001,
+                641.87
+            ],
+            "description": ""
+        },
+        {
+            "id": "1931",
+            "name": "Auf das richtige Material kommt es an",
+            "category": "collect",
+            "position": [
+                1085.44,
+                1649.8899999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1937",
+            "name": "Steinchensucher",
+            "category": "collect",
+            "position": [
+                383.63,
+                1008.02
             ],
             "description": ""
         },
@@ -624,16 +644,6 @@
             "description": ""
         },
         {
-            "id": "1938",
-            "name": "Verführerisches Verderben",
-            "category": "kill_boss",
-            "position": [
-                1013.01,
-                608.9100000000001
-            ],
-            "description": ""
-        },
-        {
             "id": "1941",
             "name": "Rampensau",
             "category": "kill_boss",
@@ -644,22 +654,12 @@
             "description": ""
         },
         {
-            "id": "1931",
-            "name": "Auf das richtige Material kommt es an",
-            "category": "collect",
+            "id": "1938",
+            "name": "Verführerisches Verderben",
+            "category": "kill_boss",
             "position": [
-                1085.44,
-                1649.8899999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1937",
-            "name": "Steinchensucher",
-            "category": "collect",
-            "position": [
-                383.63,
-                1008.02
+                1013.01,
+                608.9100000000001
             ],
             "description": ""
         },

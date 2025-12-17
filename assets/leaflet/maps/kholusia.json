@@ -504,132 +504,12 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f2 - Kholusia.png",
     "markers": [
         {
-            "id": "1462",
-            "name": "Ein formidabler Kampf: Die Bedrohung",
-            "category": "defense",
-            "position": [
-                1080.94,
-                1411.62
-            ],
-            "description": ""
-        },
-        {
-            "id": "1463",
-            "name": "Ein formidabler Kampf: Ein finsterer Plan",
-            "category": "defense",
-            "position": [
-                1237.29,
-                1079.45
-            ],
-            "description": ""
-        },
-        {
-            "id": "1469",
-            "name": "Rallen haben scharfe Krallen",
-            "category": "defense",
-            "position": [
-                858.66,
-                560.95
-            ],
-            "description": ""
-        },
-        {
-            "id": "1475",
-            "name": "Räuberplage in Eintracht",
-            "category": "defense",
-            "position": [
-                879.64,
-                1145.38
-            ],
-            "description": ""
-        },
-        {
-            "id": "1479",
-            "name": "Krieg der Baumeister: Duell der Giganten",
-            "category": "defense",
-            "position": [
-                759.76,
-                1051.97
-            ],
-            "description": ""
-        },
-        {
-            "id": "1464",
-            "name": "Ein formidabler Kampf: Der Gigant",
-            "category": "kill_boss",
-            "position": [
-                1635.9,
-                1035.99
-            ],
-            "description": ""
-        },
-        {
-            "id": "1476",
-            "name": "Im Land der Donnerwürmer",
-            "category": "kill_boss",
-            "position": [
-                525.99,
-                1346.19
-            ],
-            "description": ""
-        },
-        {
-            "id": "1465",
-            "name": "Räuberplage in Stillwasser",
-            "category": "kill_enemies",
-            "position": [
-                1531.5,
-                840.6800000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1466",
-            "name": "Räuberplage in Stillwasser",
-            "category": "kill_enemies",
-            "position": [
-                1790.75,
-                892.13
-            ],
-            "description": ""
-        },
-        {
             "id": "1467",
             "name": "Räuberplage in Werfting",
             "category": "kill_enemies",
             "position": [
                 598.9200000000001,
                 723.79
-            ],
-            "description": ""
-        },
-        {
-            "id": "1468",
-            "name": "Räuberplage in Werfting",
-            "category": "kill_enemies",
-            "position": [
-                857.66,
-                728.79
-            ],
-            "description": ""
-        },
-        {
-            "id": "1470",
-            "name": "Ungebetener Besuch aus der Tiefe",
-            "category": "kill_enemies",
-            "position": [
-                1520.02,
-                425.58000000000004
-            ],
-            "description": ""
-        },
-        {
-            "id": "1471",
-            "name": "Frech und flügge",
-            "category": "kill_enemies",
-            "position": [
-                1205.32,
-                739.78
             ],
             "description": ""
         },
@@ -644,12 +524,32 @@
             "description": ""
         },
         {
-            "id": "1473",
-            "name": "Total durchgeklopft",
+            "id": "1465",
+            "name": "Räuberplage in Stillwasser",
             "category": "kill_enemies",
             "position": [
-                1121.4,
-                1642.9
+                1531.5,
+                840.6800000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1471",
+            "name": "Frech und flügge",
+            "category": "kill_enemies",
+            "position": [
+                1205.32,
+                739.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1470",
+            "name": "Ungebetener Besuch aus der Tiefe",
+            "category": "kill_enemies",
+            "position": [
+                1520.02,
+                425.58000000000004
             ],
             "description": ""
         },
@@ -664,12 +564,112 @@
             "description": ""
         },
         {
+            "id": "1473",
+            "name": "Total durchgeklopft",
+            "category": "kill_enemies",
+            "position": [
+                1121.4,
+                1642.9
+            ],
+            "description": ""
+        },
+        {
             "id": "1478",
             "name": "Krieg der Baumeister: Testphase",
             "category": "kill_enemies",
             "position": [
                 849.17,
                 1360.67
+            ],
+            "description": ""
+        },
+        {
+            "id": "1466",
+            "name": "Räuberplage in Stillwasser",
+            "category": "kill_enemies",
+            "position": [
+                1790.75,
+                892.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1468",
+            "name": "Räuberplage in Werfting",
+            "category": "kill_enemies",
+            "position": [
+                857.66,
+                728.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "1469",
+            "name": "Rallen haben scharfe Krallen",
+            "category": "defense",
+            "position": [
+                858.66,
+                560.95
+            ],
+            "description": ""
+        },
+        {
+            "id": "1463",
+            "name": "Ein formidabler Kampf: Ein finsterer Plan",
+            "category": "defense",
+            "position": [
+                1237.29,
+                1079.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "1479",
+            "name": "Krieg der Baumeister: Duell der Giganten",
+            "category": "defense",
+            "position": [
+                759.76,
+                1051.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1475",
+            "name": "Räuberplage in Eintracht",
+            "category": "defense",
+            "position": [
+                879.64,
+                1145.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1462",
+            "name": "Ein formidabler Kampf: Die Bedrohung",
+            "category": "defense",
+            "position": [
+                1080.94,
+                1411.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1476",
+            "name": "Im Land der Donnerwürmer",
+            "category": "kill_boss",
+            "position": [
+                525.99,
+                1346.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1464",
+            "name": "Ein formidabler Kampf: Der Gigant",
+            "category": "kill_boss",
+            "position": [
+                1635.9,
+                1035.99
             ],
             "description": ""
         },

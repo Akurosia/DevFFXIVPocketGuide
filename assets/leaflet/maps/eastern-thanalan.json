@@ -504,62 +504,12 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/w1f/w1f3 - Östliches Thanalan.png",
     "markers": [
         {
-            "id": "191",
-            "name": "Schlacht um Hohenbrück:\nDer Ansturm",
-            "category": "kill_enemies",
-            "position": [
-                1074.95,
-                1038.99
-            ],
-            "description": ""
-        },
-        {
-            "id": "192",
-            "name": "Schlacht um Hohenbrück:\nDie Verteidigung",
-            "category": "kill_enemies",
-            "position": [
-                1074.95,
-                1038.99
-            ],
-            "description": ""
-        },
-        {
-            "id": "394",
-            "name": "Ganz schön bockig",
-            "category": "kill_enemies",
-            "position": [
-                804.21,
-                610.9
-            ],
-            "description": ""
-        },
-        {
             "id": "395",
             "name": "Wer anderen eine Grube gräbt",
             "category": "kill_enemies",
             "position": [
                 562.95,
                 739.28
-            ],
-            "description": ""
-        },
-        {
-            "id": "397",
-            "name": "Vormarsch der Amalj'aa",
-            "category": "kill_enemies",
-            "position": [
-                790.23,
-                763.25
-            ],
-            "description": ""
-        },
-        {
-            "id": "400",
-            "name": "Verteidigung des Goldbasars",
-            "category": "kill_enemies",
-            "position": [
-                497.01,
-                1252.78
             ],
             "description": ""
         },
@@ -574,32 +524,22 @@
             "description": ""
         },
         {
-            "id": "406",
-            "name": "Den Spieß umdrehen",
-            "category": "kill_enemies",
-            "position": [
-                1207.32,
-                1071.45
-            ],
-            "description": ""
-        },
-        {
-            "id": "409",
-            "name": "Unerwünschtes Unkraut",
-            "category": "kill_enemies",
-            "position": [
-                1332.2,
-                1237.79
-            ],
-            "description": ""
-        },
-        {
             "id": "412",
             "name": "Sicherung der Wasserversorgung",
             "category": "kill_enemies",
             "position": [
                 644.87,
                 1061.96
+            ],
+            "description": ""
+        },
+        {
+            "id": "400",
+            "name": "Verteidigung des Goldbasars",
+            "category": "kill_enemies",
+            "position": [
+                497.01,
+                1252.78
             ],
             "description": ""
         },
@@ -614,12 +554,62 @@
             "description": ""
         },
         {
-            "id": "540",
-            "name": "Dem Quarz zuliebe",
+            "id": "397",
+            "name": "Vormarsch der Amalj'aa",
             "category": "kill_enemies",
             "position": [
-                1245.78,
-                863.16
+                790.23,
+                763.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "394",
+            "name": "Ganz schön bockig",
+            "category": "kill_enemies",
+            "position": [
+                804.21,
+                610.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "192",
+            "name": "Schlacht um Hohenbrück:\nDie Verteidigung",
+            "category": "kill_enemies",
+            "position": [
+                1074.95,
+                1038.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "191",
+            "name": "Schlacht um Hohenbrück:\nDer Ansturm",
+            "category": "kill_enemies",
+            "position": [
+                1074.95,
+                1038.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "409",
+            "name": "Unerwünschtes Unkraut",
+            "category": "kill_enemies",
+            "position": [
+                1332.2,
+                1237.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "406",
+            "name": "Den Spieß umdrehen",
+            "category": "kill_enemies",
+            "position": [
+                1207.32,
+                1071.45
             ],
             "description": ""
         },
@@ -630,6 +620,36 @@
             "position": [
                 1395.6399999999999,
                 926.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "540",
+            "name": "Dem Quarz zuliebe",
+            "category": "kill_enemies",
+            "position": [
+                1245.78,
+                863.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "401",
+            "name": "Rendezvous mit dem Tod",
+            "category": "kill_boss",
+            "position": [
+                661.85,
+                1240.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "398",
+            "name": "Ein paar aufs Maul",
+            "category": "kill_boss",
+            "position": [
+                932.59,
+                721.8
             ],
             "description": ""
         },
@@ -664,26 +684,6 @@
             "description": ""
         },
         {
-            "id": "398",
-            "name": "Ein paar aufs Maul",
-            "category": "kill_boss",
-            "position": [
-                932.59,
-                721.8
-            ],
-            "description": ""
-        },
-        {
-            "id": "401",
-            "name": "Rendezvous mit dem Tod",
-            "category": "kill_boss",
-            "position": [
-                661.85,
-                1240.29
-            ],
-            "description": ""
-        },
-        {
             "id": "407",
             "name": "Zum Haare raufen",
             "category": "kill_boss",
@@ -694,22 +694,22 @@
             "description": ""
         },
         {
-            "id": "542",
-            "name": "Holder Knabe in lockigem Haar",
-            "category": "kill_boss",
-            "position": [
-                1320.21,
-                894.13
-            ],
-            "description": ""
-        },
-        {
             "id": "543",
             "name": "Großer Badu, große Gefahr",
             "category": "kill_boss",
             "position": [
                 1456.08,
                 820.2
+            ],
+            "description": ""
+        },
+        {
+            "id": "542",
+            "name": "Holder Knabe in lockigem Haar",
+            "category": "kill_boss",
+            "position": [
+                1320.21,
+                894.13
             ],
             "description": ""
         },

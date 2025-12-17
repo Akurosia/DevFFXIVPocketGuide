@@ -504,42 +504,22 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/x6f/x6f3 - Lebende Erinnerung.png",
     "markers": [
         {
-            "id": "1911",
-            "name": "Eindringlinge aus Asylkan",
-            "category": "kill_enemies",
+            "id": "1921",
+            "name": "Bizarres Zwischenspiel",
+            "category": "notorious_monster",
             "position": [
-                745.77,
-                1290.74
+                1738.3,
+                389.62
             ],
             "description": ""
         },
         {
-            "id": "1914",
-            "name": "Wasser marsch",
-            "category": "kill_enemies",
+            "id": "1915",
+            "name": "Von ganz unten hochgearbeitet",
+            "category": "notorious_monster",
             "position": [
-                362.65,
-                397.61
-            ],
-            "description": ""
-        },
-        {
-            "id": "1920",
-            "name": "Alles andere als fade, diese Parade",
-            "category": "kill_enemies",
-            "position": [
-                1736.3,
-                388.62
-            ],
-            "description": ""
-        },
-        {
-            "id": "1923",
-            "name": "Versunkene Welt",
-            "category": "kill_enemies",
-            "position": [
-                1509.03,
-                527.48
+                364.64,
+                399.61
             ],
             "description": ""
         },
@@ -584,6 +564,16 @@
             "description": ""
         },
         {
+            "id": "1917",
+            "name": "Was bleibt, ist die Erinnerung",
+            "category": "collect",
+            "position": [
+                1315.72,
+                1662.38
+            ],
+            "description": ""
+        },
+        {
             "id": "1913",
             "name": "Schützenswerte Samen",
             "category": "collect",
@@ -594,12 +584,42 @@
             "description": ""
         },
         {
-            "id": "1917",
-            "name": "Was bleibt, ist die Erinnerung",
-            "category": "collect",
+            "id": "1923",
+            "name": "Versunkene Welt",
+            "category": "kill_enemies",
             "position": [
-                1315.72,
-                1662.38
+                1509.03,
+                527.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "1914",
+            "name": "Wasser marsch",
+            "category": "kill_enemies",
+            "position": [
+                362.65,
+                397.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "1920",
+            "name": "Alles andere als fade, diese Parade",
+            "category": "kill_enemies",
+            "position": [
+                1736.3,
+                388.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1911",
+            "name": "Eindringlinge aus Asylkan",
+            "category": "kill_enemies",
+            "position": [
+                745.77,
+                1290.74
             ],
             "description": ""
         },

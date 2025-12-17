@@ -504,32 +504,12 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/f1f/f1f2 - Ostwald.png",
     "markers": [
         {
-            "id": "145",
-            "name": "戦場までは何マルム？",
+            "id": "214",
+            "name": "Geierschmaus",
             "category": "kill_enemies",
             "position": [
-                1102.42,
-                562.95
-            ],
-            "description": ""
-        },
-        {
-            "id": "151",
-            "name": "リトルブリッジの戦い",
-            "category": "kill_enemies",
-            "position": [
-                962.56,
-                1019.5
-            ],
-            "description": ""
-        },
-        {
-            "id": "148",
-            "name": "Futterneid",
-            "category": "kill_enemies",
-            "position": [
-                538.97,
-                888.13
+                588.9200000000001,
+                777.24
             ],
             "description": ""
         },
@@ -544,12 +524,12 @@
             "description": ""
         },
         {
-            "id": "152",
-            "name": "Wirr im Wipfel",
+            "id": "145",
+            "name": "戦場までは何マルム？",
             "category": "kill_enemies",
             "position": [
-                870.15,
-                849.17
+                1102.42,
+                562.95
             ],
             "description": ""
         },
@@ -564,6 +544,16 @@
             "description": ""
         },
         {
+            "id": "152",
+            "name": "Wirr im Wipfel",
+            "category": "kill_enemies",
+            "position": [
+                870.15,
+                849.17
+            ],
+            "description": ""
+        },
+        {
             "id": "213",
             "name": "Von den Sylphen verweht",
             "category": "kill_enemies",
@@ -574,12 +564,12 @@
             "description": ""
         },
         {
-            "id": "214",
-            "name": "Geierschmaus",
+            "id": "151",
+            "name": "リトルブリッジの戦い",
             "category": "kill_enemies",
             "position": [
-                588.9200000000001,
-                777.24
+                962.56,
+                1019.5
             ],
             "description": ""
         },
@@ -614,6 +604,16 @@
             "description": ""
         },
         {
+            "id": "620",
+            "name": "Ende der Pilzsaison",
+            "category": "kill_enemies",
+            "position": [
+                1136.39,
+                1372.16
+            ],
+            "description": ""
+        },
+        {
             "id": "618",
             "name": "Traumkröten für den Eigenbedarf",
             "category": "kill_enemies",
@@ -624,12 +624,12 @@
             "description": ""
         },
         {
-            "id": "620",
-            "name": "Ende der Pilzsaison",
+            "id": "148",
+            "name": "Futterneid",
             "category": "kill_enemies",
             "position": [
-                1136.39,
-                1372.16
+                538.97,
+                888.13
             ],
             "description": ""
         },
@@ -674,42 +674,22 @@
             "description": ""
         },
         {
-            "id": "198",
-            "name": "Der dunkle Reiter",
-            "category": "kill_boss",
-            "position": [
-                1268.26,
-                880.14
-            ],
-            "description": ""
-        },
-        {
-            "id": "199",
-            "name": "Der dunkle Reiter",
-            "category": "kill_boss",
-            "position": [
-                1282.25,
-                1009.51
-            ],
-            "description": ""
-        },
-        {
-            "id": "200",
-            "name": "Der dunkle Reiter",
-            "category": "kill_boss",
-            "position": [
-                1117.41,
-                592.9200000000001
-            ],
-            "description": ""
-        },
-        {
             "id": "218",
             "name": "Undank des Faulen",
             "category": "kill_boss",
             "position": [
                 1117.91,
                 609.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "691",
+            "name": "Prototyp des Grauens",
+            "category": "kill_boss",
+            "position": [
+                1420.6100000000001,
+                1025.5
             ],
             "description": ""
         },
@@ -754,6 +734,16 @@
             "description": ""
         },
         {
+            "id": "692",
+            "name": "Jetzt gibt's Keile",
+            "category": "kill_boss",
+            "position": [
+                1115.41,
+                1182.35
+            ],
+            "description": ""
+        },
+        {
             "id": "622",
             "name": "Ramuh-Früherziehung",
             "category": "kill_boss",
@@ -764,22 +754,32 @@
             "description": ""
         },
         {
-            "id": "691",
-            "name": "Prototyp des Grauens",
+            "id": "198",
+            "name": "Der dunkle Reiter",
             "category": "kill_boss",
             "position": [
-                1420.6100000000001,
-                1025.5
+                1268.26,
+                880.14
             ],
             "description": ""
         },
         {
-            "id": "692",
-            "name": "Jetzt gibt's Keile",
+            "id": "199",
+            "name": "Der dunkle Reiter",
             "category": "kill_boss",
             "position": [
-                1115.41,
-                1182.35
+                1282.25,
+                1009.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "200",
+            "name": "Der dunkle Reiter",
+            "category": "kill_boss",
+            "position": [
+                1117.41,
+                592.9200000000001
             ],
             "description": ""
         },

@@ -504,112 +504,12 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/r2f/r2f1 - Westliches Hochland von Coerthas.png",
     "markers": [
         {
-            "id": "787",
-            "name": "Was gibt's da zu glotzen?",
-            "category": "kill_enemies",
-            "position": [
-                1287.321,
-                624.012
-            ],
-            "description": ""
-        },
-        {
-            "id": "788",
-            "name": "Ins Bocknäpfchen getreten",
-            "category": "kill_enemies",
-            "position": [
-                1442.019,
-                615.4715000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "789",
-            "name": "Wasser ist zum Waschen da",
-            "category": "kill_enemies",
-            "position": [
-                1148.279,
-                1001.7415
-            ],
-            "description": ""
-        },
-        {
             "id": "791",
             "name": "Revierausweitung",
             "category": "kill_enemies",
             "position": [
                 1430.1535,
                 1118.4775
-            ],
-            "description": ""
-        },
-        {
-            "id": "794",
-            "name": "Wem Ehre gebührt",
-            "category": "kill_enemies",
-            "position": [
-                875.42,
-                1065.8095
-            ],
-            "description": ""
-        },
-        {
-            "id": "795",
-            "name": "Ich möchte kein Eisbär sein",
-            "category": "kill_enemies",
-            "position": [
-                709.8064999999999,
-                1106.612
-            ],
-            "description": ""
-        },
-        {
-            "id": "798",
-            "name": "Wärmflasche wider Willen",
-            "category": "kill_enemies",
-            "position": [
-                366.72350000000006,
-                1605.8274999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "800",
-            "name": "Der Traum ist aus",
-            "category": "kill_enemies",
-            "position": [
-                596.8705,
-                1173.53
-            ],
-            "description": ""
-        },
-        {
-            "id": "801",
-            "name": "Man jätet, was man sieht",
-            "category": "kill_enemies",
-            "position": [
-                1598.1419999999998,
-                1416.0175
-            ],
-            "description": ""
-        },
-        {
-            "id": "802",
-            "name": "Die Stärke des Rudels",
-            "category": "kill_enemies",
-            "position": [
-                538.5025,
-                1574.5059999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "805",
-            "name": "Das geringere Übel",
-            "category": "kill_enemies",
-            "position": [
-                742.553,
-                1442.114
             ],
             "description": ""
         },
@@ -624,12 +524,42 @@
             "description": ""
         },
         {
-            "id": "811",
-            "name": "Kampf gegen die Vorhut",
+            "id": "787",
+            "name": "Was gibt's da zu glotzen?",
             "category": "kill_enemies",
             "position": [
-                886.8105,
-                1377.5805
+                1287.321,
+                624.012
+            ],
+            "description": ""
+        },
+        {
+            "id": "789",
+            "name": "Wasser ist zum Waschen da",
+            "category": "kill_enemies",
+            "position": [
+                1148.279,
+                1001.7415
+            ],
+            "description": ""
+        },
+        {
+            "id": "801",
+            "name": "Man jätet, was man sieht",
+            "category": "kill_enemies",
+            "position": [
+                1598.1419999999998,
+                1416.0175
+            ],
+            "description": ""
+        },
+        {
+            "id": "788",
+            "name": "Ins Bocknäpfchen getreten",
+            "category": "kill_enemies",
+            "position": [
+                1442.019,
+                615.4715000000001
             ],
             "description": ""
         },
@@ -654,6 +584,76 @@
             "description": ""
         },
         {
+            "id": "794",
+            "name": "Wem Ehre gebührt",
+            "category": "kill_enemies",
+            "position": [
+                875.42,
+                1065.8095
+            ],
+            "description": ""
+        },
+        {
+            "id": "811",
+            "name": "Kampf gegen die Vorhut",
+            "category": "kill_enemies",
+            "position": [
+                886.8105,
+                1377.5805
+            ],
+            "description": ""
+        },
+        {
+            "id": "800",
+            "name": "Der Traum ist aus",
+            "category": "kill_enemies",
+            "position": [
+                596.8705,
+                1173.53
+            ],
+            "description": ""
+        },
+        {
+            "id": "798",
+            "name": "Wärmflasche wider Willen",
+            "category": "kill_enemies",
+            "position": [
+                366.72350000000006,
+                1605.8274999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "805",
+            "name": "Das geringere Übel",
+            "category": "kill_enemies",
+            "position": [
+                742.553,
+                1442.114
+            ],
+            "description": ""
+        },
+        {
+            "id": "802",
+            "name": "Die Stärke des Rudels",
+            "category": "kill_enemies",
+            "position": [
+                538.5025,
+                1574.5059999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "795",
+            "name": "Ich möchte kein Eisbär sein",
+            "category": "kill_enemies",
+            "position": [
+                709.8064999999999,
+                1106.612
+            ],
+            "description": ""
+        },
+        {
             "id": "908",
             "name": "Eiskalte Killer",
             "category": "kill_enemies",
@@ -674,12 +674,22 @@
             "description": ""
         },
         {
-            "id": "793",
-            "name": "Die Rückkehr des Yeti-Ritters",
+            "id": "814",
+            "name": "Auf den Geschmack gekommen",
             "category": "kill_boss",
             "position": [
-                924.2975,
-                505.8510000000001
+                1240.8185,
+                849.8935
+            ],
+            "description": ""
+        },
+        {
+            "id": "810",
+            "name": "Die Hungerspiele",
+            "category": "kill_boss",
+            "position": [
+                1200.9565,
+                1239.0135
             ],
             "description": ""
         },
@@ -704,36 +714,6 @@
             "description": ""
         },
         {
-            "id": "810",
-            "name": "Die Hungerspiele",
-            "category": "kill_boss",
-            "position": [
-                1200.9565,
-                1239.0135
-            ],
-            "description": ""
-        },
-        {
-            "id": "812",
-            "name": "Kampf gegen die Hauptstreitmacht",
-            "category": "kill_boss",
-            "position": [
-                888.7105,
-                1377.1055000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "814",
-            "name": "Auf den Geschmack gekommen",
-            "category": "kill_boss",
-            "position": [
-                1240.8185,
-                849.8935
-            ],
-            "description": ""
-        },
-        {
             "id": "815",
             "name": "Herzallerwertest",
             "category": "kill_boss",
@@ -750,6 +730,26 @@
             "position": [
                 800.446,
                 1043.5035
+            ],
+            "description": ""
+        },
+        {
+            "id": "812",
+            "name": "Kampf gegen die Hauptstreitmacht",
+            "category": "kill_boss",
+            "position": [
+                888.7105,
+                1377.1055000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "793",
+            "name": "Die Rückkehr des Yeti-Ritters",
+            "category": "kill_boss",
+            "position": [
+                924.2975,
+                505.8510000000001
             ],
             "description": ""
         },

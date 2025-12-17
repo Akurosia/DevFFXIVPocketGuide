@@ -504,12 +504,42 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n5f/n5f1 - Elpis.png",
     "markers": [
         {
-            "id": "1823",
-            "name": "Beobachtung: ",
-            "category": "kill_enemies",
+            "id": "1824",
+            "name": "Beobachtung: Io",
+            "category": "kill_boss",
             "position": [
                 364.64,
                 670.35
+            ],
+            "description": ""
+        },
+        {
+            "id": "1826",
+            "name": "Die schwebenden Bäume",
+            "category": "kill_boss",
+            "position": [
+                936.59,
+                606.9100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1832",
+            "name": "Entsorgung: Ur-Kyklops",
+            "category": "kill_boss",
+            "position": [
+                427.08000000000004,
+                907.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "1837",
+            "name": "Schlechten Appetit!",
+            "category": "kill_boss",
+            "position": [
+                1344.19,
+                1824.22
             ],
             "description": ""
         },
@@ -554,32 +584,12 @@
             "description": ""
         },
         {
-            "id": "1831",
-            "name": "Entsorgung: Das bekannte Unbekannte",
+            "id": "1823",
+            "name": "Beobachtung: ",
             "category": "kill_enemies",
             "position": [
-                427.08000000000004,
-                907.61
-            ],
-            "description": ""
-        },
-        {
-            "id": "1833",
-            "name": "Adel verpflichtet - eigentlich",
-            "category": "kill_enemies",
-            "position": [
-                1495.04,
-                1432.1
-            ],
-            "description": ""
-        },
-        {
-            "id": "1834",
-            "name": "Ruhet in Frieden",
-            "category": "kill_enemies",
-            "position": [
-                378.63,
-                1111.91
+                364.64,
+                670.35
             ],
             "description": ""
         },
@@ -594,6 +604,26 @@
             "description": ""
         },
         {
+            "id": "1831",
+            "name": "Entsorgung: Das bekannte Unbekannte",
+            "category": "kill_enemies",
+            "position": [
+                427.08000000000004,
+                907.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "1834",
+            "name": "Ruhet in Frieden",
+            "category": "kill_enemies",
+            "position": [
+                378.63,
+                1111.91
+            ],
+            "description": ""
+        },
+        {
             "id": "1836",
             "name": "Bitte nicht trinken",
             "category": "kill_enemies",
@@ -604,42 +634,12 @@
             "description": ""
         },
         {
-            "id": "1824",
-            "name": "Beobachtung: Io",
-            "category": "kill_boss",
+            "id": "1833",
+            "name": "Adel verpflichtet - eigentlich",
+            "category": "kill_enemies",
             "position": [
-                364.64,
-                670.35
-            ],
-            "description": ""
-        },
-        {
-            "id": "1826",
-            "name": "Die schwebenden Bäume",
-            "category": "kill_boss",
-            "position": [
-                936.59,
-                606.9100000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1832",
-            "name": "Entsorgung: Ur-Kyklops",
-            "category": "kill_boss",
-            "position": [
-                427.08000000000004,
-                907.61
-            ],
-            "description": ""
-        },
-        {
-            "id": "1837",
-            "name": "Schlechten Appetit!",
-            "category": "kill_boss",
-            "position": [
-                1344.19,
-                1824.22
+                1495.04,
+                1432.1
             ],
             "description": ""
         },

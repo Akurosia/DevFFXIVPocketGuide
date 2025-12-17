@@ -504,12 +504,82 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f4 - Il Mheg.png",
     "markers": [
         {
-            "id": "1480",
-            "name": "Lausbubengeschichten: Pixies",
-            "category": "kill_enemies",
+            "id": "1494",
+            "name": "Feentanz: Pixie-Jäger",
+            "category": "kill_boss",
             "position": [
-                1126.9,
-                1555.98
+                625.39,
+                904.12
+            ],
+            "description": ""
+        },
+        {
+            "id": "1491",
+            "name": "Alter Falter!",
+            "category": "kill_boss",
+            "position": [
+                495.02,
+                638.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1488",
+            "name": "Wurzelschinderin Jem-Hazar",
+            "category": "kill_boss",
+            "position": [
+                478.03,
+                310.20000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1487",
+            "name": "Lausbubengeschichten: Letzter Streich",
+            "category": "kill_boss",
+            "position": [
+                1596.94,
+                1818.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "1486",
+            "name": "Lausbubengeschichten: Zwillingstrumpf",
+            "category": "kill_boss",
+            "position": [
+                989.53,
+                1576.46
+            ],
+            "description": ""
+        },
+        {
+            "id": "1484",
+            "name": "Lausbubengeschichten: Strafe muss sein I",
+            "category": "kill_boss",
+            "position": [
+                1209.32,
+                1027.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1485",
+            "name": "Lausbubengeschichten: Strafe muss sein II",
+            "category": "kill_boss",
+            "position": [
+                372.64,
+                1374.66
+            ],
+            "description": ""
+        },
+        {
+            "id": "1492",
+            "name": "Feentanz: Güldener Blütennektar",
+            "category": "collect",
+            "position": [
+                328.17999999999995,
+                1143.88
             ],
             "description": ""
         },
@@ -534,6 +604,16 @@
             "description": ""
         },
         {
+            "id": "1495",
+            "name": "Feentanz: Pixie in Not",
+            "category": "kill_enemies",
+            "position": [
+                463.04999999999995,
+                933.59
+            ],
+            "description": ""
+        },
+        {
             "id": "1493",
             "name": "Nicht jeder Dieb ist ein Verbrecher",
             "category": "kill_enemies",
@@ -544,12 +624,12 @@
             "description": ""
         },
         {
-            "id": "1495",
-            "name": "Feentanz: Pixie in Not",
+            "id": "1480",
+            "name": "Lausbubengeschichten: Pixies",
             "category": "kill_enemies",
             "position": [
-                463.04999999999995,
-                933.59
+                1126.9,
+                1555.98
             ],
             "description": ""
         },
@@ -580,86 +660,6 @@
             "position": [
                 1165.3600000000001,
                 1221.31
-            ],
-            "description": ""
-        },
-        {
-            "id": "1484",
-            "name": "Lausbubengeschichten: Strafe muss sein I",
-            "category": "kill_boss",
-            "position": [
-                1209.32,
-                1027.5
-            ],
-            "description": ""
-        },
-        {
-            "id": "1485",
-            "name": "Lausbubengeschichten: Strafe muss sein II",
-            "category": "kill_boss",
-            "position": [
-                372.64,
-                1374.66
-            ],
-            "description": ""
-        },
-        {
-            "id": "1486",
-            "name": "Lausbubengeschichten: Zwillingstrumpf",
-            "category": "kill_boss",
-            "position": [
-                989.53,
-                1576.46
-            ],
-            "description": ""
-        },
-        {
-            "id": "1487",
-            "name": "Lausbubengeschichten: Letzter Streich",
-            "category": "kill_boss",
-            "position": [
-                1596.94,
-                1818.22
-            ],
-            "description": ""
-        },
-        {
-            "id": "1488",
-            "name": "Wurzelschinderin Jem-Hazar",
-            "category": "kill_boss",
-            "position": [
-                478.03,
-                310.20000000000005
-            ],
-            "description": ""
-        },
-        {
-            "id": "1491",
-            "name": "Alter Falter!",
-            "category": "kill_boss",
-            "position": [
-                495.02,
-                638.38
-            ],
-            "description": ""
-        },
-        {
-            "id": "1494",
-            "name": "Feentanz: Pixie-Jäger",
-            "category": "kill_boss",
-            "position": [
-                625.39,
-                904.12
-            ],
-            "description": ""
-        },
-        {
-            "id": "1492",
-            "name": "Feentanz: Güldener Blütennektar",
-            "category": "collect",
-            "position": [
-                328.17999999999995,
-                1143.88
             ],
             "description": ""
         },

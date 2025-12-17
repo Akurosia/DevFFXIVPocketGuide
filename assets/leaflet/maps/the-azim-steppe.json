@@ -504,302 +504,22 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/e3f/e3f3 - Azim-Steppe.png",
     "markers": [
         {
-            "id": "1242",
-            "name": "Gejagte Jäger",
-            "category": "kill_boss",
-            "position": [
-                543.97,
-                951.5699999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1243",
-            "name": "Blutrünstiger Narantsetseg ",
-            "category": "kill_boss",
-            "position": [
-                1601.44,
-                868.15
-            ],
-            "description": ""
-        },
-        {
-            "id": "1244",
-            "name": "Kalter Nordwind",
-            "category": "kill_boss",
-            "position": [
-                437.57000000000005,
-                580.9300000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1246",
-            "name": "Wüstenvogel",
-            "category": "kill_boss",
-            "position": [
-                1712.83,
-                1224.8
-            ],
-            "description": ""
-        },
-        {
-            "id": "1247",
-            "name": "Lautes Heulen in der Steppe",
-            "category": "kill_boss",
-            "position": [
-                785.23,
-                281.23
-            ],
-            "description": ""
-        },
-        {
-            "id": "1248",
-            "name": "Grasverderber",
-            "category": "kill_boss",
-            "position": [
-                957.56,
-                612.9
-            ],
-            "description": ""
-        },
-        {
-            "id": "1250",
-            "name": "Uneinsichtiger Falschspieler",
-            "category": "kill_boss",
-            "position": [
-                1484.55,
-                1105.42
-            ],
-            "description": ""
-        },
-        {
-            "id": "1254",
-            "name": "Königin der Brummer",
-            "category": "kill_boss",
-            "position": [
-                932.59,
-                531.98
-            ],
-            "description": ""
-        },
-        {
-            "id": "1257",
-            "name": "Der Keimling Undsiig",
-            "category": "kill_boss",
-            "position": [
-                1377.16,
-                682.3299999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1258",
-            "name": "Eine Ausgeburt der Steppe",
-            "category": "kill_boss",
-            "position": [
-                1537.5,
-                489.02
-            ],
-            "description": ""
-        },
-        {
-            "id": "1259",
-            "name": "In Stein gemeißelt",
-            "category": "kill_boss",
-            "position": [
-                583.9300000000001,
-                1358.67
-            ],
-            "description": ""
-        },
-        {
-            "id": "1264",
-            "name": "Der Khan der Gulo Gulo",
-            "category": "kill_boss",
-            "position": [
-                706.31,
-                502.51
-            ],
-            "description": ""
-        },
-        {
-            "id": "1265",
-            "name": "Stinker Stinkhaut",
-            "category": "kill_boss",
-            "position": [
-                1085.94,
-                1412.62
-            ],
-            "description": ""
-        },
-        {
-            "id": "1267",
-            "name": "Tödliche Hauer",
-            "category": "kill_boss",
-            "position": [
-                1441.59,
-                947.5699999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1271",
-            "name": "Auf Bardams Probe gestellt",
-            "category": "kill_boss",
-            "position": [
-                659.36,
-                1341.19
-            ],
-            "description": ""
-        },
-        {
-            "id": "1245",
-            "name": "Rivalisierende Jäger",
-            "category": "kill_enemies",
-            "position": [
-                962.56,
-                1312.72
-            ],
-            "description": ""
-        },
-        {
-            "id": "1249",
-            "name": "Schlanke Brummer",
-            "category": "kill_enemies",
-            "position": [
-                620.89,
-                673.3399999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1252",
-            "name": "Jagdrudel",
-            "category": "kill_enemies",
-            "position": [
-                810.21,
-                459.54999999999995
-            ],
-            "description": ""
-        },
-        {
-            "id": "1253",
-            "name": "Gefräßiges Federvieh",
-            "category": "kill_enemies",
-            "position": [
-                556.46,
-                606.9100000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1255",
-            "name": "Übers Ohr gehauen",
-            "category": "kill_enemies",
-            "position": [
-                811.71,
-                1572.46
-            ],
-            "description": ""
-        },
-        {
-            "id": "1256",
-            "name": "Unerträglicher Gestank",
-            "category": "kill_enemies",
-            "position": [
-                1464.07,
-                1304.73
-            ],
-            "description": ""
-        },
-        {
-            "id": "1260",
-            "name": "Gefährliche Kröten",
-            "category": "kill_enemies",
-            "position": [
-                1345.69,
-                1246.28
-            ],
-            "description": ""
-        },
-        {
-            "id": "1262",
-            "name": "Feuriger Wüstenwind",
-            "category": "kill_enemies",
-            "position": [
-                499.51,
-                358.65
-            ],
-            "description": ""
-        },
-        {
-            "id": "1263",
-            "name": "Fressen und gefressen werden",
-            "category": "kill_enemies",
-            "position": [
-                855.66,
-                710.31
-            ],
-            "description": ""
-        },
-        {
-            "id": "1266",
-            "name": "Steppe in Flammen",
-            "category": "kill_enemies",
-            "position": [
-                1120.91,
-                506.01
-            ],
-            "description": ""
-        },
-        {
-            "id": "1268",
-            "name": "Die Pflanzenwelt schlägt zurück",
-            "category": "kill_enemies",
-            "position": [
-                1667.37,
-                926.6
-            ],
-            "description": ""
-        },
-        {
-            "id": "1269",
-            "name": "In der Gewalt der Buduga",
-            "category": "kill_enemies",
-            "position": [
-                1207.32,
-                1364.67
-            ],
-            "description": ""
-        },
-        {
-            "id": "1309",
-            "name": "Das Leben der Dataq: Dzo-Jagd",
-            "category": "kill_enemies",
-            "position": [
-                1262.27,
-                772.25
-            ],
-            "description": ""
-        },
-        {
-            "id": "1313",
-            "name": "Das Leben der Dataq: Herdenschutz",
-            "category": "kill_enemies",
-            "position": [
-                1692.85,
-                1103.92
-            ],
-            "description": ""
-        },
-        {
-            "id": "1251",
-            "name": "Mammutaufgabe",
+            "id": "1312",
+            "name": "Das Leben der Dataq: Mammuts",
             "category": "defense",
             "position": [
-                1475.56,
-                1105.42
+                1628.4099999999999,
+                1142.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1316",
+            "name": "Das Leben der Dataq: Blutrache",
+            "category": "defense",
+            "position": [
+                1047.98,
+                1165.8600000000001
             ],
             "description": ""
         },
@@ -810,6 +530,56 @@
             "position": [
                 1475.56,
                 420.59000000000003
+            ],
+            "description": ""
+        },
+        {
+            "id": "1310",
+            "name": "Das Leben der Dataq: Ausgehungert",
+            "category": "defense",
+            "position": [
+                1278.75,
+                823.7
+            ],
+            "description": ""
+        },
+        {
+            "id": "1318",
+            "name": "Das Leben der Dataq: Verbündete",
+            "category": "defense",
+            "position": [
+                498.01,
+                1259.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1319",
+            "name": "Das Leben der Dataq: Unerbittlich",
+            "category": "defense",
+            "position": [
+                497.01,
+                1238.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1315",
+            "name": "Das Leben der Dataq: Matanga",
+            "category": "defense",
+            "position": [
+                1588.95,
+                1146.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1320",
+            "name": "Das Leben der Dataq: Anjana",
+            "category": "defense",
+            "position": [
+                514.5,
+                1248.78
             ],
             "description": ""
         },
@@ -834,12 +604,12 @@
             "description": ""
         },
         {
-            "id": "1310",
-            "name": "Das Leben der Dataq: Ausgehungert",
+            "id": "1251",
+            "name": "Mammutaufgabe",
             "category": "defense",
             "position": [
-                1278.75,
-                823.7
+                1475.56,
+                1105.42
             ],
             "description": ""
         },
@@ -854,52 +624,292 @@
             "description": ""
         },
         {
-            "id": "1312",
-            "name": "Das Leben der Dataq: Mammuts",
-            "category": "defense",
+            "id": "1271",
+            "name": "Auf Bardams Probe gestellt",
+            "category": "kill_boss",
             "position": [
-                1628.4099999999999,
-                1142.88
+                659.36,
+                1341.19
             ],
             "description": ""
         },
         {
-            "id": "1315",
-            "name": "Das Leben der Dataq: Matanga",
-            "category": "defense",
+            "id": "1258",
+            "name": "Eine Ausgeburt der Steppe",
+            "category": "kill_boss",
             "position": [
-                1588.95,
-                1146.88
+                1537.5,
+                489.02
             ],
             "description": ""
         },
         {
-            "id": "1316",
-            "name": "Das Leben der Dataq: Blutrache",
-            "category": "defense",
+            "id": "1257",
+            "name": "Der Keimling Undsiig",
+            "category": "kill_boss",
             "position": [
-                1047.98,
-                1165.8600000000001
+                1377.16,
+                682.3299999999999
             ],
             "description": ""
         },
         {
-            "id": "1318",
-            "name": "Das Leben der Dataq: Verbündete",
-            "category": "defense",
+            "id": "1243",
+            "name": "Blutrünstiger Narantsetseg ",
+            "category": "kill_boss",
             "position": [
-                498.01,
-                1259.27
+                1601.44,
+                868.15
             ],
             "description": ""
         },
         {
-            "id": "1319",
-            "name": "Das Leben der Dataq: Unerbittlich",
-            "category": "defense",
+            "id": "1259",
+            "name": "In Stein gemeißelt",
+            "category": "kill_boss",
             "position": [
-                497.01,
-                1238.29
+                583.9300000000001,
+                1358.67
+            ],
+            "description": ""
+        },
+        {
+            "id": "1265",
+            "name": "Stinker Stinkhaut",
+            "category": "kill_boss",
+            "position": [
+                1085.94,
+                1412.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1246",
+            "name": "Wüstenvogel",
+            "category": "kill_boss",
+            "position": [
+                1712.83,
+                1224.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "1267",
+            "name": "Tödliche Hauer",
+            "category": "kill_boss",
+            "position": [
+                1441.59,
+                947.5699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1250",
+            "name": "Uneinsichtiger Falschspieler",
+            "category": "kill_boss",
+            "position": [
+                1484.55,
+                1105.42
+            ],
+            "description": ""
+        },
+        {
+            "id": "1248",
+            "name": "Grasverderber",
+            "category": "kill_boss",
+            "position": [
+                957.56,
+                612.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1242",
+            "name": "Gejagte Jäger",
+            "category": "kill_boss",
+            "position": [
+                543.97,
+                951.5699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1254",
+            "name": "Königin der Brummer",
+            "category": "kill_boss",
+            "position": [
+                932.59,
+                531.98
+            ],
+            "description": ""
+        },
+        {
+            "id": "1244",
+            "name": "Kalter Nordwind",
+            "category": "kill_boss",
+            "position": [
+                437.57000000000005,
+                580.9300000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1247",
+            "name": "Lautes Heulen in der Steppe",
+            "category": "kill_boss",
+            "position": [
+                785.23,
+                281.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1264",
+            "name": "Der Khan der Gulo Gulo",
+            "category": "kill_boss",
+            "position": [
+                706.31,
+                502.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1255",
+            "name": "Übers Ohr gehauen",
+            "category": "kill_enemies",
+            "position": [
+                811.71,
+                1572.46
+            ],
+            "description": ""
+        },
+        {
+            "id": "1269",
+            "name": "In der Gewalt der Buduga",
+            "category": "kill_enemies",
+            "position": [
+                1207.32,
+                1364.67
+            ],
+            "description": ""
+        },
+        {
+            "id": "1313",
+            "name": "Das Leben der Dataq: Herdenschutz",
+            "category": "kill_enemies",
+            "position": [
+                1692.85,
+                1103.92
+            ],
+            "description": ""
+        },
+        {
+            "id": "1309",
+            "name": "Das Leben der Dataq: Dzo-Jagd",
+            "category": "kill_enemies",
+            "position": [
+                1262.27,
+                772.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "1256",
+            "name": "Unerträglicher Gestank",
+            "category": "kill_enemies",
+            "position": [
+                1464.07,
+                1304.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1268",
+            "name": "Die Pflanzenwelt schlägt zurück",
+            "category": "kill_enemies",
+            "position": [
+                1667.37,
+                926.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "1260",
+            "name": "Gefährliche Kröten",
+            "category": "kill_enemies",
+            "position": [
+                1345.69,
+                1246.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1245",
+            "name": "Rivalisierende Jäger",
+            "category": "kill_enemies",
+            "position": [
+                962.56,
+                1312.72
+            ],
+            "description": ""
+        },
+        {
+            "id": "1253",
+            "name": "Gefräßiges Federvieh",
+            "category": "kill_enemies",
+            "position": [
+                556.46,
+                606.9100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1252",
+            "name": "Jagdrudel",
+            "category": "kill_enemies",
+            "position": [
+                810.21,
+                459.54999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1262",
+            "name": "Feuriger Wüstenwind",
+            "category": "kill_enemies",
+            "position": [
+                499.51,
+                358.65
+            ],
+            "description": ""
+        },
+        {
+            "id": "1266",
+            "name": "Steppe in Flammen",
+            "category": "kill_enemies",
+            "position": [
+                1120.91,
+                506.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1249",
+            "name": "Schlanke Brummer",
+            "category": "kill_enemies",
+            "position": [
+                620.89,
+                673.3399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1263",
+            "name": "Fressen und gefressen werden",
+            "category": "kill_enemies",
+            "position": [
+                855.66,
+                710.31
             ],
             "description": ""
         },

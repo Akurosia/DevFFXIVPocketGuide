@@ -504,32 +504,12 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f2 - Unteres La Noscea.png",
     "markers": [
         {
-            "id": "245",
-            "name": "Der Albtraumprinz",
-            "category": "kill_boss",
-            "position": [
-                936.59,
-                228.77999999999997
-            ],
-            "description": ""
-        },
-        {
             "id": "257",
             "name": "Zum Dahinschmelzen",
             "category": "kill_boss",
             "position": [
                 1246.28,
                 821.2
-            ],
-            "description": ""
-        },
-        {
-            "id": "261",
-            "name": "Liebe reimt sich auf Hiebe",
-            "category": "kill_boss",
-            "position": [
-                1006.52,
-                172.33000000000004
             ],
             "description": ""
         },
@@ -544,6 +524,16 @@
             "description": ""
         },
         {
+            "id": "261",
+            "name": "Liebe reimt sich auf Hiebe",
+            "category": "kill_boss",
+            "position": [
+                1006.52,
+                172.33000000000004
+            ],
+            "description": ""
+        },
+        {
             "id": "333",
             "name": "Da bist du platt",
             "category": "kill_boss",
@@ -554,12 +544,12 @@
             "description": ""
         },
         {
-            "id": "246",
-            "name": "Eine Rose ist eine Rose",
-            "category": "kill_enemies",
+            "id": "245",
+            "name": "Der Albtraumprinz",
+            "category": "kill_boss",
             "position": [
-                1481.05,
-                1147.88
+                936.59,
+                228.77999999999997
             ],
             "description": ""
         },
@@ -570,6 +560,16 @@
             "position": [
                 1164.3600000000001,
                 976.55
+            ],
+            "description": ""
+        },
+        {
+            "id": "246",
+            "name": "Eine Rose ist eine Rose",
+            "category": "kill_enemies",
+            "position": [
+                1481.05,
+                1147.88
             ],
             "description": ""
         },
@@ -594,22 +594,22 @@
             "description": ""
         },
         {
-            "id": "262",
-            "name": "Wir müssen draußen bleiben",
-            "category": "kill_enemies",
-            "position": [
-                1050.47,
-                354.15
-            ],
-            "description": ""
-        },
-        {
             "id": "264",
             "name": "Lauter Klabauter",
             "category": "kill_enemies",
             "position": [
                 1522.51,
                 1339.69
+            ],
+            "description": ""
+        },
+        {
+            "id": "262",
+            "name": "Wir müssen draußen bleiben",
+            "category": "kill_enemies",
+            "position": [
+                1050.47,
+                354.15
             ],
             "description": ""
         },

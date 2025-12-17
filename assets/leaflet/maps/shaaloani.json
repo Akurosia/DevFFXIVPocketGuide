@@ -504,6 +504,16 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/x6f/x6f1 - Shaaloani.png",
     "markers": [
         {
+            "id": "1863",
+            "name": "Urzeitliche Vögel",
+            "category": "kill_enemies",
+            "position": [
+                1037.49,
+                565.45
+            ],
+            "description": ""
+        },
+        {
             "id": "1860",
             "name": "Gar nicht so feige Kaktoren",
             "category": "kill_enemies",
@@ -520,16 +530,6 @@
             "position": [
                 982.04,
                 989.53
-            ],
-            "description": ""
-        },
-        {
-            "id": "1863",
-            "name": "Urzeitliche Vögel",
-            "category": "kill_enemies",
-            "position": [
-                1037.49,
-                565.45
             ],
             "description": ""
         },
@@ -564,16 +564,6 @@
             "description": ""
         },
         {
-            "id": "1872",
-            "name": "Seeungeheuer",
-            "category": "kill_enemies",
-            "position": [
-                1695.3400000000001,
-                1579.46
-            ],
-            "description": ""
-        },
-        {
             "id": "1875",
             "name": "Hüter der Herde",
             "category": "kill_enemies",
@@ -584,12 +574,12 @@
             "description": ""
         },
         {
-            "id": "1862",
-            "name": "Geboren aus Flammen",
-            "category": "kill_boss",
+            "id": "1872",
+            "name": "Seeungeheuer",
+            "category": "kill_enemies",
             "position": [
-                642.87,
-                887.63
+                1695.3400000000001,
+                1579.46
             ],
             "description": ""
         },
@@ -604,12 +594,12 @@
             "description": ""
         },
         {
-            "id": "1871",
-            "name": "In den sandigen Schlund",
+            "id": "1862",
+            "name": "Geboren aus Flammen",
             "category": "kill_boss",
             "position": [
-                1076.95,
-                1844.2
+                642.87,
+                887.63
             ],
             "description": ""
         },
@@ -630,6 +620,16 @@
             "position": [
                 1142.38,
                 1284.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1871",
+            "name": "In den sandigen Schlund",
+            "category": "kill_boss",
+            "position": [
+                1076.95,
+                1844.2
             ],
             "description": ""
         },
@@ -660,6 +660,16 @@
             "position": [
                 1697.3400000000001,
                 1376.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1870",
+            "name": "Mit Blut fängt man Schlangen",
+            "category": "defense",
+            "position": [
+                994.03,
+                1673.37
             ],
             "description": ""
         },

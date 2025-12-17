@@ -504,22 +504,102 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/w1f/w1f5 - Nördliches Thanalan.png",
     "markers": [
         {
-            "id": "457",
-            "name": "Reverse Engineering",
-            "category": "collect",
+            "id": "639",
+            "name": "Augen auf",
+            "category": "kill_enemies",
             "position": [
-                895.13,
-                1294.24
+                1090.93,
+                861.66
             ],
             "description": ""
         },
         {
-            "id": "556",
-            "name": "Erdkern für Erdseim",
-            "category": "collect",
+            "id": "641",
+            "name": "Durstige Dobalosse",
+            "category": "kill_enemies",
             "position": [
-                1073.45,
-                950.0699999999999
+                988.04,
+                760.26
+            ],
+            "description": ""
+        },
+        {
+            "id": "449",
+            "name": "Brandschutzmaßnahmen",
+            "category": "kill_enemies",
+            "position": [
+                838.6800000000001,
+                1178.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "447",
+            "name": "Erdseim geht vor",
+            "category": "kill_enemies",
+            "position": [
+                1184.34,
+                1039.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "638",
+            "name": "Nur Quarz im Schädel",
+            "category": "kill_enemies",
+            "position": [
+                1087.44,
+                934.09
+            ],
+            "description": ""
+        },
+        {
+            "id": "643",
+            "name": "Von Kultisten entführt",
+            "category": "kill_enemies",
+            "position": [
+                1267.26,
+                978.54
+            ],
+            "description": ""
+        },
+        {
+            "id": "644",
+            "name": "Unkluge Kultisten",
+            "category": "slay_enemies",
+            "position": [
+                1248.78,
+                999.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "642",
+            "name": "Ehrenwache",
+            "category": "escort",
+            "position": [
+                1041.48,
+                626.39
+            ],
+            "description": ""
+        },
+        {
+            "id": "645",
+            "name": "Die Sektenführer",
+            "category": "notorious_monster",
+            "position": [
+                1248.78,
+                999.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "646",
+            "name": "Ergreifendes Opfer",
+            "category": "notorious_monster",
+            "position": [
+                1248.78,
+                999.02
             ],
             "description": ""
         },
@@ -564,72 +644,22 @@
             "description": ""
         },
         {
-            "id": "447",
-            "name": "Erdseim geht vor",
-            "category": "kill_enemies",
+            "id": "556",
+            "name": "Erdkern für Erdseim",
+            "category": "collect",
             "position": [
-                1184.34,
-                1039.48
+                1073.45,
+                950.0699999999999
             ],
             "description": ""
         },
         {
-            "id": "449",
-            "name": "Brandschutzmaßnahmen",
-            "category": "kill_enemies",
+            "id": "457",
+            "name": "Reverse Engineering",
+            "category": "collect",
             "position": [
-                838.6800000000001,
-                1178.85
-            ],
-            "description": ""
-        },
-        {
-            "id": "638",
-            "name": "Nur Quarz im Schädel",
-            "category": "kill_enemies",
-            "position": [
-                1087.44,
-                934.09
-            ],
-            "description": ""
-        },
-        {
-            "id": "639",
-            "name": "Augen auf",
-            "category": "kill_enemies",
-            "position": [
-                1090.93,
-                861.66
-            ],
-            "description": ""
-        },
-        {
-            "id": "641",
-            "name": "Durstige Dobalosse",
-            "category": "kill_enemies",
-            "position": [
-                988.04,
-                760.26
-            ],
-            "description": ""
-        },
-        {
-            "id": "643",
-            "name": "Von Kultisten entführt",
-            "category": "kill_enemies",
-            "position": [
-                1267.26,
-                978.54
-            ],
-            "description": ""
-        },
-        {
-            "id": "642",
-            "name": "Ehrenwache",
-            "category": "escort",
-            "position": [
-                1041.48,
-                626.39
+                895.13,
+                1294.24
             ],
             "description": ""
         },

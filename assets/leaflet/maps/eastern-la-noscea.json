@@ -504,86 +504,6 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f3 - Östliches La Noscea.png",
     "markers": [
         {
-            "id": "267",
-            "name": "Mein Wein bleibt mein Wein ",
-            "category": "defense",
-            "position": [
-                1033.99,
-                910.11
-            ],
-            "description": ""
-        },
-        {
-            "id": "271",
-            "name": "Frischfleischlieferung",
-            "category": "defense",
-            "position": [
-                959.06,
-                629.39
-            ],
-            "description": ""
-        },
-        {
-            "id": "532",
-            "name": "Comeback mit Knall",
-            "category": "defense",
-            "position": [
-                1543.99,
-                397.61
-            ],
-            "description": ""
-        },
-        {
-            "id": "917",
-            "name": "Badelust, Badefrust",
-            "category": "defense",
-            "position": [
-                1495.04,
-                764.75
-            ],
-            "description": ""
-        },
-        {
-            "id": "932",
-            "name": "Räuber mit den Scherenhänden",
-            "category": "defense",
-            "position": [
-                1582.95,
-                440.57000000000005
-            ],
-            "description": ""
-        },
-        {
-            "id": "1323",
-            "name": "Grillpartysprenger",
-            "category": "defense",
-            "position": [
-                1697.3400000000001,
-                802.22
-            ],
-            "description": ""
-        },
-        {
-            "id": "268",
-            "name": "Seeräubersommelier in spe",
-            "category": "kill_enemies",
-            "position": [
-                814.7,
-                863.66
-            ],
-            "description": ""
-        },
-        {
-            "id": "274",
-            "name": "Mantis Mantis Timpe Te",
-            "category": "kill_enemies",
-            "position": [
-                736.78,
-                723.79
-            ],
-            "description": ""
-        },
-        {
             "id": "278",
             "name": "Rattige Hausbesetzer",
             "category": "kill_enemies",
@@ -600,16 +520,6 @@
             "position": [
                 1441.09,
                 314.19000000000005
-            ],
-            "description": ""
-        },
-        {
-            "id": "286",
-            "name": "Angriff der Geisterpiraten",
-            "category": "kill_enemies",
-            "position": [
-                1519.02,
-                717.3
             ],
             "description": ""
         },
@@ -634,22 +544,52 @@
             "description": ""
         },
         {
-            "id": "565",
-            "name": "Nach Hause teleportieren",
-            "category": "kill_enemies",
-            "position": [
-                829.19,
-                521.99
-            ],
-            "description": ""
-        },
-        {
             "id": "566",
             "name": "Straßenverwüster",
             "category": "kill_enemies",
             "position": [
                 895.63,
                 402.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "268",
+            "name": "Seeräubersommelier in spe",
+            "category": "kill_enemies",
+            "position": [
+                814.7,
+                863.66
+            ],
+            "description": ""
+        },
+        {
+            "id": "286",
+            "name": "Angriff der Geisterpiraten",
+            "category": "kill_enemies",
+            "position": [
+                1519.02,
+                717.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "274",
+            "name": "Mantis Mantis Timpe Te",
+            "category": "kill_enemies",
+            "position": [
+                736.78,
+                723.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "565",
+            "name": "Nach Hause teleportieren",
+            "category": "kill_enemies",
+            "position": [
+                829.19,
+                521.99
             ],
             "description": ""
         },
@@ -704,62 +644,22 @@
             "description": ""
         },
         {
-            "id": "272",
-            "name": "Wo gesammelt wird, da fliegen Federn",
-            "category": "collect",
-            "position": [
-                996.53,
-                498.01
-            ],
-            "description": ""
-        },
-        {
-            "id": "279",
-            "name": "Kalkreiche Kost",
-            "category": "collect",
-            "position": [
-                1556.48,
-                882.14
-            ],
-            "description": ""
-        },
-        {
-            "id": "562",
-            "name": "Liebliche Weinblüten",
-            "category": "collect",
-            "position": [
-                765.75,
-                723.79
-            ],
-            "description": ""
-        },
-        {
-            "id": "918",
-            "name": "Und ne Buddel voll Rum",
-            "category": "collect",
-            "position": [
-                1495.04,
-                764.75
-            ],
-            "description": ""
-        },
-        {
-            "id": "1324",
-            "name": "Unser Strand muss schöner werden",
-            "category": "collect",
-            "position": [
-                1698.8400000000001,
-                790.23
-            ],
-            "description": ""
-        },
-        {
             "id": "280",
             "name": "Was auf die Finger",
             "category": "kill_boss",
             "position": [
                 1264.76,
                 461.04999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "564",
+            "name": "Metshaldjas von rechts",
+            "category": "kill_boss",
+            "position": [
+                886.13,
+                842.1800000000001
             ],
             "description": ""
         },
@@ -774,16 +674,6 @@
             "description": ""
         },
         {
-            "id": "561",
-            "name": "Geschmack an Wein und Unrecht",
-            "category": "kill_boss",
-            "position": [
-                857.16,
-                692.8199999999999
-            ],
-            "description": ""
-        },
-        {
             "id": "563",
             "name": "Glüxi Grün",
             "category": "kill_boss",
@@ -794,12 +684,12 @@
             "description": ""
         },
         {
-            "id": "564",
-            "name": "Metshaldjas von rechts",
+            "id": "561",
+            "name": "Geschmack an Wein und Unrecht",
             "category": "kill_boss",
             "position": [
-                886.13,
-                842.1800000000001
+                857.16,
+                692.8199999999999
             ],
             "description": ""
         },
@@ -860,6 +750,116 @@
             "position": [
                 1784.26,
                 727.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "272",
+            "name": "Wo gesammelt wird, da fliegen Federn",
+            "category": "collect",
+            "position": [
+                996.53,
+                498.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "562",
+            "name": "Liebliche Weinblüten",
+            "category": "collect",
+            "position": [
+                765.75,
+                723.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "279",
+            "name": "Kalkreiche Kost",
+            "category": "collect",
+            "position": [
+                1556.48,
+                882.14
+            ],
+            "description": ""
+        },
+        {
+            "id": "918",
+            "name": "Und ne Buddel voll Rum",
+            "category": "collect",
+            "position": [
+                1495.04,
+                764.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1324",
+            "name": "Unser Strand muss schöner werden",
+            "category": "collect",
+            "position": [
+                1698.8400000000001,
+                790.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "267",
+            "name": "Mein Wein bleibt mein Wein ",
+            "category": "defense",
+            "position": [
+                1033.99,
+                910.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "271",
+            "name": "Frischfleischlieferung",
+            "category": "defense",
+            "position": [
+                959.06,
+                629.39
+            ],
+            "description": ""
+        },
+        {
+            "id": "532",
+            "name": "Comeback mit Knall",
+            "category": "defense",
+            "position": [
+                1543.99,
+                397.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "917",
+            "name": "Badelust, Badefrust",
+            "category": "defense",
+            "position": [
+                1495.04,
+                764.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "932",
+            "name": "Räuber mit den Scherenhänden",
+            "category": "defense",
+            "position": [
+                1582.95,
+                440.57000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1323",
+            "name": "Grillpartysprenger",
+            "category": "defense",
+            "position": [
+                1697.3400000000001,
+                802.22
             ],
             "description": ""
         },

@@ -504,12 +504,12 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f4 - Westliches La Noscea.png",
     "markers": [
         {
-            "id": "289",
-            "name": "Für Nachschub ist gesorgt",
-            "category": "escort",
+            "id": "306",
+            "name": "Ausgewogene Ernährung",
+            "category": "kill_boss",
             "position": [
-                1247.78,
-                812.71
+                1786.76,
+                660.36
             ],
             "description": ""
         },
@@ -534,72 +534,12 @@
             "description": ""
         },
         {
-            "id": "306",
-            "name": "Ausgewogene Ernährung",
-            "category": "kill_boss",
-            "position": [
-                1786.76,
-                660.36
-            ],
-            "description": ""
-        },
-        {
             "id": "309",
             "name": "Der Typ rafft's nicht",
             "category": "kill_boss",
             "position": [
                 1278.25,
                 968.05
-            ],
-            "description": ""
-        },
-        {
-            "id": "336",
-            "name": "Die Botanische Revolution",
-            "category": "kill_boss",
-            "position": [
-                782.74,
-                332.67999999999995
-            ],
-            "description": ""
-        },
-        {
-            "id": "569",
-            "name": "Schlacht am Norddamm",
-            "category": "kill_boss",
-            "position": [
-                987.04,
-                1134.89
-            ],
-            "description": ""
-        },
-        {
-            "id": "571",
-            "name": "Schlacht am Süddamm",
-            "category": "kill_boss",
-            "position": [
-                882.14,
-                1008.02
-            ],
-            "description": ""
-        },
-        {
-            "id": "572",
-            "name": "Voll unter Kontrolle",
-            "category": "kill_boss",
-            "position": [
-                877.64,
-                1147.88
-            ],
-            "description": ""
-        },
-        {
-            "id": "575",
-            "name": "Oberschlange",
-            "category": "kill_boss",
-            "position": [
-                640.37,
-                1256.77
             ],
             "description": ""
         },
@@ -614,12 +554,62 @@
             "description": ""
         },
         {
+            "id": "569",
+            "name": "Schlacht am Norddamm",
+            "category": "kill_boss",
+            "position": [
+                987.04,
+                1134.89
+            ],
+            "description": ""
+        },
+        {
+            "id": "572",
+            "name": "Voll unter Kontrolle",
+            "category": "kill_boss",
+            "position": [
+                877.64,
+                1147.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "571",
+            "name": "Schlacht am Süddamm",
+            "category": "kill_boss",
+            "position": [
+                882.14,
+                1008.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "575",
+            "name": "Oberschlange",
+            "category": "kill_boss",
+            "position": [
+                640.37,
+                1256.77
+            ],
+            "description": ""
+        },
+        {
             "id": "578",
             "name": "Beschwörer des Herrn der Wogen",
             "category": "kill_boss",
             "position": [
                 808.71,
                 1315.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "336",
+            "name": "Die Botanische Revolution",
+            "category": "kill_boss",
+            "position": [
+                782.74,
+                332.67999999999995
             ],
             "description": ""
         },
@@ -644,32 +634,12 @@
             "description": ""
         },
         {
-            "id": "298",
-            "name": "Plündernde Schlangen",
-            "category": "kill_enemies",
-            "position": [
-                1151.38,
-                922.6
-            ],
-            "description": ""
-        },
-        {
             "id": "304",
             "name": "Turtel-Dodos",
             "category": "kill_enemies",
             "position": [
                 1614.92,
                 644.37
-            ],
-            "description": ""
-        },
-        {
-            "id": "308",
-            "name": "Geplatzte Verhandlungen",
-            "category": "kill_enemies",
-            "position": [
-                1328.2,
-                854.17
             ],
             "description": ""
         },
@@ -684,12 +654,42 @@
             "description": ""
         },
         {
+            "id": "308",
+            "name": "Geplatzte Verhandlungen",
+            "category": "kill_enemies",
+            "position": [
+                1328.2,
+                854.17
+            ],
+            "description": ""
+        },
+        {
             "id": "312",
             "name": "Erst wimmeln, dann wimmern",
             "category": "kill_enemies",
             "position": [
                 1097.43,
                 912.61
+            ],
+            "description": ""
+        },
+        {
+            "id": "298",
+            "name": "Plündernde Schlangen",
+            "category": "kill_enemies",
+            "position": [
+                1151.38,
+                922.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "576",
+            "name": "Totengeleit",
+            "category": "kill_enemies",
+            "position": [
+                774.24,
+                481.53
             ],
             "description": ""
         },
@@ -724,22 +724,12 @@
             "description": ""
         },
         {
-            "id": "576",
-            "name": "Totengeleit",
-            "category": "kill_enemies",
+            "id": "289",
+            "name": "Für Nachschub ist gesorgt",
+            "category": "escort",
             "position": [
-                774.24,
-                481.53
-            ],
-            "description": ""
-        },
-        {
-            "id": "297",
-            "name": "Steuerprüfung",
-            "category": "collect",
-            "position": [
-                1285.24,
-                950.5699999999999
+                1247.78,
+                812.71
             ],
             "description": ""
         },
@@ -750,6 +740,16 @@
             "position": [
                 1183.84,
                 873.65
+            ],
+            "description": ""
+        },
+        {
+            "id": "297",
+            "name": "Steuerprüfung",
+            "category": "collect",
+            "position": [
+                1285.24,
+                950.5699999999999
             ],
             "description": ""
         },

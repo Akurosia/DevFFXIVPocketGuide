@@ -504,22 +504,22 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/d2f/d2f1 - Dravanisches Vorland.png",
     "markers": [
         {
+            "id": "828",
+            "name": "Vorsicht, Bluthochdruck!",
+            "category": "kill_boss",
+            "position": [
+                1149.229,
+                1046.8285
+            ],
+            "description": ""
+        },
+        {
             "id": "818",
             "name": "Erfüllung eines Traums",
             "category": "kill_boss",
             "position": [
                 1597.667,
                 575.6095
-            ],
-            "description": ""
-        },
-        {
-            "id": "820",
-            "name": "Ein Kopf zu groß",
-            "category": "kill_boss",
-            "position": [
-                1786.5365,
-                1121.8025
             ],
             "description": ""
         },
@@ -534,32 +534,22 @@
             "description": ""
         },
         {
-            "id": "828",
-            "name": "Vorsicht, Bluthochdruck!",
-            "category": "kill_boss",
-            "position": [
-                1149.229,
-                1046.8285
-            ],
-            "description": ""
-        },
-        {
-            "id": "832",
-            "name": "Svarog der Schreckliche",
-            "category": "kill_boss",
-            "position": [
-                754.4185,
-                400.9805000000001
-            ],
-            "description": ""
-        },
-        {
             "id": "833",
             "name": "Der Zorn einer Mutter",
             "category": "kill_boss",
             "position": [
                 1046.7335,
                 613.5715
+            ],
+            "description": ""
+        },
+        {
+            "id": "820",
+            "name": "Ein Kopf zu groß",
+            "category": "kill_boss",
+            "position": [
+                1786.5365,
+                1121.8025
             ],
             "description": ""
         },
@@ -574,12 +564,32 @@
             "description": ""
         },
         {
+            "id": "832",
+            "name": "Svarog der Schreckliche",
+            "category": "kill_boss",
+            "position": [
+                754.4185,
+                400.9805000000001
+            ],
+            "description": ""
+        },
+        {
             "id": "838",
             "name": "Die Hasspredigerin",
             "category": "kill_boss",
             "position": [
                 597.3455,
                 354.47800000000007
+            ],
+            "description": ""
+        },
+        {
+            "id": "910",
+            "name": "Drachenmaid, hast du heut für mich Zeit",
+            "category": "kill_boss",
+            "position": [
+                528.537,
+                239.64200000000005
             ],
             "description": ""
         },
@@ -594,22 +604,22 @@
             "description": ""
         },
         {
-            "id": "904",
-            "name": "Rückkehr der Königin",
-            "category": "kill_boss",
-            "position": [
-                1237.9685,
-                1108.037
-            ],
-            "description": ""
-        },
-        {
             "id": "905",
             "name": "Entmachtung der Königin",
             "category": "kill_boss",
             "position": [
                 1456.2595,
                 1822.6934999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "904",
+            "name": "Rückkehr der Königin",
+            "category": "kill_boss",
+            "position": [
+                1237.9685,
+                1108.037
             ],
             "description": ""
         },
@@ -634,42 +644,12 @@
             "description": ""
         },
         {
-            "id": "910",
-            "name": "Drachenmaid, hast du heut für mich Zeit",
-            "category": "kill_boss",
-            "position": [
-                528.537,
-                239.64200000000005
-            ],
-            "description": ""
-        },
-        {
-            "id": "819",
-            "name": "Retter des Chocobo-Waldes",
+            "id": "902",
+            "name": "Angriff der Königin",
             "category": "kill_enemies",
             "position": [
-                1653.6599999999999,
-                848.4685
-            ],
-            "description": ""
-        },
-        {
-            "id": "823",
-            "name": "Bist du zu lax, gibt's keinen Lachs",
-            "category": "kill_enemies",
-            "position": [
-                1430.1535,
-                1341.034
-            ],
-            "description": ""
-        },
-        {
-            "id": "825",
-            "name": "Das Urteil der Furie",
-            "category": "kill_enemies",
-            "position": [
-                1214.722,
-                1470.1105
+                1694.472,
+                908.2615
             ],
             "description": ""
         },
@@ -684,12 +664,12 @@
             "description": ""
         },
         {
-            "id": "827",
-            "name": "Fanatisch, didaktisch, ungut",
+            "id": "823",
+            "name": "Bist du zu lax, gibt's keinen Lachs",
             "category": "kill_enemies",
             "position": [
-                1149.229,
-                1046.8285
+                1430.1535,
+                1341.034
             ],
             "description": ""
         },
@@ -704,32 +684,42 @@
             "description": ""
         },
         {
+            "id": "827",
+            "name": "Fanatisch, didaktisch, ungut",
+            "category": "kill_enemies",
+            "position": [
+                1149.229,
+                1046.8285
+            ],
+            "description": ""
+        },
+        {
+            "id": "819",
+            "name": "Retter des Chocobo-Waldes",
+            "category": "kill_enemies",
+            "position": [
+                1653.6599999999999,
+                848.4685
+            ],
+            "description": ""
+        },
+        {
+            "id": "825",
+            "name": "Das Urteil der Furie",
+            "category": "kill_enemies",
+            "position": [
+                1214.722,
+                1470.1105
+            ],
+            "description": ""
+        },
+        {
             "id": "830",
             "name": "Entscheidung am Weiland-Fluss",
             "category": "kill_enemies",
             "position": [
                 1017.312,
                 504.42600000000004
-            ],
-            "description": ""
-        },
-        {
-            "id": "831",
-            "name": "Der Dracheneierkrieg",
-            "category": "kill_enemies",
-            "position": [
-                863.5640000000001,
-                756.879
-            ],
-            "description": ""
-        },
-        {
-            "id": "834",
-            "name": "Der Ruf ihrer Stimmen",
-            "category": "kill_enemies",
-            "position": [
-                617.2764999999999,
-                1213.3825
             ],
             "description": ""
         },
@@ -744,22 +734,32 @@
             "description": ""
         },
         {
+            "id": "834",
+            "name": "Der Ruf ihrer Stimmen",
+            "category": "kill_enemies",
+            "position": [
+                617.2764999999999,
+                1213.3825
+            ],
+            "description": ""
+        },
+        {
+            "id": "831",
+            "name": "Der Dracheneierkrieg",
+            "category": "kill_enemies",
+            "position": [
+                863.5640000000001,
+                756.879
+            ],
+            "description": ""
+        },
+        {
             "id": "837",
             "name": "Quell des Unfriedens",
             "category": "kill_enemies",
             "position": [
                 1291.596,
                 1713.0729999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "902",
-            "name": "Angriff der Königin",
-            "category": "kill_enemies",
-            "position": [
-                1694.472,
-                908.2615
             ],
             "description": ""
         },
