@@ -504,128 +504,8 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/w1f/w1f5 - Nördliches Thanalan.png",
     "markers": [
         {
-            "id": "1",
-            "name": "Die Schlitzer vom Diadem",
-            "category": "kill_boss",
-            "position": [
-                1212.82,
-                1076.45
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Höllenross",
-            "category": "kill_boss",
-            "position": [
-                894.13,
-                1378.15
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Das Genist: Sechste Phase - Beginn",
-            "category": "kill_boss",
-            "position": [
-                963.06,
-                1222.81
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Das Genist: Sechste Phase - Abschluss",
-            "category": "kill_boss",
-            "position": [
-                1209.32,
-                920.1
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Rache ist Blutwurst",
-            "category": "kill_boss",
-            "position": [
-                820.2,
-                1363.17
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Fabelwesen in Aufruhr",
-            "category": "kill_enemies",
-            "position": [
-                1184.34,
-                1039.48
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Fabelwesen in Aufruhr",
-            "category": "kill_enemies",
-            "position": [
-                838.6800000000001,
-                1178.85
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Das Genist: Siebte Phase - Beginn",
-            "category": "kill_enemies",
-            "position": [
-                1087.44,
-                934.09
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Das Genist: Siebte Phase - Abschluss",
-            "category": "kill_enemies",
-            "position": [
-                1090.93,
-                861.66
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Wer rastet, der blutet",
-            "category": "kill_enemies",
-            "position": [
-                754.76,
-                1174.85
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Auf zum Gegenangriff",
-            "category": "kill_enemies",
-            "position": [
-                988.04,
-                760.26
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Dem Rüpel seine Meute",
-            "category": "kill_enemies",
-            "position": [
-                1267.26,
-                978.54
-            ],
-            "description": ""
-        },
-        {
-            "id": "1",
-            "name": "Ginkos Opfergaben",
+            "id": "457",
+            "name": "Reverse Engineering",
             "category": "collect",
             "position": [
                 895.13,
@@ -634,8 +514,8 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Schau mir in die Augen",
+            "id": "556",
+            "name": "Erdkern für Erdseim",
             "category": "collect",
             "position": [
                 1073.45,
@@ -644,8 +524,108 @@
             "description": ""
         },
         {
-            "id": "1",
-            "name": "Linientreue um jeden Preis",
+            "id": "446",
+            "name": "Arimaspi-Alarm",
+            "category": "kill_boss",
+            "position": [
+                1212.82,
+                1076.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "450",
+            "name": "Der Erste wird der Letzte sein",
+            "category": "kill_boss",
+            "position": [
+                894.13,
+                1378.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "637",
+            "name": "Spritfresser",
+            "category": "kill_boss",
+            "position": [
+                1209.32,
+                920.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "647",
+            "name": "Etwas von allem",
+            "category": "kill_boss",
+            "position": [
+                820.2,
+                1363.17
+            ],
+            "description": ""
+        },
+        {
+            "id": "447",
+            "name": "Erdseim geht vor",
+            "category": "kill_enemies",
+            "position": [
+                1184.34,
+                1039.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "449",
+            "name": "Brandschutzmaßnahmen",
+            "category": "kill_enemies",
+            "position": [
+                838.6800000000001,
+                1178.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "638",
+            "name": "Nur Quarz im Schädel",
+            "category": "kill_enemies",
+            "position": [
+                1087.44,
+                934.09
+            ],
+            "description": ""
+        },
+        {
+            "id": "639",
+            "name": "Augen auf",
+            "category": "kill_enemies",
+            "position": [
+                1090.93,
+                861.66
+            ],
+            "description": ""
+        },
+        {
+            "id": "641",
+            "name": "Durstige Dobalosse",
+            "category": "kill_enemies",
+            "position": [
+                988.04,
+                760.26
+            ],
+            "description": ""
+        },
+        {
+            "id": "643",
+            "name": "Von Kultisten entführt",
+            "category": "kill_enemies",
+            "position": [
+                1267.26,
+                978.54
+            ],
+            "description": ""
+        },
+        {
+            "id": "642",
+            "name": "Ehrenwache",
             "category": "escort",
             "position": [
                 1041.48,

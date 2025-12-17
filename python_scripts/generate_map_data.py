@@ -402,75 +402,17 @@ def get_baseimage_by_location(location):
     return posible_maps[0]
 
 
-def add_text_to_image(modified_image, x, y, x_off, y_off, fate_id, _type):
+def getFateName(fate_id, _type) -> str:
     global fates_trans
     global ces
-    y_fate_offset_no_overlap = 0
     if _type == "CE":
-        fate_name = ces[fate_id]['Name_de']
-        index = 0
+        return ces[fate_id]['Name_de']
     else:
         try:
-            fate_name = fates_trans[str(int(fate_id, 16))]['Name_de']
+            return fates_trans[fate_id]['Name_de']
         except:
-            fate_name = fates_trans[fate_id]['Name_de']
-        index = 1
-    if fate_name == "Kampf um Leben und Schweiß":
-        y_fate_offset_no_overlap = -20
-    #draw modifies the image in memory
-    draw = ImageDraw.Draw(modified_image)
-    # Choose a random position offset: above, below, or right of the icon
-    offset_options = [
-        ("", 0, -20),   # slightly above
-        ("", 0, 100),    # slightly below
-        #("", 100, 30),   # to the right
-    ]
-    arrow, x_offset_text, y_offset_text = offset_options[index]
-    x_offset_lentext = 0
-    if len(fate_name) > 6:
-        x_offset_lentext = (len(fate_name)-6)*5
-
-    try:
-        font = ImageFont.truetype("arialbd.ttf", 25)
-    except IOError:
-        font = ImageFont.load_default()
-    text = arrow + fate_name
-    bbox = draw.textbbox((0, 0), text, font=font)
-    text_width = bbox[2] - bbox[0]
-    text_height = bbox[3] - bbox[1]
-    padding = 8
-
-    # Initial position
-    text_x = int(x) - x_off + x_offset_text - x_offset_lentext
-    text_y = int(y) - y_off + y_offset_text + y_fate_offset_no_overlap
-
-    # Clamp position to keep everything within image bounds
-    img_width, img_height = modified_image.size
-    rect_width = text_width + 2 * padding
-    rect_height = text_height + 2 * padding
-
-    # Adjust x if needed
-    if text_x < 0:
-        text_x = 0
-    elif text_x + rect_width > img_width:
-        text_x = img_width - rect_width
-
-    # Adjust y if needed
-    if text_y < 0:
-        text_y = 0
-    elif text_y + rect_height > img_height:
-        text_y = img_height - rect_height
-
-    # Background box
-    rect_coords = [
-        (text_x - padding, text_y - padding),
-        (text_x + text_width + padding, text_y + text_height + padding)
-    ]
-
-    draw.rounded_rectangle(rect_coords, radius=10, fill=(255, 255, 255, 180))
-    draw.text((text_x, text_y), text, fill=(0, 0, 0, 255), font=font)
-    return text
-
+            return fates_trans[str(int(fate_id, 16))]['Name_de']
+    print("none")
 
 def generate_images():
     data = readJsonFile("FatesFromConsoleWiki.json")
@@ -483,9 +425,10 @@ def generate_images():
             fate_by_type[location][fate_data.get('Type', "NoType")].append(fate_id)
 
     for location, fate_type in fate_by_type.items():
-        #if not location in ["Lower La Noscea"]:
+        #if not location in ["The Dravanian Forelands"]:
         #    continue
         _map_id = None
+        # this codeblock will get elements like map id, offset etc so we dont need to calculate it per map
         for x, value in ttype.items():
             if value['PlaceName']['Name_en'] == location:
                 # check if the territory name e.g. o6b1 has less then 5 chars to avoid o6b1/01_event things
@@ -569,12 +512,11 @@ def generate_images():
         #print_color_red((fix_slug(location), _map_id, _map['OffsetX'], _map['OffsetY'], _map['SizeFactor']))
         #print()
         original_image: ImageFile = Image.open(baseimage)
-        #print_pretty_json(fate_type)
+
         for _type, f_type in fate_type.items():
             w, h = original_image.size
             for fate_id in f_type:
                 # without the 100 here and the filter above we get wrong result when calculating pixels
-
                 if data[location][fate_id]['Location']['x'] == "":
                     data[location][fate_id]['Location']['x'] = 0
                 if data[location][fate_id]['Location']['y'] == "":
@@ -586,10 +528,14 @@ def generate_images():
                 x = x2 + w/2
                 y = y2 + h/2
 
-                text = add_text_to_image(original_image, x, y, 0, 0,data[location][fate_id].get('Fate ID', 'Unknown'), data[location][fate_id].get('Fate Type', 'Unknown'))
+                fate_name = getFateName(data[location][fate_id].get('Fate ID', 'Unknown'), data[location][fate_id].get('Fate Type', 'Unknown'))
 
-                if text:
-                    json_as_dict['markers'].append({ "id": "1", "name": text, "category": fix_slug(_type), "position": [x,-y2+h/2], "description": "" })
+                if fate_name:
+                    json_as_dict['markers'].append({ "id": f"{fate_id}", "name": fate_name, "category": fix_slug(_type), "position": [x,-y2+h/2], "description": "" })
+                else:
+                    # exclude warning for few japanese fates
+                    if fate_id not in ["461", "636", "640", "1317"]:
+                        print_color_red(f"No Fate Name for fate with id {location} > {_type} > {fate_id}")
 
         #json_as_dict['markers'].append({ "id": "zone-1", "name": "Central Field", "category": "gathering-zone", "description": "Level 10–15 gathering area", "points": [ [ 700, 400 ], [ 900, 420 ], [ 920, 650 ], [ 580, 640 ] ] })
         tmaps, maptypes = get_treasuremaps(_map_id, w, h)
@@ -732,28 +678,29 @@ def get_quest(mapid, w, h):
 def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
     global path_of_main_script
     path_of_main_script = main_script
-    try:
-        tc_fates = get_data_from_teamcraft()
-        #print_color_blue(tc_fates)
-        gw_fates = getLinksFromConsoleGamesWiki(0)
-        merged_fates = merge_fate_data(tc_fates, gw_fates)
-        merged_fates = fix_special(merged_fates)
-        #print_pretty_json(merged_fates['Bozjan Southern Front'])
-
-        writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
-        #writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
-        #writeJsonFile(r"C:\Users\Akurosia\Documents\GitHub\DevFFXIVPocketGuide\python_scripts\FatesFromConsoleWiki.json", merged_fates)
-
-        print("[GAFD] Completed getting new Fates")
-    except Exception as e:
-        traceback.print_exc()
+    #try:
+    #    tc_fates = get_data_from_teamcraft()
+    #    #print_color_blue(tc_fates)
+    #    gw_fates = getLinksFromConsoleGamesWiki(0)
+    #    merged_fates = merge_fate_data(tc_fates, gw_fates)
+    #    merged_fates = fix_special(merged_fates)
+    #    #print_pretty_json(merged_fates['Bozjan Southern Front'])
+#
+    #    writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
+    #    #writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
+    #    #writeJsonFile(r"C:\Users\Akurosia\Documents\GitHub\DevFFXIVPocketGuide\python_scripts\FatesFromConsoleWiki.json", merged_fates)
+#
+    #    print("[GAFD] Completed getting new Fates")
+    #except Exception as e:
+    #    traceback.print_exc()
     generate_images()
 
 def get_base_images():
-    lst = ["061000/061879_hr1","061000/061880_hr1","061000/061878_hr1","061000/061877_hr1","061000/061876_hr1","061000/061875_hr1","061000/061533_hr1","000000/000046_hr1","000000/000115_hr1","056000/056935_hr1","057000/057357_hr1","060000/060453_hr1","061000/061432_hr1","061000/061723_hr1","061000/061757_hr1","061000/061759_hr1","061000/061767_hr1","061000/061821_hr1","061000/061822_hr1","061000/061828_hr1","061000/061834_hr1","061000/061835_hr1"]
+    lst = ["071000/071221_hr1","071000/071201_hr1","071000/071222_hr1","071000/071341_hr1","071000/071341_hr1","062000/062521_hr1","062000/062523_hr1","060000/060852_hr1","060000/060801_hr1","060000/060802_hr1","060000/060803_hr1","060000/060804_hr1","000000/000000_hr1","060000/060501_hr1","060000/060502_hr1","060000/060503_hr1","060000/060504_hr1","060000/060505_hr1","060000/060506_hr1","060000/060508_hr1","060000/060994_hr1","060000/060958_hr1","063000/063926_hr1","063000/063909_hr1","063000/063910_hr1","063000/063911_hr1","071000/071221_hr1","071000/071201_hr1","071000/071222_hr1","071000/071341_hr1","071000/071341_hr1","062000/062521_hr1","062000/062523_hr1","061000/061879_hr1","061000/061880_hr1","061000/061878_hr1","061000/061877_hr1","061000/061876_hr1","061000/061875_hr1","061000/061533_hr1","000000/000046_hr1","000000/000115_hr1","056000/056935_hr1","057000/057357_hr1","060000/060453_hr1","061000/061432_hr1","061000/061723_hr1","061000/061757_hr1","061000/061759_hr1","061000/061767_hr1","061000/061821_hr1","061000/061822_hr1","061000/061828_hr1","061000/061834_hr1","061000/061835_hr1"]
     for img in lst:
         getImage(img)
 
 if __name__ == "__main__":
     run()
-    #get_base_images()
+    #generate_images()
+    get_base_images()
