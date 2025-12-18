@@ -739,7 +739,7 @@ def addKlassJobs():
             if roleicons.get(roletypeinparty_en_name_key, None):
                 filecontent += f'roleicon: "/assets/img/game_assets/{getImage(roleicons[roletypeinparty_en_name_key])}"\n'
                 if roletypeinparty_en_name_key == "Healer":
-                    healicon, healname = roleiconsextra[classjob[k[0]]["Unknown11"]]
+                    healicon, healname = roleiconsextra[classjob[k[0]]["JobType"]]
                     filecontent += f'roleiconextra:\n'
                     filecontent += f'    - name: "{healname}"\n'
                     filecontent += f'      icon: "{healicon}"\n'
