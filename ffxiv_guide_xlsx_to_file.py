@@ -310,6 +310,34 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
             logger.critical(msg)
             traceback.print_exception(*sys.exc_info())
 
+
+from concurrent.futures import ThreadPoolExecutor
+def run_all(path_of_main_script, translations):
+    #return
+    tasks = [
+        #aas.run()
+        lambda: csgf.run(path_of_main_script),
+        lambda: gl.run(path_of_main_script),
+        lambda: gp.run(path_of_main_script),
+        # ghm.run(path_of_main_script),
+        lambda: ga.run(path_of_main_script),
+        lambda: gbsq.run(path_of_main_script),
+        lambda: fcc.run(path_of_main_script, translations),
+        lambda: gis.run(path_of_main_script),
+        lambda: ts.run(path_of_main_script),
+        lambda: quests.run(path_of_main_script),
+        lambda: deepdungeon.run(path_of_main_script),
+    ]
+
+    with ThreadPoolExecutor(max_workers=len(tasks)) as executor:
+        futures = [executor.submit(task) for task in tasks]
+
+        # optional: wait and raise if any failed
+        for f in futures:
+            f.result()
+    newmaps.run(path_of_main_script)
+
+
 def main() -> None:
     global translations
     logger.critical('START')
@@ -341,41 +369,15 @@ def main() -> None:
     os.chdir("./_posts")
     #logger.debug(orderedContent)
     try:
-        run(googledata, orderedContent)
+        #run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
         run_all(path_of_main_script, translations)
+        pass
     create_translation_files()
     logger.critical('STOP')
-
-from concurrent.futures import ThreadPoolExecutor
-
-def run_all(path_of_main_script, translations):
-    #return
-    tasks = [
-        #aas.run()
-        lambda: csgf.run(path_of_main_script),
-        lambda: gl.run(path_of_main_script),
-        lambda: gp.run(path_of_main_script),
-        # ghm.run(path_of_main_script),
-        lambda: ga.run(path_of_main_script),
-        lambda: gbsq.run(path_of_main_script),
-        lambda: fcc.run(path_of_main_script, translations),
-        lambda: gis.run(path_of_main_script),
-        lambda: ts.run(path_of_main_script),
-        lambda: quests.run(path_of_main_script),
-        lambda: deepdungeon.run(path_of_main_script),
-    ]
-
-    with ThreadPoolExecutor(max_workers=len(tasks)) as executor:
-        futures = [executor.submit(task) for task in tasks]
-
-        # optional: wait and raise if any failed
-        for f in futures:
-            f.result()
-    newmaps.run(path_of_main_script)
 
 if __name__ == "__main__":
     path_of_main_script = os.getcwd()

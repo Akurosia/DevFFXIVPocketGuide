@@ -310,31 +310,30 @@ def get_statuis():
         additions = ""
         before = ""
         after = ""
-        if item_data["Name"]['Name_de'] == "":
+        if item_data["FloorEffectUI"]['Name_de'] == "":
             continue
         if before:
             after = "{%- endif -%}"
-
-        icon = item_data['Name']['Icon']['path_hr1'].replace(".tex", ".webp").replace("ui/icon/", "")
+        icon = item_data['FloorEffectUI']['Icon']['path_hr1'].replace(".tex", ".webp").replace("ui/icon/", "")
         icon2 = item_data['ScreenImage']['Image']['path_hr1'].replace(".tex", ".webp").replace("ui/icon/", "").replace("121000/", "121000/de/")
         item_data['ScreenImage']['Image']['path_hr1'] = item_data['ScreenImage']['Image']['path_hr1'].replace("/121000/", "/121000/de/")
 
-        getImage(item_data['Name']['Icon'])
+        getImage(item_data['FloorEffectUI']['Icon'])
         getImage(item_data['ScreenImage']['Image'])
         pomander_table += f"""                                {before}<tr>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon}" alt="{item_data["Name"]['Name_en']}"/></td>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon2}" alt="{item_data["Name"]['Name_en']}"/></td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon}" alt="{item_data["FloorEffectUI"]['Name_en']}"/></td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon2}" alt="{item_data["FloorEffectUI"]['Name_en']}"/></td>
                                     <td>
-                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data["Name"]['Name_en']}{additions}</span>
-                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data["Name"]['Name_de']}{additions}</span>
-                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data["Name"]['Name_fr']}{additions}</span>
-                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data["Name"]['Name_ja']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data["FloorEffectUI"]['Name_en']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data["FloorEffectUI"]['Name_de']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data["FloorEffectUI"]['Name_fr']}{additions}</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data["FloorEffectUI"]['Name_ja']}{additions}</span>
                                     </td>
                                     <td>
-                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data["Name"]['Description_en']}</span>
-                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data["Name"]['Description_de']}</span>
-                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data["Name"]['Description_fr']}</span>
-                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data["Name"]['Description_ja']}</span>
+                                        <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data["FloorEffectUI"]['Description_en']}</span>
+                                        <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data["FloorEffectUI"]['Description_de']}</span>
+                                        <span class="lang-toggle lang-toogle-fr" style="display: none;">{item_data["FloorEffectUI"]['Description_fr']}</span>
+                                        <span class="lang-toggle lang-toogle-ja" style="display: none;">{item_data["FloorEffectUI"]['Description_ja']}</span>
                                     </td>
                                 </tr>{after}\n"""
 
@@ -423,6 +422,7 @@ def get_gimmic():
         additions = ""
         before = ""
         after = ""
+        print(item_data)
         if item_data['Name_de'] == "":
             continue
         if before:
@@ -467,9 +467,10 @@ def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
         f.write(get_traps())
         f.write(get_pomanders())
         f.write(get_stones_demis())
+
         f.write(get_statuis())
         f.write(get_floor())
-        f.write(get_gimmic())
+        #f.write(get_gimmic())
         f.write("""            </div>
 <!-- END Include from _includes/presets/DeedDungeonTraps -->""")
 
