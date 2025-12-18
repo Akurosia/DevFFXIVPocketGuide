@@ -422,13 +422,12 @@ def get_gimmic():
         additions = ""
         before = ""
         after = ""
-        print(item_data)
         if item_data['Name_de'] == "":
             continue
         if before:
             after = "{%- endif -%}"
 
-        _iid = f"{item_data['Icon_de']:>06}"
+        _iid = f"{item_data['StatusIcon']['id']:>06}"
         icon = {
             "id": f"{_iid}",
             "path": f"ui/icon/{_iid[:3]}000/{_iid}.tex",
@@ -470,7 +469,7 @@ def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
 
         f.write(get_statuis())
         f.write(get_floor())
-        #f.write(get_gimmic())
+        f.write(get_gimmic())
         f.write("""            </div>
 <!-- END Include from _includes/presets/DeedDungeonTraps -->""")
 
