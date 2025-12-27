@@ -64,16 +64,16 @@ figthsArray = [
     [1068, ["TOP"]],
     [1079, ["FRU"]],
 
-    [97,  ["R5S"]],
-    [98,  ["R6S"]],
-    [99,  ["R7S"]],
-    [100, ["R8S"]],
+    [101,  ["R9S"]],
+    [102,  ["R10S"]],
+    [103,  ["R11S"]],
+    [104,  ["R12S"]],
     // [92, ["P12S_P2"]],
 
-    [3010, ["Suzaku"]],
+    [3012, ["Tsukoyomi"]],
     // [1071, ["Valigarmanda"]],
     // [1072, ["Zoraal Ja"]],
-    [1080, ["Zelenia"]],
+    [1083, ["Doomtrain"]],
 ];
 
 // Extract fight IDs while preserving order
@@ -367,13 +367,13 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
     }
     // get ids by api https://www.fflogs.com:443/v1/zones?api_key={KEY} and looking for bossid e.g. 1071
     if (latestRaid === null) {
-        latestRaid = "68";
+        latestRaid = "73";
     }
     if (unrealId === null) {
         unrealId = "64";
     }
     if (latestPrimal === null) {
-        latestPrimal = "67";
+        latestPrimal = "72";
     }
 
     let query_player = "";
