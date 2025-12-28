@@ -44,7 +44,8 @@ locations_translator: dict[str, str] = {
     "Sea of Jade (Lv. 70-90)": "Jademeer",
     "Sirensong Sea (Lv. 90-105)": "Sirenen-See",
     "The Lilac Sea (Lv. 105-120)": "Das Fliedermeer",
-    "South Indigo Deep (Lv. 120-)": "Südlicher Indigo-Ozean"
+    "South Indigo Deep (Lv. 120-135)": "Südlicher Indigo-Ozean",
+    "The Northern Empty (Lv. 135-)": "Nördliche Meere"
 }
 
 def get_translated_unlocks(asd, search):
@@ -56,14 +57,14 @@ def get_translated_unlocks(asd, search):
     return {}
 
 
-def get_x_items(items):
-    sorted(items)
-    result = {'de': "", 'en': "", 'fr': "", 'ja': "", 'cn': "", 'ko': ""}
-    itemnames = [x for x in items]
+def get_x_items(litems):
+    sorted(litems)
+    result = {'de': "", 'en': "", 'fr': "", 'ja': ""}
+    itemnames = [x for x in litems]
     for item in sorted(itemnames):
         for key, value in items.items():
             if item == value['Name_en']:
-                for lang in ['de', 'en', 'fr', 'ja', 'cn', 'ko']:
+                for lang in ['de', 'en', 'fr', 'ja']:
                     result[lang] += value[f'Name_{lang}'] + "</br>"
                 break
     return result
@@ -79,9 +80,7 @@ def get_submarine_map(name):
             'Name_de': "Wolkenmeer",
             'Name_en': "Sea of Clouds",
             'Name_fr': "Mer de nuages",
-            'Name_ja': "雲海",
-            'Name_cn': "云海",
-            'Name_ko': "구름바다"
+            'Name_ja': "雲海"
     }
 
 
@@ -97,6 +96,7 @@ def run():
     r_data += 'page_type: index\n'
     r_data += 'page_category: airship_submarine\n'
     r_data += 'locations:\n'
+
     for location, stops in data.items():
         location = locations_translator[location]
         # this will sort all entry to avoid 2 equal cases
@@ -108,20 +108,19 @@ def run():
         r_data += f'    - name: "{smm["Name_en"]}" \n'
         for lang in LANGUAGES:
             klass_translations[lang][f'Housing_Location_{smm["Name_en"]}'] = smm[f"Name_{lang}"]
-            #r_data += f'        {lang}: "{smm["Name_"+lang]}"\n'
-            pass
         r_data += '      stops:\n'
         for key in sorted([int(x) for x in w_data]):
-            value = w_data[str(key)]
+            print(key)
             for name, stop_data in stops.items():
-                if not name.lower() == value.get("Destination_en", value.get("Name_en", "")).lower():
+                print(stop_data)
+                if not name.lower() == stop_data.get("Destination_en", stop_data.get("Name_en", "")).lower():
                     continue
                 if name == "":
                     continue
-                v_en = value.get("Destination_en", value.get("Name_en", ""))
+                v_en = value.get("Destination_en", stop_data.get("Name_en", ""))
                 r_data += f'        - name: "{v_en}"\n'
                 for lang in LANGUAGES:
-                    v = value.get("Destination_"+lang, value.get("Name_"+lang, ""))
+                    v = value.get("Destination_"+lang, stop_data.get("Name_"+lang, ""))
                     klass_translations[lang][f'Housing_Location_{v_en}'] = v
                 tmp_x = get_translated_unlocks(w_data, stop_data.get('unlocked_by', ""))
 

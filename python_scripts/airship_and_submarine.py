@@ -5,7 +5,8 @@ import time
 
 data = None
 #submarineexploration = loadDataTheQuickestWay("submarineexploration.en.json", translate=False)
-submarineexploration = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\SubmarineExploration.json")
+#submarineexploration = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\SubmarineExploration.json")
+submarineexploration: dict[str, dict[str, str]] = loadDataTheQuickestWay("SubmarineExploration.json")
 
 def iterate_locator(locator):
     return [locator.nth(x) for x in range(0, locator.count())]

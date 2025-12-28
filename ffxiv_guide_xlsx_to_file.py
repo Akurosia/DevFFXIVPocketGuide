@@ -30,7 +30,7 @@ import python_scripts.treasurespot as ts
 import python_scripts.quests as quests
 import python_scripts.generate_deep_dungeon_items as deepdungeon
 import python_scripts.generate_map_data as newmaps
-import python_scripts.airship_and_submarine as aas
+#import python_scripts.airship_and_submarine as aas
 
 logger: Logger = getLogger(50)
 disable_green_print: bool = True
