@@ -504,6 +504,86 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/y6f/y6f2 - Kozama'uka.png",
     "markers": [
         {
+            "id": "1931",
+            "name": "Auf das richtige Material kommt es an",
+            "category": "collect",
+            "position": [
+                1085.44,
+                1649.8899999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1937",
+            "name": "Steinchensucher",
+            "category": "collect",
+            "position": [
+                383.63,
+                1008.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1926",
+            "name": "Die Fische, die ich rief",
+            "category": "kill_boss",
+            "position": [
+                881.64,
+                1181.85
+            ],
+            "description": ""
+        },
+        {
+            "id": "1930",
+            "name": "Die Hackordnung der Pama-yawa",
+            "category": "kill_boss",
+            "position": [
+                1794.25,
+                1428.1100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1929",
+            "name": "Ein Lied, sie alle zu binden",
+            "category": "kill_boss",
+            "position": [
+                1605.4299999999998,
+                1257.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1938",
+            "name": "Verführerisches Verderben",
+            "category": "kill_boss",
+            "position": [
+                1013.01,
+                608.9100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1941",
+            "name": "Rampensau",
+            "category": "kill_boss",
+            "position": [
+                261.24,
+                435.57000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1924",
+            "name": "Hammerharte Herausforderung",
+            "category": "kill_enemies",
+            "position": [
+                540.47,
+                1468.07
+            ],
+            "description": ""
+        },
+        {
             "id": "1927",
             "name": "Zu Schilfe!",
             "category": "kill_enemies",
@@ -524,12 +604,22 @@
             "description": ""
         },
         {
-            "id": "1924",
-            "name": "Hammerharte Herausforderung",
+            "id": "1925",
+            "name": "Jeder Tegu ein Tegu zu viel",
             "category": "kill_enemies",
             "position": [
-                540.47,
-                1468.07
+                1663.38,
+                1141.39
+            ],
+            "description": ""
+        },
+        {
+            "id": "1933",
+            "name": "Nichts als Lug und Betrug",
+            "category": "kill_enemies",
+            "position": [
+                1681.8600000000001,
+                641.87
             ],
             "description": ""
         },
@@ -570,96 +660,6 @@
             "position": [
                 210.78999999999996,
                 770.25
-            ],
-            "description": ""
-        },
-        {
-            "id": "1925",
-            "name": "Jeder Tegu ein Tegu zu viel",
-            "category": "kill_enemies",
-            "position": [
-                1663.38,
-                1141.39
-            ],
-            "description": ""
-        },
-        {
-            "id": "1933",
-            "name": "Nichts als Lug und Betrug",
-            "category": "kill_enemies",
-            "position": [
-                1681.8600000000001,
-                641.87
-            ],
-            "description": ""
-        },
-        {
-            "id": "1931",
-            "name": "Auf das richtige Material kommt es an",
-            "category": "collect",
-            "position": [
-                1085.44,
-                1649.8899999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1937",
-            "name": "Steinchensucher",
-            "category": "collect",
-            "position": [
-                383.63,
-                1008.02
-            ],
-            "description": ""
-        },
-        {
-            "id": "1926",
-            "name": "Die Fische, die ich rief",
-            "category": "kill_boss",
-            "position": [
-                881.64,
-                1181.85
-            ],
-            "description": ""
-        },
-        {
-            "id": "1929",
-            "name": "Ein Lied, sie alle zu binden",
-            "category": "kill_boss",
-            "position": [
-                1605.4299999999998,
-                1257.27
-            ],
-            "description": ""
-        },
-        {
-            "id": "1930",
-            "name": "Die Hackordnung der Pama-yawa",
-            "category": "kill_boss",
-            "position": [
-                1794.25,
-                1428.1100000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1941",
-            "name": "Rampensau",
-            "category": "kill_boss",
-            "position": [
-                261.24,
-                435.57000000000005
-            ],
-            "description": ""
-        },
-        {
-            "id": "1938",
-            "name": "Verführerisches Verderben",
-            "category": "kill_boss",
-            "position": [
-                1013.01,
-                608.9100000000001
             ],
             "description": ""
         },
@@ -1625,6 +1625,438 @@
                 1794.737,
                 1287.974
             ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ok'hanu",
+            "position": [
+                854.0,
+                1503.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Viele Flammen",
+            "position": [
+                1565.0,
+                820.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Irdehalde",
+            "position": [
+                546.0,
+                713.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                819.0,
+                1521.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                826.0,
+                1523.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1616.0,
+                800.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1616.0,
+                810.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                585.0,
+                703.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                574.0,
+                750.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tuliyollal",
+            "position": [
+                740.0,
+                1874.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Urqopacha",
+            "position": [
+                129.0,
+                550.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tuliyollal",
+            "position": [
+                1783.0,
+                459.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060456.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                822.0,
+                1429.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1515.0,
+                832.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                573.0,
+                701.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Uyuyub'",
+            "position": [
+                469.0,
+                1676.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bopo'uihih",
+            "position": [
+                454.0,
+                1418.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Miyakabek'zu",
+            "position": [
+                1400.0,
+                1448.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Uyuypoga",
+            "position": [
+                1680.0,
+                1768.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Taustaden",
+            "position": [
+                1520.0,
+                228.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Miyakabek'zoma",
+            "position": [
+                1110.0,
+                708.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Garbrandstaden",
+            "position": [
+                470.0,
+                188.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Haus der Wuchernden Winde",
+            "position": [
+                388.0,
+                1499.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kikitola-Höhle",
+            "position": [
+                646.0,
+                1157.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Xodune",
+            "position": [
+                552.0,
+                1093.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Xo'onu",
+            "position": [
+                686.0,
+                1029.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Xopik'",
+            "position": [
+                828.0,
+                1027.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ku'uxage",
+            "position": [
+                1078.0,
+                1035.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Hängender Kai",
+            "position": [
+                1058.0,
+                1104.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Puyhu-Brücke",
+            "position": [
+                1112.0,
+                1247.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Goldwirbelfelder",
+            "position": [
+                1148.0,
+                1381.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ok'bek'be",
+            "position": [
+                1236.0,
+                1603.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Haus des Kristallenen Wassers",
+            "position": [
+                1371.0,
+                1658.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kozanuakiy",
+            "position": [
+                1683.0,
+                1547.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Poga-Dock",
+            "position": [
+                1812.0,
+                1260.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Stufen der Schwingenlosen Geschwister",
+            "position": [
+                1547.0,
+                1060.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Lauf der Goldenen Sonne",
+            "position": [
+                1608.0,
+                1259.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tumu-Dock",
+            "position": [
+                1777.0,
+                488.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ligaka-Bruch",
+            "position": [
+                1233.0,
+                518.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schiffe der Verlorenen",
+            "position": [
+                714.0,
+                304.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ihuykatumu",
+            "position": [
+                880.0,
+                148.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schmalte",
+            "position": [
+                570.0,
+                680.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zertrümmerter Topf",
+            "position": [
+                443.0,
+                308.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mahnende Schatten",
+            "position": [
+                384.0,
+                1010.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zollamt",
+            "position": [
+                1388.0,
+                304.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                918.0,
+                1416.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060581.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1813.0,
+                1289.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1803.0,
+                1289.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
         }
     ],
     "maxZoom": 1.7,

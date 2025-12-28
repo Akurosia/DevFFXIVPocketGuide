@@ -102,7 +102,7 @@ def is_repo_root() -> bool:
     return Path.cwd().name == "DevFFXIVPocketGuide"
 
 #--- main API ---
-def getImage(image: str, _type: str = "icon") -> str:
+def getImage(image: str, _type: str = "icon", ishr1=True) -> str:
     """
     Resolve the correct image path and ensure a HR webp exists, cross-platform.
     Returns a URL-ish path starting with '/assets/...'.
@@ -116,7 +116,10 @@ def getImage(image: str, _type: str = "icon") -> str:
 
     # dict support
     if isinstance(image, dict):
-        image = image.get("path_hr1", image)
+        if ishr1:
+            image = image.get("path_hr1", image)
+        else:
+            image = image.get("path", image)
 
     # cleanup
     image = image.replace("\\", "/")
@@ -124,16 +127,14 @@ def getImage(image: str, _type: str = "icon") -> str:
         image = image.replace("/../", "/")
 
     # Early exit when already good and present
-    if (
-        (("_hr1" in image) or ("/content/" in image)) and path_exists_in_assets(image)
-    ) or image == "/assets/img/test.webp":
+    if (((ishr1 and "_hr1" in image) or ("/content/" in image)) and path_exists_in_assets(image)) or image == "/assets/img/test.webp":
         return image
 
     # Normalize extensions
     image = image.replace(".webp", ".png").replace(".tex", ".png").replace("test.jpg", "test.webp")
 
     # Ensure _hr1 for non-map
-    if "_hr1" not in image and _type != "map":
+    if ((ishr1 and "_hr1" not in image) and _type != "map"):
         if image.lower().endswith(".png"):
             image = image[:-4] + "_hr1.png"
 

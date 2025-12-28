@@ -504,6 +504,16 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/u5f/u5f1 - Mare Lamentorum.png",
     "markers": [
         {
+            "id": "1811",
+            "name": "Besuch von der dunklen Seite",
+            "category": "kill_enemies",
+            "position": [
+                1316.71,
+                531.48
+            ],
+            "description": ""
+        },
+        {
             "id": "1808",
             "name": "Lunatender-Liebe",
             "category": "kill_enemies",
@@ -544,12 +554,12 @@
             "description": ""
         },
         {
-            "id": "1811",
-            "name": "Besuch von der dunklen Seite",
+            "id": "1804",
+            "name": "Langohren des Mondes: Reiniger-Rabatz",
             "category": "kill_enemies",
             "position": [
-                1316.71,
-                531.48
+                646.37,
+                1651.3899999999999
             ],
             "description": ""
         },
@@ -600,16 +610,6 @@
             "position": [
                 1111.91,
                 996.53
-            ],
-            "description": ""
-        },
-        {
-            "id": "1804",
-            "name": "Langohren des Mondes: Reiniger-Rabatz",
-            "category": "kill_enemies",
-            "position": [
-                646.37,
-                1651.3899999999999
             ],
             "description": ""
         },
@@ -1523,6 +1523,348 @@
                 888.165,
                 591.9680000000001
             ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gottesportal",
+            "position": [
+                360.0,
+                296.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1227.0,
+                617.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1019.0,
+                1238.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sinus Lacrimarum",
+            "position": [
+                300.0,
+                498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sinus Lacrimarum",
+            "position": [
+                457.0,
+                374.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Palast des Wächters",
+            "position": [
+                600.0,
+                448.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Südliches Mare Lamentorum",
+            "position": [
+                1050.0,
+                348.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schwert der Meere",
+            "position": [
+                835.0,
+                628.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schwert der Gletscher",
+            "position": [
+                1055.0,
+                514.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schwert der Erde",
+            "position": [
+                1208.0,
+                608.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chlorophos-Grotte",
+            "position": [
+                1500.0,
+                498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Wiege der Dunkelheit",
+            "position": [
+                1025.0,
+                723.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Vallis Vulneris",
+            "position": [
+                1025.0,
+                608.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nördliches Mare Lamentorum",
+            "position": [
+                850.0,
+                1048.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schwert der Stürme",
+            "position": [
+                840.0,
+                843.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schwert der Gewitter",
+            "position": [
+                1085.0,
+                929.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schwert der Flammen",
+            "position": [
+                1230.0,
+                793.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kydonias Antlitz",
+            "position": [
+                520.0,
+                998.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Lovingways Schatz",
+            "position": [
+                1250.0,
+                1088.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sinus Tormenti",
+            "position": [
+                1600.0,
+                728.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Heimdalls letzte Ruh",
+            "position": [
+                1650.0,
+                848.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bestways Rast",
+            "position": [
+                950.0,
+                1428.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bestways Rast",
+            "position": [
+                1023.0,
+                1537.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mondsegel",
+            "position": [
+                1027.0,
+                1698.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Carrotorium",
+            "position": [
+                430.0,
+                1568.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der schönste Wald",
+            "position": [
+                1670.0,
+                1568.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Smileton",
+            "position": [
+                538.0,
+                958.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                997.0,
+                1605.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060446.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1023.0,
+                1708.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060447.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                597.0,
+                463.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1004.0,
+                1487.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1004.0,
+                1480.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                820.0,
+                1309.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                845.0,
+                1332.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                853.0,
+                1324.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060447.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                997.0,
+                1467.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060446.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Halle der Heiterkeit",
+            "position": [
+                838.0,
+                1291.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1049.0,
+                1436.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063895.webp"
         }
     ],
     "maxZoom": 1.7,

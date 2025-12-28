@@ -504,12 +504,12 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f4 - Il Mheg.png",
     "markers": [
         {
-            "id": "1494",
-            "name": "Feentanz: Pixie-Jäger",
-            "category": "kill_boss",
+            "id": "1492",
+            "name": "Feentanz: Güldener Blütennektar",
+            "category": "collect",
             "position": [
-                625.39,
-                904.12
+                328.17999999999995,
+                1143.88
             ],
             "description": ""
         },
@@ -530,6 +530,16 @@
             "position": [
                 478.03,
                 310.20000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1494",
+            "name": "Feentanz: Pixie-Jäger",
+            "category": "kill_boss",
+            "position": [
+                625.39,
+                904.12
             ],
             "description": ""
         },
@@ -570,16 +580,6 @@
             "position": [
                 372.64,
                 1374.66
-            ],
-            "description": ""
-        },
-        {
-            "id": "1492",
-            "name": "Feentanz: Güldener Blütennektar",
-            "category": "collect",
-            "position": [
-                328.17999999999995,
-                1143.88
             ],
             "description": ""
         },
@@ -1924,6 +1924,393 @@
                 1442.774,
                 1803.565
             ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "Timh Gyeus",
+            "position": [
+                220.0,
+                423.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Großes Spiegelchen",
+            "position": [
+                1100.0,
+                853.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Voeburtenburg",
+            "position": [
+                1785.0,
+                1613.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Lydha Lran",
+            "position": [
+                680.0,
+                513.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Phisor Lran",
+            "position": [
+                990.0,
+                253.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Dohn Mheg",
+            "position": [
+                1160.0,
+                568.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Lehnsgut des Gelehrten",
+            "position": [
+                430.0,
+                1248.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Spiegelchen",
+            "position": [
+                60.0,
+                1038.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Thysm Lran",
+            "position": [
+                1456.0,
+                700.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Haus des Strahlenden Lichts",
+            "position": [
+                672.0,
+                1321.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Stadt am Grund",
+            "position": [
+                910.0,
+                1009.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Jenannas Glanz",
+            "position": [
+                400.0,
+                1503.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Pla Enni",
+            "position": [
+                952.0,
+                1881.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Wolekdorf",
+            "position": [
+                1405.0,
+                1711.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sechslingssyrte",
+            "position": [
+                1145.0,
+                1483.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Wallfahrtskirche von Dammroen",
+            "position": [
+                1660.0,
+                1848.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Collards Kammer",
+            "position": [
+                1530.0,
+                1163.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tempel des Heiligen Fathric",
+            "position": [
+                1635.0,
+                823.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Andens Schäferhütte",
+            "position": [
+                1695.0,
+                683.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Earra-Aufweg",
+            "position": [
+                1095.0,
+                1127.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schloss Lyhe Ghiah",
+            "position": [
+                865.0,
+                1333.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Seenland",
+            "position": [
+                328.0,
+                185.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                704.0,
+                494.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                694.0,
+                486.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Reittier-Stein",
+            "position": [
+                591.0,
+                475.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                979.0,
+                1881.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                938.0,
+                1887.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Reittier-Stein",
+            "position": [
+                1074.0,
+                1875.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Reittier-Stein",
+            "position": [
+                1375.0,
+                1672.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mithai Glorianda",
+            "position": [
+                1072.0,
+                1300.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Klippen des Schweigens",
+            "position": [
+                1156.0,
+                1258.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Prachtparade der Blumengräfin",
+            "position": [
+                950.0,
+                608.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Wollweg",
+            "position": [
+                400.0,
+                915.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                980.0,
+                284.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                755.0,
+                578.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                562.0,
+                438.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                576.0,
+                455.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                775.0,
+                411.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                775.0,
+                400.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                785.0,
+                403.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060927.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1440.0,
+                1808.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1447.0,
+                1801.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1452.0,
+                1793.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063971.webp"
         }
     ],
     "maxZoom": 1.7,

@@ -504,6 +504,76 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f6 - Tempest.png",
     "markers": [
         {
+            "id": "1435",
+            "name": "Der Glanz der Perlen",
+            "category": "collect",
+            "position": [
+                1917.63,
+                1187.34
+            ],
+            "description": ""
+        },
+        {
+            "id": "1430",
+            "name": "Schrecken der Tiefsee Archaeotania: Blutkorallen",
+            "category": "collect",
+            "position": [
+                1757.28,
+                1812.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1427",
+            "name": "Schrecken der Tiefsee Archaeotania: Zumshs Ritual",
+            "category": "kill_boss",
+            "position": [
+                1384.65,
+                1482.05
+            ],
+            "description": ""
+        },
+        {
+            "id": "1433",
+            "name": "Halimede, lumineszente Schönheit",
+            "category": "kill_boss",
+            "position": [
+                854.67,
+                1548.49
+            ],
+            "description": ""
+        },
+        {
+            "id": "1432",
+            "name": "Schrecken der Tiefsee Archaeotania: Die Bestie",
+            "category": "kill_boss",
+            "position": [
+                1302.73,
+                775.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1428",
+            "name": "Schrecken der Tiefsee Archaeotania: Luntenschwarm",
+            "category": "defense",
+            "position": [
+                1164.3600000000001,
+                1191.84
+            ],
+            "description": ""
+        },
+        {
+            "id": "1426",
+            "name": "Schrecken der Tiefsee Archaeotania: Die Jagd beginnt",
+            "category": "kill_enemies",
+            "position": [
+                1086.44,
+                948.0699999999999
+            ],
+            "description": ""
+        },
+        {
             "id": "1440",
             "name": "Baba Ondo Schrimp",
             "category": "kill_enemies",
@@ -564,36 +634,6 @@
             "description": ""
         },
         {
-            "id": "1426",
-            "name": "Schrecken der Tiefsee Archaeotania: Die Jagd beginnt",
-            "category": "kill_enemies",
-            "position": [
-                1086.44,
-                948.0699999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1430",
-            "name": "Schrecken der Tiefsee Archaeotania: Blutkorallen",
-            "category": "collect",
-            "position": [
-                1757.28,
-                1812.73
-            ],
-            "description": ""
-        },
-        {
-            "id": "1435",
-            "name": "Der Glanz der Perlen",
-            "category": "collect",
-            "position": [
-                1917.63,
-                1187.34
-            ],
-            "description": ""
-        },
-        {
             "id": "1429",
             "name": "Schrecken der Tiefsee Archaeotania: Dunkle Grotten",
             "category": "escort",
@@ -610,46 +650,6 @@
             "position": [
                 1404.63,
                 606.9100000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1433",
-            "name": "Halimede, lumineszente Schönheit",
-            "category": "kill_boss",
-            "position": [
-                854.67,
-                1548.49
-            ],
-            "description": ""
-        },
-        {
-            "id": "1427",
-            "name": "Schrecken der Tiefsee Archaeotania: Zumshs Ritual",
-            "category": "kill_boss",
-            "position": [
-                1384.65,
-                1482.05
-            ],
-            "description": ""
-        },
-        {
-            "id": "1432",
-            "name": "Schrecken der Tiefsee Archaeotania: Die Bestie",
-            "category": "kill_boss",
-            "position": [
-                1302.73,
-                775.24
-            ],
-            "description": ""
-        },
-        {
-            "id": "1428",
-            "name": "Schrecken der Tiefsee Archaeotania: Luntenschwarm",
-            "category": "defense",
-            "position": [
-                1164.3600000000001,
-                1191.84
             ],
             "description": ""
         },
@@ -1255,6 +1255,276 @@
                 641.177,
                 268.65700000000004
             ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "Norvrandt-Hang",
+            "position": [
+                1268.0,
+                1658.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Caliban-Furche",
+            "position": [
+                800.0,
+                958.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Amaurot",
+            "position": [
+                1100.0,
+                248.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ondo-Becken",
+            "position": [
+                1585.0,
+                1223.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Flundergrotte",
+            "position": [
+                505.0,
+                1823.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Werkstatt",
+            "position": [
+                1675.0,
+                833.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Perlenbeutel",
+            "position": [
+                1920.0,
+                1193.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Seelenruh der Landler",
+            "position": [
+                1830.0,
+                1762.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mauern der Vergessenen",
+            "position": [
+                1080.0,
+                1458.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Purpurhöhle",
+            "position": [
+                1635.0,
+                568.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Calibans Nistplatz",
+            "position": [
+                340.0,
+                1346.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Achora-Turm",
+            "position": [
+                405.0,
+                973.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Polyleritae-Distrikt",
+            "position": [
+                466.0,
+                624.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Macarenses-Forum",
+            "position": [
+                882.0,
+                806.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Palast der Rede",
+            "position": [
+                285.0,
+                518.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Büro des Architekten",
+            "position": [
+                640.0,
+                748.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Büro des Administrators",
+            "position": [
+                1020.0,
+                763.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Büro des Sekretärs",
+            "position": [
+                1340.0,
+                363.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kapitol",
+            "position": [
+                662.0,
+                308.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kholusia",
+            "position": [
+                1288.0,
+                1907.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Amaurot",
+            "position": [
+                597.0,
+                166.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Akadaemia Anyder",
+            "position": [
+                953.0,
+                439.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1548.0,
+                1231.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1017.0,
+                728.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1039.0,
+                778.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Trinculo-Plateau",
+            "position": [
+                1150.0,
+                1162.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der Verschlungene Turm",
+            "position": [
+                1302.0,
+                774.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                413.0,
+                930.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                420.0,
+                912.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1662.0,
+                812.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
         }
     ],
     "maxZoom": 1.7,

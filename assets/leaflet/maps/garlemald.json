@@ -504,6 +504,16 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/m5f/m5f2 - Garlemald.png",
     "markers": [
         {
+            "id": "1785",
+            "name": "Gleich vergess ich mich",
+            "category": "kill_enemies",
+            "position": [
+                590.9200000000001,
+                738.28
+            ],
+            "description": ""
+        },
+        {
             "id": "1788",
             "name": "Eine eisige Falle",
             "category": "kill_enemies",
@@ -530,36 +540,6 @@
             "position": [
                 1357.67,
                 517.49
-            ],
-            "description": ""
-        },
-        {
-            "id": "1785",
-            "name": "Gleich vergess ich mich",
-            "category": "kill_enemies",
-            "position": [
-                590.9200000000001,
-                738.28
-            ],
-            "description": ""
-        },
-        {
-            "id": "1794",
-            "name": "Hunde, die bellen, beißen auch",
-            "category": "kill_enemies",
-            "position": [
-                677.8399999999999,
-                1284.25
-            ],
-            "description": ""
-        },
-        {
-            "id": "1796",
-            "name": "Folgen des Krieges",
-            "category": "kill_enemies",
-            "position": [
-                1365.67,
-                1383.15
             ],
             "description": ""
         },
@@ -594,12 +574,22 @@
             "description": ""
         },
         {
-            "id": "1784",
-            "name": "Reinwaschung eines Ingenieurs: Nieder mit den Maschinen",
-            "category": "defense",
+            "id": "1794",
+            "name": "Hunde, die bellen, beißen auch",
+            "category": "kill_enemies",
             "position": [
-                1254.77,
-                1136.39
+                677.8399999999999,
+                1284.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "1796",
+            "name": "Folgen des Krieges",
+            "category": "kill_enemies",
+            "position": [
+                1365.67,
+                1383.15
             ],
             "description": ""
         },
@@ -610,6 +600,16 @@
             "position": [
                 771.75,
                 792.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1784",
+            "name": "Reinwaschung eines Ingenieurs: Nieder mit den Maschinen",
+            "category": "defense",
+            "position": [
+                1254.77,
+                1136.39
             ],
             "description": ""
         },
@@ -1424,6 +1424,330 @@
                 1534.137,
                 1228.945
             ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "Turm von Babil",
+            "position": [
+                498.0,
+                1704.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                540.0,
+                1697.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060446.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                536.0,
+                1706.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060447.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gottesportal",
+            "position": [
+                536.0,
+                1716.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Eblans Reif",
+            "position": [
+                950.0,
+                748.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Camp Splitterglas",
+            "position": [
+                616.0,
+                544.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Horrea Campi",
+            "position": [
+                770.0,
+                823.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Direktionsstelle G",
+            "position": [
+                1100.0,
+                623.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Siegers Lohn",
+            "position": [
+                1610.0,
+                848.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Cerulea Ingens",
+            "position": [
+                1350.0,
+                548.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zapferhöhle",
+            "position": [
+                1160.0,
+                378.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Juturna-Plattform G",
+            "position": [
+                1437.0,
+                448.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Regio Domorum",
+            "position": [
+                1100.0,
+                998.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Enceladeum",
+            "position": [
+                500.0,
+                1673.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Forum Patens",
+            "position": [
+                570.0,
+                1368.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Exostation IV",
+            "position": [
+                1105.0,
+                908.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der entgleiste Zug",
+            "position": [
+                1350.0,
+                948.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tertium",
+            "position": [
+                1542.0,
+                1203.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Erdseim-Leitung",
+            "position": [
+                1645.0,
+                1598.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Regio Urbanissima",
+            "position": [
+                1100.0,
+                1598.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Senaculum Imperialis",
+            "position": [
+                800.0,
+                1668.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Palatium Novum",
+            "position": [
+                1110.0,
+                1468.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Forum Solius",
+            "position": [
+                1433.0,
+                1598.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Alta Strata",
+            "position": [
+                820.0,
+                1048.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Geläuterter Lauf",
+            "position": [
+                1400.0,
+                1788.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Das Fenn",
+            "position": [
+                525.0,
+                387.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                598.0,
+                567.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                594.0,
+                573.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                594.0,
+                578.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                690.0,
+                550.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1533.0,
+                1438.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1516.0,
+                1226.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1516.0,
+                1217.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                529.0,
+                394.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060352.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Lapis Manalis",
+            "position": [
+                1490.0,
+                305.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Senatus",
+            "position": [
+                655.0,
+                1648.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
         }
     ],
     "maxZoom": 1.7,

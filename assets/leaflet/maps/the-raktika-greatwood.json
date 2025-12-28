@@ -504,6 +504,16 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f5 - Der Große Wald Rak'tika.png",
     "markers": [
         {
+            "id": "1455",
+            "name": "Düster gegen Dunkel",
+            "category": "kill_enemies",
+            "position": [
+                625.89,
+                343.15999999999997
+            ],
+            "description": ""
+        },
+        {
             "id": "1452",
             "name": "Gift, Galle und Gekröse",
             "category": "kill_enemies",
@@ -520,16 +530,6 @@
             "position": [
                 812.21,
                 472.53999999999996
-            ],
-            "description": ""
-        },
-        {
-            "id": "1455",
-            "name": "Düster gegen Dunkel",
-            "category": "kill_enemies",
-            "position": [
-                625.89,
-                343.15999999999997
             ],
             "description": ""
         },
@@ -564,12 +564,32 @@
             "description": ""
         },
         {
-            "id": "1456",
-            "name": "Angriff der Killertomatl",
-            "category": "kill_boss",
+            "id": "1453",
+            "name": "Flamingos füttern verboten!",
+            "category": "collect",
             "position": [
-                453.05999999999995,
-                328.17999999999995
+                741.78,
+                279.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1443",
+            "name": "Waldpatrouille: Federn rupfen ",
+            "category": "collect",
+            "position": [
+                1130.4,
+                611.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "1459",
+            "name": "Denkt doch an den Denkmalschutz!",
+            "category": "collect",
+            "position": [
+                1122.9,
+                1374.16
             ],
             "description": ""
         },
@@ -584,32 +604,12 @@
             "description": ""
         },
         {
-            "id": "1448",
-            "name": "Waldpatrouille: 3. Tojilianischer Krieg",
+            "id": "1456",
+            "name": "Angriff der Killertomatl",
             "category": "kill_boss",
             "position": [
-                1398.13,
-                777.24
-            ],
-            "description": ""
-        },
-        {
-            "id": "1445",
-            "name": "Waldpatrouille: 1. Tojilianischer Krieg",
-            "category": "kill_boss",
-            "position": [
-                1706.33,
-                901.62
-            ],
-            "description": ""
-        },
-        {
-            "id": "1457",
-            "name": "Celeno der Zwei Gesichter",
-            "category": "kill_boss",
-            "position": [
-                1069.46,
-                1507.03
+                453.05999999999995,
+                328.17999999999995
             ],
             "description": ""
         },
@@ -644,6 +644,36 @@
             "description": ""
         },
         {
+            "id": "1448",
+            "name": "Waldpatrouille: 3. Tojilianischer Krieg",
+            "category": "kill_boss",
+            "position": [
+                1398.13,
+                777.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1445",
+            "name": "Waldpatrouille: 1. Tojilianischer Krieg",
+            "category": "kill_boss",
+            "position": [
+                1706.33,
+                901.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1457",
+            "name": "Celeno der Zwei Gesichter",
+            "category": "kill_boss",
+            "position": [
+                1069.46,
+                1507.03
+            ],
+            "description": ""
+        },
+        {
             "id": "1447",
             "name": "Waldpatrouille: 2. Tojilianischer Krieg",
             "category": "kill_boss",
@@ -660,36 +690,6 @@
             "position": [
                 1263.77,
                 727.29
-            ],
-            "description": ""
-        },
-        {
-            "id": "1453",
-            "name": "Flamingos füttern verboten!",
-            "category": "collect",
-            "position": [
-                741.78,
-                279.73
-            ],
-            "description": ""
-        },
-        {
-            "id": "1443",
-            "name": "Waldpatrouille: Federn rupfen ",
-            "category": "collect",
-            "position": [
-                1130.4,
-                611.4
-            ],
-            "description": ""
-        },
-        {
-            "id": "1459",
-            "name": "Denkt doch an den Denkmalschutz!",
-            "category": "collect",
-            "position": [
-                1122.9,
-                1374.16
             ],
             "description": ""
         },
@@ -1991,6 +1991,447 @@
                 1811.025,
                 1242.554
             ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "Citia-Sumpfland",
+            "position": [
+                645.0,
+                163.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schlangensee Tusi Mek'ta",
+            "position": [
+                345.0,
+                648.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der Ungesehene Wald von Yx'Maja",
+            "position": [
+                1590.0,
+                713.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "K'mul-Astropolis",
+            "position": [
+                1410.0,
+                1678.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gohn-Feste",
+            "position": [
+                620.0,
+                468.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schlangenzweig",
+            "position": [
+                921.0,
+                727.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Im Inneren der Dunkelheit",
+            "position": [
+                950.0,
+                598.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Baum der Abgeschiedenheit",
+            "position": [
+                795.0,
+                1083.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Treppe des Lozatl",
+            "position": [
+                715.0,
+                1218.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Eidbund",
+            "position": [
+                368.0,
+                1132.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Austadias Schoß",
+            "position": [
+                264.0,
+                1364.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kleinod der Beschützerin",
+            "position": [
+                330.0,
+                813.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Das Verlorene Juwel",
+            "position": [
+                360.0,
+                538.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Versunkenes Heiligtum von Dwatl",
+            "position": [
+                240.0,
+                768.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fanow",
+            "position": [
+                1405.0,
+                1218.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schlummerlaube",
+            "position": [
+                1475.0,
+                1223.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Wildgarten",
+            "position": [
+                1195.0,
+                683.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bogenruh",
+            "position": [
+                1588.0,
+                876.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mjrls Sehnsucht",
+            "position": [
+                1172.0,
+                373.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Morgensterne",
+            "position": [
+                1195.0,
+                1498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ox'Gatorl Mul",
+            "position": [
+                1140.0,
+                1533.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Yx'Lokwa Mul",
+            "position": [
+                1145.0,
+                1453.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ox'Charl Mul",
+            "position": [
+                1250.0,
+                1538.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Yx'Anpa Mul",
+            "position": [
+                1250.0,
+                1448.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Große Pyramide von Ux'ner",
+            "position": [
+                1195.0,
+                1668.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Beichtstuhl von Toupasa dem Älteren",
+            "position": [
+                1145.0,
+                1898.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Seenland",
+            "position": [
+                205.0,
+                273.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Irrungen der Qitari",
+            "position": [
+                1879.0,
+                1413.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Amarogatter",
+            "position": [
+                918.0,
+                755.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                938.0,
+                743.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1360.0,
+                1173.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1338.0,
+                1197.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1333.0,
+                1192.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Amarogatter",
+            "position": [
+                1530.0,
+                1292.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Stolperwald",
+            "position": [
+                789.0,
+                358.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Färberteich",
+            "position": [
+                620.0,
+                328.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Hockender Riese",
+            "position": [
+                560.0,
+                828.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Lozatl",
+            "position": [
+                824.0,
+                988.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Blutkelch",
+            "position": [
+                434.0,
+                1052.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Insel der Bögen",
+            "position": [
+                1136.0,
+                1184.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Insel der Schwestern",
+            "position": [
+                1266.0,
+                1150.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Insel der Gatten",
+            "position": [
+                1610.0,
+                1408.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ox'Dalan-Spalte",
+            "position": [
+                1575.0,
+                1348.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Versunkenes Heiligtum von Dwatl",
+            "position": [
+                448.0,
+                716.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Versunkenes Heiligtum von Dwatl",
+            "position": [
+                446.0,
+                594.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                900.0,
+                753.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1816.0,
+                1242.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1807.0,
+                1211.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Hopls Pfropfen",
+            "position": [
+                1816.0,
+                1222.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
         }
     ],
     "maxZoom": 1.7,

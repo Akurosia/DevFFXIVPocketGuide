@@ -504,12 +504,32 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/m5f/m5f1 - Thavnair.png",
     "markers": [
         {
-            "id": "1771",
-            "name": "Der Duft der Alchemie: Gefahrvoller Heimweg",
-            "category": "kill_enemies",
+            "id": "1769",
+            "name": "Kanabhuti, der Fluch des Dschungels",
+            "category": "kill_boss",
             "position": [
-                654.86,
-                1246.78
+                845.17,
+                1113.91
+            ],
+            "description": ""
+        },
+        {
+            "id": "1777",
+            "name": "Valin der Tyrann",
+            "category": "kill_boss",
+            "position": [
+                1191.34,
+                1099.43
+            ],
+            "description": ""
+        },
+        {
+            "id": "1763",
+            "name": "Im Dienste der Mrga: Blasphemie",
+            "category": "kill_boss",
+            "position": [
+                415.59000000000003,
+                213.28999999999996
             ],
             "description": ""
         },
@@ -534,6 +554,16 @@
             "description": ""
         },
         {
+            "id": "1771",
+            "name": "Der Duft der Alchemie: Gefahrvoller Heimweg",
+            "category": "kill_enemies",
+            "position": [
+                654.86,
+                1246.78
+            ],
+            "description": ""
+        },
+        {
             "id": "1766",
             "name": "Ich bin ein Vaalaras!",
             "category": "kill_enemies",
@@ -550,36 +580,6 @@
             "position": [
                 783.24,
                 1647.8899999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1775",
-            "name": "Das Wunder vom Ksiroda",
-            "category": "kill_enemies",
-            "position": [
-                1460.57,
-                816.7
-            ],
-            "description": ""
-        },
-        {
-            "id": "1779",
-            "name": "Im Dienste der Mrga: Stoßgebet",
-            "category": "kill_enemies",
-            "position": [
-                1099.43,
-                934.59
-            ],
-            "description": ""
-        },
-        {
-            "id": "1773",
-            "name": "Giftiges Spiel",
-            "category": "kill_enemies",
-            "position": [
-                1340.69,
-                1566.47
             ],
             "description": ""
         },
@@ -614,32 +614,32 @@
             "description": ""
         },
         {
-            "id": "1769",
-            "name": "Kanabhuti, der Fluch des Dschungels",
-            "category": "kill_boss",
+            "id": "1775",
+            "name": "Das Wunder vom Ksiroda",
+            "category": "kill_enemies",
             "position": [
-                845.17,
-                1113.91
+                1460.57,
+                816.7
             ],
             "description": ""
         },
         {
-            "id": "1777",
-            "name": "Valin der Tyrann",
-            "category": "kill_boss",
+            "id": "1779",
+            "name": "Im Dienste der Mrga: Stoßgebet",
+            "category": "kill_enemies",
             "position": [
-                1191.34,
-                1099.43
+                1099.43,
+                934.59
             ],
             "description": ""
         },
         {
-            "id": "1763",
-            "name": "Im Dienste der Mrga: Blasphemie",
-            "category": "kill_boss",
+            "id": "1773",
+            "name": "Giftiges Spiel",
+            "category": "kill_enemies",
             "position": [
-                415.59000000000003,
-                213.28999999999996
+                1340.69,
+                1566.47
             ],
             "description": ""
         },
@@ -1942,6 +1942,366 @@
                 1238.065,
                 395.615
             ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "Turm von Zot",
+            "position": [
+                387.0,
+                1688.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Vanaspati",
+            "position": [
+                1221.0,
+                260.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Seebrisenpier",
+            "position": [
+                950.0,
+                598.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Yedlihmad",
+            "position": [
+                1220.0,
+                396.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ussaqeyiq",
+            "position": [
+                1364.0,
+                227.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tebqeyiq",
+            "position": [
+                965.0,
+                183.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Akyaali",
+            "position": [
+                775.0,
+                498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Hügel der Düfte",
+            "position": [
+                650.0,
+                1298.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Daemirs Werk",
+            "position": [
+                498.0,
+                988.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kadjayas Bühne",
+            "position": [
+                1065.0,
+                1148.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Hamsa-Weide",
+            "position": [
+                640.0,
+                1548.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gallenerz-Feld",
+            "position": [
+                950.0,
+                1723.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schleier der Sangha",
+            "position": [
+                1350.0,
+                1128.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Wächter-Torana",
+            "position": [
+                1570.0,
+                1673.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Palakas Ruh",
+            "position": [
+                1428.0,
+                1271.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Pavanas Reue",
+            "position": [
+                1140.0,
+                1373.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Agama-Tempel",
+            "position": [
+                1013.0,
+                1346.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ksiroda",
+            "position": [
+                1450.0,
+                1068.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mayaquell",
+            "position": [
+                1170.0,
+                868.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Purusa",
+            "position": [
+                1630.0,
+                768.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schleifstein",
+            "position": [
+                1775.0,
+                1268.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nachtwache",
+            "position": [
+                1470.0,
+                498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1190.0,
+                389.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1189.0,
+                400.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1200.0,
+                341.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060581.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1156.0,
+                419.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                554.0,
+                992.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                463.0,
+                935.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                515.0,
+                939.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1456.0,
+                1234.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1420.0,
+                1239.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1456.0,
+                1262.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Radz-at-Han",
+            "position": [
+                1598.0,
+                1704.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1249.0,
+                392.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Jnanamandapa",
+            "position": [
+                420.0,
+                218.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Alzadaals Vermächtnis",
+            "position": [
+                754.0,
+                414.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                973.0,
+                675.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                938.0,
+                724.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Svarna",
+            "position": [
+                944.0,
+                690.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1185.0,
+                245.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063973.webp"
         }
     ],
     "maxZoom": 1.7,

@@ -504,12 +504,82 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/y6f/y6f3 - Yak T'el.png",
     "markers": [
         {
-            "id": "1906",
-            "name": "Penetrante Pilze",
-            "category": "collect",
+            "id": "1905",
+            "name": "Ein Spediteur hat's schwer",
+            "category": "defense",
             "position": [
-                1467.07,
-                354.65
+                1158.37,
+                276.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1895",
+            "name": "Zahlenmäßig unterlegen",
+            "category": "defense",
+            "position": [
+                672.8399999999999,
+                1279.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1896",
+            "name": "Ruhm oder Leben",
+            "category": "kill_boss",
+            "position": [
+                680.8399999999999,
+                1199.33
+            ],
+            "description": ""
+        },
+        {
+            "id": "1902",
+            "name": "Denn sie wissen noch immer nicht, was sie tun",
+            "category": "kill_boss",
+            "position": [
+                1655.38,
+                1182.84
+            ],
+            "description": ""
+        },
+        {
+            "id": "1908",
+            "name": "Doktor Motte",
+            "category": "kill_boss",
+            "position": [
+                958.56,
+                875.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1904",
+            "name": "Darf ich bitten?",
+            "category": "kill_boss",
+            "position": [
+                715.8,
+                594.9200000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1910",
+            "name": "Wundersame Wivren",
+            "category": "kill_enemies",
+            "position": [
+                677.3399999999999,
+                414.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "1901",
+            "name": "Gefährlicher Wald",
+            "category": "kill_enemies",
+            "position": [
+                779.74,
+                1597.94
             ],
             "description": ""
         },
@@ -584,82 +654,12 @@
             "description": ""
         },
         {
-            "id": "1910",
-            "name": "Wundersame Wivren",
-            "category": "kill_enemies",
+            "id": "1906",
+            "name": "Penetrante Pilze",
+            "category": "collect",
             "position": [
-                677.3399999999999,
-                414.1
-            ],
-            "description": ""
-        },
-        {
-            "id": "1901",
-            "name": "Gefährlicher Wald",
-            "category": "kill_enemies",
-            "position": [
-                779.74,
-                1597.94
-            ],
-            "description": ""
-        },
-        {
-            "id": "1902",
-            "name": "Denn sie wissen noch immer nicht, was sie tun",
-            "category": "kill_boss",
-            "position": [
-                1655.38,
-                1182.84
-            ],
-            "description": ""
-        },
-        {
-            "id": "1908",
-            "name": "Doktor Motte",
-            "category": "kill_boss",
-            "position": [
-                958.56,
-                875.15
-            ],
-            "description": ""
-        },
-        {
-            "id": "1904",
-            "name": "Darf ich bitten?",
-            "category": "kill_boss",
-            "position": [
-                715.8,
-                594.9200000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1896",
-            "name": "Ruhm oder Leben",
-            "category": "kill_boss",
-            "position": [
-                680.8399999999999,
-                1199.33
-            ],
-            "description": ""
-        },
-        {
-            "id": "1895",
-            "name": "Zahlenmäßig unterlegen",
-            "category": "defense",
-            "position": [
-                672.8399999999999,
-                1279.75
-            ],
-            "description": ""
-        },
-        {
-            "id": "1905",
-            "name": "Ein Spediteur hat's schwer",
-            "category": "defense",
-            "position": [
-                1158.37,
-                276.73
+                1467.07,
+                354.65
             ],
             "description": ""
         },
@@ -1649,6 +1649,438 @@
                 1613.319,
                 294.53999999999996
             ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1654.0,
+                511.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                312.0,
+                400.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                241.0,
+                252.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tiefste Tiefen des Himmelstiefen Cenote",
+            "position": [
+                196.0,
+                147.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Himmelstiefer Cenote",
+            "position": [
+                200.0,
+                155.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Iq Br'aax",
+            "position": [
+                626.0,
+                1456.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mamook",
+            "position": [
+                1745.0,
+                498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tuliyollal",
+            "position": [
+                1052.0,
+                1691.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060352.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                643.0,
+                1472.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                634.0,
+                1469.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1651.0,
+                507.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Horizont von Ut'ohmu",
+            "position": [
+                410.0,
+                1598.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Aschenfront von Xobr'it",
+            "position": [
+                1570.0,
+                1158.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Herz von Ja Tiika",
+            "position": [
+                1440.0,
+                158.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schwarzblauer Cexudross",
+            "position": [
+                460.0,
+                258.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ballonplatz",
+            "position": [
+                1045.0,
+                1673.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Yak Awak Tsoly",
+            "position": [
+                880.0,
+                1698.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sternengarten",
+            "position": [
+                488.0,
+                1458.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Loderfang",
+            "position": [
+                390.0,
+                1178.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Xmun Hojaw",
+            "position": [
+                540.0,
+                1138.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nachtwacht",
+            "position": [
+                978.0,
+                1364.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Xd'aa Talat Tsoly",
+            "position": [
+                316.0,
+                1684.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Iq Rrax Tsoly",
+            "position": [
+                1520.0,
+                1748.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ilyon Asoh",
+            "position": [
+                1435.0,
+                1481.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Xobr'it Tsoly",
+            "position": [
+                1694.0,
+                1287.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ty'iinbek-Tunnel",
+            "position": [
+                1633.0,
+                879.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Xty'iinbek Tsoly",
+            "position": [
+                1765.0,
+                786.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glorie von Moxuk Reloonuk",
+            "position": [
+                1378.0,
+                428.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Süßquell",
+            "position": [
+                1653.0,
+                611.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Haus des Blauauges",
+            "position": [
+                1597.0,
+                735.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Golmajiik-Hain",
+            "position": [
+                1244.0,
+                608.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Baum des Lebenden Lichts",
+            "position": [
+                1194.0,
+                787.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Choliselvaas",
+            "position": [
+                1141.0,
+                919.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Cenote Neyozzote",
+            "position": [
+                1208.0,
+                817.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Moxutural Zooj",
+            "position": [
+                1010.0,
+                1018.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Cenote Jayunja",
+            "position": [
+                973.0,
+                548.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schuppenschliff",
+            "position": [
+                655.0,
+                476.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kleiner Fersenbiss",
+            "position": [
+                370.0,
+                702.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tiefen von Gok Draak",
+            "position": [
+                361.0,
+                424.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Himmelstiefer Cenote",
+            "position": [
+                277.0,
+                323.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                661.0,
+                1436.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060581.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bitternasser Cenote",
+            "position": [
+                1206.0,
+                166.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Unter-Jeuno",
+            "position": [
+                498.0,
+                353.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Jeuno: Die erste Etappe",
+            "position": [
+                487.0,
+                353.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060428.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1618.0,
+                287.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1617.0,
+                298.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gok Golma",
+            "position": [
+                1573.0,
+                267.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1754.0,
+                482.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060352.webp"
         }
     ],
     "maxZoom": 1.7,

@@ -504,16 +504,6 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f3 - Amh Araeng.png",
     "markers": [
         {
-            "id": "1513",
-            "name": "Ein gigantisches Problem",
-            "category": "kill_boss",
-            "position": [
-                1734.81,
-                863.16
-            ],
-            "description": ""
-        },
-        {
             "id": "1522",
             "name": "Bayawak, die Sandschuppen-Königin",
             "category": "kill_boss",
@@ -534,6 +524,16 @@
             "description": ""
         },
         {
+            "id": "1513",
+            "name": "Ein gigantisches Problem",
+            "category": "kill_boss",
+            "position": [
+                1734.81,
+                863.16
+            ],
+            "description": ""
+        },
+        {
             "id": "1518",
             "name": "Klinge der Ahnen",
             "category": "kill_boss",
@@ -550,16 +550,6 @@
             "position": [
                 799.22,
                 444.07000000000005
-            ],
-            "description": ""
-        },
-        {
-            "id": "1521",
-            "name": "Tolba Nr. 1",
-            "category": "kill_enemies",
-            "position": [
-                1545.49,
-                1231.8
             ],
             "description": ""
         },
@@ -590,6 +580,16 @@
             "position": [
                 1621.42,
                 1537.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1521",
+            "name": "Tolba Nr. 1",
+            "category": "kill_enemies",
+            "position": [
+                1545.49,
+                1231.8
             ],
             "description": ""
         },
@@ -1663,6 +1663,456 @@
                 1289.315,
                 1261.763
             ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "Qasr Sharl",
+            "position": [
+                1425.0,
+                1678.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bernsteinfelder",
+            "position": [
+                1730.0,
+                1188.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nördliche Bernsteinhügel",
+            "position": [
+                375.0,
+                1468.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mittlere Bernsteinhügel",
+            "position": [
+                400.0,
+                1088.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nabaath Areng",
+            "position": [
+                805.0,
+                218.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Roter Karawanenhof",
+            "position": [
+                1695.0,
+                1678.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fluss aus Sand",
+            "position": [
+                1550.0,
+                1438.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Samiels Rest",
+            "position": [
+                1490.0,
+                1348.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mordh Souq",
+            "position": [
+                1270.0,
+                1248.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Hutständer",
+            "position": [
+                1210.0,
+                1248.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Reibehandmühle",
+            "position": [
+                1155.0,
+                1378.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Trampelfußmühle",
+            "position": [
+                1175.0,
+                1118.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Juckauge",
+            "position": [
+                1660.0,
+                1373.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zwicknase",
+            "position": [
+                1545.0,
+                1238.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kratzbart",
+            "position": [
+                1505.0,
+                1088.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ruhstatt vor der Langen Reise",
+            "position": [
+                1423.0,
+                716.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ausguck",
+            "position": [
+                1380.0,
+                503.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kluft von Nabaath",
+            "position": [
+                1590.0,
+                478.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Biran-Mine",
+            "position": [
+                1005.0,
+                1603.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Garik",
+            "position": [
+                605.0,
+                1598.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Struwwelschwanz",
+            "position": [
+                1005.0,
+                1203.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Pfotenschlag",
+            "position": [
+                513.0,
+                1237.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kelk",
+            "position": [
+                1000.0,
+                1038.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gondelturm",
+            "position": [
+                985.0,
+                778.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nuvys Grube",
+            "position": [
+                455.0,
+                963.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Malikahs Brunnen",
+            "position": [
+                516.0,
+                534.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der Nasse Bahnhof",
+            "position": [
+                705.0,
+                603.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gondelturm",
+            "position": [
+                1115.0,
+                648.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Palast von Amh Malik",
+            "position": [
+                1180.0,
+                323.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Große Leere",
+            "position": [
+                1500.0,
+                98.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Crystarium",
+            "position": [
+                1715.0,
+                1683.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Seenland",
+            "position": [
+                370.0,
+                1708.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1339.0,
+                1215.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1342.0,
+                1241.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1323.0,
+                1261.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1305.0,
+                1309.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1306.0,
+                1263.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060581.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1312.0,
+                1210.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Amarogatter",
+            "position": [
+                1305.0,
+                1289.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                589.0,
+                1605.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                492.0,
+                1260.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Amarogatter",
+            "position": [
+                531.0,
+                1309.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Amarogatter",
+            "position": [
+                1410.0,
+                749.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Große Leere",
+            "position": [
+                1409.0,
+                513.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1404.0,
+                518.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060352.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Südliche Bernsteinhügel",
+            "position": [
+                400.0,
+                388.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                549.0,
+                1262.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                849.0,
+                807.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1710.0,
+                1688.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060352.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1284.0,
+                1278.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
         }
     ],
     "maxZoom": 1.7,

@@ -504,62 +504,22 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/u5f/u5f2 - Ultima Thule.png",
     "markers": [
         {
-            "id": "1849",
-            "name": "Than Oskhs Rache",
-            "category": "kill_boss",
+            "id": "1848",
+            "name": "Das Ende der Ewigkeit",
+            "category": "defense",
             "position": [
-                980.54,
-                327.17999999999995
+                385.62,
+                1153.37
             ],
             "description": ""
         },
         {
-            "id": "1847",
-            "name": "Ahl Eins vergangener Ruhm",
-            "category": "kill_boss",
+            "id": "1844",
+            "name": "Aus dem Speicher von : Gefahrenabwehr",
+            "category": "defense",
             "position": [
-                548.96,
-                334.16999999999996
-            ],
-            "description": ""
-        },
-        {
-            "id": "1854",
-            "name": "Ausgeburt finsterer Verzweiflung",
-            "category": "kill_boss",
-            "position": [
-                1564.47,
-                1521.51
-            ],
-            "description": ""
-        },
-        {
-            "id": "1855",
-            "name": "Aus dem Speicher von : Zerstörung",
-            "category": "kill_boss",
-            "position": [
-                1673.87,
-                1024.0
-            ],
-            "description": ""
-        },
-        {
-            "id": "1846",
-            "name": "Vom Winde verlassen",
-            "category": "kill_enemies",
-            "position": [
-                792.23,
-                679.8399999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1851",
-            "name": "Verlorene Existenzen",
-            "category": "kill_enemies",
-            "position": [
-                1478.06,
-                1718.3200000000002
+                1610.9299999999998,
+                757.76
             ],
             "description": ""
         },
@@ -604,32 +564,72 @@
             "description": ""
         },
         {
+            "id": "1846",
+            "name": "Vom Winde verlassen",
+            "category": "kill_enemies",
+            "position": [
+                792.23,
+                679.8399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1851",
+            "name": "Verlorene Existenzen",
+            "category": "kill_enemies",
+            "position": [
+                1478.06,
+                1718.3200000000002
+            ],
+            "description": ""
+        },
+        {
+            "id": "1849",
+            "name": "Than Oskhs Rache",
+            "category": "kill_boss",
+            "position": [
+                980.54,
+                327.17999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1847",
+            "name": "Ahl Eins vergangener Ruhm",
+            "category": "kill_boss",
+            "position": [
+                548.96,
+                334.16999999999996
+            ],
+            "description": ""
+        },
+        {
+            "id": "1854",
+            "name": "Ausgeburt finsterer Verzweiflung",
+            "category": "kill_boss",
+            "position": [
+                1564.47,
+                1521.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1855",
+            "name": "Aus dem Speicher von : Zerstörung",
+            "category": "kill_boss",
+            "position": [
+                1673.87,
+                1024.0
+            ],
+            "description": ""
+        },
+        {
             "id": "1843",
             "name": "Aus dem Speicher von : Aufrüstung des Kommunikators",
             "category": "collect",
             "position": [
                 1417.62,
                 808.71
-            ],
-            "description": ""
-        },
-        {
-            "id": "1848",
-            "name": "Das Ende der Ewigkeit",
-            "category": "defense",
-            "position": [
-                385.62,
-                1153.37
-            ],
-            "description": ""
-        },
-        {
-            "id": "1844",
-            "name": "Aus dem Speicher von : Gefahrenabwehr",
-            "category": "defense",
-            "position": [
-                1610.9299999999998,
-                757.76
             ],
             "description": ""
         },
@@ -1560,6 +1560,411 @@
                 1327.408,
                 871.154
             ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ostrakon Deka-okto",
+            "position": [
+                350.0,
+                598.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Ragnarök",
+            "position": [
+                700.0,
+                398.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Schmelze",
+            "position": [
+                1025.0,
+                498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Reah Tahra",
+            "position": [
+                480.0,
+                758.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ahm Nohl",
+            "position": [
+                550.0,
+                1048.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ostrakon Tria",
+            "position": [
+                1100.0,
+                1498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Quell der Reue",
+            "position": [
+                675.0,
+                1538.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sehnsucht des Fleisches",
+            "position": [
+                790.0,
+                1323.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Domizil der Ea",
+            "position": [
+                1085.0,
+                1683.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Elegeia",
+            "position": [
+                1225.0,
+                1683.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der Tunnel",
+            "position": [
+                1462.0,
+                1342.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ostrakon Deka-hexi",
+            "position": [
+                1700.0,
+                498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Portal der Entsagung",
+            "position": [
+                1536.0,
+                883.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Portal der Einsamkeit",
+            "position": [
+                1659.0,
+                778.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Baum des Lebens",
+            "position": [
+                1830.0,
+                828.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Stigma-1",
+            "position": [
+                1625.0,
+                568.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Portal der Leere",
+            "position": [
+                1713.0,
+                798.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ostrakon Hena",
+            "position": [
+                1080.0,
+                898.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nekropolis",
+            "position": [
+                1150.0,
+                748.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ende des Horizonts",
+            "position": [
+                1025.0,
+                1023.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Stigma-4",
+            "position": [
+                1693.0,
+                652.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Vergessene Hydraulik",
+            "position": [
+                1675.0,
+                1023.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                659.0,
+                407.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Labyrinthos",
+            "position": [
+                649.0,
+                409.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1491.0,
+                697.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Portal des Vergessens",
+            "position": [
+                1489.0,
+                619.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Das Sternengrab",
+            "position": [
+                1020.0,
+                1036.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                414.0,
+                1232.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                554.0,
+                1286.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1471.0,
+                1342.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1545.0,
+                883.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1668.0,
+                778.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1722.0,
+                798.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1516.0,
+                659.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1498.0,
+                619.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Omikron-Basis",
+            "position": [
+                1515.0,
+                693.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Café Wiegenstern",
+            "position": [
+                1221.0,
+                786.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Plattform A4",
+            "position": [
+                1341.0,
+                875.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1325.0,
+                859.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1268.0,
+                763.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1359.0,
+                867.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1483.0,
+                715.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1328.0,
+                880.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1336.0,
+                861.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1350.0,
+                877.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
         }
     ],
     "maxZoom": 1.7,

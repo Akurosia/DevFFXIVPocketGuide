@@ -1,4 +1,3 @@
-from ffxiv_aku import *
 from typing import Any
 from bs4 import BeautifulSoup, Tag
 from ffxiv_aku import *
@@ -7,9 +6,32 @@ try:
 except:
     from helper import getImage
 from PIL.ImageFile import ImageFile
-from PIL import ImageDraw, ImageFont, Image, ImageOps
+from PIL import Image
 import traceback
-import random
+try:
+    from treasurespot import get_coords_later
+except:
+    from .treasurespot import get_coords_later
+
+new_data_list = []
+new_map_id = ""
+def add_to_new_lsit(_type, _id, x, z, extras=None):
+    global new_data_list
+    global new_map_id
+    new_data_list.append({
+        "created_at": "2026-01-01 00:00:00",
+        "objecttype": _type,
+        "zone_id": 0,
+        "map_id": new_map_id,
+        "base_id": _id,
+        "moid": 0,
+        "nid": 0,
+        "hr": 0,
+        "x": x,
+        "y": 0,
+        "z": z,
+        "extra": extras
+    })
 
 def test():
     aetherytes = readJsonFile(r"P:\extras\json\xivapi_data2\Aetheryte.json")
@@ -56,6 +78,7 @@ quest: dict[str, dict[str, str]] = loadDataTheQuickestWay("Quest.json")
 fates: dict[str, dict[str, str]] = loadDataTheQuickestWay("Fate.json", translate=False)
 fates_trans: dict[str, dict[str, str]] = loadDataTheQuickestWay("Fate.json", translate=True)
 ttype: dict[str, dict[str, str]] = loadDataTheQuickestWay("TerritoryType.json", translate=True)
+mapmarker: dict[str, dict[str, str]] = loadDataTheQuickestWay("MapMarker.json", translate=True)
 placename: dict[str, dict[str, str]] = loadDataTheQuickestWay("PlaceName.json", translate=True)
 ces: dict[str, dict[str, str]] = loadDataTheQuickestWay("DynamicEvent.json")
 ces_type: dict[str, dict[str, str]] = loadDataTheQuickestWay("DynamicEventType.json")
@@ -290,8 +313,8 @@ def getLinksFromConsoleGamesWiki(createnew = False):
         zonename: str = zone.text.strip().replace(" FATEs", "")
         if zonename == "The Bozjan Southern Front":
             zonename = "Bozjan Southern Front"
-        #if result.get(zonename, None):
-        #    continue
+        if result.get(zonename, None):
+            continue
         try:
             print(zonename)
             if not result.get(zonename, None):
@@ -303,6 +326,7 @@ def getLinksFromConsoleGamesWiki(createnew = False):
             print(traceback.format_exc())
     #result = add_extra_data(result)
     return result
+
 
 unique_fate_types = {
     "Map": set(),
@@ -408,15 +432,16 @@ def getFateName(fate_id, _type) -> str:
     global fates_trans
     global ces
     if _type == "CE":
-        return ces[fate_id]['Name_de']
+        return ces[fate_id]
     else:
         try:
-            return fates_trans[fate_id]['Name_de']
+            return fates_trans[fate_id]
         except:
-            return fates_trans[str(int(fate_id, 16))]['Name_de']
+            return fates_trans[str(int(fate_id, 16))]
     print("none")
 
 def generate_images():
+    global new_map_id
     data = readJsonFile("FatesFromConsoleWiki.json")
     fate_by_type = {}
     for location, fates_per_zone in data.items():
@@ -427,14 +452,16 @@ def generate_images():
             fate_by_type[location][fate_data.get('Type', "NoType")].append(fate_id)
 
     for location, fate_type in fate_by_type.items():
-        #if not location in ["The Dravanian Forelands"]:
+        #if not location in ["Central Thanalan"]:
         #    continue
         _map_id = None
+        new_map_id = None
         # this codeblock will get elements like map id, offset etc so we dont need to calculate it per map
         for x, value in ttype.items():
             if value['PlaceName']['Name_en'] == location:
                 # check if the territory name e.g. o6b1 has less then 5 chars to avoid o6b1/01_event things
                 if len(value['Name']) < 5:
+                    new_map_id = value['Map']['row_id']
                     _map_id = value['Map']['Id']
                     _map = getMapFromID(_map_id)
                     _sizefactor = float(_map['SizeFactor'])
@@ -509,10 +536,6 @@ def generate_images():
             "markers": [],
             "areas": []
         }
-
-        #print_color_red(baseimage)
-        #print_color_red((fix_slug(location), _map_id, _map['OffsetX'], _map['OffsetY'], _map['SizeFactor']))
-        #print()
         original_image: ImageFile = Image.open(baseimage)
 
         for _type, f_type in fate_type.items():
@@ -523,17 +546,19 @@ def generate_images():
                     data[location][fate_id]['Location']['x'] = 0
                 if data[location][fate_id]['Location']['y'] == "":
                     data[location][fate_id]['Location']['y'] = 0
-                x = FromMapCoordinate(result=float(data[location][fate_id]['Location']['x']), sizefactor=100)
-                y = FromMapCoordinate(result=float(data[location][fate_id]['Location']['y']), sizefactor=100)
-                x2 = ToMapPixel(val=x, offset=_x_offset, sizefactor=_sizefactor)
-                y2 = ToMapPixel(val=y, offset=_y_offset, sizefactor=_sizefactor)
+                xo = FromMapCoordinate(result=float(data[location][fate_id]['Location']['x']), sizefactor=100)
+                yo = FromMapCoordinate(result=float(data[location][fate_id]['Location']['y']), sizefactor=100)
+
+                x2 = ToMapPixel(val=xo, offset=_x_offset, sizefactor=_sizefactor)
+                y2 = ToMapPixel(val=yo, offset=_y_offset, sizefactor=_sizefactor)
                 x = x2 + w/2
-                y = y2 + h/2
+                y = -y2 + h/2
 
                 fate_name = getFateName(data[location][fate_id].get('Fate ID', 'Unknown'), data[location][fate_id].get('Fate Type', 'Unknown'))
 
-                if fate_name:
-                    json_as_dict['markers'].append({ "id": f"{fate_id}", "name": fate_name, "category": fix_slug(_type), "position": [x,-y2+h/2], "description": "" })
+                if fate_name['Name_de']:
+                    json_as_dict['markers'].append({ "id": f"{fate_id}", "name": fate_name['Name_de'], "category": fix_slug(_type), "position": [x,y], "description": "" })
+                    add_to_new_lsit("FATE", fate_id, xo, yo, fate_name)
                 else:
                     # exclude warning for few japanese fates
                     if fate_id not in ["461", "636", "640", "1317"]:
@@ -555,14 +580,13 @@ def generate_images():
         tmaps = get_quest(_map_id, w, h)
         for tmap in tmaps:
             json_as_dict['markers'].append(tmap)
+        tmaps = get_mapmarker(_map_id, w, h, _x_offset, _y_offset, _sizefactor)
+        for tmap in tmaps:
+            json_as_dict['markers'].append(tmap)
 
         new_failename = f"{path_of_main_script}/assets/leaflet/maps/" + flug + ".json"
         writeJsonFile(new_failename, json_as_dict)
 
-try:
-    from treasurespot import get_coords_later
-except:
-    from .treasurespot import get_coords_later
 coords = {}
 def get_treasuremaps(mapid, w, h):
     maps = []
@@ -580,6 +604,7 @@ def get_treasuremaps(mapid, w, h):
                 for tmap in treasuremapdata_data:
                     tx = (tmap[0]) + w/2
                     ty = -(tmap[1]) + h/2
+                    add_to_new_lsit("TreasureMaps", 0, tmap[0], tmap[1])
                     maps.append({  "type": f"treasuremap_{fix_slug(item)}",  "imageUrl": f"/assets/img/TreasureMaps/{item}/empty_map.webp",  "size": [220, 200],  "position": [tx, ty]})
     return maps, maptypes
 
@@ -677,6 +702,37 @@ def get_quest(mapid, w, h):
         maps.append({  "type": f"quest_{questtype[0]}", "name": f"{name}", "position": [x+w/2, h/2-y]})
     return maps
 
+mapmarkerdata = {}
+def get_mapmarker(mapid, w, h, _x_offset, _y_offset, _sizefactor ):
+    maps = []
+    midplsit = mapid.split("/")[0]
+    global mapmarkerdata
+    for key, value in ttype.items():
+        if value['Name'] != midplsit:
+            continue
+        marker_range = value['Map']['MapMarkerRange']
+        for mkey, mvalue in mapmarker.items():
+            if not mkey.startswith(marker_range):
+                continue
+            if mvalue['X'] == "0" and mvalue['Y'] == "0":
+                continue
+
+            if not mapmarkerdata.get(mapid, None):
+                mapmarkerdata[mapid] = {}
+            if not mapmarkerdata[mapid].get(key, None):
+                mapmarkerdata[mapid][mkey] = []
+
+            getImage(mvalue['Icon']['path'], ishr1=False)
+            mapmarkerdata[mapid][mkey].append((( mvalue['X']), ( mvalue['Y']), mvalue['PlaceNameSubtext']['Name_de'], mvalue['Icon']['path'].replace("ui/icon/", "").replace(".tex", "")))
+    if not mapmarkerdata.get(mapid, None):
+        return maps
+    for key, value in mapmarkerdata[mapid].items():
+        x, y, name, icon = value[0]
+        x2 = ToMapPixel(val=float(x), offset=_x_offset, sizefactor=_sizefactor)
+        y2 = ToMapPixel(val=float(y), offset=_y_offset, sizefactor=_sizefactor)
+        maps.append({  "type": f"mapmarker", "name": f"{name}", "position": [float(x), - float(y)+2048], "imageUrl": f"/assets/img/game_assets/{icon}.webp"})
+    return maps
+
 def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
     global path_of_main_script
     path_of_main_script = main_script
@@ -703,6 +759,9 @@ def get_base_images():
         getImage(img)
 
 if __name__ == "__main__":
-    run()
-    #generate_images()
-    get_base_images()
+    path_of_main_script = r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"
+    #run()
+    generate_images()
+    #get_base_images()
+    #for x in new_data_list:
+    #    print(f"INSERT INTO `manuall_ingest_points` (`created_at`, `objecttype`, `zone_id`, `map_id`, `base_id`, `moid`, `nid`, `hr`, `x`, `y`, `z`, `extra`) VALUES ('2026-01-01 00:00:00','{x['objecttype']}',0,{x['map_id']},{x['base_id']},0,0,0,{x['x']},0,{x['z']},{x['extra']});")

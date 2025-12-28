@@ -504,16 +504,6 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/y6f/y6f1 - Urqopacha.png",
     "markers": [
         {
-            "id": "1878",
-            "name": "Racaqurq die tanzende Flamme",
-            "category": "kill_boss",
-            "position": [
-                1223.8,
-                1206.32
-            ],
-            "description": ""
-        },
-        {
             "id": "1880",
             "name": "Panaq-Attacke",
             "category": "kill_boss",
@@ -524,12 +514,12 @@
             "description": ""
         },
         {
-            "id": "1892",
-            "name": "Wagemut, der gut nicht tut",
+            "id": "1878",
+            "name": "Racaqurq die tanzende Flamme",
             "category": "kill_boss",
             "position": [
-                1098.43,
-                722.29
+                1223.8,
+                1206.32
             ],
             "description": ""
         },
@@ -540,6 +530,16 @@
             "position": [
                 745.77,
                 973.55
+            ],
+            "description": ""
+        },
+        {
+            "id": "1892",
+            "name": "Wagemut, der gut nicht tut",
+            "category": "kill_boss",
+            "position": [
+                1098.43,
+                722.29
             ],
             "description": ""
         },
@@ -604,26 +604,6 @@
             "description": ""
         },
         {
-            "id": "1893",
-            "name": "Böses Blut",
-            "category": "kill_enemies",
-            "position": [
-                1380.65,
-                703.31
-            ],
-            "description": ""
-        },
-        {
-            "id": "1887",
-            "name": "Mörderische Meute",
-            "category": "kill_enemies",
-            "position": [
-                933.09,
-                667.35
-            ],
-            "description": ""
-        },
-        {
             "id": "1888",
             "name": "Wider die Wasserverschmutzung",
             "category": "kill_enemies",
@@ -660,6 +640,26 @@
             "position": [
                 1098.43,
                 722.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1893",
+            "name": "Böses Blut",
+            "category": "kill_enemies",
+            "position": [
+                1380.65,
+                703.31
+            ],
+            "description": ""
+        },
+        {
+            "id": "1887",
+            "name": "Mörderische Meute",
+            "category": "kill_enemies",
+            "position": [
+                933.09,
+                667.35
             ],
             "description": ""
         },
@@ -1542,6 +1542,420 @@
                 1517.217,
                 240.95299999999997
             ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "Worqor Zormor",
+            "position": [
+                609.0,
+                462.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Wachunpelo",
+            "position": [
+                1356.0,
+                1441.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Worlars Echo",
+            "position": [
+                1490.0,
+                389.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tuliyollal",
+            "position": [
+                1683.0,
+                1477.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kozama'uka",
+            "position": [
+                1751.0,
+                388.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1309.0,
+                1503.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1310.0,
+                1493.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1450.0,
+                1222.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1440.0,
+                1222.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1475.0,
+                368.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1465.0,
+                369.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1319.0,
+                1491.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1510.0,
+                370.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chabayuqeq",
+            "position": [
+                1550.0,
+                1684.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chabameki",
+            "position": [
+                430.0,
+                1798.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Steter Trost",
+            "position": [
+                1420.0,
+                218.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ferner Kummer",
+            "position": [
+                680.0,
+                318.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Larh Tortoh",
+            "position": [
+                380.0,
+                668.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mezcal-Brennerei",
+            "position": [
+                1375.0,
+                1488.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Freundesfarm",
+            "position": [
+                1243.0,
+                1516.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Haus der Fingerfertigkeit",
+            "position": [
+                1275.0,
+                1498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Icuvlos Karawanserei",
+            "position": [
+                1432.0,
+                1205.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Agavenfänge",
+            "position": [
+                1337.0,
+                1705.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Panaqpelu-Therme",
+            "position": [
+                1592.0,
+                996.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Povlus Handelshaus",
+            "position": [
+                1640.0,
+                1429.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ciblus Kaffeehof",
+            "position": [
+                936.0,
+                1474.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Miplus Mategarten",
+            "position": [
+                615.0,
+                1492.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Oruncanca",
+            "position": [
+                1019.0,
+                1711.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Abertausend Schritte",
+            "position": [
+                1595.0,
+                358.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Karryorzar der Huldvolle",
+            "position": [
+                1304.0,
+                457.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schatten der Trauer",
+            "position": [
+                1248.0,
+                1008.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Naryor Gorna",
+            "position": [
+                1709.0,
+                730.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zeugnis",
+            "position": [
+                833.0,
+                1037.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sternentiefe",
+            "position": [
+                974.0,
+                697.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Salzgruben der Chirwagur",
+            "position": [
+                1055.0,
+                392.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "See der Chirwagur",
+            "position": [
+                1006.0,
+                260.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Worqor Zormor",
+            "position": [
+                380.0,
+                204.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schlund des Unvergessens",
+            "position": [
+                545.0,
+                873.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Blühende Wacht",
+            "position": [
+                392.0,
+                987.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Worqor Lar Dor",
+            "position": [
+                168.0,
+                924.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Karvarhur die Erste",
+            "position": [
+                281.0,
+                1106.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1347.0,
+                1460.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060581.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1510.0,
+                233.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1511.0,
+                237.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1520.0,
+                223.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Wächtersteig",
+            "position": [
+                1526.0,
+                232.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
         }
     ],
     "maxZoom": 1.7,
