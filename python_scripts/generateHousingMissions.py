@@ -110,17 +110,16 @@ def run():
             klass_translations[lang][f'Housing_Location_{smm["Name_en"]}'] = smm[f"Name_{lang}"]
         r_data += '      stops:\n'
         for key in sorted([int(x) for x in w_data]):
-            print(key)
+            value = w_data[str(key)]
             for name, stop_data in stops.items():
-                print(stop_data)
-                if not name.lower() == stop_data.get("Destination_en", stop_data.get("Name_en", "")).lower():
+                if not name.lower().startswith(value.get("Destination_en", value.get("Name_en", "")).lower()):
                     continue
                 if name == "":
                     continue
-                v_en = value.get("Destination_en", stop_data.get("Name_en", ""))
+                v_en = value.get("Destination_en", value.get("Name_en", ""))
                 r_data += f'        - name: "{v_en}"\n'
                 for lang in LANGUAGES:
-                    v = value.get("Destination_"+lang, stop_data.get("Name_"+lang, ""))
+                    v = value.get("Destination_"+lang, value.get("Name_"+lang, ""))
                     klass_translations[lang][f'Housing_Location_{v_en}'] = v
                 tmp_x = get_translated_unlocks(w_data, stop_data.get('unlocked_by', ""))
 
@@ -129,8 +128,8 @@ def run():
                 for lang in LANGUAGES:
                     v = tmp_x.get("Destination_"+lang, tmp_x.get("Name_"+lang, ""))
                     klass_translations[lang][f'Housing_Location_{v_en}'] = v
-
-                r_data += f'          level: "{stop_data["lvl"]}"\n'
+                if stop_data.get("lvl", None):
+                    r_data += f'          level: "{stop_data["lvl"]}"\n'
                 r_data += f'          exp: "{stop_data["exp"].replace(",", "")}"\n'
                 if stop_data.get('alias'):
                     r_data += f'          alias: "{stop_data["alias"]}"\n'
