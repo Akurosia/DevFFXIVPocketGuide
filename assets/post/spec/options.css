@@ -1,0 +1,23 @@
+/* =============================================================================
+
+    OPTIONS CSS
+
+    Authored by:
+        - Josh Beveridge
+
+============================================================================= */
+
+/* Accordion Triggers ======================================================= */
+.accordion-trigger {
+    cursor: pointer;
+}
+
+.accordion-content {
+    /*cursor: pointer;*/
+    display: none;
+
+    &.active {
+        display: block;
+    }
+
+}
