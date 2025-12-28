@@ -112,9 +112,12 @@ def run():
         for key in sorted([int(x) for x in w_data]):
             value = w_data[str(key)]
             for name, stop_data in stops.items():
-                if not name.lower().startswith(value.get("Destination_en", value.get("Name_en", "")).lower()):
-                    continue
+                new_value = value.get("Destination_en", value.get("Name_en", ""))
                 if name == "":
+                    continue
+                if new_value == "":
+                    continue
+                if not new_value.lower().startswith(name.lower()):
                     continue
                 v_en = value.get("Destination_en", value.get("Name_en", ""))
                 r_data += f'        - name: "{v_en}"\n'
