@@ -1,0 +1,36 @@
+# _config.dev.yml
+
+# Exclude most posts (fastest)
+exclude:
+  - _posts/2_arr/
+  - _posts/2_arr_new/
+  - _posts/3_hw/
+  - _posts/3_hw_new/
+  - _posts/4_sb/
+  - _posts/4_sb_new/
+  - _posts/5_shb/
+  - _posts/5_shb_new/
+  - _posts/6_ew/
+  - _posts/6_ew_new/
+  - _posts/7_dt/
+  - _posts/7_dt_new/allianzraid/
+  - _posts/7_dt_new/chaosallianzraid/
+  - _posts/7_dt_new/dungeon/
+  - _posts/7_dt_new/feldexkursion/
+  - _posts/7_dt_new/potd/
+  - _posts/7_dt_new/pvp/
+  - _posts/7_dt_new/raid/
+  - _posts/7_dt_new/training/
+  - _posts/7_dt_new/treasure/
+  - _posts/7_dt_new/trial/
+  - _posts/assets
+  - _posts/klassen_und_jobs
+  - _posts/patch_details
+  - _posts/single_page_content
+# Optional: keep only a small subset
+# (e.g. _posts/dev contains a few test posts)
+
+# Disable heavy features for dev
+incremental: false
+profile: false
+livereload: false
