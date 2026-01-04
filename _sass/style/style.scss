@@ -1905,3 +1905,9 @@ ion-icon {
     filter: grayscale(100%);
     opacity: 0.4;
 }
+@media(max-width: 80em) {
+  .expansion-toggles {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

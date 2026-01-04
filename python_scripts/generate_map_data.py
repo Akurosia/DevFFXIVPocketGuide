@@ -188,7 +188,6 @@ def getTablesFromConsoleGamesWiki(url: str, zone: str) -> dict[str, Any]:
                 else:
                     tmp[header[i]] = col.text.strip() # type: ignore
             tmp['Fate Name'] = fixFateNames(tmp['Fate Name'])
-            print(tmp['Fate Name'])
             found = False
             for key, value in fates_trans.items():
                 if tmp['Fate Name'].lower() == value['Name_en'].lower().strip():
@@ -197,12 +196,14 @@ def getTablesFromConsoleGamesWiki(url: str, zone: str) -> dict[str, Any]:
                     found = True
                     break
             for key, value in ces.items():
-                if tmp['Fate Name'].lower() == value['Name_de'].lower().strip():
+                if tmp['Fate Name'].lower() == value['Name_en'].lower().strip():
                     tmp["Fate ID"] = key
                     tmp["Fate Type"] = "CE"
                     found = True
+                    print(tmp['Fate Name'])
                     break
             if not found:
+                print_color_red(tmp['Fate Name'])
                 continue
             tmp = fix_fate_ids(tmp)
             result[tmp["Fate ID"]] = tmp
@@ -234,6 +235,13 @@ def fixFateNames(name: str) -> str:
         name = "The Killing of a Sacred Bombardier"
     if name == "On the Non-existent":
         name = "On the Nonexistent"
+
+    if name.endswith(" (Sinus Ardorum)"):
+        name = name.replace(" (Sinus Ardorum)", "")
+    if name.endswith(" (Phaenna)"):
+        name = name.replace(" (Phaenna)", "")
+    if name.endswith(" (Occult Crescent)"):
+        name = name.replace(" (Occult Crescent)", "")
     #print_color_blue(name)
     return name
 
@@ -313,8 +321,8 @@ def getLinksFromConsoleGamesWiki(createnew = False):
         zonename: str = zone.text.strip().replace(" FATEs", "")
         if zonename == "The Bozjan Southern Front":
             zonename = "Bozjan Southern Front"
-        if result.get(zonename, None):
-            continue
+        #if result.get(zonename, None):
+        #    continue
         try:
             print(zonename)
             if not result.get(zonename, None):
@@ -745,7 +753,6 @@ def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
         #print_pretty_json(merged_fates['Bozjan Southern Front'])
 
         writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
-        #writeJsonFile(f"{path_of_main_script}/python_scripts/FatesFromConsoleWiki.json", merged_fates)
         #writeJsonFile(r"C:\Users\Akurosia\Documents\GitHub\DevFFXIVPocketGuide\python_scripts\FatesFromConsoleWiki.json", merged_fates)
 
         print("[GAFD] Completed getting new Fates")
@@ -760,7 +767,7 @@ def get_base_images():
 
 if __name__ == "__main__":
     path_of_main_script = r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"
-    #run()
+    run()
     generate_images()
     #get_base_images()
     #for x in new_data_list:

@@ -899,6 +899,91 @@
             "Type": "Gegner Wellen",
             "Icon Objective": "ui/icon/060000/060801.tex"
         },
+        "1": {
+            "Fate Name": "Kill It with Fire",
+            "Boss": "Peerifool",
+            "Location": {
+                "x": "17.2",
+                "y": "27"
+            },
+            "EXP": "516,420-799,425",
+            "Mettle": "500-15,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "1 Field Notes on Clarricie  1 Garlean Synthetic Fabric",
+            "Prereq. Mob/FATE": "All Pets Are Off",
+            "Fate ID": "1",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "2": {
+            "Fate Name": "The Baying of the Hound(s)",
+            "Boss": "Canis Dirus",
+            "Location": {
+                "x": "22",
+                "y": "29"
+            },
+            "EXP": "516,420-799,425",
+            "Mettle": "500-15,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "",
+            "Prereq. Mob/FATE": "4th Legion Death Claw",
+            "Fate ID": "2",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "5": {
+            "Fate Name": "The Shadow of Death's Hand",
+            "Boss": "Akbaba",
+            "Location": {
+                "x": "35.4",
+                "y": "26.2"
+            },
+            "EXP": "516,420-799,425",
+            "Mettle": "500-15,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "1 Field Notes on Xeven",
+            "Prereq. Mob/FATE": "4th Legion Roader",
+            "Fate ID": "5",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "3": {
+            "Fate Name": "Vigil for the Lost",
+            "Boss": "Vigilia",
+            "Location": {
+                "x": "27.9",
+                "y": "30"
+            },
+            "EXP": "516,420-799,425",
+            "Mettle": "500-15,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "",
+            "Prereq. Mob/FATE": "More Machine Now than Man",
+            "Fate ID": "3",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "4": {
+            "Fate Name": "Aces High",
+            "Boss": "Gabriel (boss)",
+            "Location": {
+                "x": "31.6",
+                "y": "26.8"
+            },
+            "EXP": "-",
+            "Mettle": "2,500-75,000",
+            "Tomestones": "120",
+            "Lockboxes/Coins": "99 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "1 Field Notes on Dabog",
+            "Prereq. Mob/FATE": "Vigil for the Lost",
+            "Fate ID": "4",
+            "Fate Type": "CE",
+            "Type": "CE Solo Kampf"
+        },
         "1612": {
             "Fate Name": "Heavy Boots of Lead",
             "Boss": "Magitek Laborer",
@@ -1098,6 +1183,91 @@
             "Fate Level Sync": 80,
             "Type": "Verteidigen",
             "Icon Objective": "ui/icon/060000/060804.tex"
+        },
+        "10": {
+            "Fate Name": "Patriot Games",
+            "Boss": "Patriot",
+            "Location": {
+                "x": "14.2",
+                "y": "21.3"
+            },
+            "EXP": "543,600-841,500",
+            "Mettle": "2,700-27,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "",
+            "Prereq. Mob/FATE": "The Fires of War",
+            "Fate ID": "10",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "6": {
+            "Fate Name": "The Final Furlong",
+            "Boss": "Spartoi",
+            "Location": {
+                "x": "31.9",
+                "y": "17.6"
+            },
+            "EXP": "543,600-841,500",
+            "Mettle": "2,700-27,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "1 Field Notes on Llofii",
+            "Prereq. Mob/FATE": "Unicorn Flakes",
+            "Fate ID": "6",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "9": {
+            "Fate Name": "The Fires of War",
+            "Boss": "Pyrobolus Mater",
+            "Location": {
+                "x": "20.6",
+                "y": "24.3"
+            },
+            "EXP": "543,600-841,500",
+            "Mettle": "2,700-27,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "",
+            "Prereq. Mob/FATE": "4th Legion Gunship",
+            "Fate ID": "9",
+            "Fate Type": "CE",
+            "Type": "CE Gegner Wellen"
+        },
+        "7": {
+            "Fate Name": "The Hunt for Red Choctober",
+            "Boss": "Red Comet",
+            "Location": {
+                "x": "26.8",
+                "y": "18.4"
+            },
+            "EXP": "543,600-841,500",
+            "Mettle": "2,700-27,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "",
+            "Prereq. Mob/FATE": "Red (Chocobo) Alert",
+            "Fate ID": "7",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "8": {
+            "Fate Name": "Beast of Man",
+            "Boss": "Lyon",
+            "Location": {
+                "x": "23.2",
+                "y": "20.6"
+            },
+            "EXP": "-",
+            "Mettle": "27,000-270,000",
+            "Tomestones": "120",
+            "Lockboxes/Coins": "99 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "1 Field Notes on Lyon",
+            "Prereq. Mob/FATE": "The Hunt for Red Choctober",
+            "Fate ID": "8",
+            "Fate Type": "CE",
+            "Type": "CE Solo Kampf"
         },
         "1624": {
             "Fate Name": "Demonstrably Demonic",
@@ -1338,6 +1508,91 @@
             "Fate Level Sync": 80,
             "Type": "Boss besiegen",
             "Icon Objective": "ui/icon/060000/060802.tex"
+        },
+        "13": {
+            "Fate Name": "Metal Fox Chaos",
+            "Boss": "Dáinsleif",
+            "Location": {
+                "x": "14.3",
+                "y": "18.3"
+            },
+            "EXP": "570,780-883,575",
+            "Mettle": "5,850-39,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "10 Forgotten Fragment of Resolve",
+            "Prereq. Mob/FATE": "Of Steel and Flame",
+            "Fate ID": "13",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "14": {
+            "Fate Name": "Rise of the Robots",
+            "Boss": "Mark XIII-X Magitek Laborer",
+            "Location": {
+                "x": "21",
+                "y": "17.8"
+            },
+            "EXP": "570,780-883,575",
+            "Mettle": "5,850-39,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "1 Field Notes on Sicinius",
+            "Prereq. Mob/FATE": "I'm a Mechanical Man",
+            "Fate ID": "14",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "11": {
+            "Fate Name": "Trampled under Hoof",
+            "Boss": "Eale",
+            "Location": {
+                "x": "9.9",
+                "y": "18.3"
+            },
+            "EXP": "570,780-883,575",
+            "Mettle": "5,850-39,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "10 Forgotten Fragment of Resolve",
+            "Prereq. Mob/FATE": "4th Legion Armored Weapon",
+            "Fate ID": "11",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "15": {
+            "Fate Name": "Where Strode the Behemoth",
+            "Boss": "Chlevnik",
+            "Location": {
+                "x": "23.6",
+                "y": "14.9"
+            },
+            "EXP": "570,780-883,575",
+            "Mettle": "5,850-39,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "10 Forgotten Fragment of Resolve",
+            "Prereq. Mob/FATE": "Trampled under Hoof",
+            "Fate ID": "15",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "12": {
+            "Fate Name": "And the Flames Went Higher",
+            "Boss": "Sartauvoir",
+            "Location": {
+                "x": "18.7",
+                "y": "15.9"
+            },
+            "EXP": "-",
+            "Mettle": "58,500-390,000",
+            "Tomestones": "120",
+            "Lockboxes/Coins": "99 Southern Front Lockbox  3 Bozjan Coin",
+            "Notable Rewards": "1 Field Notes on Sartauvoir",
+            "Prereq. Mob/FATE": "Metal Fox Chaos",
+            "Fate ID": "12",
+            "Fate Type": "CE",
+            "Type": "CE Solo Kampf"
         }
     },
     "Central Shroud": {
@@ -3380,6 +3635,32 @@
             "Fate ID": "1978",
             "Fate Type": "Fate"
         },
+        "1979": {
+            "Fate Name": "Cosmoliner Alpha Construction Support",
+            "Type": "Rebuild",
+            "Level": "1",
+            "Location": {
+                "x": "",
+                "y": ""
+            },
+            "Experience": "100%  to next level",
+            "Gil": "2,000",
+            "Fate ID": "1979",
+            "Fate Type": "Fate"
+        },
+        "1980": {
+            "Fate Name": "Habitation Module Construction Support",
+            "Type": "Rebuild",
+            "Level": "1",
+            "Location": {
+                "x": "29.8",
+                "y": "10.8"
+            },
+            "Experience": "100%  to next level",
+            "Gil": "2,000",
+            "Fate ID": "1980",
+            "Fate Type": "Fate"
+        },
         "1981": {
             "Fate Name": "Cosmoport Alpha Maintenance Support",
             "Type": "Rebuild",
@@ -3391,6 +3672,19 @@
             "Experience": "100%  to next level",
             "Gil": "2,000",
             "Fate ID": "1981",
+            "Fate Type": "Fate"
+        },
+        "1982": {
+            "Fate Name": "Mech Hangar Alpha Expansion",
+            "Type": "Rebuild",
+            "Level": "1",
+            "Location": {
+                "x": "25.8",
+                "y": "12"
+            },
+            "Experience": "100%  to next level",
+            "Gil": "2,000",
+            "Fate ID": "1982",
             "Fate Type": "Fate"
         },
         "1983": {
@@ -3456,6 +3750,19 @@
             "Experience": "100%  to next level",
             "Gil": "2,000",
             "Fate ID": "1987",
+            "Fate Type": "Fate"
+        },
+        "1988": {
+            "Fate Name": "Mech Hangar Beta Expansion",
+            "Type": "Rebuild",
+            "Level": "1",
+            "Location": {
+                "x": "25.8",
+                "y": "12"
+            },
+            "Experience": "100%  to next level",
+            "Gil": "2,000",
+            "Fate ID": "1988",
             "Fate Type": "Fate"
         },
         "1989": {
@@ -12074,6 +12381,216 @@
             "Fate Level Sync": 255,
             "Type": "Kill Boss",
             "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "37": {
+            "Fate Name": "Calamity Bound",
+            "Boss": "Cloister Demon",
+            "Location": {
+                "x": "14.5",
+                "y": "37.5"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "1 Voidsent Contract  0–1 Verdigris Demiatma  0–1 Notes on the Cloister Demon",
+            "Spawn Mob": "Crescent Inkstain",
+            "Fate ID": "37",
+            "Fate Type": "CE"
+        },
+        "40": {
+            "Fate Name": "Company of Stone",
+            "Boss": "Megaloknight",
+            "Location": {
+                "x": "35",
+                "y": "16.1"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Caput Mortuum Demiatma",
+            "Spawn Mob": "Automatic",
+            "Fate ID": "40",
+            "Fate Type": "CE"
+        },
+        "36": {
+            "Fate Name": "Crawling Death",
+            "Boss": "Death Claw (Occult Crescent)",
+            "Location": {
+                "x": "35.1",
+                "y": "32.2"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Azurite Demiatma",
+            "Spawn Mob": "Automatic",
+            "Fate ID": "36",
+            "Fate Type": "CE"
+        },
+        "45": {
+            "Fate Name": "Cursed Concern",
+            "Boss": "Trade Tortoise",
+            "Location": {
+                "x": "22.9",
+                "y": "10.5"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Realgar Demiatma  0–1 Notes on the Trade Tortoise",
+            "Spawn Mob": "Automatic",
+            "Fate ID": "45",
+            "Fate Type": "CE"
+        },
+        "46": {
+            "Fate Name": "Eternal Watch",
+            "Boss": "Repaired Lion",
+            "Location": {
+                "x": "38.8",
+                "y": "24.9"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Caput Mortuum Demiatma",
+            "Spawn Mob": "Automatic",
+            "Fate ID": "46",
+            "Fate Type": "CE"
+        },
+        "47": {
+            "Fate Name": "Flame of Dusk",
+            "Boss": "Hinkypunk",
+            "Location": {
+                "x": "10.1",
+                "y": "18.2"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Malachite Demiatma",
+            "Spawn Mob": "Automatic",
+            "Fate ID": "47",
+            "Fate Type": "CE"
+        },
+        "39": {
+            "Fate Name": "From Times Bygone",
+            "Boss": "Mythic Idol",
+            "Location": {
+                "x": "5.5",
+                "y": "26.4"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Malachite Demiatma  0–1 Notes on the Mythic Idol",
+            "Spawn Mob": "Crescent Byblos",
+            "Fate ID": "39",
+            "Fate Type": "CE"
+        },
+        "44": {
+            "Fate Name": "Noise Complaint",
+            "Boss": "Neo Garula",
+            "Location": {
+                "x": "30.5",
+                "y": "14.1"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Orpiment Demiatma",
+            "Spawn Mob": "Crescent Garula",
+            "Fate ID": "44",
+            "Fate Type": "CE"
+        },
+        "42": {
+            "Fate Name": "On the Hunt",
+            "Boss": "Lion Rampant",
+            "Location": {
+                "x": "34",
+                "y": "20"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Caput Mortuum Demiatma  0–1 Oracle's Soul Shard",
+            "Spawn Mob": "Crescent Fan",
+            "Fate ID": "42",
+            "Fate Type": "CE"
+        },
+        "33": {
+            "Fate Name": "Scourge of the Mind",
+            "Boss": "Mysterious Mindflayer",
+            "Location": {
+                "x": "27.4",
+                "y": "35.9"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Azurite Demiatma",
+            "Spawn Mob": "Crescent Monk",
+            "Fate ID": "33",
+            "Fate Type": "CE"
+        },
+        "41": {
+            "Fate Name": "Shark Attack",
+            "Boss": "Nymian Petalodus",
+            "Location": {
+                "x": "19.1",
+                "y": "4.5"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Realgar Demiatma  0–1 Notes on the Nymian Petalodus",
+            "Spawn Mob": "Crescent Petalodite",
+            "Fate ID": "41",
+            "Fate Type": "CE"
+        },
+        "34": {
+            "Fate Name": "The Black Regiment",
+            "Boss": "Black Star (Occult Crescent)",
+            "Location": {
+                "x": "30.5",
+                "y": "28.6"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Orpiment Demiatma  0–1 Ranger's Soul Shard  0–1 Notes on Black Chocobos",
+            "Spawn Mob": "Automatic",
+            "Fate ID": "34",
+            "Fate Type": "CE"
+        },
+        "35": {
+            "Fate Name": "The Unbridled",
+            "Boss": "Crescent Berserker",
+            "Location": {
+                "x": "33.9",
+                "y": "37.5"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Azurite Demiatma  0–1 Berserker's Soul Shard  0–1 Notes on the Crescent Berserker",
+            "Spawn Mob": "Automatic",
+            "Fate ID": "35",
+            "Fate Type": "CE"
+        },
+        "38": {
+            "Fate Name": "Trial by Claw",
+            "Boss": "Crystal Dragon",
+            "Location": {
+                "x": "13",
+                "y": "22.8"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Malachite Demiatma",
+            "Spawn Mob": "Automatic",
+            "Fate ID": "38",
+            "Fate Type": "CE"
+        },
+        "43": {
+            "Fate Name": "With Extreme Prejudice",
+            "Boss": "Command Urn",
+            "Location": {
+                "x": "14.5",
+                "y": "9.2"
+            },
+            "Knowledge Phantom EXP": "200-23,400 480",
+            "Currencies": "20 10  200",
+            "Notable Rewards": "0–1 Realgar Demiatma",
+            "Spawn Mob": "Automatic",
+            "Fate ID": "43",
+            "Fate Type": "CE"
         }
     },
     "South Shroud": {
@@ -21779,6 +22296,91 @@
             "Type": "Sammeln",
             "Icon Objective": "ui/icon/060000/060803.tex"
         },
+        "29": {
+            "Fate Name": "A Familiar Face",
+            "Boss": "4th-make Hashmal",
+            "Location": {
+                "x": "28",
+                "y": "29.7"
+            },
+            "EXP": "516,420-799,425",
+            "Mettle": "96,250-525,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "50 Bozjan Mythril Coin  2 Zadnor Lockbox",
+            "Notable Rewards": "1 Compact Spring",
+            "Prereq. Mob/FATE": "Another Pilot Episode",
+            "Fate ID": "29",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "20": {
+            "Fate Name": "From Beyond the Grave",
+            "Boss": "4th-make Shemhazai",
+            "Location": {
+                "x": "20.3",
+                "y": "37.5"
+            },
+            "EXP": "516,420-799,425",
+            "Mettle": "96,250-525,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Zadnor Lockbox",
+            "Notable Rewards": "2 Compact Spring  1 Field Notes on Llofii, Part II",
+            "Prereq. Mob/FATE": "4th Legion Infantry",
+            "Fate ID": "20",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "17": {
+            "Fate Name": "On Serpents' Wings",
+            "Boss": "Flameborne Zirnitra, Waveborne Zinitra, Stormborne Zinitra",
+            "Location": {
+                "x": "31.5",
+                "y": "37.5"
+            },
+            "EXP": "516,420-799,425",
+            "Mettle": "96,250-525,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Zadnor Lockbox",
+            "Notable Rewards": "2 Compact Spring",
+            "Prereq. Mob/FATE": "An Immoral Dilemma",
+            "Fate ID": "17",
+            "Fate Type": "CE",
+            "Type": "CE Gegner Wellen"
+        },
+        "21": {
+            "Fate Name": "With Diremite and Main",
+            "Boss": "Hedetet (Zadnor)",
+            "Location": {
+                "x": "17.1",
+                "y": "32.1"
+            },
+            "EXP": "516,420-799,425",
+            "Mettle": "96,250-525,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Zadnor Lockbox",
+            "Notable Rewards": "2 Compact Spring",
+            "Prereq. Mob/FATE": "4th Legion Nimrod",
+            "Fate ID": "21",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "19": {
+            "Fate Name": "The Broken Blade",
+            "Boss": "Hypertuned Dabog",
+            "Location": {
+                "x": "26.5",
+                "y": "35.7"
+            },
+            "EXP": "-",
+            "Mettle": "481,250-2,625,000",
+            "Tomestones": "120",
+            "Lockboxes/Coins": "99 Zadnor Lockbox",
+            "Notable Rewards": "2 Compact Spring  1 Field Notes on Dabog, Part II",
+            "Prereq. Mob/FATE": "A Familiar Face",
+            "Fate ID": "19",
+            "Fate Type": "CE",
+            "Type": "CE Solo Kampf"
+        },
         "1728": {
             "Fate Name": "A Just Pursuit",
             "Boss": "Shikigami Tenma, Yamatsumi the Harbinger",
@@ -21938,6 +22540,91 @@
             "Fate Level Sync": 80,
             "Type": "Boss besiegen",
             "Icon Objective": "ui/icon/060000/060802.tex"
+        },
+        "22": {
+            "Fate Name": "Here Comes the Cavalry",
+            "Boss": "Clibanarius",
+            "Location": {
+                "x": "6.5",
+                "y": "37.3"
+            },
+            "EXP": "543,600-841,500",
+            "Mettle": "460,000-600,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Zadnor Lockbox",
+            "Notable Rewards": "2 A Day in the Life: Beyond the Rift",
+            "Prereq. Mob/FATE": "Tanking Up",
+            "Fate ID": "22",
+            "Fate Type": "CE",
+            "Type": "CE Gegner Wellen"
+        },
+        "25": {
+            "Fate Name": "Never Cry Wolf",
+            "Boss": "Hrodvitnir",
+            "Location": {
+                "x": "4.9",
+                "y": "25.3"
+            },
+            "EXP": "543,600-841,500",
+            "Mettle": "460,000-600,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Zadnor Lockbox",
+            "Notable Rewards": "2 A Day in the Life: Beyond the Rift",
+            "Prereq. Mob/FATE": "An End to Atrocities",
+            "Fate ID": "25",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "24": {
+            "Fate Name": "There Would Be Blood",
+            "Boss": "Hanbi",
+            "Location": {
+                "x": "13.7",
+                "y": "26.1"
+            },
+            "EXP": "543,600-841,500",
+            "Mettle": "460,000-600,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Zadnor Lockbox",
+            "Notable Rewards": "2 A Day in the Life: Beyond the Rift",
+            "Prereq. Mob/FATE": "4th Legion Satellite",
+            "Fate ID": "24",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "26": {
+            "Fate Name": "Time to Burn",
+            "Boss": "4th-make Belias",
+            "Location": {
+                "x": "10.5",
+                "y": "21.5"
+            },
+            "EXP": "543,600-841,500",
+            "Mettle": "460,000-600,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Zadnor Lockbox",
+            "Notable Rewards": "2 A Day in the Life: Beyond the Rift",
+            "Prereq. Mob/FATE": "4th Legion Colossus",
+            "Fate ID": "26",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "23": {
+            "Fate Name": "Head of the Snake",
+            "Boss": "Menenius sas Lanatus",
+            "Location": {
+                "x": "5.3",
+                "y": "31.9"
+            },
+            "EXP": "-",
+            "Mettle": "2,300,000-3,000,000",
+            "Tomestones": "120",
+            "Lockboxes/Coins": "99 Zadnor Lockbox",
+            "Notable Rewards": "2 A Day in the Life: Beyond the Rift  1 Field Notes on Menenius, Part II",
+            "Prereq. Mob/FATE": "Never Cry Wolf",
+            "Fate ID": "23",
+            "Fate Type": "CE",
+            "Type": "CE Solo Kampf"
         },
         "1737": {
             "Fate Name": "A Relic Unleashed",
@@ -22138,6 +22825,91 @@
             "Fate Level Sync": 80,
             "Type": "Gegner Wellen",
             "Icon Objective": "ui/icon/060000/060801.tex"
+        },
+        "18": {
+            "Fate Name": "Feeling the Burn",
+            "Boss": "Blackburn",
+            "Location": {
+                "x": "16.7",
+                "y": "16.9"
+            },
+            "EXP": "570,780-883,575",
+            "Mettle": "607,500-675,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Zadnor Lockbox",
+            "Notable Rewards": "2 Lurid Memory of the Dying",
+            "Prereq. Mob/FATE": "Attack of the Supersoldiers",
+            "Fate ID": "18",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "27": {
+            "Fate Name": "Lean, Mean, Magitek Machines",
+            "Boss": "Kampe",
+            "Location": {
+                "x": "15.3",
+                "y": "13.1"
+            },
+            "EXP": "570,780-883,575",
+            "Mettle": "607,500-675,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "1 Zadnor Lockbox",
+            "Notable Rewards": "2 Lurid Memory of the Dying",
+            "Prereq. Mob/FATE": "4th Legion Helldiver",
+            "Fate ID": "27",
+            "Fate Type": "CE",
+            "Type": "CE Gegner Wellen"
+        },
+        "30": {
+            "Fate Name": "Looks to Die For",
+            "Boss": "Ayida",
+            "Location": {
+                "x": "17.5",
+                "y": "9.9"
+            },
+            "EXP": "570,780-883,575",
+            "Mettle": "607,500-675,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Zadnor Lockbox",
+            "Notable Rewards": "2 Lurid Memory of the Dying",
+            "Prereq. Mob/FATE": "4th Legion Cavalry",
+            "Fate ID": "30",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "28": {
+            "Fate Name": "Worn to a Shadow",
+            "Boss": "Alkonost (boss)",
+            "Location": {
+                "x": "11.9",
+                "y": "7.7"
+            },
+            "EXP": "570,780-883,575",
+            "Mettle": "607,500-675,000",
+            "Tomestones": "70",
+            "Lockboxes/Coins": "2 Zadnor Lockbox",
+            "Notable Rewards": "2 Lurid Memory of the Dying",
+            "Prereq. Mob/FATE": "The Beasts Are Back",
+            "Fate ID": "28",
+            "Fate Type": "CE",
+            "Type": "CE Boss besiegen"
+        },
+        "31": {
+            "Fate Name": "Taking the Lyon's Share",
+            "Boss": "Lyon",
+            "Location": {
+                "x": "22.5",
+                "y": "13.3"
+            },
+            "EXP": "-",
+            "Mettle": "3,037,500-3,375,000",
+            "Tomestones": "120",
+            "Lockboxes/Coins": "99 Zadnor Lockbox",
+            "Notable Rewards": "2 Lurid Memory of the Dying  1 Field Notes on Lyon, Part II",
+            "Prereq. Mob/FATE": "Feeling the Burn",
+            "Fate ID": "31",
+            "Fate Type": "CE",
+            "Type": "CE Solo Kampf"
         }
     }
 }
