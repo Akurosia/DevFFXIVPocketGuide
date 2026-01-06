@@ -81,6 +81,12 @@
             src: url('{{ "/assets/fonts/FFXIV_Lodestone_SSF.ttf" | prepend: site.baseurl }}');
         }
     </style>
+    <script type="text/javascript" src="{{ "/assets/js/darkreader.min.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
     <link rel="stylesheet" href="{{ "/assets/css/leaflet.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ "/assets/css/leafletmaps.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
+    <script>
+        DarkReader.setFetchMethod(window.fetch)
+        DarkReader.enable({brightness: 90,contrast: 100,sepia: 10});
+        const isEnabled = DarkReader.isEnabled();
+    </script>
 <!-- Include from _includes/head -->
