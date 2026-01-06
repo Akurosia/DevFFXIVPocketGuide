@@ -326,6 +326,7 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
     global contentfindercondition
     header_data = ""
     tt_type_name, tt_bg_entry = get_territorytype_from_mapid(entry)
+    entry['MapIdNr'] = tt_type_name['Map'].get('row_id', None)
     if old_wip in ["True", "False"]:
         header_data += 'wip: "' + str(old_wip).title() + '"\n'
     else:
@@ -368,6 +369,8 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
     header_data += 'patchName: "' + entry["patchName"] + '"\n'
     if entry.get("mapid", None):
         header_data += 'mapid: "' + entry["mapid"] + '"\n'
+    if entry.get("MapIdNr", None):
+        header_data += 'mapidnr: "' + entry["MapIdNr"] + '"\n'
     if not tt_bg_entry == "":
         header_data += 'mappath: "' + tt_bg_entry + '"\n'
     if not tt_type_name == "":
