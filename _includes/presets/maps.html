@@ -1,86 +1,290 @@
-{%- comment -%}
-Usage:
+<head>
+  <link rel="stylesheet" href="https://akutrack.akurosia.de/assets/css/filter.css" />
+  <style>
+    /* Layout: filters left, map right */
+    .akutrack_layout {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+    }
 
-  {% include presets/maps.html maptype="lanoscea" %}
+    .akutrack_sidebar {
+      width: 360px;
+      max-width: 40vw;
+      min-width: 280px;
+      height: 800px;
+      overflow: auto;
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 8px;
+      padding: 10px;
+      box-sizing: border-box;
+      background: #fff;
+    }
 
-Expects a JSON file at:
-  /assets/leaflet/maps/{{ maptype }}.json
+    .mapwrap {
+      flex: 1;
+      min-width: 320px;
+      height: 800px;
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+    }
 
-Treasure map marker (fixed map area, toggleable, searchable, and visible in legend):
+    /* Leaflet container must fill */
+    #map { width: 100%; height: 100%; }
 
-{
-  "id": "tm-1",
-  "name": "Treasure Map 1",
-  "type": "treasuremap_dragonskin",  // must start with "treasuremap_"
-  "category": "treasuremap_dragonskin",
-  "imageUrl": "/assets/leaflet/treasures/map1.png",
-  "position": [900, 1100],            // center (x,y) in map pixels
-  "size": [400, 400],                 // width/height in map pixels (optional)
-  "description": "Dig here!"
+.map_type_filters{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  background:rgba(0,0,0,.18);
 }
-
-Category-level image:
-
-{
-  "id": "angel_fishing",
-  "name": "Fishing - Angel",
-  "group": "angel_fishing",
-  "groupName": "Fishing",
-  "imageUrl": "/assets/img/content/map/angel.webp",
-  "size": [333.3, 333.3]
+.filters-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
 }
+.filters-actions{display:flex;gap:8px;flex-wrap:wrap}
 
-Marker-level image:
-
-{
-  "type": "angel_fishing",
-  "name": "Karvarhur die Erste",
-  "imageUrl": "/assets/img/content/map/angel.webp",
-  "size": [333.3, 333.3],
-  "position": [265, 1082]
+.field {
+    display: none;
 }
+    .btn {
+      appearance: none;
+      border: 1px solid rgba(0,0,0,0.2);
+      background: #f6f6f6;
+      border-radius: 6px;
+      padding: 4px 8px;
+      cursor: pointer;
+      font: 12px/1.2 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    .btn:hover { background: #ededed; }
 
-Rules:
+    /* maps.filter.js / maps.app.js will populate this */
+    #map_type_filters { display: grid; gap: 6px; }
 
-- For all markers, the effective category id is: marker.category || marker.type
-- Treasuremap overlays are created when:
-    typeof marker.type === "string" && marker.type.startsWith("treasuremap_")
-- Category-level images:
-    - cat.imageUrl (or cat.iconUrl/icon) is used as marker image.
-    - If cat.size or cat.iconSize exists, it is used as iconSize.
-    - Image is centered on the point.
-- Marker-level images:
-    - m.imageUrl overrides category icon.
-    - If m.size exists, it is used as iconSize.
-    - Image is centered on the point.
-{%- endcomment -%}
+    /* keep embed controls out of view but present for maps.* logic */
+    .hidden-controls { display: none; }
+  </style>
+</head>
 
-<div class="gm-wrap"
-      {%- if x == "FATEs" -%}
-        data-gm-filter="group:FATEs"
-      {%- elsif page.slug -%}
-        data-gm-filter="{{ "cat:treasuremap_" | append: page.slug }} "
-      {%- elsif x == "Zones" -%}
-        data-gm-filter="group:Schatzkarten"
-      {%- endif -%}
-        data-gm-filter-mode="only"
-      data-map-url="{{ '/assets/leaflet/maps/' | append: include.maptype | append: '.json' | relative_url }}">
-  <div class="gm-inner">
-    <div class="gm-header">
-      <span class="gm-title">Loading map…</span>
-    </div>
-    <div class="gm-body">
-      <div class="gm-sidebar">
-        <div class="gm-search">
-          <input type="text" class="gm-search-input" placeholder="Search markers & zones…" />
+
+  <div class="akutrack_layout">
+    <!-- LEFT: filter UI -->
+    <aside class="akutrack_sidebar">
+      <div class="filters-head">
+        <h3>Filters</h3>
+        <div class="filters-actions">
+          <button id="map_types_all" class="btn" type="button">All</button>
+          <button id="map_types_none" class="btn" type="button">None</button>
         </div>
-        <div class="gm-legend-controls">
-          <button type="button" class="gm-legend-button" data-action="show-all">Show all</button>
-          <button type="button" class="gm-legend-button" data-action="hide-all">Hide all</button>
-        </div>
-        <div class="gm-groups"></div>
       </div>
-      <div class="gm-map"></div>
-    </div>
+
+      <div id="map_type_filters"></div>
+    </aside>
+
+    <!-- RIGHT: map -->
+    <main class="mapwrap">
+      <div id="map"></div>
+    </main>
   </div>
-</div>
+
+  <!-- REQUIRED: dropdown elements maps.app.js expects so it can switch cfg and align markers -->
+  <div class="hidden-controls">
+    <select id="expansion_selector"></select>
+    <select id="region_selector"></select>
+    <select id="zone_selector"></select>
+    <select id="map_selector"></select>
+    <select id="version_selector"></select>
+    <input id="mid" />
+
+    <!-- maps.app.js uses this to sync selected map -> #mid -->
+    <button id="copy_to_filter" type="button">copy</button>
+  </div>
+
+  <!-- Your scripts (keep order) -->
+  <script src="https://akutrack.akurosia.de/assets/js/maps.shared.js"></script>
+  <script src="https://akutrack.akurosia.de/assets/js/maps.helper.js"></script>
+  <script src="https://akutrack.akurosia.de/assets/js/maps.dropdown.js"></script>
+  <script src="https://akutrack.akurosia.de/assets/js/maps.iconmaps.js"></script>
+  <script src="https://akutrack.akurosia.de/assets/js/maps.app.js"></script>
+
+  <!-- This is the one that actually fetches api.php -->
+  <script src="https://akutrack.akurosia.de/assets/js/app.js"></script>
+
+  <script>
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+    async function waitUntil(fn, timeoutMs = 15000, intervalMs = 50) {
+      const start = Date.now();
+      while (Date.now() - start < timeoutMs) {
+        const v = fn();
+        if (v) return v;
+        await sleep(intervalMs);
+      }
+      return null;
+    }
+
+    function setSelectValue(sel, value) {
+      if (!sel) return false;
+      const v = String(value ?? "");
+      if (!v) return false;
+
+      const ok = Array.from(sel.options || []).some(o => String(o.value) === v);
+      if (!ok) return false;
+
+      sel.value = v;
+      sel.dispatchEvent(new Event("change", { bubbles: true }));
+      return true;
+    }
+
+    function parseMidFromUrl(url) {
+      try {
+        const u = new URL(url, location.href);
+        const mid = u.searchParams.get("mid");
+        return mid == null ? null : Number(mid);
+      } catch {
+        return null;
+      }
+    }
+
+    // Prevent the “random mid” requests during selector-cascade by blocking api.php calls
+    // unless they are for the target mid.
+    function installApiMidGate(targetMid) {
+      if (window.__akutrack_fetch_gate_installed) return () => {};
+      window.__akutrack_fetch_gate_installed = true;
+
+      const origFetch = window.fetch.bind(window);
+      window.__akutrack_fetch_gate_enabled = false;
+      window.__akutrack_fetch_gate_mid = Number(targetMid);
+
+      window.fetch = async (input, init) => {
+        const url = typeof input === "string" ? input : (input && input.url) ? input.url : "";
+        if (window.__akutrack_fetch_gate_enabled && url && url.includes("api.php")) {
+          const mid = parseMidFromUrl(url);
+          const target = Number(window.__akutrack_fetch_gate_mid);
+
+          // Allow only the target mid while gate is enabled
+          if (Number.isFinite(mid) && mid !== target) {
+            // Return an empty successful response so callers don't throw
+            return new Response("[]", {
+              status: 200,
+              headers: { "Content-Type": "application/json" },
+            });
+          }
+        }
+        return origFetch(input, init);
+      };
+
+      return () => {
+        window.fetch = origFetch;
+        window.__akutrack_fetch_gate_enabled = false;
+        window.__akutrack_fetch_gate_installed = false;
+      };
+    }
+
+    // Public helper: only takes rowId, uses cfg.imageUrl from your map config
+    async function forceMapBackgroundByRowId(rowId) {
+      const rid = Number(rowId);
+
+      const state = await waitUntil(() => window.DuckitMapsShared?.state);
+      if (!state) throw new Error("DuckitMapsShared.state not available");
+
+      // Wait until maps.dropdown.js populated selectors at least once
+      await waitUntil(() => {
+        const expSel = document.getElementById("expansion_selector");
+        return expSel && expSel.options && expSel.options.length > 0;
+      });
+
+      const cfg = await waitUntil(() => {
+        const maps = state.MAPS || [];
+        return maps.find(m => Number(m?.row_id) === rid) || null;
+      });
+
+      if (!cfg) throw new Error("No map config found with row_id: " + rid);
+
+      const url = String(cfg.imageUrl ?? "").trim();
+      if (!url || url.toLowerCase() === "undefined") {
+        throw new Error("cfg.imageUrl is empty/undefined for row_id " + rid);
+      }
+
+      // Install fetch gate to avoid intermediate mid requests during the selector cascade
+      const uninstallGate = installApiMidGate(rid);
+      window.__akutrack_fetch_gate_mid = rid;
+      window.__akutrack_fetch_gate_enabled = true;
+
+      try {
+        // Drive the existing selection pipeline so maps.app.js uses the correct cfg for transforms
+        const expSel = document.getElementById("expansion_selector");
+        const regSel = document.getElementById("region_selector");
+        const plcSel = document.getElementById("zone_selector");
+        const mapSel = document.getElementById("map_selector");
+        const verSel = document.getElementById("version_selector");
+
+        // Expansion
+        setSelectValue(expSel, cfg.expansionLabel);
+        await sleep(0);
+
+        // Region
+        await waitUntil(() => regSel && regSel.options && regSel.options.length > 0);
+        setSelectValue(regSel, cfg.regionLabel);
+        await sleep(0);
+
+        // Place/Zone
+        await waitUntil(() => plcSel && plcSel.options && plcSel.options.length > 0);
+        setSelectValue(plcSel, cfg.placeLabel);
+        await sleep(0);
+
+        // Version/Sub id (cfg.id like "o6b1/01")
+        await waitUntil(() => {
+          const hasVer = verSel && Array.from(verSel.options || []).some(o => String(o.value) === String(cfg.id));
+          const hasMap = mapSel && Array.from(mapSel.options || []).some(o => String(o.value) === String(cfg.id));
+          return hasVer || hasMap;
+        });
+
+        if (!setSelectValue(verSel, cfg.id)) {
+          setSelectValue(mapSel, cfg.id);
+        }
+        await sleep(0);
+
+        // Now allow only the final target mid request by setting #mid explicitly
+        const midEl = document.getElementById("mid");
+        if (midEl) {
+          midEl.value = String(rid);
+          midEl.dispatchEvent(new Event("change", { bubbles: true }));
+        }
+
+        // Ensure overlay uses cfg.imageUrl (maps.app.js should do this; this guarantees it)
+        await sleep(0);
+        if (state.overlay?.setUrl) state.overlay.setUrl(url);
+
+        console.log("Switched to cfg:", { id: cfg.id, row_id: cfg.row_id, imageUrl: url });
+        return cfg;
+      } finally {
+        // Disable gating after the map switch finished
+        await sleep(100);
+        window.__akutrack_fetch_gate_enabled = false;
+        void uninstallGate;
+      }
+    }
+
+    const TARGET_ROW_ID = 967;
+    document.addEventListener("DOMContentLoaded", () => {
+      let storedMid = NaN;
+
+      try {
+        const raw = localStorage.getItem("duckit_settings_v1");
+        const obj = raw ? JSON.parse(raw) : null;
+        storedMid = Number(obj?.mid);
+      } catch {
+        storedMid = NaN;
+      }
+
+      if (!Number.isFinite(storedMid) || storedMid !== Number(TARGET_ROW_ID)) {
+        forceMapBackgroundByRowId(Number(TARGET_ROW_ID)).catch(console.error);
+      }
+    });
+  </script>
