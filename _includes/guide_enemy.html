@@ -11,19 +11,8 @@
     </div>
     <!-- Guide Enemy -->
     <div class="guide__accordion-content--01-grid active">
-        {%- if x == "FATEs" -%}
-            {% assign mapfile = "/assets/leaflet/maps/" | append: page.slug | append: ".json" %}
-            {% assign file_exists = false %}
-
-            {% for f in site.static_files %}
-              {% if f.path == mapfile %}
-                {% assign file_exists = true %}
-                {% break %}
-              {% endif %}
-            {% endfor %}
-            {% if file_exists %}
-                {%- include presets/maps.html mapidnr=page.mapidnr -%}
-            {%- endif -%}
+        {%- if x == "Map" && page.mapidnr -%}
+            {%- include presets/maps.html mapidnr=page.mapidnr -%}
         {%- endif -%}
         <!-- Opens the Adds Loop -->
         {%- for enemy in enemies -%}

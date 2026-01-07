@@ -24,6 +24,11 @@
         {%- assign y = "add" -%}
         {%- include guide_enemy.html -%}
     {%- endif -%}
+    {%- if page.mapidnr -%}
+        {%- assign enemies = "" -%}
+        {%- assign x = "Map" -%}
+        {%- include guide_enemy.html -%}
+    {%- endif -%}
     {%- if page.fates || page.instanceType == "overworld"  || page.instanceType == "overworlds" -%}
         {%- assign enemies = page.fates -%}
         {%- assign x = "FATEs" -%}
