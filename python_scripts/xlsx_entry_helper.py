@@ -104,10 +104,12 @@ def getEntriesForRouletts(entry: EntryType) -> EntryType:
     entry['mentor'] = None
     entry['normalraid'] = None
     entry['trial'] = None
+    entry['mapname'] = entry['title']
     for _, value in contentfindercondition.items():
         if value['Name_de'] == getContentName(entry["title"], "de", entry["difficulty"], entry["instanceType"]):
-            #print(value['TerritoryType'])
+            #print(value['ContentType']['Name_de'])
             entry['type'] = value['ContentType']['Name_de'].lower()
+            entry['mapname'] = value['Name_de']
             entry['mapid'] = value['TerritoryType'].get('Name_de', "")
             entry['allianceraid'] = str(value['AllianceRoulette'])
             entry['frontier'] = str(value['FeastTeamRoulette'])

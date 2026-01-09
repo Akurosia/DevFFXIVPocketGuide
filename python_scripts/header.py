@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # coding: utf8
-from ffxiv_aku import print_color_red, true, glob, fix_slug
+from ffxiv_aku import print_color_red,print_color_yellow,print_color_blue, true, glob, fix_slug
 from copy import deepcopy
 from typing import Any
 try:
@@ -41,14 +41,6 @@ def getClassJobDict() -> dict[Any, Any]:
 class_job_item_array: dict[Any, Any] = getClassJobDict()
 
 
-def get_territorytype_from_mapid(entry) -> tuple[str, str]:
-    for key, tt_type in territorytype.items():
-        if tt_type["Name"].lower() == entry["mapid"].lower():
-            return tt_type, territorytype[key]['Bg']
-    print_color_red(f"Could not find territorytype for {entry['mapid']} ({entry['title']})")
-    return "", ""
-
-
 def replaceSlug(text: Any) -> str:
     text = str(text).replace("_", "-").replace(".", "-").replace(",", "").replace("'", "")
     text = text.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("Ä", "Ae")
@@ -85,7 +77,7 @@ def writeTags(header_data: str, entry: EntryType, tt_type_name: str|dict[str, st
     else:
         pass
 
-    if not tt_type_name == "":
+    if not tt_type_name == {}:
         for lang in LANGUAGES:
             header_data += "  - term: \"" + tt_type_name['PlaceName']["Name_" + lang] + "\"\n"
 
@@ -320,13 +312,37 @@ def getMapImages(mapid: str, contentname: str) -> str:
             result += f'      displayname: "{image.replace(ncontentname + " - ", "")}"\n'
     return result
 
+def get_territorytype_from_mapid(entry) -> tuple[dict, str]:
+    for key, tt_type in territorytype.items():
+        if tt_type["Name"].lower() == entry["mapid"].lower():
+            return tt_type, territorytype[key]['Bg']
+    print_color_red(f"Could not find territorytype for {entry['mapid']} ({entry['title']})")
+    return {}, ""
+
+def getFirstMapEntryId(entry):
+    replace = 0
+    ntitel = entry['mapname']
+    for key, value in maps.items():
+        if ntitel == value['PlaceName']['Name_de']:
+            return key
+        elif ntitel == value['PlaceNameRegion']['Name_de']:
+            return key
+        elif ntitel == value['PlaceNameSub']['Name_de']:
+            return key
+        elif entry['mapid'] == value['Id']:
+            replace = key
+    return replace
+
 def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_translations):
     global contentfindercondition
     global instancecontent
     global contentfindercondition
     header_data = ""
     tt_type_name, tt_bg_entry = get_territorytype_from_mapid(entry)
-    entry['MapIdNr'] = tt_type_name['Map'].get('row_id', None)
+    entry['MapIdNr'] = getFirstMapEntryId(entry)
+    if not entry['MapIdNr']:
+        entry['MapIdNr'] = tt_type_name.get('Map', {}).get('row_id', None)
+
     if old_wip in ["True", "False"]:
         header_data += 'wip: "' + str(old_wip).title() + '"\n'
     else:

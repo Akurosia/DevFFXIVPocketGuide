@@ -197,6 +197,12 @@
                 <span class="block">{{ page.mapid }}</span>
             </h5>
         {%- endif -%}
+        {%- if page.MapIdNr -%}
+            <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
+                <div data-translate="Sidebar_MapID">MapIdNr: </div>
+                <span class="block">{{ page.MapIdNr }}</span>
+            </h5>
+        {%- endif -%}
         {%- if page.mapimage -%}
             <h5 class="guide-metadata__subtitle {% if page.mapimage.size == 1%}akuflex{% endif %} box small-1of2 med-full">
                 <div data-translate="Sidebar_MapImage">MapImage: </div>
