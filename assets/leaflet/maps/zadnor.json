@@ -1,0 +1,1124 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "notorious_monster",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060852_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060801_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060802_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060803_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060804_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/000000/000000_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060501_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060502_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060503_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060504_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060505_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060506_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060508_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060994_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "notorious_monsters",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060958_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063926_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063909_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063910_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063911_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "quest_side",
+            "name": "Quest - side",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071221_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_main",
+            "name": "Quest - main",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071201_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_side_small",
+            "name": "Quest - side_small",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071222_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_blue",
+            "name": "Quest - blue",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_blue2",
+            "name": "Quest - blu2e",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_alt_sharliyan",
+            "name": "Quest - alt_sharliyan",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/062000/062521_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_tuliyollal",
+            "name": "Quest - Tuliyollal",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/062000/062523_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing",
+            "groupName": "Fishing"
+        },
+        {
+            "id": "fishing_spear",
+            "name": "Fishing - Speer",
+            "group": "fishing",
+            "groupName": "Fishing"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        },
+        {
+            "id": "treasuremap_vergilbte_lederkarte",
+            "name": "Vergilbte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_steinbockleder_karte",
+            "name": "Vergilbte Steinbockleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kroetenleder_karte",
+            "name": "Vergilbte Krötenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_keilerleder_karte",
+            "name": "Vergilbte Keilerleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_basiliskenleder_karte",
+            "name": "Vergilbte Basiliskenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_geheimnisvolle_karte",
+            "name": "Geheimnisvolle Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_unversteckte_lederkarte",
+            "name": "Unversteckte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_schatzkarte_aus_der_thorne_aera",
+            "name": "Schatzkarte aus der Thorne-Ära",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_archaeoleder_karte",
+            "name": "Vergilbte Archaeoleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_wyvernleder_karte",
+            "name": "Vergilbte Wyvernleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_drachenleder_karte",
+            "name": "Vergilbte Drachenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gaganaleder_karte",
+            "name": "Vergilbte Gaganaleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gazellenleder_karte",
+            "name": "Vergilbte Gazellenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schatzkarte_eines_meisterdiebes",
+            "name": "Vergilbte Schatzkarte eines Meisterdiebes",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_exotenleder_karte",
+            "name": "Vergilbte Exotenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_smilodonleder_karte",
+            "name": "Vergilbte Smilodonleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_glaucusleder_karte",
+            "name": "Vergilbte Glaucusleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_mythenleder_karte",
+            "name": "Vergilbte Mythenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gajaleder_schatzkarte",
+            "name": "Vergilbte Gajaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kumbhilaleder_schatzkarte",
+            "name": "Vergilbte Kumbhilaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_ophiotaurosleder_schatzkarte",
+            "name": "Vergilbte Ophiotaurosleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_legendenleder_karte",
+            "name": "Vergilbte Legendenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_sagenleder_karte",
+            "name": "Vergilbte Sagenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "name": "Vergilbte Schakalleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "name": "Vergilbte Br'aaxleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gargantualeder_karte",
+            "name": "Vergilbte Gargantualeder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "zadnor",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4b/n4b6 - Zadnor-Hochebene.png",
+    "markers": [
+        {
+            "id": "1721",
+            "name": "Beobachten verboten",
+            "category": "gegner_wellen",
+            "position": [
+                1420.6100000000001,
+                325.67999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1723",
+            "name": "Eiskalte Begegnung",
+            "category": "gegner_wellen",
+            "position": [
+                1193.83,
+                538.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1724",
+            "name": "Lass die Puppen tanzen",
+            "category": "gegner_wellen",
+            "position": [
+                1155.37,
+                224.77999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1742",
+            "name": "Magitek-Maschinen en masse",
+            "category": "gegner_wellen",
+            "position": [
+                555.96,
+                1419.6100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1738",
+            "name": "Was du heute kannst besorgen",
+            "category": "gegner_wellen",
+            "position": [
+                967.56,
+                1269.76
+            ],
+            "description": ""
+        },
+        {
+            "id": "1719",
+            "name": "Ketzer Fabineau gibt sich die Ehre",
+            "category": "boss_besiegen",
+            "position": [
+                1090.44,
+                383.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1722",
+            "name": "Rückkehr des Magitek-Soldaten",
+            "category": "boss_besiegen",
+            "position": [
+                1353.68,
+                634.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "1720",
+            "name": "Mörderischer Onmyoji",
+            "category": "boss_besiegen",
+            "position": [
+                1193.83,
+                523.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1717",
+            "name": "Die allergrößte Bestienbändigerin aller Zeiten",
+            "category": "boss_besiegen",
+            "position": [
+                1155.37,
+                224.77999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "1728",
+            "name": "Gesucht: Der mörderische Meister",
+            "category": "boss_besiegen",
+            "position": [
+                532.98,
+                713.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "1727",
+            "name": "Endkampf mit dem Ketzer",
+            "category": "boss_besiegen",
+            "position": [
+                193.80999999999995,
+                834.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1725",
+            "name": "Größtmöglicher anzunehmender Unfall",
+            "category": "boss_besiegen",
+            "position": [
+                310.20000000000005,
+                654.86
+            ],
+            "description": ""
+        },
+        {
+            "id": "1731",
+            "name": "Rettende Hiebe",
+            "category": "boss_besiegen",
+            "position": [
+                310.20000000000005,
+                654.86
+            ],
+            "description": ""
+        },
+        {
+            "id": "1732",
+            "name": "Endkampf mit dem Puppenspieler",
+            "category": "boss_besiegen",
+            "position": [
+                532.98,
+                713.8
+            ],
+            "description": ""
+        },
+        {
+            "id": "1730",
+            "name": "Der Magitek-Soldat schlägt zurück",
+            "category": "boss_besiegen",
+            "position": [
+                353.15999999999997,
+                897.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1726",
+            "name": "Bestien aus der Vorzeit",
+            "category": "boss_besiegen",
+            "position": [
+                380.13,
+                372.64
+            ],
+            "description": ""
+        },
+        {
+            "id": "1737",
+            "name": "Dunkelfürst Famfrit",
+            "category": "boss_besiegen",
+            "position": [
+                1223.31,
+                1382.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1740",
+            "name": "Verstärkung für die Mech-Einheit",
+            "category": "boss_besiegen",
+            "position": [
+                783.73,
+                1254.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1739",
+            "name": "Eine goldene Gelegenheit",
+            "category": "boss_besiegen",
+            "position": [
+                783.73,
+                1254.28
+            ],
+            "description": ""
+        },
+        {
+            "id": "1736",
+            "name": "Haltet den Onmyoji!",
+            "category": "boss_besiegen",
+            "position": [
+                1223.31,
+                1382.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1735",
+            "name": "Die Farbe des Blutes",
+            "category": "boss_besiegen",
+            "position": [
+                967.56,
+                1269.76
+            ],
+            "description": ""
+        },
+        {
+            "id": "1734",
+            "name": "Die Schillernde und ihr Schoßhund",
+            "category": "boss_besiegen",
+            "position": [
+                678.8399999999999,
+                1576.96
+            ],
+            "description": ""
+        },
+        {
+            "id": "1733",
+            "name": "Die Allergrößte gibt nicht auf",
+            "category": "boss_besiegen",
+            "position": [
+                1223.31,
+                1382.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1741",
+            "name": "Rettende Hiebe Teil 2",
+            "category": "boss_besiegen",
+            "position": [
+                678.8399999999999,
+                1576.96
+            ],
+            "description": ""
+        },
+        {
+            "id": "1718",
+            "name": "Oboro auf der Jagd",
+            "category": "sammeln",
+            "position": [
+                1090.44,
+                383.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "1729",
+            "name": "Energie für Seiryu Zwo",
+            "category": "sammeln",
+            "position": [
+                353.15999999999997,
+                897.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "29",
+            "name": "Hashmallim der Einiger",
+            "category": "ce_boss_besiegen",
+            "position": [
+                1348.68,
+                614.4
+            ],
+            "description": ""
+        },
+        {
+            "id": "20",
+            "name": "Shemhazai der Verräter",
+            "category": "ce_boss_besiegen",
+            "position": [
+                964.06,
+                224.77999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "21",
+            "name": "Hedetet, Stachel des Karglands",
+            "category": "ce_boss_besiegen",
+            "position": [
+                804.21,
+                494.52
+            ],
+            "description": ""
+        },
+        {
+            "id": "25",
+            "name": "Eiswolf Hrodvitnir",
+            "category": "ce_boss_besiegen",
+            "position": [
+                194.80999999999995,
+                834.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "24",
+            "name": "Hanbi, König im Exil",
+            "category": "ce_boss_besiegen",
+            "position": [
+                634.38,
+                794.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "26",
+            "name": "Dämonid Belias",
+            "category": "ce_boss_besiegen",
+            "position": [
+                474.53999999999996,
+                1024.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "18",
+            "name": "Schwarzbrands Testflug",
+            "category": "ce_boss_besiegen",
+            "position": [
+                784.23,
+                1253.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "30",
+            "name": "Regenbogenschlange Ayida",
+            "category": "ce_boss_besiegen",
+            "position": [
+                824.2,
+                1603.4299999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "28",
+            "name": "Alkonost, schrecklich und gefiedert",
+            "category": "ce_boss_besiegen",
+            "position": [
+                544.47,
+                1713.33
+            ],
+            "description": ""
+        },
+        {
+            "id": "17",
+            "name": "Der Geistertrupp",
+            "category": "ce_gegner_wellen",
+            "position": [
+                1523.51,
+                224.77999999999997
+            ],
+            "description": ""
+        },
+        {
+            "id": "22",
+            "name": "Halb Pferd, halb Garlear",
+            "category": "ce_gegner_wellen",
+            "position": [
+                274.73,
+                234.76999999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "27",
+            "name": "Die Gepanzerte Zenturie",
+            "category": "ce_gegner_wellen",
+            "position": [
+                714.3,
+                1443.59
+            ],
+            "description": ""
+        },
+        {
+            "id": "19",
+            "name": "Hyper-Dabog, Stärkster unter Stärksten",
+            "category": "ce_solo_kampf",
+            "position": [
+                1273.76,
+                314.69000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "23",
+            "name": "Menenius, Tribunus der IV. Legion",
+            "category": "ce_solo_kampf",
+            "position": [
+                214.78999999999996,
+                504.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "31",
+            "name": "Revanche: Lyon der Bestienkönig",
+            "category": "ce_solo_kampf",
+            "position": [
+                1073.95,
+                1433.6
+            ],
+            "description": ""
+        },
+        {
+            "type": "quest_blue",
+            "name": "Im Angesicht des Todes",
+            "position": [
+                1720.467,
+                346.423
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Wenn Äther und Emotionen fließen",
+            "position": [
+                1718.211,
+                345.63699999999994
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Cids gefährlicher Plan",
+            "position": [
+                1705.33,
+                387.928
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Pflicht und Sühne",
+            "position": [
+                1705.33,
+                387.928
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Der Adler fliegt wieder",
+            "position": [
+                1703.766,
+                345.528
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Der Adler zieht seine Kreise",
+            "position": [
+                1703.766,
+                345.528
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Orden für deine Brust",
+            "position": [
+                1735.21,
+                350.73900000000003
+            ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1692.0,
+                373.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063921.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1739.0,
+                388.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1694.0,
+                386.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1744.0,
+                385.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1686.0,
+                340.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1676.0,
+                356.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Südliches Plateau",
+            "position": [
+                1200.0,
+                424.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Westliches Plateau",
+            "position": [
+                482.0,
+                766.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nördliches Plateau",
+            "position": [
+                726.0,
+                1454.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Vrdelnis-Gemarkung",
+            "position": [
+                1718.0,
+                368.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Außenposten Zuprtik",
+            "position": [
+                660.0,
+                256.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Außenposten Ljeban",
+            "position": [
+                322.0,
+                1322.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Außenposten Hrmovir",
+            "position": [
+                1138.0,
+                1160.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Castellum Zadnori",
+            "position": [
+                1244.0,
+                1708.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Dalriada",
+            "position": [
+                1280.0,
+                1848.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1772.0,
+                366.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060971.webp"
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Zadnor",
+    "size": [
+        2048,
+        2048
+    ]
+}
