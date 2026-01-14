@@ -626,10 +626,11 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
                 },
                 'debuff_in_use': 'false',
                 'disable': 'false',
+                'max_stacks': status_data.get("MaxStacks", ""),
                 #'damage_type': status_data['damage_type'],
                 'phases': [{'phase': '09'}],
                 'roles': [{'role': 'role'}],
-                'tags': [{'tag': 'tag'}],
+                'tags': [{'tag': 'tag'}, {'tag': "MaxStacks: " + status[str(int(status_id,16))].get("MaxStacks", "x")}],
                 #'notes': [{'note': 'note'}]
             }
             if status_data.get('duration', None):
@@ -663,10 +664,11 @@ def addknowndebuff(status_id, status_data):
         },
         'debuff_in_use': 'true',
         'disable': 'false',
+        'max_stacks': status_data.get("MaxStacks", ""),
         #'damage_type': status_data['damage_type'],
         'phases': [{'phase': '09'}],
         'roles': [{'role': 'Alle'}],
-        'tags': [{'tag': 'Common'}],
+        'tags': [{'tag': 'Common'}, {'tag': "MaxStacks: " + status[str(int(status_id,16))].get("MaxStacks", "x")}],
     }
     return tmp_status
 
