@@ -374,7 +374,7 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
         header_data += 'previous_slug: "' + replaceSlug(entry["prev_content"]) + '"\n'
     if entry["next_content"]:
         header_data += 'next_slug: "' + replaceSlug(entry["next_content"]) + '"\n'
-    if entry["image"]:
+    if entry["image"] and entry["image"] != "[]" :
         header_data += f'image: "{getImage(entry["image"])}"\n'
         # header_data += '  - url: \"/' +  + '\n'
     cat_image = get_cat_image(entry["instanceType"], cfc_key)

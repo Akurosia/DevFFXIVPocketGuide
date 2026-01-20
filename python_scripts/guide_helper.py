@@ -630,7 +630,7 @@ def merge_debuffs(old_enemy_data, new_enemy_data, enemy_type, saved_used_skills_
                 #'damage_type': status_data['damage_type'],
                 'phases': [{'phase': '09'}],
                 'roles': [{'role': 'role'}],
-                'tags': [{'tag': 'tag'}, {'tag': "MaxStacks: " + status[str(int(status_id,16))].get("MaxStacks", "x")}],
+                'tags': [{'tag': 'tag'}, {'tag': "MaxStacks: " + status.get(str(int(status_id,16)), {}).get("MaxStacks", "x")}],
                 #'notes': [{'note': 'note'}]
             }
             if status_data.get('duration', None):
