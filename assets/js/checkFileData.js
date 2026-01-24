@@ -78,21 +78,24 @@ function remove_bodyDiv(){
 
 
 async function load_data(caller){
+    caller = caller || ""; // default when load_data() is called without args
+
     _select = document.getElementById("filterValue")
     _input = document.getElementById("fieldfilter")
+
     _filterterm = document.getElementById("filterterm").value.toLowerCase();
-    _input = _input.value.split(/,\s*/)
-    if (_input == ""){
-        _input = "*"
-    }else {
-        _input = [..._input].map(c => c.trim().toLowerCase());
-    }
-    var Http = new XMLHttpRequest();
-    if (caller == "example"){
-        url = "https://ff14.akurosiakamo.de/extras/json/xivapi_data/" + _select.value;
+
+    const rawInput = _input.value.trim();
+    _input = rawInput.split(/,\s*/);
+
+    if (!rawInput) {
+        _input = "*";
     } else {
-        url = "https://ff14.akurosiakamo.de/extras/json/xivapi_data/" + _select.value;
+        _input = [..._input].map(c => c.trim().toLowerCase()).filter(Boolean);
     }
+
+    var Http = new XMLHttpRequest();
+    url = "https://ff14.akurosiakamo.de/extras/json/xivapi_data/" + _select.value;
     url = encodeURI(url)
     console.log(url)
 
@@ -101,6 +104,46 @@ async function load_data(caller){
     Http.onreadystatechange = (e) => {
         if (Http.readyState == 4 && Http.status == 200){
             let json = JSON.parse(Http.responseText);
+
+            // keep your "example" shaping ONLY when caller === "example"
+            if (caller === "example") {
+                if (json && typeof json === "object" && !Array.isArray(json)) {
+                    const vals = Object.values(json);
+                    if (vals.length) {
+                        const midIndex = Math.floor(vals.length / 2);
+                        if (vals[midIndex] && typeof vals[midIndex] === "object") json = vals[midIndex];
+                    }
+                }
+            }
+            // If load_data() is called without a caller, ensure json is an array of rows
+// Ensure consistent column order + consistent column COUNT across rows
+// Action/large sheets: enforce identical headers & order across ALL rows (prevents drift)
+if (!caller && Array.isArray(json) && json.length && json[0] && typeof json[0] === "object") {
+    const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: "base", ignorePunctuation: true });
+
+    // Build full header list from all rows (Action has late-appearing keys)
+    const headerSet = new Set();
+    for (let i = 0; i < json.length; i++) {
+        const row = json[i];
+        if (row && typeof row === "object") {
+            for (const k of Object.keys(row)) headerSet.add(k);
+        }
+    }
+    const headers = Array.from(headerSet).sort(collator.compare);
+
+    // Rebuild rows with EXACTLY these headers, in this order (no extras)
+    json = json.map((row) => {
+        if (!row || typeof row !== "object") return row;
+        const ordered = {};
+        for (const k of headers) ordered[k] = (k in row) ? row[k] : "";
+        return ordered;
+    });
+}
+
+
+
+
+
             addToBody(json, caller, _filterterm, _input);
             translate_SubmitToLocalStorage();
         }
