@@ -1911,3 +1911,10 @@ ion-icon {
     justify-content: center;
   }
 }
+
+.dosidebyside {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
