@@ -1,27 +1,47 @@
-function translate_getSearchCategories(){
+function translate_getSearchCategories() {
     var Http = new XMLHttpRequest();
-    url = encodeURI('https://ffxivapi.akurosia.de/ffxiv/latestJSONfiles/overview');
+    var url = encodeURI('https://ff14.akurosiakamo.de/extras/json/list_files.php');
+
     Http.open("GET", url, true);
     Http.send();
+
     Http.onreadystatechange = (e) => {
-        if (Http.readyState == 4 && Http.status == 200){
+        if (Http.readyState === 4 && Http.status === 200) {
             _select = document.getElementById("filterValue");
-            let json = JSON.parse(Http.responseText)
 
-            var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base', ignorePunctuation: true});
-            var keys = Object.keys(json);
-            keys = keys.sort(collator.compare)
+            // Parse text instead of JSON
+            let raw = Http.responseText.trim();
 
-            for (var category in keys){
-            var _element = document.createElement('option');
-            _element.setAttribute("value", json[keys[category]]);
-            _element.text = json[keys[category]];
-            _select.appendChild(_element);
+            // Support newline OR comma separated formats
+            let files = raw.includes("\n")? raw.split("\n"): raw.split(",");
+
+            files = files
+                .map(s => s.trim())
+                .filter(Boolean);
+
+            var collator = new Intl.Collator(undefined, {
+                numeric: true,
+                sensitivity: 'base',
+                ignorePunctuation: true
+            });
+
+            files = files.sort(collator.compare);
+
+            for (let file of files) {
+                // Remove wrapping quotes if present
+                file = file.replace(/^"+|"+$/g, '');
+
+                let _element = document.createElement('option');
+                _element.value = file;
+                _element.text = file;
+                _select.appendChild(_element);
             }
+
             translate_loadFromLocalStorage();
         }
-    }
+    };
 }
+
 
 
 function translate_SubmitToLocalStorage(){
@@ -69,9 +89,9 @@ async function load_data(caller){
     }
     var Http = new XMLHttpRequest();
     if (caller == "example"){
-        url = "https://ffxivapi.akurosia.de/ffxiv/latestJSONfields/?name=" + _select.value;
+        url = "https://ff14.akurosiakamo.de/extras/json/xivapi_data/" + _select.value;
     } else {
-        url = "https://ff14.akurosiakamo.de/extras/json/exd-all/latest/" + _select.value;
+        url = "https://ff14.akurosiakamo.de/extras/json/xivapi_data/" + _select.value;
     }
     url = encodeURI(url)
     console.log(url)
@@ -221,7 +241,7 @@ function addBodyElement(_tr, element){
     if (element.startsWith("ui") && element.endsWith(".tex")){
         var value = element.replace(".tex", "_hr1.png")
         var textnode_1 = document.createElement('img');
-        textnode_1.setAttribute("src", "https://ffxiv.akurosia.de/extras/images/" + value);
+        textnode_1.setAttribute("src", "https://ff14.akurosiakamo.de/extras/images/" + value);
         textnode_1.setAttribute("alt", value);
         textnode_1.setAttribute("style", "max-height: 40px; max-width: fit-content;");
     } else{
