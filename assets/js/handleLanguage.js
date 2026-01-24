@@ -101,6 +101,7 @@ function validateArrays() {
 }
 
 function changeLanguageTo(tag, languageCode) {
+    window.localStorage.setItem('duckit_langs', languageCode.slice(0, 2));
     window.localStorage.setItem('translation-language', languageCode);
     window.localStorage.setItem('primary-language', tag);
     executeHandelingLanguages();

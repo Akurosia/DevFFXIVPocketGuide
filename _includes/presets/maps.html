@@ -1,6 +1,19 @@
 <head>
     <link rel="stylesheet" href="https://akutrack.akurosia.org/assets/css/filter.css" />
     <style>
+        @font-face {
+          font-family: "finalf";
+          src: url("https://akutrack.akurosia.org/assets/FFXIV_Lodestone_SSF.ttf") format("truetype");
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+
+        /* Keep your Leaflet popup too */
+        .leaflet-popup-content-wrapper,
+        .leaflet-popup-content-wrapper * {
+          font-family: "finalf", Arial, Helvetica, sans-serif !important;
+        }
         /* Layout: filters left, map right */
         .akutrack_layout {
             display: flex;
