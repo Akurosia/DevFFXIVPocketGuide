@@ -203,15 +203,12 @@
                 // Public helper: only takes rowId, uses cfg.imageUrl from your map config
                 async function forceMapBackgroundByRowId(rowId) {
                     const rid = Number(rowId);
-                    const state2 = await waitUntil(() => state2);
-                    if (!state2) throw new Error("DuckitMapsShared.state2 not available");
-                    // Wait until maps.dropdown.js populated selectors at least once
                     await waitUntil(() => {
                         const expSel = document.getElementById("expansion_selector");
                         return expSel && expSel.options && expSel.options.length > 0;
                     });
                     const cfg = await waitUntil(() => {
-                        const maps = state2.MAPS || [];
+                        const maps = state.MAPS || [];
                         return maps.find(m => Number(m?.row_id) === rid) || null;
                     });
                     if (!cfg) throw new Error("No map config found with row_id: " + rid);
@@ -261,7 +258,7 @@
                         }
                         // Ensure overlay uses cfg.imageUrl (maps.app.js should do this; this guarantees it)
                         await sleep(0);
-                        if (state2.overlay?.setUrl) state2.overlay.setUrl(url);
+                        if (state.overlay?.setUrl) state.overlay.setUrl(url);
                         console.log("Switched to cfg:", {
                             id: cfg.id,
                             row_id: cfg.row_id,
