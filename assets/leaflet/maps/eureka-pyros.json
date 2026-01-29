@@ -1,0 +1,947 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "notorious_monster",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060852_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060801_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060802_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060803_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060804_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/000000/000000_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060501_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060502_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060503_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060504_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060505_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060506_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060508_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060994_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "notorious_monsters",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060958_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063926_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063909_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063910_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063911_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "quest_side",
+            "name": "Quest - side",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071221_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_main",
+            "name": "Quest - main",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071201_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_side_small",
+            "name": "Quest - side_small",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071222_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_blue",
+            "name": "Quest - blue",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_blue2",
+            "name": "Quest - blu2e",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_alt_sharliyan",
+            "name": "Quest - alt_sharliyan",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/062000/062521_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_tuliyollal",
+            "name": "Quest - Tuliyollal",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/062000/062523_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing",
+            "groupName": "Fishing"
+        },
+        {
+            "id": "fishing_spear",
+            "name": "Fishing - Speer",
+            "group": "fishing",
+            "groupName": "Fishing"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        },
+        {
+            "id": "treasuremap_vergilbte_lederkarte",
+            "name": "Vergilbte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_steinbockleder_karte",
+            "name": "Vergilbte Steinbockleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kroetenleder_karte",
+            "name": "Vergilbte Krötenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_keilerleder_karte",
+            "name": "Vergilbte Keilerleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_basiliskenleder_karte",
+            "name": "Vergilbte Basiliskenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_geheimnisvolle_karte",
+            "name": "Geheimnisvolle Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_unversteckte_lederkarte",
+            "name": "Unversteckte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_schatzkarte_aus_der_thorne_aera",
+            "name": "Schatzkarte aus der Thorne-Ära",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_archaeoleder_karte",
+            "name": "Vergilbte Archaeoleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_wyvernleder_karte",
+            "name": "Vergilbte Wyvernleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_drachenleder_karte",
+            "name": "Vergilbte Drachenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gaganaleder_karte",
+            "name": "Vergilbte Gaganaleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gazellenleder_karte",
+            "name": "Vergilbte Gazellenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schatzkarte_eines_meisterdiebes",
+            "name": "Vergilbte Schatzkarte eines Meisterdiebes",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_exotenleder_karte",
+            "name": "Vergilbte Exotenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_smilodonleder_karte",
+            "name": "Vergilbte Smilodonleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_glaucusleder_karte",
+            "name": "Vergilbte Glaucusleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_mythenleder_karte",
+            "name": "Vergilbte Mythenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gajaleder_schatzkarte",
+            "name": "Vergilbte Gajaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kumbhilaleder_schatzkarte",
+            "name": "Vergilbte Kumbhilaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_ophiotaurosleder_schatzkarte",
+            "name": "Vergilbte Ophiotaurosleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_legendenleder_karte",
+            "name": "Vergilbte Legendenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_sagenleder_karte",
+            "name": "Vergilbte Sagenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "name": "Vergilbte Schakalleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "name": "Vergilbte Br'aaxleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gargantualeder_karte",
+            "name": "Vergilbte Gargantualeder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "eureka-pyros",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/z3f/z3fc - Eureka Pyros.png",
+    "markers": [
+        {
+            "id": "1407",
+            "name": "Glückliche Glückshasen",
+            "category": "notorious_monsters",
+            "position": [
+                1146.88,
+                787.23
+            ],
+            "description": ""
+        },
+        {
+            "id": "1388",
+            "name": "Leukosia, das eisige Wehklagen",
+            "category": "notorious_monsters",
+            "position": [
+                1312.72,
+                794.72
+            ],
+            "description": ""
+        },
+        {
+            "id": "1389",
+            "name": "Flauros, die grausame Sturmbestie",
+            "category": "notorious_monsters",
+            "position": [
+                1395.6399999999999,
+                625.89
+            ],
+            "description": ""
+        },
+        {
+            "id": "1390",
+            "name": "Der Sophist und seine Meute",
+            "category": "notorious_monsters",
+            "position": [
+                1556.48,
+                522.49
+            ],
+            "description": ""
+        },
+        {
+            "id": "1391",
+            "name": "Mörderische Marionetten",
+            "category": "notorious_monsters",
+            "position": [
+                1101.92,
+                236.26999999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "1392",
+            "name": "Askalaphos, tödliche Wissbegier",
+            "category": "notorious_monsters",
+            "position": [
+                913.61,
+                635.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1393",
+            "name": "Aus den Tiefen des Abyssus",
+            "category": "notorious_monsters",
+            "position": [
+                843.1800000000001,
+                1394.1399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1394",
+            "name": "Aetolus, Herr der Blitze",
+            "category": "notorious_monsters",
+            "position": [
+                456.54999999999995,
+                1388.1399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1395",
+            "name": "Lesath, der Lavaskorpion",
+            "category": "notorious_monsters",
+            "position": [
+                581.4300000000001,
+                1543.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1396",
+            "name": "Eldthurs, der feurige Gigant",
+            "category": "notorious_monsters",
+            "position": [
+                711.31,
+                1776.27
+            ],
+            "description": ""
+        },
+        {
+            "id": "1397",
+            "name": "Die trauernde Sturmschwalbe",
+            "category": "notorious_monsters",
+            "position": [
+                1015.51,
+                1487.55
+            ],
+            "description": ""
+        },
+        {
+            "id": "1398",
+            "name": "Wüterix, der Söldner",
+            "category": "notorious_monsters",
+            "position": [
+                1041.48,
+                1680.3600000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1408",
+            "name": "Versteinerte Glückshasen",
+            "category": "notorious_monsters",
+            "position": [
+                1196.33,
+                1539.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1399",
+            "name": "Donnernder Dux",
+            "category": "notorious_monsters",
+            "position": [
+                1322.21,
+                1651.3899999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1400",
+            "name": "Die Axt im Walde",
+            "category": "notorious_monsters",
+            "position": [
+                1466.07,
+                1528.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "1401",
+            "name": "Glaukopis und ihre geflügelten Töchter",
+            "category": "notorious_monsters",
+            "position": [
+                1551.98,
+                1339.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1402",
+            "name": "Zwillinge wider Willen",
+            "category": "notorious_monsters",
+            "position": [
+                523.99,
+                382.63
+            ],
+            "description": ""
+        },
+        {
+            "id": "1404",
+            "name": "Penthesilea, Königin der Flammenfeen",
+            "category": "notorious_monsters",
+            "position": [
+                1746.29,
+                1801.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1403",
+            "name": "Eisiges Wolfsgeheul",
+            "category": "notorious_monsters",
+            "position": [
+                1152.37,
+                592.9200000000001
+            ],
+            "description": ""
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nordkuppe",
+            "position": [
+                542.0,
+                958.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schneewehen",
+            "position": [
+                596.0,
+                746.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nordöstliche Eisnadeln",
+            "position": [
+                1400.0,
+                806.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Südwestliche Eisnadeln",
+            "position": [
+                1300.0,
+                200.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Singende Eisgrotte",
+            "position": [
+                610.0,
+                282.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Leuchtfeuer",
+            "position": [
+                1208.0,
+                1082.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Westlicher Flammenfels",
+            "position": [
+                424.0,
+                1574.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Östlicher Flammenfels",
+            "position": [
+                1610.0,
+                1538.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Magielabor",
+            "position": [
+                637.0,
+                1051.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Drachenstern-Observatorium",
+            "position": [
+                1144.0,
+                209.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Brennkammer",
+            "position": [
+                1146.0,
+                1225.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Karbonatit-Steinbruch",
+            "position": [
+                576.0,
+                1656.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Surgate-Landhaus",
+            "position": [
+                891.0,
+                557.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Garten des Trotzes",
+            "position": [
+                1153.0,
+                587.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                733.0,
+                856.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060971.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Partisanenpfand",
+            "position": [
+                1063.0,
+                1793.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Feuerring",
+            "position": [
+                1742.0,
+                1801.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                770.0,
+                877.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060959.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1149.0,
+                229.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060959.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1151.0,
+                1221.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060959.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                580.0,
+                1647.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060959.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                785.0,
+                906.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                779.0,
+                910.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                755.0,
+                908.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                715.0,
+                865.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060581.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                800.0,
+                889.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060968.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                831.0,
+                829.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Eureka Pyros",
+    "size": [
+        2048,
+        2048
+    ]
+}

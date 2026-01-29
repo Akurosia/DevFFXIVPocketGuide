@@ -1,0 +1,6337 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "notorious_monster",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060852_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060801_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060802_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060803_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060804_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/000000/000000_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060501_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060502_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060503_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060504_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060505_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060506_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060508_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060994_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "notorious_monsters",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060958_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063926_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063909_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063910_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063911_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "quest_side",
+            "name": "Quest - side",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071221_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_main",
+            "name": "Quest - main",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071201_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_side_small",
+            "name": "Quest - side_small",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071222_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_blue",
+            "name": "Quest - blue",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_blue2",
+            "name": "Quest - blu2e",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_alt_sharliyan",
+            "name": "Quest - alt_sharliyan",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/062000/062521_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_tuliyollal",
+            "name": "Quest - Tuliyollal",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/062000/062523_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing",
+            "groupName": "Fishing"
+        },
+        {
+            "id": "fishing_spear",
+            "name": "Fishing - Speer",
+            "group": "fishing",
+            "groupName": "Fishing"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        },
+        {
+            "id": "treasuremap_vergilbte_lederkarte",
+            "name": "Vergilbte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_steinbockleder_karte",
+            "name": "Vergilbte Steinbockleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kroetenleder_karte",
+            "name": "Vergilbte Krötenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_keilerleder_karte",
+            "name": "Vergilbte Keilerleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_basiliskenleder_karte",
+            "name": "Vergilbte Basiliskenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_geheimnisvolle_karte",
+            "name": "Geheimnisvolle Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_unversteckte_lederkarte",
+            "name": "Unversteckte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_schatzkarte_aus_der_thorne_aera",
+            "name": "Schatzkarte aus der Thorne-Ära",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_archaeoleder_karte",
+            "name": "Vergilbte Archaeoleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_wyvernleder_karte",
+            "name": "Vergilbte Wyvernleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_drachenleder_karte",
+            "name": "Vergilbte Drachenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gaganaleder_karte",
+            "name": "Vergilbte Gaganaleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gazellenleder_karte",
+            "name": "Vergilbte Gazellenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schatzkarte_eines_meisterdiebes",
+            "name": "Vergilbte Schatzkarte eines Meisterdiebes",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_exotenleder_karte",
+            "name": "Vergilbte Exotenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_smilodonleder_karte",
+            "name": "Vergilbte Smilodonleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_glaucusleder_karte",
+            "name": "Vergilbte Glaucusleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_mythenleder_karte",
+            "name": "Vergilbte Mythenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gajaleder_schatzkarte",
+            "name": "Vergilbte Gajaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kumbhilaleder_schatzkarte",
+            "name": "Vergilbte Kumbhilaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_ophiotaurosleder_schatzkarte",
+            "name": "Vergilbte Ophiotaurosleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_legendenleder_karte",
+            "name": "Vergilbte Legendenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_sagenleder_karte",
+            "name": "Vergilbte Sagenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "name": "Vergilbte Schakalleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "name": "Vergilbte Br'aaxleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gargantualeder_karte",
+            "name": "Vergilbte Gargantualeder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "south-shroud",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/f1f/f1f3 - Südwald.png",
+    "markers": [
+        {
+            "id": "167",
+            "name": "Ruhig Blut",
+            "category": "kill_enemies",
+            "position": [
+                717.8,
+                1194.33
+            ],
+            "description": ""
+        },
+        {
+            "id": "170",
+            "name": "Mautstelle",
+            "category": "kill_enemies",
+            "position": [
+                1001.02,
+                1075.95
+            ],
+            "description": ""
+        },
+        {
+            "id": "163",
+            "name": "Fallenfäller",
+            "category": "kill_enemies",
+            "position": [
+                1082.94,
+                1030.49
+            ],
+            "description": ""
+        },
+        {
+            "id": "215",
+            "name": "Wie Motten zum Licht",
+            "category": "kill_enemies",
+            "position": [
+                768.25,
+                956.5699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "158",
+            "name": "Schlichtungsstelle",
+            "category": "kill_enemies",
+            "position": [
+                1252.28,
+                1003.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "626",
+            "name": "Abgelenkt",
+            "category": "kill_enemies",
+            "position": [
+                791.73,
+                758.26
+            ],
+            "description": ""
+        },
+        {
+            "id": "627",
+            "name": "Stinkt zum Himmel",
+            "category": "kill_enemies",
+            "position": [
+                743.27,
+                589.4200000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "159",
+            "name": "Das Nest sprengen",
+            "category": "kill_enemies",
+            "position": [
+                1081.44,
+                1239.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "624",
+            "name": "Nicht versumpfen",
+            "category": "kill_enemies",
+            "position": [
+                918.1,
+                601.9100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "154",
+            "name": "Molchminimierung",
+            "category": "kill_enemies",
+            "position": [
+                1010.01,
+                626.39
+            ],
+            "description": ""
+        },
+        {
+            "id": "173",
+            "name": "※β1不要：ウォータースプライトの大量発生",
+            "category": "kill_enemies",
+            "position": [
+                1003.52,
+                676.8399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "171",
+            "name": "Hinterholz",
+            "category": "kill_enemies",
+            "position": [
+                742.28,
+                954.5699999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "708",
+            "name": "Lustige Eiersuche",
+            "category": "kill_enemies",
+            "position": [
+                1001.52,
+                635.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "166",
+            "name": "Eine Runde aufs Haus",
+            "category": "defense",
+            "position": [
+                840.6800000000001,
+                1081.44
+            ],
+            "description": ""
+        },
+        {
+            "id": "161",
+            "name": "Das Nest verteidigen",
+            "category": "defense",
+            "position": [
+                1081.44,
+                1239.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "162",
+            "name": "Das Nest halten",
+            "category": "defense",
+            "position": [
+                1098.93,
+                1298.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "153",
+            "name": "Großwildjagd",
+            "category": "kill_boss",
+            "position": [
+                944.58,
+                965.06
+            ],
+            "description": ""
+        },
+        {
+            "id": "164",
+            "name": "Königsklauen stutzen",
+            "category": "kill_boss",
+            "position": [
+                1475.56,
+                1110.42
+            ],
+            "description": ""
+        },
+        {
+            "id": "160",
+            "name": "Das Nest säubern",
+            "category": "kill_boss",
+            "position": [
+                1081.44,
+                1238.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "169",
+            "name": "Schwarzer Freitag",
+            "category": "kill_boss",
+            "position": [
+                711.31,
+                408.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "628",
+            "name": "Grimmiges Beißendes",
+            "category": "kill_boss",
+            "position": [
+                1557.98,
+                821.7
+            ],
+            "description": ""
+        },
+        {
+            "id": "190",
+            "name": "Kehr zurück in deinen Staub",
+            "category": "kill_boss",
+            "position": [
+                720.8,
+                583.9300000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "201",
+            "name": "Der dunkle Reiter",
+            "category": "kill_boss",
+            "position": [
+                1643.4,
+                935.09
+            ],
+            "description": ""
+        },
+        {
+            "id": "202",
+            "name": "Der dunkle Reiter",
+            "category": "kill_boss",
+            "position": [
+                766.25,
+                445.55999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "203",
+            "name": "Der dunkle Reiter",
+            "category": "kill_boss",
+            "position": [
+                856.66,
+                920.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "204",
+            "name": "Der dunkle Reiter",
+            "category": "kill_boss",
+            "position": [
+                957.56,
+                1075.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "168",
+            "name": "Kurzen Prozess",
+            "category": "collect",
+            "position": [
+                1440.09,
+                1033.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "172",
+            "name": "Unrecht Gut",
+            "category": "collect",
+            "position": [
+                1324.71,
+                1032.49
+            ],
+            "description": ""
+        },
+        {
+            "type": "treasuremap_vergilbte_lederkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                814.8,
+                1015.9
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_lederkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                715.4,
+                618.5
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_lederkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1331.0,
+                1215.8
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_steinbockleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Steinbockleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1042.9,
+                1120.1
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_steinbockleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Steinbockleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1342.1,
+                982.1
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_steinbockleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Steinbockleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1224.3,
+                1188.3
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_kroetenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Krötenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                804.6,
+                476.79999999999995
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_kroetenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Krötenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                855.2,
+                898.3
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_kroetenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Krötenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1108.2,
+                1010.4
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_keilerleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Keilerleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1278.7,
+                976.1
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_keilerleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Keilerleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                919.7,
+                1135.6
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_keilerleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Keilerleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                957.2,
+                655.1
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_basiliskenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Basiliskenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1475.3,
+                852.9
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_basiliskenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Basiliskenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1400.1,
+                881.9
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_basiliskenleder_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Basiliskenleder-Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1091.7,
+                871.2
+            ]
+        },
+        {
+            "type": "treasuremap_geheimnisvolle_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Geheimnisvolle Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1164.6,
+                852.3
+            ]
+        },
+        {
+            "type": "treasuremap_geheimnisvolle_karte",
+            "imageUrl": "/assets/img/TreasureMaps/Geheimnisvolle Karte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1144.8,
+                1152.9
+            ]
+        },
+        {
+            "type": "treasuremap_unversteckte_lederkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Unversteckte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                740.7,
+                1123.7
+            ]
+        },
+        {
+            "type": "treasuremap_unversteckte_lederkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Unversteckte Lederkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                852.8,
+                774.5
+            ]
+        },
+        {
+            "type": "treasuremap_schatzkarte_aus_der_thorne_aera",
+            "imageUrl": "/assets/img/TreasureMaps/Schatzkarte aus der Thorne-Ära/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                786.8,
+                962.1
+            ]
+        },
+        {
+            "type": "treasuremap_schatzkarte_aus_der_thorne_aera",
+            "imageUrl": "/assets/img/TreasureMaps/Schatzkarte aus der Thorne-Ära/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                829.8,
+                601.2
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Oberer Hathoeva",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                850,
+                1148
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Mittlerer Hathoeva",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                947,
+                972
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Unterer Hathoeva",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                867,
+                858
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Östlicher Hathoeva",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1142,
+                981
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Goblinblut",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1324,
+                1025
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Wurzelmoor",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                880,
+                647
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Urths Segen",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                1576,
+                901
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Außerhalb des Forschungsbereichs",
+            "position": [
+                816.571,
+                663.909
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Freibriefe von Mühlenbruch",
+            "position": [
+                1225.526,
+                1085.4184
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Freibriefe von Camp Seelenruhe",
+            "position": [
+                785.059,
+                679.619
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Die Rettung der Ältesten",
+            "position": [
+                858.0889999999999,
+                1105.3154
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Ein zweites Zuhause",
+            "position": [
+                856.105,
+                1100.6766
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Ehre dem Hüter des Waldes",
+            "position": [
+                856.105,
+                1100.6766
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Flussfischer",
+            "position": [
+                853.19,
+                1108.1294
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Ruinöse Plagegeister",
+            "position": [
+                861.674,
+                1081.4113
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Heimstatt der Dunkelalben",
+            "position": [
+                812.412,
+                984.1941
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Prävention statt Vergeltung",
+            "position": [
+                853.19,
+                1108.1294
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Verräter in den eigenen Reihen",
+            "position": [
+                858.0889999999999,
+                1105.3154
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Buscarrons Augen und Ohren",
+            "position": [
+                853.19,
+                1108.1294
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Die Ruhe des Waldes",
+            "position": [
+                853.19,
+                1108.1294
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "In Freundschaft verbunden",
+            "position": [
+                858.0889999999999,
+                1105.3154
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Von den Göttern verlassen",
+            "position": [
+                1231.782,
+                1063.5362
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Der König der Wilderer",
+            "position": [
+                1200.44,
+                1066.9884
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Not macht verbrecherisch",
+            "position": [
+                1182.496,
+                1073.3934
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Der Apfel fällt nicht weit vom Stamm",
+            "position": [
+                1180.801,
+                1098.2456
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Süße Erinnerungen",
+            "position": [
+                1237.113,
+                1188.541
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Verlorene Heimat",
+            "position": [
+                1174.296,
+                1096.5701
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Großvaters Axt",
+            "position": [
+                1175.777,
+                1097.2361
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Die über Hunger klagen",
+            "position": [
+                1221.788,
+                1046.1409
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Geschmacksfrage",
+            "position": [
+                1301.5230000000001,
+                1279.581
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Dem Schicksal zum Trotze",
+            "position": [
+                1231.782,
+                1063.5362
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Der selbstlose Soldat",
+            "position": [
+                1231.782,
+                1063.5362
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Das Eis bricht",
+            "position": [
+                1231.782,
+                1063.5362
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Fernweh",
+            "position": [
+                793.071,
+                685.723
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Hölzernes Missgeschick",
+            "position": [
+                820.307,
+                656.6700000000001
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Abendmahl mit der Familie",
+            "position": [
+                1223.275,
+                1109.3968
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Der Ritter der Furcht",
+            "position": [
+                1204.623,
+                1102.7823
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Die Wahrheit der heiligen Schrift",
+            "position": [
+                1233.364,
+                1045.956
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Die Stimmen der Gebieter",
+            "position": [
+                884.548,
+                742.303
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Reicht euch die Hände",
+            "position": [
+                884.548,
+                742.303
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Das Vermächtnis eines Padjal",
+            "position": [
+                884.548,
+                742.303
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Die Grabräuber",
+            "position": [
+                884.548,
+                742.303
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Ruhe in Frieden",
+            "position": [
+                884.548,
+                742.303
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Die Wiege der Poesie",
+            "position": [
+                1040.4836,
+                1031.32295
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Das Erbe der Barden",
+            "position": [
+                1040.4836,
+                1031.32295
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Der hochmütige Narr",
+            "position": [
+                1040.4836,
+                1031.32295
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Des Barden neue Kleider",
+            "position": [
+                1040.4836,
+                1031.32295
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Requiem",
+            "position": [
+                1040.4836,
+                1031.32295
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Mein kleiner Chocobo",
+            "position": [
+                804.774,
+                685.5699999999999
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Mysterium Königsbeschwörung",
+            "position": [
+                884.548,
+                742.303
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Jenseits der Furt",
+            "position": [
+                1200.44,
+                1066.9884
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Neue Barden braucht das Land",
+            "position": [
+                1040.4836,
+                1031.32295
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "In Großvaters Fußstapfen",
+            "position": [
+                884.548,
+                742.303
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Die Furcht vor dem Anderen",
+            "position": [
+                884.548,
+                742.303
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Die Arkana",
+            "position": [
+                1209.645,
+                973.4826
+            ]
+        },
+        {
+            "type": "quest_blue2",
+            "name": "Abstieg in die Katakomben",
+            "position": [
+                1211.551,
+                1063.2524
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Von Liebe und Unsterblichkeit",
+            "position": [
+                1200.462,
+                1071.5406
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Aufruhr in Ostend",
+            "position": [
+                884.548,
+                742.303
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Geheimnis des Purpurlaubkriegs",
+            "position": [
+                1040.4836,
+                1031.32295
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Auf den Spuren des Vaters",
+            "position": [
+                803.185,
+                660.5799999999999
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Verflixte Fee",
+            "position": [
+                803.185,
+                660.5799999999999
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Ewige Bande",
+            "position": [
+                803.185,
+                660.5799999999999
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Balladen, die das Leben schreibt",
+            "position": [
+                1040.4836,
+                1031.32295
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Heilung kommt aus dem Herzen",
+            "position": [
+                884.548,
+                742.303
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Ein Horst für jeden Vogel",
+            "position": [
+                858.0889999999999,
+                1105.3154
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Auf Teteroons Spuren",
+            "position": [
+                858.0889999999999,
+                1105.3154
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Dem Verräter auf der Spur",
+            "position": [
+                858.0889999999999,
+                1105.3154
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Freie Bahn ins Wurzelmoor",
+            "position": [
+                792.572,
+                684.4870000000001
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Das Geheimnis der Zwölf",
+            "position": [
+                1228.063,
+                1056.0388
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Was riecht denn da?",
+            "position": [
+                1229.088,
+                1095.6747
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Aufs Glatteis geführt",
+            "position": [
+                1229.088,
+                1095.6747
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Der Wille der Natur",
+            "position": [
+                1229.088,
+                1095.6747
+            ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tiefer Wald",
+            "position": [
+                656.0,
+                1268.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ostwald",
+            "position": [
+                1300.0,
+                1284.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Östliches Thanalan",
+            "position": [
+                740.0,
+                332.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Obere Pfade",
+            "position": [
+                975.0,
+                1016.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Buscarrons Narbe",
+            "position": [
+                732.0,
+                1222.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Buscarrons Horst",
+            "position": [
+                842.0,
+                1073.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tausend Löcher von Toto-Rak",
+            "position": [
+                932.0,
+                1194.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Issom-Har",
+            "position": [
+                796.0,
+                992.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Niemandshöhle",
+            "position": [
+                718.0,
+                938.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Untere Pfade",
+            "position": [
+                786.0,
+                494.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Camp Seelenruhe",
+            "position": [
+                793.0,
+                668.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Historisches Amdapor",
+            "position": [
+                660.0,
+                568.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Wurzelmoor",
+            "position": [
+                925.0,
+                623.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Luftschiff-Landeplatz (Südwald)",
+            "position": [
+                688.0,
+                406.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Natternhain",
+            "position": [
+                1096.0,
+                808.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ruinen von Amdapor",
+            "position": [
+                1204.0,
+                856.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Florarium der Stille",
+            "position": [
+                1180.0,
+                1160.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mühlenbruch",
+            "position": [
+                1203.0,
+                1095.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Rotbauch-Nest",
+            "position": [
+                1082.0,
+                1222.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Goblin-Treff",
+            "position": [
+                1345.0,
+                1048.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Rotthaufen",
+            "position": [
+                1462.0,
+                1084.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Urths Segen",
+            "position": [
+                1512.0,
+                888.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Urths Quelle",
+            "position": [
+                1644.0,
+                946.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                860.0,
+                1104.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                849.0,
+                1108.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mun-Tuy-Braukeller",
+            "position": [
+                1290.0,
+                1233.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1218.0,
+                1077.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                824.0,
+                650.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1232.0,
+                1060.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1186.0,
+                1084.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                820.0,
+                1083.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                1195.0,
+                1071.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                818.0,
+                683.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                869.0,
+                1081.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1233.0,
+                1093.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1225.0,
+                1088.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1206.0,
+                1065.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                810.0,
+                653.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                803.0,
+                657.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                800.0,
+                661.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                932.0,
+                1189.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Östliches Thanalan",
+            "position": [
+                757.0,
+                345.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                662.0,
+                568.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1203.0,
+                1063.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1202.0,
+                1068.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1212.0,
+                1060.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063971.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1006.0,
+                984.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060425.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Unteres La Noscea",
+            "position": [
+                1074.0,
+                663.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Untere Decks",
+            "position": [
+                879.0,
+                1269.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060447.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Untere Decks",
+            "position": [
+                1013.0,
+                1080.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060447.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Untere Decks",
+            "position": [
+                826.0,
+                823.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060447.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1016.0,
+                1460.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                911.0,
+                1287.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1055.0,
+                879.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zur Ertränkten Sorge \n(Abenteurergilde)",
+            "position": [
+                1030.0,
+                1018.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060314.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gasthaus Gaffelschoner",
+            "position": [
+                1055.0,
+                999.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060436.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Korallenturm \n(Marodeurgilde)",
+            "position": [
+                1010.0,
+                1538.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060331.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Naldiq & Vymelli \n(Grobschmiedegilde)\n(Plattnergilde)",
+            "position": [
+                932.0,
+                638.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060337.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                962.0,
+                608.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060334.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Restaurant Bismarck \n(Gourmetgilde)",
+            "position": [
+                896.0,
+                1336.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060335.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mahlstrom-Flottenkommando",
+            "position": [
+                1198.0,
+                881.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060567.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kraut und Rüben",
+            "position": [
+                1038.0,
+                1330.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Das Wasserglas",
+            "position": [
+                941.0,
+                781.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Krähenlift",
+            "position": [
+                1045.0,
+                990.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Achterburg",
+            "position": [
+                1054.0,
+                760.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ewige Jungfer",
+            "position": [
+                1184.0,
+                758.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ankerplatz",
+            "position": [
+                655.0,
+                682.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1059.0,
+                1019.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1061.0,
+                706.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1042.0,
+                711.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060427.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Untere Decks",
+            "position": [
+                1138.0,
+                975.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Luftschiff-Landeplatz",
+            "position": [
+                1146.0,
+                960.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sturmtor",
+            "position": [
+                1500.0,
+                418.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                967.0,
+                631.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                965.0,
+                628.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                896.0,
+                1349.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1046.0,
+                703.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1203.0,
+                901.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060460.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1035.0,
+                714.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1216.0,
+                871.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1218.0,
+                900.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1212.0,
+                903.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060571.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1038.0,
+                991.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1030.0,
+                717.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Wachstube des Mahlstroms",
+            "position": [
+                1225.0,
+                900.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1055.0,
+                999.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1225.0,
+                900.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1031.0,
+                1046.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zentrales La Noscea",
+            "position": [
+                1149.0,
+                1024.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Obere Decks",
+            "position": [
+                1012.0,
+                968.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060446.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Obere Decks",
+            "position": [
+                856.0,
+                1086.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060446.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Obere Decks",
+            "position": [
+                846.0,
+                804.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060446.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ätherytenplatz",
+            "position": [
+                860.0,
+                1025.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                353.0,
+                915.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                665.0,
+                658.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                594.0,
+                921.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mealvaan-Tor \n(Hermetikergilde)",
+            "position": [
+                350.0,
+                1004.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060330.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fischers Bodden \n(Fischergilde)",
+            "position": [
+                696.0,
+                700.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060333.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                1124.0,
+                1044.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fähranleger",
+            "position": [
+                238.0,
+                932.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060339.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fähranleger - Limsa Lominsa",
+            "position": [
+                646.0,
+                602.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060456.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bollwerkhalle",
+            "position": [
+                1024.0,
+                1026.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Krähenlift",
+            "position": [
+                1046.0,
+                988.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der Oktant",
+            "position": [
+                860.0,
+                994.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kaufmannsplatz",
+            "position": [
+                638.0,
+                934.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Östliche Handelsstraße",
+            "position": [
+                726.0,
+                1006.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Westliche Handelsstraße",
+            "position": [
+                530.0,
+                896.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Astalicia",
+            "position": [
+                490.0,
+                636.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                755.0,
+                998.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                710.0,
+                979.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                762.0,
+                970.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                744.0,
+                962.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                723.0,
+                956.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                552.0,
+                947.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                530.0,
+                948.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                552.0,
+                918.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                530.0,
+                918.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                507.0,
+                918.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Östliches La Noscea",
+            "position": [
+                646.0,
+                557.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Westliches La Noscea",
+            "position": [
+                646.0,
+                537.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Westliches Thanalan",
+            "position": [
+                208.0,
+                938.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Obere Decks",
+            "position": [
+                1139.0,
+                973.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Luftschiff-Landeplatz",
+            "position": [
+                1147.0,
+                958.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zephyr-Tor",
+            "position": [
+                1430.0,
+                1028.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                726.0,
+                984.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060425.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                729.0,
+                994.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060426.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                898.0,
+                1006.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                619.0,
+                908.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060460.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                491.0,
+                943.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060425.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                776.0,
+                982.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060425.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                576.0,
+                942.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060425.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Dorf des Nebels",
+            "position": [
+                646.0,
+                517.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                783.0,
+                1003.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060570.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                785.0,
+                983.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060570.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                690.0,
+                966.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060570.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                578.0,
+                923.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060570.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                481.0,
+                942.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060570.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                481.0,
+                922.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060570.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                858.0,
+                978.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060581.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schwestern von Edelweiß\n(Schurkengilde)",
+            "position": [
+                720.0,
+                493.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060362.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1041.0,
+                999.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                716.0,
+                537.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                491.0,
+                925.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060910.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                510.0,
+                949.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                505.0,
+                949.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kugane",
+            "position": [
+                208.0,
+                927.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                842.0,
+                981.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063922.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                227.0,
+                863.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                211.0,
+                888.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                809.0,
+                1034.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063919.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Alt-Sharlayan",
+            "position": [
+                208.0,
+                949.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Krähenlift",
+            "position": [
+                1006.0,
+                1066.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Luftschiff-Landeplatz",
+            "position": [
+                973.0,
+                1033.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060352.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Obere Decks",
+            "position": [
+                1099.0,
+                1051.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Untere Decks",
+            "position": [
+                1099.0,
+                1036.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1007.0,
+                1055.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zephyr-Schneise",
+            "position": [
+                1358.0,
+                898.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sommerfurt",
+            "position": [
+                656.0,
+                1052.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Drei-Malme-Biegung",
+            "position": [
+                508.0,
+                1512.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zephyr-Tor",
+            "position": [
+                980.0,
+                882.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schurkenstrom",
+            "position": [
+                894.0,
+                942.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "La Thagran-Grenzposten",
+            "position": [
+                1214.0,
+                752.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sommerfurt-Höfe",
+            "position": [
+                1207.0,
+                1260.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Klagegrotte",
+            "position": [
+                966.0,
+                1106.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der Agelyss",
+            "position": [
+                768.0,
+                1120.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der Kochkessel",
+            "position": [
+                882.0,
+                1238.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Feldscheune",
+            "position": [
+                1036.0,
+                1334.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der Abstieg",
+            "position": [
+                832.0,
+                1306.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Himmelszug",
+            "position": [
+                724.0,
+                1212.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "De Nevelle-Grenzposten",
+            "position": [
+                832.0,
+                1670.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Flüsterklamm",
+            "position": [
+                1012.0,
+                1480.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der Nymquell",
+            "position": [
+                690.0,
+                1230.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fockmast",
+            "position": [
+                532.0,
+                1338.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Untere Decks",
+            "position": [
+                980.0,
+                862.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Unteres La Noscea",
+            "position": [
+                1232.0,
+                736.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Östliches La Noscea",
+            "position": [
+                859.0,
+                1758.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Westliches La Noscea",
+            "position": [
+                650.0,
+                1626.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                1215.0,
+                1220.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1220.0,
+                1233.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1255.0,
+                1281.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1228.0,
+                1232.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Moraby-Bucht",
+            "position": [
+                1277.0,
+                780.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zedernwald",
+            "position": [
+                1401.0,
+                1173.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gottes Griff",
+            "position": [
+                1010.0,
+                510.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Verrückte Brücke",
+            "position": [
+                1239.0,
+                923.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Augen",
+            "position": [
+                1307.0,
+                996.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Trauernde Witwe",
+            "position": [
+                1160.0,
+                839.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sturmtor",
+            "position": [
+                985.0,
+                905.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Oschons Klammer",
+            "position": [
+                1112.0,
+                677.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gockelburg",
+            "position": [
+                1555.0,
+                1092.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Graue Flotte",
+            "position": [
+                1695.0,
+                1233.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Finstereisenmine",
+            "position": [
+                1349.0,
+                1341.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "La Thagran-Landstraße",
+            "position": [
+                1273.0,
+                956.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Steckenschuppen",
+            "position": [
+                1545.0,
+                1458.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Moraby-Trockendocks",
+            "position": [
+                1175.0,
+                417.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der Salzstrand",
+            "position": [
+                890.0,
+                332.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kerzenwacht-Kai",
+            "position": [
+                1010.0,
+                178.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Leeres Herz",
+            "position": [
+                1041.0,
+                351.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Oschons Fackel",
+            "position": [
+                1130.0,
+                89.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Obere Decks",
+            "position": [
+                973.0,
+                908.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zentrales La Noscea",
+            "position": [
+                1250.0,
+                1370.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Östliches La Noscea",
+            "position": [
+                1594.0,
+                1551.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Östliches La Noscea",
+            "position": [
+                1719.0,
+                1414.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Westliches La Noscea",
+            "position": [
+                940.0,
+                174.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                1526.0,
+                1103.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1583.0,
+                1074.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1180.0,
+                351.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                1070.0,
+                420.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1224.0,
+                349.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1019.0,
+                161.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                979.0,
+                177.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060456.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1514.0,
+                1103.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1210.0,
+                368.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Dorf des Nebels",
+            "position": [
+                1622.0,
+                1132.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Wolfshöhle",
+            "position": [
+                1440.0,
+                328.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Landeplatz Moraby-Trockendocks",
+            "position": [
+                1292.0,
+                310.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060456.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schiffbrecher-Insel",
+            "position": [
+                1302.0,
+                290.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1198.0,
+                356.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063970.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Rotgischt",
+            "position": [
+                1677.0,
+                435.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Regenfänger-Rinne",
+            "position": [
+                641.0,
+                404.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zeitloser Pfad",
+            "position": [
+                1710.0,
+                1138.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sturmvogelturm",
+            "position": [
+                1403.0,
+                381.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sonnenküste",
+            "position": [
+                1564.0,
+                604.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Der Agelyss",
+            "position": [
+                1212.0,
+                903.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fähranleger",
+            "position": [
+                1631.0,
+                636.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060456.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Garloks Höhle",
+            "position": [
+                1247.0,
+                591.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fähranleger - Verborgener Wasserfall",
+            "position": [
+                1369.0,
+                933.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060456.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Verborgener Wasserfall",
+            "position": [
+                1521.0,
+                944.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Brüllvolx' Langrast",
+            "position": [
+                685.0,
+                868.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Durchtrennte Bande",
+            "position": [
+                650.0,
+                587.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mantisfall",
+            "position": [
+                683.0,
+                719.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fähranleger - Regenfänger",
+            "position": [
+                1046.0,
+                802.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060456.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Weinhafen",
+            "position": [
+                963.0,
+                1026.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Castrum Occidens",
+            "position": [
+                1287.0,
+                1026.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zentrales La Noscea",
+            "position": [
+                911.0,
+                977.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Unteres La Noscea",
+            "position": [
+                892.0,
+                284.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Unteres La Noscea",
+            "position": [
+                1271.0,
+                180.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Oberes La Noscea",
+            "position": [
+                1103.0,
+                1139.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Untere Decks",
+            "position": [
+                1722.0,
+                632.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1514.0,
+                557.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                1447.0,
+                577.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1490.0,
+                536.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1005.0,
+                1021.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                1039.0,
+                1001.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                988.0,
+                1061.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1550.0,
+                551.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                971.0,
+                1049.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1010.0,
+                767.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Insel des Ewigen Sommers",
+            "position": [
+                1782.0,
+                542.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Viertelstein",
+            "position": [
+                1800.0,
+                708.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schädeltal",
+            "position": [
+                962.0,
+                866.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Halbstein",
+            "position": [
+                1092.0,
+                1225.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Phantominseln",
+            "position": [
+                917.0,
+                459.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tölpelturm-Siedlung",
+            "position": [
+                1688.0,
+                495.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Dodo-Nistgebiet",
+            "position": [
+                1595.0,
+                693.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Leuchtturm Braubake",
+            "position": [
+                1458.0,
+                561.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sastasha-Höhle",
+            "position": [
+                1362.0,
+                1025.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bierhafen",
+            "position": [
+                1285.0,
+                772.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Camp Schädeltal",
+            "position": [
+                1086.0,
+                965.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Aerghaems Gruft",
+            "position": [
+                1112.0,
+                1092.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Norddamm",
+            "position": [
+                1041.0,
+                1104.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Süddamm",
+            "position": [
+                928.0,
+                968.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Hafen der Geborgenheit",
+            "position": [
+                670.0,
+                1443.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sahagin-Feldlager",
+            "position": [
+                969.0,
+                1105.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sahagin-Feldlager",
+            "position": [
+                881.0,
+                1036.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                623.0,
+                1228.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fähranleger - Bierhafen",
+            "position": [
+                1338.0,
+                675.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060456.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                736.0,
+                596.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Das Schlangennest",
+            "position": [
+                601.0,
+                1260.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zentrales La Noscea",
+            "position": [
+                1836.0,
+                634.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Oberes La Noscea",
+            "position": [
+                1435.0,
+                1036.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Untere Decks",
+            "position": [
+                1329.0,
+                644.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Unteres La Noscea",
+            "position": [
+                1329.0,
+                624.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1676.0,
+                511.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                1694.0,
+                536.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1690.0,
+                528.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1284.0,
+                806.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                1323.0,
+                792.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1265.0,
+                793.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1250.0,
+                793.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1079.0,
+                963.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1302.0,
+                795.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1044.0,
+                1086.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                932.0,
+                940.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fähranleger - Phantominseln",
+            "position": [
+                1329.0,
+                604.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fähranleger - Phantominseln",
+            "position": [
+                733.0,
+                618.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060456.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fähranleger - Bierhafen",
+            "position": [
+                673.0,
+                598.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sapsa-Laichplatz",
+            "position": [
+                802.0,
+                1232.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060554.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schiffsfriedhof",
+            "position": [
+                721.0,
+                308.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Pharos Sirius",
+            "position": [
+                751.0,
+                557.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Novvs Aufzucht",
+            "position": [
+                800.0,
+                1016.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                800.0,
+                978.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                804.0,
+                997.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Riff der Entsendung",
+            "position": [
+                864.0,
+                1322.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mondschatteninsel",
+            "position": [
+                236.0,
+                346.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Anfänger-Arena",
+            "position": [
+                1366.0,
+                878.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Eichenwald",
+            "position": [
+                442.0,
+                809.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bronzesee",
+            "position": [
+                1839.0,
+                998.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zelmas Klamm",
+            "position": [
+                1436.0,
+                1218.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Camp Bronzesee",
+            "position": [
+                1448.0,
+                963.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Memeroons Handelsposten",
+            "position": [
+                697.0,
+                906.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Witwenmühle",
+            "position": [
+                502.0,
+                920.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Thalaos",
+            "position": [
+                602.0,
+                963.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Narrenfall",
+            "position": [
+                413.0,
+                1071.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Palast des Wanderers",
+            "position": [
+                1233.0,
+                946.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Jijiroons Handelsposten",
+            "position": [
+                1260.0,
+                763.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Östliches La Noscea",
+            "position": [
+                1748.0,
+                812.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Äußeres La Noscea",
+            "position": [
+                1309.0,
+                1227.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Äußeres La Noscea",
+            "position": [
+                680.0,
+                1042.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Westliches La Noscea",
+            "position": [
+                546.0,
+                737.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1462.0,
+                930.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chocobo-Ställe",
+            "position": [
+                1438.0,
+                934.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060311.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1480.0,
+                935.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1452.0,
+                910.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1260.0,
+                779.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1242.0,
+                767.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060456.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                693.0,
+                889.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                682.0,
+                911.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060456.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1462.0,
+                975.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Himmelsstiege",
+            "position": [
+                520.0,
+                1426.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Eisensee",
+            "position": [
+                1254.0,
+                1495.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Einsiedlerhütte",
+            "position": [
+                727.0,
+                1603.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Schwebende Stadt Nym",
+            "position": [
+                710.0,
+                1287.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Camp Ausblick",
+            "position": [
+                907.0,
+                1237.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "U'Ghamaro-Minen",
+            "position": [
+                1097.0,
+                1567.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060451.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Koboldgrube",
+            "position": [
+                1220.0,
+                1270.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Oberes La Noscea",
+            "position": [
+                698.0,
+                1108.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Oberes La Noscea",
+            "position": [
+                1277.0,
+                1273.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                887.0,
+                1237.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060448.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                923.0,
+                1226.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                917.0,
+                1215.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060551.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Abbaugebiet des 789. Ordens",
+            "position": [
+                1034.0,
+                1194.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1032.0,
+                1206.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1043.0,
+                1214.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1345.0,
+                1426.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063888.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1355.0,
+                1464.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063890.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1342.0,
+                1439.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063891.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1382.0,
+                1463.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063887.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1385.0,
+                1429.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1382.0,
+                1425.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1301.0,
+                1402.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063895.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1381.0,
+                1438.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060425.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1367.0,
+                1468.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063896.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glasbläser-Grotte",
+            "position": [
+                1290.0,
+                1624.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Millefiori-Hügel",
+            "position": [
+                1200.0,
+                1080.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Weichglasspiegel",
+            "position": [
+                956.0,
+                964.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glassteinküste",
+            "position": [
+                536.0,
+                1416.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schillerstufen",
+            "position": [
+                960.0,
+                602.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fusingway-Schlund",
+            "position": [
+                500.0,
+                494.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kühltunnel",
+            "position": [
+                1320.0,
+                1762.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kühlnarbe",
+            "position": [
+                1706.0,
+                1524.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Windatem-Balg",
+            "position": [
+                890.0,
+                1278.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Erdatem-Balg",
+            "position": [
+                1158.0,
+                1182.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Slumpingway-Fälle",
+            "position": [
+                512.0,
+                1828.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Prismatische Senke",
+            "position": [
+                324.0,
+                1675.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glitzersande",
+            "position": [
+                472.0,
+                1243.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glasbläser-Basis",
+            "position": [
+                1364.0,
+                1444.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Opal-Kreuzung",
+            "position": [
+                1560.0,
+                1026.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Marmorier-Plateau",
+            "position": [
+                856.0,
+                1710.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1360.0,
+                1406.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                873.0,
+                710.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                383.0,
+                1652.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1345.0,
+                1426.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063888.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1355.0,
+                1464.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063890.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1342.0,
+                1439.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063891.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1382.0,
+                1463.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063887.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1385.0,
+                1429.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1382.0,
+                1425.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1301.0,
+                1402.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063895.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1381.0,
+                1438.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060425.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1367.0,
+                1468.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063896.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glasbläser-Grotte",
+            "position": [
+                1290.0,
+                1624.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Millefiori-Hügel",
+            "position": [
+                1200.0,
+                1080.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Weichglasspiegel",
+            "position": [
+                956.0,
+                964.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glassteinküste",
+            "position": [
+                536.0,
+                1416.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schillerstufen",
+            "position": [
+                960.0,
+                602.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kapselgrund",
+            "position": [
+                1542.0,
+                688.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fusingway-Schlund",
+            "position": [
+                500.0,
+                494.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kühltunnel",
+            "position": [
+                1320.0,
+                1762.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kühlnarbe",
+            "position": [
+                1706.0,
+                1524.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Windatem-Balg",
+            "position": [
+                890.0,
+                1278.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Erdatem-Balg",
+            "position": [
+                1158.0,
+                1182.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Slumpingway-Fälle",
+            "position": [
+                512.0,
+                1828.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Prismatische Senke",
+            "position": [
+                324.0,
+                1675.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glitzersande",
+            "position": [
+                472.0,
+                1243.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glasbläser-Basis",
+            "position": [
+                1364.0,
+                1444.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kapsel-Becken",
+            "position": [
+                1436.0,
+                466.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Opal-Kreuzung",
+            "position": [
+                1560.0,
+                1026.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Marmorier-Plateau",
+            "position": [
+                856.0,
+                1710.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1360.0,
+                1406.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                873.0,
+                710.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                383.0,
+                1652.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1696.0,
+                602.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1345.0,
+                1426.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063888.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1355.0,
+                1464.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063890.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1342.0,
+                1439.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063891.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1382.0,
+                1463.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063887.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1385.0,
+                1429.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1382.0,
+                1425.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1301.0,
+                1402.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063895.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1381.0,
+                1438.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060425.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1367.0,
+                1468.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063896.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glasbläser-Grotte",
+            "position": [
+                1290.0,
+                1624.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Millefiori-Hügel",
+            "position": [
+                1200.0,
+                1080.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Weichglasspiegel",
+            "position": [
+                956.0,
+                964.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glassteinküste",
+            "position": [
+                536.0,
+                1416.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schillerstufen",
+            "position": [
+                960.0,
+                602.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kapselgrund",
+            "position": [
+                1542.0,
+                688.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fusingway-Schlund",
+            "position": [
+                500.0,
+                494.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kühltunnel",
+            "position": [
+                1320.0,
+                1762.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kühlnarbe",
+            "position": [
+                1706.0,
+                1524.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Windatem-Balg",
+            "position": [
+                890.0,
+                1278.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Erdatem-Balg",
+            "position": [
+                1158.0,
+                1182.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Slumpingway-Fälle",
+            "position": [
+                512.0,
+                1828.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Prismatische Senke",
+            "position": [
+                324.0,
+                1675.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glitzersande",
+            "position": [
+                472.0,
+                1243.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glasbläser-Basis",
+            "position": [
+                1364.0,
+                1444.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kapsel-Becken",
+            "position": [
+                1436.0,
+                466.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Opal-Kreuzung",
+            "position": [
+                1560.0,
+                1026.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Marmorier-Plateau",
+            "position": [
+                856.0,
+                1710.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1360.0,
+                1406.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                873.0,
+                710.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                383.0,
+                1652.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1005.0,
+                1005.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063888.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1012.0,
+                1043.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063890.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1062.0,
+                1070.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063891.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1043.0,
+                1043.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063887.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1045.0,
+                1007.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1041.0,
+                1003.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kosmopforte",
+            "position": [
+                550.0,
+                1136.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kalabassenbucht ",
+            "position": [
+                478.0,
+                1848.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Weddingways Traugarten",
+            "position": [
+                1600.0,
+                776.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mondtor-Station",
+            "position": [
+                1024.0,
+                1024.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Falltränen",
+            "position": [
+                1090.0,
+                1560.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Blühbetten",
+            "position": [
+                1502.0,
+                934.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Pilzstube",
+            "position": [
+                1386.0,
+                608.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Erdrutschloch",
+            "position": [
+                1192.0,
+                462.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glimmspalt",
+            "position": [
+                522.0,
+                860.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schreiende Krümel",
+            "position": [
+                642.0,
+                1538.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Leere Löcher",
+            "position": [
+                304.0,
+                1622.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bestways Rast",
+            "position": [
+                967.0,
+                1095.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1032.0,
+                1006.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060425.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1020.0,
+                1057.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                484.0,
+                1551.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1451.0,
+                527.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1041.0,
+                1033.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063896.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1005.0,
+                1005.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063888.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1012.0,
+                1043.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063890.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1062.0,
+                1070.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063891.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1043.0,
+                1043.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063887.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1045.0,
+                1007.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1041.0,
+                1003.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kosmopforte",
+            "position": [
+                550.0,
+                1136.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kalabassenbucht ",
+            "position": [
+                478.0,
+                1848.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Weddingways Traugarten",
+            "position": [
+                1600.0,
+                776.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glimmberg",
+            "position": [
+                530.0,
+                148.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mondtor-Station",
+            "position": [
+                1024.0,
+                1024.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Falltränen",
+            "position": [
+                1090.0,
+                1560.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Blühbetten",
+            "position": [
+                1502.0,
+                934.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Pilzstube",
+            "position": [
+                1386.0,
+                608.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Erdrutschloch",
+            "position": [
+                1192.0,
+                462.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glimmspalt",
+            "position": [
+                522.0,
+                860.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schreiende Krümel",
+            "position": [
+                642.0,
+                1538.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Leere Löcher",
+            "position": [
+                304.0,
+                1622.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Heimdalls Trümmer",
+            "position": [
+                328.0,
+                448.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Piercingways Tunnel",
+            "position": [
+                842.0,
+                276.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bestways Rast",
+            "position": [
+                967.0,
+                1095.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1032.0,
+                1006.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060425.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1020.0,
+                1057.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                484.0,
+                1551.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1451.0,
+                527.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                404.0,
+                625.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1041.0,
+                1033.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063896.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1005.0,
+                1005.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063888.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1012.0,
+                1043.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063890.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1073.0,
+                1081.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063891.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1043.0,
+                1043.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063887.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1045.0,
+                1007.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1041.0,
+                1003.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kosmopforte",
+            "position": [
+                550.0,
+                1136.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kalabassenbucht ",
+            "position": [
+                478.0,
+                1848.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Weddingways Traugarten",
+            "position": [
+                1600.0,
+                776.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glimmberg",
+            "position": [
+                530.0,
+                148.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Lunarer Nadir",
+            "position": [
+                1600.0,
+                1648.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mondtor-Station",
+            "position": [
+                1024.0,
+                1024.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Falltränen",
+            "position": [
+                1090.0,
+                1560.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Blühbetten",
+            "position": [
+                1502.0,
+                934.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Pilzstube",
+            "position": [
+                1386.0,
+                608.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Erdrutschloch",
+            "position": [
+                1192.0,
+                462.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glimmspalt",
+            "position": [
+                522.0,
+                860.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schreiende Krümel",
+            "position": [
+                642.0,
+                1538.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Leere Löcher",
+            "position": [
+                304.0,
+                1622.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Heimdalls Trümmer",
+            "position": [
+                328.0,
+                448.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Frostdornen",
+            "position": [
+                1443.0,
+                1828.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chlorophos-Gewölbe",
+            "position": [
+                1604.0,
+                1920.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Fluffigplatz",
+            "position": [
+                1888.0,
+                1824.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ätherfälle",
+            "position": [
+                1954.0,
+                1360.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Piercingways Tunnel",
+            "position": [
+                842.0,
+                276.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nadir-Lift",
+            "position": [
+                1390.0,
+                1384.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bestways Rast",
+            "position": [
+                967.0,
+                1095.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1032.0,
+                1006.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060425.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                981.0,
+                1120.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063895.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1020.0,
+                1057.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                484.0,
+                1551.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1451.0,
+                527.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                404.0,
+                625.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1653.0,
+                1597.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060430.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1041.0,
+                1033.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063896.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Dorgerwor der Scharfsinnige",
+            "position": [
+                773.0,
+                1167.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Weg des Gesangs",
+            "position": [
+                1276.0,
+                1167.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Chirteh-Burgruine",
+            "position": [
+                1024.0,
+                737.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zirgor",
+            "position": [
+                857.0,
+                899.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Silberhügel",
+            "position": [
+                1105.0,
+                1243.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Vahder",
+            "position": [
+                1215.0,
+                948.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schneeschmelze",
+            "position": [
+                1024.0,
+                1024.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Küche",
+            "position": [
+                1024.0,
+                1024.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Cremes",
+            "position": [
+                872.0,
+                1076.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Früchte",
+            "position": [
+                953.0,
+                1166.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Beläge",
+            "position": [
+                1095.0,
+                1166.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Dekorationen",
+            "position": [
+                1176.0,
+                1076.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "South Shroud",
+    "size": [
+        2048,
+        2048
+    ]
+}

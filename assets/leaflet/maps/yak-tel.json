@@ -1,0 +1,2093 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "notorious_monster",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060852_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060801_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060802_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060803_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060804_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/000000/000000_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060501_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060502_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060503_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060504_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060505_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060506_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060508_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060994_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "notorious_monsters",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060958_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063926_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063909_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063910_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063911_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "quest_side",
+            "name": "Quest - side",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071221_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_main",
+            "name": "Quest - main",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071201_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_side_small",
+            "name": "Quest - side_small",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071222_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_blue",
+            "name": "Quest - blue",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_blue2",
+            "name": "Quest - blu2e",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_alt_sharliyan",
+            "name": "Quest - alt_sharliyan",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/062000/062521_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_tuliyollal",
+            "name": "Quest - Tuliyollal",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/062000/062523_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing",
+            "groupName": "Fishing"
+        },
+        {
+            "id": "fishing_spear",
+            "name": "Fishing - Speer",
+            "group": "fishing",
+            "groupName": "Fishing"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        },
+        {
+            "id": "treasuremap_vergilbte_lederkarte",
+            "name": "Vergilbte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_steinbockleder_karte",
+            "name": "Vergilbte Steinbockleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kroetenleder_karte",
+            "name": "Vergilbte Krötenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_keilerleder_karte",
+            "name": "Vergilbte Keilerleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_basiliskenleder_karte",
+            "name": "Vergilbte Basiliskenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_geheimnisvolle_karte",
+            "name": "Geheimnisvolle Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_unversteckte_lederkarte",
+            "name": "Unversteckte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_schatzkarte_aus_der_thorne_aera",
+            "name": "Schatzkarte aus der Thorne-Ära",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_archaeoleder_karte",
+            "name": "Vergilbte Archaeoleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_wyvernleder_karte",
+            "name": "Vergilbte Wyvernleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_drachenleder_karte",
+            "name": "Vergilbte Drachenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gaganaleder_karte",
+            "name": "Vergilbte Gaganaleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gazellenleder_karte",
+            "name": "Vergilbte Gazellenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schatzkarte_eines_meisterdiebes",
+            "name": "Vergilbte Schatzkarte eines Meisterdiebes",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_exotenleder_karte",
+            "name": "Vergilbte Exotenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_smilodonleder_karte",
+            "name": "Vergilbte Smilodonleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_glaucusleder_karte",
+            "name": "Vergilbte Glaucusleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_mythenleder_karte",
+            "name": "Vergilbte Mythenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gajaleder_schatzkarte",
+            "name": "Vergilbte Gajaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kumbhilaleder_schatzkarte",
+            "name": "Vergilbte Kumbhilaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_ophiotaurosleder_schatzkarte",
+            "name": "Vergilbte Ophiotaurosleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_legendenleder_karte",
+            "name": "Vergilbte Legendenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_sagenleder_karte",
+            "name": "Vergilbte Sagenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "name": "Vergilbte Schakalleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "name": "Vergilbte Br'aaxleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gargantualeder_karte",
+            "name": "Vergilbte Gargantualeder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "yak-tel",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/y6f/y6f3 - Yak T'el.png",
+    "markers": [
+        {
+            "id": "1905",
+            "name": "Ein Spediteur hat's schwer",
+            "category": "defense",
+            "position": [
+                1158.37,
+                276.73
+            ],
+            "description": ""
+        },
+        {
+            "id": "1895",
+            "name": "Zahlenmäßig unterlegen",
+            "category": "defense",
+            "position": [
+                672.8399999999999,
+                1279.75
+            ],
+            "description": ""
+        },
+        {
+            "id": "1896",
+            "name": "Ruhm oder Leben",
+            "category": "kill_boss",
+            "position": [
+                680.8399999999999,
+                1199.33
+            ],
+            "description": ""
+        },
+        {
+            "id": "1902",
+            "name": "Denn sie wissen noch immer nicht, was sie tun",
+            "category": "kill_boss",
+            "position": [
+                1655.38,
+                1182.84
+            ],
+            "description": ""
+        },
+        {
+            "id": "1908",
+            "name": "Doktor Motte",
+            "category": "kill_boss",
+            "position": [
+                958.56,
+                875.15
+            ],
+            "description": ""
+        },
+        {
+            "id": "1904",
+            "name": "Darf ich bitten?",
+            "category": "kill_boss",
+            "position": [
+                715.8,
+                594.9200000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1910",
+            "name": "Wundersame Wivren",
+            "category": "kill_enemies",
+            "position": [
+                677.3399999999999,
+                414.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "1901",
+            "name": "Gefährlicher Wald",
+            "category": "kill_enemies",
+            "position": [
+                779.74,
+                1597.94
+            ],
+            "description": ""
+        },
+        {
+            "id": "1897",
+            "name": "Schlingelpflanzen",
+            "category": "kill_enemies",
+            "position": [
+                1346.19,
+                1477.56
+            ],
+            "description": ""
+        },
+        {
+            "id": "1907",
+            "name": "Die Bananenkriege",
+            "category": "kill_enemies",
+            "position": [
+                1335.7,
+                636.88
+            ],
+            "description": ""
+        },
+        {
+            "id": "1898",
+            "name": "Denn sie wussten nicht, was sie tun",
+            "category": "kill_enemies",
+            "position": [
+                1432.1,
+                1295.24
+            ],
+            "description": ""
+        },
+        {
+            "id": "1903",
+            "name": "Zeittotstecherei",
+            "category": "kill_enemies",
+            "position": [
+                723.79,
+                581.9300000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1899",
+            "name": "Je mehr, desto lustiger",
+            "category": "kill_enemies",
+            "position": [
+                1007.52,
+                1389.6399999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1909",
+            "name": "Kapitale Killer",
+            "category": "kill_enemies",
+            "position": [
+                1659.38,
+                611.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "1900",
+            "name": "Viel gefragte Früchte",
+            "category": "kill_enemies",
+            "position": [
+                359.15,
+                1258.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1906",
+            "name": "Penetrante Pilze",
+            "category": "collect",
+            "position": [
+                1467.07,
+                354.65
+            ],
+            "description": ""
+        },
+        {
+            "type": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Schakalleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1151.6,
+                1559.0
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Schakalleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1363.0,
+                1342.2
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Schakalleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                416.1,
+                744.5
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Schakalleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                801.2,
+                1089.4
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Schakalleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                527.7,
+                1672.4
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Schakalleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1375.2,
+                804.6
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Schakalleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1823.0,
+                1157.6
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Schakalleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                652.1,
+                207.29999999999995
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Br'aaxleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1088.0,
+                306.70000000000005
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Br'aaxleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                722.3,
+                755.1
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Br'aaxleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                233.60000000000002,
+                1116.3
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Br'aaxleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1784.9,
+                1472.5
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Br'aaxleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1509.3,
+                1001.2
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Br'aaxleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                512.6,
+                435.20000000000005
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Br'aaxleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1187.2,
+                1048.7
+            ]
+        },
+        {
+            "type": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "imageUrl": "/assets/img/TreasureMaps/Vergilbte Br'aaxleder-Schatzkarte/empty_map.webp",
+            "size": [
+                220,
+                200
+            ],
+            "position": [
+                1080.4,
+                1805.7
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Xd'aa Talat Tsoly",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                359,
+                1505
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Iq Br'aax-Becken",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                166.7,
+                166.7
+            ],
+            "position": [
+                632,
+                1464
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Yak Awak Tsoly",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                266.7,
+                266.7
+            ],
+            "position": [
+                906,
+                1659
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Iq Rrax Tsoly",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                600.0,
+                600.0
+            ],
+            "position": [
+                1538,
+                1759
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Xobr'it Tsoly",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                266.7,
+                266.7
+            ],
+            "position": [
+                1611,
+                1269
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Kleiner Fersenbiss",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                133.3,
+                133.3
+            ],
+            "position": [
+                352,
+                740
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Cenote Moxutural",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                266.7,
+                266.7
+            ],
+            "position": [
+                1035,
+                1084
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Cenote Jayunja",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                600.0,
+                600.0
+            ],
+            "position": [
+                936,
+                502
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Süßquell",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                333.3,
+                333.3
+            ],
+            "position": [
+                1697,
+                467
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Bitternasser Cenote",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                266.7,
+                266.7
+            ],
+            "position": [
+                1222,
+                150
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Xty'iinbek Tsoly",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                266.7,
+                266.7
+            ],
+            "position": [
+                1793,
+                805
+            ]
+        },
+        {
+            "type": "fishing_spear",
+            "name": "Xd'aa Talat Tsoly",
+            "imageUrl": "/assets/img/content/map/speer.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                214,
+                1716
+            ]
+        },
+        {
+            "type": "fishing_spear",
+            "name": "Westen von Iq Rrax Tsoly",
+            "imageUrl": "/assets/img/content/map/speer.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1385,
+                1858
+            ]
+        },
+        {
+            "type": "fishing_spear",
+            "name": "Osten von Iq Rrax Tsoly",
+            "imageUrl": "/assets/img/content/map/speer.webp",
+            "size": [
+                200.0,
+                200.0
+            ],
+            "position": [
+                1683,
+                1716
+            ]
+        },
+        {
+            "type": "fishing_spear",
+            "name": "Tiefen von Iq Rrax Tsoly",
+            "imageUrl": "/assets/img/content/map/speer.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1522,
+                1745
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Im Licht der Bäume",
+            "position": [
+                671.787,
+                1457.1100000000001
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Von Zank und Zwist",
+            "position": [
+                502.91999999999996,
+                1444.768
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Verständnis geht durch den Magen",
+            "position": [
+                1498.922,
+                1382.0520000000001
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Vaterliebe",
+            "position": [
+                504.568,
+                1443.242
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Mit scharfer Axt und leichtem Lächeln",
+            "position": [
+                434.446,
+                1427.782
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Blau blüht der Wald",
+            "position": [
+                494.269,
+                1450.476
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Im Schatten der Bäume",
+            "position": [
+                1762.888,
+                509.023
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Die Lehren des Zwillingsblutes",
+            "position": [
+                1257.6,
+                382.953
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Die zarten Bande des Vertrauens",
+            "position": [
+                1744.296,
+                478.97400000000005
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Die schwere Last der Sorge",
+            "position": [
+                1010.6483,
+                1021.8790300000001
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Von Schuld und Sühne",
+            "position": [
+                1008.3197,
+                1023.521199
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Der Stadt aus Gold entgegen",
+            "position": [
+                1527.225,
+                464.501
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Das Gesetz des Dschungels",
+            "position": [
+                618.1600000000001,
+                1500.6100000000001
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " In den Tiefen der Tsoly",
+            "position": [
+                469.96299999999997,
+                1513.314
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Der blutrote Cenote",
+            "position": [
+                680.323,
+                1428.202
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Mit dem Kopf in den Wolken",
+            "position": [
+                1060.3267,
+                1669.1100000000001
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Das Geheimnis der Aschenfront",
+            "position": [
+                1065.1172,
+                1653.8400000000001
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Lernbegierige Schützlinge",
+            "position": [
+                616.225,
+                1384.55
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Die Narben, die zurückbleiben",
+            "position": [
+                1404.762,
+                1520.821
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Unverhoffte Botengänge",
+            "position": [
+                1014.65403,
+                1676.896
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Von den Schätzen des Waldes",
+            "position": [
+                405.57000000000005,
+                1177.9
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Die hungrige Reise geht weiter",
+            "position": [
+                624.076,
+                1426.401
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Stein auf Stein",
+            "position": [
+                1619.4650000000001,
+                459.16200000000003
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Beflügelt von der Liebe",
+            "position": [
+                1697.074,
+                446.504
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Der nötige Respekt",
+            "position": [
+                1608.519,
+                375.32500000000005
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Schaurige Vorstellung",
+            "position": [
+                1609.909,
+                513.7660000000001
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Die mysteriöse Erscheinung",
+            "position": [
+                1620.99,
+                582.248
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Zur Sonne",
+            "position": [
+                1587.6019999999999,
+                321.71500000000003
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Süßes Geheimnis",
+            "position": [
+                1235.113,
+                591.563
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Die Zukunft des Hains",
+            "position": [
+                1244.299,
+                566.963
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Man ist nur so alt, wie man sich fühlt",
+            "position": [
+                651.298,
+                477.726
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Der beste Freund des Doppro",
+            "position": [
+                660.088,
+                473.98900000000003
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Jagd nach höheren Weihen",
+            "position": [
+                615.29,
+                1422.879
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Eine große Familie",
+            "position": [
+                568.908,
+                1502.874
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Ty'at Rohs Traum",
+            "position": [
+                515.127,
+                1374.118
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Die Aufnahmeprüfung",
+            "position": [
+                1499.326,
+                1350.935
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Des Söldners verlorene Kraft",
+            "position": [
+                1555.077,
+                531.967
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Beim Choliselvaas",
+            "position": [
+                1539.617,
+                546.966
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Nichts stinkt schöner",
+            "position": [
+                1686.867,
+                467.885
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Rauchbomben mit durchschlagender Wirkung",
+            "position": [
+                1686.867,
+                467.885
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Wir sind ein Wald",
+            "position": [
+                1686.867,
+                467.885
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Glimmende Hoffnung",
+            "position": [
+                1730.702,
+                493.221
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Traditionelles Mittel der Doppro",
+            "position": [
+                1602.149,
+                302.15
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Rückkehr eines Hoobigo",
+            "position": [
+                1602.149,
+                302.15
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Die Magie der Boonewa",
+            "position": [
+                1602.149,
+                302.15
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Ein neues Yak T'el",
+            "position": [
+                1602.149,
+                302.15
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Der Stolz von Mamook",
+            "position": [
+                1602.149,
+                302.15
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Unkraut vergeht doch",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Dung und Dünger",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Der Äthertest",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Frierende Felder",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Weiterverwertete Stängel",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Erschöpfte Werkzeuge",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Edel sei die Anbaufläche",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Eine Freude für die Zweigträger",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Ein trauriger Tag für Ungeziefer",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Gut gewickelt",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Wachstumsorientiert",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Gebäudereinigung",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Phantasmalicht, leuchte!",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Ätherische Einflüsse",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Frisches Gemüse gefällig?",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Gut gepflegt ist halb gewonnen",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Neuer, besser, Rauchbomben",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Vertrauen ist gut, Medizin ist besser",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Aromatisierte Entspannung",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Der süße Geschmack der Freundschaft",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Auch Pflanzen haben schlechte Tage",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Kompost aus luftigen Höhen",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " In trockenen Lagern",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Licht für die Felder",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Ein kulinarischer Austausch",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Neue Würze braucht die Suppe",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Vom Feld bis vor die Haustür",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": " Neues Kultgetränk gesucht!",
+            "position": [
+                1613.319,
+                294.53999999999996
+            ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1654.0,
+                511.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                312.0,
+                400.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                241.0,
+                252.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tiefste Tiefen des Himmelstiefen Cenote",
+            "position": [
+                196.0,
+                147.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Himmelstiefer Cenote",
+            "position": [
+                200.0,
+                155.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Iq Br'aax",
+            "position": [
+                626.0,
+                1456.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mamook",
+            "position": [
+                1745.0,
+                498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tuliyollal",
+            "position": [
+                1052.0,
+                1691.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060352.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                643.0,
+                1472.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                634.0,
+                1469.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1651.0,
+                507.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Horizont von Ut'ohmu",
+            "position": [
+                410.0,
+                1598.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Aschenfront von Xobr'it",
+            "position": [
+                1570.0,
+                1158.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Herz von Ja Tiika",
+            "position": [
+                1440.0,
+                158.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schwarzblauer Cexudross",
+            "position": [
+                460.0,
+                258.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ballonplatz",
+            "position": [
+                1045.0,
+                1673.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Yak Awak Tsoly",
+            "position": [
+                880.0,
+                1698.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Sternengarten",
+            "position": [
+                488.0,
+                1458.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Loderfang",
+            "position": [
+                390.0,
+                1178.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Xmun Hojaw",
+            "position": [
+                540.0,
+                1138.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Nachtwacht",
+            "position": [
+                978.0,
+                1364.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Xd'aa Talat Tsoly",
+            "position": [
+                316.0,
+                1684.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Iq Rrax Tsoly",
+            "position": [
+                1520.0,
+                1748.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ilyon Asoh",
+            "position": [
+                1435.0,
+                1481.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Xobr'it Tsoly",
+            "position": [
+                1694.0,
+                1287.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ty'iinbek-Tunnel",
+            "position": [
+                1633.0,
+                879.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Xty'iinbek Tsoly",
+            "position": [
+                1765.0,
+                786.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Glorie von Moxuk Reloonuk",
+            "position": [
+                1378.0,
+                428.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Süßquell",
+            "position": [
+                1653.0,
+                611.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Haus des Blauauges",
+            "position": [
+                1597.0,
+                735.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Golmajiik-Hain",
+            "position": [
+                1244.0,
+                608.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Baum des Lebenden Lichts",
+            "position": [
+                1194.0,
+                787.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Choliselvaas",
+            "position": [
+                1141.0,
+                919.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Cenote Neyozzote",
+            "position": [
+                1208.0,
+                817.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Moxutural Zooj",
+            "position": [
+                1010.0,
+                1018.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Cenote Jayunja",
+            "position": [
+                973.0,
+                548.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schuppenschliff",
+            "position": [
+                655.0,
+                476.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kleiner Fersenbiss",
+            "position": [
+                370.0,
+                702.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Tiefen von Gok Draak",
+            "position": [
+                361.0,
+                424.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Himmelstiefer Cenote",
+            "position": [
+                277.0,
+                323.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                661.0,
+                1436.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060581.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Bitternasser Cenote",
+            "position": [
+                1206.0,
+                166.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Unter-Jeuno",
+            "position": [
+                498.0,
+                353.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Jeuno: Die erste Etappe",
+            "position": [
+                487.0,
+                353.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060428.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1618.0,
+                287.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1617.0,
+                298.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060935.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gok Golma",
+            "position": [
+                1573.0,
+                267.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1754.0,
+                482.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060352.webp"
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Yak T'el",
+    "size": [
+        2048,
+        2048
+    ]
+}
