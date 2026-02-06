@@ -1,0 +1,1502 @@
+{
+    "areas": [],
+    "categories": [
+        {
+            "id": "ore",
+            "name": "Ore Node",
+            "color": "#f59e0b"
+        },
+        {
+            "id": "herb",
+            "name": "Herb Node",
+            "color": "#22c55e"
+        },
+        {
+            "id": "notorious_monster",
+            "name": "Notorious monster",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060852_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060801_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060802_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Sammeln",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060803_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Verteidigen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060804_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "NoType",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/000000/000000_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "kill_enemies",
+            "name": "Kill Enemies",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060501_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "kill_boss",
+            "name": "Kill Boss",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060502_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "collect",
+            "name": "Collect",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060503_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "defense",
+            "name": "Defense",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060504_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Escort",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060505_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Chase",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060506_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Holiday (Limited Time",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060508_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Concerted works",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060994_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "notorious_monsters",
+            "name": "Notorious monsters",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/060000/060958_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "Fete",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063926_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Boss besiegen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063909_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Solo Kampf",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063910_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "fates",
+            "name": "CE Gegner Wellen",
+            "group": "Fates",
+            "groupName": "FATEs",
+            "iconUrl": "/assets/img/game_assets/063000/063911_hr1.webp",
+            "size": [
+                30,
+                30
+            ]
+        },
+        {
+            "id": "quest_side",
+            "name": "Quest - side",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071221_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_main",
+            "name": "Quest - main",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071201_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_side_small",
+            "name": "Quest - side_small",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071222_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_blue",
+            "name": "Quest - blue",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_blue2",
+            "name": "Quest - blu2e",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_alt_sharliyan",
+            "name": "Quest - alt_sharliyan",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/062000/062521_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "quest_tuliyollal",
+            "name": "Quest - Tuliyollal",
+            "group": "quest",
+            "groupName": "Quest",
+            "iconUrl": "/assets/img/game_assets/062000/062523_hr1.webp",
+            "size": [
+                40,
+                40
+            ]
+        },
+        {
+            "id": "fishing_angel",
+            "name": "Fishing - Angel",
+            "group": "fishing",
+            "groupName": "Fishing"
+        },
+        {
+            "id": "fishing_spear",
+            "name": "Fishing - Speer",
+            "group": "fishing",
+            "groupName": "Fishing"
+        },
+        {
+            "id": "gathering-zone",
+            "name": "Gathering Zone",
+            "color": "#FFc55e",
+            "group": "Zones",
+            "groupName": "Zones"
+        },
+        {
+            "id": "treasuremap_vergilbte_lederkarte",
+            "name": "Vergilbte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_steinbockleder_karte",
+            "name": "Vergilbte Steinbockleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kroetenleder_karte",
+            "name": "Vergilbte Krötenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_keilerleder_karte",
+            "name": "Vergilbte Keilerleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_basiliskenleder_karte",
+            "name": "Vergilbte Basiliskenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_geheimnisvolle_karte",
+            "name": "Geheimnisvolle Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_unversteckte_lederkarte",
+            "name": "Unversteckte Lederkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_schatzkarte_aus_der_thorne_aera",
+            "name": "Schatzkarte aus der Thorne-Ära",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_archaeoleder_karte",
+            "name": "Vergilbte Archaeoleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_wyvernleder_karte",
+            "name": "Vergilbte Wyvernleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_drachenleder_karte",
+            "name": "Vergilbte Drachenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gaganaleder_karte",
+            "name": "Vergilbte Gaganaleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gazellenleder_karte",
+            "name": "Vergilbte Gazellenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schatzkarte_eines_meisterdiebes",
+            "name": "Vergilbte Schatzkarte eines Meisterdiebes",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_exotenleder_karte",
+            "name": "Vergilbte Exotenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_smilodonleder_karte",
+            "name": "Vergilbte Smilodonleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_glaucusleder_karte",
+            "name": "Vergilbte Glaucusleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_mythenleder_karte",
+            "name": "Vergilbte Mythenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gajaleder_schatzkarte",
+            "name": "Vergilbte Gajaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_kumbhilaleder_schatzkarte",
+            "name": "Vergilbte Kumbhilaleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_ophiotaurosleder_schatzkarte",
+            "name": "Vergilbte Ophiotaurosleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_legendenleder_karte",
+            "name": "Vergilbte Legendenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_sagenleder_karte",
+            "name": "Vergilbte Sagenleder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_schakalleder_schatzkarte",
+            "name": "Vergilbte Schakalleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_braaxleder_schatzkarte",
+            "name": "Vergilbte Br'aaxleder-Schatzkarte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        },
+        {
+            "id": "treasuremap_vergilbte_gargantualeder_karte",
+            "name": "Vergilbte Gargantualeder-Karte",
+            "group": "treasuremap",
+            "groupName": "Schatzkarten",
+            "color": "#22c55e"
+        }
+    ],
+    "defaultZoom": -1.2,
+    "id": "azys-lla",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/a2f/a2f2 - Azys Lla.png",
+    "markers": [
+        {
+            "id": "895",
+            "name": "Feuer mit Feuer bekämpfen",
+            "category": "kill_boss",
+            "position": [
+                540.8775,
+                501.1105
+            ],
+            "description": ""
+        },
+        {
+            "id": "877",
+            "name": "Ultima: Ein Prototyp tankt auf",
+            "category": "kill_boss",
+            "position": [
+                1276.8805,
+                1810.353
+            ],
+            "description": ""
+        },
+        {
+            "id": "890",
+            "name": "Der Chef ist sauer",
+            "category": "kill_boss",
+            "position": [
+                1613.3325,
+                360.6435
+            ],
+            "description": ""
+        },
+        {
+            "id": "901",
+            "name": "Der rotierende Turm von Azys Lla",
+            "category": "kill_boss",
+            "position": [
+                527.587,
+                1444.964
+            ],
+            "description": ""
+        },
+        {
+            "id": "885",
+            "name": "Blinde Wut",
+            "category": "kill_boss",
+            "position": [
+                1665.5255,
+                1489.0915
+            ],
+            "description": ""
+        },
+        {
+            "id": "898",
+            "name": "Stheno abschreiben",
+            "category": "kill_boss",
+            "position": [
+                408.4760000000001,
+                1070.075
+            ],
+            "description": ""
+        },
+        {
+            "id": "883",
+            "name": "Hungriges Hirn",
+            "category": "kill_boss",
+            "position": [
+                1407.857,
+                1753.8849999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "882",
+            "name": "Der Fürst und der Richter",
+            "category": "kill_boss",
+            "position": [
+                815.6365,
+                1490.9915
+            ],
+            "description": ""
+        },
+        {
+            "id": "878",
+            "name": "Ultima: Ein Prototyp tankt auf",
+            "category": "kill_boss",
+            "position": [
+                248.0875000000001,
+                1138.8835
+            ],
+            "description": ""
+        },
+        {
+            "id": "879",
+            "name": "Ultima: Ein Prototyp tankt auf",
+            "category": "kill_boss",
+            "position": [
+                1802.6675,
+                1221.9325
+            ],
+            "description": ""
+        },
+        {
+            "id": "881",
+            "name": "Wir packen unseren Koffer",
+            "category": "kill_enemies",
+            "position": [
+                874.47,
+                1721.6135
+            ],
+            "description": ""
+        },
+        {
+            "id": "897",
+            "name": "Ernter des Todes",
+            "category": "kill_enemies",
+            "position": [
+                571.724,
+                1243.754
+            ],
+            "description": ""
+        },
+        {
+            "id": "891",
+            "name": "Vertreibung aus Gamma-Ost",
+            "category": "kill_enemies",
+            "position": [
+                1714.878,
+                702.311
+            ],
+            "description": ""
+        },
+        {
+            "id": "886",
+            "name": "Der giftgrüne Daumen",
+            "category": "kill_enemies",
+            "position": [
+                1616.6480000000001,
+                1643.3145
+            ],
+            "description": ""
+        },
+        {
+            "id": "893",
+            "name": "Vertreibung aus Gamma-Süd",
+            "category": "kill_enemies",
+            "position": [
+                1310.102,
+                243.90750000000003
+            ],
+            "description": ""
+        },
+        {
+            "id": "888",
+            "name": "Das bleibt lieber vergessen",
+            "category": "kill_enemies",
+            "position": [
+                1140.2135,
+                722.242
+            ],
+            "description": ""
+        },
+        {
+            "id": "887",
+            "name": "Wehe, wenn sie alleingelassen",
+            "category": "kill_enemies",
+            "position": [
+                1758.54,
+                899.246
+            ],
+            "description": ""
+        },
+        {
+            "id": "894",
+            "name": "Tödliche Unzurechnungsfähigkeit",
+            "category": "kill_enemies",
+            "position": [
+                283.6745000000001,
+                429.452
+            ],
+            "description": ""
+        },
+        {
+            "id": "900",
+            "name": "Reptilische Rächer",
+            "category": "kill_enemies",
+            "position": [
+                1452.9344999999998,
+                1513.7725
+            ],
+            "description": ""
+        },
+        {
+            "id": "889",
+            "name": "Alle Klauen voll zu tun",
+            "category": "kill_enemies",
+            "position": [
+                1613.3325,
+                360.6435
+            ],
+            "description": ""
+        },
+        {
+            "id": "884",
+            "name": "Empusen-Epidemie",
+            "category": "kill_enemies",
+            "position": [
+                1724.3685,
+                1791.847
+            ],
+            "description": ""
+        },
+        {
+            "id": "899",
+            "name": "Seelenlose Grausamkeit",
+            "category": "kill_enemies",
+            "position": [
+                571.724,
+                684.755
+            ],
+            "description": ""
+        },
+        {
+            "id": "892",
+            "name": "Vertreibung aus Gamma-West",
+            "category": "kill_enemies",
+            "position": [
+                1389.826,
+                528.1569999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "880",
+            "name": "Lockere Schrauben",
+            "category": "defense",
+            "position": [
+                829.3925,
+                1210.542
+            ],
+            "description": ""
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Alpha-Quadrant",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                166.7,
+                166.7
+            ],
+            "position": [
+                752,
+                1524
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Abwasserbecken",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1430,
+                1778
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Hyperstellarer Decoder",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                66.7,
+                66.7
+            ],
+            "position": [
+                280,
+                1304
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Delta-Quadrant",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                333.3,
+                333.3
+            ],
+            "position": [
+                526,
+                586
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Pappus-Baum",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                274,
+                418
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Biosphäre",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1860,
+                1208
+            ]
+        },
+        {
+            "type": "fishing_angel",
+            "name": "Flaggschiff",
+            "imageUrl": "/assets/img/content/map/angel.webp",
+            "size": [
+                100.0,
+                100.0
+            ],
+            "position": [
+                1000,
+                1048
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Erkundung mit System",
+            "position": [
+                373.828,
+                1589.118
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Kompetent geführt",
+            "position": [
+                384.11300000000006,
+                1603.339
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Schleusenwartung",
+            "position": [
+                1259.981,
+                1643.867
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Kontakt vermeiden",
+            "position": [
+                1658.534,
+                946.4734
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Fesseln der Reue",
+            "position": [
+                826.136,
+                567.4649999999999
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Himmelwärts",
+            "position": [
+                704.983,
+                1029.2225
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Allagisches Kampftraining",
+            "position": [
+                416.254,
+                1551.5410000000002
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Putzkolonne außer Kontrolle",
+            "position": [
+                380.23699999999997,
+                1551.3980000000001
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Gefahr in Vollzug",
+            "position": [
+                597.377,
+                1352.5729999999999
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Aufstandsbekämpfungskapazität",
+            "position": [
+                850.7470000000001,
+                1534.383
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Hybridzüchtung",
+            "position": [
+                1255.2069999999999,
+                1627.142
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Sporenbelastung",
+            "position": [
+                1784.529,
+                1603.664
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Gejagter Jäger",
+            "position": [
+                1828.101,
+                1551.4589999999998
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Revolutionäre Legionäre",
+            "position": [
+                1607.998,
+                923.963
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Sachbeschädigung",
+            "position": [
+                1597.4470000000001,
+                694.7280000000001
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Technologiediebstahl",
+            "position": [
+                1390.443,
+                267.28
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Altmetallriesen",
+            "position": [
+                1238.657,
+                487.01
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Hohe Standards",
+            "position": [
+                365.687,
+                324.82500000000005
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Hocheffizient",
+            "position": [
+                469.063,
+                252.101
+            ]
+        },
+        {
+            "type": "quest_side",
+            "name": "Erhöhte Aggressivität",
+            "position": [
+                831.355,
+                546.988
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Mit ganzer Seele",
+            "position": [
+                269.304,
+                1574.7440000000001
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Stationen einer Reise",
+            "position": [
+                269.304,
+                1574.7440000000001
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Es lebe die neue Anima!",
+            "position": [
+                269.304,
+                1574.7440000000001
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Die Stimme der Seele",
+            "position": [
+                269.304,
+                1574.7440000000001
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Futter für die Seele",
+            "position": [
+                269.304,
+                1574.7440000000001
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Die Zukunft der Seele",
+            "position": [
+                269.304,
+                1574.7440000000001
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Die Entscheidung der Seele",
+            "position": [
+                269.304,
+                1574.7440000000001
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Ein neuer Seelenstein",
+            "position": [
+                248.125,
+                1580.664
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Es lebe der Kommerz",
+            "position": [
+                270.433,
+                1572.547
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": "Der letzte Schritt",
+            "position": [
+                269.304,
+                1574.7440000000001
+            ]
+        },
+        {
+            "type": "quest_blue",
+            "name": " Weggefährten",
+            "position": [
+                269.304,
+                1574.7440000000001
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Mit dem Allwissen der Allager",
+            "position": [
+                129.49199999999996,
+                1661.653
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Das Erbe Noahs",
+            "position": [
+                1665.326,
+                1374.31
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Gefängnis der Trauer",
+            "position": [
+                503.486,
+                879.749
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Flügelschlag in die Freiheit",
+            "position": [
+                748.56,
+                1044.9683
+            ]
+        },
+        {
+            "type": "quest_main",
+            "name": "Goldene Flammen",
+            "position": [
+                344.07899999999995,
+                594.9839999999999
+            ]
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                425.0,
+                1546.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                418.0,
+                1550.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Strebewerk",
+            "position": [
+                193.0,
+                1658.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Alpha-Quadrant",
+            "position": [
+                484.0,
+                1772.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Beta-Quadrant",
+            "position": [
+                1716.0,
+                1948.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Flaggschiff",
+            "position": [
+                1398.0,
+                1114.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Delta-Quadrant",
+            "position": [
+                260.0,
+                198.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Gamma-Quadrant",
+            "position": [
+                1700.0,
+                548.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Helix",
+            "position": [
+                338.0,
+                1594.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060453.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kühlstation",
+            "position": [
+                818.0,
+                1582.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Partikel-Schleuse II-III",
+            "position": [
+                886.0,
+                1500.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kristall-Zentrifugalreaktor",
+            "position": [
+                454.0,
+                1392.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Alpha-Funkbake",
+            "position": [
+                688.0,
+                1352.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ätherkonduktor-Feld",
+            "position": [
+                878.0,
+                1322.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Hyperstellarer Decoder",
+            "position": [
+                264.0,
+                1310.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Quarantäne-Block",
+            "position": [
+                402.0,
+                1074.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Ätherochemisches Forschungslabor",
+            "position": [
+                988.0,
+                1026.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kriegstriade",
+            "position": [
+                1028.0,
+                1030.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Antithese",
+            "position": [
+                390.0,
+                638.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Pappus-Baum",
+            "position": [
+                292.0,
+                422.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Aquädukt",
+            "position": [
+                512.0,
+                342.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Esh Thom",
+            "position": [
+                734.0,
+                396.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Partikel-Schleuse VII-VI",
+            "position": [
+                858.0,
+                578.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Versorgungslager",
+            "position": [
+                968.0,
+                672.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Fraktal-Kontinuum",
+            "position": [
+                1024.0,
+                232.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Kathedrale",
+            "position": [
+                1138.0,
+                732.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Partikel-Schleuse VI-VII",
+            "position": [
+                1222.0,
+                498.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Castrum Solus",
+            "position": [
+                1554.0,
+                294.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Letzte Überreste",
+            "position": [
+                1830.0,
+                216.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Die Gration",
+            "position": [
+                1884.0,
+                908.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Schlachtschiff-Landeplatz",
+            "position": [
+                1784.0,
+                918.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Partikel-Schleuse V-IV",
+            "position": [
+                1592.0,
+                952.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Biosphäre",
+            "position": [
+                1798.0,
+                1224.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Biosphären-Kontrollstation",
+            "position": [
+                1648.0,
+                1362.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Partikel-Schleuse IV-V",
+            "position": [
+                1762.0,
+                1488.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Biomasse-Inkubator",
+            "position": [
+                1814.0,
+                1714.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Biomasse-Inkubator",
+            "position": [
+                1784.0,
+                1836.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mutagenese-Areal",
+            "position": [
+                1382.0,
+                1654.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Partikel-Schleuse III-II",
+            "position": [
+                1230.0,
+                1610.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Rekombinations-Sektor",
+            "position": [
+                1310.0,
+                1434.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                292.0,
+                1561.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        }
+    ],
+    "maxZoom": 1.7,
+    "minZoom": -1.2,
+    "name": "Azys Lla",
+    "size": [
+        2048,
+        2048
+    ]
+}

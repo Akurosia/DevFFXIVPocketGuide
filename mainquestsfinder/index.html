@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <!-- Include from _includes/head -->
+    <!-- Charset -->
+    <meta charset="utf-8" />
+    <!-- Compatibility -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Page Title --><title>mainquestsfinder | FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail</title><!-- Page Description -->
+    <meta name="description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV.Search through class and jobs guides on the FFXIV Pocket Guide." />
+    <!-- Open Graph & Twitter Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content="/mainquestsfinder/" />
+    <meta property="og:title" content="| FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail" />
+    <meta property="og:description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV.Search through class and jobs guides on the FFXIV Pocket Guide." /><meta property="og:image" content="" /><!-- Google Fonts -->
+    <link href="/assets/fonts/fonts.css" rel="stylesheet" />
+    <!--  Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#ff575c" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Google Search Structured Pages --><script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "",
+        "image": [
+          ""
+        ]
+      }
+    </script><!-- Twitter Intents -->
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+    <!-- jQuery -->
+    <script type="text/javascript" src="/assets/vendor/jquery.min.js?1770419310945723427"></script>
+    <!-- Modernizr -->
+    <script type="text/javascript" src="/assets/vendor/modernizr.js?1770419310945723427"></script>
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/assets/vendor/ionicons.min.css?1770419310945723427" type="text/css" media="all" />
+    <!-- Normalize -->
+    <link rel="stylesheet" href="/assets/vendor/normalize.css?1770419310945723427" type="text/css" media="all" />
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="/css/core.css?1770419310945723427" />
+    <script type="text/javascript" src="/assets/js/copy2clipboard.js?1770419310945723427"></script>
+    <script type="text/javascript" src="/assets/js/handleLanguage.js?1770419310945723427"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="/css/ffxiv.css">
+    <script type="text/javascript" src="/assets/js/leaflet.js?1770419310945723427"></script>
+    <script type="text/javascript" src="/assets/js/tablesort.min.js?1770419310945723427"></script>
+    <script type="text/javascript" src="/assets/js/tablesort.number.min.js?1770419310945723427"></script>
+    <style>
+      @font-face {
+          font-family: finalf;
+          src: url('/assets/fonts/FFXIV_Lodestone_SSF.ttf');
+      }
+    </style>
+    <script type="text/javascript" src="/assets/js/darkreader.min.js?1770419310945723427"></script>
+    <link rel="stylesheet" href="/assets/css/leaflet.css?1770419310945723427" type="text/css" media="all" />
+    <link rel="stylesheet" href="/assets/css/leafletmaps.css?1770419310945723427" type="text/css" media="all" />
+    <script>
+      DarkReader.setFetchMethod(window.fetch)
+      DarkReader.enable({brightness: 90,contrast: 100,sepia: 10});
+      const isEnabled = DarkReader.isEnabled();
+    </script>
+    <!-- Include from _includes/head -->
+    <link type="text/css" rel="stylesheet" href="/assets/css/mainquestsfinder.css">
+  </head>
+  <!-- ORIGIN: _layout/mainquestsfinder -->
+  <body class="index mainquestsfinder">
+    <div class="layout">
+      <!-- Include from _includes/navbar -->
+      <!-- Mobile Menu Trigger -->
+      <button class="sidebar__trigger">
+        <span class="sidebar__trigger-inactive">
+          <ion-icon name="chevron-down-outline" style="color: white !important"></ion-icon>
+          <div data-translate="Navbar_Mobile_Menu">Menu</div>
+        </span>
+        <span class="sidebar__trigger-active">
+          <ion-icon name="chevron-up-outline" style="color: white !important"></ion-icon>
+          <div data-translate="Navbar_Mobile_Close">Close</div>
+        </span>
+      </button>
+      <!-- Mobile Overlay -->
+      <div
+        class="site-grid__sidebar-overlay">
+      </div>
+      <!-- Menu -->
+      <div
+        class="sidebar" loading="lazy"
+        style="background-image: url('/assets/img/guide_index_default.webp');">
+        <div class="sidebar__wrapper">
+          <div class="languages">
+            <a loading="lazy" style="background-image: url('/assets/img/flags.webp')" class="flags_img iso_US" onclick="changeLanguageTo('lang-toogle-en', 'en-US')" alt="en"></a>
+            <a loading="lazy" style="background-image: url('/assets/img/flags.webp')" class="flags_img iso_DE" onclick="changeLanguageTo('lang-toogle-de', 'de-DE')" alt="de"></a>
+            <a loading="lazy" style="background-image: url('/assets/img/flags.webp')" class="flags_img iso_FR" onclick="changeLanguageTo('lang-toogle-fr', 'fr-FR')" alt="fr"></a>
+            <a loading="lazy" style="background-image: url('/assets/img/flags.webp')" class="flags_img iso_JP" onclick="changeLanguageTo('lang-toogle-ja', 'ja-JP')" alt="ja"></a>
+          </div>
+          <h1 class="sidebar__title">
+            <a href='/' title="Return to the Pocket Guide Home Page.">
+              <img loading="lazy" alt="FFXIV Icon" src='/assets/img/icon.svg'>
+            </a>
+          </h1>
+          <ul class="sidebar__menu">
+            <li>
+              <a target=""href='/about.html' title="See what's new with the Pocket Guide.">
+                <img loading="lazy" src='/assets/img/new.webp' alt="A new icon." style="width: 1.5rem; vertical-align: middle; margin-bottom: .2rem; margin-right: .5rem;">
+                <span data-translate="Navbar_About">About</span>
+              </a>
+            </li>
+            <li>
+              <a target=""href='/patches/' title="Alle Patches anzeigen">
+                <img loading="lazy" src='/assets/img/game_assets//061000/061757_hr1.webp'">
+                <span data-translate="Navbar_Patches">Patches</span>
+              </a>
+            </li>
+            <li style="cursor: pointer;"><span><span>&#9660;</span> Extra Tools</span></li>
+            <ul style="display: inherit;">
+              <li>
+                <a target=""href='/translate/' title="See Translations">
+                  <img loading="lazy" src='/assets/img/game_assets//uld/launchericon_hr1.tex.webp'">
+                  <span data-translate="Navbar_Translations">Translations</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/gear/' title="See Gear">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061828_hr1.webp'">
+                  <span data-translate="Navbar_Equipment">Equipment</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/fflogs/' title="See fflogs">
+                  <img loading="lazy" src='/assets/img/game_assets//060000/060453_hr1.webp'">
+                  <span data-translate=" Navbar_FFLogs">FFLogs</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/checkFileData/' title="See checkFileData">
+                  <img loading="lazy" src='/assets/img/game_assets//000000/000046_hr1.webp'">
+                  <span data-translate=" Navbar_checkFileData">checkFileData</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/settings/' title="See settings">
+                  <img loading="lazy" src='/assets/img/game_assets//000000/000029_hr1.webp'">
+                  <span data-translate=" Navbar_settings">settings</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/itemsets/' title="See itemsets">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061759_hr1.webp'">
+                  <span data-translate=" Navbar_itemsets">itemsets</span>
+                </a>
+              </li>
+              <li>
+                <a target=""class="active"href='/mainquestsfinder/' title="See mainquestsfinder">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061432_hr1.webp'">
+                  <span data-translate=" Navbar_mainquestsfinder">mainquestsfinder</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/klassenjobs/' title="Klassen/Jobs anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061835_hr1.webp'">
+                  <span data-translate="Navbar_Classes/Jobs">Classes/Jobs</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/relics/' title="Relic Weapons anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061822_hr1.webp'">
+                  <span data-translate="Navbar_Relic Weapons">Relic Weapons</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/airship_submarine/' title="Company Airship & Submersible anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061821_hr1.webp'">
+                  <span data-translate="Navbar_Company Airship & Submersible">Company Airship & Submersible</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/quests/' title="Quests anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061723_hr1.webp'">
+                  <span data-translate="Navbar_Quests">Quests</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/achivments/' title="Achivments anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061767_hr1.webp'">
+                  <span data-translate="Navbar_Achievement">Achievement</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/treasuremap/' title="GCrank anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//000000/000115_hr1.webp'">
+                  <span data-translate="Navbar_treasuremap">TreasureMaps</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/gcrank/' title="GCrank anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061723_hr1.webp'">
+                  <span data-translate="Navbar_GCrank">GCrank</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/music/' title="Music anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//000000/000036_hr1.webp'">
+                  <span data-translate="Navbar_Music">Music</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/dalamud/' title="Dalamud anzeigen">
+                  <img loading="lazy" src='/assets/img/dalamud.webp' alt="">
+                  <span data-translate="Navbar_Dalamud">Dalamud</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/links/' title="Links anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061834_hr1.webp'">
+                  <span data-translate="Navbar_Links">Links</span>
+                </a>
+              </li>
+            </ul>
+            <li style="cursor: pointer;"><span><span>&#9654;</span> Instance Content</span></li>
+            <ul >
+              <li>
+                <a target=""href='/' title="Alle Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061540_hr1.webp'">
+                  <span data-translate="Navbar_All Guides">All Guides</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/dungeons/' title="Dungeon - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061801_hr1.webp'">
+                  <span data-translate="Navbar_Dungeons">Dungeons</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/trials/' title="Prüfung - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061804_hr1.webp'">
+                  <span data-translate="Navbar_Trials">Trials</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/raids/' title="Raid - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061802_hr1.webp'">
+                  <span data-translate="Navbar_Raids">Raids</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/ultimates/' title="Ultimate - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061832_hr1.webp'">
+                  <span data-translate="Navbar_Ultimate Raids">Ultimate Raids</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/allianzraid/' title="Allianz Raid - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061844_hr1.webp'">
+                  <span data-translate="Navbar_Alliance Raids">Alliance Raids</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/chaosallianzraid/' title="Chaos Allianz Raid - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061850_hr1.webp'">
+                  <span data-translate="Navbar_Chaos Alliance Raids">Chaos Alliance Raids</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/gewölbesuche/' title="Gewölbesuche - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061846_hr1.webp'">
+                  <span data-translate="Navbar_Varient & Criterion Dungeon">Varient & Criterion Dungeon</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/feldexkursion/' title="Feldexkursion - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061837_hr1.webp'">
+                  <span data-translate="Navbar_Field Operations">Field Operations</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/bluemage/' title="Bluemage - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061836_hr1.webp'">
+                  <span data-translate="Navbar_Blue Mage">Blue Mage</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/potd/' title="Tiefes Gewöbe - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061824_hr1.webp'">
+                  <span data-translate="Navbar_Deep Dungeon">Deep Dungeon</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/guildhest/' title="Gildengeheiße - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061803_hr1.webp'">
+                  <span data-translate="Navbar_Guildhests">Guildhests</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/treasure/' title="Schatzdungeon - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061808_hr1.webp'">
+                  <span data-translate="Navbar_Treasure Dungeon">Treasure Dungeon</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/pvp/' title="PVP - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061806_hr1.webp'">
+                  <span data-translate="Navbar_PVP">PVP</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/training/' title="Training - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061823_hr1.webp'">
+                  <span data-translate="Navbar_Training">Training</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/overworld/' title="Overworld - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//052000/052474_hr1.webp'">
+                  <span data-translate="Navbar_Overworld">Overworld</span>
+                </a>
+              </li>
+            </ul>
+          </ul>
+        </div>
+      </div>
+      <!-- END Include from _includes/navbar -->
+      <div class="layout__wrapper">
+        <!-- Include from _includes/header -->
+        <header>
+          <div class="site-header__grid" loading="lazy"style="background-image: url('/assets/img/7.0.webp')">
+            <div></div>
+            <div class="site-header__item-a">
+              <h1 class="site-header__title">
+                <span data-translate="Header_CatTitle_mainquestsfinder">Hauptstory Quest Fortschrittsverfolgung</span></h1>
+              <h2 class="lang-toggle lang-toogle-en-sub site-header__guide-title_en"></h2>
+            </div>
+            <ul
+                class="site-header__links">
+              <li>
+                <a href="https://twitter.com/Akurosia" target="_blank" rel="noopener noreferrer" title="Folge mir auf Twitter um auf dem aktuellsten Stand zu bleiben!">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                  <span data-translate="Header_Twitter">Twitter</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/Akurosia/DevFFXIVPocketGuide" target="_blank" rel="noopener noreferrer" title="Pocket Guide Development Repo!">
+                  <ion-icon name="logo-github"></ion-icon>
+                  <span data-translate="Header_Github">Github</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/user/MTQcapture" target="_blank" rel="noopener noreferrer" title="MTQcapture's YouTube Channel.">
+                  <ion-icon name="logo-youtube"></ion-icon>
+                  <span data-translate="Header_MTQcapture">MTQcapture</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/user/Xehanort1227" target="_blank" rel="noopener noreferrer" title="Mrhappy1227's YouTube Channel.">
+                  <ion-icon name="logo-youtube"></ion-icon>
+                  <span data-translate="Header_Mrhappy1227">Mrhappy1227</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div style="display: none" data-extra-translate="/assets/translations/header"></div>
+          <div style="display: none" data-extra-translate="/assets/translations/expansions"></div>
+        </header>
+        <!-- END Include from _includes/header -->
+        <div class="container">
+          <div class="fixed-header">
+            <input type="text" id="questSearch" placeholder="Quest ID oder Name eingeben" value="Willkommen in Gridania">
+            <select class="quest-dropdown" style="display: none;width: auto;" id="test" onchange="document.getElementById('questSearch').value = this.value;"></select>
+            <button onclick="searchQuest()"><i class="fas fa-search"></i> Suchen</button>
+          </div>
+          <div id="progress"></div>
+        </div>
+        <script type="text/javascript" src="/assets/js/mainquestsfinderscript.js?1770419310945723427"></script>
+        <!-- Include from _includes/footer -->
+        <footer>
+          <div class="content-container">
+            <p class="footer__copy">
+              <span data-translate="Footer_ProducedBy">This site is produced by </span>
+              <a href="https://de.finalfantasyxiv.com/lodestone/character/7944237/" target="_blank" rel="noopener noreferrer" title="Visit Akurosia Kamo on the Lodestone.">Akurosia Kamo</a>
+              <span data-translate="Footer_WithHelp">with the help of video guides created by </span>
+              <a href="https://twitter.com/MTQcapture" title="Go to MTQcapture's Twitter." target="_blank" rel="noopener noreferrer">@MTQcapture</a>
+              <span data-translate="Footer_And"> and </span>
+              <a href="https://twitter.com/mrhappy1227" title="Go to MrHappy1227's Twitter." target="_blank" rel="noopener noreferrer">@MrHappy1227</a>.
+            </br></br>
+          <span data-translate="Footer_ProducedByOriginal">The original Page was created by </span>
+          <a href="https://twitter.com/lionsliege" target="_blank" rel="noopener noreferrer" title="Visit Liege on Twitter.">@LionsLiege</a>,
+          <a href="https://na.finalfantasyxiv.com/lodestone/character/12774809/" target="_blank" rel="noopener noreferrer" title="Visit Demosthenes on the Lodestone.">Demosthenes Lorelai</a>,
+          <a href="https://na.finalfantasyxiv.com/lodestone/character/14514962/" target="_blank" rel="noopener noreferrer" title="Visit Divine on the Lodestone.">Divine Angel</a>,
+          <span data-translate="Footer_And"> and </span>
+          <a href="https://na.finalfantasyxiv.com/lodestone/character/3758032/" target="_blank" rel="noopener noreferrer" title="Visit Shiro on the Lodestone.">Shiro Astral</a>
+        </br>
+        <span data-translate="Footer_OriginalPageLinks">Original Page Link: </span>
+        <a href="https://ffxiv.guide/" title="Original Page Link" target="_blank" rel="noopener noreferrer">https://ffxiv.guide/</a>
+        <br>
+        <span data-translate="Footer_LastUpdated">Last updated: </span>2026-02-06 17:07:43 -0600</span><br>
+      <a href="https://github.com/Akurosia/DevFFXIVPocketGuide" target="_blank" rel="noopener noreferrer" title="Pocket Guide Development Repo!">
+        <ion-icon name="logo-github"></ion-icon>
+        <span data-translate="Footer_ViewOnGithub">View Project on Github</span>
+      </a>
+    </p>
+  </div>
+  <div style="display: none" data-extra-translate="/assets/translations/footer"></div>
+</footer>
+<script type="text/javascript" src="/assets/js/expand_collapse.js?1770419310945723427"></script>
+<!-- END Include from _includes/footer -->
+</div>
+</div>
+<div style="display: none" data-extra-translate="/assets/translations/summary/mainquestsfinder"></div>
+<!-- Include from _includes/scripts -->
+<!-- Match Media -->
+<script type="text/javascript" src="/assets/vendor/matchMedia.js"></script>
+<!-- Custom Scripts -->
+<script type="text/javascript" src="/assets/js/core.js"></script>
+<script type="text/javascript" src="/assets/js/app.js"></script>
+<script type="text/javascript" src="/assets/js/openEnemy.js"></script>
+<script type="text/javascript" src="/assets/js/ionicons740/ionicons.esm.js"></script>
+<script type="text/javascript" src="/assets/js/ionicons740/ionicons.js"></script>
+<!-- <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script> -->
+<!-- <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> -->
+<!-- END Include from _includes/scripts -->
+</body>
+<!-- END ORIGIN: _layout/mainquestsfinder -->
+<script type="text/javascript">
+  executeHandelingLanguages()
+</script>
+</html>

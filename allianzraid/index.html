@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <!-- Include from _includes/head -->
+    <!-- Charset -->
+    <meta charset="utf-8" />
+    <!-- Compatibility -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Page Title --><title>Allianz Raid Guides | FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail</title><!-- Page Description -->
+    <meta name="description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV.Search through Allianz Raid guides on the FFXIV Pocket Guide." />
+    <!-- Open Graph & Twitter Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:url" content="/allianzraid/" />
+    <meta property="og:title" content="| FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail" />
+    <meta property="og:description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV.Search through Allianz Raid guides on the FFXIV Pocket Guide." /><meta property="og:image" content="" /><!-- Google Fonts -->
+    <link href="/assets/fonts/fonts.css" rel="stylesheet" />
+    <!--  Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="mask-icon" href="/assets/img/safari-pinned-tab.svg" color="#ff575c" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Google Search Structured Pages --><script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "",
+        "image": [
+          ""
+        ]
+      }
+    </script><!-- Twitter Intents -->
+    <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+    <!-- jQuery -->
+    <script type="text/javascript" src="/assets/vendor/jquery.min.js?1770419310945723427"></script>
+    <!-- Modernizr -->
+    <script type="text/javascript" src="/assets/vendor/modernizr.js?1770419310945723427"></script>
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/assets/vendor/ionicons.min.css?1770419310945723427" type="text/css" media="all" />
+    <!-- Normalize -->
+    <link rel="stylesheet" href="/assets/vendor/normalize.css?1770419310945723427" type="text/css" media="all" />
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="/css/core.css?1770419310945723427" />
+    <script type="text/javascript" src="/assets/js/copy2clipboard.js?1770419310945723427"></script>
+    <script type="text/javascript" src="/assets/js/handleLanguage.js?1770419310945723427"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="/css/ffxiv.css">
+    <script type="text/javascript" src="/assets/js/leaflet.js?1770419310945723427"></script>
+    <script type="text/javascript" src="/assets/js/tablesort.min.js?1770419310945723427"></script>
+    <script type="text/javascript" src="/assets/js/tablesort.number.min.js?1770419310945723427"></script>
+    <style>
+      @font-face {
+          font-family: finalf;
+          src: url('/assets/fonts/FFXIV_Lodestone_SSF.ttf');
+      }
+    </style>
+    <script type="text/javascript" src="/assets/js/darkreader.min.js?1770419310945723427"></script>
+    <link rel="stylesheet" href="/assets/css/leaflet.css?1770419310945723427" type="text/css" media="all" />
+    <link rel="stylesheet" href="/assets/css/leafletmaps.css?1770419310945723427" type="text/css" media="all" />
+    <script>
+      DarkReader.setFetchMethod(window.fetch)
+      DarkReader.enable({brightness: 90,contrast: 100,sepia: 10});
+      const isEnabled = DarkReader.isEnabled();
+    </script>
+    <!-- Include from _includes/head -->
+  </head>
+  <!-- ORIGIN: _layout/index -->
+  <body class="index allianzraid">
+    <div class="layout">
+      <!-- Include from _includes/navbar -->
+      <!-- Mobile Menu Trigger -->
+      <button class="sidebar__trigger">
+        <span class="sidebar__trigger-inactive">
+          <ion-icon name="chevron-down-outline" style="color: white !important"></ion-icon>
+          <div data-translate="Navbar_Mobile_Menu">Menu</div>
+        </span>
+        <span class="sidebar__trigger-active">
+          <ion-icon name="chevron-up-outline" style="color: white !important"></ion-icon>
+          <div data-translate="Navbar_Mobile_Close">Close</div>
+        </span>
+      </button>
+      <!-- Mobile Overlay -->
+      <div
+        class="site-grid__sidebar-overlay">
+      </div>
+      <!-- Menu -->
+      <div
+        class="sidebar" loading="lazy"
+        style="background-image: url('/assets/img/guide_index_default.webp');">
+        <div class="sidebar__wrapper">
+          <div class="languages">
+            <a loading="lazy" style="background-image: url('/assets/img/flags.webp')" class="flags_img iso_US" onclick="changeLanguageTo('lang-toogle-en', 'en-US')" alt="en"></a>
+            <a loading="lazy" style="background-image: url('/assets/img/flags.webp')" class="flags_img iso_DE" onclick="changeLanguageTo('lang-toogle-de', 'de-DE')" alt="de"></a>
+            <a loading="lazy" style="background-image: url('/assets/img/flags.webp')" class="flags_img iso_FR" onclick="changeLanguageTo('lang-toogle-fr', 'fr-FR')" alt="fr"></a>
+            <a loading="lazy" style="background-image: url('/assets/img/flags.webp')" class="flags_img iso_JP" onclick="changeLanguageTo('lang-toogle-ja', 'ja-JP')" alt="ja"></a>
+          </div>
+          <h1 class="sidebar__title">
+            <a href='/' title="Return to the Pocket Guide Home Page.">
+              <img loading="lazy" alt="FFXIV Icon" src='/assets/img/icon.svg'>
+            </a>
+          </h1>
+          <ul class="sidebar__menu">
+            <li>
+              <a target=""href='/about.html' title="See what's new with the Pocket Guide.">
+                <img loading="lazy" src='/assets/img/new.webp' alt="A new icon." style="width: 1.5rem; vertical-align: middle; margin-bottom: .2rem; margin-right: .5rem;">
+                <span data-translate="Navbar_About">About</span>
+              </a>
+            </li>
+            <li>
+              <a target=""href='/patches/' title="Alle Patches anzeigen">
+                <img loading="lazy" src='/assets/img/game_assets//061000/061757_hr1.webp'">
+                <span data-translate="Navbar_Patches">Patches</span>
+              </a>
+            </li>
+            <li style="cursor: pointer;"><span><span>&#9654;</span> Extra Tools</span></li>
+            <ul >
+              <li>
+                <a target=""href='/translate/' title="See Translations">
+                  <img loading="lazy" src='/assets/img/game_assets//uld/launchericon_hr1.tex.webp'">
+                  <span data-translate="Navbar_Translations">Translations</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/gear/' title="See Gear">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061828_hr1.webp'">
+                  <span data-translate="Navbar_Equipment">Equipment</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/fflogs/' title="See fflogs">
+                  <img loading="lazy" src='/assets/img/game_assets//060000/060453_hr1.webp'">
+                  <span data-translate=" Navbar_FFLogs">FFLogs</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/checkFileData/' title="See checkFileData">
+                  <img loading="lazy" src='/assets/img/game_assets//000000/000046_hr1.webp'">
+                  <span data-translate=" Navbar_checkFileData">checkFileData</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/settings/' title="See settings">
+                  <img loading="lazy" src='/assets/img/game_assets//000000/000029_hr1.webp'">
+                  <span data-translate=" Navbar_settings">settings</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/itemsets/' title="See itemsets">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061759_hr1.webp'">
+                  <span data-translate=" Navbar_itemsets">itemsets</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/mainquestsfinder/' title="See mainquestsfinder">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061432_hr1.webp'">
+                  <span data-translate=" Navbar_mainquestsfinder">mainquestsfinder</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/klassenjobs/' title="Klassen/Jobs anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061835_hr1.webp'">
+                  <span data-translate="Navbar_Classes/Jobs">Classes/Jobs</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/relics/' title="Relic Weapons anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061822_hr1.webp'">
+                  <span data-translate="Navbar_Relic Weapons">Relic Weapons</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/airship_submarine/' title="Company Airship & Submersible anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061821_hr1.webp'">
+                  <span data-translate="Navbar_Company Airship & Submersible">Company Airship & Submersible</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/quests/' title="Quests anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061723_hr1.webp'">
+                  <span data-translate="Navbar_Quests">Quests</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/achivments/' title="Achivments anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061767_hr1.webp'">
+                  <span data-translate="Navbar_Achievement">Achievement</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/treasuremap/' title="GCrank anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//000000/000115_hr1.webp'">
+                  <span data-translate="Navbar_treasuremap">TreasureMaps</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/gcrank/' title="GCrank anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061723_hr1.webp'">
+                  <span data-translate="Navbar_GCrank">GCrank</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/music/' title="Music anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//000000/000036_hr1.webp'">
+                  <span data-translate="Navbar_Music">Music</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/dalamud/' title="Dalamud anzeigen">
+                  <img loading="lazy" src='/assets/img/dalamud.webp' alt="">
+                  <span data-translate="Navbar_Dalamud">Dalamud</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/links/' title="Links anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061834_hr1.webp'">
+                  <span data-translate="Navbar_Links">Links</span>
+                </a>
+              </li>
+            </ul>
+            <li style="cursor: pointer;"><span><span>&#9660;</span> Instance Content</span></li>
+            <ul style="display: inherit;">
+              <li>
+                <a target=""href='/' title="Alle Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061540_hr1.webp'">
+                  <span data-translate="Navbar_All Guides">All Guides</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/dungeons/' title="Dungeon - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061801_hr1.webp'">
+                  <span data-translate="Navbar_Dungeons">Dungeons</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/trials/' title="Prüfung - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061804_hr1.webp'">
+                  <span data-translate="Navbar_Trials">Trials</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/raids/' title="Raid - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061802_hr1.webp'">
+                  <span data-translate="Navbar_Raids">Raids</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/ultimates/' title="Ultimate - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061832_hr1.webp'">
+                  <span data-translate="Navbar_Ultimate Raids">Ultimate Raids</span>
+                </a>
+              </li>
+              <li>
+                <a target=""class="active"href='/allianzraid/' title="Allianz Raid - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061844_hr1.webp'">
+                  <span data-translate="Navbar_Alliance Raids">Alliance Raids</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/chaosallianzraid/' title="Chaos Allianz Raid - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061850_hr1.webp'">
+                  <span data-translate="Navbar_Chaos Alliance Raids">Chaos Alliance Raids</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/gewölbesuche/' title="Gewölbesuche - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061846_hr1.webp'">
+                  <span data-translate="Navbar_Varient & Criterion Dungeon">Varient & Criterion Dungeon</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/feldexkursion/' title="Feldexkursion - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061837_hr1.webp'">
+                  <span data-translate="Navbar_Field Operations">Field Operations</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/bluemage/' title="Bluemage - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061836_hr1.webp'">
+                  <span data-translate="Navbar_Blue Mage">Blue Mage</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/potd/' title="Tiefes Gewöbe - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061824_hr1.webp'">
+                  <span data-translate="Navbar_Deep Dungeon">Deep Dungeon</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/guildhest/' title="Gildengeheiße - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061803_hr1.webp'">
+                  <span data-translate="Navbar_Guildhests">Guildhests</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/treasure/' title="Schatzdungeon - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061808_hr1.webp'">
+                  <span data-translate="Navbar_Treasure Dungeon">Treasure Dungeon</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/pvp/' title="PVP - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061806_hr1.webp'">
+                  <span data-translate="Navbar_PVP">PVP</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/training/' title="Training - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//061000/061823_hr1.webp'">
+                  <span data-translate="Navbar_Training">Training</span>
+                </a>
+              </li>
+              <li>
+                <a target=""href='/overworld/' title="Overworld - Guides anzeigen">
+                  <img loading="lazy" src='/assets/img/game_assets//052000/052474_hr1.webp'">
+                  <span data-translate="Navbar_Overworld">Overworld</span>
+                </a>
+              </li>
+            </ul>
+          </ul>
+        </div>
+      </div>
+      <!-- END Include from _includes/navbar -->
+      <div class="layout__wrapper">
+        <!-- Include from _includes/header -->
+        <header>
+          <div class="site-header__grid" loading="lazy"style="background-image: url('/assets/img/7.0.webp')">
+            <div></div>
+            <div class="site-header__item-a">
+              <h1 class="site-header__title">
+                <span data-translate="Header_CatTitle_allianzraid">Allianz Raids</span></h1>
+              <h2 class="lang-toggle lang-toogle-en-sub site-header__guide-title_en"></h2>
+            </div>
+            <ul
+                class="site-header__links">
+              <li>
+                <a href="https://twitter.com/Akurosia" target="_blank" rel="noopener noreferrer" title="Folge mir auf Twitter um auf dem aktuellsten Stand zu bleiben!">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                  <span data-translate="Header_Twitter">Twitter</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/Akurosia/DevFFXIVPocketGuide" target="_blank" rel="noopener noreferrer" title="Pocket Guide Development Repo!">
+                  <ion-icon name="logo-github"></ion-icon>
+                  <span data-translate="Header_Github">Github</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/user/MTQcapture" target="_blank" rel="noopener noreferrer" title="MTQcapture's YouTube Channel.">
+                  <ion-icon name="logo-youtube"></ion-icon>
+                  <span data-translate="Header_MTQcapture">MTQcapture</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/user/Xehanort1227" target="_blank" rel="noopener noreferrer" title="Mrhappy1227's YouTube Channel.">
+                  <ion-icon name="logo-youtube"></ion-icon>
+                  <span data-translate="Header_Mrhappy1227">Mrhappy1227</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div style="display: none" data-extra-translate="/assets/translations/header"></div>
+          <div style="display: none" data-extra-translate="/assets/translations/expansions"></div>
+        </header>
+        <!-- END Include from _includes/header -->
+        <!-- Search Bar -->
+        <div class="search">
+          <form class="search__form">
+            <label for="guideFilter" data-translate="Searchbar_Example_Text">Nach einem Guide suchen...</label>
+            <div class="expansion-toggles">
+              <input id="guideFilter" placeholder="Dawntrail, M8S, Necron, Mounts, Minions, etc..." type="text"/><!-- Include from _includes/helper/handle_version_switchcase --><!-- Dawntrail Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+              <!-- Example: 7.x - Dawntrail -->
+              <button type="button" class="expansion-toggle active" data-expansion="dt" title="7.x - Dawntrail">
+                <img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061880_hr1.webp" alt="7.x - Dawntrail">
+              </button><!-- Include from _includes/helper/handle_version_switchcase --><!-- Endwalker Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+              <!-- Example: 6.x - Endwalker -->
+              <button type="button" class="expansion-toggle active" data-expansion="ew" title="6.x - Endwalker">
+                <img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061879_hr1.webp" alt="6.x - Endwalker">
+              </button><!-- Include from _includes/helper/handle_version_switchcase --><!-- Shadowbringers Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+              <!-- Example: 5.x - Shadowbringers -->
+              <button type="button" class="expansion-toggle active" data-expansion="shb" title="5.x - Shadowbringers">
+                <img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061878_hr1.webp" alt="5.x - Shadowbringers">
+              </button><!-- Include from _includes/helper/handle_version_switchcase --><!-- Stormblood Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+              <!-- Example: 4.x - Stormblood -->
+              <button type="button" class="expansion-toggle active" data-expansion="sb" title="4.x - Stormblood">
+                <img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061877_hr1.webp" alt="4.x - Stormblood">
+              </button><!-- Include from _includes/helper/handle_version_switchcase --><!-- Heavensward Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+              <!-- Example: 3.x - Heavensward -->
+              <button type="button" class="expansion-toggle active" data-expansion="hw" title="3.x - Heavensward">
+                <img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061876_hr1.webp" alt="3.x - Heavensward">
+              </button><!-- Include from _includes/helper/handle_version_switchcase --><!-- A Realm Reborn Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+              <!-- Example: 2.x - A Realm Reborn -->
+              <button type="button" class="expansion-toggle active" data-expansion="arr" title="2.x - A Realm Reborn">
+                <img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061875_hr1.webp" alt="2.x - A Realm Reborn">
+              </button></div>
+          </form>
+        </div>
+        <!-- END Search Bar -->
+        <!-- Include from _includes/index -->
+        <div class="index"><!-- Include from _includes/helper/handle_version_switchcase --><!-- Dawntrail Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+          <!-- Include from _includes/_components/index-counter --><!-- END Include from _includes/_components/index-counter -->
+          <a id="dawntrail"></a>
+          <div class="index-divider" data-expansion="dt"><!-- Include from _includes/_components/expantion_filter -->
+            <h2 class="index-divider__title"><img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061880_hr1.webp"/><img loading="lazy" class="ex-icon" src="/assets/img/game_assets/uld/title_logo700_hr1.tex.webp"><!-- <span data-translate="Patches_7.x - Dawntrail">7.x - Dawntrail</span> -->
+            </h2>
+            <!-- END Include from _includes/_components/expantion_filter -->
+          </div>
+          <div class="index__list" data-expansion="dt"><!-- Include from _includes/_components/index-list --><!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/dt/san-doria-the-second-walk.html" title="Go to the San d'Oria: Die zweite Etappe Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112614_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Dawntrail&#32;term:DT&#32;term:San d'Oria: Die zweite Etappe&#32;term:San d'Oria: The Second Walk&#32;term:San d'Oria - La deuxième perambulation&#32;term:サンドリア：ザ・セカンドウォーク&#32;term:San d'Oria: Die zweite Etappe&#32;term:San d'Oria: The Second Walk&#32;term:San d'Oria - La deuxième perambulation&#32;term:サンドリア：ザ・セカンドウォーク&#32;term:Normal&#32;term:7.30!&#32;term:7.3!&#32;term:The Promose of Tomorrow&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;">
+                      <span data-translate="Summary_allianzraid_san d'oria: the second walk"> San d'Oria: The Second Walk </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      San d'Oria: The Second Walk
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/dt/jeuno-the-first-walk.html" title="Go to the Jeuno: Die erste Etappe Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112585_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Dawntrail&#32;term:DT&#32;term:Jeuno: Die erste Etappe&#32;term:Jeuno: The First Walk&#32;term:Jeuno - La première perambulation&#32;term:ジュノ：ザ・ファーストウォーク&#32;term:Jeuno: Die erste Etappe&#32;term:Jeuno: The First Walk&#32;term:Jeuno - La première perambulation&#32;term:ジュノ：ザ・ファーストウォーク&#32;term:Normal&#32;term:7.10!&#32;term:7.1!&#32;term:Crossroads&#32;term:Am Kreuzweg der Welten&#32;term:An Otherworldly Encounter&#32;term:À la croisée des mondes&#32;term:交わる世界&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Erzengel&#32;term:orchestrion&#32;term:Notenrolle&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Prishe Von Den Fernen Ketten&#32;term:Fafnir&#32;term:Erzengel Gk&#32;term:Erzengel Hm&#32;term:Erzengel Mr&#32;term:Erzengel Tt&#32;term:Erzengel Ev&#32;term:Schattenlord&#32;">
+                      <span data-translate="Summary_allianzraid_jeuno: the first walk"> Jeuno: The First Walk </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      Jeuno: The First Walk
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- END Include from _includes/_components/index-list -->
+          </div>
+          <!-- Include from _includes/helper/handle_version_switchcase --><!-- Endwalker Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+          <!-- Include from _includes/_components/index-counter --><!-- END Include from _includes/_components/index-counter -->
+          <a id="endwalker"></a>
+          <div class="index-divider" data-expansion="ew"><!-- Include from _includes/_components/expantion_filter -->
+            <h2 class="index-divider__title"><img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061879_hr1.webp"/><img loading="lazy" class="ex-icon" src="/assets/img/game_assets/uld/title_logo600_hr1.tex.webp"><!-- <span data-translate="Patches_6.x - Endwalker">6.x - Endwalker</span> -->
+            </h2>
+            <!-- END Include from _includes/_components/expantion_filter -->
+          </div>
+          <div class="index__list" data-expansion="ew"><!-- Include from _includes/_components/index-list --><!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/ew/thaleia.html" title="Go to the Thaleia Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112546_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Endwalker&#32;term:EW&#32;term:Thaleia&#32;term:Thaleia&#32;term:Domaine divin - Thalie&#32;term:華めく神域 タレイア&#32;term:Thaleia&#32;term:Thaleia&#32;term:Domaine divin - Thalie&#32;term:華めく神域 タレイア&#32;term:Normal&#32;term:6.50!&#32;term:6.5!&#32;term:Growing Light&#32;term:Das Herz des Mythos&#32;term:The Heart of the Myth&#32;term:L'ultime bénédiction&#32;term:華めく神域 タレイア&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Theogonie&#32;term:orchestrion&#32;term:Notenrolle&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Thaliak&#32;term:Llymlaen&#32;term:Oschon&#32;term:Eulogia&#32;">
+                      <span data-translate="Summary_allianzraid_thaleia"> Thaleia </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      Thaleia
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/ew/euphrosyne.html" title="Go to the Euphrosyne Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112505_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Endwalker&#32;term:EW&#32;term:Euphrosyne&#32;term:Euphrosyne&#32;term:Domaine divin - Euphrosyne&#32;term:喜びの神域 エウプロシュネ&#32;term:Euphrosyne&#32;term:Euphrosyne&#32;term:Domaine divin - Euphrosyne&#32;term:喜びの神域 エウプロシュネ&#32;term:Normal&#32;term:6.30!&#32;term:6.3!&#32;term:Gods Revel, Lands Tremble&#32;term:Rückkehr ins Schemenreich&#32;term:Return to the Phantom Realm&#32;term:Retour à Omphalos&#32;term:喜びの神域 エウプロシュネ&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Hypostase&#32;term:orchestrion&#32;term:Notenrolle&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Nophica&#32;term:Althyk&#32;term:Nymeia&#32;term:Althyk & Nymeia&#32;term:Halone&#32;term:Menphina&#32;">
+                      <span data-translate="Summary_allianzraid_euphrosyne"> Euphrosyne </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      Euphrosyne
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/ew/aglaia.html" title="Go to the Aglaia Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112466_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Endwalker&#32;term:EW&#32;term:Aglaia&#32;term:Aglaia&#32;term:Domaine divin - Aglaé&#32;term:輝ける神域 アグライア&#32;term:Aglaia&#32;term:Aglaia&#32;term:Domaine divin - Aglaé&#32;term:輝ける神域 アグライア&#32;term:Normal&#32;term:6.10!&#32;term:6.1!&#32;term:Newfound Adventure&#32;term:Im Reich der Götter&#32;term:The Realm of the Gods&#32;term:Divins démêlés&#32;term:輝ける神域 アグライア&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Pantheon&#32;term:orchestrion&#32;term:Notenrolle&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Byregot','Rhalgr','Azeyma','Nald'Thal&#32;">
+                      <span data-translate="Summary_allianzraid_aglaia"> Aglaia </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      Aglaia
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- END Include from _includes/_components/index-list -->
+          </div>
+          <!-- Include from _includes/helper/handle_version_switchcase --><!-- Shadowbringers Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+          <!-- Include from _includes/_components/index-counter --><!-- END Include from _includes/_components/index-counter -->
+          <a id="shadowbringers"></a>
+          <div class="index-divider" data-expansion="shb"><!-- Include from _includes/_components/expantion_filter -->
+            <h2 class="index-divider__title"><img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061878_hr1.webp"/><img loading="lazy" class="ex-icon" src="/assets/img/game_assets/uld/title_logo500_hr1.tex.webp"><!-- <span data-translate="Patches_5.x - Shadowbringers">5.x - Shadowbringers</span> -->
+            </h2>
+            <!-- END Include from _includes/_components/expantion_filter -->
+          </div>
+          <div class="index__list" data-expansion="shb"><!-- Include from _includes/_components/index-list --><!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/shb/the-tower-at-paradigms-breach.html" title="Go to the Der Turm, Paradigmenbrecher Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112431_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Shadowbringers&#32;term:ShB&#32;term:Der Turm, Paradigmenbrecher&#32;term:The Tower at Paradigm's Breach&#32;term:Tour de la Contingence&#32;term:希望ノ砲台：「塔」&#32;term:Der Turm, Paradigmenbrecher&#32;term:The Tower at Paradigm's Breach&#32;term:La tour de la Contingence&#32;term:希望ノ砲台：「塔」&#32;term:Normal&#32;term:5.50!&#32;term:5.5!&#32;term:Death unto Dawn&#32;term:Des Schicksals grausam Ränke&#32;term:Brave New World&#32;term:Créatures ennemies&#32;term:顕現する敵&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Androiden&#32;term:orchestrion&#32;term:Notenrolle&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Herzbube&#32;term:Hänsel & Gretel&#32;term:Hänsel&#32;term:Gretel&#32;term:Xun-Zi&#32;term:Rotes Mädchen&#32;term:Ihre Abgöttlichkeit&#32;term:Ihre Infloreszenz&#32;">
+                      <span data-translate="Summary_allianzraid_the tower at paradigm's breach"> The Tower at Paradigm's Breach </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      The Tower at Paradigm's Breach
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/shb/the-puppets-bunker.html" title="Go to the Die Puppenfestung Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112400_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Shadowbringers&#32;term:ShB&#32;term:Die Puppenfestung&#32;term:The Puppets' Bunker&#32;term:Base militaire des Pantins&#32;term:人形タチノ軍事基地&#32;term:Die Puppenfestung&#32;term:The Puppets' Bunker&#32;term:La base militaire des Pantins&#32;term:人形タチノ軍事基地&#32;term:Normal&#32;term:5.30!&#32;term:5.3!&#32;term:Reflections in Crystal&#32;term:Auferstanden von den Toten&#32;term:Everything You Know Is Wrong&#32;term:Le réveil de 2P&#32;term:２Ｐとの再会&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:YoRHa Modell Nr. 53&#32;term:orchestrion&#32;term:Notenrolle&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:813P: Bollwerk&#32;term:724P: Flugeinheit A-Lpha&#32;term:767P: Flugeinheit B-Eta&#32;term:772P: Flugeinheit C-Hi&#32;term:905P: Läufer&#32;term:2P: Fusion&#32;term:Puppenklumpen&#32;term:2P: Fusion&#32;">
+                      <span data-translate="Summary_allianzraid_the puppets' bunker"> The Puppets' Bunker </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      The Puppets' Bunker
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/shb/the-copied-factory.html" title="Go to the Die kopierte Fabrik Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112375_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Shadowbringers&#32;term:ShB&#32;term:Die kopierte Fabrik&#32;term:The Copied Factory&#32;term:Réplique de l'usine désaffectée&#32;term:複製サレタ工場廃墟&#32;term:Die kopierte Fabrik&#32;term:The Copied Factory&#32;term:La réplique de l'usine désaffectée&#32;term:複製サレタ工場廃墟&#32;term:Normal&#32;term:5.10!&#32;term:5.1!&#32;term:Vows of Virtue, Deeds of Cruelty&#32;term:Hinter verschlossenen Türen&#32;term:On the Threshold&#32;term:Panique mécanique&#32;term:閉ざされた扉の向こう&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:YoRHa&#32;term:orchestrion&#32;term:Notenrolle&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Befehlsmodell Mit Omnigelenk&#32;term:Goliath Mit Inversgelenk&#32;term:Flugeinheit&#32;term:Hobbes&#32;term:Engels&#32;term:9S' Mehrbeiniger Panzer&#32;">
+                      <span data-translate="Summary_allianzraid_the copied factory"> The Copied Factory </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      The Copied Factory
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- END Include from _includes/_components/index-list -->
+          </div>
+          <!-- Include from _includes/helper/handle_version_switchcase --><!-- Stormblood Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+          <!-- Include from _includes/_components/index-counter --><!-- END Include from _includes/_components/index-counter -->
+          <a id="stormblood"></a>
+          <div class="index-divider" data-expansion="sb"><!-- Include from _includes/_components/expantion_filter -->
+            <h2 class="index-divider__title"><img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061877_hr1.webp"/><img loading="lazy" class="ex-icon" src="/assets/img/game_assets/uld/title_logo400_hr1.tex.webp"><!-- <span data-translate="Patches_4.x - Stormblood">4.x - Stormblood</span> -->
+            </h2>
+            <!-- END Include from _includes/_components/expantion_filter -->
+          </div>
+          <div class="index__list" data-expansion="sb"><!-- Include from _includes/_components/index-list --><!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/sb/the-orbonne-monastery.html" title="Go to the Kloster von Orbonne Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112334_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Stormblood&#32;term:SB&#32;term:Kloster von Orbonne&#32;term:The Orbonne Monastery&#32;term:Monastère d'Orbonne&#32;term:楽欲の僧院 オーボンヌ&#32;term:Kloster von Orbonne&#32;term:The Orbonne Monastery&#32;term:Le Monastère d'Orbonne&#32;term:楽欲の僧院 オーボンヌ&#32;term:Normal&#32;term:4.50!&#32;term:4.5!&#32;term:A Requiem for Heroes&#32;term:Das Kloster von Orbonne&#32;term:The City of Lost Angels&#32;term:L'ange du monastère&#32;term:楽欲の僧院 オーボンヌ&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Ivalisisch&#32;term:orchestrion&#32;term:Notenrolle&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Mustadio&#32;term:Agrias&#32;term:Cidolfus&#32;term:Cherub Ultima&#32;">
+                      <span data-translate="Summary_allianzraid_the orbonne monastery"> The Orbonne Monastery </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      The Orbonne Monastery
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/sb/the-ridorana-lighthouse.html" title="Go to the Richtfeuer von Ridorana Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112286_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Stormblood&#32;term:SB&#32;term:Richtfeuer von Ridorana&#32;term:The Ridorana Lighthouse&#32;term:Le Phare de Ridorana&#32;term:封じられた聖塔 リドルアナ&#32;term:Richtfeuer von Ridorana&#32;term:The Ridorana Lighthouse&#32;term:Le Phare de Ridorana&#32;term:封じられた聖塔 リドルアナ&#32;term:Normal&#32;term:4.30!&#32;term:4.3!&#32;term:Under the Moonlight&#32;term:Licht am Ende der Welt&#32;term:Annihilation&#32;term:La lumière au bout du monde&#32;term:封じられた聖塔 リドルアナ&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Ivalisisch&#32;term:orchestrion&#32;term:Notenrolle&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Dunkelfürst Famfrit&#32;term:Dömonid Belias&#32;term:Automat Nr. 7&#32;term:Yiasmat&#32;">
+                      <span data-translate="Summary_allianzraid_the ridorana lighthouse"> The Ridorana Lighthouse </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      The Ridorana Lighthouse
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/sb/the-royal-city-of-rabanastre.html" title="Go to the Rabanastre Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112256_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Stormblood&#32;term:SB&#32;term:Die königliche Stadt Rabanastre&#32;term:The Royal City of Rabanastre&#32;term:Cité royale de Rabanastre&#32;term:失われた都 ラバナスタ&#32;term:Rabanastre&#32;term:The Royal City of Rabanastre&#32;term:La Cité royale de Rabanastre&#32;term:失われた都 ラバナスタ&#32;term:Normal&#32;term:4.10!&#32;term:4.1!&#32;term:The Legend Returns&#32;term:Die königliche Stadt Rabanastre&#32;term:A City Fallen&#32;term:La Cité royale de Rabanastre&#32;term:失われた都ラバナスタ&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Ivalisisch&#32;term:orchestrion&#32;term:Notenrolle&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Mateus der Peiniger&#32;term:Hashmallim der Einiger&#32;term:Rofocale&#32;term:Argath Thadalfus&#32;">
+                      <span data-translate="Summary_allianzraid_the royal city of rabanastre"> The Royal City of Rabanastre </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      The Royal City of Rabanastre
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- END Include from _includes/_components/index-list -->
+          </div>
+          <!-- Include from _includes/helper/handle_version_switchcase --><!-- Heavensward Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+          <!-- Include from _includes/_components/index-counter --><!-- END Include from _includes/_components/index-counter -->
+          <a id="heavensward"></a>
+          <div class="index-divider" data-expansion="hw"><!-- Include from _includes/_components/expantion_filter -->
+            <h2 class="index-divider__title"><img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061876_hr1.webp"/><img loading="lazy" class="ex-icon" src="/assets/img/game_assets/uld/title_logo300_hr1.tex.webp"><!-- <span data-translate="Patches_3.x - Heavensward">3.x - Heavensward</span> -->
+            </h2>
+            <!-- END Include from _includes/_components/expantion_filter -->
+          </div>
+          <div class="index__list" data-expansion="hw"><!-- Include from _includes/_components/index-list --><!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/hw/dun-scaith.html" title="Go to the Dun Scaith Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112203_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Heavensward&#32;term:HW&#32;term:Dun Scaith&#32;term:Dun Scaith&#32;term:Dun Scaith&#32;term:影の国ダン・スカー&#32;term:Dun Scaith&#32;term:Dun Scaith&#32;term:Dun Scaith&#32;term:影の国ダン・スカー&#32;term:Normal&#32;term:3.50!&#32;term:3.5!&#32;term:The Far Edge of Fate&#32;term:Die Insel der Schatten&#32;term:Where Shadows Reign&#32;term:L'armée des ombres&#32;term:影の国ダン・スカー&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Diabolisch&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Nihil-Thanatos&#32;term:Nihil-Ferdiad&#32;term:Scathach&#32;term:Diabolos&#32;">
+                      <span data-translate="Summary_allianzraid_dun scaith"> Dun Scaith </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      Dun Scaith
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/hw/the-weeping-city-of-mhach.html" title="Go to the Die Stadt der Tränen Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112162_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Heavensward&#32;term:HW&#32;term:Die Stadt der Tränen&#32;term:The Weeping City of Mhach&#32;term:Cité défendue de Mhach&#32;term:禁忌都市マハ&#32;term:Die Stadt der Tränen&#32;term:The Weeping City of Mhach&#32;term:La Cité défendue de Mhach&#32;term:禁忌都市マハ&#32;term:Normal&#32;term:3.30!&#32;term:3.3!&#32;term:Revenge of the Horde&#32;term:Die Ruinen von Mhach&#32;term:The Weeping City&#32;term:Un défi à double enjeu&#32;term:禁忌都市マハ&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Yafaem&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Arachne die Ahnin&#32;term:Forgall&#32;term:Yadis&#32;term:Calofisteri&#32;term:Wipeing City&#32;">
+                      <span data-translate="Summary_allianzraid_the weeping city of mhach"> The Weeping City of Mhach </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      The Weeping City of Mhach
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/hw/the-void-ark.html" title="Go to the Die Nichts-Arche Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112118_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:Heavensward&#32;term:HW&#32;term:Nichts-Arche&#32;term:Void Ark&#32;term:Arche du néant&#32;term:魔航船ヴォイドアーク&#32;term:Die Nichts-Arche&#32;term:The Void Ark&#32;term:L'Arche du néant&#32;term:魔航船ヴォイドアーク&#32;term:Normal&#32;term:3.10!&#32;term:3.1!&#32;term:As Goes Light, So Goes Darkness&#32;term:Gebieter der Lüfte&#32;term:To Rule the Skies&#32;term:À l'abordage !&#32;term:魔航船ヴォイドアーク&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Archen&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Cetus&#32;term:Irminsul&#32;term:Sägezahn&#32;term:Cuchulainn&#32;term:Echidna&#32;">
+                      <span data-translate="Summary_allianzraid_the void ark"> The Void Ark </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      The Void Ark
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- END Include from _includes/_components/index-list -->
+          </div>
+          <!-- Include from _includes/helper/handle_version_switchcase --><!-- A Realm Reborn Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+          <!-- Include from _includes/_components/index-counter --><!-- END Include from _includes/_components/index-counter -->
+          <a id="a_realm_reborn"></a>
+          <div class="index-divider" data-expansion="arr"><!-- Include from _includes/_components/expantion_filter -->
+            <h2 class="index-divider__title"><img loading="lazy" class="role-icon" src="/assets/img/game_assets/061000/061875_hr1.webp"/><img loading="lazy" class="ex-icon" src="/assets/img/game_assets/uld/title_logo_hr1.tex.webp"><!-- <span data-translate="Patches_2.x - A Realm Reborn">2.x - A Realm Reborn</span> -->
+            </h2>
+            <!-- END Include from _includes/_components/expantion_filter -->
+          </div>
+          <div class="index__list" data-expansion="arr"><!-- Include from _includes/_components/index-list --><!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/arr/the-world-of-darkness.html" title="Go to the Die Welt der Dunkelheit Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112079_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:A Realm Reborn&#32;term:ARR&#32;term:Welt der Dunkelheit&#32;term:The World of Darkness&#32;term:Monde des Ténèbres&#32;term:闇の世界&#32;term:Die Welt der Dunkelheit&#32;term:The World of Darkness&#32;term:La Tour de Cristal - Monde des Ténèbres&#32;term:クリスタルタワー：闇の世界&#32;term:Normal&#32;term:2.50!&#32;term:2.5!&#32;term:Before the Fall&#32;term:Licht ins Dunkel&#32;term:The World of Darkness&#32;term:Le Monde des Ténèbres&#32;term:闇の世界&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Dämonen&#32;term:orchestrion_material&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Angra Mainyu&#32;term:Fünfköpfiger Drache&#32;term:Cerberus&#32;term:Wolke der Dunkelheit&#32;">
+                      <span data-translate="Summary_allianzraid_the world of darkness"> The World of Darkness </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      The World of Darkness
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/arr/syrcus-tower.html" title="Go to the Kristallturm - Der Syrcus-Turm Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112061_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:A Realm Reborn&#32;term:ARR&#32;term:Syrcus-Turm&#32;term:Syrcus Tower&#32;term:Tour de Syrcus&#32;term:シルクスの塔&#32;term:Kristallturm - Der Syrcus-Turm&#32;term:Syrcus Tower&#32;term:La Tour de Cristal - Tour de Syrcus&#32;term:クリスタルタワー：シルクスの塔&#32;term:Normal&#32;term:2.30!&#32;term:2.3!&#32;term:Defenders of Eorzea&#32;term:Der Syrcus-Turm&#32;term:Syrcus Tower&#32;term:La Tour de Syrcus&#32;term:シルクスの塔&#32;term:minions&#32;term:Begleiter&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Amon&#32;term:Hüter&#32;term:Scylla&#32;term:Phlegethon&#32;term:orchestrion&#32;term:Notenrolle&#32;term:orchestrion_material&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Scylla&#32;term:Glasya Labolas&#32;term:Amon&#32;term:Xande&#32;">
+                      <span data-translate="Summary_allianzraid_syrcus tower"> Syrcus Tower </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      Syrcus Tower
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- Include _include/summary.html -->
+            <div class="summary">
+              <a class="index-item__link" href="/arr/the-labyrinth-of-the-ancients.html" title="Go to the Kristallturm - Das Labyrinth der Alten Guide">
+                <div loading="lazy" class="index-item__background"style="background-image:url('/assets/img/game_assets/112000/112033_hr1.webp')">
+                </div>
+                <div class="klassenjobgrid"><image loading="lazy" class="SummaryIcon Icon" title="allianzraid" src="/assets/img/game_assets/061000/061844_hr1.webp"/>
+                  <div class="SummaryName">
+                    <h3 class="index-item__title"data-terms="term:A Realm Reborn&#32;term:ARR&#32;term:Labyrinth der Alten&#32;term:Labyrinth of the Ancients&#32;term:Dédale antique&#32;term:古代の民の迷宮&#32;term:Kristallturm - Das Labyrinth der Alten&#32;term:The Labyrinth of the Ancients&#32;term:La Tour de Cristal - Dédale antique&#32;term:クリスタルタワー：古代の民の迷宮&#32;term:Normal&#32;term:2.10!&#32;term:2.1!&#32;term:A Realm Awoken&#32;term:Das Labyrinth der Alten&#32;term:Labyrinth of the Ancients&#32;term:Le Dédale antique&#32;term:古代の民の迷宮&#32;term:tt_cards&#32;term:Triple Triad Karte&#32;term:Zwiebel&#32;term:Königlich&#32;term:Balladen&#32;term:Purpur&#32;term:Fuma&#32;term:orchestrion_material&#32;term:allianzraid&#32;term:allianceraid&#32;term:mentor&#32;term:Zufallsinhalt&#32;term:roulette&#32;term:Knochendrache&#32;term:Thanatos&#32;term:König Behemoth&#32;term:Phlegethon&#32;term:LotA&#32;">
+                      <span data-translate="Summary_allianzraid_the labyrinth of the ancients"> The Labyrinth of the Ancients </span>
+                      <span class></span>
+                    </h3>
+                    <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                      The Labyrinth of the Ancients
+                    </h4>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- END Include _include/summary.html -->
+            <!-- END Include from _includes/_components/index-list -->
+          </div>
+          <!-- Include from _includes/helper/handle_version_switchcase --><!-- Klassen Guide Index ============================================ --><!-- END Include from _includes/helper/handle_version_switchcase -->
+          <!-- Include from _includes/_components/index-counter --><!-- END Include from _includes/_components/index-counter -->
+          <!-- Include from _includes/guide-index-null-state -->
+          <!-- Guide Index Null State ================================================ -->
+          <div class="index-null-state">
+            <h4 class="index-null-state__title" data-translate="GuideIndexNullState_Title">Sorry, the guide you're looking for doesn't exist yet!</h4>
+            <p class="index-null-state__copy">
+              <div data-translate="GuideIndexNullState_Next">Check out what's coming next </div>
+              <a href="/about" title="Go to the FFXIV Pocket Guide Development Roadmap." target="_blank" data-translate="GuideIndexNullState_LinkText">here.</a>
+            </p>
+            <p class="index-null-state__copy">
+              <div data-translate="GuideIndexNullState_Suggest">Want to suggest a guide? Tweet your ideas to </div>
+              <a href="https://twitter.com/intent/tweet?screen_name=FF14PocketGuide" title="Tweet at the Pocket Guide" target="_blank">@FF14PocketGuide</a>!
+            </p>
+          </div>
+          <!-- END Include from _includes/guide-index-null-state -->
+          <!-- Include correct translation files -->
+          <div style="display: none" data-extra-translate="/assets/translations/summary/allianzraid">       </div>
+        </div>
+        <!-- END Include from _includes/index -->
+        <!-- Include from _includes/footer -->
+        <footer>
+          <div class="content-container">
+            <p class="footer__copy">
+              <span data-translate="Footer_ProducedBy">This site is produced by </span>
+              <a href="https://de.finalfantasyxiv.com/lodestone/character/7944237/" target="_blank" rel="noopener noreferrer" title="Visit Akurosia Kamo on the Lodestone.">Akurosia Kamo</a>
+              <span data-translate="Footer_WithHelp">with the help of video guides created by </span>
+              <a href="https://twitter.com/MTQcapture" title="Go to MTQcapture's Twitter." target="_blank" rel="noopener noreferrer">@MTQcapture</a>
+              <span data-translate="Footer_And"> and </span>
+              <a href="https://twitter.com/mrhappy1227" title="Go to MrHappy1227's Twitter." target="_blank" rel="noopener noreferrer">@MrHappy1227</a>.
+            </br></br>
+          <span data-translate="Footer_ProducedByOriginal">The original Page was created by </span>
+          <a href="https://twitter.com/lionsliege" target="_blank" rel="noopener noreferrer" title="Visit Liege on Twitter.">@LionsLiege</a>,
+          <a href="https://na.finalfantasyxiv.com/lodestone/character/12774809/" target="_blank" rel="noopener noreferrer" title="Visit Demosthenes on the Lodestone.">Demosthenes Lorelai</a>,
+          <a href="https://na.finalfantasyxiv.com/lodestone/character/14514962/" target="_blank" rel="noopener noreferrer" title="Visit Divine on the Lodestone.">Divine Angel</a>,
+          <span data-translate="Footer_And"> and </span>
+          <a href="https://na.finalfantasyxiv.com/lodestone/character/3758032/" target="_blank" rel="noopener noreferrer" title="Visit Shiro on the Lodestone.">Shiro Astral</a>
+        </br>
+        <span data-translate="Footer_OriginalPageLinks">Original Page Link: </span>
+        <a href="https://ffxiv.guide/" title="Original Page Link" target="_blank" rel="noopener noreferrer">https://ffxiv.guide/</a>
+        <br>
+        <span data-translate="Footer_LastUpdated">Last updated: </span>2026-02-06 17:07:43 -0600</span><br>
+      <a href="https://github.com/Akurosia/DevFFXIVPocketGuide" target="_blank" rel="noopener noreferrer" title="Pocket Guide Development Repo!">
+        <ion-icon name="logo-github"></ion-icon>
+        <span data-translate="Footer_ViewOnGithub">View Project on Github</span>
+      </a>
+    </p>
+  </div>
+  <div style="display: none" data-extra-translate="/assets/translations/footer"></div>
+</footer>
+<script type="text/javascript" src="/assets/js/expand_collapse.js?1770419310945723427"></script>
+<!-- END Include from _includes/footer -->
+</div>
+</div>
+<div style="display: none" data-extra-translate="/assets/translations/index"></div>
+<!-- Include from _includes/scripts -->
+<!-- Match Media -->
+<script type="text/javascript" src="/assets/vendor/matchMedia.js"></script>
+<!-- Custom Scripts -->
+<script type="text/javascript" src="/assets/js/core.js"></script>
+<script type="text/javascript" src="/assets/js/app.js"></script>
+<script type="text/javascript" src="/assets/js/openEnemy.js"></script>
+<script type="text/javascript" src="/assets/js/ionicons740/ionicons.esm.js"></script>
+<script type="text/javascript" src="/assets/js/ionicons740/ionicons.js"></script>
+<!-- <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script> -->
+<!-- <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> -->
+<!-- END Include from _includes/scripts -->
+</body>
+<!-- END ORIGIN: _layout/index -->
+<script type="text/javascript">
+  executeHandelingLanguages()
+</script>
+</html>
