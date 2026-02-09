@@ -1,6 +1,7 @@
 <div style="width:100%; height:820px;">
     <iframe
-      src="https://akutrack.akurosia.org/guide.html?rowId={{include.mapidnr}}"
+      id="guide_iframe"
+      src=""
       title="Leaflet Map"
       style="border:0; outline:0; width:100%; height:100%; display:block; overflow:hidden;"
       frameborder="0"
@@ -10,3 +11,11 @@
       allowfullscreen
     ></iframe>
 </div>
+<script>
+(function() {
+    const iframe = document.getElementById("guide_iframe");
+    const lang = localStorage.getItem("duckit_langs") || "en";
+    const baseUrl = "https://akutrack.akurosia.org/guide.html?rowId={{include.mapidnr}}";
+    iframe.src = baseUrl + "&lang=" + encodeURIComponent(lang);
+})();
+</script>
