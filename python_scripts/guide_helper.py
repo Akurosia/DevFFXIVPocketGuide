@@ -191,8 +191,8 @@ def get_fixed_status_description(_id):
         return {"en": f"Unknown_{_id}"}
 
 
-ids_to_replace1: list[str] = ["10742", "11399", "13057", "13843"]
-ids_to_replace2: list[str] = ["10744", "11402", "13058", "13844"]
+ids_to_replace1: list[str] = ["10742", "11399", "13057", "13843", "14378"]
+ids_to_replace2: list[str] = ["10744", "11402", "13058", "13844", "14379"]
 def getBnpcNameFromID(_id, article_name, german_name, lang="en"):
     global ids_to_replace
     bnpc_new_name = ""
