@@ -88,7 +88,9 @@ function renderProgressBar(completed, total) {
         "6.5 Growing Light":                    "Das Licht im Dunkel",
         "7.0 Dawntrail":                        "Unbegrenzte Möglichkeiten",
         "7.1 Crossroads":                       "Auf Geheiß Alexandrias",
-        "7.2 Seekers of Eternity":              "Glanz der Vergangenheit"
+        "7.2 Seekers of Eternity":              "Glanz der Vergangenheit",
+        "7.3 The Promose of Tomorrow":          "Endlose Dunkelheit",
+        "7.4 Into the Mist":                    "Der Kompassnadel nach"
     };
     const breakpoint2 = {
         "2.0 A Realm Reborn":                   "Willkommen in Gridania",
