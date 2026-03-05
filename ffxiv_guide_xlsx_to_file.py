@@ -64,7 +64,7 @@ def get_files_from_templates():
         "/071000/071221_hr1.webp","/071000/071201_hr1.webp","/071000/071222_hr1.webp","/071000/071281_hr1.webp","/060000/060552_hr1.webp","/061000/061436_hr1.webp","/062000/062951_hr1.webp","/062000/062952_hr1.webp","/062000/062953_hr1.webp",
         "/070000/070549_hr1.webp","/070000/070449_hr1.webp","/070000/070538_hr1.webp","/070000/070438_hr1.webp","/070000/070539_hr1.webp","/070000/070439_hr1.webp","/070000/070540_hr1.webp","/070000/070440_hr1.webp","/070000/070541_hr1.webp","/070000/070441_hr1.webp",
         "/070000/070542_hr1.webp","/070000/070442_hr1.webp","/070000/070543_hr1.webp","/070000/070443_hr1.webp","/070000/070544_hr1.webp","/070000/070444_hr1.webp","/070000/070545_hr1.webp","/070000/070445_hr1.webp","/070000/070546_hr1.webp","/070000/070446_hr1.webp",
-        "/070000/070547_hr1.webp","/070000/070447_hr1.webp","/070000/070548_hr1.webp","/070000/070448_hr1.webp",
+        "/070000/070547_hr1.webp","/070000/070447_hr1.webp","/070000/070548_hr1.webp","/070000/070448_hr1.webp","/070000/070537_hr1.webp","/070000/070437_hr1.webp"
     ]
     for file in files:
         getImage(file)
@@ -222,10 +222,10 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
         i = int(key)
         try:
             debug_row_number = i
-            if True:
+            if not True:
                 #if debug_row_number < 800 :
                 #if debug_row_number not in [354, 581, 787, 788, 818, 821]:
-                if debug_row_number not in [845]:
+                if debug_row_number not in [881]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(value, i, orderedContent)
