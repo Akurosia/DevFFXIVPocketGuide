@@ -73,6 +73,8 @@ def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
     html += "    <tbody>\n"
     result: dict[str, str] = {}
     for key, value in miragestoresetitemlookup.items():
+        if not value.get("Item", None):
+            continue
         for mirageset in value['Item']:
             if mirageset.get('row_id', 0) == 0:
                 continue
