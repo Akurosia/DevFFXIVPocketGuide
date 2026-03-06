@@ -126,41 +126,45 @@ def run():
         tjson = ""
         if url in skip_urls:
             ...#continue
-        response = requests.get(url)
-        if response:
-            if response.text.strip() == "":
-                repos_with_load_errors.append(url)
-                continue
-            tjson = clean_json(response.text)
-            if tjson == []:
-                repos_with_load_errors.append(url)
-                continue
-            for entry in tjson:
-                if not result.get(entry['Name'], None):
-                    result[entry['Name']] = {
-                        "name": entry['Name'],
-                        "description": entry.get('Description', ""),
-                        "versions": [],
-                        "tags": [],
-                        "DalamudApiLevel": entry.get('DalamudApiLevel', 0)
-                    }
-                    if entry.get('Punchline', None):
-                        result[entry['Name']]["punchline"] = entry['Punchline'],
-                    if entry.get('Tags', None):
-                        result[entry['Name']]["tags"] += entry['Tags'][0],
-                    if entry.get('CategoryTags', None):
-                        result[entry['Name']]["tags"] += entry['CategoryTags'][0],
-                    if entry.get('ImageUrls', None):
-                        result[entry['Name']]["image"] = entry['ImageUrls'][0],
+        try:
+            response = requests.get(url)
+            if response:
+                if response.text.strip() == "":
+                    repos_with_load_errors.append(url)
+                    continue
+                tjson = clean_json(response.text)
+                if tjson == []:
+                    repos_with_load_errors.append(url)
+                    continue
+                for entry in tjson:
+                    if not result.get(entry['Name'], None):
+                        result[entry['Name']] = {
+                            "name": entry['Name'],
+                            "description": entry.get('Description', ""),
+                            "versions": [],
+                            "tags": [],
+                            "DalamudApiLevel": entry.get('DalamudApiLevel', 0)
+                        }
+                        if entry.get('Punchline', None):
+                            result[entry['Name']]["punchline"] = entry['Punchline'],
+                        if entry.get('Tags', None):
+                            result[entry['Name']]["tags"] += entry['Tags'][0],
+                        if entry.get('CategoryTags', None):
+                            result[entry['Name']]["tags"] += entry['CategoryTags'][0],
+                        if entry.get('ImageUrls', None):
+                            result[entry['Name']]["image"] = entry['ImageUrls'][0],
 
-                _tuple = (entry['Author'], url, entry.get('RepoUrl', None), entry.get('AssemblyVersion', 0))
-                if int(result[entry['Name']].get("DalamudApiLevel", 0)) < int(entry.get('DalamudApiLevel', 0)):
-                    result[entry['Name']]["DalamudApiLevel"] = int(entry["DalamudApiLevel"])
-                result[entry['Name']]["versions"].append(_tuple)
-        else:
-            print(f"Error on: {url}")
-            repos_with_load_errors.append(url)
-        completed_repos.append(url)
+                    _tuple = (entry['Author'], url, entry.get('RepoUrl', None), entry.get('AssemblyVersion', 0))
+                    if int(result[entry['Name']].get("DalamudApiLevel", 0)) < int(entry.get('DalamudApiLevel', 0)):
+                        result[entry['Name']]["DalamudApiLevel"] = int(entry["DalamudApiLevel"])
+                    result[entry['Name']]["versions"].append(_tuple)
+            else:
+                print(f"Error on: {url}")
+                repos_with_load_errors.append(url)
+            completed_repos.append(url)
+        except Exception as e:
+            print(e)
+            pass
     writeJsonFile("dalamud_repos.json", result)
     #print_pretty_json(completed_repos)
     #print_pretty_json(repos_with_load_errors)
