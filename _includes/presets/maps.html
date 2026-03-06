@@ -12,10 +12,12 @@
     ></iframe>
 </div>
 <script>
-(function() {
-    const iframe = document.getElementById("guide_iframe");
-    const lang = localStorage.getItem("duckit_langs") || "en";
-    const baseUrl = "https://akutrack.akurosia.org/guide.html?rowId={{include.mapidnr}}";
-    iframe.src = baseUrl + "&lang=" + encodeURIComponent(lang);
-})();
+    function setMapIFrame(id) {
+        const iframe = document.getElementById("guide_iframe");
+        const lang = localStorage.getItem("duckit_langs") || "en";
+        const baseUrl = `https://akutrack.akurosia.org/guide.html?rowId=${id}&getFilteredElement=TreasureMaps`;
+        iframe.src = baseUrl + "&lang=" + encodeURIComponent(lang);
+    }
+    console.log("{{include.mapidnr}}")
+    setMapIFrame("{{include.mapidnr}}")
 </script>

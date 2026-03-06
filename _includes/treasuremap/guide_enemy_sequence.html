@@ -2,27 +2,14 @@
 <!-- Opens the Sequence Loop -->
 
 
-<div class="guide-metadata__menu-link guide__accordion-trigger--03--grid" id="{{ "map_" | append: zone.zonename | slugify }}">
+<div class="guide-metadata__menu-link guide__accordion-trigger--03--grid" id="{{ "map_" | append: zone.zonename | slugify }}" onclick="setMapIFrame({{zone.mapid}})">
     <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <div class="Names klassen">
         <h3 class="guide__accordion-trigger-title" data-translate="Map_Section_{{zone.zonename}}">{{ zone.zonename }}</h3>
     </div>
 </div>
+
 <div class="guide__accordion-content--03">
-    {% assign mapfile = "/assets/leaflet/maps/" | append: zone.zoneslug | append: ".json" %}
-    <span>{{mapfile}}</span>
-    {% assign file_exists = false %}
-
-    {% for f in site.static_files %}
-      {% if f.path == mapfile %}
-        {% assign file_exists = true %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-    {% if file_exists %}
-        {%- include presets/maps.html maptype=zone.zoneslug -%}
-    {%- endif -%}
-
     {%- if zone.subimage -%}
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
         {%- for image in zone.subimage -%}

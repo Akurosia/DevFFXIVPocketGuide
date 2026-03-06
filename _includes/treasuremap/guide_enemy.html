@@ -7,6 +7,9 @@
             <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en xtitle">{{ x }}</span>
         </div>
     </div>
+    {%- assign first_zone = zones[0] -%}
+    {%- assign mapidnr = first_zone.mapid -%}
+    {%- include presets/maps.html mapidnr=mapidnr -%}
     <!-- Guide Event Accordion Content -->
     <div class="guide__accordion-content--01 active">
         <!-- Opens the Adds Loop -->

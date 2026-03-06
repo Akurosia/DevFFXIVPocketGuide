@@ -33,6 +33,13 @@ def cache_results(func):
 
     return wrapper
 
+
+@cache_results
+def get_map(placename):
+    for key, value in maps.items():
+        if value['PlaceName']['Name_de'] == placename:
+            return value['row_id']
+
 @cache_results
 def get_placename(name):
     for key, value in placename.items():
@@ -308,9 +315,9 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
                 print(posible_maps)
 
             _extra, full_placename, output_path, modified_image, placename = code_for_image(overlay_id, posible_maps, location, item_name)
-
             _post += f'  - zonename: "{full_placename["Name_en"]}"\n'
             _post += f'    zoneslug: "{fix_slug(full_placename["Name_en"]).replace("_", "-")}"\n'
+            _post += f'    mapid: "{get_map(full_placename["Name_de"])}"\n'
             for lang in LANGUAGES:
                 map_translations[lang][f'Map_Section_{full_placename["Name_"+"en"]}'] = full_placename["Name_"+lang]
             _post += f'    fullimage: "/assets/img/TreasureMaps/{item_name}/{placename}/{placename}.webp"\n'
