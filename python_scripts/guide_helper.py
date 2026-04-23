@@ -430,10 +430,12 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     if old_attack.get('title', {}).get('de', None) == attack['name']:
                         attack_index = i
                         break
-                #if not attack_index:
-                    #print_color_red(f"[DEBUG] {attack['name']=} was not found in old_enemy_data")
+                if not attack_index:
+                    print_color_red(f"[DEBUG] {old_enemy_data['sortname']=} {attack['name']=} was not found in old_enemy_data")
                     # print(old_enemy_data['attacks'])
-                #    continue
+                    continue
+                #print(old_enemy_data['sortname'])
+                #print(old_enemy_data['attacks'])
                 tmp_attack = old_enemy_data['attacks'][attack_index]
                 # add new attack
                 tmp = {

@@ -222,10 +222,10 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
         i = int(key)
         try:
             debug_row_number = i
-            if not True:
+            if True:
                 #if debug_row_number < 800 :
                 #if debug_row_number not in [354, 581, 787, 788, 818, 821]:
-                if debug_row_number not in [881]:
+                if debug_row_number not in [821]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(value, i, orderedContent)
@@ -333,7 +333,7 @@ def main() -> None:
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
-        #run_all(path_of_main_script, translations)
+        run_all(path_of_main_script, translations)
         pass
     create_translation_files()
     logger.critical('STOP')

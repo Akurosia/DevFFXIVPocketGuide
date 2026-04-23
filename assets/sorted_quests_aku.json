@@ -2350,7 +2350,8 @@
             "69204",
             "69288",
             "69531",
-            "70190"
+            "70190",
+            "70861"
         ],
         "OptionalReward": [
             {
@@ -94689,7 +94690,9 @@
             "Name": "Dawntrail (Epilog)"
         },
         "Name": "Versprechen einer neuen Zukunft",
-        "NextQuest": [],
+        "NextQuest": [
+            "70962"
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -94730,6 +94733,859 @@
         "Reward": [
             {
                 "Item": "Notenrolle von „The Promise of Tomorrow“",
+                "Amount": "1"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ]
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "2040",
+        "Icon": {
+            "Banner": "ui/icon/101000/101468_hr1.webp",
+            "Special": "ui/icon/000000/000000_hr1.webp"
+        },
+        "Issuer": {
+            "Location": {
+                "x": 11.9,
+                "y": 4.6,
+                "region": "Xak Tural",
+                "placename": "Lösung Neun"
+            },
+            "NPC": "Alphinaud"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
+        },
+        "Name": "Der Kompassnadel nach",
+        "NextQuest": [
+            "70963"
+        ],
+        "OptionalReward": [
+            {
+                "Item": "Hummerbisque",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Moqueca",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Navelorangen-Keks",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Antikes Silberstück",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Lösung Neun",
+        "PreviousQuest": {
+            "0": "70909"
+        },
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ]
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "2624",
+        "Icon": {
+            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Special": "ui/icon/000000/000000_hr1.webp"
+        },
+        "Issuer": {
+            "Location": {
+                "x": 15.0,
+                "y": 15.9,
+                "region": "Yok Tural",
+                "placename": "Tuliyollal"
+            },
+            "NPC": "Krile"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
+        },
+        "Name": "Mit blindem Blick",
+        "NextQuest": [
+            "70964"
+        ],
+        "OptionalReward": [
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Tuliyollal",
+        "PreviousQuest": {
+            "0": "70962"
+        },
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ]
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "5641",
+        "Icon": {
+            "Banner": "ui/icon/112000/112634_hr1.webp",
+            "Special": "ui/icon/000000/000000_hr1.webp"
+        },
+        "Issuer": {
+            "Location": {
+                "x": 5.9,
+                "y": 5.9,
+                "region": "Unverlorene Welt",
+                "placename": "Alexandrias Ruinenring"
+            },
+            "NPC": "Krile"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
+        },
+        "Name": "Der Kontinent des Nebels",
+        "NextQuest": [
+            "70965"
+        ],
+        "OptionalReward": [
+            {
+                "Item": "Frömmigkeits-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Fechtkunst-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Kampf-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Zauber-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Alexandrias Ruinenring",
+        "PreviousQuest": {
+            "0": "70963"
+        },
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ]
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "966",
+        "Icon": {
+            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Special": "ui/icon/000000/000000_hr1.webp"
+        },
+        "Issuer": {
+            "Location": {
+                "x": 16.7,
+                "y": 2.0,
+                "region": "Unverlorene Welt",
+                "placename": "Treno"
+            },
+            "NPC": "Lumull"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
+        },
+        "Name": "Ein Tag in Treno",
+        "NextQuest": [
+            "70966"
+        ],
+        "OptionalReward": [
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Treno",
+        "PreviousQuest": {
+            "0": "70964"
+        },
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ]
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "1425",
+        "Icon": {
+            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Special": "ui/icon/000000/000000_hr1.webp"
+        },
+        "Issuer": {
+            "Location": {
+                "x": 16.7,
+                "y": 2.0,
+                "region": "Unverlorene Welt",
+                "placename": "Treno"
+            },
+            "NPC": "Lumull"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
+        },
+        "Name": "Geschwisterliebe",
+        "NextQuest": [
+            "70967"
+        ],
+        "OptionalReward": [
+            {
+                "Item": "Hummerbisque",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Zimtkaffee mit Sahne",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Churrasco",
+                "Amount": "2",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Antikes Silberstück",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Treno",
+        "PreviousQuest": {
+            "0": "70965"
+        },
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ]
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "1425",
+        "Icon": {
+            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Special": "ui/icon/000000/000000_hr1.webp"
+        },
+        "Issuer": {
+            "Location": {
+                "x": 16.1,
+                "y": 0.5,
+                "region": "Unverlorene Welt",
+                "placename": "Treno"
+            },
+            "NPC": "Eyaney"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
+        },
+        "Name": "Möge der Himmel unser werden",
+        "NextQuest": [
+            "70968"
+        ],
+        "OptionalReward": [
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Treno",
+        "PreviousQuest": {
+            "0": "70966"
+        },
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ]
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "1287",
+        "Icon": {
+            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Special": "ui/icon/000000/000000_hr1.webp"
+        },
+        "Issuer": {
+            "Location": {
+                "x": 16.1,
+                "y": 0.6,
+                "region": "Unverlorene Welt",
+                "placename": "Treno"
+            },
+            "NPC": "Krile"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
+        },
+        "Name": "Blut auf Gleisen",
+        "NextQuest": [
+            "70969"
+        ],
+        "OptionalReward": [
+            {
+                "Item": "Hellseher-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Strategen-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "Assassinen-Materia XI",
+                "Amount": "1",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Treno",
+        "PreviousQuest": {
+            "0": "70967"
+        },
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ]
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "6237",
+        "Icon": {
+            "Banner": "ui/icon/101000/101469_hr1.webp",
+            "Special": "ui/icon/000000/000000_hr1.webp"
+        },
+        "Issuer": {
+            "Location": {
+                "x": 17.1,
+                "y": 5.5,
+                "region": "Unverlorene Welt",
+                "placename": "Treno"
+            },
+            "NPC": "Lumull"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
+        },
+        "Name": "Seite an Seite",
+        "NextQuest": [
+            "70970"
+        ],
+        "OptionalReward": [
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Treno",
+        "PreviousQuest": {
+            "0": "70968"
+        },
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ]
+    },
+    {
+        "ActionReward": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "2970",
+        "Icon": {
+            "Banner": "ui/icon/101000/101470_hr1.webp",
+            "Special": "ui/icon/000000/000000_hr1.webp"
+        },
+        "Issuer": {
+            "Location": {
+                "x": 16.8,
+                "y": 2.7,
+                "region": "Unverlorene Welt",
+                "placename": "Treno"
+            },
+            "NPC": "Krile"
+        },
+        "ItemRewardType": "1",
+        "JournalGenre": {
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
+        },
+        "Name": "Nebelland hab ich gesehen",
+        "NextQuest": [],
+        "OptionalReward": [
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            },
+            {
+                "Item": "",
+                "Amount": "0",
+                "IsHQ": "False",
+                "Stain": "Keine Farbe"
+            }
+        ],
+        "Other_Reward.Name": "",
+        "PlaceName": "Treno",
+        "PreviousQuest": {
+            "0": "70969"
+        },
+        "Reward": [
+            {
+                "Item": "Notenrolle von „Dark City Treno (Dawntrail)“",
                 "Amount": "1"
             },
             {
