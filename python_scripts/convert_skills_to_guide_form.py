@@ -740,7 +740,7 @@ def addKlassJobs():
             if roleicons.get(roletypeinparty_en_name_key, None):
                 filecontent += f'roleicon: "/assets/img/game_assets/{getImage(roleicons[roletypeinparty_en_name_key])}"\n'
                 if roletypeinparty_en_name_key == "Healer":
-                    print(classjob[k[0]])
+                    #print(classjob[k[0]])
                     healicon, healname = roleiconsextra[classjob[k[0]]["JobType"]]
                     filecontent += f'roleiconextra:\n'
                     filecontent += f'    - name: "{healname}"\n'
@@ -824,7 +824,7 @@ def addKlassJobs():
         filecontent += cleves_text
         gleves, gleves_text = addCrafterLeve(job, all_gatherer_leves)
         filecontent += gleves_text
-        #filecontent += addQuestkDetails(job, pvp or leves)
+        filecontent += addQuestkDetails(job, pvp or leves)
         filecontent += "    sequence:" + "\n"
         filecontent += "      - phase: \"01\"\n"
         filecontent += "        name: \"Skills\"\n"

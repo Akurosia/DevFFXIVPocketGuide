@@ -222,7 +222,7 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
         i = int(key)
         try:
             debug_row_number = i
-            if True:
+            if not True:
                 #if debug_row_number < 800 :
                 #if debug_row_number not in [354, 581, 787, 788, 818, 821]:
                 if debug_row_number not in [821]:
@@ -328,7 +328,7 @@ def main() -> None:
     os.chdir("./_posts")
     #logger.debug(orderedContent)
     try:
-        run(googledata, orderedContent)
+        #run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
