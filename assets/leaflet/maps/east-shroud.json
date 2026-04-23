@@ -524,22 +524,22 @@
             "description": ""
         },
         {
-            "id": "145",
-            "name": "戦場までは何マルム？",
-            "category": "kill_enemies",
-            "position": [
-                1102.42,
-                562.95
-            ],
-            "description": ""
-        },
-        {
             "id": "212",
             "name": "Neunundneunzig Efeuranken",
             "category": "kill_enemies",
             "position": [
                 985.04,
                 611.9
+            ],
+            "description": ""
+        },
+        {
+            "id": "145",
+            "name": "戦場までは何マルム？",
+            "category": "kill_enemies",
+            "position": [
+                1102.42,
+                562.95
             ],
             "description": ""
         },
@@ -734,22 +734,22 @@
             "description": ""
         },
         {
-            "id": "692",
-            "name": "Jetzt gibt's Keile",
-            "category": "kill_boss",
-            "position": [
-                1115.41,
-                1182.35
-            ],
-            "description": ""
-        },
-        {
             "id": "622",
             "name": "Ramuh-Früherziehung",
             "category": "kill_boss",
             "position": [
                 997.03,
                 1561.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "692",
+            "name": "Jetzt gibt's Keile",
+            "category": "kill_boss",
+            "position": [
+                1115.41,
+                1182.35
             ],
             "description": ""
         },
@@ -1053,71 +1053,6 @@
             "position": [
                 1064.8,
                 575.1
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Honigblumen-Steg",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                401,
-                954
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Lindgrüner Tropfen",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                973,
-                1023
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Quellenlauf-Bach",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                1150,
-                834
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Sylphenland",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1250,
-                1062
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Dom der Einkehr",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                833,
-                1250
             ]
         },
         {
@@ -11666,6 +11601,24 @@
                 1048.0
             ],
             "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Alt-Sharlayan",
+            "position": [
+                992.0,
+                1028.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1000.0,
+                1056.0
+            ],
+            "imageUrl": "/assets/img/game_assets/063000/063973.webp"
         }
     ],
     "maxZoom": 1.7,

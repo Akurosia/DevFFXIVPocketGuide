@@ -504,32 +504,12 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/g3f/g3f1 - Abanisches Grenzland.png",
     "markers": [
         {
-            "id": "1122",
-            "name": "Dhara-Derby",
-            "category": "defense",
+            "id": "1118",
+            "name": "Wiedergänger, Wiederkäuer",
+            "category": "kill_boss",
             "position": [
-                1136.39,
-                1539.0
-            ],
-            "description": ""
-        },
-        {
-            "id": "1127",
-            "name": "Poststau",
-            "category": "defense",
-            "position": [
-                527.48,
-                981.04
-            ],
-            "description": ""
-        },
-        {
-            "id": "1131",
-            "name": "Ameisenlöwenhunger",
-            "category": "defense",
-            "position": [
-                1535.5,
-                609.9
+                537.97,
+                1271.76
             ],
             "description": ""
         },
@@ -554,16 +534,6 @@
             "description": ""
         },
         {
-            "id": "1118",
-            "name": "Wiedergänger, Wiederkäuer",
-            "category": "kill_boss",
-            "position": [
-                537.97,
-                1271.76
-            ],
-            "description": ""
-        },
-        {
             "id": "1130",
             "name": "Ich glaub, ich spinne!",
             "category": "kill_boss",
@@ -580,16 +550,6 @@
             "position": [
                 684.8299999999999,
                 928.09
-            ],
-            "description": ""
-        },
-        {
-            "id": "1139",
-            "name": "Sonne des Schreckens",
-            "category": "kill_boss",
-            "position": [
-                1497.04,
-                1035.99
             ],
             "description": ""
         },
@@ -630,6 +590,46 @@
             "position": [
                 1437.6,
                 904.12
+            ],
+            "description": ""
+        },
+        {
+            "id": "1139",
+            "name": "Sonne des Schreckens",
+            "category": "kill_boss",
+            "position": [
+                1497.04,
+                1035.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1122",
+            "name": "Dhara-Derby",
+            "category": "defense",
+            "position": [
+                1136.39,
+                1539.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1127",
+            "name": "Poststau",
+            "category": "defense",
+            "position": [
+                527.48,
+                981.04
+            ],
+            "description": ""
+        },
+        {
+            "id": "1131",
+            "name": "Ameisenlöwenhunger",
+            "category": "defense",
+            "position": [
+                1535.5,
+                609.9
             ],
             "description": ""
         },
@@ -714,16 +714,6 @@
             "description": ""
         },
         {
-            "id": "1117",
-            "name": "Pflanzen mit großem Magen",
-            "category": "kill_enemies",
-            "position": [
-                538.47,
-                800.22
-            ],
-            "description": ""
-        },
-        {
             "id": "1140",
             "name": "Wer ließ die Hunde frei?",
             "category": "kill_enemies",
@@ -750,6 +740,16 @@
             "position": [
                 477.53,
                 1162.8600000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1117",
+            "name": "Pflanzen mit großem Magen",
+            "category": "kill_enemies",
+            "position": [
+                538.47,
+                800.22
             ],
             "description": ""
         },
@@ -1079,71 +1079,6 @@
             "position": [
                 728.7,
                 1261.4
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Timmonbach",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                525,
-                1188
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Dysterwaldt",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                366.7,
-                366.7
-            ],
-            "position": [
-                430,
-                648
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Schweif des Kometen",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                645,
-                548
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Velodyna",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                845,
-                1623
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Trugfluss",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                1325,
-                1278
             ]
         },
         {

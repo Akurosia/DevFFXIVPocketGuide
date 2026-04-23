@@ -40,10 +40,10 @@ def test():
     counter = 0
     w, h = (2048, 2048)
     for key, aetheryte in aetherytes.items():
-        if aetheryte['fields']["Map"]['value'] == 16:
+        if aetheryte["Map"]['value'] == 16:
             print(key)
             continue
-        for level in aetheryte['fields']["Level"]:
+        for level in aetheryte["Level"]:
             if level['value'] == 0:
                 continue
             if level.get('sheet', None) is None:
@@ -356,7 +356,7 @@ def get_data_from_teamcraft():
             place = placename[str(value["position"]["zoneid"])]['Name_en']
             if not result.get(place, None):
                 result[place] = {}
-            icon = value['icon'].replace("/i/", "ui/icon/").replace(".png", ".tex") if value.get('icon', None) and not value.get('icon', None) == "" else fatemapping.get(fates[key]['fields']['ObjectiveIcon'][0]['Icon']['path_hr1'], "")
+            icon = value['icon'].replace("/i/", "ui/icon/").replace(".png", ".tex") if value.get('icon', None) and not value.get('icon', None) == "" else fatemapping.get(fates[key]['ObjectiveIcon'][0]['Icon']['path_hr1'], "")
             if icon == "":
                 icon = "ui/icon/000000/000000.tex"
             result[place][key] = {
@@ -367,18 +367,18 @@ def get_data_from_teamcraft():
                 "Company Seals": "",
                 "Experience": "",
                 "Fate ID": f"{key}",
-                "Fate Level": fates[key]['fields']['ClassJobLevel'],
-                "Fate Level Sync": fates[key]['fields']['ClassJobLevelMax'],
-                "Fate Name": fates[key]['fields']['Name'],
+                "Fate Level": fates[key]['ClassJobLevel'],
+                "Fate Level Sync": fates[key]['ClassJobLevelMax'],
+                "Fate Name": fates[key]['Name'],
                 "Fate Type": "Fate",
                 "Type": fatemapping[icon],
-                #"Icon Map": fates[key]['fields']['Icon']['Map'],
+                #"Icon Map": fates[key]['Icon']['Map'],
                 "Icon Objective": icon,
                 "Gil": ""
             }
-            unique_fate_types['Map'].add(fates[key]['fields']['MapIcon']['path_hr1'])
-            unique_fate_types['Objective'].add(fates[key]['fields']['ObjectiveIcon'][0]['Icon']['path_hr1'])
-            unique_fate_types['Combined'].add(fates[key]['fields']['MapIcon']['path_hr1'] + " + " + fates[key]['fields']['ObjectiveIcon'][0]['Icon']['path_hr1'])
+            unique_fate_types['Map'].add(fates[key]['MapIcon']['path_hr1'])
+            unique_fate_types['Objective'].add(fates[key]['ObjectiveIcon'][0]['Icon']['path_hr1'])
+            unique_fate_types['Combined'].add(fates[key]['MapIcon']['path_hr1'] + " + " + fates[key]['ObjectiveIcon'][0]['Icon']['path_hr1'])
     #for key, value in unique_fate_types.items():
     #    print(key, sorted(value))
     return result
@@ -450,7 +450,8 @@ def getFateName(fate_id, _type) -> str:
 
 def generate_images():
     global new_map_id
-    data = readJsonFile("FatesFromConsoleWiki.json")
+    print(os.getcwd())
+    data = readJsonFile("../python_scripts/FatesFromConsoleWiki.json")
     fate_by_type = {}
     for location, fates_per_zone in data.items():
         fate_by_type[location] = {}
@@ -631,17 +632,17 @@ def get_fishingspot(mapid, w, h):
     if fishdata == {}:
         for key, value in fishingspot.items():
             try:
-                value['fields']['TerritoryType']['fields']['Map']['fields']['Id']
+                value['TerritoryType']['Map']['Id']
             except:
                 continue
-            _map_id = value['fields']['TerritoryType']['fields']['Map']['fields']['Id']
-            placename_name = value['fields']['PlaceName']['fields']['Name']
-            radius = value['fields']['Radius']
+            _map_id = value['TerritoryType']['Map']['Id']
+            placename_name = value['PlaceName']['Name']
+            radius = value['Radius']
             if not fishdata.get(_map_id, None):
                 fishdata[_map_id] = {}
             if not fishdata[_map_id].get(key, None):
                 fishdata[_map_id][key] = []
-            fishdata[_map_id][key].append((( value['fields']['X']), ( value['fields']['Z']), placename_name, round(radius/3, 1)))
+            fishdata[_map_id][key].append((( value['X']), ( value['Z']), placename_name, round(radius/3, 1)))
     if not fishdata.get(mapid, None):
         return maps
     for key, value in fishdata[mapid].items():
@@ -656,17 +657,17 @@ def get_spearfishingspot(mapid, w, h):
     if spearfishdata == {}:
         for key, value in spearfishingspot.items():
             try:
-                value['fields']['TerritoryType']['fields']['Map']['fields']['Id']
+                value['TerritoryType']['Map']['Id']
             except:
                 continue
-            _map_id = value['fields']['TerritoryType']['fields']['Map']['fields']['Id']
-            placename_name = value['fields']['PlaceName']['fields']['Name']
-            radius = value['fields']['Radius']
+            _map_id = value['TerritoryType']['Map']['Id']
+            placename_name = value['PlaceName']['Name']
+            radius = value['Radius']
             if not spearfishdata.get(_map_id, None):
                 spearfishdata[_map_id] = {}
             if not spearfishdata[_map_id].get(key, None):
                 spearfishdata[_map_id][key] = []
-            spearfishdata[_map_id][key].append((( value['fields']['X']), ( value['fields']['Y']), placename_name, round(radius/3, 1)))
+            spearfishdata[_map_id][key].append((( value['X']), ( value['Y']), placename_name, round(radius/3, 1)))
     if not spearfishdata.get(mapid, None):
         return maps
     for key, value in spearfishdata[mapid].items():
@@ -768,7 +769,7 @@ def get_base_images():
 if __name__ == "__main__":
     path_of_main_script = r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"
     run()
-    generate_images()
+    #generate_images()
     #get_base_images()
     #for x in new_data_list:
     #    print(f"INSERT INTO `manuall_ingest_points` (`created_at`, `objecttype`, `zone_id`, `map_id`, `base_id`, `moid`, `nid`, `hr`, `x`, `y`, `z`, `extra`) VALUES ('2026-01-01 00:00:00','{x['objecttype']}',0,{x['map_id']},{x['base_id']},0,0,0,{x['x']},0,{x['z']},{x['extra']});")

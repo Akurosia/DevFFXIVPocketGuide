@@ -504,16 +504,6 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/x6f/x6f2 - Ewiges Erbe.png",
     "markers": [
         {
-            "id": "1942",
-            "name": "Maschinen auf Abwegen",
-            "category": "kill_enemies",
-            "position": [
-                1447.09,
-                1409.62
-            ],
-            "description": ""
-        },
-        {
             "id": "1947",
             "name": "Voll drauf eingeschlossen",
             "category": "kill_enemies",
@@ -564,12 +554,12 @@
             "description": ""
         },
         {
-            "id": "1951",
-            "name": "Das Gesetz der Straße",
+            "id": "1942",
+            "name": "Maschinen auf Abwegen",
             "category": "kill_enemies",
             "position": [
-                614.9,
-                1327.7
+                1447.09,
+                1409.62
             ],
             "description": ""
         },
@@ -630,6 +620,16 @@
             "position": [
                 550.46,
                 1003.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1951",
+            "name": "Das Gesetz der Straße",
+            "category": "kill_enemies",
+            "position": [
+                614.9,
+                1327.7
             ],
             "description": ""
         },
@@ -863,58 +863,6 @@
             "position": [
                 1508.9,
                 1677.3
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Untiefen der Außenbezirke",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                466.7,
-                466.7
-            ],
-            "position": [
-                938,
-                1654
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Unterströme",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                500.0,
-                500.0
-            ],
-            "position": [
-                605,
-                1230
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Knistergewässer",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                600.0,
-                600.0
-            ],
-            "position": [
-                1025,
-                487
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Ruinen von Alexandria",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                333.3,
-                333.3
-            ],
-            "position": [
-                288,
-                401
             ]
         },
         {

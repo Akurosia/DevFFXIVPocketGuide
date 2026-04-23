@@ -504,16 +504,6 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n5f/n5f1 - Elpis.png",
     "markers": [
         {
-            "id": "1830",
-            "name": "Fliegende Fressfeinde",
-            "category": "defense",
-            "position": [
-                1481.55,
-                831.19
-            ],
-            "description": ""
-        },
-        {
             "id": "1824",
             "name": "Beobachtung: Io",
             "category": "kill_boss",
@@ -650,6 +640,16 @@
             "position": [
                 1495.04,
                 1432.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "1830",
+            "name": "Fliegende Fressfeinde",
+            "category": "defense",
+            "position": [
+                1481.55,
+                831.19
             ],
             "description": ""
         },
@@ -853,45 +853,6 @@
             "position": [
                 1808.1,
                 1169.1
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Des Wandlers Wogen",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                600.0,
-                600.0
-            ],
-            "position": [
-                508,
-                1172
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Garten der tausend Klauen (untere Ebene)",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                300.0,
-                300.0
-            ],
-            "position": [
-                1202,
-                1608
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Lethe",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                500.0,
-                500.0
-            ],
-            "position": [
-                1634,
-                1286
             ]
         },
         {

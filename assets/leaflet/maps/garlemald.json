@@ -504,6 +504,16 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/m5f/m5f2 - Garlemald.png",
     "markers": [
         {
+            "id": "1786",
+            "name": "Brennstoffsicherung",
+            "category": "kill_enemies",
+            "position": [
+                1357.67,
+                517.49
+            ],
+            "description": ""
+        },
+        {
             "id": "1785",
             "name": "Gleich vergess ich mich",
             "category": "kill_enemies",
@@ -530,16 +540,6 @@
             "position": [
                 1477.56,
                 716.8
-            ],
-            "description": ""
-        },
-        {
-            "id": "1786",
-            "name": "Brennstoffsicherung",
-            "category": "kill_enemies",
-            "position": [
-                1357.67,
-                517.49
             ],
             "description": ""
         },
@@ -644,22 +644,22 @@
             "description": ""
         },
         {
-            "id": "1792",
-            "name": "Reinwaschung eines Ingenieurs: Metatron",
-            "category": "notorious_monster",
-            "position": [
-                519.49,
-                1538.5
-            ],
-            "description": ""
-        },
-        {
             "id": "1798",
             "name": "Hilfe bei der Reparatur",
             "category": "collect",
             "position": [
                 991.03,
                 1341.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1792",
+            "name": "Reinwaschung eines Ingenieurs: Metatron",
+            "category": "notorious_monster",
+            "position": [
+                519.49,
+                1538.5
             ],
             "description": ""
         },
@@ -949,32 +949,6 @@
             "position": [
                 1417.7,
                 326.29999999999995
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Eblana-Schmelze",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                504,
-                564
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Geläuterter Lauf",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                600.0,
-                600.0
-            ],
-            "position": [
-                1100,
-                1640
             ]
         },
         {

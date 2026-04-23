@@ -554,32 +554,6 @@
             "description": ""
         },
         {
-            "type": "fishing_angel",
-            "name": "Säuselschlucht",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1553,
-                1518
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Oberer Schwarztee-Bach",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                790,
-                1348
-            ]
-        },
-        {
             "type": "quest_blue",
             "name": "Der Weg des Gärtners",
             "position": [
@@ -2220,8 +2194,8 @@
             ]
         },
         {
-            "type": "quest_side",
-            "name": "エッグハントと謎の草",
+            "type": "quest_blue",
+            "name": "Das große Jäten",
             "position": [
                 974.0137,
                 1113.7403
@@ -9633,6 +9607,15 @@
                 1020.0
             ],
             "imageUrl": "/assets/img/game_assets/063000/063919.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1379.0,
+                1037.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
         },
         {
             "type": "mapmarker",

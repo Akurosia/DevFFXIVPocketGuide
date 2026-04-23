@@ -504,6 +504,16 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/d2f/d2f1 - Dravanisches Vorland.png",
     "markers": [
         {
+            "id": "820",
+            "name": "Ein Kopf zu groß",
+            "category": "kill_boss",
+            "position": [
+                1786.5365,
+                1121.8025
+            ],
+            "description": ""
+        },
+        {
             "id": "828",
             "name": "Vorsicht, Bluthochdruck!",
             "category": "kill_boss",
@@ -544,12 +554,12 @@
             "description": ""
         },
         {
-            "id": "820",
-            "name": "Ein Kopf zu groß",
+            "id": "838",
+            "name": "Die Hasspredigerin",
             "category": "kill_boss",
             "position": [
-                1786.5365,
-                1121.8025
+                597.3455,
+                354.47800000000007
             ],
             "description": ""
         },
@@ -570,16 +580,6 @@
             "position": [
                 754.4185,
                 400.9805000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "838",
-            "name": "Die Hasspredigerin",
-            "category": "kill_boss",
-            "position": [
-                597.3455,
-                354.47800000000007
             ],
             "description": ""
         },
@@ -644,16 +644,6 @@
             "description": ""
         },
         {
-            "id": "902",
-            "name": "Angriff der Königin",
-            "category": "kill_enemies",
-            "position": [
-                1694.472,
-                908.2615
-            ],
-            "description": ""
-        },
-        {
             "id": "826",
             "name": "Wir haben Hunger",
             "category": "kill_enemies",
@@ -714,22 +704,12 @@
             "description": ""
         },
         {
-            "id": "830",
-            "name": "Entscheidung am Weiland-Fluss",
+            "id": "902",
+            "name": "Angriff der Königin",
             "category": "kill_enemies",
             "position": [
-                1017.312,
-                504.42600000000004
-            ],
-            "description": ""
-        },
-        {
-            "id": "836",
-            "name": "Tödliche Hufe",
-            "category": "kill_enemies",
-            "position": [
-                686.085,
-                1117.0525
+                1694.472,
+                908.2615
             ],
             "description": ""
         },
@@ -754,6 +734,26 @@
             "description": ""
         },
         {
+            "id": "830",
+            "name": "Entscheidung am Weiland-Fluss",
+            "category": "kill_enemies",
+            "position": [
+                1017.312,
+                504.42600000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "836",
+            "name": "Tödliche Hufe",
+            "category": "kill_enemies",
+            "position": [
+                686.085,
+                1117.0525
+            ],
+            "description": ""
+        },
+        {
             "id": "837",
             "name": "Quell des Unfriedens",
             "category": "kill_enemies",
@@ -764,22 +764,22 @@
             "description": ""
         },
         {
-            "id": "821",
-            "name": "Mit Federn macht man Mäuse",
-            "category": "collect",
-            "position": [
-                1498.487,
-                1139.3585
-            ],
-            "description": ""
-        },
-        {
             "id": "824",
             "name": "Du riechst so gut, ich flieg auf dich",
             "category": "defense",
             "position": [
                 1643.2195,
                 1241.3885
+            ],
+            "description": ""
+        },
+        {
+            "id": "821",
+            "name": "Mit Federn macht man Mäuse",
+            "category": "collect",
+            "position": [
+                1498.487,
+                1139.3585
             ],
             "description": ""
         },
@@ -1093,110 +1093,6 @@
             "position": [
                 846.0,
                 475.1
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Hundertfacher Schrei",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                1442,
-                1616
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Der Weiland",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1406,
-                1392
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Qualmende Öde",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1152,
-                870
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Auenfest",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                300.0,
-                300.0
-            ],
-            "position": [
-                1453,
-                1808
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Mourn",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                576,
-                1460
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "West-Mourn",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                410,
-                1738
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Alter Annex",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                66.7,
-                66.7
-            ],
-            "position": [
-                876,
-                1582
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Halo",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                66.7,
-                66.7
-            ],
-            "position": [
-                316,
-                1838
             ]
         },
         {

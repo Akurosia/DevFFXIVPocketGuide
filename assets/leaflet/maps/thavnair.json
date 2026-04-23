@@ -504,32 +504,22 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/m5f/m5f1 - Thavnair.png",
     "markers": [
         {
-            "id": "1769",
-            "name": "Kanabhuti, der Fluch des Dschungels",
-            "category": "kill_boss",
+            "id": "1764",
+            "name": "Der Duft der Alchemie: Gefahr im Blumenbeet",
+            "category": "collect",
             "position": [
-                845.17,
-                1113.91
+                1023.5,
+                1544.99
             ],
             "description": ""
         },
         {
-            "id": "1777",
-            "name": "Valin der Tyrann",
-            "category": "kill_boss",
+            "id": "1771",
+            "name": "Der Duft der Alchemie: Gefahrvoller Heimweg",
+            "category": "kill_enemies",
             "position": [
-                1191.34,
-                1099.43
-            ],
-            "description": ""
-        },
-        {
-            "id": "1763",
-            "name": "Im Dienste der Mrga: Blasphemie",
-            "category": "kill_boss",
-            "position": [
-                415.59000000000003,
-                213.28999999999996
+                654.86,
+                1246.78
             ],
             "description": ""
         },
@@ -554,26 +544,6 @@
             "description": ""
         },
         {
-            "id": "1771",
-            "name": "Der Duft der Alchemie: Gefahrvoller Heimweg",
-            "category": "kill_enemies",
-            "position": [
-                654.86,
-                1246.78
-            ],
-            "description": ""
-        },
-        {
-            "id": "1766",
-            "name": "Ich bin ein Vaalaras!",
-            "category": "kill_enemies",
-            "position": [
-                681.8299999999999,
-                533.98
-            ],
-            "description": ""
-        },
-        {
             "id": "1768",
             "name": "Gift und Galle",
             "category": "kill_enemies",
@@ -584,12 +554,12 @@
             "description": ""
         },
         {
-            "id": "1776",
-            "name": "Wenn das Abendessen davonfliegt",
+            "id": "1766",
+            "name": "Ich bin ein Vaalaras!",
             "category": "kill_enemies",
             "position": [
-                1273.26,
-                1365.67
+                681.8299999999999,
+                533.98
             ],
             "description": ""
         },
@@ -644,12 +614,42 @@
             "description": ""
         },
         {
-            "id": "1764",
-            "name": "Der Duft der Alchemie: Gefahr im Blumenbeet",
-            "category": "collect",
+            "id": "1776",
+            "name": "Wenn das Abendessen davonfliegt",
+            "category": "kill_enemies",
             "position": [
-                1023.5,
-                1544.99
+                1273.26,
+                1365.67
+            ],
+            "description": ""
+        },
+        {
+            "id": "1769",
+            "name": "Kanabhuti, der Fluch des Dschungels",
+            "category": "kill_boss",
+            "position": [
+                845.17,
+                1113.91
+            ],
+            "description": ""
+        },
+        {
+            "id": "1777",
+            "name": "Valin der Tyrann",
+            "category": "kill_boss",
+            "position": [
+                1191.34,
+                1099.43
+            ],
+            "description": ""
+        },
+        {
+            "id": "1763",
+            "name": "Im Dienste der Mrga: Blasphemie",
+            "category": "kill_boss",
+            "position": [
+                415.59000000000003,
+                213.28999999999996
             ],
             "description": ""
         },
@@ -959,188 +959,6 @@
             "position": [
                 1307.2,
                 1650.8
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Yedlihmad",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1228,
-                284
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Thavnair-Küste",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                600.0,
-                600.0
-            ],
-            "position": [
-                428,
-                430
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Daemirs Bucht",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                438,
-                958
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Gallenerz-Feld",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                998,
-                1688
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Wächter-Torana",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                450.0,
-                450.0
-            ],
-            "position": [
-                1500,
-                1629
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Ksiroda",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                400.0,
-                400.0
-            ],
-            "position": [
-                1478,
-                1030
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Pavanas Reue",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                150.0,
-                150.0
-            ],
-            "position": [
-                1149,
-                1373
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Mayaquell",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                250.0,
-                250.0
-            ],
-            "position": [
-                1161,
-                861
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Duftende Wogen",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                300.0,
-                300.0
-            ],
-            "position": [
-                322,
-                1720
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Akyaali (Süd)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                250.0,
-                250.0
-            ],
-            "position": [
-                694,
-                256
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Akyaali (West)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                250.0,
-                250.0
-            ],
-            "position": [
-                367,
-                409
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Daemirs Werk (Süd)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                250.0,
-                250.0
-            ],
-            "position": [
-                183,
-                659
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Mayaquell",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1165,
-                860
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Akyaali-See",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                292,
-                284
             ]
         },
         {

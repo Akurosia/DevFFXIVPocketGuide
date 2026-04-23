@@ -564,22 +564,22 @@
             "description": ""
         },
         {
-            "id": "599",
-            "name": "Beschwörer des Herrn der Felsen",
-            "category": "kill_boss",
-            "position": [
-                1095.43,
-                1536.5
-            ],
-            "description": ""
-        },
-        {
             "id": "700",
             "name": "Bezwinger des Bezwingers",
             "category": "kill_boss",
             "position": [
                 1047.48,
                 1800.74
+            ],
+            "description": ""
+        },
+        {
+            "id": "599",
+            "name": "Beschwörer des Herrn der Felsen",
+            "category": "kill_boss",
+            "position": [
+                1095.43,
+                1536.5
             ],
             "description": ""
         },
@@ -604,16 +604,6 @@
             "description": ""
         },
         {
-            "id": "580",
-            "name": "Basaltblockade",
-            "category": "kill_enemies",
-            "position": [
-                808.71,
-                1284.75
-            ],
-            "description": ""
-        },
-        {
             "id": "583",
             "name": "Ein prachtvoller Feind",
             "category": "kill_enemies",
@@ -630,6 +620,16 @@
             "position": [
                 869.15,
                 1312.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "580",
+            "name": "Basaltblockade",
+            "category": "kill_enemies",
+            "position": [
+                808.71,
+                1284.75
             ],
             "description": ""
         },
@@ -903,32 +903,6 @@
             "position": [
                 1141.5,
                 1283.2
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Himmelsstiege",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                744,
-                1532
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Bronzesee-Nordwestufer",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                166.7,
-                166.7
-            ],
-            "position": [
-                920,
-                1188
             ]
         },
         {

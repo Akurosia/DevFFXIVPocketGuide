@@ -504,22 +504,52 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f2 - Kholusia.png",
     "markers": [
         {
-            "id": "1467",
-            "name": "Räuberplage in Werfting",
-            "category": "kill_enemies",
+            "id": "1469",
+            "name": "Rallen haben scharfe Krallen",
+            "category": "defense",
             "position": [
-                598.9200000000001,
-                723.79
+                858.66,
+                560.95
             ],
             "description": ""
         },
         {
-            "id": "1472",
-            "name": "Gefährlicher Beifang",
-            "category": "kill_enemies",
+            "id": "1462",
+            "name": "Ein formidabler Kampf: Die Bedrohung",
+            "category": "defense",
             "position": [
-                371.64,
-                568.44
+                1080.94,
+                1411.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1463",
+            "name": "Ein formidabler Kampf: Ein finsterer Plan",
+            "category": "defense",
+            "position": [
+                1237.29,
+                1079.45
+            ],
+            "description": ""
+        },
+        {
+            "id": "1479",
+            "name": "Krieg der Baumeister: Duell der Giganten",
+            "category": "defense",
+            "position": [
+                759.76,
+                1051.97
+            ],
+            "description": ""
+        },
+        {
+            "id": "1475",
+            "name": "Räuberplage in Eintracht",
+            "category": "defense",
+            "position": [
+                879.64,
+                1145.38
             ],
             "description": ""
         },
@@ -550,6 +580,26 @@
             "position": [
                 1520.02,
                 425.58000000000004
+            ],
+            "description": ""
+        },
+        {
+            "id": "1467",
+            "name": "Räuberplage in Werfting",
+            "category": "kill_enemies",
+            "position": [
+                598.9200000000001,
+                723.79
+            ],
+            "description": ""
+        },
+        {
+            "id": "1472",
+            "name": "Gefährlicher Beifang",
+            "category": "kill_enemies",
+            "position": [
+                371.64,
+                568.44
             ],
             "description": ""
         },
@@ -600,56 +650,6 @@
             "position": [
                 857.66,
                 728.79
-            ],
-            "description": ""
-        },
-        {
-            "id": "1469",
-            "name": "Rallen haben scharfe Krallen",
-            "category": "defense",
-            "position": [
-                858.66,
-                560.95
-            ],
-            "description": ""
-        },
-        {
-            "id": "1463",
-            "name": "Ein formidabler Kampf: Ein finsterer Plan",
-            "category": "defense",
-            "position": [
-                1237.29,
-                1079.45
-            ],
-            "description": ""
-        },
-        {
-            "id": "1479",
-            "name": "Krieg der Baumeister: Duell der Giganten",
-            "category": "defense",
-            "position": [
-                759.76,
-                1051.97
-            ],
-            "description": ""
-        },
-        {
-            "id": "1475",
-            "name": "Räuberplage in Eintracht",
-            "category": "defense",
-            "position": [
-                879.64,
-                1145.38
-            ],
-            "description": ""
-        },
-        {
-            "id": "1462",
-            "name": "Ein formidabler Kampf: Die Bedrohung",
-            "category": "defense",
-            "position": [
-                1080.94,
-                1411.62
             ],
             "description": ""
         },
@@ -969,97 +969,6 @@
             "position": [
                 1692.3,
                 1561.9
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Watts (Oberlauf)",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                400.0,
-                400.0
-            ],
-            "position": [
-                1300,
-                1378
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Weißölfälle",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                1420,
-                1028
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Watts (Unterlauf)",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                400.0,
-                400.0
-            ],
-            "position": [
-                1460,
-                748
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Zungenbrennerteich",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                400.0,
-                400.0
-            ],
-            "position": [
-                980,
-                888
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Kholusia (Westküste)",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                600.0,
-                600.0
-            ],
-            "position": [
-                370,
-                338
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Bucht von Meerblick",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                790,
-                308
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Kholusia (Ostküste)",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                600.0,
-                600.0
-            ],
-            "position": [
-                1710,
-                308
             ]
         },
         {

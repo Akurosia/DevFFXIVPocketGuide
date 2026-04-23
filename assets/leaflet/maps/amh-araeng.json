@@ -504,6 +504,16 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f3 - Amh Araeng.png",
     "markers": [
         {
+            "id": "1513",
+            "name": "Ein gigantisches Problem",
+            "category": "kill_boss",
+            "position": [
+                1734.81,
+                863.16
+            ],
+            "description": ""
+        },
+        {
             "id": "1522",
             "name": "Bayawak, die Sandschuppen-Königin",
             "category": "kill_boss",
@@ -524,16 +534,6 @@
             "description": ""
         },
         {
-            "id": "1513",
-            "name": "Ein gigantisches Problem",
-            "category": "kill_boss",
-            "position": [
-                1734.81,
-                863.16
-            ],
-            "description": ""
-        },
-        {
             "id": "1518",
             "name": "Klinge der Ahnen",
             "category": "kill_boss",
@@ -550,6 +550,16 @@
             "position": [
                 799.22,
                 444.07000000000005
+            ],
+            "description": ""
+        },
+        {
+            "id": "1521",
+            "name": "Tolba Nr. 1",
+            "category": "kill_enemies",
+            "position": [
+                1545.49,
+                1231.8
             ],
             "description": ""
         },
@@ -580,16 +590,6 @@
             "position": [
                 1621.42,
                 1537.5
-            ],
-            "description": ""
-        },
-        {
-            "id": "1521",
-            "name": "Tolba Nr. 1",
-            "category": "kill_enemies",
-            "position": [
-                1545.49,
-                1231.8
             ],
             "description": ""
         },
@@ -959,45 +959,6 @@
             "position": [
                 1464.9,
                 562.0
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Fluss aus Sand",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                300.0,
-                300.0
-            ],
-            "position": [
-                1540,
-                1463
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Bernsteinhügel",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                400.0,
-                400.0
-            ],
-            "position": [
-                725,
-                1358
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Kluft von Nabaath",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                500.0,
-                500.0
-            ],
-            "position": [
-                1500,
-                518
             ]
         },
         {

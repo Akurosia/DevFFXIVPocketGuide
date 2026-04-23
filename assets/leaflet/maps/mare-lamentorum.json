@@ -504,6 +504,26 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/u5f/u5f1 - Mare Lamentorum.png",
     "markers": [
         {
+            "id": "1806",
+            "name": "Sicheln aus dem Zwielicht",
+            "category": "kill_enemies",
+            "position": [
+                855.16,
+                492.02
+            ],
+            "description": ""
+        },
+        {
+            "id": "1807",
+            "name": "Keine Freude für die Fungi",
+            "category": "kill_enemies",
+            "position": [
+                1177.85,
+                348.15999999999997
+            ],
+            "description": ""
+        },
+        {
             "id": "1811",
             "name": "Besuch von der dunklen Seite",
             "category": "kill_enemies",
@@ -530,56 +550,6 @@
             "position": [
                 1596.94,
                 719.3
-            ],
-            "description": ""
-        },
-        {
-            "id": "1806",
-            "name": "Sicheln aus dem Zwielicht",
-            "category": "kill_enemies",
-            "position": [
-                855.16,
-                492.02
-            ],
-            "description": ""
-        },
-        {
-            "id": "1807",
-            "name": "Keine Freude für die Fungi",
-            "category": "kill_enemies",
-            "position": [
-                1177.85,
-                348.15999999999997
-            ],
-            "description": ""
-        },
-        {
-            "id": "1804",
-            "name": "Langohren des Mondes: Reiniger-Rabatz",
-            "category": "kill_enemies",
-            "position": [
-                646.37,
-                1651.3899999999999
-            ],
-            "description": ""
-        },
-        {
-            "id": "1814",
-            "name": "Garantiezeitraum abgelaufen",
-            "category": "kill_enemies",
-            "position": [
-                462.54999999999995,
-                1423.6100000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1815",
-            "name": "Wertlose Wärter",
-            "category": "kill_enemies",
-            "position": [
-                1716.8200000000002,
-                1667.87
             ],
             "description": ""
         },
@@ -614,6 +584,36 @@
             "description": ""
         },
         {
+            "id": "1804",
+            "name": "Langohren des Mondes: Reiniger-Rabatz",
+            "category": "kill_enemies",
+            "position": [
+                646.37,
+                1651.3899999999999
+            ],
+            "description": ""
+        },
+        {
+            "id": "1814",
+            "name": "Garantiezeitraum abgelaufen",
+            "category": "kill_enemies",
+            "position": [
+                462.54999999999995,
+                1423.6100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1815",
+            "name": "Wertlose Wärter",
+            "category": "kill_enemies",
+            "position": [
+                1716.8200000000002,
+                1667.87
+            ],
+            "description": ""
+        },
+        {
             "id": "1810",
             "name": "Weißer Gigant",
             "category": "kill_boss",
@@ -624,22 +624,22 @@
             "description": ""
         },
         {
-            "id": "1805",
-            "name": "Langohren des Mondes: Reif für die Tonne",
-            "category": "kill_boss",
-            "position": [
-                519.99,
-                1756.78
-            ],
-            "description": ""
-        },
-        {
             "id": "1816",
             "name": "Der Plan des Schmarotzers",
             "category": "kill_boss",
             "position": [
                 709.31,
                 841.6800000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1805",
+            "name": "Langohren des Mondes: Reif für die Tonne",
+            "category": "kill_boss",
+            "position": [
+                519.99,
+                1756.78
             ],
             "description": ""
         },
@@ -939,45 +939,6 @@
             "position": [
                 1090.2,
                 282.79999999999995
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Der schönste Wald",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                800.0,
-                800.0
-            ],
-            "position": [
-                1578,
-                1554
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Chlorophos-Weiher",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                1498,
-                488
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Frostkluft",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1090,
-                510
             ]
         },
         {

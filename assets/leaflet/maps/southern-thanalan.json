@@ -534,22 +534,22 @@
             "description": ""
         },
         {
-            "id": "437",
-            "name": "Mehr Strand als Meer",
-            "category": "kill_enemies",
-            "position": [
-                658.86,
-                176.33000000000004
-            ],
-            "description": ""
-        },
-        {
             "id": "429",
             "name": "Die Kinder der Wüste",
             "category": "kill_enemies",
             "position": [
                 684.3299999999999,
                 485.03
+            ],
+            "description": ""
+        },
+        {
+            "id": "437",
+            "name": "Mehr Strand als Meer",
+            "category": "kill_enemies",
+            "position": [
+                658.86,
+                176.33000000000004
             ],
             "description": ""
         },
@@ -564,16 +564,6 @@
             "description": ""
         },
         {
-            "id": "552",
-            "name": "Geflüchtet und entführt",
-            "category": "kill_enemies",
-            "position": [
-                874.15,
-                1112.41
-            ],
-            "description": ""
-        },
-        {
             "id": "424",
             "name": "Hauptbrigadier für einen Tag",
             "category": "kill_enemies",
@@ -584,22 +574,12 @@
             "description": ""
         },
         {
-            "id": "555",
-            "name": "Fäulnis mit Stil",
+            "id": "552",
+            "name": "Geflüchtet und entführt",
             "category": "kill_enemies",
             "position": [
-                766.25,
-                805.21
-            ],
-            "description": ""
-        },
-        {
-            "id": "549",
-            "name": "Verwüsten verboten",
-            "category": "kill_enemies",
-            "position": [
-                902.12,
-                759.26
+                874.15,
+                1112.41
             ],
             "description": ""
         },
@@ -624,12 +604,22 @@
             "description": ""
         },
         {
-            "id": "551",
-            "name": "Kein Glückstag",
+            "id": "555",
+            "name": "Fäulnis mit Stil",
             "category": "kill_enemies",
             "position": [
-                1061.96,
-                845.17
+                766.25,
+                805.21
+            ],
+            "description": ""
+        },
+        {
+            "id": "549",
+            "name": "Verwüsten verboten",
+            "category": "kill_enemies",
+            "position": [
+                902.12,
+                759.26
             ],
             "description": ""
         },
@@ -640,6 +630,16 @@
             "position": [
                 1106.42,
                 1018.01
+            ],
+            "description": ""
+        },
+        {
+            "id": "551",
+            "name": "Kein Glückstag",
+            "category": "kill_enemies",
+            "position": [
+                1061.96,
+                845.17
             ],
             "description": ""
         },
@@ -694,8 +694,8 @@
             "description": ""
         },
         {
-            "id": "419",
-            "name": "Miluda die Schlitzerin",
+            "id": "456",
+            "name": "Buße sollst du tun",
             "category": "kill_boss",
             "position": [
                 1083.94,
@@ -704,8 +704,8 @@
             "description": ""
         },
         {
-            "id": "456",
-            "name": "Buße sollst du tun",
+            "id": "419",
+            "name": "Miluda die Schlitzerin",
             "category": "kill_boss",
             "position": [
                 1083.94,
@@ -764,16 +764,6 @@
             "description": ""
         },
         {
-            "id": "430",
-            "name": "Schwarze Zukunft",
-            "category": "kill_boss",
-            "position": [
-                1166.8600000000001,
-                792.73
-            ],
-            "description": ""
-        },
-        {
             "id": "554",
             "name": "Schneller Schütze",
             "category": "kill_boss",
@@ -790,6 +780,16 @@
             "position": [
                 1567.47,
                 1041.48
+            ],
+            "description": ""
+        },
+        {
+            "id": "430",
+            "name": "Schwarze Zukunft",
+            "category": "kill_boss",
+            "position": [
+                1166.8600000000001,
+                792.73
             ],
             "description": ""
         },
@@ -1073,71 +1073,6 @@
             "position": [
                 898.8,
                 491.0
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Echsenbach",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                1036,
-                1344
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Zahar'ak",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                1218,
-                1048
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Die Vergessene Oase",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                732,
-                552
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Sagolii-Wüste",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                568,
-                298
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Sagolii-Dünen",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1314,
-                252
             ]
         },
         {

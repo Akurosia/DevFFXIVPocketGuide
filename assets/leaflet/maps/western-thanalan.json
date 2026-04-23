@@ -504,22 +504,22 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/w1f/w1f1 - Westliches Thanalan.png",
     "markers": [
         {
-            "id": "342",
-            "name": "Chaos in Grün",
-            "category": "kill_enemies",
-            "position": [
-                1142.88,
-                802.22
-            ],
-            "description": ""
-        },
-        {
             "id": "356",
             "name": "Kobalos-Wanderung",
             "category": "kill_enemies",
             "position": [
                 1130.4,
                 798.22
+            ],
+            "description": ""
+        },
+        {
+            "id": "342",
+            "name": "Chaos in Grün",
+            "category": "kill_enemies",
+            "position": [
+                1142.88,
+                802.22
             ],
             "description": ""
         },
@@ -953,110 +953,6 @@
             "position": [
                 1273.4,
                 982.3
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Der Silberbasar",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                678,
-                622
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Bucht des Abendsterns",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                526,
-                1470
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Mondsichel-Bucht",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                728,
-                1138
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Nophicas Brunnen",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                1174,
-                1020
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Tal der Spuren",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                808,
-                1314
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Kap Westwind",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                446,
-                1730
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Paratas Friede",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                66.7,
-                66.7
-            ],
-            "position": [
-                702,
-                1779
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Mondtropfen-Höhle",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                850,
-                1745
             ]
         },
         {

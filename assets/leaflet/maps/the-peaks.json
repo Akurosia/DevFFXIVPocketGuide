@@ -504,12 +504,12 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/g3f/g3f2 - Die Zinnen.png",
     "markers": [
         {
-            "id": "1173",
-            "name": "Der freundliche Nager von nebenan",
-            "category": "escort",
+            "id": "1178",
+            "name": "Gefräßiges Chapuli",
+            "category": "kill_boss",
             "position": [
-                536.98,
-                1541.0
+                308.20000000000005,
+                1395.6399999999999
             ],
             "description": ""
         },
@@ -550,16 +550,6 @@
             "position": [
                 740.78,
                 1551.98
-            ],
-            "description": ""
-        },
-        {
-            "id": "1178",
-            "name": "Gefräßiges Chapuli",
-            "category": "kill_boss",
-            "position": [
-                308.20000000000005,
-                1395.6399999999999
             ],
             "description": ""
         },
@@ -644,6 +634,56 @@
             "description": ""
         },
         {
+            "id": "1176",
+            "name": "Und täglich grüßt das Nagetier",
+            "category": "defense",
+            "position": [
+                719.3,
+                1710.83
+            ],
+            "description": ""
+        },
+        {
+            "id": "1201",
+            "name": "Definitionssache",
+            "category": "defense",
+            "position": [
+                427.58000000000004,
+                1603.9299999999998
+            ],
+            "description": ""
+        },
+        {
+            "id": "1195",
+            "name": "Vergissmeinnicht",
+            "category": "defense",
+            "position": [
+                1169.8600000000001,
+                368.64
+            ],
+            "description": ""
+        },
+        {
+            "id": "1205",
+            "name": "Die grauen Panteras",
+            "category": "defense",
+            "position": [
+                854.67,
+                361.65
+            ],
+            "description": ""
+        },
+        {
+            "id": "1177",
+            "name": "Feldmäuse in groß",
+            "category": "kill_enemies",
+            "position": [
+                951.0699999999999,
+                1382.65
+            ],
+            "description": ""
+        },
+        {
             "id": "1203",
             "name": "Und was sich reimt, ist Bhut",
             "category": "kill_enemies",
@@ -714,22 +754,22 @@
             "description": ""
         },
         {
-            "id": "1177",
-            "name": "Feldmäuse in groß",
-            "category": "kill_enemies",
-            "position": [
-                951.0699999999999,
-                1382.65
-            ],
-            "description": ""
-        },
-        {
             "id": "1189",
             "name": "Gern auch Gammelfleisch",
             "category": "kill_enemies",
             "position": [
                 1196.33,
                 1409.62
+            ],
+            "description": ""
+        },
+        {
+            "id": "1196",
+            "name": "Zum Greifen nah",
+            "category": "kill_enemies",
+            "position": [
+                688.3299999999999,
+                832.69
             ],
             "description": ""
         },
@@ -754,52 +794,12 @@
             "description": ""
         },
         {
-            "id": "1196",
-            "name": "Zum Greifen nah",
-            "category": "kill_enemies",
+            "id": "1173",
+            "name": "Der freundliche Nager von nebenan",
+            "category": "escort",
             "position": [
-                688.3299999999999,
-                832.69
-            ],
-            "description": ""
-        },
-        {
-            "id": "1201",
-            "name": "Definitionssache",
-            "category": "defense",
-            "position": [
-                427.58000000000004,
-                1603.9299999999998
-            ],
-            "description": ""
-        },
-        {
-            "id": "1176",
-            "name": "Und täglich grüßt das Nagetier",
-            "category": "defense",
-            "position": [
-                719.3,
-                1710.83
-            ],
-            "description": ""
-        },
-        {
-            "id": "1195",
-            "name": "Vergissmeinnicht",
-            "category": "defense",
-            "position": [
-                1169.8600000000001,
-                368.64
-            ],
-            "description": ""
-        },
-        {
-            "id": "1205",
-            "name": "Die grauen Panteras",
-            "category": "defense",
-            "position": [
-                854.67,
-                361.65
+                536.98,
+                1541.0
             ],
             "description": ""
         },
@@ -1109,84 +1109,6 @@
             "position": [
                 380.20000000000005,
                 469.6
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Grymm und Enid",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                260,
-                1348
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Träge Traufe",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                1130,
-                1638
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Kerbelfall",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                1580,
-                1768
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Der Ephor",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                1550,
-                1248
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Bad des Bullen",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                400.0,
-                400.0
-            ],
-            "position": [
-                978,
-                466
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Baum der Buße",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                166.7,
-                166.7
-            ],
-            "position": [
-                410,
-                228
             ]
         },
         {

@@ -504,32 +504,12 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f5 - Oberes La Noscea.png",
     "markers": [
         {
-            "id": "451",
-            "name": "Köter gegen Ratten",
-            "category": "defense",
+            "id": "452",
+            "name": "Ungebetene Gäste",
+            "category": "kill_boss",
             "position": [
-                524.49,
+                523.99,
                 887.13
-            ],
-            "description": ""
-        },
-        {
-            "id": "317",
-            "name": "Schutz und Hilfe",
-            "category": "defense",
-            "position": [
-                1293.74,
-                1143.38
-            ],
-            "description": ""
-        },
-        {
-            "id": "935",
-            "name": "Der Schlüssel zu Amatsu Kyori",
-            "category": "defense",
-            "position": [
-                1293.24,
-                963.06
             ],
             "description": ""
         },
@@ -540,16 +520,6 @@
             "position": [
                 523.99,
                 886.63
-            ],
-            "description": ""
-        },
-        {
-            "id": "452",
-            "name": "Ungebetene Gäste",
-            "category": "kill_boss",
-            "position": [
-                523.99,
-                887.13
             ],
             "description": ""
         },
@@ -610,6 +580,36 @@
             "position": [
                 538.47,
                 888.63
+            ],
+            "description": ""
+        },
+        {
+            "id": "451",
+            "name": "Köter gegen Ratten",
+            "category": "defense",
+            "position": [
+                524.49,
+                887.13
+            ],
+            "description": ""
+        },
+        {
+            "id": "317",
+            "name": "Schutz und Hilfe",
+            "category": "defense",
+            "position": [
+                1293.74,
+                1143.38
+            ],
+            "description": ""
+        },
+        {
+            "id": "935",
+            "name": "Der Schlüssel zu Amatsu Kyori",
+            "category": "defense",
+            "position": [
+                1293.24,
+                963.06
             ],
             "description": ""
         },
@@ -903,84 +903,6 @@
             "position": [
                 1390.2,
                 997.7
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Eichenwald",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                629,
-                884
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Narrenfall",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                402,
-                1044
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Bronzesee-Nordostufer",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1356,
-                957
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Bronzesee-Untiefen",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1627,
-                852
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Bronzesee (Nordosten)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1185,
-                1025
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Bronzesee (Nordwesten)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                900,
-                1023
             ]
         },
         {

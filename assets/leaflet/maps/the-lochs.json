@@ -504,186 +504,6 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/g3f/g3f3 - Das Fenn.png",
     "markers": [
         {
-            "id": "1277",
-            "name": "Zwei Hohe Berge",
-            "category": "kill_boss",
-            "position": [
-                1044.48,
-                831.19
-            ],
-            "description": ""
-        },
-        {
-            "id": "1305",
-            "name": "Auferstehung des Königs",
-            "category": "kill_boss",
-            "position": [
-                552.46,
-                1728.31
-            ],
-            "description": ""
-        },
-        {
-            "id": "1279",
-            "name": "Wurzelbehandlung mit Blutverlust",
-            "category": "kill_boss",
-            "position": [
-                497.01,
-                1207.82
-            ],
-            "description": ""
-        },
-        {
-            "id": "1276",
-            "name": "Der Duft des Todes",
-            "category": "kill_boss",
-            "position": [
-                892.63,
-                1431.6
-            ],
-            "description": ""
-        },
-        {
-            "id": "1278",
-            "name": "Kurrea, der abgrundtief Hässliche",
-            "category": "kill_boss",
-            "position": [
-                917.1,
-                1013.51
-            ],
-            "description": ""
-        },
-        {
-            "id": "1290",
-            "name": "Das Seldmonster",
-            "category": "kill_boss",
-            "position": [
-                896.62,
-                703.31
-            ],
-            "description": ""
-        },
-        {
-            "id": "1280",
-            "name": "Der Lehmmann-Schock",
-            "category": "kill_boss",
-            "position": [
-                184.82000000000005,
-                743.77
-            ],
-            "description": ""
-        },
-        {
-            "id": "1301",
-            "name": "Das wandelnde Erdbeben",
-            "category": "kill_boss",
-            "position": [
-                578.9300000000001,
-                740.78
-            ],
-            "description": ""
-        },
-        {
-            "id": "1295",
-            "name": "Vorsicht, bissig",
-            "category": "kill_boss",
-            "position": [
-                1294.24,
-                709.81
-            ],
-            "description": ""
-        },
-        {
-            "id": "1273",
-            "name": "Der forsche Frosch",
-            "category": "kill_boss",
-            "position": [
-                1054.47,
-                507.5
-            ],
-            "description": ""
-        },
-        {
-            "id": "1281",
-            "name": "Brust oder Keule",
-            "category": "kill_boss",
-            "position": [
-                1272.26,
-                489.52
-            ],
-            "description": ""
-        },
-        {
-            "id": "1274",
-            "name": "Die tragische Jungfrau",
-            "category": "kill_boss",
-            "position": [
-                1457.08,
-                1339.69
-            ],
-            "description": ""
-        },
-        {
-            "id": "1286",
-            "name": "Verrückt vor Schmerz",
-            "category": "kill_boss",
-            "position": [
-                628.39,
-                916.6
-            ],
-            "description": ""
-        },
-        {
-            "id": "1284",
-            "name": "Hauch des Todes",
-            "category": "kill_boss",
-            "position": [
-                695.8199999999999,
-                1432.1
-            ],
-            "description": ""
-        },
-        {
-            "id": "1103",
-            "name": "Höllenross",
-            "category": "kill_boss",
-            "position": [
-                182.82000000000005,
-                1319.71
-            ],
-            "description": ""
-        },
-        {
-            "id": "1104",
-            "name": "Höllenross",
-            "category": "kill_boss",
-            "position": [
-                1423.1100000000001,
-                1614.42
-            ],
-            "description": ""
-        },
-        {
-            "id": "1105",
-            "name": "Höllenross",
-            "category": "kill_boss",
-            "position": [
-                775.24,
-                975.55
-            ],
-            "description": ""
-        },
-        {
-            "id": "1272",
-            "name": "Dämpfer am Seldsee",
-            "category": "kill_enemies",
-            "position": [
-                1110.92,
-                640.87
-            ],
-            "description": ""
-        },
-        {
             "id": "1296",
             "name": "Stier mich nicht an!",
             "category": "kill_enemies",
@@ -850,6 +670,186 @@
             "position": [
                 1409.12,
                 325.17999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1272",
+            "name": "Dämpfer am Seldsee",
+            "category": "kill_enemies",
+            "position": [
+                1110.92,
+                640.87
+            ],
+            "description": ""
+        },
+        {
+            "id": "1276",
+            "name": "Der Duft des Todes",
+            "category": "kill_boss",
+            "position": [
+                892.63,
+                1431.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "1278",
+            "name": "Kurrea, der abgrundtief Hässliche",
+            "category": "kill_boss",
+            "position": [
+                917.1,
+                1013.51
+            ],
+            "description": ""
+        },
+        {
+            "id": "1290",
+            "name": "Das Seldmonster",
+            "category": "kill_boss",
+            "position": [
+                896.62,
+                703.31
+            ],
+            "description": ""
+        },
+        {
+            "id": "1280",
+            "name": "Der Lehmmann-Schock",
+            "category": "kill_boss",
+            "position": [
+                184.82000000000005,
+                743.77
+            ],
+            "description": ""
+        },
+        {
+            "id": "1301",
+            "name": "Das wandelnde Erdbeben",
+            "category": "kill_boss",
+            "position": [
+                578.9300000000001,
+                740.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1295",
+            "name": "Vorsicht, bissig",
+            "category": "kill_boss",
+            "position": [
+                1294.24,
+                709.81
+            ],
+            "description": ""
+        },
+        {
+            "id": "1273",
+            "name": "Der forsche Frosch",
+            "category": "kill_boss",
+            "position": [
+                1054.47,
+                507.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1281",
+            "name": "Brust oder Keule",
+            "category": "kill_boss",
+            "position": [
+                1272.26,
+                489.52
+            ],
+            "description": ""
+        },
+        {
+            "id": "1274",
+            "name": "Die tragische Jungfrau",
+            "category": "kill_boss",
+            "position": [
+                1457.08,
+                1339.69
+            ],
+            "description": ""
+        },
+        {
+            "id": "1286",
+            "name": "Verrückt vor Schmerz",
+            "category": "kill_boss",
+            "position": [
+                628.39,
+                916.6
+            ],
+            "description": ""
+        },
+        {
+            "id": "1284",
+            "name": "Hauch des Todes",
+            "category": "kill_boss",
+            "position": [
+                695.8199999999999,
+                1432.1
+            ],
+            "description": ""
+        },
+        {
+            "id": "1277",
+            "name": "Zwei Hohe Berge",
+            "category": "kill_boss",
+            "position": [
+                1044.48,
+                831.19
+            ],
+            "description": ""
+        },
+        {
+            "id": "1305",
+            "name": "Auferstehung des Königs",
+            "category": "kill_boss",
+            "position": [
+                552.46,
+                1728.31
+            ],
+            "description": ""
+        },
+        {
+            "id": "1279",
+            "name": "Wurzelbehandlung mit Blutverlust",
+            "category": "kill_boss",
+            "position": [
+                497.01,
+                1207.82
+            ],
+            "description": ""
+        },
+        {
+            "id": "1103",
+            "name": "Höllenross",
+            "category": "kill_boss",
+            "position": [
+                182.82000000000005,
+                1319.71
+            ],
+            "description": ""
+        },
+        {
+            "id": "1104",
+            "name": "Höllenross",
+            "category": "kill_boss",
+            "position": [
+                1423.1100000000001,
+                1614.42
+            ],
+            "description": ""
+        },
+        {
+            "id": "1105",
+            "name": "Höllenross",
+            "category": "kill_boss",
+            "position": [
+                775.24,
+                975.55
             ],
             "description": ""
         },
@@ -1207,97 +1207,6 @@
             "position": [
                 380.20000000000005,
                 1211.2
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Seldsee",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                1000.0,
-                1000.0
-            ],
-            "position": [
-                1025,
-                1023
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Seldsee (Nordwest)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                644,
-                1168
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Seldsee (Mitte)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                283.3,
-                283.3
-            ],
-            "position": [
-                1115,
-                858
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Seldsee (Südost)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1180,
-                698
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Seldsee (Tiefen)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                75.0,
-                75.0
-            ],
-            "position": [
-                1056,
-                854
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Seldsee (Nordost)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                250.0,
-                250.0
-            ],
-            "position": [
-                1099,
-                1204
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Seldsee (Südwest)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                975,
-                650
             ]
         },
         {

@@ -504,19 +504,9 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/e3f/e3f2 - Yanxia.png",
     "markers": [
         {
-            "id": "1231",
-            "name": "Albtraumhafte Scheuche",
-            "category": "defense",
-            "position": [
-                644.87,
-                669.35
-            ],
-            "description": ""
-        },
-        {
-            "id": "1208",
-            "name": "Gyogun im Pech",
-            "category": "defense",
+            "id": "1210",
+            "name": "Gyogun dreht durch",
+            "category": "kill_boss",
             "position": [
                 844.6800000000001,
                 520.49
@@ -524,19 +514,79 @@
             "description": ""
         },
         {
-            "id": "1209",
-            "name": "Gyogun im Unglück",
-            "category": "defense",
+            "id": "1226",
+            "name": "Heiß, heiß, Baby",
+            "category": "kill_boss",
             "position": [
-                844.6800000000001,
-                520.49
+                1685.35,
+                1323.21
             ],
             "description": ""
         },
         {
-            "id": "1211",
-            "name": "Die Wolfskriege",
-            "category": "defense",
+            "id": "1229",
+            "name": "Hundsgemein",
+            "category": "kill_boss",
+            "position": [
+                1387.15,
+                526.99
+            ],
+            "description": ""
+        },
+        {
+            "id": "1230",
+            "name": "Der Schrecken der Sonnenanbeter",
+            "category": "kill_boss",
+            "position": [
+                712.8,
+                401.11
+            ],
+            "description": ""
+        },
+        {
+            "id": "1227",
+            "name": "Fürsorgliche Mutter",
+            "category": "kill_boss",
+            "position": [
+                1304.73,
+                864.16
+            ],
+            "description": ""
+        },
+        {
+            "id": "1228",
+            "name": "Umweltsünden",
+            "category": "kill_boss",
+            "position": [
+                835.1800000000001,
+                720.3
+            ],
+            "description": ""
+        },
+        {
+            "id": "1215",
+            "name": "Nesträuber",
+            "category": "kill_boss",
+            "position": [
+                1198.33,
+                829.69
+            ],
+            "description": ""
+        },
+        {
+            "id": "1217",
+            "name": "Das blutdürstige Wiesel",
+            "category": "kill_boss",
+            "position": [
+                1629.9099999999999,
+                607.4100000000001
+            ],
+            "description": ""
+        },
+        {
+            "id": "1213",
+            "name": "Die Wolfskriege: Letzte Jagd",
+            "category": "kill_boss",
             "position": [
                 1259.27,
                 1646.3899999999999
@@ -544,32 +594,62 @@
             "description": ""
         },
         {
-            "id": "1216",
-            "name": "Wenn Haie Hunger haben",
-            "category": "kill_enemies",
+            "id": "1238",
+            "name": "Naseweise Namazuo",
+            "category": "kill_boss",
             "position": [
-                1591.95,
-                594.4200000000001
+                738.28,
+                1566.47
             ],
             "description": ""
         },
         {
-            "id": "1220",
-            "name": "Die nimmersatten Raupen",
-            "category": "kill_enemies",
+            "id": "1236",
+            "name": "Von allen guten Geistern verlassen",
+            "category": "kill_boss",
             "position": [
-                1587.45,
-                1237.29
+                856.16,
+                1690.35
             ],
             "description": ""
         },
         {
-            "id": "1222",
-            "name": "Die ganze Affenbande brüllt",
-            "category": "kill_enemies",
+            "id": "1237",
+            "name": "Tiger troll dich",
+            "category": "kill_boss",
             "position": [
-                1265.76,
-                458.54999999999995
+                993.03,
+                1483.05
+            ],
+            "description": ""
+        },
+        {
+            "id": "1106",
+            "name": "Fuchsige Dame",
+            "category": "kill_boss",
+            "position": [
+                772.75,
+                1470.56
+            ],
+            "description": ""
+        },
+        {
+            "id": "1107",
+            "name": "Fuchsige Dame",
+            "category": "kill_boss",
+            "position": [
+                526.49,
+                1205.82
+            ],
+            "description": ""
+        },
+        {
+            "id": "1108",
+            "name": "Fuchsige Dame",
+            "category": "kill_boss",
+            "position": [
+                1176.85,
+                397.61
             ],
             "description": ""
         },
@@ -664,22 +744,32 @@
             "description": ""
         },
         {
-            "id": "1109",
-            "name": "Ausgefuchst",
+            "id": "1216",
+            "name": "Wenn Haie Hunger haben",
             "category": "kill_enemies",
             "position": [
-                1511.52,
-                1654.88
+                1591.95,
+                594.4200000000001
             ],
             "description": ""
         },
         {
-            "id": "1212",
-            "name": "Die Wolfskriege II",
+            "id": "1220",
+            "name": "Die nimmersatten Raupen",
             "category": "kill_enemies",
             "position": [
-                1259.27,
-                1646.3899999999999
+                1587.45,
+                1237.29
+            ],
+            "description": ""
+        },
+        {
+            "id": "1222",
+            "name": "Die ganze Affenbande brüllt",
+            "category": "kill_enemies",
+            "position": [
+                1265.76,
+                458.54999999999995
             ],
             "description": ""
         },
@@ -724,99 +814,19 @@
             "description": ""
         },
         {
-            "id": "1215",
-            "name": "Nesträuber",
-            "category": "kill_boss",
+            "id": "1109",
+            "name": "Ausgefuchst",
+            "category": "kill_enemies",
             "position": [
-                1198.33,
-                829.69
+                1511.52,
+                1654.88
             ],
             "description": ""
         },
         {
-            "id": "1217",
-            "name": "Das blutdürstige Wiesel",
-            "category": "kill_boss",
-            "position": [
-                1629.9099999999999,
-                607.4100000000001
-            ],
-            "description": ""
-        },
-        {
-            "id": "1210",
-            "name": "Gyogun dreht durch",
-            "category": "kill_boss",
-            "position": [
-                844.6800000000001,
-                520.49
-            ],
-            "description": ""
-        },
-        {
-            "id": "1226",
-            "name": "Heiß, heiß, Baby",
-            "category": "kill_boss",
-            "position": [
-                1685.35,
-                1323.21
-            ],
-            "description": ""
-        },
-        {
-            "id": "1229",
-            "name": "Hundsgemein",
-            "category": "kill_boss",
-            "position": [
-                1387.15,
-                526.99
-            ],
-            "description": ""
-        },
-        {
-            "id": "1230",
-            "name": "Der Schrecken der Sonnenanbeter",
-            "category": "kill_boss",
-            "position": [
-                712.8,
-                401.11
-            ],
-            "description": ""
-        },
-        {
-            "id": "1227",
-            "name": "Fürsorgliche Mutter",
-            "category": "kill_boss",
-            "position": [
-                1304.73,
-                864.16
-            ],
-            "description": ""
-        },
-        {
-            "id": "1228",
-            "name": "Umweltsünden",
-            "category": "kill_boss",
-            "position": [
-                835.1800000000001,
-                720.3
-            ],
-            "description": ""
-        },
-        {
-            "id": "1237",
-            "name": "Tiger troll dich",
-            "category": "kill_boss",
-            "position": [
-                993.03,
-                1483.05
-            ],
-            "description": ""
-        },
-        {
-            "id": "1213",
-            "name": "Die Wolfskriege: Letzte Jagd",
-            "category": "kill_boss",
+            "id": "1212",
+            "name": "Die Wolfskriege II",
+            "category": "kill_enemies",
             "position": [
                 1259.27,
                 1646.3899999999999
@@ -824,52 +834,42 @@
             "description": ""
         },
         {
-            "id": "1238",
-            "name": "Naseweise Namazuo",
-            "category": "kill_boss",
+            "id": "1208",
+            "name": "Gyogun im Pech",
+            "category": "defense",
             "position": [
-                738.28,
-                1566.47
+                844.6800000000001,
+                520.49
             ],
             "description": ""
         },
         {
-            "id": "1236",
-            "name": "Von allen guten Geistern verlassen",
-            "category": "kill_boss",
+            "id": "1209",
+            "name": "Gyogun im Unglück",
+            "category": "defense",
             "position": [
-                856.16,
-                1690.35
+                844.6800000000001,
+                520.49
             ],
             "description": ""
         },
         {
-            "id": "1106",
-            "name": "Fuchsige Dame",
-            "category": "kill_boss",
+            "id": "1231",
+            "name": "Albtraumhafte Scheuche",
+            "category": "defense",
             "position": [
-                772.75,
-                1470.56
+                644.87,
+                669.35
             ],
             "description": ""
         },
         {
-            "id": "1107",
-            "name": "Fuchsige Dame",
-            "category": "kill_boss",
+            "id": "1211",
+            "name": "Die Wolfskriege",
+            "category": "defense",
             "position": [
-                526.49,
-                1205.82
-            ],
-            "description": ""
-        },
-        {
-            "id": "1108",
-            "name": "Fuchsige Dame",
-            "category": "kill_boss",
-            "position": [
-                1176.85,
-                397.61
+                1259.27,
+                1646.3899999999999
             ],
             "description": ""
         },
@@ -1237,214 +1237,6 @@
             "position": [
                 611.6,
                 588.7
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Nest des Reihers",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                1690,
-                1398
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Weg des Reihers",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                66.7,
-                66.7
-            ],
-            "position": [
-                1740,
-                1248
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Namai",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                1425,
-                1318
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Prismenweiher",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                266.7,
-                266.7
-            ],
-            "position": [
-                1380,
-                1773
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Prismenschlucht",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                66.7,
-                66.7
-            ],
-            "position": [
-                1535,
-                1738
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Burg Doma",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                166.7,
-                166.7
-            ],
-            "position": [
-                670,
-                1728
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Frachthafen",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                333.3,
-                333.3
-            ],
-            "position": [
-                520,
-                1398
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Der Einzig (Ost)",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                333.3,
-                333.3
-            ],
-            "position": [
-                950,
-                888
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Der Einzig (West)",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                500,
-                453
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Quelle am Pflaumenbaum",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                1750,
-                908
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Der Einzig (Südwest)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                704,
-                224
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Der Einzig (Süd)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1022,
-                266
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Überschall-Angriffsvehikel L-XXIII",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1688,
-                272
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Die Versunkene Dschunke",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                444,
-                388
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Drachensprung",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                496,
-                1564
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Versunkene Dschunke (Süden)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                501,
-                209
             ]
         },
         {

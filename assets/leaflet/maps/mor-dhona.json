@@ -504,22 +504,22 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/l1f/l1f1 - Mor Dhona.png",
     "markers": [
         {
-            "id": "514",
-            "name": "Großreinemachen im Schlingwald",
-            "category": "kill_enemies",
-            "position": [
-                683.3299999999999,
-                1474.06
-            ],
-            "description": ""
-        },
-        {
             "id": "517",
             "name": "Ausgekeimt",
             "category": "kill_enemies",
             "position": [
                 629.39,
                 1489.05
+            ],
+            "description": ""
+        },
+        {
+            "id": "514",
+            "name": "Großreinemachen im Schlingwald",
+            "category": "kill_enemies",
+            "position": [
+                683.3299999999999,
+                1474.06
             ],
             "description": ""
         },
@@ -544,6 +544,16 @@
             "description": ""
         },
         {
+            "id": "526",
+            "name": "Die Hapaliten sind los",
+            "category": "kill_enemies",
+            "position": [
+                1606.9299999999998,
+                1545.49
+            ],
+            "description": ""
+        },
+        {
             "id": "520",
             "name": "Wartung aller Waffen",
             "category": "kill_enemies",
@@ -560,16 +570,6 @@
             "position": [
                 1306.22,
                 1558.48
-            ],
-            "description": ""
-        },
-        {
-            "id": "526",
-            "name": "Die Hapaliten sind los",
-            "category": "kill_enemies",
-            "position": [
-                1606.9299999999998,
-                1545.49
             ],
             "description": ""
         },
@@ -817,84 +817,6 @@
             "position": [
                 1511.2,
                 1518.6
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Silbertränen-Nordufer",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                1203,
-                1446
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Früher Frost",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                66.7,
-                66.7
-            ],
-            "position": [
-                886,
-                1215
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Der Schlingwald",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                133.3,
-                133.3
-            ],
-            "position": [
-                670,
-                1433
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Tiefer Schlingwald",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                66.7,
-                66.7
-            ],
-            "position": [
-                595,
-                1520
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Singende Scherben",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1406,
-                1582
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Norden von Singende Scherben",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                66.7,
-                66.7
-            ],
-            "position": [
-                1498,
-                1788
             ]
         },
         {

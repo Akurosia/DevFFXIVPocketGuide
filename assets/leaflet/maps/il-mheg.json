@@ -504,22 +504,52 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f4 - Il Mheg.png",
     "markers": [
         {
-            "id": "1492",
-            "name": "Feentanz: Güldener Blütennektar",
-            "category": "collect",
+            "id": "1493",
+            "name": "Nicht jeder Dieb ist ein Verbrecher",
+            "category": "kill_enemies",
             "position": [
-                328.17999999999995,
-                1143.88
+                281.72,
+                740.28
             ],
             "description": ""
         },
         {
-            "id": "1491",
-            "name": "Alter Falter!",
-            "category": "kill_boss",
+            "id": "1489",
+            "name": "Die Rosenbären sind los!",
+            "category": "kill_enemies",
             "position": [
-                495.02,
-                638.38
+                810.21,
+                325.17999999999995
+            ],
+            "description": ""
+        },
+        {
+            "id": "1490",
+            "name": "Nicht mehr alle Blumen im Korb",
+            "category": "kill_enemies",
+            "position": [
+                357.65,
+                509.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1495",
+            "name": "Feentanz: Pixie in Not",
+            "category": "kill_enemies",
+            "position": [
+                463.04999999999995,
+                933.59
+            ],
+            "description": ""
+        },
+        {
+            "id": "1480",
+            "name": "Lausbubengeschichten: Pixies",
+            "category": "kill_enemies",
+            "position": [
+                1126.9,
+                1555.98
             ],
             "description": ""
         },
@@ -540,6 +570,16 @@
             "position": [
                 625.39,
                 904.12
+            ],
+            "description": ""
+        },
+        {
+            "id": "1491",
+            "name": "Alter Falter!",
+            "category": "kill_boss",
+            "position": [
+                495.02,
+                638.38
             ],
             "description": ""
         },
@@ -584,52 +624,12 @@
             "description": ""
         },
         {
-            "id": "1489",
-            "name": "Die Rosenbären sind los!",
-            "category": "kill_enemies",
+            "id": "1492",
+            "name": "Feentanz: Güldener Blütennektar",
+            "category": "collect",
             "position": [
-                810.21,
-                325.17999999999995
-            ],
-            "description": ""
-        },
-        {
-            "id": "1490",
-            "name": "Nicht mehr alle Blumen im Korb",
-            "category": "kill_enemies",
-            "position": [
-                357.65,
-                509.0
-            ],
-            "description": ""
-        },
-        {
-            "id": "1495",
-            "name": "Feentanz: Pixie in Not",
-            "category": "kill_enemies",
-            "position": [
-                463.04999999999995,
-                933.59
-            ],
-            "description": ""
-        },
-        {
-            "id": "1493",
-            "name": "Nicht jeder Dieb ist ein Verbrecher",
-            "category": "kill_enemies",
-            "position": [
-                281.72,
-                740.28
-            ],
-            "description": ""
-        },
-        {
-            "id": "1480",
-            "name": "Lausbubengeschichten: Pixies",
-            "category": "kill_enemies",
-            "position": [
-                1126.9,
-                1555.98
+                328.17999999999995,
+                1143.88
             ],
             "description": ""
         },
@@ -949,188 +949,6 @@
             "position": [
                 1207.9,
                 1475.3
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Spiegelchen",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                300.0,
-                300.0
-            ],
-            "position": [
-                165,
-                983
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Großes Spiegelchen",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                800.0,
-                800.0
-            ],
-            "position": [
-                1000,
-                958
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Hochmütiges Kind",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1050,
-                1643
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Neidisches Kind",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                1240,
-                1648
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Collards Schwäche",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                1545,
-                983
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Verwöhntes Kind",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                400.0,
-                400.0
-            ],
-            "position": [
-                1395,
-                1423
-            ]
-        },
-        {
-            "type": "fishing_angel",
-            "name": "Tempel des Heiligen Fathric",
-            "imageUrl": "/assets/img/content/map/angel.webp",
-            "size": [
-                300.0,
-                300.0
-            ],
-            "position": [
-                1695,
-                783
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Schloss Lyhe Ghiah (Norden)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                968,
-                1428
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Stadt am Grund",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                266.7,
-                266.7
-            ],
-            "position": [
-                934,
-                1002
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Großes Spiegelchen (Mitte)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                266.7,
-                266.7
-            ],
-            "position": [
-                1224,
-                824
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Thysm Lran",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                266.7,
-                266.7
-            ],
-            "position": [
-                1456,
-                644
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Großes Spiegelchen (Süden)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                266.7,
-                266.7
-            ],
-            "position": [
-                1412,
-                264
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Großes Spiegelchen (Osten)",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                100.0,
-                100.0
-            ],
-            "position": [
-                1450,
-                865
-            ]
-        },
-        {
-            "type": "fishing_spear",
-            "name": "Haus des Strahlenden Lichts",
-            "imageUrl": "/assets/img/content/map/speer.webp",
-            "size": [
-                200.0,
-                200.0
-            ],
-            "position": [
-                728,
-                1245
             ]
         },
         {
