@@ -1,5 +1,13 @@
 <!-- Include from _includes/helper/handle_version_switchcase -->
         {%- case x -%}
+            {%- when "ec" -%}
+            <!-- Dawntrail Guide Index ============================================ -->
+                {%- assign x_shortid = "ec" -%}
+                {%- assign x_id = "evercold" -%}
+                {%- assign x_title = "8.x - Evercold" -%}
+                {%- assign categories = site.categories.dt -%}
+                {%- assign expacicon = "061000/061881_hr1.webp" -%}
+                {%- assign expacimage = "uld/title_logo800_hr1.tex.webp" -%}
             {%- when "dt" -%}
             <!-- Dawntrail Guide Index ============================================ -->
                 {%- assign x_shortid = "dt" -%}
