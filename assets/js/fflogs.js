@@ -110,10 +110,8 @@ function gSFZ_getDataViaFetch(user, state){
     // state is only set if the button was pressed manually in the frontend    console.log("STATE: " + localStorage.getItem('fflogs_player_data')=== undefined)
     if (localStorage.getItem('fflogs_player_data') !== "undefined" && currentDate.getTime() < localStorage.getItem('fflogs_last_access') && !state) {
         remaining = (localStorage.getItem('fflogs_last_access') - currentDate.getTime()) / 60000
-        console.log(`Get Cached Data (${remaining})`)
         printTable(JSON.parse(localStorage.getItem('fflogs_player_data')))
     } else {
-        console.log("Get New Data")
         prom = getFFLOGSapiPlayerData(player = user, customTextblock = "", includeName = false)
         Promise.all([prom]).then((values) => {
             next5min = new Date(currentDate.getTime() + 5 * 60000).getTime()
@@ -135,7 +133,7 @@ function addThead(result){
         for (var j of fight_ids){
             if (figths[j] != undefined) {
                 th = document.createElement("th")
-                th.innerHTML = figths[j][0]
+                th.textContent = figths[j][0]
                 tr.appendChild(th)
             }
         }
@@ -227,8 +225,6 @@ function addTbody(result){
         tr.appendChild(addUserNameStuff(result[i], i))
         for (var j of fight_ids){
             if (figths[j] != undefined) {
-                console.log("[addTbody] Result:")
-                console.log(result)
                 tr = addRow(tr, result, i, j)
             }
         }
@@ -241,7 +237,7 @@ function addTbody(result){
 function printTable(data){
     result = Object.assign({}, data, result);
     x = document.getElementById("table")
-    x.innerHTML = "";
+    x.replaceChildren();
     table = document.createElement("table")
     table.className = "table table-bordered table-dark table-striped text-light table-hover";
     table.setAttribute("id", "table_fflogs");
@@ -301,20 +297,26 @@ jobs = {
     "Pictomancer": "062042_hr1"
 }
 function addJobImage(job){
-    //return '<img loading="lazy" src="https://xivapi.com/i/062000/' + jobs[job] + '" style="height: 30px; padding-right: 5px;">'
-    return '<img loading="lazy" src="https://v2.xivapi.com/api/asset/ui/icon/062000/' + jobs[job] + '.tex?format=webp" style="height: 30px; padding-right: 5px;">'
+    const img = document.createElement("img")
+    img.loading = "lazy"
+    img.src = 'https://v2.xivapi.com/api/asset/ui/icon/062000/' + jobs[job] + '.tex?format=webp'
+    img.style.height = "30px"
+    img.style.paddingRight = "5px"
+    return img
 }
 
 function addRow(tr, result, name, encounterID){
     td = document.createElement("td")
-    console.log("[addRow] result[name][encounterID]:")
-    console.log(result[name][encounterID])
-    console.log(encounterID)
     if (result[name][encounterID] === undefined) {
         result[name][encounterID] = { 'historical': -1 }
     }
     if (parseInt(result[name][encounterID]['historical']) !== -1) {
-        td.innerHTML = addJobImage(result[name][encounterID]['job']) + parseInt(result[name][encounterID]['historical']) + " <span style=\"color:white\">(" + parseInt(result[name][encounterID]['kills']) + ")</span>"
+        td.appendChild(addJobImage(result[name][encounterID]['job']))
+        td.appendChild(document.createTextNode(String(parseInt(result[name][encounterID]['historical'])) + " "))
+        const killsSpan = document.createElement("span")
+        killsSpan.style.color = "white"
+        killsSpan.textContent = "(" + parseInt(result[name][encounterID]['kills']) + ")"
+        td.appendChild(killsSpan)
     }
     td = colorize(td, parseInt(result[name][encounterID]['historical']))
     td.title = parseInt(result[name][encounterID]['kills']) + " Kills"
@@ -410,9 +412,6 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
     let payload = `{"query":"query char_to_id { characterData { ${query_player} } }","variables":{} }`;
     payload = payload.replace(/\s+/, " ")
     payload = `${payload}`;
-    console.log("[getFFLOGSapiPlayerData] Query:")
-    console.log(payload.replace("\\", ""))
-
     const headers = {
         'Authorization': `Bearer ${access_key}`,
         "Origin": "*",
@@ -431,8 +430,7 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
     try {
         jsonData = (await response.json()).data.characterData;
     } catch(err) {
-        console.log("[getFFLOGSapiPlayerData] Error:")
-        console.log(err)
+        console.error("[getFFLOGSapiPlayerData] Error:", err)
         if (!rerun){
             setNewAccessToken()
             getFFLOGSapiPlayerData(player, customTextblock, includeName, latestRaid, unrealId, latestPrimal, rerun=true)
@@ -465,7 +463,6 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
                     if (entry['rankPercent'] == null) {
                         entry['rankPercent'] = -1
                     }
-                    console.log(entry['totalKills'])
                     if (includeName) {
                         player_result[player_data['name']][_id]['name'] = entry['encounter']['name']
                     }
@@ -488,9 +485,7 @@ async function getFFLOGSapiPlayerData(player = "", customTextblock = "", include
                 }
             }
         } catch(err) {
-            console.log("[getFFLOGSapiPlayerData] Error:")
-            console.log(err)
-            console.log(`Error when loading user ${player_key}`)
+            console.error(`[getFFLOGSapiPlayerData] Error when loading user ${player_key}`, err)
         }
     }
     return player_result

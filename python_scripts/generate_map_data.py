@@ -3,14 +3,14 @@ from bs4 import BeautifulSoup, Tag
 from ffxiv_aku import *
 try:
     from .helper import getImage
-except:
+except ImportError:
     from helper import getImage
 from PIL.ImageFile import ImageFile
 from PIL import Image
 import traceback
 try:
     from treasurespot import get_coords_later
-except:
+except ImportError:
     from .treasurespot import get_coords_later
 
 new_data_list = []
@@ -314,7 +314,7 @@ def getLinksFromConsoleGamesWiki(createnew = False):
         if createnew:
             ERROR
         result = readJsonFile("FatesFromConsoleWiki.json")
-    except:
+    except FileNotFoundError:
         result = {}
     zones: list[Tag] = main.find_all("h3")
     for zone in zones:
@@ -444,7 +444,7 @@ def getFateName(fate_id, _type) -> str:
     else:
         try:
             return fates_trans[fate_id]
-        except:
+        except KeyError:
             return fates_trans[str(int(fate_id, 16))]
     print("none")
 
@@ -633,7 +633,7 @@ def get_fishingspot(mapid, w, h):
         for key, value in fishingspot.items():
             try:
                 value['TerritoryType']['Map']['Id']
-            except:
+            except KeyError:
                 continue
             _map_id = value['TerritoryType']['Map']['Id']
             placename_name = value['PlaceName']['Name']
@@ -658,7 +658,7 @@ def get_spearfishingspot(mapid, w, h):
         for key, value in spearfishingspot.items():
             try:
                 value['TerritoryType']['Map']['Id']
-            except:
+            except KeyError:
                 continue
             _map_id = value['TerritoryType']['Map']['Id']
             placename_name = value['PlaceName']['Name']
@@ -692,7 +692,7 @@ def get_quest(mapid, w, h):
         for key, value in quest.items():
             try:
                 value['IssuerLocation']['Map']['Id']
-            except:
+            except KeyError:
                 continue
             _map_id = value['IssuerLocation']['Map']['Id']
             placename_name = value['Name_de']

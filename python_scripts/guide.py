@@ -11,7 +11,7 @@ try:
     from python_scripts.helper import getImage
     from python_scripts.fileimports import *
     from python_scripts.guide_helper import ugly_fix_enemy_data, workOnOldEnemies, workOnLogDataEnemies, sort_status_ids
-except Exception:
+except ImportError:
     from constants import EXAMPLE_SEQUENCE, EXAMPLE_ADD_SEQUENCE, LANGUAGES
     #from custom_logger import *
     from helper import getImage
@@ -484,9 +484,8 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
 
     #Handle text
     if enemy_data.get("text", None):
-        try:
+        if 'old' in enemy_data['text']:
             del enemy_data['text']['old']
-        except: pass
         guide_data += '    text:\n'
         for cat, text_ids in enemy_data["text"].items():
             if cat == "old":

@@ -77,7 +77,7 @@ async function translate_search(){
     var searchvalue = document.getElementById("searchValue").value;
     var filter = document.getElementById("filterValue")
     var filefilter = filter.value;
-    var exactSearch = eval(document.getElementById("exactSearch").value);
+    var exactSearch = document.getElementById("exactSearch").value === "true";
 
     files = []
     for (var x = 1; x < filter.options.length; x++){
@@ -87,9 +87,6 @@ async function translate_search(){
     if (filefilter == "all"){
         filefilter = null
     }
-
-    console.log("Filefilter: " + String(filefilter))
-    console.log("SearchValue: " + searchvalue)
 
     document.getElementById('search_spinner').classList.add("fa-spinner");
     promisses = []
@@ -109,7 +106,6 @@ async function translate_search(){
         order_divs_at_the_end()
         // sort elements
     });
-    console.log("Done")
     document.querySelectorAll("img[src*='ui/icon']").forEach(applyImageFallback);
 }
 
@@ -160,7 +156,6 @@ async function getDataViaXMLHTTP(name, filefilter="", exact=false){
         urlparams = urlparams + "&exactSearch=" + exact
     }
     newurl = 'https://ffxiv.akurosiakamo.de/queryFFXIVtranslateDB.php' + urlparams
-    console.log(newurl)
     return fetch(newurl)
         .then(handleErrors)
         .then(response => response.json())
@@ -413,12 +408,11 @@ function UserAction(file, folder = "translate") {
 
 //FUNCTION FOR THE COLLAPSE BUTTON
 function collapsOrExpand(ele, state="none"){
-    var colldiv = document.getElementById("div_"+ele[0].innerHTML);
-    console.log(ele[0].innerHTML)
+    var colldiv = document.getElementById("div_"+ele[0].textContent);
     //setTableWitdh(ele)
     if (colldiv.style.display === "table" || colldiv.style.display === "inline") {
         colldiv.style.display = "none";
-        ele[1].innerHTML = "&#x25BC;";
+        ele[1].textContent = "▼";
     } else {
         if (state === "list"){
             colldiv.style.display = "inline";
@@ -427,7 +421,7 @@ function collapsOrExpand(ele, state="none"){
         }else {
             colldiv.style.display = "table";
         }
-        ele[1].innerHTML = "&#x25B2;";
+        ele[1].textContent = "▲";
     }
 }
 
@@ -442,9 +436,8 @@ $(document).ready(function(){
 
 function setTableWitdh(ele) {
     try{
-        document.getElementById("table_"+ele[0].innerHTML).style.width = ele[0].parentElement.clientWidth+2;
+        document.getElementById("table_"+ele[0].textContent).style.width = ele[0].parentElement.clientWidth+2;
     }catch{
-        console.log("Error on collapsOrExpand")
     }
 }
 
@@ -458,16 +451,15 @@ function getRegEx(data) {
         if (namedElements[i].className == ""){
             continue;
         }
-        result += "|" + namedElements[i].innerHTML
+        result += "|" + namedElements[i].textContent
     }
-    result = "(ID_" + namedElements[0].innerHTML + "|0xID_" + parseInt(namedElements[0].innerHTML, 16) + result + ")"
+    result = "(ID_" + namedElements[0].textContent + "|0xID_" + parseInt(namedElements[0].textContent, 16) + result + ")"
     result = result.replace("(|", "(").replace("||", "|").replace("||", "|").replace("||", "|").replace("|)", ")")
     var textarea = document.createElement("textarea");
     textarea.textContent = result;
     textarea.style.position = "fixed";
     document.body.appendChild(textarea);
     textarea.select();
-    console.log(result);
     try {
        return document.execCommand("copy");  // Security exception may be thrown by some browsers.
     } catch (ex) {

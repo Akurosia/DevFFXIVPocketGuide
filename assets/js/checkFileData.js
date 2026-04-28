@@ -67,7 +67,6 @@ function translate_loadFromLocalStorage(){
 async function UserAction2(caller){
     remove_bodyDiv();
     await load_data(caller)
-    console.log("Done")
 }
 
 
@@ -97,7 +96,6 @@ async function load_data(caller){
     var Http = new XMLHttpRequest();
     url = "https://ff14.akurosiakamo.de/extras/json/xivapi_data/" + _select.value;
     url = encodeURI(url)
-    console.log(url)
 
     Http.open("GET", url, true);
     Http.send();
@@ -165,11 +163,9 @@ function createTemplateTable(json, caller, _filterterm, _input){
 
 
     if (caller == "data"){
-        console.log("data");
         _thead = createTemplateTableHead(json)
         _tbody = createTemplateTableBody(json, _filterterm, _input)
     } else {
-        console.log("example");
         _thead = createTemplateTableHead2(json)
         _tbody = createTemplateTableBody2(json)
 
@@ -205,7 +201,6 @@ function createTemplateTableBody2(json){
     var _body = document.createElement('tbody');
     var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
     var keys = Object.keys(json);
-    console.log(keys);
     keys = keys.sort(collator.compare)
     for (var json_key in keys) {
         _tr = document.createElement('tr');

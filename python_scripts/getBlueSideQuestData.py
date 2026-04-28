@@ -5,7 +5,7 @@ from ffxiv_aku import loadDataTheQuickestWay, false, true, wrap_in_color_green, 
 try:
     from .convert_skills_to_guide_form_helper.helper import getImage
     from .helper import *
-except:
+except ImportError:
     from convert_skills_to_guide_form_helper.helper import *
     from helper import *
 try:
@@ -42,7 +42,7 @@ def getQuestName(name, lang="en", color=False):
                 else:
                     # print(value)
                     return value
-        except:
+        except KeyError:
             pass
     return wrap_in_color_red(name)
 
@@ -248,7 +248,7 @@ def main():
         try:
             new_element['previousquest'].remove("")
             new_element['previousquest'].remove("")
-        except:
+        except ValueError:
             pass
 
         exp = quest['Expansion']['Name_de']

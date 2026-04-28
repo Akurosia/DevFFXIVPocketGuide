@@ -123,13 +123,11 @@ sum_fields = {}
 lists = ["Mainhand", "Offhand", "Kopf", "Rumpf", "Hände", "Beine", "Füße", "Ohrring", "Halskette", "Armreif", "Ring", "Ring"]
 
 function copy2clipboard(text) {
-    console.log(text)
     if (!navigator.clipboard) {
         fallbackCopyTextToClipboard(text);
         return;
     }
     navigator.clipboard.writeText(text).then(function() {
-        console.log('Async: Copying to clipboard was successful!');
     }, function(err) {
         console.error('Async: Could not copy text: ', err);
     });
@@ -201,7 +199,6 @@ async function call_api_data(){
         promisses.push(jsondata)
     })
     await Promise.allSettled(promisses).then((xxx) => {
-        console.log("Done")
         // this is from handleLanguages.js
         executeHandelingLanguages();
         setTimeout(() => {  executeHandelingLanguages(); }, 700);
@@ -211,7 +208,6 @@ async function call_api_data(){
 async function load_data(params, table_name, category, classJob){
     //load treasure map json
     url = 'https://ffxiv.akurosiakamo.de/queryFFXIVequipmentDB.php' + params
-    console.log(url)
     //fetch(url,{mode: 'cors'})
     return fetch(url)
         .then(r => r.json())
@@ -219,7 +215,7 @@ async function load_data(params, table_name, category, classJob){
             fields = get_stats_for_class(classJob)
             create_table(data, table_name, category, classJob, fields)
         })
-        .catch(e => console.log(e))
+        .catch(e => console.error(e))
 }
 
 function get(object, key, default_value) {
@@ -317,7 +313,7 @@ function get_stats_for_class(classJob, removeshy=true){
         x.push(...["Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit","Konstitution"])
     }
     else {
-        console.log("ERROR CLASS NOT AVAILABLE!!!")
+        console.error("ERROR CLASS NOT AVAILABLE!!!")
     }
     if (removeshy){
         for (e in x){
@@ -352,7 +348,7 @@ function get_race_select(){
         option = document.createElement("option")
         option.setAttribute("data-translate", `Gear_Race_${races[race]}`)
         option.value = races[race]
-        option.innerHTML = races[race]
+        option.textContent = races[race]
         select.appendChild(option)
     }
     select.setAttribute("onchange", "updateValues()")
@@ -477,7 +473,7 @@ async function createTemplateTableBody(name, json, fields){
                 _td = await createTHorTD(get(json[key], xfield, 0), "td", "stat " + xfield)
                 if (substats.includes(xfield)){
                     _span = document.createElement("span")
-                    _span.innerHTML = " (" + max_meld + ")"
+                    _span.textContent = " (" + max_meld + ")"
                     _td.appendChild(_span);
                 }
                 _tr.appendChild(_td);
@@ -627,13 +623,13 @@ function updateValues(){
     for (var field in new_sum_fields){
         if (field == "ilvl"){
             element = tbody.getElementsByClassName(field)[0]
-            element.innerHTML = parseInt(new_sum_fields[field] / 12)
+            element.textContent = parseInt(new_sum_fields[field] / 12)
         }else {
             element = tbody.getElementsByClassName(field)[0]
             gear_value = parseInt(new_sum_fields[field], 10)
             stat_value = (parseInt(defaultSatst[field], 10) || 0)
             modify_value = (parseInt(baseStatModifier[field][races.indexOf(race)], 10) || 0)
-            element.innerHTML = ( gear_value + stat_value + modify_value).toString() + " (+" + gear_value + ")"
+            element.textContent = ( gear_value + stat_value + modify_value).toString() + " (+" + gear_value + ")"
         }
     }
 }
