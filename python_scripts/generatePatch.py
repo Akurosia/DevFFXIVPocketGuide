@@ -16,14 +16,36 @@ LANGUAGES_MAPPING = {
 path_of_main_script = ""
 klass_translations = None
 TRAILER_FIELDS = [
-    ("link_to_trailer", "trailer"),
-    ("link_to_teaser_trailer", "teaser_trailer"),
-    ("link_to_full_trailer", "full_trailer"),
-    ("link_to_extended_teaser_trailer", "extended_teaser_trailer"),
-    ("link_to_special_song_trailer", "special_song_trailer"),
-    ("link_to_additional_trailer", "additional_trailer"),
-    ("link_to_benchmark_trailer", "benchmark_trailer"),
+    "link_to_trailer",
+    "link_to_teaser_trailer",
+    "link_to_full_trailer",
+    "link_to_extended_teaser_trailer",
+    "link_to_special_song_trailer",
+    "link_to_additional_trailer",
+    "link_to_benchmark_trailer",
 ]
+
+
+def yaml_quote(value):
+    value = str(value).replace("\\", "\\\\").replace('"', '\\"')
+    return f'"{value}"'
+
+
+def append_patch_yaml(lines, patch, indent="    "):
+    lines.append(f"{indent}- name: {yaml_quote(patch['name'])}\n")
+    lines.append(f"{indent}  patchnumber: {yaml_quote(patch['patchnumber'])}\n")
+    lines.append(f"{indent}  date: {yaml_quote(patch['date'])}\n")
+    lines.append(f"{indent}  dslr: {patch['dslr']}\n")
+    lines.append(f"{indent}  pname: {yaml_quote(patch['pname'])}\n")
+
+    if patch.get("link_to_patch", None):
+        lines.append(f"{indent}  link_to_patch: {yaml_quote(patch['link_to_patch'])}\n")
+    if patch.get("link_to_special_page", None):
+        lines.append(f"{indent}  link_to_special_page: {yaml_quote(patch['link_to_special_page'])}\n")
+
+    for field_name in TRAILER_FIELDS:
+        if patch.get(field_name, None):
+            lines.append(f"{indent}  {field_name}: {yaml_quote(patch[field_name])}\n")
 
 
 def get_class_translation_data():
@@ -53,23 +75,26 @@ def nextRelease(value):
 
 def patches_overview():
     versions = get_any_Versiondata()
-    filecontent = ""
-    filecontent += '---\n'
-    filecontent += 'layout: patches\n'
-    filecontent += 'title: Patches\n'
-    filecontent += 'last_modified_at: 2022-03-17\n'
-    filecontent += 'permalink: /patches/\n'
-    filecontent += 'description: "Search through class and jobs guides on the FFXIV Pocket Guide."\n'
-    filecontent += 'page_type: index\n'
-    filecontent += 'page_category: patches\n'
-    filecontent += 'patches:\n'
+    lines = [
+        '---\n',
+        'layout: patches\n',
+        'title: Patches\n',
+        'last_modified_at: 2022-03-17\n',
+        'permalink: /patches/\n',
+        'description: "Search through class and jobs guides on the FFXIV Pocket Guide."\n',
+        'page_type: index\n',
+        'page_category: patches\n',
+        'patches:\n',
+    ]
     old_date = ""
-    major_patches = []
-    minor_patches = []
+    major_patches = set()
+    minor_patches = set()
+    processed_patches = []
+    expansion_patches = {}
+    patch_lookup = {}
     for key, value in versions.items():
         if value.get('disabled', False) == "true" and not nextRelease(value):
             continue
-        #print(value)
 
         new_date = datetime.strptime(value['date'].replace(".", "/"), '%Y/%m/%d')
         if old_date == "":
@@ -79,33 +104,63 @@ def patches_overview():
         if key.endswith("0"):
             key = key[:-1]
 
-        filecontent += f"    - name: {value['name']}\n"
-        filecontent += f"      patchnumber: \"{key}\"\n"
-        filecontent += f"      date: {value['date']}\n"
-        filecontent += f"      dslr: {datediff.days}\n"
-        filecontent += f"      pname: {value['pname']}\n"
+        patch = {
+            "name": value['name'],
+            "patchnumber": key,
+            "date": value['date'],
+            "dslr": datediff.days,
+            "pname": value['pname'],
+        }
         if value.get('link_to_patch', None):
-            filecontent += f"      link_to_patch: {value['link_to_patch']}\n"
+            patch["link_to_patch"] = value['link_to_patch']
         if value.get('link_to_special_page', None):
-            filecontent += f"      link_to_special_page: {value['link_to_special_page']}\n"
-        for field_name, _ in TRAILER_FIELDS:
+            patch["link_to_special_page"] = value['link_to_special_page']
+        for field_name in TRAILER_FIELDS:
             if value.get(field_name, None):
-                filecontent += f"      {field_name}: {value[field_name]}\n"
+                patch[field_name] = value[field_name]
+
+        processed_patches.append(patch)
+        expansion_patches.setdefault(patch["pname"], []).append(patch)
+        patch_lookup[patch["patchnumber"]] = patch
+        append_patch_yaml(lines, patch)
 
         ma_p, mi_p = key.split(".")
-        if not ma_p in major_patches and not ma_p == "1":
-            major_patches.append(ma_p)
-        if not mi_p in minor_patches and not ma_p == "1":
-            minor_patches.append(mi_p)
+        if ma_p != "1":
+            major_patches.add(ma_p)
+            minor_patches.add(mi_p)
 
-    filecontent += 'major_patches:\n'
-    for patch in sorted(major_patches):
-        filecontent += f'    - "{patch}"\n'
+    sorted_major_patches = sorted(major_patches)
+    sorted_minor_patches = sorted(minor_patches)
 
-    filecontent += 'minor_patches:\n'
-    for patch in sorted(minor_patches):
-        filecontent += f'    - "{patch}"\n'
-    filecontent += '---\n'
+    lines.append('expansion_patches:\n')
+    for expansion_name, expansion_patch_list in expansion_patches.items():
+        lines.append(f'  {expansion_name}:\n')
+        for patch in expansion_patch_list:
+            append_patch_yaml(lines, patch, indent="    ")
+
+    lines.append('major_patches:\n')
+    for patch in sorted_major_patches:
+        lines.append(f'    - "{patch}"\n')
+
+    lines.append('minor_patches:\n')
+    for patch in sorted_minor_patches:
+        lines.append(f'    - "{patch}"\n')
+
+    lines.append('patch_matrix_rows:\n')
+    for minor in sorted_minor_patches:
+        lines.append(f'    - minor: "{minor}"\n')
+        lines.append('      values:\n')
+        for major in sorted_major_patches:
+            version = f"{major}.{minor}"
+            patch_data = patch_lookup.get(version, None)
+            dslr = patch_data["dslr"] if patch_data else ""
+            patch_date = patch_data["date"] if patch_data else ""
+            lines.append(f'        - major: "{major}"\n')
+            lines.append(f'          dslr: {yaml_quote(dslr) if dslr == "" else dslr}\n')
+            lines.append(f'          date: {yaml_quote(patch_date)}\n')
+
+    lines.append('---\n')
+    filecontent = "".join(lines)
 
     filename = f"{path_of_main_script}/_pages/patches/index.html"
     with open(filename, encoding="utf8") as f:
@@ -123,7 +178,8 @@ def single_patch_file():
         "sb": "title_logo400_hr1.tex.webp",
         "shb": "title_logo500_hr1.tex.webp",
         "ew": "title_logo600_hr1.tex.webp",
-        "dt": "title_logo700_hr1.tex.webp"
+        "dt": "title_logo700_hr1.tex.webp",
+        "ec": "title_logo800_hr1.tex.webp"
     }
     versions = get_any_Versiondata()
     for key, value in exversion.items():

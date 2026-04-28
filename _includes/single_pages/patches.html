@@ -3,6 +3,7 @@
     {%- assign my_array = site.ffxiv_expansion_list | append: ",ffxiv" | split: ',' -%}
     {%- for x in my_array -%}
         {% include helper/handle_version_switchcase.html %}
+        {%- assign patches_for_expansion = page.expansion_patches[x] -%}
         <div class="index-divider" data-expansion="{{ x }}">
             {%- include _components/expantion_filter.html -%}
         </div>
@@ -21,8 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {%- for patch in page.patches reversed -%}
-                        {%- if x == patch.pname -%}
+                    {%- for patch in patches_for_expansion reversed -%}
                             <tr>
                                 <td class="patch_table_1">{{patch.patchnumber}}</td>
                                 <td class="patch_table_2">{{patch.date}}</td>
@@ -72,7 +72,6 @@
                                     {%- endunless -%}
                                 </td>
                             </tr>
-                        {%- endif -%}
                     {%- endfor -%}
                 </tbody>
             </table>
@@ -95,20 +94,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {%- for minor in page.minor_patches -%}
+                        {%- for row in page.patch_matrix_rows -%}
                             <tr>
-                                <td class="patch_table_1">{{minor}}</td>
-                                {%- for major in page.major_patches -%}
-                                    {% assign final_version = nil %}
-                                    {% assign version = major | append: '.' | append: minor %}
-                                    <!--<span style="color: aqua;">{{version}}</span>-->
-                                    {%- for patch in page.patches -%}
-                                        {% assign xxx = patch.patchnumber %}
-                                        {% if patch.patchnumber == version %}
-                                            {% assign final_version = patch.dslr %}
-                                        {% endif %}
-                                    {%- endfor -%}
-                                    <td scope="col">{{final_version}}</td>
+                                <td class="patch_table_1">{{row.minor}}</td>
+                                {%- for value in row.values -%}
+                                    <td scope="col">{{value.dslr}}</td>
                                 {%- endfor -%}
                             </tr>
                         {%- endfor -%}
@@ -127,20 +117,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {%- for minor in page.minor_patches -%}
+                        {%- for row in page.patch_matrix_rows -%}
                             <tr>
-                                <td class="patch_table_1">{{minor}}</td>
-                                {%- for major in page.major_patches -%}
-                                    {% assign final_version = nil %}
-                                    {% assign version = major | append: '.' | append: minor %}
-                                    <!--<span style="color: aqua;">{{version}}</span>-->
-                                    {%- for patch in page.patches -%}
-                                        {% assign xxx = patch.patchnumber %}
-                                        {% if patch.patchnumber == version %}
-                                            {% assign final_version = patch.date %}
-                                        {% endif %}
-                                    {%- endfor -%}
-                                    <td scope="col">{{final_version}}</td>
+                                <td class="patch_table_1">{{row.minor}}</td>
+                                {%- for value in row.values -%}
+                                    <td scope="col">{{value.date}}</td>
                                 {%- endfor -%}
                             </tr>
                         {%- endfor -%}

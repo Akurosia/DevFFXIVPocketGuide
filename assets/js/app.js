@@ -19,6 +19,15 @@ function closeFullscreen() {
     document.getElementById("fullscreenOverlay").style.display = "none";
 }
 
+function debounce(func, wait) {
+    let timeoutId;
+
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
 function handleExpansionAssetError(expansion) {
     if (!expansion) {
         return;
@@ -37,8 +46,8 @@ function handleExpansionAssetError(expansion) {
         button.style.display = "none";
     });
 
-    if (typeof runGuideFilter === "function") {
-        runGuideFilter();
+    if (typeof window.runGuideFilter === "function") {
+        window.runGuideFilter();
     }
 }
 
@@ -74,20 +83,24 @@ function scrollToElement(element) {
 
         const links = document.querySelectorAll('.preview-link');
         const preview = document.getElementById('mapimagepreview');
+        const filterableListSelector = ".index .index__list, .index .index__list_quests, .index .index__list_achivments, .index_attack .index__list_attack, .index_debuff .index__list_debuff, .index_eureka .index__list_eureka, .index_bozja .index__list_bozja, .index_trait .index__list_trait, .index_leve .index__list_leve, .index_quest .index__list_quest";
+        const $guideFilter = $("#guideFilter");
+        const $indexNullState = $(".index-null-state");
+        const $filterableLists = $(filterableListSelector);
+        const dividerCache = {};
         let currentTimeout;
 
         links.forEach(link => {
-            const scale = 300/link.getAttribute('data-size');
+            const size = Number(link.getAttribute('data-size'));
+            const scale = 300 / size;
             link.addEventListener('mouseenter', (e) => {
                 clearTimeout(currentTimeout); // Verhindert Race Condition
                 const url = link.getAttribute('src');
-                const size = link.getAttribute('data-size');
                 preview.innerHTML = `<img style="height:${size}px;width:${size}px;" src="${url}" alt="Preview">`;
                 preview.style.display = 'block';
-                const rect = link.getBoundingClientRect();
                 preview.style.width = `${size}px`;
                 preview.style.height = `${size}px`;
-                preview.style.top = `${e.pageY - link.getAttribute('data-size')/2}px`;
+                preview.style.top = `${e.pageY - size / 2}px`;
                 preview.style.left = `${e.pageX - link.getAttribute('data-size') * scale}px`;
 
                 requestAnimationFrame(() => {
@@ -96,8 +109,8 @@ function scrollToElement(element) {
             });
 
             link.addEventListener('mousemove', (e) => {
-                preview.style.top = `${e.pageY - link.getAttribute('data-size')/2}px`;
-                preview.style.left = `${e.pageX - link.getAttribute('data-size') * scale}px`;
+                preview.style.top = `${e.pageY - size / 2}px`;
+                preview.style.left = `${e.pageX - size * scale}px`;
             });
 
             link.addEventListener('mouseleave', () => {
@@ -173,135 +186,107 @@ function scrollToElement(element) {
 
         });
 
-// Keep track of disabled expansions
-var disabledExpansions = window.disabledExpansions || {};
-window.disabledExpansions = disabledExpansions;
+        // Keep track of disabled expansions
+        var disabledExpansions = window.disabledExpansions || {};
+        window.disabledExpansions = disabledExpansions;
 
-// Toggle expansion buttons
-$(document).on("click", ".expansion-toggle", function () {
-    var $btn = $(this);
-    var expansion = $btn.data("expansion");
+        function getDividerForExpansion(expansion) {
+            if (!expansion) {
+                return $();
+            }
 
-    $btn.toggleClass("inactive");
+            if (!dividerCache[expansion]) {
+                dividerCache[expansion] = $(".index-divider[data-expansion='" + expansion + "']");
+            }
 
-    if ($btn.hasClass("inactive")) {
-        disabledExpansions[expansion] = true;
-    } else {
-        delete disabledExpansions[expansion];
-    }
-
-    runGuideFilter(); // re-run filter whenever a toggle changes
-});
-
-// Prevent submitting with Enter
-$('#guideFilter').on('keyup keypress', function (e) {
-    var keyCode = e.keyCode || e.which;
-    if (keyCode === 13) {
-
-        if ($(".site-grid__sidebar").hasClass("active")) {
-            $(".sidebar__trigger").removeClass("active");
-            $(".site-grid__sidebar-overlay").removeClass("active");
-            $(".site-grid__sidebar").removeClass("active");
+            return dividerCache[expansion];
         }
 
-        var top = $('body').position().top;
-        $('html,body').scrollTop(top);
+        function getCachedTerms($summary) {
+            var cachedTerms = $summary.data("searchTermsCache");
+            if (!cachedTerms) {
+                cachedTerms = String($summary.find(".index-item__title").data("terms") || "").toLowerCase();
+                $summary.data("searchTermsCache", cachedTerms);
+            }
+            return cachedTerms;
+        }
 
-        e.preventDefault();
-        document.activeElement.blur();
-        return false;
-    }
-});
+        function runGuideFilter() {
+            var input = String($guideFilter.val() || "").toLowerCase().trim();
+            var terms = input ? input.split(/\s+/).filter(Boolean) : [];
+            var visibleSummaryCount = 0;
 
-// Run filter on typing
-$("#guideFilter").on("keyup", function (e) {
-    runGuideFilter();
-    e.preventDefault();
-});
+            $filterableLists.each(function () {
+                var $list = $(this);
+                var listExpansion = $list.attr("data-expansion");
+                var hasVisibleSummary = false;
 
-function runGuideFilter() {
-    console.log(disabledExpansions);
-    var input = $("#guideFilter").val().toLowerCase().trim();
-    var terms = input ? input.split(" ") : [];
+                $list.find(".summary").each(function () {
+                    var $summary = $(this);
+                    var itemExpansion = $summary.data("expansion") || listExpansion;
+                    var isDisabledByExpansion = !!disabledExpansions[itemExpansion];
+                    var headingText = getCachedTerms($summary);
+                    var show = !isDisabledByExpansion;
 
-    $(".index .index__list, \
-      .index .index__list_quests, \
-      .index .index__list_achivments, \
-      .index_attack .index__list_attack, \
-      .index_debuff .index__list_debuff, \
-      .index_eureka .index__list_eureka, \
-      .index_bozja .index__list_bozja, \
-      .index_trait .index__list_trait, \
-      .index_leve .index__list_leve, \
-      .index_quest .index__list_quest").each(function () {
+                    if (show && terms.length > 0) {
+                        show = terms.every(function (term) {
+                            return headingText.indexOf(term) !== -1;
+                        });
+                    }
 
-        var $list = $(this);
-        var listExpansion = $list.attr("data-expansion"); // category-level expansion (may be undefined)
-        var hasVisibleSummary = false;
+                    $summary.toggle(show).toggleClass("show", show);
 
-        $list.find(".summary").each(function () {
-            var $summary = $(this);
-
-            // Prefer per-item expansion, fall back to list expansion
-            var itemExpansion = $summary.data("expansion") || listExpansion;
-            var isDisabledByExpansion = !!disabledExpansions[itemExpansion];
-
-            var headingText = $summary
-                .find(".index-item__title")
-                .data("terms")
-                .toLowerCase();
-
-            // Start with expansion state
-            var show = !isDisabledByExpansion;
-
-            // Apply text terms if expansion is enabled
-            if (show && terms.length > 0) {
-                terms.forEach(function (term) {
-                    term = term.trim();
-                    if (term && headingText.indexOf(term) === -1) {
-                        show = false;
+                    if (show) {
+                        hasVisibleSummary = true;
+                        visibleSummaryCount += 1;
                     }
                 });
+
+                $list.toggle(hasVisibleSummary);
+                if (listExpansion) {
+                    getDividerForExpansion(listExpansion).toggle(hasVisibleSummary);
+                }
+            });
+
+            $("#shadowbringersTitle, #shadowbringersContent").toggle(!input);
+            $indexNullState.toggle(visibleSummaryCount === 0);
+        }
+
+        window.runGuideFilter = runGuideFilter;
+
+        $(document).on("click", ".expansion-toggle", function () {
+            var $btn = $(this);
+            var expansion = $btn.data("expansion");
+
+            $btn.toggleClass("inactive");
+
+            if ($btn.hasClass("inactive")) {
+                disabledExpansions[expansion] = true;
+            } else {
+                delete disabledExpansions[expansion];
             }
 
-            if (show) {
-                $summary.show().addClass("show");
-                hasVisibleSummary = true;
-            } else {
-                $summary.hide().removeClass("show");
-            }
+            runGuideFilter();
         });
 
-        // Show/hide list + divider based on whether it has any visible items
-        if (hasVisibleSummary) {
-            $list.show();
-            if (listExpansion) {
-                $(".index-divider[data-expansion='" + listExpansion + "']").show();
+        $guideFilter.on("keydown", function (e) {
+            if (e.key !== "Enter") {
+                return;
             }
-        } else {
-            $list.hide();
-            if (listExpansion) {
-                $(".index-divider[data-expansion='" + listExpansion + "']").hide();
+
+            if ($(".site-grid__sidebar").hasClass("active")) {
+                $(".sidebar__trigger").removeClass("active");
+                $(".site-grid__sidebar-overlay").removeClass("active");
+                $(".site-grid__sidebar").removeClass("active");
             }
-        }
-    });
 
-    // Shadowbringers block (adapt as needed)
-    if (!input) {
-        $("#shadowbringersTitle").show();
-        $("#shadowbringersContent").show();
-    } else {
-        $("#shadowbringersTitle").hide();
-        $("#shadowbringersContent").hide();
-    }
+            $('html,body').scrollTop($('body').position().top);
+            e.preventDefault();
+            document.activeElement.blur();
+            return false;
+        });
 
-    // Null state
-    if ($(".summary.show").length) {
-        $(".index-null-state").hide();
-    } else {
-        $(".index-null-state").show();
-    }
-}
+        $guideFilter.on("input", debounce(runGuideFilter, 120));
 
 
 
@@ -331,12 +316,13 @@ function runGuideFilter() {
         $("#onlyfinalskills").on("click", function(e) {
             let state = $("#onlyfinalskills").is(':checked')
             $(".summary").each(function(e) {
-                var headingText  =  $(this).find(".index-item__title").data("terms").toLowerCase();
+                var $summary = $(this);
+                var headingText  =  getCachedTerms($summary);
                 if (headingText.includes("finalcast:63")){
                     if (state) {
-                        $(this).hide()
+                        $summary.hide()
                     } else {
-                        $(this).show()
+                        $summary.show()
                     }
                 }
             });
