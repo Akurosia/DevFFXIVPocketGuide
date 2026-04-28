@@ -9,7 +9,6 @@ from yaml.loader import SafeLoader
 import traceback
 # traceback.print_exc()
 from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, storeFilesInTmp, sortJsonData, print_color_red
-os.system('cls')
 from python_scripts.header import addHeader
 from python_scripts.helper import *
 from python_scripts.guide import addGuide
@@ -39,6 +38,7 @@ disable_blue_print: bool = True
 disable_red_print: bool = True
 debug_row_number: int = 0
 print_debug: bool = False
+path_of_main_script: str = os.getcwd()
 
 LANGUAGES: list[str] = ["de", "en", "fr", "ja"]
 LANGUAGES_MAPPING: dict[str, str] = {
@@ -54,6 +54,10 @@ translations:dict[str, dict[str, dict[str, str]]] = {
     "fr": {},
     "ja": {}
 }
+
+
+def project_path(*parts: str) -> str:
+    return os.path.join(path_of_main_script, *parts)
 
 def get_files_from_templates():
     files = [
@@ -88,10 +92,11 @@ def create_translation_files() -> None:
     for lang, cat_data in translations.items():
         for cat, data in cat_data.items():
             tmp = None
-            if os.path.exists(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json"):
-                tmp = readJsonFile(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json")
+            filename = project_path("assets", "translations", "summary", cat, f"{LANGUAGES_MAPPING[lang]}.json")
+            if os.path.exists(filename):
+                tmp = readJsonFile(filename)
             if tmp is None or tmp != data:
-                writeJsonFile(f"../assets/translations/summary/{cat}/{LANGUAGES_MAPPING[lang]}.json", data)
+                writeJsonFile(filename, data)
 
 
 def get_old_content_if_file_is_found(_existing_filename: str) -> dict[Any, Any]:
@@ -112,41 +117,15 @@ def try_to_create_file(filename: str) -> None:
 
 
 def cleanup_logdata(logdata_instance_content: dict[Any, Any]) -> tuple[dict[Any, Any], list[str] | None, list[str] | None]:
-    try:
-        del logdata_instance_content["combatants"]
-    except Exception:
-        pass
-    try:
-        del logdata_instance_content["zone"]
-    except Exception:
-        pass
-    try:
-        del logdata_instance_content["contentzoneid"]
-    except Exception:
-        pass
-    fates: list[str]|None = None
-    try:
-        fates = logdata_instance_content["fates"]
-        del logdata_instance_content["fates"]
-    except Exception:
-        pass
-
-    music: list[str]|None = None
-    try:
-        music = logdata_instance_content["music"]
-        del logdata_instance_content["music"]
-    except Exception:
-        pass
+    logdata_instance_content.pop("combatants", None)
+    logdata_instance_content.pop("zone", None)
+    logdata_instance_content.pop("contentzoneid", None)
+    fates: list[str]|None = logdata_instance_content.pop("fates", None)
+    music: list[str]|None = logdata_instance_content.pop("music", None)
 
     for _, enemy in logdata_instance_content.items():
-        try:
-            del enemy["tether"]
-        except Exception:
-            pass
-        try:
-            del enemy["headmarker"]
-        except Exception:
-            pass
+        enemy.pop("tether", None)
+        enemy.pop("headmarker", None)
     new_lic = {}
     for k, v in logdata_instance_content.items():
         new_lic[k] = v
@@ -176,7 +155,7 @@ def writeFileIfNoDifferent(filename: str, filedata: str, aku_write: bool = False
     if aku_write:
         try:
             x_data = readJsonFile(filename)
-        except Exception:
+        except FileNotFoundError:
             x_data = {}
         #res = all((x_data.get(k) == v for k, v in filedata.items()))
         if not x_data == filedata: # type: ignore
@@ -186,7 +165,7 @@ def writeFileIfNoDifferent(filename: str, filedata: str, aku_write: bool = False
         try:
             with open(filename, "r", encoding="utf8") as f:
                 x_data = f.read()
-        except Exception:
+        except FileNotFoundError:
             x_data = None
         if not filedata == x_data:
             with open(filename, "w", encoding="utf8") as fi:
@@ -247,8 +226,9 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
                     print("[MAIN:run] Skipped due to no expansion specified")
                     continue
                 expansion: str = expansion_list[entry['categories']]
-                filename: str = f"{expansion}_new/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
-                existing_filename: str = f"{expansion}/{entry['instanceType']}/{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
+                relative_filename = f"{entry['date'].replace('.', '-')}--{entry['patchNumber']}--{entry['sortid'].zfill(5)}--{entry['slug'].replace(',', '')}.md"
+                filename = project_path("_posts", f"{expansion}_new", entry['instanceType'], relative_filename)
+                existing_filename = project_path("_posts", expansion, entry['instanceType'], relative_filename)
                 old_data = get_old_content_if_file_is_found(existing_filename)
                 #print_pretty_json(old_data)
                 if old_data != {}:
@@ -256,11 +236,11 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
                 try_to_create_file(filename)
                 write_content_to_file(entry, filename, old_data, content_translations)
 
-                filename_translation_location: str = f"../assets/translations/content/{entry['categories']}/{entry['instanceType']}/{entry['slug'].replace(',', '').replace('_', '-')}"
+                filename_translation_location = project_path("assets", "translations", "content", entry['categories'], entry['instanceType'], entry['slug'].replace(',', '').replace('_', '-'))
                 if not os.path.exists(filename_translation_location):
                     os.makedirs(filename_translation_location)
                 for lang in LANGUAGES:
-                    writeFileIfNoDifferent(filename_translation_location + f"/{LANGUAGES_MAPPING[lang]}.json", content_translations[lang], True)
+                    writeFileIfNoDifferent(os.path.join(filename_translation_location, f"{LANGUAGES_MAPPING[lang]}.json"), content_translations[lang], True)
 
             elif entry['title'] != "":
                 print_color_green(f"[MAIN:run] Skip {entry['title']} as its marked as {entry['exclude']}/{entry['done']}")
@@ -299,6 +279,7 @@ def run_all(path_of_main_script, translations):
 
 def main() -> None:
     global translations
+    global path_of_main_script
     logger.critical('START')
     tmp_path = storeFilesInTmp(True) # set tmp path
     sheet: Worksheet
@@ -324,17 +305,12 @@ def main() -> None:
         googledata = tmp["google"]
         orderedContent = tmp["ordered"]
 
-    # change into _posts dir
-    os.chdir("./_posts")
-    #logger.debug(orderedContent)
     try:
         run(googledata, orderedContent)
-        pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
         run_all(path_of_main_script, translations)
-        pass
     create_translation_files()
     logger.critical('STOP')
 
