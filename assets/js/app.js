@@ -19,6 +19,29 @@ function closeFullscreen() {
     document.getElementById("fullscreenOverlay").style.display = "none";
 }
 
+function handleExpansionAssetError(expansion) {
+    if (!expansion) {
+        return;
+    }
+
+    window.disabledExpansions = window.disabledExpansions || {};
+    var disabledExpansions = window.disabledExpansions;
+    disabledExpansions[expansion] = true;
+
+    document.querySelectorAll("[data-expansion='" + expansion + "']").forEach((element) => {
+        element.style.display = "none";
+    });
+
+    document.querySelectorAll(".expansion-toggle[data-expansion='" + expansion + "']").forEach((button) => {
+        button.classList.add("inactive");
+        button.style.display = "none";
+    });
+
+    if (typeof runGuideFilter === "function") {
+        runGuideFilter();
+    }
+}
+
 function scrollToElement(element) {
     var container = $('html, body');
 
@@ -151,7 +174,8 @@ function scrollToElement(element) {
         });
 
 // Keep track of disabled expansions
-var disabledExpansions = {};
+var disabledExpansions = window.disabledExpansions || {};
+window.disabledExpansions = disabledExpansions;
 
 // Toggle expansion buttons
 $(document).on("click", ".expansion-toggle", function () {
