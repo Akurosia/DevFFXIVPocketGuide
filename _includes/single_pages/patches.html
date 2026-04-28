@@ -17,6 +17,7 @@
                             <th scope="col">Link zu den Patch Notes</th>
                             <th scope="col">Link zu den speziellen Patch Seiten</th>
                         {%- endif -%}
+                        <th scope="col">Trailer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +37,40 @@
                                 {%- elsif x != "ffxiv" -%}
                                     <td class="patch_table_5"></td>
                                 {%- endif -%}
+                                <td class="patch_table_6">
+                                    {%- assign has_trailer = false -%}
+                                    {%- if patch.link_to_trailer -%}
+                                        {%- assign has_trailer = true -%}
+                                        <a href="{{patch.link_to_trailer}}" target="_blank" rel="noopener noreferrer">Trailer</a><br>
+                                    {%- endif -%}
+                                    {%- if patch.link_to_teaser_trailer -%}
+                                        {%- assign has_trailer = true -%}
+                                        <a href="{{patch.link_to_teaser_trailer}}" target="_blank" rel="noopener noreferrer">Teaser Trailer</a><br>
+                                    {%- endif -%}
+                                    {%- if patch.link_to_full_trailer -%}
+                                        {%- assign has_trailer = true -%}
+                                        <a href="{{patch.link_to_full_trailer}}" target="_blank" rel="noopener noreferrer">Full Trailer</a><br>
+                                    {%- endif -%}
+                                    {%- if patch.link_to_extended_teaser_trailer -%}
+                                        {%- assign has_trailer = true -%}
+                                        <a href="{{patch.link_to_extended_teaser_trailer}}" target="_blank" rel="noopener noreferrer">Extended Teaser Trailer</a><br>
+                                    {%- endif -%}
+                                    {%- if patch.link_to_special_song_trailer -%}
+                                        {%- assign has_trailer = true -%}
+                                        <a href="{{patch.link_to_special_song_trailer}}" target="_blank" rel="noopener noreferrer">Special Song Trailer</a><br>
+                                    {%- endif -%}
+                                    {%- if patch.link_to_additional_trailer -%}
+                                        {%- assign has_trailer = true -%}
+                                        <a href="{{patch.link_to_additional_trailer}}" target="_blank" rel="noopener noreferrer">Additional Trailer</a><br>
+                                    {%- endif -%}
+                                    {%- if patch.link_to_benchmark_trailer -%}
+                                        {%- assign has_trailer = true -%}
+                                        <a href="{{patch.link_to_benchmark_trailer}}" target="_blank" rel="noopener noreferrer">Benchmark Trailer</a>
+                                    {%- endif -%}
+                                    {%- unless has_trailer -%}
+                                        &nbsp;
+                                    {%- endunless -%}
+                                </td>
                             </tr>
                         {%- endif -%}
                     {%- endfor -%}

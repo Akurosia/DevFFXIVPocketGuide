@@ -15,6 +15,15 @@ LANGUAGES_MAPPING = {
 }
 path_of_main_script = ""
 klass_translations = None
+TRAILER_FIELDS = [
+    ("link_to_trailer", "trailer"),
+    ("link_to_teaser_trailer", "teaser_trailer"),
+    ("link_to_full_trailer", "full_trailer"),
+    ("link_to_extended_teaser_trailer", "extended_teaser_trailer"),
+    ("link_to_special_song_trailer", "special_song_trailer"),
+    ("link_to_additional_trailer", "additional_trailer"),
+    ("link_to_benchmark_trailer", "benchmark_trailer"),
+]
 
 
 def get_class_translation_data():
@@ -79,6 +88,9 @@ def patches_overview():
             filecontent += f"      link_to_patch: {value['link_to_patch']}\n"
         if value.get('link_to_special_page', None):
             filecontent += f"      link_to_special_page: {value['link_to_special_page']}\n"
+        for field_name, _ in TRAILER_FIELDS:
+            if value.get(field_name, None):
+                filecontent += f"      {field_name}: {value[field_name]}\n"
 
         ma_p, mi_p = key.split(".")
         if not ma_p in major_patches and not ma_p == "1":
