@@ -1,7 +1,7 @@
 from ffxiv_aku import *
 try:
     from helper import getImage
-except:
+except ImportError:
     from .helper import getImage
 
 path_of_main_script = ""

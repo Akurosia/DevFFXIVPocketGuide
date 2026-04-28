@@ -13,7 +13,7 @@ try:
     from .convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, LANGUAGES_MAPPING
     from .convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
     from .convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
-except:
+except ImportError:
     from helper import *
     from convert_skills_to_guide_form_helper.chocobo import addChocobo
     from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, LANGUAGES_MAPPING

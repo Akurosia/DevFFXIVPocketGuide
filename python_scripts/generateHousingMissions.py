@@ -2,7 +2,7 @@ from ffxiv_aku import *
 from ffxiv_aku import loadDataTheQuickestWay, readJsonFile, writeJsonFile, os
 try:
     from .fileimports import *
-except:
+except ImportError:
     from fileimports import *
 
 items = loadDataTheQuickestWay("Item.json")
@@ -13,7 +13,7 @@ submarinemap = loadDataTheQuickestWay("SubmarineMap.json")
 print(os.getcwd())
 try:
     data = readJsonFile(r"python_scripts/airship_submarine.json")
-except:
+except FileNotFoundError:
     data = readJsonFile(r"airship_submarine.json")
 
 LANGUAGES = ["de", "en", "fr", "ja"]

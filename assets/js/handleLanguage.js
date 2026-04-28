@@ -73,16 +73,12 @@ async function getTranslations(path = "/assets/translations/navbar", olddata = {
                 if (value === undefined) {
                     continue
                 }
-                console.log("Load extra: " + value)
                 getTranslations(value, data)
-            }
-            if ( path == "/assets/translations/navbar" ){
-                console.log(elements)
             }
 
         })
         .catch(e => {
-            console.log(e)
+            console.error(e)
         }
     )
     return
@@ -97,7 +93,6 @@ function validateArrays() {
           normal1.splice(index, 1); // 2nd parameter means remove one item only
         }
     }
-    console.log(normal1)
 }
 
 function changeLanguageTo(tag, languageCode) {

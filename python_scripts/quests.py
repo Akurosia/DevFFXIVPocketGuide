@@ -4,7 +4,7 @@ from collections import deque
 try:
     from .fileimports import *
     from .helper import *
-except:
+except ImportError:
     from fileimports import *
     from helper import *
 

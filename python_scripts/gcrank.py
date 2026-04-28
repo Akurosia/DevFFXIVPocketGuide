@@ -3,7 +3,7 @@ from ffxiv_aku import *
 from natsort import natsorted
 try:
     from .convert_skills_to_guide_form_helper.helper import getImage, LANGUAGES, LANGUAGES_MAPPING
-except:
+except ImportError:
     from convert_skills_to_guide_form_helper.helper import getImage, LANGUAGES, LANGUAGES_MAPPING
 #storeFilesInTmp(state=True)
 GCRankGridaniaFemaleText = loadDataTheQuickestWay("GCRankGridaniaFemaleText", translate=True)

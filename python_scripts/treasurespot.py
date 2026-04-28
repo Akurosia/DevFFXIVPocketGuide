@@ -6,7 +6,7 @@ try:
     from .helper import *
     from .convert_skills_to_guide_form_helper.helper import LANGUAGES, LANGUAGES_MAPPING
     from .fileimports import *
-except:
+except ImportError:
     from convert_skills_to_guide_form_helper.helper import LANGUAGES, LANGUAGES_MAPPING
     from fileimports import *
     from helper import *

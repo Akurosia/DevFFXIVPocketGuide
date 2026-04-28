@@ -51,14 +51,8 @@ tags.sort();
 
     // Add Repeater Item
     function addRepeaterItem(button) {
-
-        console.log("Click Registered");
-
         // Check for Guide Groups
         if ($(button).parent().parent().hasClass("guide-group") && $(button).parent().parent().children().length == 1) {
-
-            console.log("This button has a group structure.");
-
             // Get Wrapper Element
             var $repeaterWrapper = $(button).parent().parent().parent().children(".repeater__wrapper");
 
@@ -67,9 +61,6 @@ tags.sort();
 
         }
         else {
-
-            console.log("This button has a regular structure.");
-
             // Get Wrapper Element
             var $repeaterWrapper = $(button).parent().parent().children(".repeater__wrapper");
 
@@ -118,26 +109,17 @@ tags.sort();
 
     // Scripts
     function addScriptItem(button) {
-
-        console.log("Script Click Registered");
-
         // Create Clone
         var $clone = $(".template__script-attack").clone();
         $clone.removeClass("template__script-attack").addClass("boss__phase-script-attack");
 
         // Check for Guide Groups
         if ($(button).parent().parent().hasClass("guide-group")) {
-
-            console.log("This button has a group structure.");
-
             // Get Wrapper Element
             var $repeaterWrapper = $(button).parent().parent().parent().children(".boss__phase-script-wrapper");
 
         }
         else {
-
-            console.log("This button has a regular structure.");
-
             // Get Wrapper Element
             var $repeaterWrapper = $(button).parent().parent().children(".boss__phase-script-wrapper");
         
@@ -171,26 +153,17 @@ tags.sort();
 
     // Alerts
     function addAlertItem(button) {
-
-        console.log("Alert Click Registered");
-
         // Create Clone
         var $clone = $(".template__alert").clone();
         $clone.removeClass("template__alert").addClass("boss__phase-alert");
 
         // Check for Guide Groups
         if ($(button).parent().parent().hasClass("guide-group")) {
-
-            console.log("This button has a group structure.");
-
             // Get Wrapper Element
             var $repeaterWrapper = $(button).parent().parent().parent().children(".boss__phase-alert-wrapper");
 
         }
         else {
-
-            console.log("This button has a regular structure.");
-
             // Get Wrapper Element
             var $repeaterWrapper = $(button).parent().parent().children(".boss__phase-alert-wrapper");
         
@@ -224,26 +197,17 @@ tags.sort();
 
     // Mechanics
     function addMechanicItem(button) {
-
-        console.log("Mechanic Click Registered");
-
         // Create Clone
         var $clone = $(".template__mechanic").clone();
         $clone.removeClass("template__mechanic").addClass("boss__phase-mechanic");
 
         // Check for Guide Groups
         if ($(button).parent().parent().hasClass("guide-group")) {
-
-            console.log("This button has a group structure.");
-
             // Get Wrapper Element
             var $repeaterWrapper = $(button).parent().parent().parent().children(".boss__phase-mechanic-wrapper");
 
         }
         else {
-
-            console.log("This button has a regular structure.");
-
             // Get Wrapper Element
             var $repeaterWrapper = $(button).parent().parent().children(".boss__phase-mechanic-wrapper");
         
@@ -279,27 +243,18 @@ tags.sort();
     function addAttackItem(button) {
 
         if ($(button).attr("data-attack-type") == "regular") {
-
-            console.log("Regular Attack Click Registered");
-
             // Create Clone
             var $clone = $(".template__regular-attack").clone();
             $clone.removeClass("template__regular-attack").addClass("boss__phase-attack--regular");
 
         }
         else if ($(button).attr("data-attack-type") == "combo") {
-
-            console.log("Combo Attack Click Registered");
-
             // Create Clone
             var $clone = $(".template__combo-attack").clone();
             $clone.removeClass("template__combo-attack").addClass("boss__phase-attack--combo");
 
         }
         else if ($(button).attr("data-attack-type") == "variation") {
-
-            console.log("Attack w/ Variations Click Registered");
-
             // Create Clone
             var $clone = $(".template__variation-attack").clone();
             $clone.removeClass("template__variation-attack").addClass("boss__phase-attack--variation");
@@ -308,17 +263,11 @@ tags.sort();
 
         // Check for Guide Groups
         if ($(button).parent().parent().hasClass("guide-group")) {
-
-            console.log("This button has a group structure.");
-
             // Get Wrapper Element
             var $repeaterWrapper = $(button).parent().parent().parent().children(".boss__phase-attack-wrapper");
 
         }
         else {
-
-            console.log("This button has a regular structure.");
-
             // Get Wrapper Element
             var $repeaterWrapper = $(button).parent().parent().children(".boss__phase-attack-wrapper");
         
@@ -332,7 +281,7 @@ tags.sort();
         $roleWrapper = $clone.find(".boss-attack__role-wrapper");
         roles.forEach(function(item, index, array) {
             var attackRoleCheckboxLabel = document.createElement("label");
-            attackRoleCheckboxLabel.innerHTML = item;
+            attackRoleCheckboxLabel.textContent = item;
             var attackRoleCheckbox = document.createElement("input");
             attackRoleCheckbox.setAttribute("type", "checkbox");
             attackRoleCheckbox.setAttribute("class", "boss-attack__attack-role");
@@ -345,7 +294,7 @@ tags.sort();
         $tagWrapper = $clone.find(".boss-attack__tag-wrapper");
         tags.forEach(function(item, index, array) {
             var attackTagCheckboxLabel = document.createElement("label");
-            attackTagCheckboxLabel.innerHTML = item;
+            attackTagCheckboxLabel.textContent = item;
             var attackTagCheckbox = document.createElement("input");
             attackTagCheckbox.setAttribute("type", "checkbox");
             attackTagCheckbox.setAttribute("class", "boss-attacks__attack-tag");

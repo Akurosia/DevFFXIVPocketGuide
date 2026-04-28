@@ -2,7 +2,7 @@ from ffxiv_aku import *
 try:
     from .convert_skills_to_guide_form_helper.helper import getImage
     from .helper import *
-except:
+except ImportError:
     from convert_skills_to_guide_form_helper.helper import getImage
     from helper import *
 

@@ -27,7 +27,7 @@ def sort_status_ids(status_list: Any) -> list[str]:
     if isinstance(status_list,list):
         try:
             return sorted(list(set(status_list)), key=lambda x: int(x,16))
-        except:
+        except (TypeError, ValueError):
             y: list[str] = []
             for x in status_list:
                 if str(x['status']) not in y:
@@ -504,7 +504,8 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                 tmp['tags'][0]['tag'] = 'Auto-Angriff'
                 try:
                     del tmp['notes']
-                except: ...
+                except KeyError:
+                    pass
 
             if tmp['title']['de'].startswith("Unknown_"):
                 tmp['disable'] = 'true'

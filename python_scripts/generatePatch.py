@@ -2,7 +2,7 @@ from ffxiv_aku import *
 from datetime import datetime, date
 try:
     from python_scripts.fileimports import *
-except Exception:
+except ImportError:
     from fileimports import *
 
 
@@ -69,7 +69,8 @@ def nextRelease(value):
             diff = date - today
             if diff.days < 21:
                 return True
-    except: pass
+    except (TypeError, ValueError):
+        pass
     return False
 
 
@@ -210,7 +211,7 @@ def single_patch_file():
         try:
             with open(filename, encoding="utf8") as f:
                 doc = f.read()
-        except:
+        except FileNotFoundError:
             doc = ""
         if not doc == filecontent:
             with open(filename, "w", encoding="utf8") as f:

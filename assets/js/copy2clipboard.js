@@ -10,7 +10,6 @@ function copyValuetoClipboard(value){
        console.warn("Copy to clipboard failed.", ex);
        return false;
     } finally {
-       console.log("copied value: " + value)
        document.body.removeChild(textarea);
     }
 }
