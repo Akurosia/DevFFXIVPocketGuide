@@ -2,6 +2,32 @@ from ffxiv_aku import *
 from distutils.version import StrictVersion
 from natsort import natsorted
 
+
+def yaml_safe_string(value):
+    if isinstance(value, (list, tuple)) and len(value) == 1:
+        value = value[0]
+    value = str(value).replace("\n", "<br>").replace("<br><br>", "<br>")
+    if value.startswith('"') and value.endswith('"') and len(value) >= 2:
+        value = value[1:-1]
+    return value.replace("\\", "\\\\").replace('"', "'")
+
+
+def normalize_tags(value):
+    if value is None:
+        return []
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, list):
+        result = []
+        for entry in value:
+            if isinstance(entry, list):
+                result.extend(normalize_tags(entry))
+            elif entry is not None:
+                result.append(str(entry))
+        return result
+    return [str(value)]
+
+
 # this is to fix some of the broken json files
 def clean_json(string):
     string = re.sub(r",[ \t\r\n]+}", "}", string)
@@ -51,21 +77,17 @@ def getFinalData():
         write(out, 'categories: "dalamud"')
         write(out, 'plugins:')
         for key, value in dalamud_data.items():
-            #print(key)
-            #print(value)
-            desc = value.get("description", "").replace("\n", "<br>").replace("<br><br>", "<br>").replace('"', "'")
             try:
-                write(out, f' - name: "{key}"')
-                write(out, f'   description: "{desc}"')
+                write(out, f' - name: "{yaml_safe_string(key)}"')
+                write(out, f'   description: "{yaml_safe_string(value.get("description", ""))}"')
                 if value.get("punchline", None):
-                    pun = value["punchline"][0].replace('"', "'")
-                    write(out, f'   punchline: "{pun}"')
+                    write(out, f'   punchline: "{yaml_safe_string(value["punchline"])}"')
                 if value.get("DalamudApiLevel", None):
                     write(out, f'   DalamudApiLevel: {value["DalamudApiLevel"]}')
                 if value.get("tags", None):
                     write(out, f'   tags:')
                     for tag in value["tags"]:
-                        write(out, f'     - tag: "{tag}"')
+                        write(out, f'     - tag: "{yaml_safe_string(tag)}"')
                 write(out, f'   versions:')
                 #create dict as version > (author, url, repo)
                 tmp = {}
@@ -87,14 +109,12 @@ def getFinalData():
                         _tuple = (author, repo)
                         tmp2[url].append(_tuple)
                     urls = natsorted([k for k in tmp2])
-                    #print_color_green(urls)
                     for url1 in urls:
-                        #print_color_green(tmp2[url1][0])
                         author, repo = tmp2[url1][0]
-                        write(out, f'     - author: "{author}"')
-                        write(out, f'       url: "{url1}"')
-                        write(out, f'       version: "{version}"')
-                        write(out, f'       repo: "{repo}"')
+                        write(out, f'     - author: "{yaml_safe_string(author)}"')
+                        write(out, f'       url: "{yaml_safe_string(url1)}"')
+                        write(out, f'       version: "{yaml_safe_string(version)}"')
+                        write(out, f'       repo: "{yaml_safe_string(repo)}"')
             except Exception as e:
                 print_color_red(e)
 
@@ -145,14 +165,14 @@ def run():
                             "tags": [],
                             "DalamudApiLevel": entry.get('DalamudApiLevel', 0)
                         }
-                        if entry.get('Punchline', None):
-                            result[entry['Name']]["punchline"] = entry['Punchline'],
-                        if entry.get('Tags', None):
-                            result[entry['Name']]["tags"] += entry['Tags'][0],
-                        if entry.get('CategoryTags', None):
-                            result[entry['Name']]["tags"] += entry['CategoryTags'][0],
-                        if entry.get('ImageUrls', None):
-                            result[entry['Name']]["image"] = entry['ImageUrls'][0],
+                    if entry.get('Punchline', None):
+                        result[entry['Name']]["punchline"] = entry['Punchline']
+                    if entry.get('Tags', None):
+                        result[entry['Name']]["tags"].extend(normalize_tags(entry['Tags']))
+                    if entry.get('CategoryTags', None):
+                        result[entry['Name']]["tags"].extend(normalize_tags(entry['CategoryTags']))
+                    if entry.get('ImageUrls', None):
+                        result[entry['Name']]["image"] = entry['ImageUrls'][0]
 
                     _tuple = (entry['Author'], url, entry.get('RepoUrl', None), entry.get('AssemblyVersion', 0))
                     if int(result[entry['Name']].get("DalamudApiLevel", 0)) < int(entry.get('DalamudApiLevel', 0)):
@@ -164,10 +184,10 @@ def run():
             completed_repos.append(url)
         except Exception as e:
             print(e)
-            pass
+            repos_with_load_errors.append(url)
     writeJsonFile("dalamud_repos.json", result)
-    #print_pretty_json(completed_repos)
-    #print_pretty_json(repos_with_load_errors)
+    if repos_with_load_errors:
+        raise RuntimeError("Failed to load Dalamud repos: " + ", ".join(sorted(set(repos_with_load_errors))))
 
 
 if __name__ == "__main__":

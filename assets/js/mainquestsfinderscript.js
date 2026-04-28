@@ -1,4 +1,22 @@
 let quests = {};
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function findQuestIndex(query) {
+    const numericQuery = Number(query);
+    if (Number.isInteger(numericQuery) && numericQuery >= 0 && numericQuery < quests.length) {
+        return numericQuery;
+    }
+
+    return quests.findIndex(q => q.Name === query);
+}
 // Load saved quest from localStorage
 if (localStorage.getItem('savedQuest')) {
     document.getElementById("questSearch").value = localStorage.getItem('savedQuest').trim();
@@ -22,7 +40,7 @@ function searchQuest() {
         return;
     }
 
-    let questIndex = quests.findIndex(q => q.Name === query || query in quests);
+    let questIndex = findQuestIndex(query);
     if (questIndex === -1) {
         progressDiv.innerHTML = '<p>Quest nicht gefunden.</p>';
         return;
@@ -32,7 +50,7 @@ function searchQuest() {
     let remainingQuests = quests.length - completedQuests;
 
     let progressPercentage = Math.max(0, Math.min(100, (completedQuests / quests.length) * 100));
-    progressDiv.innerHTML = `<p>Gefundene Quest: <strong>${quests[questIndex].Name}</strong></p>`;
+    progressDiv.innerHTML = `<p>Gefundene Quest: <strong>${escapeHtml(quests[questIndex].Name)}</strong></p>`;
     progressDiv.innerHTML += `
             <div class="progress-container">
                 <div class="progress-section-container">
@@ -117,7 +135,7 @@ function renderProgressBar(completed, total) {
 
         let sectionQuests = quests.slice(currentIndex, nextIndex)
             .map((q, index) =>
-                `<option value="${q.Name}">${index + 1}. ${q.Name} (${index + currentIndex + 1})</option>`
+                `<option value="${escapeHtml(q.Name)}">${index + 1}. ${escapeHtml(q.Name)} (${index + currentIndex + 1})</option>`
             )
             .join('');
 

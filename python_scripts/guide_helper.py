@@ -71,7 +71,7 @@ def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_a
             existing_attacks[attack['title']['de']] = attack['type']
             # add new filds to already existing data
             if new_attack['name'] == attack['title']['de']:
-                attack['add_status'] = new_attack.get("add_status", []) + new_attack.get("add_status", [])
+                attack['add_status'] = attack.get("add_status", []) + new_attack.get("add_status", [])
                 attack['add_status'] = list(set(attack['add_status']))
             # add ids to remove_attack array
             if new_attack_id == attack.get('title_id', None):

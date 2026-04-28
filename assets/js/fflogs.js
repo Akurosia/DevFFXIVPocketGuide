@@ -195,7 +195,7 @@ function addLink(link, name){
         a.href = ""
     }
     a.target = "_blank"
-    a.innerHTML = name
+    a.textContent = name
     a.style = "color: #2d59db !important"
     a.rel = "noopener noreferrer"
     return a
