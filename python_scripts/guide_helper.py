@@ -23,6 +23,27 @@ disable_blue_print = True
 disable_red_print = True
 
 
+def normalize_add_status_list(status_list: Any) -> list[str]:
+    normalized_statuses: list[str] = []
+    if not isinstance(status_list, list):
+        return normalized_statuses
+
+    for entry in status_list:
+        if isinstance(entry, dict):
+            status_value = entry.get("status", None)
+        else:
+            status_value = entry
+
+        if status_value is None:
+            continue
+
+        status_string = str(status_value)
+        if status_string not in normalized_statuses:
+            normalized_statuses.append(status_string)
+
+    return normalized_statuses
+
+
 def sort_status_ids(status_list: Any) -> list[str]:
     if isinstance(status_list,list):
         try:
@@ -71,8 +92,10 @@ def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_a
             existing_attacks[attack['title']['de']] = attack['type']
             # add new filds to already existing data
             if new_attack['name'] == attack['title']['de']:
-                attack['add_status'] = attack.get("add_status", []) + new_attack.get("add_status", [])
-                attack['add_status'] = list(set(attack['add_status']))
+                attack['add_status'] = sort_status_ids(
+                    normalize_add_status_list(attack.get("add_status", []))
+                    + normalize_add_status_list(new_attack.get("add_status", []))
+                )
             # add ids to remove_attack array
             if new_attack_id == attack.get('title_id', None):
                 remove_attack.append(new_attack_id)
@@ -88,23 +111,11 @@ def compare_skill_ids(old_enemy_data, new_enemy_data, existing_attacks, remove_a
 
 def handle_add_status(attack, new_attack):
     if attack.get("add_status", None):
-        #tmp = sorted(list(attack['add_status']))
-        tmp = attack['add_status']
-        attack['add_status'] = []
-        for s in tmp:
-            if isinstance(s, dict):
-                attack['add_status'].append(str(s['status']))
-            else:
-                attack['add_status'].append(str(s))
-
-        for s in new_attack.get("add_status", []):
-            if isinstance(s, str):
-                attack['add_status'].append(str(s))
-            else:
-                attack['add_status'].append(str(s['status']))
+        attack['add_status'] = normalize_add_status_list(attack['add_status'])
+        attack['add_status'].extend(normalize_add_status_list(new_attack.get("add_status", [])))
         attack['add_status'] = sorted(list(set(attack['add_status'])))
     elif new_attack.get("add_status", None):
-        attack['add_status'] = new_attack['add_status']
+        attack['add_status'] = normalize_add_status_list(new_attack['add_status'])
 
     # finally sort attacks
     if attack.get("add_status", None):

@@ -283,14 +283,14 @@ def get_cat_image(instancetype, cfc_key):
 def getMapImages(mapid: str, contentname: str) -> str:
     result: str = ""
     path: str = "P:\\extras\\images\\ui\\map\\"
-        # this needs to stay png to look at original files
-    files: list[str] = glob(path + mapid[:3] + f"\\{mapid[:4]}*.webp")
+        # this needs to stay webp to look at original files
+    files: list[str] = glob(path + mapid[:3] + f"\\{mapid[:5]}*.webp")
     ncontentname = contentname.replace(":", "_")
     found_valid_maps: list[str] = []
     for file in files:
         if "_ow_" in file:
             continue
-        #if contentname+".png" in file and not "_event" in file and mapid in file:
+        #if contentname+".webp" in file and not "_event" in file and mapid in file:
         if ncontentname in file and not "_event" in file and mapid in file:
             found_valid_maps.append(file)
             if "_event" in file:
@@ -301,7 +301,7 @@ def getMapImages(mapid: str, contentname: str) -> str:
             t_mapid = mapid.split('_')[0] + "_re"
             if "_ow_" in file:
                 continue
-            #if contentname+".png" in file and not "_event" in file and mapid in file:
+            #if contentname+".webp" in file and not "_event" in file and mapid in file:
             if ncontentname in file and not "_event" in file and t_mapid in file:
                 found_valid_maps.append(file)
     if found_valid_maps:
