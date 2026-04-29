@@ -15,7 +15,7 @@ LANGUAGES_MAPPING = {
 def getImage(image: str, _type: str="icon") -> str:
     if image is None or image == "":
         return ""
-    image = image.replace(".tex", "_hr1.png")
+    image = image.replace(".tex", "_hr1.webp")
     if _type == "icon":
         image = image.replace(f"ui/{_type}/", "")
     image = copy_and_return_image_as_hr(img=image, _type=_type)
@@ -27,7 +27,7 @@ def getImage(image: str, _type: str="icon") -> str:
 def copy_and_return_image_as_hr(img: str, _type: str="icon") -> str:
     if "_hr1" not in img and not _type == "map":
         img = img.replace(".png", "_hr1.png")
-    img = img.replace(".webp", ".png" )
+    img = img.replace(".png", ".webp" )
 
     basepath = None
     if os.name == 'nt':

@@ -154,6 +154,8 @@ def addRennChocoboMissions():
     ordered = OrderedDict(sorted(chocobochallange.items(), key=lambda x: int(x[0])))
     result = ""
     for key, value in ordered.items():
+        if value.get("Unknown0_de", "") == "":
+            continue
         if value["Unknown0_de"] == "":
             continue
         result += '      - title:\n'
