@@ -88,14 +88,11 @@ treasurehuntrank = loadDataTheQuickestWay("TreasureHuntRank.json")
 spearfishingspot: dict[str, dict[str, str]] = loadDataTheQuickestWay("SpearfishingNotebook.json", translate=False)
 fatemapping = {
         'ui/icon/060000/060852.tex': 'Notorious monster',
-
         "ui/icon/060000/060801.tex": "Gegner Wellen",
         "ui/icon/060000/060802.tex": "Boss besiegen",
         "ui/icon/060000/060803.tex": "Sammeln",
         "ui/icon/060000/060804.tex": "Verteidigen",
-
         'ui/icon/000000/000000.tex': 'NoType',
-
         'ui/icon/060000/060501.tex': 'Kill Enemies',
         'ui/icon/060000/060502.tex': 'Kill Boss',
         'ui/icon/060000/060503.tex': 'Collect',
@@ -104,10 +101,8 @@ fatemapping = {
         'ui/icon/060000/060506.tex': 'Chase',
         'ui/icon/060000/060508.tex': 'Holiday (Limited Time)',
         'ui/icon/060000/060994.tex': 'Concerted works',
-
         'ui/icon/060000/060958.tex': 'Notorious monsters',
         'ui/icon/063000/063926.tex': 'Fete',
-
         "ui/icon/063000/063909.tex": "CE Boss besiegen",
         "ui/icon/063000/063910.tex": "CE Solo Kampf",
         "ui/icon/063000/063911.tex": "CE Gegner Wellen",
@@ -120,7 +115,7 @@ def get_x_image(_id: str = "NoType"):
     # Load the overlay image (e.g., icon or stamp)
     _id = fatemapping2[_id]
     _id = _id.replace("ui/icon/", "").replace(".tex", "").split("/")[1]
-    overlay_path = f"P:/extras/images/ui/icon/{_id[:3]}000/{_id}_hr1.png" # Replace with your overlay image path
+    overlay_path = f"P:/extras/images/ui/icon/{_id[:3]}000/{_id}_hr1.webp" # Replace with your overlay image path
     overlay_image = Image.open(overlay_path)
 
     # Resize the cropped overlay image if necessary
@@ -356,7 +351,7 @@ def get_data_from_teamcraft():
             place = placename[str(value["position"]["zoneid"])]['Name_en']
             if not result.get(place, None):
                 result[place] = {}
-            icon = value['icon'].replace("/i/", "ui/icon/").replace(".png", ".tex") if value.get('icon', None) and not value.get('icon', None) == "" else fatemapping.get(fates[key]['ObjectiveIcon'][0]['Icon']['path_hr1'], "")
+            icon = value['icon'].replace("/i/", "ui/icon/").replace(".webp", ".tex").replace(".png", ".tex") if value.get('icon', None) and not value.get('icon', None) == "" else fatemapping.get(fates[key]['ObjectiveIcon'][0]['Icon']['path_hr1'], "")
             if icon == "":
                 icon = "ui/icon/000000/000000.tex"
             result[place][key] = {
@@ -420,15 +415,15 @@ def get_baseimage_by_location(location):
     folder: str = _id[:3]
     name: str = _id.split("/")[0]
     posible_maps: list[str] = []
-    for x in glob(f"P:/extras/images/ui/map/{folder}/{name}*.png"):
+    for x in glob(f"P:/extras/images/ui/map/{folder}/{name}*.webp"):
         if not len(x.split(" - ")) == 2: continue
         if "_event" in x: continue
-        if "Altes Bootshaus.png" in x: continue
-        if "Dom der Einkehr.png" in x: continue
-        if "Nabaath-Mine.png" in x: continue
-        if "Ruinen von Ronka.png" in x: continue
-        if "Die _Emphasis_Dalriada__Emphasis_.png" in x: continue
-        if "Castrum Lacus Litore.png" in x: continue
+        if "Altes Bootshaus.webp" in x: continue
+        if "Dom der Einkehr.webp" in x: continue
+        if "Nabaath-Mine.webp" in x: continue
+        if "Ruinen von Ronka.webp" in x: continue
+        if "Die _Emphasis_Dalriada__Emphasis_.webp" in x: continue
+        if "Castrum Lacus Litore.webp" in x: continue
         if "_" in x: continue
         posible_maps.append(x)
     if len(posible_maps) > 1:
@@ -451,7 +446,7 @@ def getFateName(fate_id, _type) -> str:
 def generate_images():
     global new_map_id
     print(os.getcwd())
-    data = readJsonFile("../python_scripts/FatesFromConsoleWiki.json")
+    data = readJsonFile("python_scripts/FatesFromConsoleWiki.json")
     fate_by_type = {}
     for location, fates_per_zone in data.items():
         fate_by_type[location] = {}

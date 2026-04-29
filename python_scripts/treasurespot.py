@@ -109,7 +109,7 @@ def add_watermark(image, watermark_text, font_path="arial.ttf", font_size=30):
 def get_croped_image(_id: str = "0"):
     # Load the overlay image (e.g., icon or stamp)
     file_name: str = treasurehunttexture[_id]['Unknown0'].lower()
-    overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.tex.png"  # Replace with your overlay image path
+    overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.tex.webp"  # Replace with your overlay image path
     overlay_image = Image.open(overlay_path)
     _, height = overlay_image.size
     overlay_cropped = overlay_image.crop((0, 0, 450, height))
@@ -125,7 +125,7 @@ def get_croped_image(_id: str = "0"):
 def get_x_image(_id: str = "0"):
     # Load the overlay image (e.g., icon or stamp)
     file_name: str = treasurehunttexture[_id]['Unknown0'].lower()
-    overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.tex.png"  # Replace with your overlay image path
+    overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.tex.webp"  # Replace with your overlay image path
     overlay_image = Image.open(overlay_path)
 
     # Crop the overlay image to the first third
@@ -303,13 +303,13 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
             folder: str = _id[:3]
             name: str = _id.split("/")[0]
             posible_maps: list[str] = []
-            for x in glob(f"P:/extras/images/ui/map/{folder}/{name}*.png"):
+            for x in glob(f"P:/extras/images/ui/map/{folder}/{name}*.webp"):
                 if not len(x.split(" - ")) == 2: continue
                 if "_event" in x: continue
-                if "Altes Bootshaus.png" in x: continue
-                if "Dom der Einkehr.png" in x: continue
-                if "Nabaath-Mine.png" in x: continue
-                if "Ruinen von Ronka.png" in x: continue
+                if "Altes Bootshaus.webp" in x: continue
+                if "Dom der Einkehr.webp" in x: continue
+                if "Nabaath-Mine.webp" in x: continue
+                if "Ruinen von Ronka.webp" in x: continue
                 posible_maps.append(x)
             if len(posible_maps) > 1:
                 print(posible_maps)

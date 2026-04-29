@@ -501,7 +501,7 @@
     ],
     "defaultZoom": -1.2,
     "id": "eastern-la-noscea",
-    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f3 - Östliches La Noscea.png",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f3 - Östliches La Noscea.webp",
     "markers": [
         {
             "id": "278",
@@ -1662,6 +1662,14 @@
             ]
         },
         {
+            "type": "quest_side",
+            "name": "Mogryboote sind für alle da",
+            "position": [
+                1799.021,
+                625.7819999999999
+            ]
+        },
+        {
             "type": "mapmarker",
             "name": "Rotgischt",
             "position": [
@@ -1939,6 +1947,51 @@
                 542.0
             ],
             "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1082.0,
+                892.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1073.0,
+                1048.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                921.0,
+                1124.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1036.0,
+                882.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060412.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "",
+            "position": [
+                1295.0,
+                820.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060467.webp"
         }
     ],
     "maxZoom": 1.7,

@@ -501,7 +501,7 @@
     ],
     "defaultZoom": -1.2,
     "id": "garlemald",
-    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/m5f/m5f2 - Garlemald.png",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/m5f/m5f2 - Garlemald.webp",
     "markers": [
         {
             "id": "1786",
@@ -1400,6 +1400,14 @@
             ]
         },
         {
+            "type": "quest_main",
+            "name": "Ungebetener Besuch",
+            "position": [
+                1555.422,
+                1255.934
+            ]
+        },
+        {
             "type": "mapmarker",
             "name": "Turm von Babil",
             "position": [
@@ -1722,6 +1730,15 @@
                 1648.0
             ],
             "imageUrl": "/assets/img/game_assets/060000/060467.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Klyteum",
+            "position": [
+                1559.0,
+                1274.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060414.webp"
         }
     ],
     "maxZoom": 1.7,

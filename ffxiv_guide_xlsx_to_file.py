@@ -261,7 +261,7 @@ def run_all(path_of_main_script, translations):
         # ghm.run(path_of_main_script),
         lambda: ga.run(path_of_main_script),
         lambda: gbsq.run(path_of_main_script),
-        lambda: fcc.run(path_of_main_script, translations),
+        #lambda: fcc.run(path_of_main_script, translations),
         lambda: gis.run(path_of_main_script),
         lambda: ts.run(path_of_main_script),
         lambda: quests.run(path_of_main_script),
@@ -306,7 +306,8 @@ def main() -> None:
         orderedContent = tmp["ordered"]
 
     try:
-        run(googledata, orderedContent)
+        #run(googledata, orderedContent)
+        pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:

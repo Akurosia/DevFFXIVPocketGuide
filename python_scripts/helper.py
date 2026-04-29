@@ -131,12 +131,12 @@ def getImage(image: str, _type: str = "icon", ishr1=True) -> str:
         return image
 
     # Normalize extensions
-    image = image.replace(".webp", ".png").replace(".tex", ".png").replace("test.jpg", "test.webp")
+    image = image.replace(".png", ".webp").replace(".tex", ".webp").replace("test.jpg", "test.webp")
 
     # Ensure _hr1 for non-map
     if ((ishr1 and "_hr1" not in image) and _type != "map"):
-        if image.lower().endswith(".png"):
-            image = image[:-4] + "_hr1.png"
+        if image.lower().endswith(".webp"):
+            image = image[:-5] + "_hr1.webp"
 
     # For icons drop 'ui/icon/' prefix if present
     if _type == "icon":
@@ -174,7 +174,7 @@ def copy_and_return_image_as_hr(img: str, _type: str = "icon") -> str:
 
     # Full source file (png is your source format)
     # IMPORTANT: img must NOT start with '/', otherwise this would discard basepath/_type
-    src_path = (basepath / _type / img).with_suffix(".png")
+    src_path = (basepath / _type / img).with_suffix(".webp")
 
     # Destination root inside repo
     dest_root = Path("assets/img/game_assets")

@@ -725,10 +725,10 @@ def addKlassJobs():
         pvp = getQuestName(job)
 
         filecontent += 'slug: "klassen_und_jobs_' + job.lower() + '"\n'
-        if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.webp"):
+        if os.path.exists(f"{os.getcwd()}/assets/img/content/klassen/{job}.webp"):
             filecontent += f'image: "/assets/img/content/klassen/{job}.webp"\n'
         else:
-            print(f"Missing img: {job}.webp")
+            print(f"Missing img: {os.getcwd()}/assets/img/content/klassen/{job}.webp")
         jobicon: str = getIconForJob(job_abb)
         if jobicon:
             filecontent += f'jobicon: "/assets/img/game_assets{jobicon}"\n'

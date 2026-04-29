@@ -501,7 +501,7 @@
     ],
     "defaultZoom": -1.2,
     "id": "middle-la-noscea",
-    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f1 - Zentrales La Noscea.png",
+    "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/s1f/s1f1 - Zentrales La Noscea.webp",
     "markers": [
         {
             "id": "227",
@@ -1379,6 +1379,78 @@
                 1232.0
             ],
             "imageUrl": "/assets/img/game_assets/060000/060434.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Eingang zum Klyteum",
+            "position": [
+                915.0,
+                438.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Dock 1",
+            "position": [
+                1250.0,
+                1248.0
+            ],
+            "imageUrl": "/assets/img/game_assets/000000/000000.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Waffentestgelände",
+            "position": [
+                1270.0,
+                1559.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zeros Versteck",
+            "position": [
+                836.0,
+                839.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Marktplatz",
+            "position": [
+                963.0,
+                1076.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060442.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Roter Mond",
+            "position": [
+                964.0,
+                1374.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Mare Lamentorum",
+            "position": [
+                977.0,
+                1405.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
+        },
+        {
+            "type": "mapmarker",
+            "name": "Zeros Unterschlupf",
+            "position": [
+                922.0,
+                1729.0
+            ],
+            "imageUrl": "/assets/img/game_assets/060000/060441.webp"
         }
     ],
     "maxZoom": 1.7,

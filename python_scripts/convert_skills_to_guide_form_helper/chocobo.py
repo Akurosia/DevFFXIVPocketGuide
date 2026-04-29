@@ -212,7 +212,7 @@ def addChocobo(main_script, actions, actiontransient, traits, traitstransient, k
     filecontent += "extraicons:\n"
     filecontent += addExtraIcons(job, icon, icon)
     filecontent += 'slug: "klassen_und_jobs_' + job.lower() + '"\n'
-    if os.path.exists(f"{os.getcwd()}/../assets/img/content/klassen/{job}.webp"):
+    if os.path.exists(f"{os.getcwd()}/assets/img/content/klassen/{job}.webp"):
         filecontent += f'image: "/assets/img/content/klassen/{job}.webp"\n'
     else:
         print(f"Missing img: {job}.webp")
