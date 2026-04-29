@@ -189,7 +189,8 @@ expansion_list: dict[str, str] = {
     "sb": "4_sb",
     "shb": "5_shb",
     "ew": "6_ew",
-    "dt": "7_dt"
+    "dt": "7_dt",
+    "ec": "8_ec"
 }
 
 
@@ -201,10 +202,10 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
         i = int(key)
         try:
             debug_row_number = i
-            if not True:
+            if True:
                 #if debug_row_number < 800 :
                 #if debug_row_number not in [354, 581, 787, 788, 818, 821]:
-                if debug_row_number not in [821]:
+                if debug_row_number not in [826]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(value, i, orderedContent)
