@@ -284,7 +284,7 @@ def getMapImages(mapid: str, contentname: str) -> str:
     result: str = ""
     path: str = "P:\\extras\\images\\ui\\map\\"
         # this needs to stay png to look at original files
-    files: list[str] = glob(path + mapid[:3] + f"\\{mapid[:4]}*.png")
+    files: list[str] = glob(path + mapid[:3] + f"\\{mapid[:4]}*.webp")
     ncontentname = contentname.replace(":", "_")
     found_valid_maps: list[str] = []
     for file in files:
