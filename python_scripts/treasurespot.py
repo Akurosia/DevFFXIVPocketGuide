@@ -109,7 +109,7 @@ def add_watermark(image, watermark_text, font_path="arial.ttf", font_size=30):
 def get_croped_image(_id: str = "0"):
     # Load the overlay image (e.g., icon or stamp)
     file_name: str = treasurehunttexture[_id]['Unknown0'].lower()
-    overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.tex.webp"  # Replace with your overlay image path
+    overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.webp"  # Replace with your overlay image path
     overlay_image = Image.open(overlay_path)
     _, height = overlay_image.size
     overlay_cropped = overlay_image.crop((0, 0, 450, height))
@@ -125,7 +125,7 @@ def get_croped_image(_id: str = "0"):
 def get_x_image(_id: str = "0"):
     # Load the overlay image (e.g., icon or stamp)
     file_name: str = treasurehunttexture[_id]['Unknown0'].lower()
-    overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.tex.webp"  # Replace with your overlay image path
+    overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.webp"  # Replace with your overlay image path
     overlay_image = Image.open(overlay_path)
 
     # Crop the overlay image to the first third

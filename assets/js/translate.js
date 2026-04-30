@@ -12,8 +12,8 @@ function applyImageFallback(img) {
         const src = img.getAttribute("src");
         const parts = src.split("/");
 
-        // Expect: .../ui/icon/121000/121753_hr1.png
-        const filename = parts.pop();       // 121753_hr1.png
+        // Expect: .../ui/icon/121000/121753_hr1.webp
+        const filename = parts.pop();       // 121753_hr1.webp
         const folder   = parts.pop();       // 121000
 
         // Build fallback: insert "de" folder
@@ -344,9 +344,10 @@ function createTemplateTableBody(name, json){
 
             var _td = document.createElement('td');
             _td.setAttribute("class", getLanguageCode(header[element_key]));
-            if (e.endsWith(".png")){
+            e = e.replace(".png", ".webp")
+            if (e.endsWith(".webp")){
                 // if e is an image
-                e = e.replace(".png", "_hr1.png")
+                e = e.replace(".webp", "_hr1.webp")
                 var _img = document.createElement('img');
                 _img.setAttribute("src", "https://ff14.akurosiakamo.de/extras/images/ui/icon/" + e.replace("ui/icon/", ""));
                 //_img.setAttribute("src", "https://xivapi.com/i/" + e.replace("ui/icon/", ""));
