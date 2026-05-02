@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="{{ "/assets/css/bestiarium.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ "/assets/css/ffxiv.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
+
+<div
+    class="bestiarium-page"
+    id="bestiariumApp"
+    data-game-assets-url="{{ site.game_assets_url }}"
+>
+    <div class="bestiarium-shell">
+        <aside class="bestiarium-sidebar">
+            <div class="bestiarium-sidebar__title">Bestiarium</div>
+            <div class="bestiarium-category-grid" id="bestiariumCategoryGrid"></div>
+            <div class="bestiarium-ranks">
+                <div class="bestiarium-ranks__title">Rang</div>
+                <div class="bestiarium-ranks__list" id="bestiariumRankList"></div>
+            </div>
+        </aside>
+
+        <section class="bestiarium-main">
+            <div class="bestiarium-loading" id="bestiariumLoading">Bestiarium wird geladen ...</div>
+
+            <div class="bestiarium-error" id="bestiariumError" hidden>
+                Die Bestiarium-Daten konnten nicht geladen werden.
+            </div>
+
+            <div class="bestiarium-content" id="bestiariumContent" hidden>
+                <header class="bestiarium-header">
+                    <div>
+                        <div class="bestiarium-header__label">Klasse</div>
+                        <div class="bestiarium-header__title" id="bestiariumTitle"></div>
+                    </div>
+                    <div class="bestiarium-header__meta">
+                        <div class="bestiarium-stat">
+                            <span>Einträge</span>
+                            <strong id="bestiariumEntryCount"></strong>
+                        </div>
+                        <div class="bestiarium-stat">
+                            <span>Ziele</span>
+                            <strong id="bestiariumTargetCount"></strong>
+                        </div>
+                        <div class="bestiarium-stat">
+                            <span>Vergütung</span>
+                            <strong id="bestiariumRewardTotal"></strong>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="bestiarium-toolbar">
+                    <button class="bestiarium-toolbar__button" id="bestiariumShowAll" type="button">Alle anzeigen</button>
+                    <div class="bestiarium-toolbar__hint" id="bestiariumToolbarHint"></div>
+                </div>
+
+                <div class="bestiarium-notes" id="bestiariumNotes"></div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script id="bestiariumData" type="application/json">{{ page.bestiarium_categories | jsonify }}</script>
+<script type="text/javascript" src="{{ "/assets/js/bestiarium.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
