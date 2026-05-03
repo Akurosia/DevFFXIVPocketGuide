@@ -504,6 +504,16 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/m5f/m5f2 - Garlemald.webp",
     "markers": [
         {
+            "id": "1787",
+            "name": "Die Alma-Affenmänner",
+            "category": "kill_enemies",
+            "position": [
+                1477.56,
+                716.8
+            ],
+            "description": ""
+        },
+        {
             "id": "1786",
             "name": "Brennstoffsicherung",
             "category": "kill_enemies",
@@ -534,12 +544,22 @@
             "description": ""
         },
         {
-            "id": "1787",
-            "name": "Die Alma-Affenmänner",
+            "id": "1794",
+            "name": "Hunde, die bellen, beißen auch",
             "category": "kill_enemies",
             "position": [
-                1477.56,
-                716.8
+                677.8399999999999,
+                1284.25
+            ],
+            "description": ""
+        },
+        {
+            "id": "1796",
+            "name": "Folgen des Krieges",
+            "category": "kill_enemies",
+            "position": [
+                1365.67,
+                1383.15
             ],
             "description": ""
         },
@@ -574,22 +594,12 @@
             "description": ""
         },
         {
-            "id": "1794",
-            "name": "Hunde, die bellen, beißen auch",
-            "category": "kill_enemies",
+            "id": "1784",
+            "name": "Reinwaschung eines Ingenieurs: Nieder mit den Maschinen",
+            "category": "defense",
             "position": [
-                677.8399999999999,
-                1284.25
-            ],
-            "description": ""
-        },
-        {
-            "id": "1796",
-            "name": "Folgen des Krieges",
-            "category": "kill_enemies",
-            "position": [
-                1365.67,
-                1383.15
+                1254.77,
+                1136.39
             ],
             "description": ""
         },
@@ -600,16 +610,6 @@
             "position": [
                 771.75,
                 792.23
-            ],
-            "description": ""
-        },
-        {
-            "id": "1784",
-            "name": "Reinwaschung eines Ingenieurs: Nieder mit den Maschinen",
-            "category": "defense",
-            "position": [
-                1254.77,
-                1136.39
             ],
             "description": ""
         },
@@ -644,22 +644,22 @@
             "description": ""
         },
         {
-            "id": "1798",
-            "name": "Hilfe bei der Reparatur",
-            "category": "collect",
-            "position": [
-                991.03,
-                1341.19
-            ],
-            "description": ""
-        },
-        {
             "id": "1792",
             "name": "Reinwaschung eines Ingenieurs: Metatron",
             "category": "notorious_monster",
             "position": [
                 519.49,
                 1538.5
+            ],
+            "description": ""
+        },
+        {
+            "id": "1798",
+            "name": "Hilfe bei der Reparatur",
+            "category": "collect",
+            "position": [
+                991.03,
+                1341.19
             ],
             "description": ""
         },

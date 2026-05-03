@@ -5650,40 +5650,6 @@
         }
     },
     "Elpis": {
-        "1824": {
-            "Fate Name": "Grand Designs: Io",
-            "Type": "Kill Boss",
-            "Level": "86",
-            "Location": {
-                "x": 8.3,
-                "y": 28.58
-            },
-            "Experience": "164,835",
-            "Gil": "172",
-            "Gemstones": "14",
-            "Fate ID": "1824",
-            "Fate Type": "Fate",
-            "Fate Level": "86",
-            "Fate Level Sync": "90",
-            "Icon Objective": "ui/icon/060000/060502.tex"
-        },
-        "1825": {
-            "Fate Name": "Ophion-mania",
-            "Type": "Kill Enemies",
-            "Level": "86",
-            "Location": {
-                "x": 28.42,
-                "y": 29.19
-            },
-            "Experience": "164,835",
-            "Gil": "172",
-            "Gemstones": "14",
-            "Fate ID": "1825",
-            "Fate Type": "Fate",
-            "Fate Level": "86",
-            "Fate Level Sync": "90",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
         "1827": {
             "Fate Name": "Butterfly Kisses of Death",
             "Type": "Kill Enemies",
@@ -5786,21 +5752,38 @@
             "Fate Level Sync": "90",
             "Icon Objective": "ui/icon/060000/060504.tex"
         },
-        "1835": {
-            "Fate Name": "Why Did It Have to Be Medusae?",
-            "Type": "Kill Enemies",
-            "Level": "87",
+        "1824": {
+            "Fate Name": "Grand Designs: Io",
+            "Type": "Kill Boss",
+            "Level": "86",
             "Location": {
-                "x": 13.9,
-                "y": 16.97
+                "x": 8.3,
+                "y": 28.58
             },
-            "Experience": "167,062",
-            "Gil": "174",
+            "Experience": "164,835",
+            "Gil": "172",
             "Gemstones": "14",
-            "Fate ID": "1835",
+            "Fate ID": "1824",
             "Fate Type": "Fate",
-            "Fate Level": "87",
-            "Fate Level Sync": "91",
+            "Fate Level": "86",
+            "Fate Level Sync": "90",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1825": {
+            "Fate Name": "Ophion-mania",
+            "Type": "Kill Enemies",
+            "Level": "86",
+            "Location": {
+                "x": 28.42,
+                "y": 29.19
+            },
+            "Experience": "164,835",
+            "Gil": "172",
+            "Gemstones": "14",
+            "Fate ID": "1825",
+            "Fate Type": "Fate",
+            "Fate Level": "86",
+            "Fate Level Sync": "90",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
         "1832": {
@@ -5900,6 +5883,23 @@
             "Gil": "174",
             "Gemstones": "14",
             "Fate ID": "1836",
+            "Fate Type": "Fate",
+            "Fate Level": "87",
+            "Fate Level Sync": "91",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1835": {
+            "Fate Name": "Why Did It Have to Be Medusae?",
+            "Type": "Kill Enemies",
+            "Level": "87",
+            "Location": {
+                "x": 13.9,
+                "y": 16.97
+            },
+            "Experience": "167,062",
+            "Gil": "174",
+            "Gemstones": "14",
+            "Fate ID": "1835",
             "Fate Type": "Fate",
             "Fate Level": "87",
             "Fate Level Sync": "91",
@@ -6305,25 +6305,6 @@
         }
     },
     "Eureka Hydatos": {
-        "1412": {
-            "Fate Name": "I Ink, Therefore I Am",
-            "Notorious Monster": "Khalamari",
-            "Location": {
-                "x": 11.12,
-                "y": 25.24
-            },
-            "Elemental EXP": "11,161,152",
-            "Tomestones": "63",
-            "Lockboxes/Crystals": "4 Hydatos Lockbox 5 Hydatos Crystal 1 Hydatos Cluster",
-            "Notable Rewards": "1 Obscure Logogram",
-            "Spawn Mob": "Lv. 55 Xzomit",
-            "Fate ID": "1412",
-            "Fate Type": "Fate",
-            "Fate Level": "50",
-            "Fate Level Sync": "53",
-            "Type": "Notorious monsters",
-            "Icon Objective": "ui/icon/060000/060958.tex"
-        },
         "1425": {
             "Fate Name": "Drink Me",
             "Notorious Monster": "Elemental Conflict",
@@ -6337,6 +6318,25 @@
             "Notable Rewards": "",
             "Spawn Mob": "",
             "Fate ID": "1425",
+            "Fate Type": "Fate",
+            "Fate Level": "50",
+            "Fate Level Sync": "53",
+            "Type": "Notorious monsters",
+            "Icon Objective": "ui/icon/060000/060958.tex"
+        },
+        "1412": {
+            "Fate Name": "I Ink, Therefore I Am",
+            "Notorious Monster": "Khalamari",
+            "Location": {
+                "x": 11.12,
+                "y": 25.24
+            },
+            "Elemental EXP": "11,161,152",
+            "Tomestones": "63",
+            "Lockboxes/Crystals": "4 Hydatos Lockbox 5 Hydatos Crystal 1 Hydatos Cluster",
+            "Notable Rewards": "1 Obscure Logogram",
+            "Spawn Mob": "Lv. 55 Xzomit",
+            "Fate ID": "1412",
             "Fate Type": "Fate",
             "Fate Level": "50",
             "Fate Level Sync": "53",
@@ -6514,6 +6514,25 @@
             "Type": "Notorious monsters",
             "Icon Objective": "ui/icon/060000/060958.tex"
         },
+        "1423": {
+            "Fate Name": "Crystalline Provenance",
+            "Notorious Monster": "Provenance Watcher",
+            "Location": {
+                "x": 32.79,
+                "y": 19.62
+            },
+            "Elemental EXP": "25,699,605",
+            "Tomestones": "120",
+            "Lockboxes/Crystals": "9 Hydatos Lockbox 10 Hydatos Crystal",
+            "Notable Rewards": "3 Crystalline Scale 1 Provenance Watcher Card",
+            "Spawn Mob": "Lv. 65 Crystal Claw",
+            "Fate ID": "1423",
+            "Fate Type": "Fate",
+            "Fate Level": "60",
+            "Fate Level Sync": "60",
+            "Type": "Notorious monsters",
+            "Icon Objective": "ui/icon/060000/060958.tex"
+        },
         "1422": {
             "Fate Name": "The Baldesion Arsenal: Expedition Support",
             "Notorious Monster": "Tristitia",
@@ -6546,25 +6565,6 @@
             "Notable Rewards": "1 Obscure Logogram",
             "Spawn Mob": "",
             "Fate ID": "1424",
-            "Fate Type": "Fate",
-            "Fate Level": "60",
-            "Fate Level Sync": "60",
-            "Type": "Notorious monsters",
-            "Icon Objective": "ui/icon/060000/060958.tex"
-        },
-        "1423": {
-            "Fate Name": "Crystalline Provenance",
-            "Notorious Monster": "Provenance Watcher",
-            "Location": {
-                "x": 32.79,
-                "y": 19.62
-            },
-            "Elemental EXP": "25,699,605",
-            "Tomestones": "120",
-            "Lockboxes/Crystals": "9 Hydatos Lockbox 10 Hydatos Crystal",
-            "Notable Rewards": "3 Crystalline Scale 1 Provenance Watcher Card",
-            "Spawn Mob": "Lv. 65 Crystal Claw",
-            "Fate ID": "1423",
             "Fate Type": "Fate",
             "Fate Level": "60",
             "Fate Level Sync": "60",
@@ -6813,26 +6813,6 @@
             "Type": "Notorious monsters",
             "Icon Objective": "ui/icon/060000/060958.tex"
         },
-        "1361": {
-            "Fate Name": "Apocalypse Cow",
-            "Notorious Monster": "Holy Cow",
-            "Location": {
-                "x": 26.53,
-                "y": 16.97
-            },
-            "Elemental EXP": "564,380",
-            "Tomestones": "99",
-            "Lockboxes/Crystals": "7 Pagos Lockbox 28 Pagos Crystal",
-            "Notable Rewards": "",
-            "Spawn Mob": "Lv. 36 Elder Buffalo",
-            "Light": "Gentle (45%)",
-            "Fate ID": "1361",
-            "Fate Type": "Fate",
-            "Fate Level": "31",
-            "Fate Level Sync": "34",
-            "Type": "Notorious monsters",
-            "Icon Objective": "ui/icon/060000/060958.tex"
-        },
         "1368": {
             "Fate Name": "Curiouser and Curiouser",
             "Notorious Monster": "Elemental Conflict",
@@ -6847,6 +6827,26 @@
             "Spawn Mob": "",
             "Light": "None (0%)",
             "Fate ID": "1368",
+            "Fate Type": "Fate",
+            "Fate Level": "31",
+            "Fate Level Sync": "34",
+            "Type": "Notorious monsters",
+            "Icon Objective": "ui/icon/060000/060958.tex"
+        },
+        "1361": {
+            "Fate Name": "Apocalypse Cow",
+            "Notorious Monster": "Holy Cow",
+            "Location": {
+                "x": 26.53,
+                "y": 16.97
+            },
+            "Elemental EXP": "564,380",
+            "Tomestones": "99",
+            "Lockboxes/Crystals": "7 Pagos Lockbox 28 Pagos Crystal",
+            "Notable Rewards": "",
+            "Spawn Mob": "Lv. 36 Elder Buffalo",
+            "Light": "Gentle (45%)",
+            "Fate ID": "1361",
             "Fate Type": "Fate",
             "Fate Level": "31",
             "Fate Level Sync": "34",
@@ -6913,26 +6913,6 @@
             "Type": "Notorious monsters",
             "Icon Objective": "ui/icon/060000/060958.tex"
         },
-        "1364": {
-            "Fate Name": "Louhi on Ice",
-            "Notorious Monster": "Louhi",
-            "Location": {
-                "x": 35.95,
-                "y": 18.75
-            },
-            "Elemental EXP": "825,626",
-            "Tomestones": "120",
-            "Lockboxes/Crystals": "9 Pagos Lockbox 40 Pagos Crystal",
-            "Notable Rewards": "1 Louhi Card 2 Louhi's Ice",
-            "Spawn Mob": "Lv. 40 Val Corpse",
-            "Light": "Bright (50%)",
-            "Fate ID": "1364",
-            "Fate Type": "Fate",
-            "Fate Level": "35",
-            "Fate Level Sync": "38",
-            "Type": "Notorious monsters",
-            "Icon Objective": "ui/icon/060000/060958.tex"
-        },
         "1365": {
             "Fate Name": "Cassie and the Copycats",
             "Notorious Monster": "Copycat Cassie",
@@ -6952,29 +6932,29 @@
             "Fate Level Sync": "38",
             "Type": "Notorious monsters",
             "Icon Objective": "ui/icon/060000/060958.tex"
-        }
-    },
-    "Eureka Pyros": {
-        "1388": {
-            "Fate Name": "Medias Res",
-            "Notorious Monster": "Leucosia",
+        },
+        "1364": {
+            "Fate Name": "Louhi on Ice",
+            "Notorious Monster": "Louhi",
             "Location": {
-                "x": 27.28,
-                "y": 26.09
+                "x": 35.95,
+                "y": 18.75
             },
-            "Elemental EXP": "2,408,075",
-            "Tomestones": "30",
-            "Lockboxes/Crystals": "1 Pyros Lockbox 8 Pyros Crystal",
-            "Notable Rewards": "1 Curative Logogram",
-            "Spawn Mob": "Lv. 40 Pyros Bhoot",
-            "Light": "Feeble (17%)",
-            "Fate ID": "1388",
+            "Elemental EXP": "825,626",
+            "Tomestones": "120",
+            "Lockboxes/Crystals": "9 Pagos Lockbox 40 Pagos Crystal",
+            "Notable Rewards": "1 Louhi Card 2 Louhi's Ice",
+            "Spawn Mob": "Lv. 40 Val Corpse",
+            "Light": "Bright (50%)",
+            "Fate ID": "1364",
             "Fate Type": "Fate",
             "Fate Level": "35",
             "Fate Level Sync": "38",
             "Type": "Notorious monsters",
             "Icon Objective": "ui/icon/060000/060958.tex"
-        },
+        }
+    },
+    "Eureka Pyros": {
         "1407": {
             "Fate Name": "We're All Mad Here",
             "Notorious Monster": "Elemental Conflict",
@@ -6989,6 +6969,26 @@
             "Spawn Mob": "",
             "Light": "None (0%)",
             "Fate ID": "1407",
+            "Fate Type": "Fate",
+            "Fate Level": "35",
+            "Fate Level Sync": "38",
+            "Type": "Notorious monsters",
+            "Icon Objective": "ui/icon/060000/060958.tex"
+        },
+        "1388": {
+            "Fate Name": "Medias Res",
+            "Notorious Monster": "Leucosia",
+            "Location": {
+                "x": 27.28,
+                "y": 26.09
+            },
+            "Elemental EXP": "2,408,075",
+            "Tomestones": "30",
+            "Lockboxes/Crystals": "1 Pyros Lockbox 8 Pyros Crystal",
+            "Notable Rewards": "1 Curative Logogram",
+            "Spawn Mob": "Lv. 40 Pyros Bhoot",
+            "Light": "Feeble (17%)",
+            "Fate ID": "1388",
             "Fate Type": "Fate",
             "Fate Level": "35",
             "Fate Level Sync": "38",
@@ -7195,26 +7195,6 @@
             "Type": "Notorious monsters",
             "Icon Objective": "ui/icon/060000/060958.tex"
         },
-        "1399": {
-            "Fate Name": "Put Up Your Dux",
-            "Notorious Monster": "Dux",
-            "Location": {
-                "x": 27.47,
-                "y": 8.94
-            },
-            "Elemental EXP": "6,968,751",
-            "Tomestones": "99",
-            "Lockboxes/Crystals": "7 Pyros Lockbox 28 Pyros Crystal",
-            "Notable Rewards": "1 Inimical Logogram",
-            "Spawn Mob": "Lv. 51 Matanga Castaway",
-            "Light": "Brilliant (104%)",
-            "Fate ID": "1399",
-            "Fate Type": "Fate",
-            "Fate Level": "46",
-            "Fate Level Sync": "49",
-            "Type": "Notorious monsters",
-            "Icon Objective": "ui/icon/060000/060958.tex"
-        },
         "1408": {
             "Fate Name": "Uncommon Nonsense",
             "Notorious Monster": "Elemental Conflict",
@@ -7229,6 +7209,26 @@
             "Spawn Mob": "",
             "Light": "None (0%)",
             "Fate ID": "1408",
+            "Fate Type": "Fate",
+            "Fate Level": "46",
+            "Fate Level Sync": "49",
+            "Type": "Notorious monsters",
+            "Icon Objective": "ui/icon/060000/060958.tex"
+        },
+        "1399": {
+            "Fate Name": "Put Up Your Dux",
+            "Notorious Monster": "Dux",
+            "Location": {
+                "x": 27.47,
+                "y": 8.94
+            },
+            "Elemental EXP": "6,968,751",
+            "Tomestones": "99",
+            "Lockboxes/Crystals": "7 Pyros Lockbox 28 Pyros Crystal",
+            "Notable Rewards": "1 Inimical Logogram",
+            "Spawn Mob": "Lv. 51 Matanga Castaway",
+            "Light": "Brilliant (104%)",
+            "Fate ID": "1399",
             "Fate Type": "Fate",
             "Fate Level": "46",
             "Fate Level Sync": "49",
@@ -7295,26 +7295,6 @@
             "Type": "Notorious monsters",
             "Icon Objective": "ui/icon/060000/060958.tex"
         },
-        "1403": {
-            "Fate Name": "Heavens' Warg",
-            "Notorious Monster": "Skoll",
-            "Location": {
-                "x": 24.07,
-                "y": 30.13
-            },
-            "Elemental EXP": "10,146,502",
-            "Tomestones": "120",
-            "Lockboxes/Crystals": "9 Pyros Lockbox 40 Pyros Crystal",
-            "Notable Rewards": "1 Protective Logogram 1 Skoll's Claw",
-            "Spawn Mob": "Lv. 55 Pyros Shuck",
-            "Light": "Gentle (30.4%)",
-            "Fate ID": "1403",
-            "Fate Type": "Fate",
-            "Fate Level": "50",
-            "Fate Level Sync": "53",
-            "Type": "Notorious monsters",
-            "Icon Objective": "ui/icon/060000/060958.tex"
-        },
         "1404": {
             "Fate Name": "Lost Epic",
             "Notorious Monster": "Penthesilea",
@@ -7334,9 +7314,63 @@
             "Fate Level Sync": "53",
             "Type": "Notorious monsters",
             "Icon Objective": "ui/icon/060000/060958.tex"
+        },
+        "1403": {
+            "Fate Name": "Heavens' Warg",
+            "Notorious Monster": "Skoll",
+            "Location": {
+                "x": 24.07,
+                "y": 30.13
+            },
+            "Elemental EXP": "10,146,502",
+            "Tomestones": "120",
+            "Lockboxes/Crystals": "9 Pyros Lockbox 40 Pyros Crystal",
+            "Notable Rewards": "1 Protective Logogram 1 Skoll's Claw",
+            "Spawn Mob": "Lv. 55 Pyros Shuck",
+            "Light": "Gentle (30.4%)",
+            "Fate ID": "1403",
+            "Fate Type": "Fate",
+            "Fate Level": "50",
+            "Fate Level Sync": "53",
+            "Type": "Notorious monsters",
+            "Icon Objective": "ui/icon/060000/060958.tex"
         }
     },
     "Garlemald": {
+        "1787": {
+            "Fate Name": "Not Yeti",
+            "Type": "Kill Enemies",
+            "Level": "82",
+            "Location": {
+                "x": 30.58,
+                "y": 27.65
+            },
+            "Experience": "155,925",
+            "Gil": "164",
+            "Gemstones": "14",
+            "Fate ID": "1787",
+            "Fate Type": "Fate",
+            "Fate Level": "82",
+            "Fate Level Sync": "86",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1784": {
+            "Fate Name": "Artificial Malevolence: The Drone Army",
+            "Type": "Defense",
+            "Level": "82",
+            "Location": {
+                "x": 26.12,
+                "y": 19.25
+            },
+            "Experience": "155,925",
+            "Gil": "164",
+            "Gemstones": "14",
+            "Fate ID": "1784",
+            "Fate Type": "Fate",
+            "Fate Level": "82",
+            "Fate Level Sync": "86",
+            "Icon Objective": "ui/icon/060000/060504.tex"
+        },
         "1786": {
             "Fate Name": "A Snowball's Chance",
             "Type": "Kill Enemies",
@@ -7439,39 +7473,70 @@
             "Fate Level Sync": "86",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1787": {
-            "Fate Name": "Not Yeti",
+        "1794": {
+            "Fate Name": "Stray Dog Strut",
             "Type": "Kill Enemies",
-            "Level": "82",
+            "Level": "83",
             "Location": {
-                "x": 30.58,
-                "y": 27.65
+                "x": 14.57,
+                "y": 16.29
             },
-            "Experience": "155,925",
-            "Gil": "164",
+            "Experience": "158,152",
+            "Gil": "166",
             "Gemstones": "14",
-            "Fate ID": "1787",
+            "Fate ID": "1794",
             "Fate Type": "Fate",
-            "Fate Level": "82",
-            "Fate Level Sync": "86",
+            "Fate Level": "83",
+            "Fate Level Sync": "87",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1784": {
-            "Fate Name": "Artificial Malevolence: The Drone Army",
-            "Type": "Defense",
-            "Level": "82",
+        "1792": {
+            "Fate Name": "Artificial Malevolence: Mighty Metatron",
+            "Type": "Notorious monster",
+            "Level": "83",
             "Location": {
-                "x": 26.12,
-                "y": 19.25
+                "x": "11.4",
+                "y": "11.2"
             },
-            "Experience": "155,925",
-            "Gil": "164",
+            "Experience": "158,152",
+            "Gil": "166",
             "Gemstones": "14",
-            "Fate ID": "1784",
+            "Fate ID": "1792",
+            "Fate Type": "Fate"
+        },
+        "1796": {
+            "Fate Name": "A Bit of a Problem",
+            "Type": "Kill Enemies",
+            "Level": "83",
+            "Location": {
+                "x": 28.34,
+                "y": 14.31
+            },
+            "Experience": "158,152",
+            "Gil": "166",
+            "Gemstones": "14",
+            "Fate ID": "1796",
             "Fate Type": "Fate",
-            "Fate Level": "82",
-            "Fate Level Sync": "86",
-            "Icon Objective": "ui/icon/060000/060504.tex"
+            "Fate Level": "83",
+            "Fate Level Sync": "87",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1797": {
+            "Fate Name": "The Man with the Golden Son",
+            "Type": "Kill Boss",
+            "Level": "83",
+            "Location": {
+                "x": 21.2,
+                "y": 8.02
+            },
+            "Experience": "158,152",
+            "Gil": "166",
+            "Gemstones": "14",
+            "Fate ID": "1797",
+            "Fate Type": "Fate",
+            "Fate Level": "83",
+            "Fate Level Sync": "87",
+            "Icon Objective": "ui/icon/060000/060502.tex"
         },
         "1798": {
             "Fate Name": "Parts Unknown",
@@ -7540,91 +7605,9 @@
             "Fate Level": "83",
             "Fate Level Sync": "87",
             "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1794": {
-            "Fate Name": "Stray Dog Strut",
-            "Type": "Kill Enemies",
-            "Level": "83",
-            "Location": {
-                "x": 14.57,
-                "y": 16.29
-            },
-            "Experience": "158,152",
-            "Gil": "166",
-            "Gemstones": "14",
-            "Fate ID": "1794",
-            "Fate Type": "Fate",
-            "Fate Level": "83",
-            "Fate Level Sync": "87",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1792": {
-            "Fate Name": "Artificial Malevolence: Mighty Metatron",
-            "Type": "Notorious monster",
-            "Level": "83",
-            "Location": {
-                "x": "11.4",
-                "y": "11.2"
-            },
-            "Experience": "158,152",
-            "Gil": "166",
-            "Gemstones": "14",
-            "Fate ID": "1792",
-            "Fate Type": "Fate"
-        },
-        "1796": {
-            "Fate Name": "A Bit of a Problem",
-            "Type": "Kill Enemies",
-            "Level": "83",
-            "Location": {
-                "x": 28.34,
-                "y": 14.31
-            },
-            "Experience": "158,152",
-            "Gil": "166",
-            "Gemstones": "14",
-            "Fate ID": "1796",
-            "Fate Type": "Fate",
-            "Fate Level": "83",
-            "Fate Level Sync": "87",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1797": {
-            "Fate Name": "The Man with the Golden Son",
-            "Type": "Kill Boss",
-            "Level": "83",
-            "Location": {
-                "x": 21.2,
-                "y": 8.02
-            },
-            "Experience": "158,152",
-            "Gil": "166",
-            "Gemstones": "14",
-            "Fate ID": "1797",
-            "Fate Type": "Fate",
-            "Fate Level": "83",
-            "Fate Level Sync": "87",
-            "Icon Objective": "ui/icon/060000/060502.tex"
         }
     },
     "Heritage Found": {
-        "1947": {
-            "Fate Name": "Hack the Planet",
-            "Type": "Kill Enemies",
-            "Level": "97",
-            "Location": {
-                "x": 33.28,
-                "y": 27.66
-            },
-            "Experience": "367,416",
-            "Gil": "194",
-            "Gemstones": "16",
-            "Fate ID": "1947",
-            "Fate Type": "Fate",
-            "Fate Level": "97",
-            "Fate Level Sync": "101",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
         "1943": {
             "Fate Name": "Running of the Katobleps",
             "Type": "Kill Enemies",
@@ -7744,22 +7727,22 @@
             "Fate Level Sync": "101",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1956": {
-            "Fate Name": "(Got My Eye) Set on You",
-            "Type": "Kill Boss",
-            "Level": "98",
+        "1947": {
+            "Fate Name": "Hack the Planet",
+            "Type": "Kill Enemies",
+            "Level": "97",
             "Location": {
-                "x": 24.07,
-                "y": 34.62
+                "x": 33.28,
+                "y": 27.66
             },
-            "Experience": "371,952",
-            "Gil": "196",
+            "Experience": "367,416",
+            "Gil": "194",
             "Gemstones": "16",
-            "Fate ID": "1956",
+            "Fate ID": "1947",
             "Fate Type": "Fate",
-            "Fate Level": "98",
-            "Fate Level Sync": "102",
-            "Icon Objective": "ui/icon/060000/060502.tex"
+            "Fate Level": "97",
+            "Fate Level Sync": "101",
+            "Icon Objective": "ui/icon/060000/060501.tex"
         },
         "1952": {
             "Fate Name": "Old Stampeding Grounds",
@@ -7896,9 +7879,43 @@
             "Fate Level": "98",
             "Fate Level Sync": "102",
             "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1956": {
+            "Fate Name": "(Got My Eye) Set on You",
+            "Type": "Kill Boss",
+            "Level": "98",
+            "Location": {
+                "x": 24.07,
+                "y": 34.62
+            },
+            "Experience": "371,952",
+            "Gil": "196",
+            "Gemstones": "16",
+            "Fate ID": "1956",
+            "Fate Type": "Fate",
+            "Fate Level": "98",
+            "Fate Level Sync": "102",
+            "Icon Objective": "ui/icon/060000/060502.tex"
         }
     },
     "Il Mheg": {
+        "1495": {
+            "Fate Name": "Once Upon a Time",
+            "Type": "Kill Enemies",
+            "Level": "72",
+            "Location": {
+                "x": 10.27,
+                "y": 23.31
+            },
+            "Experience": "49,248",
+            "Gil": "144",
+            "Gemstones": "12",
+            "Fate ID": "1495",
+            "Fate Type": "Fate",
+            "Fate Level": "72",
+            "Fate Level Sync": "76",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
         "1493": {
             "Fate Name": "Hedge Mazed",
             "Type": "Kill Enemies",
@@ -8013,23 +8030,6 @@
             "Gil": "144",
             "Gemstones": "12",
             "Fate ID": "1490",
-            "Fate Type": "Fate",
-            "Fate Level": "72",
-            "Fate Level Sync": "76",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1495": {
-            "Fate Name": "Once Upon a Time",
-            "Type": "Kill Enemies",
-            "Level": "72",
-            "Location": {
-                "x": 10.27,
-                "y": 23.31
-            },
-            "Experience": "49,248",
-            "Gil": "144",
-            "Gemstones": "12",
-            "Fate ID": "1495",
             "Fate Type": "Fate",
             "Fate Level": "72",
             "Fate Level Sync": "76",
@@ -8173,40 +8173,6 @@
         }
     },
     "Kholusia": {
-        "1469": {
-            "Fate Name": "Bitter Barley",
-            "Type": "Defense",
-            "Level": "70",
-            "Location": {
-                "x": 18.19,
-                "y": 30.77
-            },
-            "Experience": "48,600",
-            "Gil": "140",
-            "Gemstones": "12",
-            "Fate ID": "1469",
-            "Fate Type": "Fate",
-            "Fate Level": "70",
-            "Fate Level Sync": "74",
-            "Icon Objective": "ui/icon/060000/060504.tex"
-        },
-        "1465": {
-            "Fate Name": "Shadow over Stilltide",
-            "Type": "Kill Enemies",
-            "Level": "70",
-            "Location": {
-                "x": 31.66,
-                "y": 25.17
-            },
-            "Experience": "48,600",
-            "Gil": "140",
-            "Gemstones": "12",
-            "Fate ID": "1465",
-            "Fate Type": "Fate",
-            "Fate Level": "70",
-            "Fate Level Sync": "74",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
         "1471": {
             "Fate Name": "Roadside Dinner",
             "Type": "Kill Enemies",
@@ -8275,56 +8241,39 @@
             "Fate Level Sync": "74",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1476": {
-            "Fate Name": "Not Today",
-            "Type": "Kill Boss",
-            "Level": "78",
+        "1469": {
+            "Fate Name": "Bitter Barley",
+            "Type": "Defense",
+            "Level": "70",
             "Location": {
-                "x": 11.53,
-                "y": 15.05
+                "x": 18.19,
+                "y": 30.77
             },
-            "Experience": "51,192",
-            "Gil": "156",
+            "Experience": "48,600",
+            "Gil": "140",
             "Gemstones": "12",
-            "Fate ID": "1476",
+            "Fate ID": "1469",
             "Fate Type": "Fate",
-            "Fate Level": "78",
-            "Fate Level Sync": "82",
-            "Icon Objective": "ui/icon/060000/060502.tex"
+            "Fate Level": "70",
+            "Fate Level Sync": "74",
+            "Icon Objective": "ui/icon/060000/060504.tex"
         },
-        "1473": {
-            "Fate Name": "Knockout",
+        "1465": {
+            "Fate Name": "Shadow over Stilltide",
             "Type": "Kill Enemies",
-            "Level": "78",
+            "Level": "70",
             "Location": {
-                "x": 23.45,
-                "y": 9.11
+                "x": 31.66,
+                "y": 25.17
             },
-            "Experience": "51,192",
-            "Gil": "156",
+            "Experience": "48,600",
+            "Gil": "140",
             "Gemstones": "12",
-            "Fate ID": "1473",
+            "Fate ID": "1465",
             "Fate Type": "Fate",
-            "Fate Level": "78",
-            "Fate Level Sync": "82",
+            "Fate Level": "70",
+            "Fate Level Sync": "74",
             "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1477": {
-            "Fate Name": "Ironbeard Builders - Rebuilt",
-            "Type": "Collect",
-            "Level": "78",
-            "Location": {
-                "x": 25.71,
-                "y": 16.98
-            },
-            "Experience": "51,192",
-            "Gil": "156",
-            "Gemstones": "12",
-            "Fate ID": "1477",
-            "Fate Type": "Fate",
-            "Fate Level": "78",
-            "Fate Level Sync": "82",
-            "Icon Objective": "ui/icon/060000/060503.tex"
         },
         "1478": {
             "Fate Name": "Ironbeard Builders - Resist",
@@ -8427,6 +8376,57 @@
             "Fate Level": "78",
             "Fate Level Sync": "82",
             "Icon Objective": "ui/icon/060000/060504.tex"
+        },
+        "1476": {
+            "Fate Name": "Not Today",
+            "Type": "Kill Boss",
+            "Level": "78",
+            "Location": {
+                "x": 11.53,
+                "y": 15.05
+            },
+            "Experience": "51,192",
+            "Gil": "156",
+            "Gemstones": "12",
+            "Fate ID": "1476",
+            "Fate Type": "Fate",
+            "Fate Level": "78",
+            "Fate Level Sync": "82",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1473": {
+            "Fate Name": "Knockout",
+            "Type": "Kill Enemies",
+            "Level": "78",
+            "Location": {
+                "x": 23.45,
+                "y": 9.11
+            },
+            "Experience": "51,192",
+            "Gil": "156",
+            "Gemstones": "12",
+            "Fate ID": "1473",
+            "Fate Type": "Fate",
+            "Fate Level": "78",
+            "Fate Level Sync": "82",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1477": {
+            "Fate Name": "Ironbeard Builders - Rebuilt",
+            "Type": "Collect",
+            "Level": "78",
+            "Location": {
+                "x": 25.71,
+                "y": 16.98
+            },
+            "Experience": "51,192",
+            "Gil": "156",
+            "Gemstones": "12",
+            "Fate ID": "1477",
+            "Fate Type": "Fate",
+            "Fate Level": "78",
+            "Fate Level Sync": "82",
+            "Icon Objective": "ui/icon/060000/060503.tex"
         },
         "1464": {
             "Fate Name": "A Finale Most Formidable",
@@ -8564,6 +8564,23 @@
             "Fate Level Sync": "94",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
+        "1930": {
+            "Fate Name": "The Pama-yawa Dilemma",
+            "Type": "Kill Boss",
+            "Level": "91",
+            "Location": {
+                "x": 36.92,
+                "y": 13.41
+            },
+            "Experience": "340,200",
+            "Gil": "182",
+            "Gemstones": "16",
+            "Fate ID": "1930",
+            "Fate Type": "Fate",
+            "Fate Level": "91",
+            "Fate Level Sync": "95",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
         "1932": {
             "Fate Name": "Toucalibri at That Game",
             "Type": "Defense",
@@ -8598,22 +8615,73 @@
             "Fate Level Sync": "95",
             "Icon Objective": "ui/icon/060000/060502.tex"
         },
-        "1930": {
-            "Fate Name": "The Pama-yawa Dilemma",
-            "Type": "Kill Boss",
-            "Level": "91",
+        "1939": {
+            "Fate Name": "Sting Operation",
+            "Type": "Kill Enemies",
+            "Level": "92",
             "Location": {
-                "x": 36.92,
-                "y": 13.41
+                "x": 5.22,
+                "y": 26.58
             },
-            "Experience": "340,200",
-            "Gil": "182",
+            "Experience": "344,736",
+            "Gil": "184",
             "Gemstones": "16",
-            "Fate ID": "1930",
+            "Fate ID": "1939",
+            "Fate Type": "Fate",
+            "Fate Level": "92",
+            "Fate Level Sync": "96",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1925": {
+            "Fate Name": "Tegu or Not Tegu",
+            "Type": "Kill Enemies",
+            "Level": "92",
+            "Location": {
+                "x": 34.3,
+                "y": 19.15
+            },
+            "Experience": "344,736",
+            "Gil": "184",
+            "Gemstones": "16",
+            "Fate ID": "1925",
             "Fate Type": "Fate",
             "Fate Level": "91",
             "Fate Level Sync": "95",
-            "Icon Objective": "ui/icon/060000/060502.tex"
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1937": {
+            "Fate Name": "Borne on the Backs of Burrowers",
+            "Type": "Collect",
+            "Level": "92",
+            "Location": {
+                "x": 8.68,
+                "y": 21.82
+            },
+            "Experience": "344,736",
+            "Gil": "184",
+            "Gemstones": "16",
+            "Fate ID": "1937",
+            "Fate Type": "Fate",
+            "Fate Level": "92",
+            "Fate Level Sync": "96",
+            "Icon Objective": "ui/icon/060000/060503.tex"
+        },
+        "1933": {
+            "Fate Name": "Bandit Tax, Paid in Full",
+            "Type": "Kill Enemies",
+            "Level": "92",
+            "Location": {
+                "x": 34.67,
+                "y": 29.15
+            },
+            "Experience": "344,736",
+            "Gil": "184",
+            "Gemstones": "16",
+            "Fate ID": "1933",
+            "Fate Type": "Fate",
+            "Fate Level": "92",
+            "Fate Level Sync": "96",
+            "Icon Objective": "ui/icon/060000/060501.tex"
         },
         "1938": {
             "Fate Name": "Sayona Your Prayers",
@@ -8716,77 +8784,26 @@
             "Fate Level": "92",
             "Fate Level Sync": "96",
             "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1939": {
-            "Fate Name": "Sting Operation",
-            "Type": "Kill Enemies",
-            "Level": "92",
-            "Location": {
-                "x": 5.22,
-                "y": 26.58
-            },
-            "Experience": "344,736",
-            "Gil": "184",
-            "Gemstones": "16",
-            "Fate ID": "1939",
-            "Fate Type": "Fate",
-            "Fate Level": "92",
-            "Fate Level Sync": "96",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1925": {
-            "Fate Name": "Tegu or Not Tegu",
-            "Type": "Kill Enemies",
-            "Level": "92",
-            "Location": {
-                "x": 34.3,
-                "y": 19.15
-            },
-            "Experience": "344,736",
-            "Gil": "184",
-            "Gemstones": "16",
-            "Fate ID": "1925",
-            "Fate Type": "Fate",
-            "Fate Level": "91",
-            "Fate Level Sync": "95",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1937": {
-            "Fate Name": "Borne on the Backs of Burrowers",
-            "Type": "Collect",
-            "Level": "92",
-            "Location": {
-                "x": 8.68,
-                "y": 21.82
-            },
-            "Experience": "344,736",
-            "Gil": "184",
-            "Gemstones": "16",
-            "Fate ID": "1937",
-            "Fate Type": "Fate",
-            "Fate Level": "92",
-            "Fate Level Sync": "96",
-            "Icon Objective": "ui/icon/060000/060503.tex"
-        },
-        "1933": {
-            "Fate Name": "Bandit Tax, Paid in Full",
-            "Type": "Kill Enemies",
-            "Level": "92",
-            "Location": {
-                "x": 34.67,
-                "y": 29.15
-            },
-            "Experience": "344,736",
-            "Gil": "184",
-            "Gemstones": "16",
-            "Fate ID": "1933",
-            "Fate Type": "Fate",
-            "Fate Level": "92",
-            "Fate Level Sync": "96",
-            "Icon Objective": "ui/icon/060000/060501.tex"
         }
     },
     "Labyrinthos": {
+        "1749": {
+            "Fate Name": "Let It Grow",
+            "Type": "Kill Boss",
+            "Level": "80",
+            "Location": {
+                "x": 31.62,
+                "y": 8.82
+            },
+            "Experience": "151,470",
+            "Gil": "160",
+            "Gemstones": "14",
+            "Fate ID": "1749",
+            "Fate Type": "Fate",
+            "Fate Level": "80",
+            "Fate Level Sync": "84",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
         "1745": {
             "Fate Name": "Homecrawling",
             "Type": "Kill Enemies",
@@ -8838,22 +8855,22 @@
             "Fate Level Sync": "84",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1749": {
-            "Fate Name": "Let It Grow",
-            "Type": "Kill Boss",
-            "Level": "80",
+        "1750": {
+            "Fate Name": "Acid in Flight, Shepherd's Fright",
+            "Type": "Defense",
+            "Level": "81",
             "Location": {
-                "x": 31.62,
-                "y": 8.82
+                "x": 14.44,
+                "y": 9.38
             },
-            "Experience": "151,470",
-            "Gil": "160",
+            "Experience": "153,697",
+            "Gil": "162",
             "Gemstones": "14",
-            "Fate ID": "1749",
+            "Fate ID": "1750",
             "Fate Type": "Fate",
-            "Fate Level": "80",
-            "Fate Level Sync": "84",
-            "Icon Objective": "ui/icon/060000/060502.tex"
+            "Fate Level": "81",
+            "Fate Level Sync": "85",
+            "Icon Objective": "ui/icon/060000/060504.tex"
         },
         "1748": {
             "Fate Name": "Breakfast, Lunch, and Dinner",
@@ -8906,23 +8923,6 @@
             "Fate Level Sync": "85",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1750": {
-            "Fate Name": "Acid in Flight, Shepherd's Fright",
-            "Type": "Defense",
-            "Level": "81",
-            "Location": {
-                "x": 14.44,
-                "y": 9.38
-            },
-            "Experience": "153,697",
-            "Gil": "162",
-            "Gemstones": "14",
-            "Fate ID": "1750",
-            "Fate Type": "Fate",
-            "Fate Level": "81",
-            "Fate Level Sync": "85",
-            "Icon Objective": "ui/icon/060000/060504.tex"
-        },
         "1751": {
             "Fate Name": "Incident Files: Elemental Attraction",
             "Type": "Kill Enemies",
@@ -8956,57 +8956,6 @@
             "Fate Level": "85",
             "Fate Level Sync": "89",
             "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1757": {
-            "Fate Name": "The Frailty of Life",
-            "Type": "Kill Boss",
-            "Level": "88",
-            "Location": {
-                "x": 11.77,
-                "y": 19.94
-            },
-            "Experience": "169,290",
-            "Gil": "176",
-            "Gemstones": "14",
-            "Fate ID": "1757",
-            "Fate Type": "Fate",
-            "Fate Level": "88",
-            "Fate Level Sync": "92",
-            "Icon Objective": "ui/icon/060000/060502.tex"
-        },
-        "1755": {
-            "Fate Name": "Wasted XIV",
-            "Type": "Kill Enemies",
-            "Level": "88",
-            "Location": {
-                "x": 9.26,
-                "y": 35.77
-            },
-            "Experience": "169,290",
-            "Gil": "176",
-            "Gemstones": "14",
-            "Fate ID": "1755",
-            "Fate Type": "Fate",
-            "Fate Level": "88",
-            "Fate Level Sync": "92",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1754": {
-            "Fate Name": "Moisture Farming",
-            "Type": "Collect",
-            "Level": "88",
-            "Location": {
-                "x": 22.93,
-                "y": 35.68
-            },
-            "Experience": "169,290",
-            "Gil": "176",
-            "Gemstones": "14",
-            "Fate ID": "1754",
-            "Fate Type": "Fate",
-            "Fate Level": "88",
-            "Fate Level Sync": "92",
-            "Icon Objective": "ui/icon/060000/060503.tex"
         },
         "1753": {
             "Fate Name": "Residual Complications",
@@ -9058,94 +9007,60 @@
             "Fate Level": "88",
             "Fate Level Sync": "92",
             "Icon Objective": "ui/icon/060000/060503.tex"
+        },
+        "1757": {
+            "Fate Name": "The Frailty of Life",
+            "Type": "Kill Boss",
+            "Level": "88",
+            "Location": {
+                "x": 11.77,
+                "y": 19.94
+            },
+            "Experience": "169,290",
+            "Gil": "176",
+            "Gemstones": "14",
+            "Fate ID": "1757",
+            "Fate Type": "Fate",
+            "Fate Level": "88",
+            "Fate Level Sync": "92",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1755": {
+            "Fate Name": "Wasted XIV",
+            "Type": "Kill Enemies",
+            "Level": "88",
+            "Location": {
+                "x": 9.26,
+                "y": 35.77
+            },
+            "Experience": "169,290",
+            "Gil": "176",
+            "Gemstones": "14",
+            "Fate ID": "1755",
+            "Fate Type": "Fate",
+            "Fate Level": "88",
+            "Fate Level Sync": "92",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1754": {
+            "Fate Name": "Moisture Farming",
+            "Type": "Collect",
+            "Level": "88",
+            "Location": {
+                "x": 22.93,
+                "y": 35.68
+            },
+            "Experience": "169,290",
+            "Gil": "176",
+            "Gemstones": "14",
+            "Fate ID": "1754",
+            "Fate Type": "Fate",
+            "Fate Level": "88",
+            "Fate Level Sync": "92",
+            "Icon Objective": "ui/icon/060000/060503.tex"
         }
     },
     "Lakeland": {
-        "1503": {
-            "Fate Name": "Toxic Nightshade",
-            "Type": "Kill Enemies",
-            "Level": "71",
-            "Location": {
-                "x": 17.5,
-                "y": 11.9
-            },
-            "Experience": "48,924",
-            "Gil": "142",
-            "Gemstones": "12",
-            "Fate ID": "1503",
-            "Fate Type": "Fate",
-            "Fate Level": "71",
-            "Fate Level Sync": "75",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1510": {
-            "Fate Name": "Calm a Chameleon",
-            "Type": "Kill Boss",
-            "Level": "71",
-            "Location": {
-                "x": 21.19,
-                "y": 27.92
-            },
-            "Experience": "48,924",
-            "Gil": "142",
-            "Gemstones": "12",
-            "Fate ID": "1510",
-            "Fate Type": "Fate",
-            "Fate Level": "71",
-            "Fate Level Sync": "75",
-            "Icon Objective": "ui/icon/060000/060502.tex"
-        },
-        "1509": {
-            "Fate Name": "Behind Anemone Lines",
-            "Type": "Defense",
-            "Level": "71",
-            "Location": {
-                "x": 21.19,
-                "y": 27.92
-            },
-            "Experience": "48,924",
-            "Gil": "142",
-            "Gemstones": "12",
-            "Fate ID": "1509",
-            "Fate Type": "Fate",
-            "Fate Level": "71",
-            "Fate Level Sync": "75",
-            "Icon Objective": "ui/icon/060000/060504.tex"
-        },
-        "1499": {
-            "Fate Name": "Cry Not Wolf",
-            "Type": "Kill Enemies",
-            "Level": "71",
-            "Location": {
-                "x": 19.63,
-                "y": 21.42
-            },
-            "Experience": "48,924",
-            "Gil": "142",
-            "Gemstones": "12",
-            "Fate ID": "1499",
-            "Fate Type": "Fate",
-            "Fate Level": "71",
-            "Fate Level Sync": "75",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1506": {
-            "Fate Name": "Don't Feed the Gremlins",
-            "Type": "Kill Enemies",
-            "Level": "71",
-            "Location": {
-                "x": 32.53,
-                "y": 17.68
-            },
-            "Experience": "48,924",
-            "Gil": "142",
-            "Gemstones": "12",
-            "Fate ID": "1506",
-            "Fate Type": "Fate",
-            "Fate Level": "71",
-            "Fate Level Sync": "75",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
         "1500": {
             "Fate Name": "Pick-up Sticks",
             "Type": "Collect",
@@ -9315,9 +9230,108 @@
             "Fate Level": "71",
             "Fate Level Sync": "75",
             "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1503": {
+            "Fate Name": "Toxic Nightshade",
+            "Type": "Kill Enemies",
+            "Level": "71",
+            "Location": {
+                "x": 17.5,
+                "y": 11.9
+            },
+            "Experience": "48,924",
+            "Gil": "142",
+            "Gemstones": "12",
+            "Fate ID": "1503",
+            "Fate Type": "Fate",
+            "Fate Level": "71",
+            "Fate Level Sync": "75",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1510": {
+            "Fate Name": "Calm a Chameleon",
+            "Type": "Kill Boss",
+            "Level": "71",
+            "Location": {
+                "x": 21.19,
+                "y": 27.92
+            },
+            "Experience": "48,924",
+            "Gil": "142",
+            "Gemstones": "12",
+            "Fate ID": "1510",
+            "Fate Type": "Fate",
+            "Fate Level": "71",
+            "Fate Level Sync": "75",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1509": {
+            "Fate Name": "Behind Anemone Lines",
+            "Type": "Defense",
+            "Level": "71",
+            "Location": {
+                "x": 21.19,
+                "y": 27.92
+            },
+            "Experience": "48,924",
+            "Gil": "142",
+            "Gemstones": "12",
+            "Fate ID": "1509",
+            "Fate Type": "Fate",
+            "Fate Level": "71",
+            "Fate Level Sync": "75",
+            "Icon Objective": "ui/icon/060000/060504.tex"
+        },
+        "1499": {
+            "Fate Name": "Cry Not Wolf",
+            "Type": "Kill Enemies",
+            "Level": "71",
+            "Location": {
+                "x": 19.63,
+                "y": 21.42
+            },
+            "Experience": "48,924",
+            "Gil": "142",
+            "Gemstones": "12",
+            "Fate ID": "1499",
+            "Fate Type": "Fate",
+            "Fate Level": "71",
+            "Fate Level Sync": "75",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1506": {
+            "Fate Name": "Don't Feed the Gremlins",
+            "Type": "Kill Enemies",
+            "Level": "71",
+            "Location": {
+                "x": 32.53,
+                "y": 17.68
+            },
+            "Experience": "48,924",
+            "Gil": "142",
+            "Gemstones": "12",
+            "Fate ID": "1506",
+            "Fate Type": "Fate",
+            "Fate Level": "71",
+            "Fate Level Sync": "75",
+            "Icon Objective": "ui/icon/060000/060501.tex"
         }
     },
     "Living Memory": {
+        "1915": {
+            "Fate Name": "Slime to Die",
+            "Type": "Notorious monster",
+            "Level": "99",
+            "Location": {
+                "x": "8.3",
+                "y": "34"
+            },
+            "Experience": "376,488",
+            "Gil": "198",
+            "Gemstones": "16",
+            "Fate ID": "1915",
+            "Fate Type": "Fate"
+        },
         "1920": {
             "Fate Name": "Mascot March",
             "Type": "Kill Enemies",
@@ -9501,20 +9515,6 @@
             "Fate Level": "99",
             "Fate Level Sync": "103",
             "Icon Objective": "ui/icon/060000/060502.tex"
-        },
-        "1915": {
-            "Fate Name": "Slime to Die",
-            "Type": "Notorious monster",
-            "Level": "99",
-            "Location": {
-                "x": "8.3",
-                "y": "34"
-            },
-            "Experience": "376,488",
-            "Gil": "198",
-            "Gemstones": "16",
-            "Fate ID": "1915",
-            "Fate Type": "Fate"
         },
         "1922": {
             "Fate Name": "Mascot Murder",
@@ -9837,6 +9837,23 @@
         }
     },
     "Mare Lamentorum": {
+        "1809": {
+            "Fate Name": "Droids Gone Wild",
+            "Type": "Kill Enemies",
+            "Level": "83",
+            "Location": {
+                "x": 32.97,
+                "y": 27.6
+            },
+            "Experience": "158,152",
+            "Gil": "166",
+            "Gemstones": "14",
+            "Fate ID": "1809",
+            "Fate Type": "Fate",
+            "Fate Level": "83",
+            "Fate Level Sync": "87",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
         "1806": {
             "Fate Name": "Mantids on the Moon",
             "Type": "Kill Enemies",
@@ -9922,21 +9939,55 @@
             "Fate Level Sync": "87",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1809": {
-            "Fate Name": "Droids Gone Wild",
-            "Type": "Kill Enemies",
-            "Level": "83",
+        "1817": {
+            "Fate Name": "What a Thrill",
+            "Type": "Collect",
+            "Level": "84",
             "Location": {
-                "x": 32.97,
-                "y": 27.6
+                "x": 19.24,
+                "y": 22.59
             },
-            "Experience": "158,152",
-            "Gil": "166",
+            "Experience": "160,380",
+            "Gil": "168",
             "Gemstones": "14",
-            "Fate ID": "1809",
+            "Fate ID": "1817",
             "Fate Type": "Fate",
-            "Fate Level": "83",
-            "Fate Level Sync": "87",
+            "Fate Level": "84",
+            "Fate Level Sync": "88",
+            "Icon Objective": "ui/icon/060000/060503.tex"
+        },
+        "1805": {
+            "Fate Name": "Lepus Lamentorum: Crazy Contraption",
+            "Type": "Kill Boss",
+            "Level": "84",
+            "Location": {
+                "x": 11.41,
+                "y": 6.83
+            },
+            "Experience": "160,380",
+            "Gil": "168",
+            "Gemstones": "14",
+            "Fate ID": "1805",
+            "Fate Type": "Fate",
+            "Fate Level": "84",
+            "Fate Level Sync": "88",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1815": {
+            "Fate Name": "Taking Care of the Caretakers",
+            "Type": "Kill Enemies",
+            "Level": "84",
+            "Location": {
+                "x": 35.37,
+                "y": 8.61
+            },
+            "Experience": "160,380",
+            "Gil": "168",
+            "Gemstones": "14",
+            "Fate ID": "1815",
+            "Fate Type": "Fate",
+            "Fate Level": "84",
+            "Fate Level Sync": "88",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
         "1803": {
@@ -10036,57 +10087,6 @@
             "Gil": "168",
             "Gemstones": "14",
             "Fate ID": "1814",
-            "Fate Type": "Fate",
-            "Fate Level": "84",
-            "Fate Level Sync": "88",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1817": {
-            "Fate Name": "What a Thrill",
-            "Type": "Collect",
-            "Level": "84",
-            "Location": {
-                "x": 19.24,
-                "y": 22.59
-            },
-            "Experience": "160,380",
-            "Gil": "168",
-            "Gemstones": "14",
-            "Fate ID": "1817",
-            "Fate Type": "Fate",
-            "Fate Level": "84",
-            "Fate Level Sync": "88",
-            "Icon Objective": "ui/icon/060000/060503.tex"
-        },
-        "1805": {
-            "Fate Name": "Lepus Lamentorum: Crazy Contraption",
-            "Type": "Kill Boss",
-            "Level": "84",
-            "Location": {
-                "x": 11.41,
-                "y": 6.83
-            },
-            "Experience": "160,380",
-            "Gil": "168",
-            "Gemstones": "14",
-            "Fate ID": "1805",
-            "Fate Type": "Fate",
-            "Fate Level": "84",
-            "Fate Level Sync": "88",
-            "Icon Objective": "ui/icon/060000/060502.tex"
-        },
-        "1815": {
-            "Fate Name": "Taking Care of the Caretakers",
-            "Type": "Kill Enemies",
-            "Level": "84",
-            "Location": {
-                "x": 35.37,
-                "y": 8.61
-            },
-            "Experience": "160,380",
-            "Gil": "168",
-            "Gemstones": "14",
-            "Fate ID": "1815",
             "Fate Type": "Fate",
             "Fate Level": "84",
             "Fate Level Sync": "88",
@@ -11871,40 +11871,6 @@
             "Fate Level Sync": "99",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1868": {
-            "Fate Name": "The Serpentlord Speaks",
-            "Type": "Kill Enemies",
-            "Level": "96",
-            "Location": {
-                "x": 28.97,
-                "y": 17.75
-            },
-            "Experience": "362,880",
-            "Gil": "192",
-            "Gemstones": "16",
-            "Fate ID": "1868",
-            "Fate Type": "Fate",
-            "Fate Level": "96",
-            "Fate Level Sync": "100",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1874": {
-            "Fate Name": "A Raptor Runs Through It",
-            "Type": "Defense",
-            "Level": "96",
-            "Location": {
-                "x": 34.98,
-                "y": 14.45
-            },
-            "Experience": "362,880",
-            "Gil": "192",
-            "Gemstones": "16",
-            "Fate ID": "1874",
-            "Fate Type": "Fate",
-            "Fate Level": "96",
-            "Fate Level Sync": "100",
-            "Icon Objective": "ui/icon/060000/060504.tex"
-        },
         "1869": {
             "Fate Name": "The Serpentlord Sires",
             "Type": "Collect",
@@ -12003,6 +11969,40 @@
             "Fate Level": "96",
             "Fate Level Sync": "100",
             "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1868": {
+            "Fate Name": "The Serpentlord Speaks",
+            "Type": "Kill Enemies",
+            "Level": "96",
+            "Location": {
+                "x": 28.97,
+                "y": 17.75
+            },
+            "Experience": "362,880",
+            "Gil": "192",
+            "Gemstones": "16",
+            "Fate ID": "1868",
+            "Fate Type": "Fate",
+            "Fate Level": "96",
+            "Fate Level Sync": "100",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1874": {
+            "Fate Name": "A Raptor Runs Through It",
+            "Type": "Defense",
+            "Level": "96",
+            "Location": {
+                "x": 34.98,
+                "y": 14.45
+            },
+            "Experience": "362,880",
+            "Gil": "192",
+            "Gemstones": "16",
+            "Fate ID": "1874",
+            "Fate Type": "Fate",
+            "Fate Level": "96",
+            "Fate Level Sync": "100",
+            "Icon Objective": "ui/icon/060000/060504.tex"
         },
         "1871": {
             "Fate Name": "The Serpentlord Seethes",
@@ -13722,23 +13722,6 @@
         }
     },
     "Thavnair": {
-        "1764": {
-            "Fate Name": "Full Petal Alchemist: Perilous Pickings",
-            "Type": "Collect",
-            "Level": "80",
-            "Location": {
-                "x": 21.49,
-                "y": 11.07
-            },
-            "Experience": "151,470",
-            "Gil": "160",
-            "Gemstones": "14",
-            "Fate ID": "1764",
-            "Fate Type": "Fate",
-            "Fate Level": "80",
-            "Fate Level Sync": "84",
-            "Icon Objective": "ui/icon/060000/060503.tex"
-        },
         "1771": {
             "Fate Name": "Full Petal Alchemist: Risky Return",
             "Type": "Kill Enemies",
@@ -13807,22 +13790,22 @@
             "Fate Level Sync": "84",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1768": {
-            "Fate Name": "Of Claws and Gall",
-            "Type": "Kill Enemies",
-            "Level": "81",
+        "1764": {
+            "Fate Name": "Full Petal Alchemist: Perilous Pickings",
+            "Type": "Collect",
+            "Level": "80",
             "Location": {
-                "x": 16.68,
-                "y": 9.01
+                "x": 21.49,
+                "y": 11.07
             },
-            "Experience": "153,697",
-            "Gil": "162",
+            "Experience": "151,470",
+            "Gil": "160",
             "Gemstones": "14",
-            "Fate ID": "1768",
+            "Fate ID": "1764",
             "Fate Type": "Fate",
-            "Fate Level": "81",
-            "Fate Level Sync": "85",
-            "Icon Objective": "ui/icon/060000/060501.tex"
+            "Fate Level": "80",
+            "Fate Level Sync": "84",
+            "Icon Objective": "ui/icon/060000/060503.tex"
         },
         "1766": {
             "Fate Name": "I Am the Valras",
@@ -13858,56 +13841,22 @@
             "Fate Level Sync": "85",
             "Icon Objective": "ui/icon/060000/060504.tex"
         },
-        "1778": {
-            "Fate Name": "Monkeys on Your Back",
+        "1768": {
+            "Fate Name": "Of Claws and Gall",
             "Type": "Kill Enemies",
-            "Level": "85",
+            "Level": "81",
             "Location": {
-                "x": 24.86,
-                "y": 27.09
+                "x": 16.68,
+                "y": 9.01
             },
-            "Experience": "162,607",
-            "Gil": "170",
+            "Experience": "153,697",
+            "Gil": "162",
             "Gemstones": "14",
-            "Fate ID": "1778",
+            "Fate ID": "1768",
             "Fate Type": "Fate",
-            "Fate Level": "85",
-            "Fate Level Sync": "89",
+            "Fate Level": "81",
+            "Fate Level Sync": "85",
             "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1774": {
-            "Fate Name": "Stalkers in the Shroud",
-            "Type": "Kill Enemies",
-            "Level": "85",
-            "Location": {
-                "x": 30.81,
-                "y": 19.43
-            },
-            "Experience": "162,607",
-            "Gil": "170",
-            "Gemstones": "14",
-            "Fate ID": "1774",
-            "Fate Type": "Fate",
-            "Fate Level": "85",
-            "Fate Level Sync": "89",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1772": {
-            "Fate Name": "Devout Pilgrims vs. the Jungle Lizards",
-            "Type": "Defense",
-            "Level": "85",
-            "Location": {
-                "x": 34.34,
-                "y": 27.48
-            },
-            "Experience": "162,607",
-            "Gil": "170",
-            "Gemstones": "14",
-            "Fate ID": "1772",
-            "Fate Type": "Fate",
-            "Fate Level": "85",
-            "Fate Level Sync": "89",
-            "Icon Objective": "ui/icon/060000/060504.tex"
         },
         "1775": {
             "Fate Name": "Swipe Eft",
@@ -13993,6 +13942,57 @@
             "Fate Level": "85",
             "Fate Level Sync": "89",
             "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1778": {
+            "Fate Name": "Monkeys on Your Back",
+            "Type": "Kill Enemies",
+            "Level": "85",
+            "Location": {
+                "x": 24.86,
+                "y": 27.09
+            },
+            "Experience": "162,607",
+            "Gil": "170",
+            "Gemstones": "14",
+            "Fate ID": "1778",
+            "Fate Type": "Fate",
+            "Fate Level": "85",
+            "Fate Level Sync": "89",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1774": {
+            "Fate Name": "Stalkers in the Shroud",
+            "Type": "Kill Enemies",
+            "Level": "85",
+            "Location": {
+                "x": 30.81,
+                "y": 19.43
+            },
+            "Experience": "162,607",
+            "Gil": "170",
+            "Gemstones": "14",
+            "Fate ID": "1774",
+            "Fate Type": "Fate",
+            "Fate Level": "85",
+            "Fate Level Sync": "89",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1772": {
+            "Fate Name": "Devout Pilgrims vs. the Jungle Lizards",
+            "Type": "Defense",
+            "Level": "85",
+            "Location": {
+                "x": 34.34,
+                "y": 27.48
+            },
+            "Experience": "162,607",
+            "Gil": "170",
+            "Gemstones": "14",
+            "Fate ID": "1772",
+            "Fate Type": "Fate",
+            "Fate Level": "85",
+            "Fate Level Sync": "89",
+            "Icon Objective": "ui/icon/060000/060504.tex"
         },
         "1763": {
             "Fate Name": "Devout Pilgrims vs. Daivadipa",
@@ -18018,6 +18018,23 @@
         }
     },
     "The Rak'tika Greatwood": {
+        "1456": {
+            "Fate Name": "Attack of the Killer Tomatl",
+            "Type": "Kill Boss",
+            "Level": "74",
+            "Location": {
+                "x": 10.07,
+                "y": 35.43
+            },
+            "Experience": "49,896",
+            "Gil": "148",
+            "Gemstones": "12",
+            "Fate ID": "1456",
+            "Fate Type": "Fate",
+            "Fate Level": "74",
+            "Fate Level Sync": "78",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
         "1455": {
             "Fate Name": "Dark Matters",
             "Type": "Kill Enemies",
@@ -18103,21 +18120,55 @@
             "Fate Level Sync": "78",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1456": {
-            "Fate Name": "Attack of the Killer Tomatl",
-            "Type": "Kill Boss",
-            "Level": "74",
+        "1444": {
+            "Fate Name": "The End of the Sentry",
+            "Type": "Defense",
+            "Level": "75",
             "Location": {
-                "x": 10.07,
-                "y": 35.43
+                "x": 25.54,
+                "y": 21.64
             },
-            "Experience": "49,896",
-            "Gil": "148",
+            "Experience": "50,220",
+            "Gil": "150",
             "Gemstones": "12",
-            "Fate ID": "1456",
+            "Fate ID": "1444",
             "Fate Type": "Fate",
-            "Fate Level": "74",
-            "Fate Level Sync": "78",
+            "Fate Level": "75",
+            "Fate Level Sync": "79",
+            "Icon Objective": "ui/icon/060000/060504.tex"
+        },
+        "1459": {
+            "Fate Name": "Monkeying Around",
+            "Type": "Collect",
+            "Level": "75",
+            "Location": {
+                "x": 23.48,
+                "y": 14.49
+            },
+            "Experience": "50,220",
+            "Gil": "150",
+            "Gemstones": "12",
+            "Fate ID": "1459",
+            "Fate Type": "Fate",
+            "Fate Level": "75",
+            "Fate Level Sync": "79",
+            "Icon Objective": "ui/icon/060000/060503.tex"
+        },
+        "1457": {
+            "Fate Name": "Queen of the Harpies",
+            "Type": "Kill Boss",
+            "Level": "75",
+            "Location": {
+                "x": 22.41,
+                "y": 11.83
+            },
+            "Experience": "50,220",
+            "Gil": "150",
+            "Gemstones": "12",
+            "Fate ID": "1457",
+            "Fate Type": "Fate",
+            "Fate Level": "75",
+            "Fate Level Sync": "79",
             "Icon Objective": "ui/icon/060000/060502.tex"
         },
         "1441": {
@@ -18285,57 +18336,6 @@
             "Gil": "150",
             "Gemstones": "12",
             "Fate ID": "1445",
-            "Fate Type": "Fate",
-            "Fate Level": "75",
-            "Fate Level Sync": "79",
-            "Icon Objective": "ui/icon/060000/060502.tex"
-        },
-        "1444": {
-            "Fate Name": "The End of the Sentry",
-            "Type": "Defense",
-            "Level": "75",
-            "Location": {
-                "x": 25.54,
-                "y": 21.64
-            },
-            "Experience": "50,220",
-            "Gil": "150",
-            "Gemstones": "12",
-            "Fate ID": "1444",
-            "Fate Type": "Fate",
-            "Fate Level": "75",
-            "Fate Level Sync": "79",
-            "Icon Objective": "ui/icon/060000/060504.tex"
-        },
-        "1459": {
-            "Fate Name": "Monkeying Around",
-            "Type": "Collect",
-            "Level": "75",
-            "Location": {
-                "x": 23.48,
-                "y": 14.49
-            },
-            "Experience": "50,220",
-            "Gil": "150",
-            "Gemstones": "12",
-            "Fate ID": "1459",
-            "Fate Type": "Fate",
-            "Fate Level": "75",
-            "Fate Level Sync": "79",
-            "Icon Objective": "ui/icon/060000/060503.tex"
-        },
-        "1457": {
-            "Fate Name": "Queen of the Harpies",
-            "Type": "Kill Boss",
-            "Level": "75",
-            "Location": {
-                "x": 22.41,
-                "y": 11.83
-            },
-            "Experience": "50,220",
-            "Gil": "150",
-            "Gemstones": "12",
-            "Fate ID": "1457",
             "Fate Type": "Fate",
             "Fate Level": "75",
             "Fate Level Sync": "79",
@@ -19314,91 +19314,6 @@
         }
     },
     "The Tempest": {
-        "1436": {
-            "Fate Name": "My Friend's Enemy Is Anemone of Mine",
-            "Type": "Kill Enemies",
-            "Level": "79",
-            "Location": {
-                "x": 33.2,
-                "y": 10.89
-            },
-            "Experience": "51,516",
-            "Gil": "158",
-            "Gemstones": "12",
-            "Fate ID": "1436",
-            "Fate Type": "Fate",
-            "Fate Level": "79",
-            "Fate Level Sync": "83",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1431": {
-            "Fate Name": "Nothing Like a Trappin' Life",
-            "Type": "Kill Enemies",
-            "Level": "79",
-            "Location": {
-                "x": 27.08,
-                "y": 24.72
-            },
-            "Experience": "51,516",
-            "Gil": "158",
-            "Gemstones": "12",
-            "Fate ID": "1431",
-            "Fate Type": "Fate",
-            "Fate Level": "79",
-            "Fate Level Sync": "83",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1439": {
-            "Fate Name": "A Lot to Swallow",
-            "Type": "Kill Enemies",
-            "Level": "79",
-            "Location": {
-                "x": 36.76,
-                "y": 13.99
-            },
-            "Experience": "51,516",
-            "Gil": "158",
-            "Gemstones": "12",
-            "Fate ID": "1439",
-            "Fate Type": "Fate",
-            "Fate Level": "79",
-            "Fate Level Sync": "83",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1435": {
-            "Fate Name": "Pearls Apart",
-            "Type": "Collect",
-            "Level": "79",
-            "Location": {
-                "x": 39.39,
-                "y": 18.23
-            },
-            "Experience": "51,516",
-            "Gil": "158",
-            "Gemstones": "12",
-            "Fate ID": "1435",
-            "Fate Type": "Fate",
-            "Fate Level": "79",
-            "Fate Level Sync": "83",
-            "Icon Objective": "ui/icon/060000/060503.tex"
-        },
-        "1427": {
-            "Fate Name": "Ondo of Blood",
-            "Type": "Kill Boss",
-            "Level": "79",
-            "Location": {
-                "x": 28.72,
-                "y": 12.33
-            },
-            "Experience": "51,516",
-            "Gil": "158",
-            "Gemstones": "12",
-            "Fate ID": "1427",
-            "Fate Type": "Fate",
-            "Fate Level": "79",
-            "Fate Level Sync": "83",
-            "Icon Objective": "ui/icon/060000/060502.tex"
-        },
         "1428": {
             "Fate Name": "Lookin' Back on the Track",
             "Type": "Defense",
@@ -19547,6 +19462,91 @@
             "Gil": "158",
             "Gemstones": "12",
             "Fate ID": "1433",
+            "Fate Type": "Fate",
+            "Fate Level": "79",
+            "Fate Level Sync": "83",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1436": {
+            "Fate Name": "My Friend's Enemy Is Anemone of Mine",
+            "Type": "Kill Enemies",
+            "Level": "79",
+            "Location": {
+                "x": 33.2,
+                "y": 10.89
+            },
+            "Experience": "51,516",
+            "Gil": "158",
+            "Gemstones": "12",
+            "Fate ID": "1436",
+            "Fate Type": "Fate",
+            "Fate Level": "79",
+            "Fate Level Sync": "83",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1431": {
+            "Fate Name": "Nothing Like a Trappin' Life",
+            "Type": "Kill Enemies",
+            "Level": "79",
+            "Location": {
+                "x": 27.08,
+                "y": 24.72
+            },
+            "Experience": "51,516",
+            "Gil": "158",
+            "Gemstones": "12",
+            "Fate ID": "1431",
+            "Fate Type": "Fate",
+            "Fate Level": "79",
+            "Fate Level Sync": "83",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1439": {
+            "Fate Name": "A Lot to Swallow",
+            "Type": "Kill Enemies",
+            "Level": "79",
+            "Location": {
+                "x": 36.76,
+                "y": 13.99
+            },
+            "Experience": "51,516",
+            "Gil": "158",
+            "Gemstones": "12",
+            "Fate ID": "1439",
+            "Fate Type": "Fate",
+            "Fate Level": "79",
+            "Fate Level Sync": "83",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1435": {
+            "Fate Name": "Pearls Apart",
+            "Type": "Collect",
+            "Level": "79",
+            "Location": {
+                "x": 39.39,
+                "y": 18.23
+            },
+            "Experience": "51,516",
+            "Gil": "158",
+            "Gemstones": "12",
+            "Fate ID": "1435",
+            "Fate Type": "Fate",
+            "Fate Level": "79",
+            "Fate Level Sync": "83",
+            "Icon Objective": "ui/icon/060000/060503.tex"
+        },
+        "1427": {
+            "Fate Name": "Ondo of Blood",
+            "Type": "Kill Boss",
+            "Level": "79",
+            "Location": {
+                "x": 28.72,
+                "y": 12.33
+            },
+            "Experience": "51,516",
+            "Gil": "158",
+            "Gemstones": "12",
+            "Fate ID": "1427",
             "Fate Type": "Fate",
             "Fate Level": "79",
             "Fate Level Sync": "83",
@@ -19749,74 +19749,6 @@
         }
     },
     "Ultima Thule": {
-        "1843": {
-            "Fate Name": "Omicron Recall: Comms Expansion",
-            "Type": "Collect",
-            "Level": "89",
-            "Location": {
-                "x": 29.38,
-                "y": 25.81
-            },
-            "Experience": "171,517",
-            "Gil": "178",
-            "Gemstones": "14",
-            "Fate ID": "1843",
-            "Fate Type": "Fate",
-            "Fate Level": "89",
-            "Fate Level Sync": "93",
-            "Icon Objective": "ui/icon/060000/060503.tex"
-        },
-        "1851": {
-            "Fate Name": "Beacons of Lost Hope",
-            "Type": "Kill Enemies",
-            "Level": "89",
-            "Location": {
-                "x": 30.59,
-                "y": 7.6
-            },
-            "Experience": "171,517",
-            "Gil": "178",
-            "Gemstones": "14",
-            "Fate ID": "1851",
-            "Fate Type": "Fate",
-            "Fate Level": "89",
-            "Fate Level Sync": "93",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1848": {
-            "Fate Name": "Only Just Begun",
-            "Type": "Defense",
-            "Level": "89",
-            "Location": {
-                "x": 8.72,
-                "y": 18.91
-            },
-            "Experience": "171,517",
-            "Gil": "178",
-            "Gemstones": "14",
-            "Fate ID": "1848",
-            "Fate Type": "Fate",
-            "Fate Level": "89",
-            "Fate Level Sync": "93",
-            "Icon Objective": "ui/icon/060000/060504.tex"
-        },
-        "1844": {
-            "Fate Name": "Omicron Recall: Secure Connection",
-            "Type": "Defense",
-            "Level": "89",
-            "Location": {
-                "x": 33.25,
-                "y": 26.83
-            },
-            "Experience": "171,517",
-            "Gil": "178",
-            "Gemstones": "14",
-            "Fate ID": "1844",
-            "Fate Type": "Fate",
-            "Fate Level": "89",
-            "Fate Level Sync": "93",
-            "Icon Objective": "ui/icon/060000/060504.tex"
-        },
         "1850": {
             "Fate Name": "Dead Inside",
             "Type": "Kill Enemies",
@@ -19952,6 +19884,74 @@
             "Fate Level": "89",
             "Fate Level Sync": "93",
             "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1843": {
+            "Fate Name": "Omicron Recall: Comms Expansion",
+            "Type": "Collect",
+            "Level": "89",
+            "Location": {
+                "x": 29.38,
+                "y": 25.81
+            },
+            "Experience": "171,517",
+            "Gil": "178",
+            "Gemstones": "14",
+            "Fate ID": "1843",
+            "Fate Type": "Fate",
+            "Fate Level": "89",
+            "Fate Level Sync": "93",
+            "Icon Objective": "ui/icon/060000/060503.tex"
+        },
+        "1851": {
+            "Fate Name": "Beacons of Lost Hope",
+            "Type": "Kill Enemies",
+            "Level": "89",
+            "Location": {
+                "x": 30.59,
+                "y": 7.6
+            },
+            "Experience": "171,517",
+            "Gil": "178",
+            "Gemstones": "14",
+            "Fate ID": "1851",
+            "Fate Type": "Fate",
+            "Fate Level": "89",
+            "Fate Level Sync": "93",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1848": {
+            "Fate Name": "Only Just Begun",
+            "Type": "Defense",
+            "Level": "89",
+            "Location": {
+                "x": 8.72,
+                "y": 18.91
+            },
+            "Experience": "171,517",
+            "Gil": "178",
+            "Gemstones": "14",
+            "Fate ID": "1848",
+            "Fate Type": "Fate",
+            "Fate Level": "89",
+            "Fate Level Sync": "93",
+            "Icon Objective": "ui/icon/060000/060504.tex"
+        },
+        "1844": {
+            "Fate Name": "Omicron Recall: Secure Connection",
+            "Type": "Defense",
+            "Level": "89",
+            "Location": {
+                "x": 33.25,
+                "y": 26.83
+            },
+            "Experience": "171,517",
+            "Gil": "178",
+            "Gemstones": "14",
+            "Fate ID": "1844",
+            "Fate Type": "Fate",
+            "Fate Level": "89",
+            "Fate Level Sync": "93",
+            "Icon Objective": "ui/icon/060000/060504.tex"
         },
         "1855": {
             "Fate Name": "Omicron Recall: Killing Order",
@@ -20226,6 +20226,23 @@
         }
     },
     "Urqopacha": {
+        "1878": {
+            "Fate Name": "Fire Suppression",
+            "Type": "Kill Boss",
+            "Level": "90",
+            "Location": {
+                "x": 25.5,
+                "y": 17.85
+            },
+            "Experience": "335,664",
+            "Gil": "180",
+            "Gemstones": "16",
+            "Fate ID": "1878",
+            "Fate Type": "Fate",
+            "Fate Level": "90",
+            "Fate Level Sync": "94",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
         "1880": {
             "Fate Name": "Panaq Attack",
             "Type": "Kill Boss",
@@ -20259,23 +20276,6 @@
             "Fate Level": "90",
             "Fate Level Sync": "94",
             "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1878": {
-            "Fate Name": "Fire Suppression",
-            "Type": "Kill Boss",
-            "Level": "90",
-            "Location": {
-                "x": 25.5,
-                "y": 17.85
-            },
-            "Experience": "335,664",
-            "Gil": "180",
-            "Gemstones": "16",
-            "Fate ID": "1878",
-            "Fate Type": "Fate",
-            "Fate Level": "90",
-            "Fate Level Sync": "94",
-            "Icon Objective": "ui/icon/060000/060502.tex"
         },
         "1879": {
             "Fate Name": "Wolf Parade",
@@ -20378,6 +20378,40 @@
             "Fate Level": "91",
             "Fate Level Sync": "95",
             "Icon Objective": "ui/icon/060000/060504.tex"
+        },
+        "1892": {
+            "Fate Name": "A Valiant Duel",
+            "Type": "Kill Boss",
+            "Level": "93",
+            "Location": {
+                "x": 22.99,
+                "y": 27.54
+            },
+            "Experience": "349,272",
+            "Gil": "186",
+            "Gemstones": "16",
+            "Fate ID": "1892",
+            "Fate Type": "Fate",
+            "Fate Level": "93",
+            "Fate Level Sync": "97",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1887": {
+            "Fate Name": "Claws and Effect",
+            "Type": "Kill Enemies",
+            "Level": "93",
+            "Location": {
+                "x": 19.68,
+                "y": 28.64
+            },
+            "Experience": "349,272",
+            "Gil": "186",
+            "Gemstones": "16",
+            "Fate ID": "1887",
+            "Fate Type": "Fate",
+            "Fate Level": "93",
+            "Fate Level Sync": "97",
+            "Icon Objective": "ui/icon/060000/060501.tex"
         },
         "1888": {
             "Fate Name": "By Your Powers Combined",
@@ -20493,40 +20527,6 @@
             "Gil": "186",
             "Gemstones": "16",
             "Fate ID": "1893",
-            "Fate Type": "Fate",
-            "Fate Level": "93",
-            "Fate Level Sync": "97",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1892": {
-            "Fate Name": "A Valiant Duel",
-            "Type": "Kill Boss",
-            "Level": "93",
-            "Location": {
-                "x": 22.99,
-                "y": 27.54
-            },
-            "Experience": "349,272",
-            "Gil": "186",
-            "Gemstones": "16",
-            "Fate ID": "1892",
-            "Fate Type": "Fate",
-            "Fate Level": "93",
-            "Fate Level Sync": "97",
-            "Icon Objective": "ui/icon/060000/060502.tex"
-        },
-        "1887": {
-            "Fate Name": "Claws and Effect",
-            "Type": "Kill Enemies",
-            "Level": "93",
-            "Location": {
-                "x": 19.68,
-                "y": 28.64
-            },
-            "Experience": "349,272",
-            "Gil": "186",
-            "Gemstones": "16",
-            "Fate ID": "1887",
             "Fate Type": "Fate",
             "Fate Level": "93",
             "Fate Level Sync": "97",
@@ -21299,6 +21299,108 @@
         }
     },
     "Yak T'el": {
+        "1910": {
+            "Fate Name": "Sick, Ornery Wivres",
+            "Type": "Kill Enemies",
+            "Level": "94",
+            "Location": {
+                "x": 14.56,
+                "y": 33.71
+            },
+            "Experience": "353,808",
+            "Gil": "188",
+            "Gemstones": "16",
+            "Fate ID": "1910",
+            "Fate Type": "Fate",
+            "Fate Level": "94",
+            "Fate Level Sync": "98",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1901": {
+            "Fate Name": "My Star",
+            "Type": "Kill Enemies",
+            "Level": "94",
+            "Location": {
+                "x": 16.61,
+                "y": 10.01
+            },
+            "Experience": "353,808",
+            "Gil": "188",
+            "Gemstones": "16",
+            "Fate ID": "1901",
+            "Fate Type": "Fate",
+            "Fate Level": "94",
+            "Fate Level Sync": "98",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1906": {
+            "Fate Name": "Escape Shroom",
+            "Type": "Collect",
+            "Level": "94",
+            "Location": {
+                "x": 30.37,
+                "y": 34.9
+            },
+            "Experience": "353,808",
+            "Gil": "188",
+            "Gemstones": "16",
+            "Fate ID": "1906",
+            "Fate Type": "Fate",
+            "Fate Level": "94",
+            "Fate Level Sync": "98",
+            "Icon Objective": "ui/icon/060000/060503.tex"
+        },
+        "1897": {
+            "Fate Name": "The Departed",
+            "Type": "Kill Enemies",
+            "Level": "94",
+            "Location": {
+                "x": 27.95,
+                "y": 12.42
+            },
+            "Experience": "353,808",
+            "Gil": "188",
+            "Gemstones": "16",
+            "Fate ID": "1897",
+            "Fate Type": "Fate",
+            "Fate Level": "94",
+            "Fate Level Sync": "98",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1902": {
+            "Fate Name": "I Ain't Afraid of No Ghost",
+            "Type": "Kill Boss",
+            "Level": "94",
+            "Location": {
+                "x": 34.14,
+                "y": 18.32
+            },
+            "Experience": "353,808",
+            "Gil": "188",
+            "Gemstones": "16",
+            "Fate ID": "1902",
+            "Fate Type": "Fate",
+            "Fate Level": "94",
+            "Fate Level Sync": "98",
+            "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1907": {
+            "Fate Name": "Najool of Denial",
+            "Type": "Kill Enemies",
+            "Level": "94",
+            "Location": {
+                "x": 27.74,
+                "y": 29.25
+            },
+            "Experience": "353,808",
+            "Gil": "188",
+            "Gemstones": "16",
+            "Fate ID": "1907",
+            "Fate Type": "Fate",
+            "Fate Level": "94",
+            "Fate Level Sync": "98",
+            "Icon Objective": "ui/icon/060000/060501.tex"
+        },
         "1898": {
             "Fate Name": "Fright or Flight",
             "Type": "Kill Enemies",
@@ -21468,108 +21570,6 @@
             "Fate Level": "94",
             "Fate Level Sync": "98",
             "Icon Objective": "ui/icon/060000/060502.tex"
-        },
-        "1910": {
-            "Fate Name": "Sick, Ornery Wivres",
-            "Type": "Kill Enemies",
-            "Level": "94",
-            "Location": {
-                "x": 14.56,
-                "y": 33.71
-            },
-            "Experience": "353,808",
-            "Gil": "188",
-            "Gemstones": "16",
-            "Fate ID": "1910",
-            "Fate Type": "Fate",
-            "Fate Level": "94",
-            "Fate Level Sync": "98",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1901": {
-            "Fate Name": "My Star",
-            "Type": "Kill Enemies",
-            "Level": "94",
-            "Location": {
-                "x": 16.61,
-                "y": 10.01
-            },
-            "Experience": "353,808",
-            "Gil": "188",
-            "Gemstones": "16",
-            "Fate ID": "1901",
-            "Fate Type": "Fate",
-            "Fate Level": "94",
-            "Fate Level Sync": "98",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1906": {
-            "Fate Name": "Escape Shroom",
-            "Type": "Collect",
-            "Level": "94",
-            "Location": {
-                "x": 30.37,
-                "y": 34.9
-            },
-            "Experience": "353,808",
-            "Gil": "188",
-            "Gemstones": "16",
-            "Fate ID": "1906",
-            "Fate Type": "Fate",
-            "Fate Level": "94",
-            "Fate Level Sync": "98",
-            "Icon Objective": "ui/icon/060000/060503.tex"
-        },
-        "1897": {
-            "Fate Name": "The Departed",
-            "Type": "Kill Enemies",
-            "Level": "94",
-            "Location": {
-                "x": 27.95,
-                "y": 12.42
-            },
-            "Experience": "353,808",
-            "Gil": "188",
-            "Gemstones": "16",
-            "Fate ID": "1897",
-            "Fate Type": "Fate",
-            "Fate Level": "94",
-            "Fate Level Sync": "98",
-            "Icon Objective": "ui/icon/060000/060501.tex"
-        },
-        "1902": {
-            "Fate Name": "I Ain't Afraid of No Ghost",
-            "Type": "Kill Boss",
-            "Level": "94",
-            "Location": {
-                "x": 34.14,
-                "y": 18.32
-            },
-            "Experience": "353,808",
-            "Gil": "188",
-            "Gemstones": "16",
-            "Fate ID": "1902",
-            "Fate Type": "Fate",
-            "Fate Level": "94",
-            "Fate Level Sync": "98",
-            "Icon Objective": "ui/icon/060000/060502.tex"
-        },
-        "1907": {
-            "Fate Name": "Najool of Denial",
-            "Type": "Kill Enemies",
-            "Level": "94",
-            "Location": {
-                "x": 27.74,
-                "y": 29.25
-            },
-            "Experience": "353,808",
-            "Gil": "188",
-            "Gemstones": "16",
-            "Fate ID": "1907",
-            "Fate Type": "Fate",
-            "Fate Level": "94",
-            "Fate Level Sync": "98",
-            "Icon Objective": "ui/icon/060000/060501.tex"
         }
     },
     "Yanxia": {

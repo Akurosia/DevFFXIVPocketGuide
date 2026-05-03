@@ -504,32 +504,52 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/n4f/n4f1 - Seenland.webp",
     "markers": [
         {
-            "id": "1503",
-            "name": "Gefährliche Nachtschatten",
-            "category": "kill_enemies",
+            "id": "1500",
+            "name": "Er ist Holzfäller und ihm geht's nicht gut",
+            "category": "collect",
             "position": [
-                824.2,
-                1503.53
+                1044.48,
+                890.13
             ],
             "description": ""
         },
         {
-            "id": "1499",
-            "name": "Hinterhältige Warge",
-            "category": "kill_enemies",
+            "id": "1501",
+            "name": "Rücksichtslose Nachtschatten",
+            "category": "defense",
             "position": [
-                930.59,
-                1028.0
+                1170.3600000000001,
+                792.23
             ],
             "description": ""
         },
         {
-            "id": "1506",
-            "name": "Krakeelende Gremlins",
-            "category": "kill_enemies",
+            "id": "1502",
+            "name": "Arglistige Nachtschatten",
+            "category": "defense",
             "position": [
-                1574.96,
-                1214.81
+                1224.3,
+                1468.57
+            ],
+            "description": ""
+        },
+        {
+            "id": "1505",
+            "name": "Ein Händler zum Anbeißen",
+            "category": "defense",
+            "position": [
+                1224.3,
+                1468.57
+            ],
+            "description": ""
+        },
+        {
+            "id": "1509",
+            "name": "Anemositäten",
+            "category": "defense",
+            "position": [
+                1008.52,
+                703.31
             ],
             "description": ""
         },
@@ -574,12 +594,32 @@
             "description": ""
         },
         {
-            "id": "1510",
-            "name": "Knackiges Chamäleon",
-            "category": "kill_boss",
+            "id": "1503",
+            "name": "Gefährliche Nachtschatten",
+            "category": "kill_enemies",
             "position": [
-                1008.52,
-                703.31
+                824.2,
+                1503.53
+            ],
+            "description": ""
+        },
+        {
+            "id": "1499",
+            "name": "Hinterhältige Warge",
+            "category": "kill_enemies",
+            "position": [
+                930.59,
+                1028.0
+            ],
+            "description": ""
+        },
+        {
+            "id": "1506",
+            "name": "Krakeelende Gremlins",
+            "category": "kill_enemies",
+            "position": [
+                1574.96,
+                1214.81
             ],
             "description": ""
         },
@@ -604,52 +644,12 @@
             "description": ""
         },
         {
-            "id": "1509",
-            "name": "Anemositäten",
-            "category": "defense",
+            "id": "1510",
+            "name": "Knackiges Chamäleon",
+            "category": "kill_boss",
             "position": [
                 1008.52,
                 703.31
-            ],
-            "description": ""
-        },
-        {
-            "id": "1501",
-            "name": "Rücksichtslose Nachtschatten",
-            "category": "defense",
-            "position": [
-                1170.3600000000001,
-                792.23
-            ],
-            "description": ""
-        },
-        {
-            "id": "1502",
-            "name": "Arglistige Nachtschatten",
-            "category": "defense",
-            "position": [
-                1224.3,
-                1468.57
-            ],
-            "description": ""
-        },
-        {
-            "id": "1505",
-            "name": "Ein Händler zum Anbeißen",
-            "category": "defense",
-            "position": [
-                1224.3,
-                1468.57
-            ],
-            "description": ""
-        },
-        {
-            "id": "1500",
-            "name": "Er ist Holzfäller und ihm geht's nicht gut",
-            "category": "collect",
-            "position": [
-                1044.48,
-                890.13
             ],
             "description": ""
         },

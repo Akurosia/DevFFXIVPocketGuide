@@ -504,6 +504,16 @@
     "imageUrl": "https://ff14.akurosiakamo.de/extras/images//ui/map/u5f/u5f1 - Mare Lamentorum.webp",
     "markers": [
         {
+            "id": "1809",
+            "name": "Angriff der Droiden",
+            "category": "kill_enemies",
+            "position": [
+                1596.94,
+                719.3
+            ],
+            "description": ""
+        },
+        {
             "id": "1806",
             "name": "Sicheln aus dem Zwielicht",
             "category": "kill_enemies",
@@ -544,12 +554,12 @@
             "description": ""
         },
         {
-            "id": "1809",
-            "name": "Angriff der Droiden",
+            "id": "1815",
+            "name": "Wertlose Wärter",
             "category": "kill_enemies",
             "position": [
-                1596.94,
-                719.3
+                1716.8200000000002,
+                1667.87
             ],
             "description": ""
         },
@@ -604,16 +614,6 @@
             "description": ""
         },
         {
-            "id": "1815",
-            "name": "Wertlose Wärter",
-            "category": "kill_enemies",
-            "position": [
-                1716.8200000000002,
-                1667.87
-            ],
-            "description": ""
-        },
-        {
             "id": "1810",
             "name": "Weißer Gigant",
             "category": "kill_boss",
@@ -624,22 +624,22 @@
             "description": ""
         },
         {
-            "id": "1816",
-            "name": "Der Plan des Schmarotzers",
-            "category": "kill_boss",
-            "position": [
-                709.31,
-                841.6800000000001
-            ],
-            "description": ""
-        },
-        {
             "id": "1805",
             "name": "Langohren des Mondes: Reif für die Tonne",
             "category": "kill_boss",
             "position": [
                 519.99,
                 1756.78
+            ],
+            "description": ""
+        },
+        {
+            "id": "1816",
+            "name": "Der Plan des Schmarotzers",
+            "category": "kill_boss",
+            "position": [
+                709.31,
+                841.6800000000001
             ],
             "description": ""
         },

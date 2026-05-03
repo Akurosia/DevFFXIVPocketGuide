@@ -71,10 +71,10 @@ figthsArray = [
     [104,  ["R12S"]],
     [105,  ["R12S_P2"]],
 
-    [3012, ["Tsukoyomi"]],
+    [3012, ["Shinryu"]],
     // [1071, ["Valigarmanda"]],
     // [1072, ["Zoraal Ja"]],
-    [1083, ["Doomtrain"]],
+    [1084, ["Enou"]],
 ];
 
 // Extract fight IDs while preserving order
