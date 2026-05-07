@@ -1,0 +1,610 @@
+:root {
+    --site-bg: #11161c;
+    --site-panel: #1a2129;
+    --site-panel-alt: #202933;
+    --site-border: rgba(178, 196, 206, 0.14);
+    --site-border-strong: rgba(131, 176, 209, 0.28);
+    --site-text: #eef4f8;
+    --site-text-muted: #b4c2ce;
+    --site-text-soft: #8c9aaa;
+    --site-accent: #83b0d1;
+    --site-accent-strong: #a5c7df;
+    --site-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    --site-radius: 14px;
+    --site-content-width: 1240px;
+}
+
+html,
+body {
+    min-height: 100%;
+    background: var(--site-bg);
+    color: var(--site-text);
+}
+
+body {
+    line-height: 1.6;
+}
+
+body::before {
+    display: none;
+}
+
+a {
+    color: var(--site-accent);
+}
+
+a:hover,
+a:focus {
+    color: var(--site-accent-strong);
+    text-decoration: none;
+}
+
+.layout {
+    min-height: 100vh;
+    background: var(--site-bg);
+}
+
+.layout__wrapper {
+    padding: 1rem 0 2rem;
+}
+
+.site-header-shell,
+.search,
+.index,
+.guide-layout,
+.site-footer,
+.bestiarium-page,
+.singlepage,
+.single_page,
+.container2,
+body > .container {
+    width: min(calc(100% - 2rem), var(--site-content-width));
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidebar__trigger {
+    border: 1px solid var(--site-border);
+    border-radius: 999px;
+    background: var(--site-panel);
+    color: var(--site-text);
+    box-shadow: var(--site-shadow);
+}
+
+.site-grid__sidebar-overlay {
+    background: rgba(10, 14, 18, 0.55);
+    backdrop-filter: blur(3px);
+}
+
+.sidebar {
+    border-right: 1px solid var(--site-border);
+    background-color: #121920 !important;
+}
+
+.sidebar::before {
+    display: none;
+}
+
+.sidebar__wrapper {
+    padding: 1.25rem 1rem 1.5rem;
+    color: var(--site-text);
+}
+
+.languages {
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--site-border);
+}
+
+.sidebar__title {
+    margin-bottom: 1rem;
+}
+
+.sidebar__title img {
+    max-height: 48px;
+    filter: none;
+}
+
+.sidebar__menu > li > span,
+.sidebar__menu a {
+    border: 1px solid var(--site-border);
+    border-radius: 12px;
+    background: var(--site-panel);
+    color: var(--site-text);
+    box-shadow: none;
+    transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+
+.sidebar__menu > li > span {
+    padding: 0.75rem 0.9rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.sidebar__menu a {
+    margin-bottom: 0.45rem;
+    padding: 0.8rem 0.9rem;
+}
+
+.sidebar__menu a:hover,
+.sidebar__menu a:focus,
+.sidebar__menu a.active {
+    border-color: var(--site-border-strong);
+    background: var(--site-panel-alt);
+    color: var(--site-text);
+    transform: none;
+}
+
+.sidebar__menu ul {
+    margin: 0.4rem 0 1rem 0.9rem;
+    padding-left: 0.9rem;
+    border-left: 1px solid var(--site-border);
+}
+
+.site-header-shell {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--site-text);
+}
+
+.site-header__grid {
+    overflow: hidden;
+    border: 1px solid var(--site-border);
+    border-radius: var(--site-radius);
+    background:
+        linear-gradient(0deg, rgba(17, 22, 28, 0.88), rgba(17, 22, 28, 0.88)),
+        linear-gradient(135deg, rgba(131, 176, 209, 0.12), transparent 45%) !important;
+    box-shadow: var(--site-shadow);
+}
+
+.site-header__grid::after {
+    display: none;
+}
+
+.site-header__title,
+.site-header__guide-title,
+.site-header__guide-title_en {
+    color: var(--site-text);
+    text-shadow: none;
+}
+
+.site-header__guide-title_en {
+    color: var(--site-text-muted);
+}
+
+.site-header__links {
+    gap: 0.75rem;
+}
+
+.site-header__links a,
+.content_btn,
+.search .btn,
+.search button,
+.search input[type="button"],
+.search input[type="submit"],
+.guide-layout .btn,
+.guide-layout button,
+.guide-layout input[type="button"],
+.guide-layout input[type="submit"],
+.singlepage .btn,
+.singlepage button,
+.singlepage input[type="button"],
+.singlepage input[type="submit"],
+.single_page .btn,
+.single_page button,
+.single_page input[type="button"],
+.single_page input[type="submit"],
+.bestiarium-page .btn,
+.bestiarium-page button,
+.bestiarium-page input[type="button"],
+.bestiarium-page input[type="submit"],
+.fixed-header button,
+.expansion-toggle,
+.bestiarium-category-button,
+.bestiarium-rank-button,
+.bestiarium-toolbar__button {
+    border: 1px solid var(--site-border);
+    border-radius: 12px;
+    background: var(--site-panel-alt);
+    color: var(--site-text);
+    box-shadow: none;
+}
+
+.site-header__links a:hover,
+.site-header__links a:focus,
+.content_btn:hover,
+.content_btn:focus,
+.search .btn:hover,
+.search button:hover,
+.guide-layout .btn:hover,
+.guide-layout button:hover,
+.singlepage .btn:hover,
+.singlepage button:hover,
+.single_page .btn:hover,
+.single_page button:hover,
+.bestiarium-page .btn:hover,
+.bestiarium-page button:hover,
+.fixed-header button:hover,
+.expansion-toggle:hover,
+.expansion-toggle:focus,
+.bestiarium-category-button:hover,
+.bestiarium-category-button.is-active,
+.bestiarium-rank-button:hover,
+.bestiarium-rank-button.is-active,
+.bestiarium-toolbar__button:hover,
+.bestiarium-toolbar__button.is-active {
+    border-color: var(--site-border-strong);
+    background: rgba(131, 176, 209, 0.12);
+    color: var(--site-text);
+}
+
+.content_btn {
+    background: rgba(26, 33, 41, 0.92);
+}
+
+.search {
+    margin-bottom: 1rem;
+}
+
+.search__form,
+.index-divider,
+.summary,
+.guide-metadata,
+.guide-content,
+.singlepage,
+.single_page,
+.site-footer .content-container,
+.bestiarium-shell,
+.bestiarium-loading,
+.bestiarium-error,
+.bestiarium-note,
+.bestiarium-stat,
+.progress-section-container,
+#progress,
+.innercontainer > .album {
+    border: 1px solid var(--site-border);
+    border-radius: var(--site-radius);
+    background: var(--site-panel);
+    box-shadow: var(--site-shadow);
+    color: var(--site-text);
+}
+
+.summary:hover {
+    border-color: var(--site-border-strong);
+}
+
+.search__form {
+    padding: 1rem 1.1rem;
+}
+
+.search__form label,
+.bestiarium-stat span,
+.progress-label {
+    color: var(--site-text-soft);
+}
+
+.search #guideFilter,
+.search input[type="text"],
+.search input[type="search"],
+.search input[type="number"],
+.search select,
+.search textarea,
+.guide-layout input[type="text"],
+.guide-layout input[type="search"],
+.guide-layout input[type="number"],
+.guide-layout select,
+.guide-layout textarea,
+.singlepage input[type="text"],
+.singlepage input[type="search"],
+.singlepage input[type="number"],
+.singlepage select,
+.singlepage textarea,
+.single_page input[type="text"],
+.single_page input[type="search"],
+.single_page input[type="number"],
+.single_page select,
+.single_page textarea,
+.bestiarium-page input[type="text"],
+.bestiarium-page input[type="search"],
+.bestiarium-page input[type="number"],
+.bestiarium-page select,
+.bestiarium-page textarea,
+.fixed-header input,
+.fixed-header select,
+.search-bar {
+    border: 1px solid var(--site-border);
+    border-radius: 12px;
+    background: #0f1419;
+    color: var(--site-text);
+    box-shadow: none;
+}
+
+.search #guideFilter:focus,
+.search input:focus,
+.search select:focus,
+.search textarea:focus,
+.guide-layout input:focus,
+.guide-layout select:focus,
+.guide-layout textarea:focus,
+.singlepage input:focus,
+.singlepage select:focus,
+.singlepage textarea:focus,
+.single_page input:focus,
+.single_page select:focus,
+.single_page textarea:focus,
+.bestiarium-page input:focus,
+.bestiarium-page select:focus,
+.bestiarium-page textarea:focus,
+.fixed-header input:focus,
+.fixed-header select:focus,
+.search-bar:focus {
+    border-color: var(--site-border-strong);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(131, 176, 209, 0.12);
+}
+
+.search input::placeholder,
+.search textarea::placeholder,
+.guide-layout input::placeholder,
+.guide-layout textarea::placeholder,
+.singlepage input::placeholder,
+.singlepage textarea::placeholder,
+.single_page input::placeholder,
+.single_page textarea::placeholder,
+.bestiarium-page input::placeholder,
+.bestiarium-page textarea::placeholder,
+.fixed-header input::placeholder,
+.search-bar::placeholder {
+    color: var(--site-text-soft);
+}
+
+.index {
+    margin-bottom: 1rem;
+}
+
+.index-divider {
+    margin: 1rem 0;
+    padding: 0.95rem 1rem;
+}
+
+.guide-layout,
+.treasuremap .guide-layout {
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.guide-metadata,
+.guide-content,
+.singlepage,
+.single_page {
+    overflow: hidden;
+}
+
+.guide-content,
+.guide-metadata__wrapper,
+.guide__accordion-copy-wrapper {
+    color: var(--site-text);
+}
+
+.guide-metadata__subtitle,
+.guide-metadata a,
+.guide-content h1,
+.guide-content h2,
+.guide-content h3,
+.guide-content h4,
+.guide-content h5,
+.guide-content h6,
+.guide__accordion-title,
+.guide__attack-tags-title,
+.guide__attack-notes-title,
+.guide__content__wip__title {
+    color: var(--site-text);
+}
+
+[class*="guide__accordion-content--"] {
+    border: 1px solid var(--site-border) !important;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: none;
+}
+
+.guide-content table,
+.guide-content .table,
+.guide-metadata table,
+.guide-metadata .table,
+.singlepage table,
+.singlepage .table,
+.single_page table,
+.single_page .table,
+.bestiarium-page table,
+.bestiarium-page .table {
+    color: var(--site-text);
+    background: transparent;
+}
+
+.guide-content table th,
+.guide-content table td,
+.guide-content .table th,
+.guide-content .table td,
+.guide-metadata table th,
+.guide-metadata table td,
+.guide-metadata .table th,
+.guide-metadata .table td,
+.singlepage table th,
+.singlepage table td,
+.singlepage .table th,
+.singlepage .table td,
+.single_page table th,
+.single_page table td,
+.single_page .table th,
+.single_page .table td,
+.bestiarium-page table th,
+.bestiarium-page table td,
+.bestiarium-page .table th,
+.bestiarium-page .table td {
+    border-color: var(--site-border) !important;
+}
+
+.guide-content table thead th,
+.guide-content .table thead th,
+.guide-metadata table thead th,
+.guide-metadata .table thead th,
+.singlepage table thead th,
+.singlepage .table thead th,
+.single_page table thead th,
+.single_page .table thead th,
+.bestiarium-page table thead th,
+.bestiarium-page .table thead th {
+    background: rgba(131, 176, 209, 0.1);
+    color: var(--site-text);
+}
+
+.site-footer {
+    margin-top: 1.5rem;
+}
+
+.site-footer .content-container {
+    padding: 1rem 1.25rem;
+}
+
+.footer__copy,
+.footer__copy a {
+    color: var(--site-text-muted);
+}
+
+.footer__copy a {
+    color: var(--site-accent);
+}
+
+.bestiarium-shell {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 0;
+    background: var(--site-panel);
+}
+
+.bestiarium-shell::before,
+.bestiarium-header__title::before,
+.bestiarium-category-button::after {
+    display: none;
+}
+
+.bestiarium-sidebar,
+.bestiarium-main,
+.bestiarium-note__head,
+.bestiarium-stat,
+.bestiarium-loading,
+.bestiarium-error {
+    background: transparent;
+}
+
+.bestiarium-sidebar {
+    padding: 1rem;
+    border-right: 1px solid var(--site-border);
+}
+
+.bestiarium-main {
+    padding: 1rem;
+}
+
+.bestiarium-sidebar__title,
+.bestiarium-ranks__title,
+.bestiarium-header__label,
+.bestiarium-header__title,
+.bestiarium-note__title {
+    color: var(--site-text);
+}
+
+.bestiarium-category-grid {
+    gap: 0.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--site-border);
+}
+
+.bestiarium-toolbar {
+    gap: 0.75rem;
+}
+
+.bestiarium-target + .bestiarium-target,
+.bestiarium-header,
+.bestiarium-note__head {
+    border-color: var(--site-border);
+}
+
+.fixed-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 1px solid var(--site-border);
+    border-radius: var(--site-radius);
+    background: var(--site-panel);
+    box-shadow: var(--site-shadow);
+}
+
+.fixed-header input,
+.fixed-header select {
+    width: min(32rem, 100%);
+    margin: 0;
+}
+
+.fixed-header button {
+    margin: 0;
+    font-weight: 600;
+}
+
+#progress {
+    margin-top: 1rem;
+    padding: 1rem;
+}
+
+.progress-section-container {
+    margin-bottom: 0.75rem;
+    padding: 0.85rem;
+    text-align: left;
+}
+
+.progress-bar-container {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.innercontainer {
+    gap: 1rem !important;
+}
+
+.innercontainer > .album {
+    background: var(--site-panel) !important;
+    color: var(--site-text) !important;
+    box-shadow: var(--site-shadow) !important;
+}
+
+.innercontainer > .album > img {
+    border-radius: 14px !important;
+}
+
+@media (max-width: 991px) {
+    .site-header-shell,
+    .search,
+    .index,
+    .guide-layout,
+    .site-footer,
+    .bestiarium-page,
+    .singlepage,
+    .single_page,
+    .container2,
+    body > .container {
+        width: min(calc(100% - 1rem), var(--site-content-width));
+    }
+
+    .bestiarium-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .bestiarium-sidebar {
+        border-right: 0;
+        border-bottom: 1px solid var(--site-border);
+    }
+}

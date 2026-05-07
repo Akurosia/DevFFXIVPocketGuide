@@ -1868,20 +1868,6 @@ ion-icon {
   height: auto;
   display: block;
 }
-// Style CSS ====================================================================
-
-    @import "style/_style_media_landscape_min_with_64.scss";
-    @import "style/_style_media_landscape_min_with_70.scss";
-    @import "style/_style_media_landscape_min_with_80.scss";
-    @import "style/_style_media_min_with_48.scss";
-    @import "style/_style_media_min_with_64.scss";
-    @import "style/_style_media_min_with_64_01.scss";
-    @import "style/_style_media_min_with_100.scss";
-    @import "style/_style_media_min_with_rest.scss";
-
-// Style CSS ====================================================================
-
-
 .expansion-toggles {
     display: flex;
     gap: 0.5rem;
