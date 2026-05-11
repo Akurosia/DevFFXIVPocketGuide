@@ -50,7 +50,7 @@ table {
 
 [id^="table_"], [id^="tbody_"] {
     width: 100%;
-    display: table;
+    /*display: table;*/
     overflow-y: auto;
     overflow-x: auto;
 }

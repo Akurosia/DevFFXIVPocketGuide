@@ -28,9 +28,132 @@ expansions = {
     "Shadowbringers": "shb",
     "Endwalker": "ew",
     "Dawntrail": "dt",
+    "Evercold": "ec",
 }
 
 categories = ['dungeon', 'klasse', 'prüfung', 'gewoelbesuche', 'gildengeheiß', 'freibrief', "raid", "araid", "wilderstamm", "windäther", "hohejagd", "feldexkursion", "achivment", "relik", "hildi"]
+
+
+def clean_quest_name(name):
+    return str(name or "").replace(" ", "").replace(" ", "").strip()
+
+
+def first_text(*values):
+    for value in values:
+        if value:
+            return str(value).strip()
+    return ""
+
+
+def get_row_name(value):
+    if isinstance(value, dict):
+        return first_text(value.get("Name_de"), value.get("Name_en"), value.get("Singular_de"), value.get("Singular_en"), value.get("Name"))
+    return first_text(value)
+
+
+def add_unique(elements, value):
+    value = first_text(value)
+    if value and value not in elements:
+        elements.append(value)
+
+
+def has_any(text, needles):
+    text = str(text or "").lower()
+    return any(needle.lower() in text for needle in needles)
+
+
+def get_content_finder_type(content_finder):
+    name = get_row_name(content_finder.get("Name_de", ""))
+    content_type = get_row_name(content_finder.get("ContentType", {}))
+    content_member_type = get_row_name(content_finder.get("ContentMemberType", {}))
+    content_link_type = " ".join([name, content_type, content_member_type])
+
+    if has_any(content_link_type, ["allianz", "alliance", "24-spieler", "24 player"]):
+        return "Allianz Raid"
+    if has_any(content_link_type, ["gildengeheiß", "gildengeheiss", "guildhest"]):
+        return "Gildengeheiß"
+    if has_any(content_link_type, ["gewölbesuch", "gewoelbesuch", "variant", "criterion", "unterstadt", "aloalo", "rokon"]):
+        return "Gewölbesuche"
+    if has_any(content_link_type, ["tiefe gewölbe", "tiefe gewoelbe", "deep dungeon", "palast der toten", "himmelssäule", "himmelssaeule", "eureka orthos"]):
+        return "Tiefe Gewölbe"
+    if has_any(content_link_type, ["prüfung", "pruefung", "trial"]):
+        return "Prüfung"
+    if has_any(content_link_type, ["dungeon", "instanz"]):
+        return "Dungeon"
+    if has_any(content_link_type, ["raid"]):
+        return "Raid"
+    if has_any(content_link_type, ["pvp", "front", "crystalline conflict", "crystalline conflict"]):
+        return "PvP"
+    return ""
+
+
+def format_content_finder_unlock(content_finder):
+    name = get_row_name(content_finder.get("Name_de", ""))
+    content_type = get_content_finder_type(content_finder)
+    if content_type and not has_any(name, [f"({content_type})", content_type]):
+        return f"{name} ({content_type})"
+    return name
+
+
+def find_content_finder_by_content_id(content_id):
+    content_id = str(content_id or "0")
+    if content_id == "0":
+        return None
+    for key, value in contentfindercondition.items():
+        if str(value.get('Content', {}).get('row_id', "0")) == content_id:
+            return value
+    return None
+
+
+def get_journal_based_unlocks(quest):
+    elements = []
+    journal = get_row_name(quest.get('JournalGenre', {}))
+    journal_group = get_row_name(quest.get('JournalCategory', {}))
+    journal_all = " / ".join([journal, journal_group])
+
+    if "Jobaufträge" in journal or "Gildenaufträge der" in journal:
+        add_unique(elements, (journal.replace("-Jobaufträge", "").replace("Gildenaufträge der", "").strip() + " (Klassenquest)").strip())
+    if has_any(journal_all, ["hildibrand", "inspektor"]):
+        add_unique(elements, "Hildibrand (Questreihe)")
+    if has_any(journal_all, ["relikt", "zodiak", "anima", "eureka", "resistance", "manderville-waffe", "phantom"]):
+        add_unique(elements, "Reliktwaffen (Questreihe)")
+    if has_any(journal_all, ["wilder stamm", "stammesvölker", "stammesvoelker", "beast tribe", "allied society"]):
+        add_unique(elements, "Wilder Stamm")
+    if has_any(journal_all, ["freibrief", "leves"]):
+        add_unique(elements, "Freibriefe")
+    if has_any(journal_all, ["hohe jagd", "jagd", "mobhunt", "hunt"]):
+        add_unique(elements, "Hohe Jagd")
+    return elements
+
+
+def get_script_unlock_text(script_instruction):
+    value = first_text(script_instruction)
+    if value in ["", "NONE", "UNLOCK_IMAGE_SEASON"]:
+        return ""
+    if value in ["UNLOCK_BANZOKU", "UNLOCK_BEAST"]:
+        return "Wilder Stamm"
+    if value == "LOG_MOBHUNT_ORDER_UNLOCK":
+        return "Hohe Jagd"
+    if value == "UNLOCK_IMAGE_GC_TEAM":
+        return "Kommando (Squadron)"
+    if value.startswith("UNLOCK_IMAGE_DUNGEON_"):
+        return value.replace("UNLOCK_IMAGE_DUNGEON_", "").replace("_", " ").title() + " (Gewölbesuche)"
+    if value.startswith("UNLOCK_IMAGE_DEEP_DUNGEON"):
+        return "Tiefe Gewölbe"
+    if value.startswith("UNLOCK_AETHER_CURRENT") or value.startswith("UNLOCK_FIELD_MARKER"):
+        return "Windätherquelle"
+    if value.startswith("UNLOCK"):
+        return value.replace("UNLOCK_", "").replace("_", " ").title()
+    return ""
+
+
+def get_aether_current_unlocks(quest):
+    elements = []
+    quest_name = clean_quest_name(quest.get('Name_de', ""))
+    for key, value in aethercurrent.items():
+        if quest_name == clean_quest_name(value.get('Quest', {}).get('Name_de', "")):
+            add_unique(elements, "Windätherquelle")
+    return elements
 
 
 def getQuestName(name, lang="en", color=False):
@@ -59,48 +182,43 @@ def filtered_quest(quest):
         new_element[key2] = value
     return new_element
 
+def clear_script_params(params: list(dict[str, str]), quest) -> list:
+    new_params = []
+    for param in params:
+        if param.get("ScriptArg", "0") == "0":
+            continue
+        if param.get("ScriptInstruction", "") == "":
+            continue
+        if re.match(r"^(ACTOR|POPRANGE|EVENTRANGE|EOBJECT|INVIS_ACTOR_|LOC_ACTOR_|LOC_ACTOR_(.+)|BIND_ACTOR|SEQEV_|BIND_BAK|BIND_PRI|BIND_ALX|CUT_EOV)(\d+)?", param.get("ScriptInstruction", "")):
+            continue
+        new_params.append(param)
+    return new_params
 
 def findContentForQuest(quest, key2):
-    global cfc
     elements = []
-    if not quest['InstanceContentUnlock'].get('row_id', 0) == 0:
-        _id = str(quest['InstanceContentUnlock'].get('row_id', 0))
-        for key, value in contentfindercondition.items():
-            if str(value['Content'].get('row_id', "0")) == _id:
-                if not value['Name_de'] in elements:
-                    elements.append(value['Name_de'])
 
-    if "Jobaufträge" in quest['JournalGenre']["Name_de"] or "Gildenaufträge der" in quest['JournalGenre']["Name_de"]:
-        x = (quest['JournalGenre']["Name_de"].replace("-Jobaufträge", "")).replace("Gildenaufträge der", "") + " (Klassenquest)"
-        if not x in elements:
-            elements.append(x)
+    content_finder = find_content_finder_by_content_id(quest.get('InstanceContentUnlock', {}).get('row_id', 0))
+    if content_finder:
+        add_unique(elements, format_content_finder_unlock(content_finder))
 
-    for i in range(0, 50):
-        if "UNLOCK_DUNGEON" in quest["QuestParams"][i]["ScriptInstruction"] or "UNLOCK_ADD_NEW_CONTENT_TO_CF" in quest["QuestParams"][i]["ScriptInstruction"]:
-            _id = str(quest["QuestParams"][i]["ScriptArg"])
-            for key, value in contentfindercondition.items():
-                if str(value['Content'].get('row_id', "0")) == _id:
-                    if not value['Name_de'] in elements:
-                        elements.append(value['Name_de'])
-        elif "UNLOCK" in quest["QuestParams"][i]["ScriptInstruction"]:
-            value = quest["QuestParams"][i]["ScriptInstruction"]
-            if "UNLOCK_BANZOKU" == value or "UNLOCK_BEAST" == value:
-                value = "Wilder Stamm"
-            elif "UNLOCK_IMAGE_DUNGEON_" in value:
-                value = value.replace("UNLOCK_IMAGE_DUNGEON_", "")
-            elif "UNLOCK_IMAGE_SEASON" == value:
-                continue
-            elif "LOG_MOBHUNT_ORDER_UNLOCK" == value:
-                value = "Hohe Jagd"
-            elif "UNLOCK_IMAGE_GC_TEAM" == value:
-                value = "Kommando (Squadron)"
-            if not value in elements:
-                elements.append(value)
+    for value in get_journal_based_unlocks(quest):
+        add_unique(elements, value)
 
-    for key, value in aethercurrent.items():
-        if quest['Name_de'].replace(" ", "").replace(" ", "").strip() == value['Quest'].get('Name_de', "").replace(" ", "").replace(" ", "").strip():
-            if not "[Location] Windätherquelle " in elements:
-                elements.append("[Location] Windätherquelle ")
+    params = clear_script_params(quest.get("QuestParams", []), quest)
+
+    for param in params:
+        script_instruction = first_text(param.get("ScriptInstruction", ""))
+        if "UNLOCK_DUNGEON" in script_instruction or "UNLOCK_ADD_NEW_CONTENT_TO_CF" in script_instruction:
+            content_finder = find_content_finder_by_content_id(param.get("ScriptArg", 0))
+            if content_finder:
+                add_unique(elements, format_content_finder_unlock(content_finder))
+            continue
+        if "UNLOCK" in script_instruction or "LOG_MOBHUNT_ORDER_UNLOCK" == script_instruction:
+            add_unique(elements, get_script_unlock_text(script_instruction))
+
+    for value in get_aether_current_unlocks(quest):
+        add_unique(elements, value)
+
     if len(elements) > 1:
         return " / ".join(elements)
     elif len(elements) > 0:
@@ -180,7 +298,7 @@ def getFinalData(results):
 def checkPatchedData(_id):
     global patched_data
     for c in categories:
-        if patched_data[c].get(_id, None):
+        if isinstance(patched_data.get(c, None), dict) and patched_data[c].get(_id, None):
             return True
     if patched_data.get(_id, None):
         return True
@@ -190,7 +308,7 @@ def checkPatchedData(_id):
 def getPatchedData(_id):
     global patched_data
     for c in categories:
-        if patched_data[c].get(_id, None):
+        if isinstance(patched_data.get(c, None), dict) and patched_data[c].get(_id, None):
             return patched_data[c].get(_id, None)
     if patched_data.get(_id, None):
         return patched_data.get(_id, None)
@@ -200,7 +318,6 @@ def getPatchedData(_id):
 def main():
     for key, quest in quests.items():
         _id = key
-
         if checkPatchedData(_id):
             # continue
             pass
