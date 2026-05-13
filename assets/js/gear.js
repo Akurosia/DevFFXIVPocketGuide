@@ -266,7 +266,7 @@ async function createTemplateTable(name, json, classJob, fields){
     _table.appendChild(_tbody);
 
     //_table.className = "table table-bordered table-striped table-dark table-hover table-striped bg-charcoal text-light border-gold-metallic";
-    _table.className = "table table-bordered table-dark table-striped text-light patch_table";
+    _table.className = "table table-bordered table-dark table-striped text-light patch_table xiv-data-table";
     _table.setAttribute("id", "table_"+name);
     //_table.style.width = "1641px";
     return _table;
@@ -388,7 +388,7 @@ async function createSummaryTable(fields){
     //place holder to allign get from column
     //_tr.appendChild(await createTHorTD("", "td", "stat "));
     _body.appendChild(_tr);
-    table.className = "table-bordered table-dark bg-charcoal text-light"
+    table.className = "table-bordered table-dark bg-charcoal text-light xiv-stat-table"
     table.appendChild(_body);
     document.getElementById("races_select").onchange()
 }

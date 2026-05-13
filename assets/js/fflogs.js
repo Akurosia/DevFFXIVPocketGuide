@@ -194,7 +194,7 @@ function addLink(link, name){
     }
     a.target = "_blank"
     a.textContent = name
-    a.style = "color: #2d59db !important"
+    a.className = "xiv-external-link"
     a.rel = "noopener noreferrer"
     return a
 }
@@ -209,7 +209,7 @@ function addUserNameStuff(iresult, name){
         td.appendChild(addFFLOGSID(iresult["fflogs_id"]))
     }
     td.appendChild(addLink(iresult["link"], name))
-    td.style = "color: #2d59db !important; font-size: 20px; text-shadow: black 0px 0px;"
+    td.className = "xiv-player-cell"
     return td
 }
 
@@ -239,7 +239,7 @@ function printTable(data){
     x = document.getElementById("table")
     x.replaceChildren();
     table = document.createElement("table")
-    table.className = "table table-bordered table-dark table-striped text-light table-hover";
+    table.className = "table table-bordered table-dark table-striped text-light table-hover xiv-data-table xiv-fflogs-table";
     table.setAttribute("id", "table_fflogs");
     head = addThead(result)
     table.appendChild(head)

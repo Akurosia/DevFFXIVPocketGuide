@@ -365,3 +365,46 @@ function scrollToElement(element) {
 
 })(jQuery);
 
+
+
+// Modernization repair: keep the original mobile sidebar behavior, but make it robust
+// even if the trigger/overlay are injected or previous handlers fail.
+(function () {
+    function setSidebarState(open) {
+        var body = document.body;
+        var sidebar = document.querySelector('.sidebar');
+        var trigger = document.querySelector('.sidebar__trigger');
+        var overlay = document.querySelector('.site-grid__sidebar-overlay');
+
+        if (sidebar) sidebar.classList.toggle('active', open);
+        if (trigger) trigger.classList.toggle('active', open);
+        if (overlay) overlay.classList.toggle('active', open);
+        if (body) {
+            body.classList.toggle('sidebar-active', open);
+            body.classList.toggle('xiv-sidebar-open', open);
+            body.style.overflowY = open ? 'hidden' : 'visible';
+        }
+    }
+
+    document.addEventListener('click', function (event) {
+        var trigger = event.target.closest && event.target.closest('.sidebar__trigger');
+        var overlay = event.target.closest && event.target.closest('.site-grid__sidebar-overlay');
+
+        if (trigger) {
+            event.preventDefault();
+            event.stopPropagation();
+            var sidebar = document.querySelector('.sidebar');
+            setSidebarState(!(sidebar && sidebar.classList.contains('active')));
+            return;
+        }
+
+        if (overlay) {
+            event.preventDefault();
+            setSidebarState(false);
+        }
+    }, true);
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') setSidebarState(false);
+    });
+})();

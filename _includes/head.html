@@ -58,8 +58,9 @@
     {%- endif -%}
     <!-- Twitter Intents -->
     <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
-    <!-- jQuery -->
+    <!-- jQuery: local first, CDN fallback so old Bootstrap/jQuery pages do not crash locally. -->
     <script type="text/javascript" src="{{ "/assets/vendor/jquery.min.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
+    <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\/script>')</script>
     <!-- Modernizr -->
     <script type="text/javascript" src="{{ "/assets/vendor/modernizr.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
     <!-- Ionicons -->

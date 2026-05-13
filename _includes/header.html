@@ -99,7 +99,9 @@
                     {%- endif -%}
                 {%- endif -%}
             </h1>
+            {%- if page.title.en and page.title.en != "" -%}
             <h2 class="lang-toggle lang-toogle-en-sub site-header__guide-title_en">{{ page.title.en }}</h2>
+            {%- endif -%}
 
         </div>
         {%- if page.page_type == "index" -%}

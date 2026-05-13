@@ -172,7 +172,7 @@ function createTemplateTable(json, caller, _filterterm, _input){
     }
     _table.appendChild(_thead);
     _table.appendChild(_tbody);
-    _table.className = "table table-bordered table-dark table-striped text-light patch_table";
+    _table.className = "table table-bordered table-dark table-striped text-light patch_table xiv-data-table";
     return _table;
 }
 

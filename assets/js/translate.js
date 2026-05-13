@@ -171,6 +171,7 @@ function addToBody(json, name){
 
     var m_div = document.createElement('div');
     m_div.setAttribute("id", "mdiv_"+name);
+    m_div.className = "xiv-dynamic-section";
     button = createTemplateButton(name);
     _div = createTemplateDIV(name, json);
 
@@ -195,7 +196,7 @@ function createTemplateButton(name){
     button.appendChild(span_1);
     button.appendChild(span_2);
 
-    button.className = "collapsible bg-charcoal text-light";
+    button.className = "collapsible bg-charcoal text-light xiv-collapse-button";
     button.setAttribute("onclick","collapsOrExpand(this.children);");
     return button;
 }
@@ -206,7 +207,7 @@ function createTemplateDIV(name, json){
     _table = createTemplateTable(name, json);
     _div.appendChild(_table);
     createTemplateScripts(name, _div);
-    _div.className = "content table-responsive border-gold-metallic";
+    _div.className = "content table-responsive border-gold-metallic xiv-table-shell";
     _div.setAttribute("id", "div_"+name);
     _div.style.display = "none";
     return _div;
@@ -223,7 +224,7 @@ function createTemplateTable(name, json){
 
     _table.setAttribute("id", "table_"+name);
     //_table.className = "table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic";
-    _table.className = "table table-bordered table-dark table-striped text-light patch_table";
+    _table.className = "table table-bordered table-dark table-striped text-light patch_table xiv-data-table";
 
     //_table.style.width = "1641px";
     _table.style["margin-bottom"] = "0px";
