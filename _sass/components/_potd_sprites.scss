@@ -7,7 +7,7 @@
 .sprite-podt-common{
   height: 88px;
   width: 74px;
-  background-size: 296px 528px;
+  background-size: 296px 616px; // 3x sprite width + height
 }
 
 .sprite-podt-paladin{
@@ -75,6 +75,9 @@
 }
 .sprite-podt-piktomant{
   background-position: -222px -440px;
+}
+.sprite-podt-bestienkrieger{
+  background-position: -444px -0px;
 }
 
 .pxsprite-sheet {

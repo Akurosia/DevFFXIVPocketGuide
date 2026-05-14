@@ -102,7 +102,7 @@ def addAttackDetails(job_data, pvp: bool=False):
         result += f'        title_id: "{skill_data["Id"].split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
         result += f'        type: "{skill_data["Type"]}"\n'
-        result += f'        icon: "/assets/img/game_assets{getImage(skill_data["Icon"])}"\n'
+        result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
         result += f'        range: "{skill_data["Range"]}"\n'
         result += f'        effectrange: "{skill_data["EffectRange"]}"\n'
         result += f'        cast: "{skill_data["Cast"]}"\n'
@@ -154,9 +154,9 @@ def addOldStatusDetails(job, job_abb) -> str:
                 result += f'          {lang}: "' + deal_with_extras_in_text(status[_id][f"Name_{lang}"]) + '"\n'
             result += f'        title_id: "{key}"\n'
             if "_hr1" in getImage(s["icon"]):
-                result += f'        icon: "/assets/img/game_assets{getImage(s["icon"])}"\n'
+                result += f'        icon: "{getImage(s["icon"])}"\n'
             else:
-                result += f'        icon: "/assets/img/game_assets{getImage(s["icon"]).replace(".webp", "_hr1.webp")}"\n'
+                result += f'        icon: "{getImage(s["icon"]).replace(".webp", "_hr1.webp")}"\n'
             result += '        description:\n'
             for lang in LANGUAGES:
                 result += f'          {lang}: "' + deal_with_extras_in_text(status[_id][f"Description_{lang}"]) + '"\n'
@@ -203,9 +203,9 @@ def addStatusDetails(job, job_abb, attack_skills, pvp_skills, eureka_skills, boz
         result += f'        title_id: "{str(hex(int(key))).upper().replace("0X", "")}"\n'
         image = getImage(status[key]["Icon"]['path'])
         if "_hr1" in image:
-            result += f'        icon: "/assets/img/game_assets{image}"\n'
+            result += f'        icon: "{image}"\n'
         else:
-            result += f'        icon: "/assets/img/game_assets{image.replace(".webp", "_hr1.webp")}"\n'
+            result += f'        icon: "{image.replace(".webp", "_hr1.webp")}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
             tmp_desc = deal_with_extras_in_text(status[key][f"Description_{lang}"])
@@ -238,7 +238,7 @@ def addTraitDetails(job):
             job_translations[lang][f'Class_Trait_Name_{deal_with_extras_in_text(traits[_id]["Name_en"]) }'] = tmp_trait
         result += f'        title_id: "{_id.split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
-        result += f'        icon: "/assets/img/game_assets{getImage(trait_data["Icon"]['path'].replace(".tex", "_hr1.webp"))}"\n'
+        result += f'        icon: "{getImage(trait_data["Icon"]['path'].replace(".tex", "_hr1.webp"))}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
             tmp_trait = deal_with_extras_in_text(traitstransient[_id][f"Description_{lang}"])
@@ -546,7 +546,7 @@ def getJobKristall(job):
                 kristall_list[item['Name_de'].replace("-Kristall", "")] = item['Icon']['path']
     if kristall_list.get(job, kristall_list.get(job+'n', kristall_list.get(job+'en', kristall_list.get(job[:-1]+'n', None)))):
         image = getImage(kristall_list.get(job, kristall_list.get(job+'n', kristall_list.get(job+'en', kristall_list.get(job[:-1]+'n', None)))))
-        return f'jobkristall: "/assets/img/game_assets{image}"\n'
+        return f'jobkristall: "{image}"\n'
     print(f"No Jobkristall for {job[:-1]}")
     return ""
 
@@ -587,8 +587,8 @@ roleicons: dict[str, str] = {
     "Magical Ranged Dps":  "062000/062587_hr1.webp"
 }
 roleiconsextra = {
-    "2": ("/assets/img/game_assets/uld/pure-healer.webp", "Primärheiler"),
-    "6": ("/assets/img/game_assets/uld/barrier-healer.webp", "Barriereheiler")
+    "2": ("/uld/pure-healer.webp", "Primärheiler"),
+    "6": ("/uld/barrier-healer.webp", "Barriereheiler")
 }
 additionalClassIcons = {
     "PLD": "062101_hr1",
@@ -615,7 +615,7 @@ def addExtraIcons(_type: str, jobicon: str, classicon: str) -> str:
             continue
         if classicon and nicon == classicon:
             continue
-        result += f'    - name: "/assets/img/game_assets{nicon}"\n'
+        result += f'    - name: "{nicon}"\n'
         result += f'      desc: "{ExtraIconsCategory[index]}"\n'
     return result
 
@@ -740,14 +740,14 @@ def addKlassJobs():
             print(f"Missing img: {os.getcwd()}/assets/img/content/klassen/{job}.webp")
         jobicon: str = getIconForJob(job_abb)
         if jobicon:
-            filecontent += f'jobicon: "/assets/img/game_assets{jobicon}"\n'
+            filecontent += f'jobicon: "{jobicon}"\n'
         classicon: str = additionalClassIcons.get(job_abb, "")
         if classicon:
             classicon = getImage(f"062000/{classicon}.webp")
-            filecontent += f'classicon: "/assets/img/game_assets/{classicon}"\n'
+            filecontent += f'classicon: "/{classicon}"\n'
         if roletypeinparty_en_name_key:
             if roleicons.get(roletypeinparty_en_name_key, None):
-                filecontent += f'roleicon: "/assets/img/game_assets/{getImage(roleicons[roletypeinparty_en_name_key])}"\n'
+                filecontent += f'roleicon: "/{getImage(roleicons[roletypeinparty_en_name_key])}"\n'
                 if roletypeinparty_en_name_key == "Healer":
                     #print(classjob[k[0]])
                     healicon, healname = roleiconsextra[classjob[k[0]]["JobType"]]

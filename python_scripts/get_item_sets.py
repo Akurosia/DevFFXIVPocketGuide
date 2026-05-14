@@ -54,7 +54,7 @@ def add_element(col_k: str, data: dict[str, str], row: str, r: dict[str, list[st
     for lang in LANGUAGES:
         klass_translations[lang][f"Set_Item_{col_id}"] = data[f'Name_{lang}']
     href = f'<a style="color: #007bff" data-translate="Set_Item_{col_id}" target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#item/{col_id}">{i_name}</a>'
-    row += f"        <td id='{i_name}' onclick='myFunction(this)'><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='{i_icon}' alt='{i_name}'></td>\n"
+    row += f"        <td id='{i_name}' onclick='myFunction(this)'><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='https://ff14.akurosiakamo.de/extras/images/ui/icon/{i_icon}' alt='{i_name}'></td>\n"
     return row, r
 
 def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
@@ -86,7 +86,7 @@ def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
                     klass_translations[lang][f"Set_{setid}"] = mirageset[f'Name_{lang}']
                 row = "      <tr>\n"
                 href = f'<a style="color: #007bff" data-translate="Set_{setid}" target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#item/{setid}">{name}</a>'
-                row += f"        <td id='{name}' onclick='myFunction(this)' ><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='{icon}' alt='{name}'></td>\n"
+                row += f"        <td id='{name}' onclick='myFunction(this)' ><span>{href}</span><br><img loading='lazy' style='height: 80px;width: 80px;' src='https://ff14.akurosiakamo.de/extras/images/ui/icon/{icon}' alt='{name}'></td>\n"
                 r = {}
                 row, r = add_element("0", miragestoresetitem[setid]['Head'], row, r)
                 row, r = add_element("1", miragestoresetitem[setid]['Body'], row, r)

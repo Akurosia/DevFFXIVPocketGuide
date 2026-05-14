@@ -103,10 +103,10 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Role-Icon:
                 <span class="block group-icon">
                     {%- if page.roleicon -%}
-                        <img loading="lazy" title="{{ page.roletypeinparty }}" src="{{page.roleicon}}"/>
+                        <img loading="lazy" title="{{ page.roletypeinparty }}" src="{{site.imageurl}}/{{page.roleicon}}"/>
                     {%- endif -%}
                     {%- if page.roleiconextra-%}
-                        <img loading="lazy" title="{{page.roleiconextra[0].name}}" src="{{page.roleiconextra[0].icon}}"/>
+                        <img loading="lazy" title="{{page.roleiconextra[0].name}}" src="{{site.imageurl}}/{{page.roleiconextra[0].icon}}"/>
                     {%- endif -%}
                 </span>
             </h5>
@@ -114,7 +114,7 @@
         {%- if page.jobkristall -%}
         <h5 class="guide-metadata__subtitle box small-1of2 med-full">Job-Kristall:
             <span class="block group-icon">
-                <img onclick="copyIcon('{{page.jobkristall}}')" loading="lazy" title="Jobkristall" src="{{page.jobkristall}}" />
+                <img onclick="copyIcon('{{page.jobkristall}}')" loading="lazy" title="Jobkristall" src="{{site.imageurl}}/{{page.jobkristall}}" />
             </span>
         </h5>
         {%- endif -%}
@@ -122,14 +122,14 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">Icon:
                 <span class="block group-icon">
                     {%- if page.classicon -%}
-                        <img onclick="copyIcon('{{page.classicon}}')" loading="lazy" title="Class" src="{{page.classicon}}"/>
+                        <img onclick="copyIcon('{{page.classicon}}')" loading="lazy" title="Class" src="{{site.imageurl}}/{{page.classicon}}"/>
                     {%- endif -%}
                     {%- if page.jobicon-%}
-                        <img onclick="copyIcon('{{page.jobicon}}')" loading="lazy" title="Job" src="{{page.jobicon}}"/>
+                        <img onclick="copyIcon('{{page.jobicon}}')" loading="lazy" title="Job" src="{{site.imageurl}}/{{page.jobicon}}"/>
                     {%- endif -%}
                     {%- if page.extraicons -%}
                         {%- for icon in page.extraicons -%}
-                            <img onclick="copyIcon('{{icon.name}}')" loading="lazy" title="{{icon.desc}}" src="{{icon.name}}" />
+                            <img onclick="copyIcon('{{icon.name}}')" loading="lazy" title="{{icon.desc}}" src="{{site.imageurl}}/{{icon.name}}" />
                         {%- endfor -%}
                     {%- endif -%}
                 </span>
@@ -252,16 +252,16 @@
                 <div data-translate="Sidebar_Guppenaufstellung">Guppenaufstellung: </div>
                 <span class="block group-icon">
                     {%- if page.group.tank -%}
-                        {{ page.group.tank }}x<img loading="lazy" src="/assets/img/game_assets/062000/062581_hr1.webp"/>
+                        {{ page.group.tank }}x<img loading="lazy" src="{{site.imageurl}}/062000/062581_hr1.webp"/>
                     {%- endif -%}
                     {%- if page.group.healer -%}
-                        {{ page.group.healer }}x<img loading="lazy" src="/assets/img/game_assets/062000/062582_hr1.webp"/>
+                        {{ page.group.healer }}x<img loading="lazy" src="{{site.imageurl}}/062000/062582_hr1.webp"/>
                     {%- endif -%}
                     {%- if page.group.melee -%}
-                        {{ page.group.melee }}x<img loading="lazy" src="/assets/img/game_assets/062000/062584_hr1.webp"/>
+                        {{ page.group.melee }}x<img loading="lazy" src="{{site.imageurl}}/062000/062584_hr1.webp"/>
                     {%- endif -%}
                     {%- if page.group.range -%}
-                        {{ page.group.range }}x<img loading="lazy" src="/assets/img/game_assets/062000/062585_hr1.webp"/>
+                        {{ page.group.range }}x<img loading="lazy" src="{{site.imageurl}}/062000/062585_hr1.webp"/>
                     {%- endif -%}
                 </span>
             </h5>

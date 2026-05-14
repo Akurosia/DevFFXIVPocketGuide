@@ -1,10 +1,10 @@
 <!-- Include from _includes/_components/expantion_filter -->
 <h2 class="index-divider__title">
     {%- if expacicon != "" -%}
-        <img loading="lazy" class="role-icon" src="/assets/img/game_assets/{{expacicon}}" onerror="handleExpansionAssetError('{{ x_shortid }}')"/>
+        <img loading="lazy" class="role-icon" src="{{site.imageurl}}/{{expacicon}}" onerror="handleExpansionAssetError('{{ x_shortid }}')"/>
     {%- endif -%}
     {%- if expacimage != "" -%}
-        <img loading="lazy" class="ex-icon" src="/assets/img/game_assets/{{expacimage}}" onerror="handleExpansionAssetError('{{ x_shortid }}')">
+        <img loading="lazy" class="ex-icon" src="{{site.uldurl}}/{{expacimage}}" onerror="handleExpansionAssetError('{{ x_shortid }}')">
     {%- endif -%}
     <!-- <span data-translate="Patches_{{x_title}}">{{ x_title }}</span> -->
 </h2>

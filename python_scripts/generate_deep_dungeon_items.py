@@ -192,7 +192,7 @@ def get_pomanders():
         icon = item_data['Icon']['path_hr1'].replace(".tex", ".webp").replace("ui/icon/", "")
         getImage(item_data['Icon'])
         pomander_table += f"""                                {before}<tr>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon}" alt="{item_data['Name_en']}"/></td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/{icon}" alt="{item_data['Name_en']}"/></td>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['Name_en']}{additions}</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['Name_de']}{additions}</span>
@@ -264,7 +264,7 @@ def get_stones_demis():
             icon = item_data['Icon']['path_hr1'].replace(".tex", ".webp").replace("ui/icon/", "")
             getImage(item_data['Icon'])
             pomander_table += f"""                                {before}<tr>
-                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon}" alt="{item_data[f'{fields[0]}_en']}"/></td>
+                                        <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/{icon}" alt="{item_data[f'{fields[0]}_en']}"/></td>
                                         <td>
                                             <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data[f'{fields[0]}_en']}{additions}</span>
                                             <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data[f'{fields[0]}_de']}{additions}</span>
@@ -321,8 +321,8 @@ def get_statuis():
         getImage(item_data['FloorEffectUI']['Icon'])
         getImage(item_data['ScreenImage']['Image'])
         pomander_table += f"""                                {before}<tr>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon}" alt="{item_data["FloorEffectUI"]['Name_en']}"/></td>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon2}" alt="{item_data["FloorEffectUI"]['Name_en']}"/></td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/{icon}" alt="{item_data["FloorEffectUI"]['Name_en']}"/></td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/{icon2}" alt="{item_data["FloorEffectUI"]['Name_en']}"/></td>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data["FloorEffectUI"]['Name_en']}{additions}</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data["FloorEffectUI"]['Name_de']}{additions}</span>
@@ -376,7 +376,7 @@ def get_floor():
 
         getImage(item_data['Icon'])
         pomander_table += f"""                                {before}<tr>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon}" alt="{item_data['Name_en']}"/></td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/{icon}" alt="{item_data['Name_en']}"/></td>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['Name_en']}{additions}</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['Name_de']}{additions}</span>
@@ -436,7 +436,7 @@ def get_gimmic():
 
         getImage(icon)
         pomander_table += f"""                                {before}<tr>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/assets/img/game_assets/{icon['path_hr1']}" alt="{item_data['Name_en']}"/></td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/{icon['path_hr1']}" alt="{item_data['Name_en']}"/></td>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['Name_en']}{additions}</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['Name_de']}{additions}</span>

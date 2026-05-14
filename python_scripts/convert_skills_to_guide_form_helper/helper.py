@@ -37,21 +37,21 @@ def copy_and_return_image_as_hr(img: str, _type: str="icon") -> str:
     elif sys.platform == "darwin":
         basepath = "/Volumes/FFXIV/extras/images/ui/"
 
-    if os.path.exists(f"{basepath}{_type}/" + img):
-        new_path = "../assets/img/game_assets/"
-        if os.getcwd().endswith("DevFFXIVPocketGuide"):
-            new_path = "assets/img/game_assets/"
-        if _type == "map":
-            new_path += "map/"
-        if not os.path.exists(new_path + img.replace(".png", ".webp")):
-            if not os.path.exists(os.path.dirname(new_path + img)):
-                os.makedirs(os.path.dirname(new_path + img))
-            convert_single_image(f"{basepath}{_type}/" + img, replace_dir=(f"{basepath}{_type}/", new_path))
-            #shutil.copyfile(f"{basepath}{_type}/" + img, new_path + img)
-    else:
-        print_color_red(f"{basepath}{_type}/" + img)
+    #if os.path.exists(f"{basepath}{_type}/" + img):
+    #    new_path = "../assets/img/game_assets/"
+    #    if os.getcwd().endswith("DevFFXIVPocketGuide"):
+    #        new_path = "assets/img/game_assets/"
+    #    if _type == "map":
+    #        new_path += "map/"
+    #    if not os.path.exists(new_path + img.replace(".png", ".webp")):
+    #        if not os.path.exists(os.path.dirname(new_path + img)):
+    #            os.makedirs(os.path.dirname(new_path + img))
+    #        convert_single_image(f"{basepath}{_type}/" + img, replace_dir=(f"{basepath}{_type}/", new_path))
+    #        #shutil.copyfile(f"{basepath}{_type}/" + img, new_path + img)
+    #else:
+    #    print_color_red(f"{basepath}{_type}/" + img)
     img = img.replace(".png", ".webp")
-    return img
+    return img.replace("/assets/img/game_assets", "")
 
 
 def getStatusKey(stat, status):

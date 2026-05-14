@@ -30,7 +30,7 @@
                 {% include helper/handle_version_switchcase.html %}
                 <!-- Example: {{x_title}} -->
                 <button type="button" class="expansion-toggle active" data-expansion="{{x_shortid}}" title="{{x_title}}">
-                    <img loading="lazy" class="role-icon" src="/assets/img/game_assets/{{expacicon}}" alt="{{x_title}}" onerror="handleExpansionAssetError('{{ x_shortid }}')">
+                    <img loading="lazy" class="role-icon" src="{{site.imageurl}}/{{expacicon}}" alt="{{x_title}}" onerror="handleExpansionAssetError('{{ x_shortid }}')">
                 </button>
             {%- endfor -%}
         </div>

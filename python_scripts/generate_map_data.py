@@ -504,33 +504,33 @@ def generate_images():
             "categories": [
                 {"id": "ore", "name": "Ore Node", "color": "#f59e0b"},
                 {"id": "herb", "name": "Herb Node", "color": "#22c55e"},
-                {"id": "notorious_monster", "name": "Notorious monster", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060852_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "Gegner Wellen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060801_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "Boss besiegen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060802_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "Sammeln", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060803_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "Verteidigen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060804_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "NoType", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/000000/000000_hr1.webp", "size": [30,30]},
-                {"id": "kill_enemies", "name": "Kill Enemies", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060501_hr1.webp", "size": [30,30]},
-                {"id": "kill_boss", "name": "Kill Boss", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060502_hr1.webp", "size": [30,30]},
-                {"id": "collect", "name": "Collect", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060503_hr1.webp", "size": [30,30]},
-                {"id": "defense", "name": "Defense", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060504_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "Escort", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060505_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "Chase", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060506_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "Holiday (Limited Time", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060508_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "Concerted works", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060994_hr1.webp", "size": [30,30]},
-                {"id": "notorious_monsters", "name": "Notorious monsters", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/060000/060958_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "Fete", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/063000/063926_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "CE Boss besiegen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/063000/063909_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "CE Solo Kampf", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/063000/063910_hr1.webp", "size": [30,30]},
-                {"id": "fates", "name": "CE Gegner Wellen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/assets/img/game_assets/063000/063911_hr1.webp", "size": [30,30]},
+                {"id": "notorious_monster", "name": "Notorious monster", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060852_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Gegner Wellen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060801_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Boss besiegen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060802_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Sammeln", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060803_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Verteidigen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060804_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "NoType", "group": "Fates", "groupName": "FATEs", "iconUrl": "/000000/000000_hr1.webp", "size": [30,30]},
+                {"id": "kill_enemies", "name": "Kill Enemies", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060501_hr1.webp", "size": [30,30]},
+                {"id": "kill_boss", "name": "Kill Boss", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060502_hr1.webp", "size": [30,30]},
+                {"id": "collect", "name": "Collect", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060503_hr1.webp", "size": [30,30]},
+                {"id": "defense", "name": "Defense", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060504_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Escort", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060505_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Chase", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060506_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Holiday (Limited Time", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060508_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Concerted works", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060994_hr1.webp", "size": [30,30]},
+                {"id": "notorious_monsters", "name": "Notorious monsters", "group": "Fates", "groupName": "FATEs", "iconUrl": "/060000/060958_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "Fete", "group": "Fates", "groupName": "FATEs", "iconUrl": "/063000/063926_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "CE Boss besiegen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/063000/063909_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "CE Solo Kampf", "group": "Fates", "groupName": "FATEs", "iconUrl": "/063000/063910_hr1.webp", "size": [30,30]},
+                {"id": "fates", "name": "CE Gegner Wellen", "group": "Fates", "groupName": "FATEs", "iconUrl": "/063000/063911_hr1.webp", "size": [30,30]},
 
-                {"id": "quest_side", "name": "Quest - side", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/071000/071221_hr1.webp", "size": [40,40]},
-                {"id": "quest_main", "name": "Quest - main", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/071000/071201_hr1.webp", "size": [40,40]},
-                {"id": "quest_side_small", "name": "Quest - side_small", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/071000/071222_hr1.webp", "size": [40,40]},
-                {"id": "quest_blue", "name": "Quest - blue", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp", "size": [40,40]},
-                {"id": "quest_blue2", "name": "Quest - blu2e", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/071000/071341_hr1.webp", "size": [40,40]},
-                {"id": "quest_alt_sharliyan", "name": "Quest - alt_sharliyan", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/062000/062521_hr1.webp", "size": [40,40]},
-                {"id": "quest_tuliyollal", "name": "Quest - Tuliyollal", "group": "quest", "groupName": "Quest", "iconUrl": "/assets/img/game_assets/062000/062523_hr1.webp", "size": [40,40]},
+                {"id": "quest_side", "name": "Quest - side", "group": "quest", "groupName": "Quest", "iconUrl": "/071000/071221_hr1.webp", "size": [40,40]},
+                {"id": "quest_main", "name": "Quest - main", "group": "quest", "groupName": "Quest", "iconUrl": "/071000/071201_hr1.webp", "size": [40,40]},
+                {"id": "quest_side_small", "name": "Quest - side_small", "group": "quest", "groupName": "Quest", "iconUrl": "/071000/071222_hr1.webp", "size": [40,40]},
+                {"id": "quest_blue", "name": "Quest - blue", "group": "quest", "groupName": "Quest", "iconUrl": "/071000/071341_hr1.webp", "size": [40,40]},
+                {"id": "quest_blue2", "name": "Quest - blu2e", "group": "quest", "groupName": "Quest", "iconUrl": "/071000/071341_hr1.webp", "size": [40,40]},
+                {"id": "quest_alt_sharliyan", "name": "Quest - alt_sharliyan", "group": "quest", "groupName": "Quest", "iconUrl": "/062000/062521_hr1.webp", "size": [40,40]},
+                {"id": "quest_tuliyollal", "name": "Quest - Tuliyollal", "group": "quest", "groupName": "Quest", "iconUrl": "/062000/062523_hr1.webp", "size": [40,40]},
 
                 {"id": "fishing_angel", "name": "Fishing - Angel", "group": "fishing", "groupName": "Fishing"},
                 {"id": "fishing_spear", "name": "Fishing - Speer", "group": "fishing", "groupName": "Fishing"},
@@ -734,7 +734,7 @@ def get_mapmarker(mapid, w, h, _x_offset, _y_offset, _sizefactor ):
         x, y, name, icon = value[0]
         x2 = ToMapPixel(val=float(x), offset=_x_offset, sizefactor=_sizefactor)
         y2 = ToMapPixel(val=float(y), offset=_y_offset, sizefactor=_sizefactor)
-        maps.append({  "type": f"mapmarker", "name": f"{name}", "position": [float(x), - float(y)+2048], "imageUrl": f"/assets/img/game_assets/{icon}.webp"})
+        maps.append({  "type": f"mapmarker", "name": f"{name}", "position": [float(x), - float(y)+2048], "imageUrl": f"/{icon}.webp"})
     return maps
 
 def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):

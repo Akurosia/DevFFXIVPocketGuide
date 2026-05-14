@@ -111,9 +111,6 @@ def getImage(image: str, _type: str = "icon", ishr1=True) -> str:
     if not image:  # None or ""
         return ""
 
-    if "assets/img/content" in image:
-        return image
-
     # dict support
     if isinstance(image, dict):
         if ishr1:
@@ -128,7 +125,7 @@ def getImage(image: str, _type: str = "icon", ishr1=True) -> str:
 
     # Early exit when already good and present
     if (((ishr1 and "_hr1" in image) or ("/content/" in image)) and path_exists_in_assets(image)) or image == "/assets/img/test.webp":
-        return image
+        return image.replace("/assets/img/game_assets", "")
 
     # Normalize extensions
     image = image.replace(".png", ".webp").replace(".tex", ".webp").replace("test.jpg", "test.webp")
@@ -150,8 +147,8 @@ def getImage(image: str, _type: str = "icon", ishr1=True) -> str:
     # Fallback to non-hr if hr missing
     if not abs_path.exists():
         url_path = url_path.replace("_hr1.webp", ".webp")
-        print_color_green(url_path)
-    return url_path
+        #print_color_green(url_path)
+    return url_path.replace("/assets/img/game_assets", "")
 
 def copy_and_return_image_as_hr(img: str, _type: str = "icon") -> str:
     """
@@ -189,17 +186,17 @@ def copy_and_return_image_as_hr(img: str, _type: str = "icon") -> str:
     dest_path = (dest_root / img).with_suffix(".webp")
 
     # Convert/copy if source exists and dest missing
-    if src_path.exists():
-        if not dest_path.exists():
-            dest_path.parent.mkdir(parents=True, exist_ok=True)
-            # convert_single_image expects a filename and a replace_dir tuple just like your original code
-            # We pass posix-style strings to keep it consistent across OSes.
-            convert_single_image(
-                src_path.as_posix(),
-                replace_dir=((basepath / _type).as_posix() + "/", dest_root.as_posix().rstrip("/") + "/"),
-            )
-    else:
-        print_color_red(f"Filename not found: {src_path.as_posix()}")
+    #if src_path.exists():
+    #    if not dest_path.exists():
+    #        dest_path.parent.mkdir(parents=True, exist_ok=True)
+    #        # convert_single_image expects a filename and a replace_dir tuple just like your original code
+    #        # We pass posix-style strings to keep it consistent across OSes.
+    #        convert_single_image(
+    #            src_path.as_posix(),
+    #            replace_dir=((basepath / _type).as_posix() + "/", dest_root.as_posix().rstrip("/") + "/"),
+    #        )
+    #else:
+    #    print_color_red(f"Filename not found: {src_path.as_posix()}")
 
     # Return repo-relative path (strip any leading ../ that might exist)
     return dest_path.as_posix().replace("../", "")
