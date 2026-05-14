@@ -77,7 +77,7 @@ def scan_directory(base_dir: str) -> str:
 def generate_html(albums: list) -> str:
     content = ""
     for album, cover, folder_tracks in albums:
-        cover_img = f"\n            <img src='{cover}' alt='{album} Cover'/>\n" if cover else ""
+        cover_img = f'\n            <img src="{cover}" alt="{album} Cover"/>\n' if cover else ""
         track_list = "            <div class='track-container'>\n"
         for subfolder, tracks in folder_tracks.items():
             if subfolder:
