@@ -16,7 +16,7 @@
     --xiv-text-dim: #8f846f;
     --xiv-line-dark: #050505;
     --xiv-line-light: rgba(255, 238, 174, .32);
-    --xiv-shell-width: min(1880px, calc(100vw - 2rem));
+    --xiv-shell-width: 100%;
     --xiv-sidebar-width: clamp(18rem, 17vw, 21rem);
     --xiv-radius: 6px;
     --xiv-font-ui: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
@@ -458,7 +458,7 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 .index__list,
 .index__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 25rem), 1fr));
     gap: 1rem;
 }
 
@@ -566,7 +566,6 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 .table.table-dark thead {
     position: sticky;
     top: 0;
-    z-index: 3;
 }
 
 .patch_table th,
@@ -988,7 +987,7 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 .site-header__links {
     width: min(1400px, calc(100% - clamp(1rem, 4vw, 4rem)));
     margin: 0 auto !important;
-    padding: .65rem 0 .95rem !important;
+    padding: .1rem 0 .95rem !important;
     display: flex !important;
     flex-wrap: wrap;
     align-items: center;
@@ -1348,7 +1347,6 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 .layout__wrapper b,
 .layout__wrapper th,
 .layout__wrapper dt,
-.layout__wrapper .text-light,
 .layout__wrapper .index-item__title,
 .layout__wrapper .summary__title,
 .layout__wrapper .collapsible,
@@ -1369,7 +1367,6 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 .layout__wrapper .collapse,
 .layout__wrapper .collapsing,
 .layout__wrapper .content,
-.layout__wrapper .bg-charcoal,
 .layout__wrapper .border-gold-metallic,
 .layout__wrapper .table-responsive,
 .layout__wrapper #bodyDiv > div,
@@ -1504,6 +1501,44 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, .75), 0 0 0 1px rgba(0, 0, 0, .8) !important;
 }
 
+.layout__wrapper select,
+.layout__wrapper .custom-select,
+.layout__wrapper .quest-dropdown,
+.layout__wrapper #classjob,
+.layout__wrapper #races_select,
+.layout__wrapper #Region,
+.layout__wrapper #Server {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    padding-right: 2.35rem !important;
+    background-color: #1a1918 !important;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #d9bf79 50%),
+        linear-gradient(135deg, #d9bf79 50%, transparent 50%),
+        linear-gradient(180deg, #090909, #1a1918) !important;
+    background-position:
+        calc(100% - 1rem) calc(50% - 0.18rem),
+        calc(100% - 0.7rem) calc(50% - 0.18rem),
+        0 0 !important;
+    background-size:
+        0.35rem 0.35rem,
+        0.35rem 0.35rem,
+        100% 100% !important;
+    background-repeat: no-repeat !important;
+    cursor: pointer;
+}
+
+.layout__wrapper select option,
+.layout__wrapper select optgroup,
+.layout__wrapper .custom-select option,
+.layout__wrapper .custom-select optgroup,
+.layout__wrapper .quest-dropdown option,
+.layout__wrapper .quest-dropdown optgroup {
+    color: #fff0c8 !important;
+    background: #1a1918 !important;
+}
+
 .layout__wrapper input::placeholder,
 .layout__wrapper textarea::placeholder {
     color: rgba(220, 205, 170, .58) !important;
@@ -1517,6 +1552,15 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
     border-color: rgba(255, 220, 125, .72) !important;
     box-shadow: 0 0 0 1px rgba(255, 220, 125, .22), 0 0 12px rgba(255, 186, 55, .15), inset 0 1px 3px rgba(0,0,0,.8) !important;
     outline: none !important;
+}
+
+.layout__wrapper select:focus,
+.layout__wrapper .custom-select:focus,
+.layout__wrapper .quest-dropdown:focus {
+    background-image:
+        linear-gradient(45deg, transparent 50%, #ffe7a8 50%),
+        linear-gradient(135deg, #ffe7a8 50%, transparent 50%),
+        linear-gradient(180deg, #090909, #1a1918) !important;
 }
 
 .layout__wrapper button,
@@ -2198,9 +2242,8 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 }
 
 .sidebar__title {
-    width: calc(100% + 1.6rem) !important;
-    max-width: calc(100% + 1.6rem) !important;
-    margin: 3rem -.8rem 2rem !important;
+    width: calc(100%) !important;
+    max-width: calc(100%) !important;
     padding: 0 !important;
     overflow: visible !important;
     background: none !important;
@@ -2298,6 +2341,158 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
     box-shadow: inset 0 1px 0 rgba(255,255,255,.13), inset 0 -1px 0 rgba(0,0,0,.82), 0 0 0 1px rgba(0,0,0,.8), 0 0 16px rgba(212,166,64,.22), 0 5px 12px rgba(0,0,0,.58) !important;
 }
 
+.layout__wrapper .bg-charcoal,
+.layout__wrapper input.bg-charcoal,
+.layout__wrapper select.bg-charcoal,
+.layout__wrapper textarea.bg-charcoal,
+.layout__wrapper .btn.bg-charcoal,
+.layout__wrapper .form-control.bg-charcoal,
+.layout__wrapper .table-dark.bg-charcoal {
+    background: #484742 !important;
+}
+
+.layout__wrapper .text-light,
+.layout__wrapper .table-dark,
+.layout__wrapper .table-dark th,
+.layout__wrapper .table-dark td,
+.layout__wrapper .table-dark thead th {
+    color: #e4dfd0 !important;
+}
+
+.layout__wrapper .table-dark,
+.layout__wrapper .table-dark th,
+.layout__wrapper .table-dark td,
+.layout__wrapper .table-dark thead th,
+.layout__wrapper .table-dark tbody + tbody {
+    background-color: #2a2922 !important;
+    border-color: #484742 !important;
+}
+
+.layout__wrapper .checkbox > input {
+    background: #555555 !important;
+    border: 1px solid #34495E !important;
+    box-shadow: none !important;
+}
+
+.layout__wrapper .white > input:checked {
+    background: #ffffff !important;
+    border-color: #151515 !important;
+}
+
+.layout__wrapper .green > input:checked {
+    background: #009148 !important;
+    border-color: #151515 !important;
+}
+
+.layout__wrapper .blue > input:checked {
+    background: #0061D3 !important;
+    border-color: #151515 !important;
+}
+
+.layout__wrapper .purpel > input:checked {
+    background: #5400B4 !important;
+    border-color: #151515 !important;
+}
+
+.layout__wrapper .red > input:checked {
+    background: #C11321 !important;
+    border-color: #151515 !important;
+}
+
+.layout__wrapper .x_box_blah {
+    color: var(--xiv-text) !important;
+}
+
+.layout__wrapper #headDiv {
+    margin-bottom: .85rem;
+}
+
+.layout__wrapper #headDiv > .form-inline,
+.layout__wrapper #headDiv .form-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+    align-items: stretch;
+    padding: .75rem;
+    background: linear-gradient(180deg, rgba(35, 34, 32, .97), rgba(16, 16, 15, .98)) !important;
+    border: 1px solid rgba(255, 216, 111, .22) !important;
+    border-radius: 5px !important;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .72), inset 0 1px 0 rgba(255, 255, 255, .07) !important;
+}
+
+.layout__wrapper #headDiv .input-group-prepend,
+.layout__wrapper #headDiv .input-group-text {
+    display: flex;
+    align-items: center;
+}
+
+.layout__wrapper #headDiv .input-group-text {
+    min-height: 2.15rem;
+    padding: .5rem .85rem;
+    color: #f7e7b0 !important;
+    background: linear-gradient(180deg, #35332e, #151515 52%, #080808) !important;
+    border: 1px solid rgba(255, 216, 111, .28) !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.layout__wrapper #filterValue,
+.layout__wrapper #exactSearch,
+.layout__wrapper #searchValue {
+    flex: 1 1 12rem;
+    min-width: 0;
+}
+
+.layout__wrapper #submit {
+    width: auto !important;
+    min-width: 9rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.layout__wrapper #bodyDiv > div,
+.layout__wrapper #bodyDiv > div[id^="mdiv_"] {
+    margin-bottom: .1rem;
+}
+
+.layout__wrapper #bodyDiv .collapsible,
+.layout__wrapper #bodyDiv .xiv-collapse-button {
+    margin-top: 0 !important;
+    font-size: 1rem !important;
+    line-height: 1.2;
+}
+
+.layout__wrapper #bodyDiv .content,
+.layout__wrapper #bodyDiv .content.table-responsive,
+.layout__wrapper #bodyDiv .xiv-table-shell {
+    padding: .5rem;
+    background: linear-gradient(180deg, rgba(19,19,18,.98), rgba(9,9,9,.98)) !important;
+}
+
+.layout__wrapper #bodyDiv table,
+.layout__wrapper #bodyDiv .table,
+.layout__wrapper #bodyDiv [id^="table_"] {
+    border-radius: 4px !important;
+    overflow: hidden !important;
+}
+
+.layout__wrapper #bodyDiv table th,
+.layout__wrapper #bodyDiv .table th {
+    padding: .55rem .65rem !important;
+}
+
+.layout__wrapper #bodyDiv table td,
+.layout__wrapper #bodyDiv .table td {
+    padding: .45rem .6rem !important;
+}
+
+.layout__wrapper #bodyDiv table > tbody > tr > td > select {
+    min-height: 1.95rem;
+}
+
 @media screen and (max-width: 63.99em) {
     .sidebar__wrapper {
         padding-left: .65rem !important;
@@ -2333,4 +2528,3 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
         letter-spacing: .2em !important;
     }
 }
-

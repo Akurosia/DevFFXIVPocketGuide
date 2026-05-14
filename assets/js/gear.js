@@ -343,6 +343,7 @@ races = [
 ]
 
 function get_race_select(){
+    td = document.createElement("td")
     select = document.createElement("select")
     for (var race in races) {
         option = document.createElement("option")
@@ -353,7 +354,8 @@ function get_race_select(){
     }
     select.setAttribute("onchange", "updateValues()")
     select.setAttribute("id", "races_select")
-    return select
+    td.appendChild(select);
+    return td
 }
 
 // this creates the footer table

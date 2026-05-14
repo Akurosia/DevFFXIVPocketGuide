@@ -326,27 +326,16 @@ function addRow(tr, result, name, encounterID){
 
 function colorize(td, value){
     //gold
-    if (value == 100){
-        td.style.color = "gold"
-    //pink
-    }else if ( 99 == value ){
-        td.style.color = "darksalmon"
-    //orange
-    }else if ( 99 > value && value >= 95 ){
-        td.style.color = "orange"
-    //purple
-    }else if ( 95 > value && value >= 75 ){
-        td.style.color = "#d72dd7"
-    //blue
-    }else if ( 75 > value && value >= 50 ){
-        td.style.color = "#2d59db"
-    //green
-    }else if ( 50 > value && value >= 25 ){
-        td.style.color = "lightgreen"
-    //grey
-    }else if ( 25 > value && value >=  0){
-        td.style.color = "white"
-    }
+    const color =
+        value == 100 ? "gold" :
+        value == 99 ? "darksalmon" :
+        value >= 95 ? "orange" :
+        value >= 75 ? "#d72dd7" :
+        value >= 50 ? "#2d59db" :
+        value >= 25 ? "lightgreen" :
+        "white";
+
+    td.style.setProperty("color", color, "important");
     td.style.fontSize = "20"
     td.style.textShadow = "0 0 black"
     return td
