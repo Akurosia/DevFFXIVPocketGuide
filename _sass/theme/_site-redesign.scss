@@ -339,6 +339,10 @@ body > .container {
     padding: clamp(.9rem, 1.4vw, 1.4rem);
 }
 
+.site-header-shell {
+    padding: 0px !important;
+}
+
 .site-header-shell::before,
 .index::before,
 .guide-layout::before,
@@ -1100,7 +1104,7 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
     .guide-metadata,
     .guide__sidebar {
         width: 100% !important;
-        max-width: 18rem !important;
+        max-width: 25rem !important;
     }
 
     .guide-layout > main,
@@ -1275,7 +1279,7 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 
 @media screen and (min-width: 100em) {
     .guide-layout {
-        grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr) !important;
+        grid-template-columns: minmax(14rem, 25rem) minmax(0, 1fr) !important;
     }
 }
 
@@ -1389,11 +1393,13 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 .layout__wrapper .card-footer,
 .layout__wrapper .modal-header,
 .layout__wrapper .modal-footer,
-.layout__wrapper .list-group-item.active,
-.layout__wrapper .collapsible,
-.layout__wrapper [class*="guide__accordion-trigger"],
-.layout__wrapper .bestiarium-toolbar,
-.layout__wrapper .progress-label {
+.layout__wrapper [class*="guide__accordion-trigger"] {
+    border-color: rgba(255, 216, 111, .28) !important;
+    color: #f7e7b0 !important;
+}
+
+.layout__wrapper #bodyDiv .collapsible,
+.layout__wrapper .xiv-collapse-button {
     background: linear-gradient(180deg, #35332e, #151515 52%, #080808) !important;
     border-color: rgba(255, 216, 111, .28) !important;
     color: #f7e7b0 !important;
@@ -1633,7 +1639,7 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 .layout__wrapper .progress-fill,
 .layout__wrapper .progress-bar > div {
     min-height: 100%;
-    background: linear-gradient(90deg, #8b5b1c, #d6a640, #ffe08b) !important;
+    background: linear-gradient(90deg, #8b5b1c, #d6a640, #ffe08b);
     box-shadow: inset 0 1px rgba(255,255,255,.34), 0 0 9px rgba(255,190,50,.24) !important;
 }
 
