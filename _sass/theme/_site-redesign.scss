@@ -2500,3 +2500,9 @@ body.mainquestsfinder .quest-dropdown {
         letter-spacing: .2em !important;
     }
 }
+
+.summary.show {
+    border: 1px solid rgba(189, 147, 64, .58) !important;
+    border-radius: 4px 4px 0 0 !important;
+    box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .08), 0 2px 7px rgba(0, 0, 0, .55) !important;
+}
