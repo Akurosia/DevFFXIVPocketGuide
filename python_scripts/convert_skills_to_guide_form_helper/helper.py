@@ -2,6 +2,10 @@ import re
 import os
 from ffxiv_aku import fix_slug, print_color_red, convert_single_image
 import shutil
+try:
+    from python_scripts.helper import getImage
+except ImportError:
+    from ..helper import getImage
 
 LANGUAGES = ["de", "en", "fr", "ja"]
 LANGUAGES_MAPPING = {
@@ -10,48 +14,6 @@ LANGUAGES_MAPPING = {
     "fr": "fr-FR",
     "ja": "ja-JP",
 }
-
-
-def getImage(image: str, _type: str="icon") -> str:
-    if image is None or image == "":
-        return ""
-    image = image.replace(".tex", "_hr1.webp")
-    if _type == "icon":
-        image = image.replace(f"ui/{_type}/", "")
-    image = copy_and_return_image_as_hr(img=image, _type=_type)
-    if not image.startswith("/"):
-        image = "/" + image
-    return image
-
-
-def copy_and_return_image_as_hr(img: str, _type: str="icon") -> str:
-    if "_hr1" not in img and not _type == "map":
-        img = img.replace(".png", "_hr1.png")
-    img = img.replace(".png", ".webp" )
-
-    basepath = None
-    if os.name == 'nt':
-        basepath = "P:/extras/images/ui/"
-    elif sys.platform.startswith("linux"):
-        basepath = "/var/www/ffxiv/extras/images/ui/"
-    elif sys.platform == "darwin":
-        basepath = "/Volumes/FFXIV/extras/images/ui/"
-
-    #if os.path.exists(f"{basepath}{_type}/" + img):
-    #    new_path = "../assets/img/game_assets/"
-    #    if os.getcwd().endswith("DevFFXIVPocketGuide"):
-    #        new_path = "assets/img/game_assets/"
-    #    if _type == "map":
-    #        new_path += "map/"
-    #    if not os.path.exists(new_path + img.replace(".png", ".webp")):
-    #        if not os.path.exists(os.path.dirname(new_path + img)):
-    #            os.makedirs(os.path.dirname(new_path + img))
-    #        convert_single_image(f"{basepath}{_type}/" + img, replace_dir=(f"{basepath}{_type}/", new_path))
-    #        #shutil.copyfile(f"{basepath}{_type}/" + img, new_path + img)
-    #else:
-    #    print_color_red(f"{basepath}{_type}/" + img)
-    img = img.replace(".png", ".webp")
-    return img.replace("/assets/img/game_assets", "")
 
 
 def getStatusKey(stat, status):

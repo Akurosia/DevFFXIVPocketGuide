@@ -64,13 +64,15 @@ def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
     print(f"[GIS] Start Get Item Set")
     get_class_translation_data()
     counter: int = 0
-    setcompleted: list[str] = ["0"]
+    setcompleted: set[str] = {"0"}
     #html = "<html>\n"
     #html += '<head><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">\n<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> </head>'
     #html += "<body>\n"
-    html = "  <table class='table table-bordered table-dark table-striped text-light patch_table'>\n"
-    html += "    <thead> <tr> <th>Set</th> <th>Kopf</th>  <th>Body</th>  <th>Hände</th>  <th>Hose</th>  <th>Schuhe</th>  <th>Ohrringe</th>  <th>Halskette</th>  <th>Armreif</th>  <th>Ring</th> <th>GetFrom</th>  </tr> </thead>\n"
-    html += "    <tbody>\n"
+    html_parts = [
+        "  <table class='table table-bordered table-dark table-striped text-light patch_table'>\n",
+        "    <thead> <tr> <th>Set</th> <th>Kopf</th>  <th>Body</th>  <th>Hände</th>  <th>Hose</th>  <th>Schuhe</th>  <th>Ohrringe</th>  <th>Halskette</th>  <th>Armreif</th>  <th>Ring</th> <th>GetFrom</th>  </tr> </thead>\n",
+        "    <tbody>\n",
+    ]
     result: dict[str, str] = {}
     for key, value in miragestoresetitemlookup.items():
         if not value.get("Item", None):
@@ -80,7 +82,7 @@ def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
                 continue
             setid = str(mirageset.get('row_id', 0))
             if not setid in setcompleted:
-                setcompleted.append(setid)
+                setcompleted.add(setid)
                 name, icon = [mirageset['Name_de'], getImage(mirageset['Icon']['path'])]
                 for lang in LANGUAGES:
                     klass_translations[lang][f"Set_{setid}"] = mirageset[f'Name_{lang}']
@@ -109,14 +111,13 @@ def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
                     result[name+"2"] = row
                 #html += row
                 counter += 1
-    for key in sorted(result):
-        html += result[key]
+    html_parts.extend(result[key] for key in sorted(result))
 
-    html += "    </tbody>\n"
-    html += "  </table><br>\n"
-    html += "</body>"
+    html_parts.append("    </tbody>\n")
+    html_parts.append("  </table><br>\n")
+    html_parts.append("</body>")
     #html += "<style> td { display: ruby-text;} </style>"
-    html += """<script>
+    html_parts.append("""<script>
     function myFunction(copyText) {
       const textToCopy = '/isearch "' + copyText.getElementsByTagName("span")[0].innerText + '"';
       navigator.clipboard.writeText(textToCopy).then(() => {
@@ -125,12 +126,12 @@ def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
         console.error('Failed to copy: ', err);
       });
     }
-    </script>"""
+    </script>""")
     #html += "</html>"
 
     write_class_translation_data(klass_translations)
     with open(f"{path_of_main_script}/_includes/single_pages/itemsets.html", "w", encoding="utf8") as f:
-        f.write(html)
+        f.write("".join(html_parts))
 
 if __name__ == "__main__":
     run()

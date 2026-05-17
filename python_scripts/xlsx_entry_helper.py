@@ -22,22 +22,19 @@ except Exception:
     from fileimports import *
 
 logger: logging.Logger = logging.getLogger()
+_roulette_lookup: dict[str, dict[str, Any]] | None = None
 
 def get_header_from_xlsx(local_sheet: Worksheet, local_max_column: int) -> list[str]:
-    result: list[str] = []
-    for j in range(1, local_max_column + 1):
-        result.append(str(local_sheet.cell(row=int(1), column=int(j)).value).replace("None", "").strip())
-    return result
+    row = next(local_sheet.iter_rows(min_row=1, max_row=1, max_col=local_max_column, values_only=True))
+    return [str(value).replace("None", "").strip() for value in row]
 
 
 def get_data_from_xlsx(local_sheet: Worksheet, local_max_column: int, i: int, elements) -> EntryType:
-    entry: EntryType = {} # type: ignore
-    # for every column in row add all elements into a dict:
-    # local_max_column will ignore last column due to how range is working
-    for j in range(1, local_max_column + 1):
-        name: str = str(local_sheet.cell(row=int(i), column=int(j)).value).replace("None", "").strip()
-        entry[elements[j - 1]] = name
-    return entry
+    row = next(local_sheet.iter_rows(min_row=i, max_row=i, max_col=local_max_column, values_only=True))
+    return {
+        elements[index]: str(value).replace("None", "").strip()
+        for index, value in enumerate(row)
+    } # type: ignore
 
 
 def clean_entries_from_single_quotes(entry: EntryType):
@@ -92,7 +89,13 @@ def workOnQuests(entry: EntryType) -> EntryType:
 
 
 def getEntriesForRouletts(entry: EntryType) -> EntryType:
-    global contentfindercondition
+    global _roulette_lookup
+    if _roulette_lookup is None:
+        _roulette_lookup = {
+            value['Name_de'].lower().strip(): value
+            for value in contentfindercondition.values()
+        }
+
     entry['allianceraid'] = None
     entry['frontier'] = None
     entry['expert'] = None
@@ -105,24 +108,23 @@ def getEntriesForRouletts(entry: EntryType) -> EntryType:
     entry['normalraid'] = None
     entry['trial'] = None
     entry['mapname'] = entry['title']
-    for _, value in contentfindercondition.items():
-        if value['Name_de'] == getContentName(entry["title"], "de", entry["difficulty"], entry["instanceType"]):
-            #print(value['ContentType']['Name_de'])
-            entry['type'] = value['ContentType']['Name_de'].lower()
-            entry['mapname'] = value['Name_de']
-            entry['mapid'] = value['TerritoryType'].get('Name_de', "")
-            entry['allianceraid'] = str(value['AllianceRoulette'])
-            entry['frontier'] = str(value['FeastTeamRoulette'])
-            entry['expert'] = str(value['ExpertRoulette'])
-            entry['guildhest'] = str(value['GuildHestRoulette'])
-            entry['highlevelroulette'] = str(value['HighLevelRoulette'])
-            entry['levelcaproulette'] = str(value['LevelCapRoulette'])
-            entry['leveling'] = str(value['LevelingRoulette'])
-            entry['main'] = str(value['MSQRoulette'])
-            entry['mentor'] = str(value['MentorRoulette'])
-            entry['normalraid'] = str(value['NormalRaidRoulette'])
-            entry['trial'] = str(value['TrialRoulette'])
-            return entry
+    content_name = getContentName(entry["title"], "de", entry["difficulty"], entry["instanceType"]).lower().strip()
+    value = _roulette_lookup.get(content_name)
+    if value:
+        entry['type'] = value['ContentType']['Name_de'].lower()
+        entry['mapname'] = value['Name_de']
+        entry['mapid'] = value['TerritoryType'].get('Name_de', "")
+        entry['allianceraid'] = str(value['AllianceRoulette'])
+        entry['frontier'] = str(value['FeastTeamRoulette'])
+        entry['expert'] = str(value['ExpertRoulette'])
+        entry['guildhest'] = str(value['GuildHestRoulette'])
+        entry['highlevelroulette'] = str(value['HighLevelRoulette'])
+        entry['levelcaproulette'] = str(value['LevelCapRoulette'])
+        entry['leveling'] = str(value['LevelingRoulette'])
+        entry['main'] = str(value['MSQRoulette'])
+        entry['mentor'] = str(value['MentorRoulette'])
+        entry['normalraid'] = str(value['NormalRaidRoulette'])
+        entry['trial'] = str(value['TrialRoulette'])
     return entry
 
 
@@ -203,7 +205,8 @@ def getPrevAndNextContentOrder(sheet: Worksheet, elements, max_row: int) -> Orde
 
 
 def load_workbook_from_url(url: str) -> Workbook:
-    file: requests.Response = requests.get(url=url)
+    file: requests.Response = requests.get(url=url, timeout=60)
+    file.raise_for_status()
     return load_workbook(filename=BytesIO(file.content))
 
 

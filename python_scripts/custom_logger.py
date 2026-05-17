@@ -19,20 +19,26 @@ class CustomFormatter(logging.Formatter):
         logging.ERROR: wrap_in_color_red(format),
         logging.CRITICAL: bold_red + format + reset
     }
+    FORMATTERS = {
+        level: logging.Formatter(format_string)
+        for level, format_string in FORMATS.items()
+    }
 
     def format(self, record):
-        log_fmt = self.FORMATS.get(record.levelno)
-        formatter = logging.Formatter(log_fmt)
+        formatter = self.FORMATTERS.get(record.levelno, self.FORMATTERS[logging.CRITICAL])
         return formatter.format(record)
 
 
 def getLogger(level=50):
     logger = logging.getLogger("My_app")
     logger.setLevel(level)
-    ch = logging.StreamHandler()
-    ch.setLevel(level)
-    ch.setFormatter(CustomFormatter())
-    logger.addHandler(ch)
+    logger.propagate = False
+    if not logger.handlers:
+        ch = logging.StreamHandler()
+        ch.setFormatter(CustomFormatter())
+        logger.addHandler(ch)
+    for handler in logger.handlers:
+        handler.setLevel(level)
     return logger
 
 

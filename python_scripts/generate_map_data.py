@@ -86,6 +86,24 @@ maps: dict[str, dict[str, str]] = loadDataTheQuickestWay("Map.json")
 fishingspot: dict[str, dict[str, str]] = loadDataTheQuickestWay("Fishingspot.json", translate=False)
 treasurehuntrank = loadDataTheQuickestWay("TreasureHuntRank.json")
 spearfishingspot: dict[str, dict[str, str]] = loadDataTheQuickestWay("SpearfishingNotebook.json", translate=False)
+maps_by_id = {value['Id']: value for value in maps.values()}
+territories_by_place_name_en = {
+    value['PlaceName']['Name_en']: value
+    for value in ttype.values()
+    if len(value['Name']) < 5
+}
+territories_by_name = {
+    value['Name']: value
+    for value in ttype.values()
+}
+fates_by_name_en = {
+    value['Name_en'].lower().strip(): key
+    for key, value in fates_trans.items()
+}
+ces_by_name_en = {
+    value['Name_en'].lower().strip(): key
+    for key, value in ces.items()
+}
 fatemapping = {
         'ui/icon/060000/060852.tex': 'Notorious monster',
         "ui/icon/060000/060801.tex": "Gegner Wellen",
@@ -128,9 +146,7 @@ def get_x_image(_id: str = "NoType"):
 
 
 def getMapFromID(mapid):
-    for key, value in maps.items():
-        if value['Id'] == mapid:
-            return value
+    return maps_by_id.get(mapid)
 
 
 def load_url_as_bs4(url: str) -> BeautifulSoup:
@@ -183,20 +199,17 @@ def getTablesFromConsoleGamesWiki(url: str, zone: str) -> dict[str, Any]:
                 else:
                     tmp[header[i]] = col.text.strip() # type: ignore
             tmp['Fate Name'] = fixFateNames(tmp['Fate Name'])
-            found = False
-            for key, value in fates_trans.items():
-                if tmp['Fate Name'].lower() == value['Name_en'].lower().strip():
-                    tmp["Fate ID"] = key
-                    tmp["Fate Type"] = "Fate"
-                    found = True
-                    break
-            for key, value in ces.items():
-                if tmp['Fate Name'].lower() == value['Name_en'].lower().strip():
-                    tmp["Fate ID"] = key
-                    tmp["Fate Type"] = "CE"
-                    found = True
-                    print(tmp['Fate Name'])
-                    break
+            fate_name_key = tmp['Fate Name'].lower().strip()
+            fate_key = fates_by_name_en.get(fate_name_key)
+            ce_key = ces_by_name_en.get(fate_name_key)
+            found = bool(fate_key or ce_key)
+            if fate_key:
+                tmp["Fate ID"] = fate_key
+                tmp["Fate Type"] = "Fate"
+            elif ce_key:
+                tmp["Fate ID"] = ce_key
+                tmp["Fate Type"] = "CE"
+                print(tmp['Fate Name'])
             if not found:
                 print_color_red(tmp['Fate Name'])
                 continue
@@ -405,11 +418,8 @@ def merge_fate_data(tc_fates: dict, gw_fates: dict):
 
 
 def get_baseimage_by_location(location):
-    _id = None
-    for key, value in ttype.items():
-        if value['PlaceName']['Name_en'] == location:
-            if len(value['Name']) < 5:
-                _id = value['Name']
+    territory = territories_by_place_name_en.get(location)
+    _id = territory['Name'] if territory else None
     if not _id:
         ERROR
     folder: str = _id[:3]
@@ -461,28 +471,26 @@ def generate_images():
         _map_id = None
         new_map_id = None
         # this codeblock will get elements like map id, offset etc so we dont need to calculate it per map
-        for x, value in ttype.items():
-            if value['PlaceName']['Name_en'] == location:
-                # check if the territory name e.g. o6b1 has less then 5 chars to avoid o6b1/01_event things
-                if len(value['Name']) < 5:
-                    new_map_id = value['Map']['row_id']
-                    _map_id = value['Map']['Id']
-                    _map = getMapFromID(_map_id)
-                    _sizefactor = float(_map['SizeFactor'])
+        territory = territories_by_place_name_en.get(location)
+        if territory:
+            new_map_id = territory['Map']['row_id']
+            _map_id = territory['Map']['Id']
+            _map = getMapFromID(_map_id)
+            _sizefactor = float(_map['SizeFactor'])
 
-                    _x_offset = float(_map['OffsetX'])
-                    _y_offset = float(_map['OffsetY'])
+            _x_offset = float(_map['OffsetX'])
+            _y_offset = float(_map['OffsetY'])
 
-                    #print_color_green(location)
-                    if location in ["Eureka Hydatos", "Bozjan Southern Front"]:
-                        _x_offset = 0
-                        _y_offset = 0
-                    elif location in ["Ul'dah - Steps of Nald", "Old Gridania"]:
-                        _x_offset = 520
-                        _y_offset = 520
-                    elif location in ["The Sea of Clouds", "Azys Lla", "Coerthas Western Highlands", "The Churning Mists", "The Dravanian Forelands", "The Dravanian Hinterlands"]:
-                        _x_offset = -50
-                        _y_offset = -50
+            #print_color_green(location)
+            if location in ["Eureka Hydatos", "Bozjan Southern Front"]:
+                _x_offset = 0
+                _y_offset = 0
+            elif location in ["Ul'dah - Steps of Nald", "Old Gridania"]:
+                _x_offset = 520
+                _y_offset = 520
+            elif location in ["The Sea of Clouds", "Azys Lla", "Coerthas Western Highlands", "The Churning Mists", "The Dravanian Forelands", "The Dravanian Hinterlands"]:
+                _x_offset = -50
+                _y_offset = -50
 
         if not _map_id:
             print_color_yellow(location)
@@ -711,29 +719,23 @@ def get_mapmarker(mapid, w, h, _x_offset, _y_offset, _sizefactor ):
     maps = []
     midplsit = mapid.split("/")[0]
     global mapmarkerdata
-    for key, value in ttype.items():
-        if value['Name'] != midplsit:
-            continue
-        marker_range = value['Map']['MapMarkerRange']
-        for mkey, mvalue in mapmarker.items():
-            if not mkey.startswith(marker_range):
-                continue
-            if mvalue['X'] == "0" and mvalue['Y'] == "0":
-                continue
+    if mapid not in mapmarkerdata:
+        mapmarkerdata[mapid] = {}
+        territory = territories_by_name.get(midplsit)
+        if territory:
+            marker_range = territory['Map']['MapMarkerRange']
+            for mkey, mvalue in mapmarker.items():
+                if not mkey.startswith(marker_range):
+                    continue
+                if mvalue['X'] == "0" and mvalue['Y'] == "0":
+                    continue
 
-            if not mapmarkerdata.get(mapid, None):
-                mapmarkerdata[mapid] = {}
-            if not mapmarkerdata[mapid].get(key, None):
-                mapmarkerdata[mapid][mkey] = []
-
-            getImage(mvalue['Icon']['path'], ishr1=False)
-            mapmarkerdata[mapid][mkey].append((( mvalue['X']), ( mvalue['Y']), mvalue['PlaceNameSubtext']['Name_de'], mvalue['Icon']['path'].replace("ui/icon/", "").replace(".tex", "")))
+                getImage(mvalue['Icon']['path'], ishr1=False)
+                mapmarkerdata[mapid][mkey] = [(( mvalue['X']), ( mvalue['Y']), mvalue['PlaceNameSubtext']['Name_de'], mvalue['Icon']['path'].replace("ui/icon/", "").replace(".tex", ""))]
     if not mapmarkerdata.get(mapid, None):
         return maps
     for key, value in mapmarkerdata[mapid].items():
         x, y, name, icon = value[0]
-        x2 = ToMapPixel(val=float(x), offset=_x_offset, sizefactor=_sizefactor)
-        y2 = ToMapPixel(val=float(y), offset=_y_offset, sizefactor=_sizefactor)
         maps.append({  "type": f"mapmarker", "name": f"{name}", "position": [float(x), - float(y)+2048], "imageUrl": f"/{icon}.webp"})
     return maps
 

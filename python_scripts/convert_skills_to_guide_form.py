@@ -27,6 +27,7 @@ status_ncj = None
 klass_translations = None
 job_translations = None
 path_of_main_script = ""
+_classjob_by_name_de: dict[str, dict[str, Any]] | None = None
 
 def get_class_translation_data() -> None:
     global klass_translations
@@ -45,17 +46,15 @@ def write_class_translation_data(data: dict) -> None:
 
 
 def convertJobToAbrev(job):
-    global classjob
-    global cjs
-    job_abbr = None
-    class_abbr = None
-    for key, value in classjob.items():
-        if value['Name_de'] == job:
-            job_abbr = value['Abbreviation_de']
-    _class = [v['ClassJobParent']['Name_de'] for k, v in classjob.items() if v["Name_de"] == job][0]
-    for key2, value2 in classjob.items():
-        if value2['Name_de'] == _class:
-            class_abbr = value2['Abbreviation_de']
+    global _classjob_by_name_de
+    if _classjob_by_name_de is None:
+        _classjob_by_name_de = {
+            value['Name_de']: value
+            for value in classjob.values()
+        }
+    job_data = _classjob_by_name_de[job]
+    job_abbr = job_data['Abbreviation_de']
+    class_abbr = _classjob_by_name_de[job_data['ClassJobParent']['Name_de']]['Abbreviation_de']
 
     if not job_abbr == "" or not class_abbr == "":
         return job_abbr, class_abbr

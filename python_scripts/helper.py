@@ -13,6 +13,9 @@ try:
 except Exception:
     from fileimports import *
 
+_content_name_index: dict[str, dict[str, Any]] | None = None
+_place_name_index: dict[str, dict[str, Any]] | None = None
+
 @dataclass
 class EntryType(dict):
     exclude: str = ""
@@ -101,6 +104,64 @@ def is_repo_root() -> bool:
     # your repo is named DevFFXIVPocketGuide per your message
     return Path.cwd().name == "DevFFXIVPocketGuide"
 
+def normalize_image_path(image: str | dict[str, Any], _type: str = "icon", ishr1: bool = True) -> str:
+    if isinstance(image, dict):
+        image = image.get("path_hr1" if ishr1 else "path", "") or image.get("path", "") or image.get("path_hr1", "")
+
+    image = str(image).strip().strip('"').strip("'").replace("\\", "/")
+    image = image.split("?", 1)[0].split("#", 1)[0]
+
+    prefixes = [
+        "../assets/img/game_assets/",
+        "/assets/img/game_assets/",
+        "assets/img/game_assets/",
+        f"P:/extras/images/ui/{_type}/",
+        f"/var/www/ffxiv/extras/images/ui/{_type}/",
+        f"/Volumes/FFXIV/extras/images/ui/{_type}/",
+        f"extras/images/ui/{_type}/",
+        f"ui/{_type}/",
+    ]
+    if _type == "map":
+        prefixes.extend(["map/", "/map/"])
+
+    for prefix in prefixes:
+        if image.startswith(prefix):
+            image = image[len(prefix):]
+
+    if "/assets/img/game_assets/" in image:
+        image = image.split("/assets/img/game_assets/", 1)[1]
+    if f"/extras/images/ui/{_type}/" in image:
+        image = image.split(f"/extras/images/ui/{_type}/", 1)[1]
+
+    if _type == "icon":
+        image = image.replace("ui/icon/", "")
+
+    image = image.lstrip("/")
+    if _type == "map" and image.startswith("map/"):
+        image = image[4:]
+
+    for extension in (".tex", ".png", ".jpg", ".jpeg"):
+        if image.lower().endswith(extension):
+            image = image[: -len(extension)] + ".webp"
+            break
+    if not image.lower().endswith(".webp"):
+        image += ".webp"
+
+    if ishr1 and _type != "map" and not image.lower().endswith("_hr1.webp"):
+        image = image[:-5] + "_hr1.webp"
+
+    return image
+
+
+def copy_and_return_image_as_hr(img: str | dict[str, Any], _type: str = "icon", ishr1: bool = True) -> str:
+    img = normalize_image_path(img, _type=_type, ishr1=ishr1)
+    dest_root = Path("assets/img/game_assets")
+    if not is_repo_root():
+        dest_root = Path("../assets/img/game_assets")
+    if _type == "map":
+        dest_root = dest_root / "map"
+    return (dest_root / img).as_posix().replace("../", "")
+
 #--- main API ---
 def getImage(image: str, _type: str = "icon", ishr1=True) -> str:
     """
@@ -111,95 +172,14 @@ def getImage(image: str, _type: str = "icon", ishr1=True) -> str:
     if not image:  # None or ""
         return ""
 
-    # dict support
-    if isinstance(image, dict):
-        if ishr1:
-            image = image.get("path_hr1", image)
-        else:
-            image = image.get("path", image)
+    image = normalize_image_path(image, _type=_type, ishr1=ishr1)
+    if image == "assets/img/test.webp":
+        return "/assets/img/test.webp"
 
-    # cleanup
-    image = image.replace("\\", "/")
-    if image.startswith("/../"):
-        image = image.replace("/../", "/")
-
-    # Early exit when already good and present
-    if (((ishr1 and "_hr1" in image) or ("/content/" in image)) and path_exists_in_assets(image)) or image == "/assets/img/test.webp":
-        return image.replace("/assets/img/game_assets", "")
-
-    # Normalize extensions
-    image = image.replace(".png", ".webp").replace(".tex", ".webp").replace("test.jpg", "test.webp")
-
-    # Ensure _hr1 for non-map
-    if ((ishr1 and "_hr1" not in image) and _type != "map"):
-        if image.lower().endswith(".webp"):
-            image = image[:-5] + "_hr1.webp"
-
-    # For icons drop 'ui/icon/' prefix if present
-    if _type == "icon":
-        image = image.replace("ui/icon/", "").replace("ui/{}/".format(_type), "")
-    # Create/copy/convert and get a repo-relative assets path (no leading slash)
-    repo_rel = copy_and_return_image_as_hr(img=image, _type=_type)  # e.g. 'assets/img/game_assets/061000/061880_hr1.webp'
-    # Make it URL-ish
+    repo_rel = copy_and_return_image_as_hr(img=image, _type=_type, ishr1=ishr1)
     url_path = "/" + repo_rel.lstrip("/")
-    # Debug: show real resolved path & existence
-    abs_path = project_path_from_assets_like(url_path)
-    # Fallback to non-hr if hr missing
-    if not abs_path.exists():
-        url_path = url_path.replace("_hr1.webp", ".webp")
-        #print_color_green(url_path)
     return url_path.replace("/assets/img/game_assets", "")
 
-def copy_and_return_image_as_hr(img: str, _type: str = "icon") -> str:
-    """
-    Ensure a webp is present in assets/img/game_assets[/map]/..., converting from source if needed.
-    Returns a repo-relative path like 'assets/img/game_assets/061000/061880_hr1.webp'
-    """
-
-    # Strip any site prefix and *remove leading slash* so joins don't reset the base path
-    img = img.replace("/assets/img/game_assets", "").replace("\\", "/").lstrip("/")
-
-    # Source base path by OS
-    if os.name == "nt":
-        basepath = Path("P:/extras/images/ui")
-    elif sys.platform.startswith("linux"):
-        basepath = Path("/var/www/ffxiv/extras/images/ui")
-    elif sys.platform == "darwin":
-        basepath = Path("/Volumes/FFXIV/extras/images/ui")
-    else:
-        basepath = Path("extras/images/ui")  # fallback
-
-    # Full source file (png is your source format)
-    # IMPORTANT: img must NOT start with '/', otherwise this would discard basepath/_type
-    src_path = (basepath / _type / img).with_suffix(".webp")
-
-    # Destination root inside repo
-    dest_root = Path("assets/img/game_assets")
-    if not is_repo_root():
-        # allow running from parent folder as in your original code
-        dest_root = Path("../assets/img/game_assets")
-
-    if _type == "map":
-        dest_root = dest_root / "map"
-
-    # Destination full path as webp
-    dest_path = (dest_root / img).with_suffix(".webp")
-
-    # Convert/copy if source exists and dest missing
-    #if src_path.exists():
-    #    if not dest_path.exists():
-    #        dest_path.parent.mkdir(parents=True, exist_ok=True)
-    #        # convert_single_image expects a filename and a replace_dir tuple just like your original code
-    #        # We pass posix-style strings to keep it consistent across OSes.
-    #        convert_single_image(
-    #            src_path.as_posix(),
-    #            replace_dir=((basepath / _type).as_posix() + "/", dest_root.as_posix().rstrip("/") + "/"),
-    #        )
-    #else:
-    #    print_color_red(f"Filename not found: {src_path.as_posix()}")
-
-    # Return repo-relative path (strip any leading ../ that might exist)
-    return dest_path.as_posix().replace("../", "")
 
 def uglyContentNameFix(name: str, instanceType: str="", difficulty: str="") -> str:
     if difficulty == "Fatal" and instanceType == "ultimate" and "fatal" not in name.lower():
@@ -233,16 +213,33 @@ def uglyContentNameFix(name: str, instanceType: str="", difficulty: str="") -> s
 
 def getContentName(name: str, lang: str ="en", difficulty: str="", instanceType: str="") -> str:
     name = uglyContentNameFix(name, instanceType, difficulty)
+    normalized_name = name.lower().strip()
     try:
-        for _, content in contentfindercondition.items():
-            if "memoria" in content["Name_de"].lower().strip() and "memoria" in name.lower().strip():
-                return content[f"Name_{lang}"]
-            if content["Name_de"].lower().strip() == name.lower().strip():
-                return content[f"Name_{lang}"]
-        for _, place in placename.items():
-            # the replace is for the "shy" character that is sometimes in the names
-            if place["Name_de"].replace("­", "").lower().strip() == name.lower().strip():
-                return place[f"Name_{lang}"]
+        global _content_name_index
+        global _place_name_index
+        if _content_name_index is None:
+            _content_name_index = {
+                content["Name_de"].lower().strip(): content
+                for content in contentfindercondition.values()
+            }
+        if _place_name_index is None:
+            _place_name_index = {
+                place["Name_de"].replace("­", "").lower().strip(): place
+                for place in placename.values()
+            }
+
+        if "memoria" in normalized_name:
+            for key, content in _content_name_index.items():
+                if "memoria" in key:
+                    return content[f"Name_{lang}"]
+
+        content = _content_name_index.get(normalized_name)
+        if content:
+            return content[f"Name_{lang}"]
+
+        place = _place_name_index.get(normalized_name)
+        if place:
+            return place[f"Name_{lang}"]
     except KeyError:
         traceback.print_exc()
         pass

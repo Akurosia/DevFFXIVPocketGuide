@@ -29,7 +29,7 @@ def add_element(col_k: str, col_id: dict[str, str], row: str, r: dict[str, list[
 
 def run():
     counter: int = 0
-    setcompleted: list[str] = ["0"]
+    setcompleted: set[str] = {"0"}
 
     couner = 0
 
@@ -39,7 +39,7 @@ def run():
         for k, _set in value['MirageStoreSetItem'].items():
             setid = _set.replace("MirageStoreSetItem#", "")
             if not setid in setcompleted:
-                setcompleted.append(setid)
+                setcompleted.add(setid)
                 name = items[setid]['Name_de']
                 if not name in ["Abenteurer-Kapuzenwestenset", "Boulevardier-Set", "Chocobo-Schlafset", "Coeurl-Bikinitop-Pareo-Set", "Coeurl-Bikinitop-Tanga-Set", "Coeurl-Talisman-Maro-Set", "Coeurl-Talisman-Strandhose-Set", "Dalmascanisches Kleidungsset", "Dhalmelleder-Mantelset", "Einfaches Schlafset", "Feuermond-Jackenset", "Flanellrockset mit Hosenträgern", "Frühlingskleid-Set", "Gesellschafts-Set", "Gletscher-Set", "Glücks-Set", "Grenzland-Jackenset", "Grenzland-Kleidset", "Himmelsratten-Set der Heilung (Replik)", "Himmelsratten-Set der Magie (Replik)", "Himmelsratten-Set der Verteidigung (Replik)", "Himmelsratten-Set des Schlagens (Replik)", "Himmelsratten-Set des Spähens (Replik)", "Himmelsratten-Set des Verstümmelns (Replik)", "Himmelsratten-Set des Zielens (Replik)", "Hochland-Set", "Kaktor-Schlafset", "Kampfkunst-Set", "Kellner-Galawestenset", "Kellner-Westenset", "Leichtstahl-Set", "Leinen-Pfadfinderset", "Luftpiraten-Set der Heilung (Replik)", "Luftpiraten-Set der Magie (Replik)", "Luftpiraten-Set der Verteidigung (Replik)", "Luftpiraten-Set des Schlagens (Replik)", "Luftpiraten-Set des Spähens (Replik)", "Luftpiraten-Set des Verstümmelns (Replik)", "Luftpiraten-Set des Zielens (Replik)", "Mantelset des Städters", "Mondsichel-Nachttalar-Nachtkappen-Set", "Mondsichel-Nachttalar-Spitzkappen-Set", "Ramien-Hemdset", "Ramien-Ponchoset", "Ramien-Waffenrockset", "Regenbogen-Justaucorps-Set", "Regenbogen-Reifrockset", "Südsee-Set mit Hemd und Hose", "Südsee-Set mit Hemd und Rock", "Taft-Set", "Trauzeugen-Set", "Trauzeugin-Set", "Turalisches Händlerset", "Turalisches Reiseset", "Universitäts-Set", "Unordnungshüter-Set", "Uräusmantel-Set", "Winterliches Rockset", "Winterliches Weithosenset", "Wissenschaftlerset", "Zugeknöpftes Universitäts-Set", "Ärmelloses Kampfkunst-Set"]:
                     continue

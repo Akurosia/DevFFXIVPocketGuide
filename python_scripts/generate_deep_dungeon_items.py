@@ -191,8 +191,9 @@ def get_pomanders():
 
         icon = item_data['Icon']['path_hr1'].replace(".tex", ".webp").replace("ui/icon/", "")
         getImage(item_data['Icon'])
+        baseurl = "{{site.imageurl}}"
         pomander_table += f"""                                {before}<tr>
-                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="/{icon}" alt="{item_data['Name_en']}"/></td>
+                                    <td><img loading="lazy" style="object-fit: scale-down; height: 40px" src="{baseurl}/{icon}" alt="{item_data['Name_en']}"/></td>
                                     <td>
                                         <span class="lang-toggle lang-toogle-en" style="display: none;">{item_data['Name_en']}{additions}</span>
                                         <span class="lang-toggle lang-toogle-de" style="display: none;">{item_data['Name_de']}{additions}</span>

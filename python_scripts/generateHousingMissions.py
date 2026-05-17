@@ -84,7 +84,8 @@ def get_submarine_map(name):
     }
 
 
-def run():
+def run(path_of_main_script):
+    print(os.getcwd())
     get_class_translation_data()
     r_data = ""
     r_data += "---\n"
@@ -144,7 +145,8 @@ def run():
     #print(r_data)
 
     filename = "_pages/airship_submarine/index.html"
-    os.chdir("..")
+    if not os.getcwd() == path_of_main_script and path_of_main_script in os.getcwd():
+        os.chdir("..")
     with open(filename, encoding="utf8") as f:
         doc = f.read()
     if not doc == r_data:
@@ -154,5 +156,5 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    run(os,getcwd())
     os.chdir("_posts")

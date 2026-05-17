@@ -2,31 +2,26 @@
 # -*- coding: utf-8 -*-
 # coding: utf8
 
-import glob
-import json
-import sys
 import argparse
+from pathlib import Path
 
 def run(args: argparse.Namespace)-> None :
-    files: list[str] = glob.glob("**/*.md", recursive=True)
+    files: list[Path] = sorted(Path(".").rglob("*.md"))
     print(f"There are a total of {len(files)} Files!")
-    counter = 0
-    results: list[str] = []
-    for file in sorted(files):
-        counter += 1
+    results: list[Path] = []
+    searchterm = args.searchterm if args.case_sensitive else args.searchterm.lower()
+    for counter, file in enumerate(files, start=1):
         print(f"Work on file {file}: {counter}/{len(files)}!")
-        with open(file, "r", encoding="utf8") as f:
-            data = f.readlines()
+        data = file.read_text(encoding="utf8")
         if not args.case_sensitive:
-            args.searchterm = args.searchterm.lower()
-            data = str(data).lower()
-        if args.searchterm in str(data):
+            data = data.lower()
+        if searchterm in data:
             results.append(file)
-            print("Found your data in " + file)
+            print(f"Found your data in {file}")
 
     print("\n\n")
-    for file in sorted(results):
-        print("Found your data in " + file)
+    for file in results:
+        print(f"Found your data in {file}")
 
 
 if __name__ == "__main__":

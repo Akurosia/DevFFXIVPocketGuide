@@ -126,10 +126,7 @@ def cleanup_logdata(logdata_instance_content: dict[Any, Any]) -> tuple[dict[Any,
     for _, enemy in logdata_instance_content.items():
         enemy.pop("tether", None)
         enemy.pop("headmarker", None)
-    new_lic = {}
-    for k, v in logdata_instance_content.items():
-        new_lic[k] = v
-    return new_lic, music, fates
+    return dict(logdata_instance_content), music, fates
 
 
 def getDataFromLogfile(entry: dict[str, Any]):
@@ -175,11 +172,12 @@ def writeFileIfNoDifferent(filename: str, filedata: str, aku_write: bool = False
 
 def write_content_to_file(entry: dict[str, Any], filename: str, old_data: dict[str, Any], content_translations: dict[str, Any] ) -> None:
     logdata_instance_content, music, contentzoneid, fates = getDataFromLogfile(entry)
-    filedata = '---\n'
-    filedata += addHeader(entry, old_data, music, contentzoneid, content_translations)
-    filedata += addGuide(entry, old_data, logdata_instance_content, fates, content_translations)
-    filedata += '---'
-    filedata += '\n'
+    filedata = "".join([
+        '---\n',
+        addHeader(entry, old_data, music, contentzoneid, content_translations),
+        addGuide(entry, old_data, logdata_instance_content, fates, content_translations),
+        '---\n',
+    ])
     writeFileIfNoDifferent(filename, filedata)
 
 
@@ -256,17 +254,17 @@ def run_all(path_of_main_script, translations):
     #return
     tasks = [
         #aas.run()
-        lambda: csgf.run(path_of_main_script),
-        lambda: gl.run(path_of_main_script),
-        lambda: gp.run(path_of_main_script),
-        # ghm.run(path_of_main_script),
-        lambda: ga.run(path_of_main_script),
-        lambda: gbsq.run(path_of_main_script),
-        #lambda: fcc.run(path_of_main_script, translations),
-        lambda: gis.run(path_of_main_script),
-        lambda: ts.run(path_of_main_script),
-        lambda: quests.run(path_of_main_script),
-        lambda: deepdungeon.run(path_of_main_script),
+       lambda: csgf.run(path_of_main_script),
+       lambda: gl.run(path_of_main_script),
+       lambda: gp.run(path_of_main_script),
+       lambda: ghm.run(path_of_main_script),
+       lambda: ga.run(path_of_main_script),
+       lambda: gbsq.run(path_of_main_script),
+       lambda: gis.run(path_of_main_script),
+       lambda: ts.run(path_of_main_script),
+       lambda: quests.run(path_of_main_script),
+       lambda: deepdungeon.run(path_of_main_script),
+       #lambda: fcc.run(path_of_main_script, translations),
     ]
 
     with ThreadPoolExecutor(max_workers=len(tasks)) as executor:
@@ -275,7 +273,8 @@ def run_all(path_of_main_script, translations):
         # optional: wait and raise if any failed
         for f in futures:
             f.result()
-    newmaps.run(path_of_main_script)
+    # ignore newmaps in favor of akutrack
+    #newmaps.run(path_of_main_script)
 
 
 def main() -> None:
@@ -307,7 +306,7 @@ def main() -> None:
         orderedContent = tmp["ordered"]
 
     try:
-        run(googledata, orderedContent)
+        #run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())

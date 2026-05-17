@@ -7,9 +7,58 @@ from bs4 import BeautifulSoup
 import requests
 
 enitems = loadDataTheQuickestWay("Item.en.json")
+enitem_lookup = {
+    value.get('Name', '').lower(): key
+    for key, value in enitems.items()
+    if value.get('Name', '')
+}
+enitem_lookup.update({
+    value.get('Singular', '').lower(): key
+    for key, value in enitems.items()
+    if value.get('Singular', '')
+})
+SKIP_TITLE_PARTS = (
+    "#Acquired from Duty",
+    "#Sold by Merchant",
+    "#Rewarded from Quests",
+    "#Rewarded from Treasure Map",
+    "#Potentially received from",
+    "#Acquired from Airship Voyage",
+    "#Logging",
+    "#Harvesting",
+    "#Mining",
+    "#Quarrying",
+    "#Rewarded from Levequests",
+    "#Acquired from Gardening",
+    "#Acquired from Venture",
+    "#Dropped by Monsters",
+    "#Acquired from Reduction",
+    "#Miscellaneous Acquisition",
+    "#FATE",
+    "#Recipes",
+    " (Lost Action)",
+    "#Acquired from Desynth",
+)
+SKIP_TITLES = {
+    'Weather', 'NPCs', 'Quests', 'FATEs', 'Levequests', 'Hunting Log Targets',
+    'Monsters', 'Logging', 'Harvesting', 'Mining', 'Quarrying',
+    'Fishing Log Locations', "Open this page in Garland Data",
+    "Open this page in the Eorzea Database", "Run a search in YouTube",
+    "Tank", "Healer", "Damage Dealer", "Trust System", "Information Needed",
+    "Add Image",
+}
+TITLE_REPLACEMENTS = {
+    "#Rewarded from TT Duel": "",
+    "#Acquired from Chest": "",
+    " (Item)": "",
+    "#Available during Event": "",
+    "#Received from Coffer": "",
+    "Torn from the Heavens-The Dark Colossus Destroys All": "Torn from the Heavens/The Dark Colossus Destroys All",
+}
 
 def load_workbook_from_url(url):
-    file = requests.get(url)
+    file = requests.get(url, timeout=60)
+    file.raise_for_status()
     return load_workbook(filename=BytesIO(file.content))
 
 
@@ -28,7 +77,7 @@ def read_xlsx_file():
 
 def get_items_per_fight(name):
     url = f"https://ffxiv.gamerescape.com/wiki/{name}"
-    page = requests.get(url)
+    page = requests.get(url, timeout=60)
     if page.status_code == 200:
         content = page.content
     else:
@@ -37,6 +86,7 @@ def get_items_per_fight(name):
     print(url)
     DOMdocument = BeautifulSoup(content, 'html.parser')
     items = []
+    seen_items = set()
     for table in DOMdocument.find_all('table'):
         #print(table)
         for a in table.find_all('a'):
@@ -44,47 +94,17 @@ def get_items_per_fight(name):
                 title = a.get("title")
                 if title is None:
                     continue
-                if "#Acquired from Duty" in title or \
-                    "#Sold by Merchant" in title or \
-                    "#Rewarded from Quests" in title or \
-                    "#Rewarded from Treasure Map" in title or \
-                    "#Potentially received from" in title or \
-                    "#Acquired from Airship Voyage" in title or \
-                    "#Logging" in title or \
-                    "#Harvesting" in title or \
-                    "#Mining" in title or \
-                    "#Quarrying" in title or \
-                    "#Rewarded from Levequests" in title or \
-                    "#Acquired from Gardening" in title or \
-                    "#Acquired from Venture" in title or \
-                    "#Dropped by Monsters" in title or \
-                    "#Acquired from Reduction" in title or \
-                    "#Miscellaneous Acquisition" in title or \
-                    "#FATE" in title or \
-                    "#Recipes" in title or \
-                    " (Lost Action)" in title or \
-                    "#Acquired from Desynth" in title:
+                if any(skip in title for skip in SKIP_TITLE_PARTS):
                     continue
-                if title in ['Weather', 'NPCs', 'Quests', 'FATEs', 'Levequests', 'Hunting Log Targets', 'Monsters', 'Logging', 'Harvesting', 'Mining', 'Quarrying', 'Fishing Log Locations', "Open this page in Garland Data", "Open this page in the Eorzea Database", "Run a search in YouTube", "Tank", "Healer", "Damage Dealer", "Trust System", "Information Needed", "Add Image"]:
+                if title in SKIP_TITLES:
                     continue
-                if "#Rewarded from TT Duel" in title:
-                    title = title.replace("#Rewarded from TT Duel", "")
-                if "#Acquired from Chest" in title:
-                    title = title.replace("#Acquired from Chest", "")
-                if " (Item)" in title:
-                    title = title.replace(" (Item)", "")
-                if "#Available during Event" in title:
-                    title = title.replace("#Available during Event", "")
-                if "#Received from Coffer" in title:
-                    title = title.replace("#Received from Coffer", "")
-                if "Torn from the Heavens-The Dark Colossus Destroys All" in title:
-                    title = title.replace("Torn from the Heavens-The Dark Colossus Destroys All", "Torn from the Heavens/The Dark Colossus Destroys All")
+                for old, new in TITLE_REPLACEMENTS.items():
+                    title = title.replace(old, new)
 
-                if title not in items:
-                    for k, v in enitems.items():
-                        if v['Name'].lower() == title.lower() or v['Singular'].lower() == title.lower():
-                            items.append(k)
-                            break
+                item_id = enitem_lookup.get(title.lower())
+                if item_id and item_id not in seen_items:
+                    items.append(item_id)
+                    seen_items.add(item_id)
     return items
 
 
@@ -124,4 +144,5 @@ def test():
                 print(e)
     print_pretty_json(befor)
 
-run()
+if __name__ == "__main__":
+    run()

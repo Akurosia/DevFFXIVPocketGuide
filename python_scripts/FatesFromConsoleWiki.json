@@ -427,18 +427,18 @@
             "Fate Level Sync": "63",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "877": {
+        "879": {
             "Fate Name": "Prey Online",
             "Type": "Kill Boss",
             "Level": "59",
             "Location": {
-                "x": 27.83,
-                "y": 5.93
+                "x": 38.91,
+                "y": 18.33
             },
             "Experience": "12,109",
             "Gil": "118",
             "Company Seals": "339",
-            "Fate ID": "877",
+            "Fate ID": "879",
             "Fate Type": "Fate",
             "Fate Level": "59",
             "Fate Level Sync": "70",
@@ -665,14 +665,14 @@
             "Fate Level Sync": "63",
             "Icon Objective": "ui/icon/060000/060502.tex"
         },
-        "878": {
+        "877": {
             "Location": {
-                "x": 6.15,
-                "y": 20.08
+                "x": 27.83,
+                "y": 5.93
             },
             "Company Seals": "",
             "Experience": "",
-            "Fate ID": "878",
+            "Fate ID": "877",
             "Fate Level": "59",
             "Fate Level Sync": "70",
             "Fate Name": "Ultima: Ein Prototyp tankt auf",
@@ -681,14 +681,14 @@
             "Icon Objective": "ui/icon/060000/060502.tex",
             "Gil": ""
         },
-        "879": {
+        "878": {
             "Location": {
-                "x": 38.91,
-                "y": 18.33
+                "x": 6.15,
+                "y": 20.08
             },
             "Company Seals": "",
             "Experience": "",
-            "Fate ID": "879",
+            "Fate ID": "878",
             "Fate Level": "59",
             "Fate Level Sync": "70",
             "Fate Name": "Ultima: Ein Prototyp tankt auf",
@@ -2942,22 +2942,19 @@
             "Fate Level Sync": "50",
             "Icon Objective": "ui/icon/060000/060502.tex"
         },
-        "486": {
+        "690": {
             "Fate Name": "Tower of Power",
-            "Type": "Kill Enemies",
+            "Type": "Slay enemies",
             "Level": "45",
             "Location": {
-                "x": 11.27,
-                "y": 29.01
+                "x": "10",
+                "y": "28"
             },
             "Experience": "5,940",
             "Gil": "90",
             "Company Seals": "258",
-            "Fate ID": "486",
-            "Fate Type": "Fate",
-            "Fate Level": "45",
-            "Fate Level Sync": "50",
-            "Icon Objective": "ui/icon/060000/060501.tex"
+            "Fate ID": "690",
+            "Fate Type": "Fate"
         },
         "490": {
             "Fate Name": "The Bigger They Are",
@@ -3123,6 +3120,22 @@
             "Fate Level": "35",
             "Fate Level Sync": "40",
             "Fate Name": "",
+            "Fate Type": "Fate",
+            "Type": "Kill Enemies",
+            "Icon Objective": "ui/icon/060000/060501.tex",
+            "Gil": ""
+        },
+        "486": {
+            "Location": {
+                "x": 11.27,
+                "y": 29.01
+            },
+            "Company Seals": "",
+            "Experience": "",
+            "Fate ID": "486",
+            "Fate Level": "45",
+            "Fate Level Sync": "50",
+            "Fate Name": "Der Wille von Haillenarte",
             "Fate Type": "Fate",
             "Type": "Kill Enemies",
             "Icon Objective": "ui/icon/060000/060501.tex",
@@ -3622,7 +3635,7 @@
         }
     },
     "Cosmic Exploration": {
-        "1978": {
+        "1993": {
             "Fate Name": "Base Camp Alpha Expansion",
             "Type": "Rebuild",
             "Level": "1",
@@ -3632,10 +3645,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1978",
+            "Fate ID": "1993",
             "Fate Type": "Fate"
         },
-        "1979": {
+        "2026": {
             "Fate Name": "Cosmoliner Alpha Construction Support",
             "Type": "Rebuild",
             "Level": "1",
@@ -3645,10 +3658,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1979",
+            "Fate ID": "2026",
             "Fate Type": "Fate"
         },
-        "1980": {
+        "2059": {
             "Fate Name": "Habitation Module Construction Support",
             "Type": "Rebuild",
             "Level": "1",
@@ -3658,10 +3671,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1980",
+            "Fate ID": "2059",
             "Fate Type": "Fate"
         },
-        "1981": {
+        "1996": {
             "Fate Name": "Cosmoport Alpha Maintenance Support",
             "Type": "Rebuild",
             "Level": "1",
@@ -3671,10 +3684,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1981",
+            "Fate ID": "1996",
             "Fate Type": "Fate"
         },
-        "1982": {
+        "2030": {
             "Fate Name": "Mech Hangar Alpha Expansion",
             "Type": "Rebuild",
             "Level": "1",
@@ -3684,10 +3697,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1982",
+            "Fate ID": "2030",
             "Fate Type": "Fate"
         },
-        "1983": {
+        "1998": {
             "Fate Name": "Tunnel Project Alpha Excavation",
             "Type": "Rebuild",
             "Level": "1",
@@ -3697,10 +3710,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1983",
+            "Fate ID": "1998",
             "Fate Type": "Fate"
         },
-        "1984": {
+        "1999": {
             "Fate Name": "Tunnel Project Beta Excavation",
             "Type": "Rebuild",
             "Level": "1",
@@ -3710,10 +3723,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1984",
+            "Fate ID": "1999",
             "Fate Type": "Fate"
         },
-        "1985": {
+        "2000": {
             "Fate Name": "Base Camp Beta Expansion",
             "Type": "Rebuild",
             "Level": "1",
@@ -3723,10 +3736,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1985",
+            "Fate ID": "2000",
             "Fate Type": "Fate"
         },
-        "1986": {
+        "2001": {
             "Fate Name": "Energization Expansion Support",
             "Type": "Rebuild",
             "Level": "1",
@@ -3736,10 +3749,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1986",
+            "Fate ID": "2001",
             "Fate Type": "Fate"
         },
-        "1987": {
+        "2002": {
             "Fate Name": "Hydrofication Expansion Support",
             "Type": "Rebuild",
             "Level": "1",
@@ -3749,10 +3762,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1987",
+            "Fate ID": "2002",
             "Fate Type": "Fate"
         },
-        "1988": {
+        "2034": {
             "Fate Name": "Mech Hangar Beta Expansion",
             "Type": "Rebuild",
             "Level": "1",
@@ -3762,10 +3775,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1988",
+            "Fate ID": "2034",
             "Fate Type": "Fate"
         },
-        "1989": {
+        "2004": {
             "Fate Name": "Cosmoport Beta Maintenance",
             "Type": "Rebuild",
             "Level": "1",
@@ -3775,10 +3788,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1989",
+            "Fate ID": "2004",
             "Fate Type": "Fate"
         },
-        "1990": {
+        "2005": {
             "Fate Name": "Nadir Lift Site Preparation",
             "Type": "Rebuild",
             "Level": "1",
@@ -3788,10 +3801,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1990",
+            "Fate ID": "2005",
             "Fate Type": "Fate"
         },
-        "1991": {
+        "2006": {
             "Fate Name": "Nadir Lift Beta Site Preparation",
             "Type": "Rebuild",
             "Level": "1",
@@ -3801,10 +3814,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1991",
+            "Fate ID": "2006",
             "Fate Type": "Fate"
         },
-        "1992": {
+        "2007": {
             "Fate Name": "Base Camp Facility Expansion",
             "Type": "Rebuild",
             "Level": "1",
@@ -3814,10 +3827,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "1992",
+            "Fate ID": "2007",
             "Fate Type": "Fate"
         },
-        "2008": {
+        "2025": {
             "Fate Name": "Beacon Camp Alpha Expansion",
             "Type": "Rebuild",
             "Level": "1",
@@ -3827,10 +3840,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2008",
+            "Fate ID": "2025",
             "Fate Type": "Fate"
         },
-        "2011": {
+        "2060": {
             "Fate Name": "Energization Station Construction Support",
             "Type": "Rebuild",
             "Level": "1",
@@ -3840,10 +3853,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2011",
+            "Fate ID": "2060",
             "Fate Type": "Fate"
         },
-        "2012": {
+        "2061": {
             "Fate Name": "Hydrofication Station Construction Support",
             "Type": "Rebuild",
             "Level": "1",
@@ -3853,10 +3866,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2012",
+            "Fate ID": "2061",
             "Fate Type": "Fate"
         },
-        "2014": {
+        "2031": {
             "Fate Name": "Upper Crane Construction",
             "Type": "Rebuild",
             "Level": "1",
@@ -3866,10 +3879,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2014",
+            "Fate ID": "2031",
             "Fate Type": "Fate"
         },
-        "2015": {
+        "2032": {
             "Fate Name": "Lower Crane Construction",
             "Type": "Rebuild",
             "Level": "1",
@@ -3879,10 +3892,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2015",
+            "Fate ID": "2032",
             "Fate Type": "Fate"
         },
-        "2016": {
+        "2033": {
             "Fate Name": "Beacon Camp Beta Expansion",
             "Type": "Rebuild",
             "Level": "1",
@@ -3892,10 +3905,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2016",
+            "Fate ID": "2033",
             "Fate Type": "Fate"
         },
-        "2018": {
+        "2065": {
             "Fate Name": "Cosmoport Maintenance Support",
             "Type": "Rebuild",
             "Level": "1",
@@ -3905,10 +3918,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2018",
+            "Fate ID": "2065",
             "Fate Type": "Fate"
         },
-        "2019": {
+        "2036": {
             "Fate Name": "Power Procurement",
             "Type": "Rebuild",
             "Level": "1",
@@ -3918,10 +3931,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2019",
+            "Fate ID": "2036",
             "Fate Type": "Fate"
         },
-        "2020": {
+        "2037": {
             "Fate Name": "Additional Power Procurement",
             "Type": "Rebuild",
             "Level": "1",
@@ -3931,10 +3944,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2020",
+            "Fate ID": "2037",
             "Fate Type": "Fate"
         },
-        "2021": {
+        "2038": {
             "Fate Name": "Mobilization Station Construction",
             "Type": "Rebuild",
             "Level": "1",
@@ -3944,10 +3957,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2021",
+            "Fate ID": "2038",
             "Fate Type": "Fate"
         },
-        "2022": {
+        "2039": {
             "Fate Name": "Operation Chilling-a-Way: Phase One",
             "Type": "Rebuild",
             "Level": "1",
@@ -3957,10 +3970,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2022",
+            "Fate ID": "2039",
             "Fate Type": "Fate"
         },
-        "2023": {
+        "2040": {
             "Fate Name": "Operation Chilling-a-Way: Phase Two",
             "Type": "Rebuild",
             "Level": "1",
@@ -3970,10 +3983,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2023",
+            "Fate ID": "2040",
             "Fate Type": "Fate"
         },
-        "2024": {
+        "2041": {
             "Fate Name": "Beacon Camp Facility Expansion",
             "Type": "Rebuild",
             "Level": "1",
@@ -3983,10 +3996,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2024",
+            "Fate ID": "2041",
             "Fate Type": "Fate"
         },
-        "2049": {
+        "2062": {
             "Fate Name": "Gravitational Generator Construction Support",
             "Type": "Rebuild",
             "Level": "1",
@@ -3996,10 +4009,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2049",
+            "Fate ID": "2062",
             "Fate Type": "Fate"
         },
-        "2050": {
+        "2063": {
             "Fate Name": "Terra Firma Maintenance",
             "Type": "Rebuild",
             "Level": "1",
@@ -4009,10 +4022,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2050",
+            "Fate ID": "2063",
             "Fate Type": "Fate"
         },
-        "2051": {
+        "2064": {
             "Fate Name": "Euhedron Restoration",
             "Type": "Rebuild",
             "Level": "1",
@@ -4022,10 +4035,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2051",
+            "Fate ID": "2064",
             "Fate Type": "Fate"
         },
-        "2053": {
+        "2066": {
             "Fate Name": "Emerald Echoes Excavation",
             "Type": "Rebuild",
             "Level": "1",
@@ -4035,10 +4048,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2053",
+            "Fate ID": "2066",
             "Fate Type": "Fate"
         },
-        "2054": {
+        "2067": {
             "Fate Name": "Emerald Echoes Exploration",
             "Type": "Rebuild",
             "Level": "1",
@@ -4048,10 +4061,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2054",
+            "Fate ID": "2067",
             "Fate Type": "Fate"
         },
-        "2055": {
+        "2068": {
             "Fate Name": "Emerald Echoes Restoration",
             "Type": "Rebuild",
             "Level": "1",
@@ -4061,10 +4074,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2055",
+            "Fate ID": "2068",
             "Fate Type": "Fate"
         },
-        "2056": {
+        "2069": {
             "Fate Name": "Reawakening the Deep Echoes",
             "Type": "Rebuild",
             "Level": "1",
@@ -4074,10 +4087,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2056",
+            "Fate ID": "2069",
             "Fate Type": "Fate"
         },
-        "2057": {
+        "2070": {
             "Fate Name": "Refirming Terra Firma",
             "Type": "Rebuild",
             "Level": "1",
@@ -4087,10 +4100,10 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2057",
+            "Fate ID": "2070",
             "Fate Type": "Fate"
         },
-        "2058": {
+        "2071": {
             "Fate Name": "Euhedron Activation Protocols",
             "Type": "Rebuild",
             "Level": "1",
@@ -4100,7 +4113,7 @@
             },
             "Experience": "100%  to next level",
             "Gil": "2,000",
-            "Fate ID": "2058",
+            "Fate ID": "2071",
             "Fate Type": "Fate"
         }
     },
@@ -8052,22 +8065,19 @@
             "Fate Level Sync": "77",
             "Icon Objective": "ui/icon/060000/060502.tex"
         },
-        "1481": {
+        "1531": {
             "Fate Name": "Great Daens",
             "Type": "Defense",
             "Level": "73",
             "Location": {
-                "x": 27.27,
-                "y": 9.84
+                "x": "27.3",
+                "y": "10"
             },
             "Experience": "49,572",
             "Gil": "146",
             "Gemstones": "12",
-            "Fate ID": "1481",
-            "Fate Type": "Fate",
-            "Fate Level": "73",
-            "Fate Level Sync": "77",
-            "Icon Objective": "ui/icon/060000/060504.tex"
+            "Fate ID": "1531",
+            "Fate Type": "Fate"
         },
         "1486": {
             "Fate Name": "Go Fuath a Conqueror",
@@ -8086,39 +8096,33 @@
             "Fate Level Sync": "77",
             "Icon Objective": "ui/icon/060000/060502.tex"
         },
-        "1482": {
+        "1532": {
             "Fate Name": "Fuath of Habit",
             "Type": "Defense",
             "Level": "73",
             "Location": {
-                "x": 30.27,
-                "y": 13.05
+                "x": "30.2",
+                "y": "13.1"
             },
             "Experience": "49,572",
             "Gil": "146",
             "Gemstones": "12",
-            "Fate ID": "1482",
-            "Fate Type": "Fate",
-            "Fate Level": "73",
-            "Fate Level Sync": "77",
-            "Icon Objective": "ui/icon/060000/060504.tex"
+            "Fate ID": "1532",
+            "Fate Type": "Fate"
         },
-        "1483": {
+        "1533": {
             "Fate Name": "Back and Fuath",
             "Type": "Defense",
             "Level": "73",
             "Location": {
-                "x": 24.33,
-                "y": 17.55
+                "x": "24.5",
+                "y": "17.6"
             },
             "Experience": "49,572",
             "Gil": "146",
             "Gemstones": "12",
-            "Fate ID": "1483",
-            "Fate Type": "Fate",
-            "Fate Level": "73",
-            "Fate Level Sync": "77",
-            "Icon Objective": "ui/icon/060000/060504.tex"
+            "Fate ID": "1533",
+            "Fate Type": "Fate"
         },
         "1484": {
             "Fate Name": "Brute Fuath",
@@ -8170,6 +8174,54 @@
             "Fate Level": "73",
             "Fate Level Sync": "77",
             "Icon Objective": "ui/icon/060000/060501.tex"
+        },
+        "1481": {
+            "Location": {
+                "x": 27.27,
+                "y": 9.84
+            },
+            "Company Seals": "",
+            "Experience": "",
+            "Fate ID": "1481",
+            "Fate Level": "73",
+            "Fate Level Sync": "77",
+            "Fate Name": "Lausbubengeschichten: Amaros",
+            "Fate Type": "Fate",
+            "Type": "Defense",
+            "Icon Objective": "ui/icon/060000/060504.tex",
+            "Gil": ""
+        },
+        "1482": {
+            "Location": {
+                "x": 30.27,
+                "y": 13.05
+            },
+            "Company Seals": "",
+            "Experience": "",
+            "Fate ID": "1482",
+            "Fate Level": "73",
+            "Fate Level Sync": "77",
+            "Fate Name": "Lausbubengeschichten: Nu Mou",
+            "Fate Type": "Fate",
+            "Type": "Defense",
+            "Icon Objective": "ui/icon/060000/060504.tex",
+            "Gil": ""
+        },
+        "1483": {
+            "Location": {
+                "x": 24.33,
+                "y": 17.55
+            },
+            "Company Seals": "",
+            "Experience": "",
+            "Fate ID": "1483",
+            "Fate Level": "73",
+            "Fate Level Sync": "77",
+            "Fate Name": "Lausbubengeschichten: Rowan",
+            "Fate Type": "Fate",
+            "Type": "Defense",
+            "Icon Objective": "ui/icon/060000/060504.tex",
+            "Gil": ""
         }
     },
     "Kholusia": {
@@ -8258,18 +8310,18 @@
             "Fate Level Sync": "74",
             "Icon Objective": "ui/icon/060000/060504.tex"
         },
-        "1465": {
+        "1466": {
             "Fate Name": "Shadow over Stilltide",
             "Type": "Kill Enemies",
             "Level": "70",
             "Location": {
-                "x": 31.66,
-                "y": 25.17
+                "x": 36.85,
+                "y": 24.14
             },
             "Experience": "48,600",
             "Gil": "140",
             "Gemstones": "12",
-            "Fate ID": "1465",
+            "Fate ID": "1466",
             "Fate Type": "Fate",
             "Fate Level": "70",
             "Fate Level Sync": "74",
@@ -8445,14 +8497,14 @@
             "Fate Level Sync": "84",
             "Icon Objective": "ui/icon/060000/060502.tex"
         },
-        "1466": {
+        "1465": {
             "Location": {
-                "x": 36.85,
-                "y": 24.14
+                "x": 31.66,
+                "y": 25.17
             },
             "Company Seals": "",
             "Experience": "",
-            "Fate ID": "1466",
+            "Fate ID": "1465",
             "Fate Level": "70",
             "Fate Level Sync": "74",
             "Fate Name": "Räuberplage in Stillwasser",
@@ -15645,51 +15697,67 @@
             "Fate Level Sync": "61",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "903": {
+        "904": {
             "Fate Name": "Coeurls Chase Boys",
             "Type": "Kill Boss",
             "Level": "57",
             "Location": {
-                "x": 37.22,
-                "y": 27.71
+                "x": 27.01,
+                "y": 20.73
             },
             "Experience": "11,758",
             "Gil": "114",
             "Company Seals": "327",
-            "Fate ID": "903",
+            "Fate ID": "904",
             "Fate Type": "Fate",
             "Fate Level": "57",
             "Fate Level Sync": "70",
             "Icon Objective": "ui/icon/060000/060502.tex"
         },
-        "905": {
+        "907": {
             "Fate Name": "Coeurls Chase Boys Chase Coeurls",
             "Type": "Kill Boss",
             "Level": "60",
             "Location": {
-                "x": 31.61,
-                "y": 5.67
+                "x": 12.9,
+                "y": 11.36
             },
             "Experience": "11,758",
             "Gil": "120",
             "Company Seals": "345",
-            "Fate ID": "905",
+            "Fate ID": "907",
             "Fate Type": "Fate",
             "Fate Level": "60",
             "Fate Level Sync": "70",
             "Icon Objective": "ui/icon/060000/060502.tex"
         },
-        "904": {
+        "903": {
             "Location": {
-                "x": 27.01,
-                "y": 20.73
+                "x": 37.22,
+                "y": 27.71
             },
             "Company Seals": "",
             "Experience": "",
-            "Fate ID": "904",
+            "Fate ID": "903",
             "Fate Level": "57",
             "Fate Level Sync": "70",
             "Fate Name": "Rückkehr der Königin",
+            "Fate Type": "Fate",
+            "Type": "Kill Boss",
+            "Icon Objective": "ui/icon/060000/060502.tex",
+            "Gil": ""
+        },
+        "905": {
+            "Location": {
+                "x": 31.61,
+                "y": 5.67
+            },
+            "Company Seals": "",
+            "Experience": "",
+            "Fate ID": "905",
+            "Fate Level": "60",
+            "Fate Level Sync": "70",
+            "Fate Name": "Entmachtung der Königin",
             "Fate Type": "Fate",
             "Type": "Kill Boss",
             "Icon Objective": "ui/icon/060000/060502.tex",
@@ -15703,22 +15771,6 @@
             "Company Seals": "",
             "Experience": "",
             "Fate ID": "906",
-            "Fate Level": "60",
-            "Fate Level Sync": "70",
-            "Fate Name": "Entmachtung der Königin",
-            "Fate Type": "Fate",
-            "Type": "Kill Boss",
-            "Icon Objective": "ui/icon/060000/060502.tex",
-            "Gil": ""
-        },
-        "907": {
-            "Location": {
-                "x": 12.9,
-                "y": 11.36
-            },
-            "Company Seals": "",
-            "Experience": "",
-            "Fate ID": "907",
             "Fate Level": "60",
             "Fate Level Sync": "70",
             "Fate Name": "Entmachtung der Königin",
@@ -17421,22 +17473,38 @@
             "Fate Level Sync": "73",
             "Icon Objective": "ui/icon/060000/060502.tex"
         },
-        "1103": {
+        "1105": {
             "Fate Name": "A Horse Outside",
             "Type": "Kill Boss",
             "Level": "70",
             "Location": {
-                "x": 4.66,
-                "y": 15.58
+                "x": 16.52,
+                "y": 22.47
             },
             "Experience": "0",
             "Gil": "140",
             "Company Seals": "402",
-            "Fate ID": "1103",
+            "Fate ID": "1105",
             "Fate Type": "Fate",
             "Fate Level": "70",
             "Fate Level Sync": "80",
             "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1103": {
+            "Location": {
+                "x": 4.66,
+                "y": 15.58
+            },
+            "Company Seals": "",
+            "Experience": "",
+            "Fate ID": "1103",
+            "Fate Level": "70",
+            "Fate Level Sync": "80",
+            "Fate Name": "Höllenross",
+            "Fate Type": "Fate",
+            "Type": "Kill Boss",
+            "Icon Objective": "ui/icon/060000/060502.tex",
+            "Gil": ""
         },
         "1104": {
             "Location": {
@@ -17446,22 +17514,6 @@
             "Company Seals": "",
             "Experience": "",
             "Fate ID": "1104",
-            "Fate Level": "70",
-            "Fate Level Sync": "80",
-            "Fate Name": "Höllenross",
-            "Fate Type": "Fate",
-            "Type": "Kill Boss",
-            "Icon Objective": "ui/icon/060000/060502.tex",
-            "Gil": ""
-        },
-        "1105": {
-            "Location": {
-                "x": 16.52,
-                "y": 22.47
-            },
-            "Company Seals": "",
-            "Experience": "",
-            "Fate ID": "1105",
             "Fate Level": "70",
             "Fate Level Sync": "80",
             "Fate Name": "Höllenross",
@@ -18205,22 +18257,19 @@
             "Fate Level Sync": "79",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1450": {
+        "1530": {
             "Fate Name": "Tojil Eclipse",
-            "Type": "Kill Boss",
+            "Type": "Notorious monster",
             "Level": "75",
             "Location": {
-                "x": 24.74,
-                "y": 34.48
+                "x": "24.5",
+                "y": "34.4"
             },
             "Experience": "50,220",
             "Gil": "150",
             "Gemstones": "12",
-            "Fate ID": "1450",
-            "Fate Type": "Fate",
-            "Fate Level": "75",
-            "Fate Level Sync": "79",
-            "Icon Objective": "ui/icon/060000/060502.tex"
+            "Fate ID": "1530",
+            "Fate Type": "Fate"
         },
         "1442": {
             "Fate Name": "Creepy Crawlers",
@@ -18307,22 +18356,19 @@
             "Fate Level Sync": "79",
             "Icon Objective": "ui/icon/060000/060503.tex"
         },
-        "1448": {
+        "1529": {
             "Fate Name": "Tojil Carnage",
-            "Type": "Kill Boss",
+            "Type": "Notorious monster",
             "Level": "75",
             "Location": {
-                "x": 28.99,
-                "y": 26.44
+                "x": "25.8",
+                "y": "27.2"
             },
             "Experience": "50,220",
             "Gil": "150",
             "Gemstones": "12",
-            "Fate ID": "1448",
-            "Fate Type": "Fate",
-            "Fate Level": "75",
-            "Fate Level Sync": "79",
-            "Icon Objective": "ui/icon/060000/060502.tex"
+            "Fate ID": "1529",
+            "Fate Type": "Fate"
         },
         "1445": {
             "Fate Name": "Tojil War",
@@ -18357,6 +18403,22 @@
             "Icon Objective": "ui/icon/060000/060502.tex",
             "Gil": ""
         },
+        "1448": {
+            "Location": {
+                "x": 28.99,
+                "y": 26.44
+            },
+            "Company Seals": "",
+            "Experience": "",
+            "Fate ID": "1448",
+            "Fate Level": "75",
+            "Fate Level Sync": "79",
+            "Fate Name": "Waldpatrouille: 3. Tojilianischer Krieg",
+            "Fate Type": "Fate",
+            "Type": "Kill Boss",
+            "Icon Objective": "ui/icon/060000/060502.tex",
+            "Gil": ""
+        },
         "1449": {
             "Location": {
                 "x": 26.3,
@@ -18368,6 +18430,22 @@
             "Fate Level": "75",
             "Fate Level Sync": "79",
             "Fate Name": "Waldpatrouille: 3. Tojilianischer Krieg",
+            "Fate Type": "Fate",
+            "Type": "Kill Boss",
+            "Icon Objective": "ui/icon/060000/060502.tex",
+            "Gil": ""
+        },
+        "1450": {
+            "Location": {
+                "x": 24.74,
+                "y": 34.48
+            },
+            "Company Seals": "",
+            "Experience": "",
+            "Fate ID": "1450",
+            "Fate Level": "75",
+            "Fate Level Sync": "79",
+            "Fate Name": "Waldpatrouille: Der Fall Tojils",
             "Fate Type": "Fate",
             "Type": "Kill Boss",
             "Icon Objective": "ui/icon/060000/060502.tex",
@@ -22202,22 +22280,38 @@
             "Fate Level Sync": "71",
             "Icon Objective": "ui/icon/060000/060501.tex"
         },
-        "1106": {
+        "1108": {
             "Fate Name": "Foxy Lady",
             "Type": "Kill Boss",
             "Level": "70",
             "Location": {
-                "x": 16.47,
-                "y": 12.56
+                "x": 24.56,
+                "y": 34.04
             },
             "Experience": "517,500",
             "Gil": "140",
             "Company Seals": "402",
-            "Fate ID": "1106",
+            "Fate ID": "1108",
             "Fate Type": "Fate",
             "Fate Level": "70",
             "Fate Level Sync": "80",
             "Icon Objective": "ui/icon/060000/060502.tex"
+        },
+        "1106": {
+            "Location": {
+                "x": 16.47,
+                "y": 12.56
+            },
+            "Company Seals": "",
+            "Experience": "",
+            "Fate ID": "1106",
+            "Fate Level": "70",
+            "Fate Level Sync": "80",
+            "Fate Name": "Fuchsige Dame",
+            "Fate Type": "Fate",
+            "Type": "Kill Boss",
+            "Icon Objective": "ui/icon/060000/060502.tex",
+            "Gil": ""
         },
         "1107": {
             "Location": {
@@ -22227,22 +22321,6 @@
             "Company Seals": "",
             "Experience": "",
             "Fate ID": "1107",
-            "Fate Level": "70",
-            "Fate Level Sync": "80",
-            "Fate Name": "Fuchsige Dame",
-            "Fate Type": "Fate",
-            "Type": "Kill Boss",
-            "Icon Objective": "ui/icon/060000/060502.tex",
-            "Gil": ""
-        },
-        "1108": {
-            "Location": {
-                "x": 24.56,
-                "y": 34.04
-            },
-            "Company Seals": "",
-            "Experience": "",
-            "Fate ID": "1108",
             "Fate Level": "70",
             "Fate Level Sync": "80",
             "Fate Name": "Fuchsige Dame",

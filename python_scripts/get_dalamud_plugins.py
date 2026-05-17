@@ -1,5 +1,4 @@
 from ffxiv_aku import *
-from distutils.version import StrictVersion
 from natsort import natsorted
 
 
@@ -125,6 +124,7 @@ def run():
     skip_urls = []
     completed_repos = []
     repos_with_load_errors = []
+    session = requests.Session()
     content = readJsonFile(r"C:\Users\kamot\AppData\Roaming\XIVLauncher\dalamudConfig.json")
     result = {}#readJsonFile("dalamud_repos.json")
     # collect all urls from local dalamud file
@@ -147,7 +147,7 @@ def run():
         if url in skip_urls:
             ...#continue
         try:
-            response = requests.get(url)
+            response = session.get(url, timeout=30)
             if response:
                 if response.text.strip() == "":
                     repos_with_load_errors.append(url)
@@ -171,6 +171,8 @@ def run():
                         result[entry['Name']]["tags"].extend(normalize_tags(entry['Tags']))
                     if entry.get('CategoryTags', None):
                         result[entry['Name']]["tags"].extend(normalize_tags(entry['CategoryTags']))
+                    if result[entry['Name']]["tags"]:
+                        result[entry['Name']]["tags"] = sorted(set(result[entry['Name']]["tags"]))
                     if entry.get('ImageUrls', None):
                         result[entry['Name']]["image"] = entry['ImageUrls'][0]
 
