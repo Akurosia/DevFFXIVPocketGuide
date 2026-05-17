@@ -476,36 +476,36 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 /* Dynamic JS page polish ----------------------------------------------------
    These pages create their tables/cards after load. Keep the old DOM working,
    but make the generated content use the same FFXIV panel language and full width. */
-#bodyDiv,
-#workspace,
-#progress,
-#gear_list,
-#gearlist,
-#fflogs-content,
-#fflogs_content,
-.fflogs-content,
-.gear-list {
+body.translate #bodyDiv,
+body.checkFileData #workspace,
+body.mainquestsfinder #progress,
+body.gear #gear_list,
+body.gear #gearlist,
+body.fflogs #fflogs-content,
+body.fflogs #fflogs_content,
+body.fflogs .fflogs-content,
+body.gear .gear-list {
     width: 100%;
     max-width: none;
 }
 
-#bodyDiv,
-#workspace {
+body.translate #bodyDiv,
+body.checkFileData #workspace {
     display: grid;
     gap: .75rem;
     min-width: 0;
 }
 
-.xiv-dynamic-section,
-#bodyDiv > div[id^="mdiv_"],
-#workspace > div {
+body.translate .xiv-dynamic-section,
+body.translate #bodyDiv > div[id^="mdiv_"],
+body.checkFileData #workspace > div {
     width: 100%;
     min-width: 0;
     max-width: none;
 }
 
-.collapsible,
-.xiv-collapse-button {
+body.translate .collapsible,
+body.translate .xiv-collapse-button {
     width: 100%;
     min-height: 2.25rem;
     display: flex;
@@ -524,8 +524,8 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
     text-transform: uppercase;
 }
 
-.collapsible span:first-child::before,
-.xiv-collapse-button span:first-child::before {
+body.translate .collapsible span:first-child::before,
+body.translate .xiv-collapse-button span:first-child::before {
     content: "◆";
     margin-right: .45rem;
     color: var(--xiv-gold-bright);
@@ -636,34 +636,34 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 .search input,
 .search select,
 .search button,
-#filterValue,
-#fieldfilter,
-#filterterm,
-#searchValue,
-#exactSearch,
-#submitbtn,
-#questSearch,
-.quest-dropdown {
+body.translate #filterValue,
+body.gear #fieldfilter,
+body.gear #filterterm,
+body.translate #searchValue,
+body.translate #exactSearch,
+body.gear #submitbtn,
+body.mainquestsfinder #questSearch,
+body.mainquestsfinder .quest-dropdown {
     min-height: 2.15rem;
     max-width: 100%;
 }
 
-#filterValue,
-#exactSearch,
-.quest-dropdown {
+body.translate #filterValue,
+body.translate #exactSearch,
+body.mainquestsfinder .quest-dropdown {
     color: #fff0c0;
     background: linear-gradient(#2a2927, #101010) !important;
 }
 
 /* Main quest finder generated progress blocks. */
-.progress-container {
+body.mainquestsfinder .progress-container {
     width: 100%;
     display: grid;
     gap: .75rem;
     margin-top: 1rem;
 }
 
-.progress-section-container {
+body.mainquestsfinder .progress-section-container {
     width: 100%;
     min-width: 0;
     padding: .7rem;
@@ -673,7 +673,7 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
     box-shadow: 0 0 0 1px rgba(255, 216, 111, .18), inset 0 1px 0 rgba(255,255,255,.08);
 }
 
-.progress-label {
+body.mainquestsfinder .progress-label {
     display: flex;
     justify-content: space-between;
     margin-bottom: .35rem;
@@ -683,8 +683,8 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
     letter-spacing: .03em;
 }
 
-.progress-bar-container,
-.progress-bar {
+body.mainquestsfinder .progress-bar-container,
+body.mainquestsfinder .progress-bar {
     width: 100%;
     height: .95rem;
     overflow: hidden;
@@ -694,13 +694,13 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
     box-shadow: inset 0 1px 3px rgba(0,0,0,.9), 0 0 0 1px rgba(255, 216, 111, .16);
 }
 
-.progress-fill {
+body.mainquestsfinder .progress-fill {
     min-height: 100%;
     background: linear-gradient(90deg, #693117, #c98728 55%, #ffe07a);
     box-shadow: inset 0 1px rgba(255,255,255,.28), 0 0 10px rgba(255, 185, 54, .25);
 }
 
-.quest-dropdown {
+body.mainquestsfinder .quest-dropdown {
     width: 100%;
     margin-top: .55rem;
 }
@@ -897,40 +897,6 @@ p, li, .roadmap__object p, .about__wrapper p, .about__wrapper li {
 
     .site-header-socials a {
         font-size: .82rem;
-    }
-}
-
-/* Guide/post pages: the metadata sidebar should be compact, not half the page. */
-.guide-layout {
-    grid-template-columns: minmax(0, 1fr) !important;
-    align-items: start;
-}
-
-.guide-layout > * {
-    min-width: 0;
-}
-
-.guide-metadata,
-.guide__sidebar {
-    width: 100%;
-    max-width: none;
-}
-
-@media screen and (min-width: 70em) {
-    .guide-layout {
-        grid-template-columns: clamp(14rem, 17vw, 19rem) minmax(0, 1fr) !important;
-        gap: clamp(.9rem, 1.2vw, 1.35rem) !important;
-    }
-
-    .guide-metadata,
-    .guide__sidebar {
-        max-width: 19rem;
-    }
-}
-
-@media screen and (min-width: 100em) {
-    .guide-layout {
-        grid-template-columns: clamp(15rem, 15vw, 20rem) minmax(0, 1fr) !important;
     }
 }
 

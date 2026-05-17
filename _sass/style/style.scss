@@ -1814,14 +1814,16 @@ ion-icon {
   gap: 1rem;
 }
 
-.setting_container {
+body.settings .setting_container,
+body.gcrank .setting_container {
   padding: 2rem;
   margin: auto;
   display: flex;
   column-gap: 2%;
 }
 
-.setting_container_inner {
+body.settings .setting_container_inner,
+body.gcrank .setting_container_inner {
   background-color: cadetblue;
   border: 2px solid black;
   border-radius: 5px;
