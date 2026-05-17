@@ -1,12 +1,21 @@
 from ffxiv_aku import *
 import traceback
-from playwright.sync_api import Playwright, sync_playwright, expect
-import time
+from pathlib import Path
+from playwright.sync_api import Page, sync_playwright, TimeoutError as PlaywrightTimeoutError
+from playwright_stealth import Stealth
 
 data = None
 #submarineexploration = loadDataTheQuickestWay("submarineexploration.en.json", translate=False)
 #submarineexploration = readJsonFile(r"C:\Users\kamot\Desktop\XIVAPI\translated\SubmarineExploration.json")
 submarineexploration: dict[str, dict[str, str]] = loadDataTheQuickestWay("SubmarineExploration.json")
+GAMERESCAPE_BASE_URL = "https://ffxiv.gamerescape.com"
+AIRSHIP_URL = f"{GAMERESCAPE_BASE_URL}/wiki/Category:Airship_Deployment_Sector"
+SUBMARINE_URL = f"{GAMERESCAPE_BASE_URL}/wiki/Category:Subaquatic_Deployment_Sector"
+
+
+class CloudflareBlockedError(RuntimeError):
+    pass
+
 
 def iterate_locator(locator):
     return [locator.nth(x) for x in range(0, locator.count())]
@@ -20,9 +29,56 @@ key_map = {
     "Map": ""
 }
 
+
+def is_cloudflare_page(page: Page) -> bool:
+    title = page.title().lower()
+    body = page.locator("body").inner_text(timeout=5000).lower()
+    cloudflare_markers = [
+        "cloudflare",
+        "checking if the site connection is secure",
+        "verify you are human",
+        "attention required",
+    ]
+    return any(marker in title or marker in body for marker in cloudflare_markers)
+
+
+def open_gamerescape_page(page: Page, url: str, ready_selector: str) -> None:
+    page.goto(url, wait_until="domcontentloaded", timeout=60000)
+    if is_cloudflare_page(page):
+        print_color_yellow(
+            "[AAS] Gamer Escape showed a Cloudflare challenge. "
+            "Solve it in the visible browser window; the script will continue automatically."
+        )
+        try:
+            page.wait_for_function(
+                """() => {
+                    const text = document.body?.innerText?.toLowerCase() || "";
+                    const title = document.title.toLowerCase();
+                    return !text.includes("cloudflare")
+                        && !text.includes("checking if the site connection is secure")
+                        && !text.includes("verify you are human")
+                        && !title.includes("attention required");
+                }""",
+                timeout=180000,
+            )
+        except PlaywrightTimeoutError as exc:
+            raise CloudflareBlockedError(
+                "Cloudflare challenge was not cleared. Keeping the existing airship_submarine.json cache."
+            ) from exc
+
+    try:
+        page.wait_for_selector(ready_selector, timeout=60000)
+    except PlaywrightTimeoutError as exc:
+        if is_cloudflare_page(page):
+            raise CloudflareBlockedError(
+                "Gamer Escape is still blocked by Cloudflare. Keeping the existing airship_submarine.json cache."
+            ) from exc
+        raise
+
+
 def get_airship_information(page, data) -> None:
     try:
-        page.goto("https://ffxiv.gamerescape.com/wiki/Category:Airship_Deployment_Sector")
+        open_gamerescape_page(page, AIRSHIP_URL, "table")
         table = iterate_locator(page.locator("table"))[1:][0]
         tablehead = iterate_locator(table.locator("th"))
         tablerows = iterate_locator(table.locator("tbody").locator("tr"))[1:]
@@ -51,8 +107,7 @@ def get_airship_information(page, data) -> None:
 
 def get_submarine_information(page, data) -> None:
     try:
-        page.goto("https://ffxiv.gamerescape.com/wiki/Category:Subaquatic_Deployment_Sector")
-        time.sleep(2)
+        open_gamerescape_page(page, SUBMARINE_URL, ".tabbertab")
         locations = iterate_locator(page.locator('.tabbertab'))
         for loc in locations:
             loc_name = loc.get_attribute("title").strip().replace("Lilac Sea", "The Lilac Sea")
@@ -94,7 +149,7 @@ def get_submarine_information(page, data) -> None:
 
 
 def get_items_per_location(page, url):
-    page.goto(f"https://ffxiv.gamerescape.com{url}")
+    open_gamerescape_page(page, f"{GAMERESCAPE_BASE_URL}{url}", "table")
     table = iterate_locator(page.locator("table"))[2:][0]
     #print(table.text_content())
     tablehead = iterate_locator(table.locator("th"))
@@ -160,31 +215,48 @@ def add_items(page, data):
         writeJsonFile("airship_submarine.json", data, sort_sub_keys=True)
     return data
 
-def run():
+def run(path_of_main_script):
     global data
-    os.chdir("../python_scripts")
-    with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=False)
-        witdh, height = 1920, 1080
-        context = browser.new_context(
-            color_scheme='dark',
-            viewport={"width": witdh, "height": height}
-        )
-        page = context.new_page()
-        try:
-            data = readJsonFile("airship_submarine.json") or { "Sea of Clouds": {} }
-            #data = { "Sea of Clouds": {} }
-            data = get_airship_information(page, data)
-            data = get_submarine_information(page, data)
-            data = fix_submarine(data)
-            data = add_items(page, data)
-        except Exception:
-            traceback.print_exc()
-        context.close()
-        browser.close()
-        writeJsonFile("airship_submarine.json", data, sort_sub_keys=True)
-    os.chdir("../_posts")
+    root = Path(path_of_main_script)
+    script_dir = root / "python_scripts"
+    cache_file = script_dir / "airship_submarine.json"
+    browser_profile = root / "tmp" / "gamerescape_browser_profile3"
+    origin = Path.cwd()
+    os.chdir(script_dir)
+
+    try:
+        data = readJsonFile(str(cache_file)) or { "Sea of Clouds": {} }
+    except FileNotFoundError:
+        data = { "Sea of Clouds": {} }
+
+    custom_languages = ("de-DE", "de")
+    stealth = Stealth(
+        navigator_languages_override=custom_languages,
+        init_scripts_only=True
+    )
+    try:
+        with sync_playwright() as playwright:
+            witdh, height = 1920, 1080
+            browser = playwright.chromium.launch(headless=False)
+            context = browser.new_context(viewport={"width": 1920, "height": 1080})
+            stealth.apply_stealth_sync(context)
+            page = context.pages[0] if context.pages else context.new_page()
+            try:
+                data = get_airship_information(page, data)
+                data = get_submarine_information(page, data)
+                data = fix_submarine(data)
+                data = add_items(page, data)
+                writeJsonFile(str(cache_file), data, sort_sub_keys=True)
+            except CloudflareBlockedError as exc:
+                print_color_yellow(f"[AAS] {exc}")
+            except Exception:
+                traceback.print_exc()
+                writeJsonFile(str(cache_file), data, sort_sub_keys=True)
+            finally:
+                context.close()
+    finally:
+        os.chdir(origin)
 
 if __name__ == "__main__":
-    os.chdir("../_posts")
-    run()
+    os.chdir("..")
+    run(os.getcwd())

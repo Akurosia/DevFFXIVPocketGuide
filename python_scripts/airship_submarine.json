@@ -1738,6 +1738,36 @@
         }
     },
     "The Northern Empty (Lv. 135-)": {
+        "": {
+            "lvl": "0"
+        },
+        "Axeblade Bight": {
+            "link": "/wiki/Axeblade_Bight",
+            "alias": "I",
+            "unlocked_by": "Northeast Hanthbyrt",
+            "exp": "15,901,061",
+            "lvl": "142",
+            "items": [
+                "Royal Maple Syrup",
+                "Mountain Salt",
+                "Turali Corn Oil",
+                "Outsized Crystal Glass",
+                "Weatherproof Plywood"
+            ]
+        },
+        "Central Den of the Greatsword": {
+            "link": "/wiki/Central_Den_of_the_Greatsword",
+            "alias": "M",
+            "unlocked_by": "The Vystrant Dropoff",
+            "exp": "",
+            "lvl": "145",
+            "items": [
+                "Tankard",
+                "The Faces We Wear - Blindfold Eyepatch (Right)",
+                "The Faces We Wear - Studded Eyepatch (Left)",
+                "The Faces We Wear - Studded Eyepatch (Right)"
+            ]
+        },
         "Eastern Blackblood Wells": {
             "link": "/wiki/Eastern_Blackblood_Wells",
             "alias": "A",
@@ -1754,7 +1784,7 @@
             "link": "/wiki/Northeast_Hanthbyrt",
             "alias": "E",
             "unlocked_by": "Sea Wolf Cove",
-            "exp": "",
+            "exp": "14,054,219",
             "items": [
                 "High-density Fiberboard",
                 "Damaged Side Table",
@@ -1765,7 +1795,7 @@
             "link": "/wiki/Oeyaseik",
             "alias": "D",
             "unlocked_by": "Southernmost Hanthbyrt",
-            "exp": "",
+            "exp": "13,711,433",
             "items": [
                 "Pliable Plywood",
                 "The Faces We Wear - Petite Pince-nez",
@@ -1776,7 +1806,7 @@
             "link": "/wiki/Sea_Wolf_Cove",
             "alias": "B",
             "unlocked_by": "Eastern Blackblood Wells",
-            "exp": "",
+            "exp": "13,377,007",
             "items": [
                 "Royal Maple Syrup",
                 "Mountain Salt",
@@ -1786,14 +1816,82 @@
                 "Peeling Wallpaper Sticker"
             ]
         },
+        "Southern Aerslaent Plunge": {
+            "link": "/wiki/Southern_Aerslaent_Plunge",
+            "alias": "K",
+            "unlocked_by": "The Vystrant Dropoff",
+            "exp": "16,706,053",
+            "lvl": "144",
+            "items": [
+                "The Faces We Wear - Petite Pince-nez",
+                "Garden Mood Lighting"
+            ]
+        },
         "Southernmost Hanthbyrt": {
             "link": "/wiki/Southernmost_Hanthbyrt",
             "alias": "C",
             "unlocked_by": "Eastern Blackblood Wells",
-            "exp": "",
+            "exp": "13,377,007",
             "items": [
                 "Overhead Studio Light",
                 "Forged Leaves Ceiling Light"
+            ]
+        },
+        "The Puffin Assembly": {
+            "link": "/wiki/The_Puffin_Assembly",
+            "alias": "J",
+            "unlocked_by": "Axeblade Bight",
+            "exp": "16,298,588",
+            "lvl": "143",
+            "items": [
+                "Fall into Forever Orchestrion Roll",
+                "Hearts Tread and Trampled Orchestrion Roll",
+                "Fond Farewells Orchestrion Roll"
+            ]
+        },
+        "The Solkronn Gallery": {
+            "link": "/wiki/The_Solkronn_Gallery",
+            "alias": "L",
+            "unlocked_by": "The Puffin Assembly",
+            "exp": "",
+            "lvl": "145",
+            "items": [
+                "The Faces We Wear - Mythril-edged Eyepatch (Left)",
+                "The Faces We Wear - Sash Blinder (Left)",
+                "The Faces We Wear - Sash Blinder (Right)"
+            ]
+        },
+        "The Sunken Jawbone": {
+            "link": "/wiki/The_Sunken_Jawbone",
+            "alias": "G",
+            "unlocked_by": "Vystrant",
+            "exp": "15,134,858",
+            "items": [
+                "Undersea Spoils",
+                "Coffee Break Orchestrion Roll",
+                "Fall into Forever Orchestrion Roll"
+            ]
+        },
+        "The Vystrant Dropoff": {
+            "link": "/wiki/The_Vystrant_Dropoff",
+            "alias": "H",
+            "unlocked_by": "The Sunken Jawbone",
+            "exp": "15,513,230",
+            "items": [
+                "Flagstone Loft",
+                "Scroll Cabinet",
+                "Everkeep Wall Decoration"
+            ]
+        },
+        "Vyrstrant": {
+            "link": "/wiki/Vyrstrant",
+            "alias": "F",
+            "unlocked_by": "Oeyaseik",
+            "exp": "14,405,575",
+            "items": [
+                "Tankard",
+                "Mossy Log",
+                "Hearts Tread and Trampled Orchestrion Roll"
             ]
         },
         "Vystrant": {

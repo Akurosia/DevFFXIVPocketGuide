@@ -29,7 +29,7 @@ import python_scripts.treasurespot as ts
 import python_scripts.quests as quests
 import python_scripts.generate_deep_dungeon_items as deepdungeon
 import python_scripts.generate_map_data as newmaps
-#import python_scripts.airship_and_submarine as aas
+import python_scripts.airship_and_submarine as aas
 
 logger: Logger = getLogger(50)
 disable_green_print: bool = True
@@ -253,7 +253,7 @@ from concurrent.futures import ThreadPoolExecutor
 def run_all(path_of_main_script, translations):
     #return
     tasks = [
-        #aas.run()
+       lambda: aas.run(path_of_main_script),
        lambda: csgf.run(path_of_main_script),
        lambda: gl.run(path_of_main_script),
        lambda: gp.run(path_of_main_script),
@@ -264,7 +264,7 @@ def run_all(path_of_main_script, translations):
        lambda: ts.run(path_of_main_script),
        lambda: quests.run(path_of_main_script),
        lambda: deepdungeon.run(path_of_main_script),
-       #lambda: fcc.run(path_of_main_script, translations),
+       lambda: fcc.run(path_of_main_script, translations),
     ]
 
     with ThreadPoolExecutor(max_workers=len(tasks)) as executor:
@@ -306,7 +306,7 @@ def main() -> None:
         orderedContent = tmp["ordered"]
 
     try:
-        #run(googledata, orderedContent)
+        run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
