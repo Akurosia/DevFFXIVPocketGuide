@@ -8,7 +8,7 @@ if (localStorage.getItem('fflogs_isAku')){
         ["Nana Mejyna", "Odin", "EU"],
         ["Ieni Telara", "Odin", "EU"],
         ["Loucid Dreaming", "Odin", "EU"],
-        ["Rhago Ashina", "Raiden", "EU"],
+        ["Rhago Atranoir", "Raiden", "EU"],
         ["Dragomir Xertuz", "Shiva", "EU"],
         ["Shira Noyuki", "Shiva", "EU"],
         ["Robin Black", "Shiva", "EU"],
