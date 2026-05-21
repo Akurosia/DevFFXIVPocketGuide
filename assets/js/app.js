@@ -74,6 +74,45 @@ function scrollToElement(element) {
     }, 'slow');
 }
 
+function getGuideTarget(targetId) {
+    if (!targetId) {
+        return $();
+    }
+
+    var target = document.getElementById(targetId);
+    return target ? $(target) : $();
+}
+
+function openGuideTarget(targetId, options) {
+    var settings = $.extend({
+        updateHash: false,
+        replaceHash: false,
+        scroll: true
+    }, options || {});
+    var dataObject = getGuideTarget(targetId);
+
+    if (!dataObject.length) {
+        return false;
+    }
+
+    if (settings.scroll) {
+        scrollToElement(dataObject);
+    }
+
+    if (settings.updateHash) {
+        var newHash = '#' + targetId;
+        if (window.location.hash !== newHash) {
+            if (settings.replaceHash) {
+                history.replaceState(null, '', newHash);
+            } else {
+                history.pushState(null, '', newHash);
+            }
+        }
+    }
+
+    return true;
+}
+
 (function($) {
 
     $(document).ready(function() {
@@ -294,6 +333,10 @@ function scrollToElement(element) {
         $("[class*='Dropdown material-icons']").on("click", function(e) {
             $(this).parents("[class*='guide__accordion-trigger']").toggleClass("active");
             $(this).parents("[class*='guide__accordion-trigger']").next("[class*='guide__accordion-content']").toggleClass("active");
+            var triggerId = $(this).parents("[class*='guide__accordion-trigger']").attr("id");
+            if (triggerId) {
+                history.replaceState(null, '', '#' + triggerId);
+            }
             e.preventDefault();
         });
 
@@ -304,6 +347,9 @@ function scrollToElement(element) {
             if (e.shiftKey || e.ctrlKey || isMobile) {
                 $(this).toggleClass("active");
                 $(this).next("[class*='guide__accordion-content']").toggleClass("active");
+                if (this.id) {
+                    history.replaceState(null, '', '#' + this.id);
+                }
                 e.preventDefault();
             }
         });
@@ -329,37 +375,32 @@ function scrollToElement(element) {
         });
 
         // FFXIV Guide Menu ====================================================
-        $('.guide-metadata__menu-link').on("click", function (e) {
+        $('.guide-metadata__menu a.guide-metadata__menu-link').on("click", function (e) {
             e.preventDefault();
-            // get the correct element
             var targetId = $(this).data("id");
             if (targetId === undefined) {
                 targetId = $(this)[0].id;
             }
-            var dataObject = $('#' + targetId);
+            openGuideTarget(targetId, { updateHash: true });
+        });
 
-            var newHash = '';
-            if (dataObject.length) {
-                if (targetId.includes('-attack-') || targetId.includes('-debuff-') || targetId.includes('map-') || targetId.includes('fate-')) {
-                    // do nothing
-                } else {
-                    scrollToElement(dataObject);
-                }
-                newHash = '#' + targetId;
+        function openCurrentHash(options) {
+            if (!window.location.hash) {
+                return;
             }
-            history.pushState(null, null, newHash);
+
+            var hashParts = window.location.hash.substring(1).split('/');
+            $.each(hashParts, function (_, part) {
+                openGuideTarget(decodeURIComponent(part), options);
+            });
+        }
+
+        window.addEventListener('popstate', function () {
+            openCurrentHash({ scroll: true });
         });
 
         // Check URL on page load /must be executed last, otherwise page does not function properly
-        if (window.location.hash) {
-            var hashParts = window.location.hash.substring(1).split('/');
-            $.each(hashParts, function (_, part) {
-                var target = $('#' + part);
-                if (target.length) {
-                    scrollToElement(target);
-                }
-            });
-        }
+        openCurrentHash({ scroll: true });
 
     });
 

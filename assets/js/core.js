@@ -23,10 +23,25 @@
         $('body').attr('id', ua);
 
         // Smooth Scrolling ====================================================
-        $('a[href*="#"]:not([href="#"])').on('click',function() {
+        $('a[href*="#"]:not([href="#"])').on('click',function(e) {
+            var targetSelector = $(this).attr('href');
+            var hashIndex = targetSelector.indexOf('#');
+
+            if (hashIndex > -1) {
+                targetSelector = targetSelector.substring(hashIndex);
+            }
+
+            var target = targetSelector.substring(1);
+            var $target = target ? $(document.getElementById(decodeURIComponent(target))) : $();
+
+            if (!$target.length) {
+                return true;
+            }
+
+            e.preventDefault();
 
             $root.animate({
-                scrollTop: $( $(this).attr('href') ).offset().top
+                scrollTop: $target.offset().top
             }, 500); // change the duration of your animation in ms
 
             return false;
