@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf8
 import os
+import re
+import subprocess
 from collections import OrderedDict
 from operator import getitem
 from typing import Any, Literal
@@ -28,6 +30,224 @@ klass_translations = None
 job_translations = None
 path_of_main_script = ""
 _classjob_by_name_de: dict[str, dict[str, Any]] | None = None
+_historical_description_cache: dict[str, dict[str, list[dict[str, Any]]]] = {}
+
+
+def yaml_quote(value: Any) -> str:
+    return str(value).replace("\\", "\\\\").replace('"', '\\"')
+
+
+def run_git_command(args: list[str]) -> str:
+    try:
+        completed = subprocess.run(
+            ["git", *args],
+            cwd=path_of_main_script or os.getcwd(),
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        )
+    except Exception:
+        return ""
+    return completed.stdout if completed.returncode == 0 else ""
+
+
+def parse_attack_descriptions_from_frontmatter(content: str) -> dict[str, dict[str, Any]]:
+    descriptions: dict[str, dict[str, Any]] = {}
+    for block in re.split(r"\n\s{6}- title:\n", content):
+        title_id_match = re.search(r'\n\s{8}title_id:\s+"?([^"\n]+)"?', block)
+        if not title_id_match:
+            continue
+        level_match = re.search(r'\n\s{8}level:\s+"?([^"\n]+)"?', block)
+        description_match = re.search(r'\n\s{8}description:\n(?P<langs>(?:\s{10}\w+:\s+".*"\n?)+)', block)
+        if not description_match:
+            continue
+
+        desc: dict[str, str] = {}
+        for line in description_match.group("langs").splitlines():
+            lang_match = re.match(r'\s{10}(\w+):\s+"(.*)"\s*$', line)
+            if lang_match and lang_match.group(1) in LANGUAGES:
+                desc[lang_match.group(1)] = lang_match.group(2).replace('\\"', '"')
+
+        if desc:
+            descriptions[title_id_match.group(1)] = {
+                "level": level_match.group(1) if level_match else "0",
+                "description": desc,
+            }
+    return descriptions
+
+
+def get_historical_descriptions(relative_post_path: str) -> dict[str, list[dict[str, Any]]]:
+    if relative_post_path in _historical_description_cache:
+        return _historical_description_cache[relative_post_path]
+
+    history: dict[str, list[dict[str, Any]]] = {}
+    commit_hashes = [
+        commit.strip()
+        for commit in run_git_command(["log", "--format=%H", "--", relative_post_path]).splitlines()
+        if commit.strip()
+    ][:25]
+
+    for commit in reversed(commit_hashes):
+        content = run_git_command(["show", f"{commit}:{relative_post_path}"])
+        if not content:
+            continue
+        for title_id, item in parse_attack_descriptions_from_frontmatter(content).items():
+            history.setdefault(title_id, [])
+            if item["description"] not in [entry["description"] for entry in history[title_id]]:
+                history[title_id].append(item)
+
+    _historical_description_cache[relative_post_path] = history
+    return history
+
+
+def clean_trait_action_name(value: str) -> str:
+    return re.sub(r"^(?:and|also)\s+", "", value.strip(), flags=re.IGNORECASE).strip()
+
+
+def trait_action_matches(action_name: str, text: str) -> bool:
+    return re.search(rf"(?<!\w){re.escape(action_name)}(?!\w)", text, flags=re.IGNORECASE) is not None
+
+
+def get_trait_potency_upgrades(job: str, base_class: str, action_names: set[str]) -> dict[str, dict[int, str]]:
+    upgrades: dict[str, dict[int, str]] = {}
+    job_names = [job]
+    if base_class:
+        job_names.append(base_class)
+    for trait_data in traits.values():
+        if trait_data["ClassJob"]['Name_de'] not in job_names:
+            continue
+        try:
+            level = int(trait_data["Level"])
+        except (TypeError, ValueError):
+            continue
+        text = trait_data.get("Description_en", "") or traitstransient.get(trait_data["row_id"], {}).get("Description_en", "")
+        if "potency" not in text.lower() or " to " not in text:
+            continue
+
+        potency_sections = re.finditer(
+            r"(?:increases|also increases)\s+the\s+(?:healing\s+)?potency\s+of\s+(?P<items>[^.]+)",
+            text,
+            flags=re.IGNORECASE,
+        )
+        for section in potency_sections:
+            for raw_name, raw_value in re.findall(r"([^,]+?)\s+to\s+([\d,]+)", section.group("items")):
+                trait_name = clean_trait_action_name(raw_name)
+                for action_name in sorted(action_names, key=len, reverse=True):
+                    if trait_action_matches(action_name, trait_name):
+                        upgrades.setdefault(action_name, {})[level] = raw_value.replace(",", "")
+    return upgrades
+
+
+POTENCY_PATTERNS = {
+    "en": [
+        r"(?P<prefix>\bpotency of\s*)(?P<value>\d[\d,]*)",
+        r"(?P<prefix>\b(?:Cure|Heal|Healing|Attack|Damage|Barrier|Restoration )?Potency:\s*)(?P<value>\d[\d,]*)",
+    ],
+    "de": [
+        r"(?P<prefix>\bAttacke-Wert:\s*)(?P<value>\d[\d.]*)",
+        r"(?P<prefix>\bHeilpotenzial:\s*)(?P<value>\d[\d.]*)",
+        r"(?P<prefix>\bBarriere-Wert:\s*)(?P<value>\d[\d.]*)",
+    ],
+    "fr": [
+        r"(?P<prefix>\bPuissance(?:\s| )*:(?:\s| )*)(?P<value>\d[\d\s,]*)",
+        r"(?P<prefix>\bPuissance curative(?:\s| )*:(?:\s| )*)(?P<value>\d[\d\s,]*)",
+    ],
+    "ja": [
+        r"(?P<prefix>(?:威力|回復力|バリア量)：)(?P<value>\d[\d,]*)",
+    ],
+}
+
+
+def format_potency_value(value: str, lang: str) -> str:
+    number = int(value.replace(",", "").replace(".", "").replace(" ", ""))
+    if number < 1000:
+        return str(number)
+    if lang == "de":
+        return f"{number:,}".replace(",", ".")
+    if lang == "fr":
+        return f"{number:,}".replace(",", " ")
+    return f"{number:,}"
+
+
+def replace_first_potency(description: str, value: str, lang: str) -> str:
+    for pattern in POTENCY_PATTERNS.get(lang, POTENCY_PATTERNS["en"]):
+        match = re.search(pattern, description, flags=re.IGNORECASE)
+        if match:
+            new_value = format_potency_value(value, lang)
+            return description[:match.start("value")] + new_value + description[match.end("value"):]
+    return description
+
+
+def extract_first_potency(description: str, lang: str = "en") -> str | None:
+    for pattern in POTENCY_PATTERNS.get(lang, POTENCY_PATTERNS["en"]):
+        match = re.search(pattern, description, flags=re.IGNORECASE)
+        if match:
+            return match.group("value").replace(",", "").replace(".", "").replace(" ", "")
+    return None
+
+
+def build_potency_description_variant(current_description: dict[str, str], value: str) -> dict[str, str]:
+    return {
+        lang: replace_first_potency(current_description.get(lang, ""), value, lang)
+        for lang in LANGUAGES
+    }
+
+
+def add_description_history(job_data: dict, relative_post_path: str, job: str, base_class: str) -> None:
+    historical_descriptions = get_historical_descriptions(relative_post_path)
+    action_names = {
+        data.get("Name", {}).get("en", "")
+        for data in job_data.values()
+        if data.get("Name", {}).get("en", "")
+    }
+    potency_upgrades = get_trait_potency_upgrades(job, base_class, action_names)
+
+    for skill_data in job_data.values():
+        title_id = skill_data["Id"].split(".")[0]
+        action_level = int(skill_data["Level"]) if str(skill_data["Level"]).isdigit() and int(skill_data["Level"]) < 99999 else 0
+        skill_name_en = skill_data.get("Name", {}).get("en", "")
+        if skill_name_en not in potency_upgrades:
+            continue
+
+        variants: list[dict[str, Any]] = []
+        lowest_trait_level = min(potency_upgrades[skill_name_en])
+        lowest_trait_value = potency_upgrades[skill_name_en][lowest_trait_level]
+
+        for historical in reversed(historical_descriptions.get(title_id, [])):
+            historical_value = extract_first_potency(historical["description"].get("en", ""), "en")
+            if historical_value and int(historical_value) < int(lowest_trait_value):
+                variants.append({
+                    "level": str(action_level),
+                    "description": build_potency_description_variant(skill_data["Description"], historical_value),
+                })
+                break
+
+        if not variants and action_level and action_level < lowest_trait_level:
+            variants.append({
+                "level": str(action_level),
+                "description": build_potency_description_variant(skill_data["Description"], lowest_trait_value),
+            })
+
+        for level, value in sorted(potency_upgrades[skill_name_en].items()):
+            variants.append({
+                "level": str(max(action_level, level)),
+                "description": build_potency_description_variant(skill_data["Description"], value),
+            })
+
+        deduped: list[dict[str, Any]] = []
+        seen: set[str] = set()
+        for variant in variants:
+            key = "|".join(variant["description"].get(lang, "") for lang in LANGUAGES)
+            if key in seen:
+                continue
+            seen.add(key)
+            deduped.append(variant)
+
+        if len(deduped) > 1:
+            skill_data["DescriptionLevels"] = deduped
 
 def get_class_translation_data() -> None:
     global klass_translations
@@ -96,7 +316,7 @@ def addAttackDetails(job_data, pvp: bool=False):
         result += '      - title:\n'
         attack_skills.append(name['de'])
         for lang in LANGUAGES:
-            result += f'          {lang}: "{name[lang]}"\n'
+            result += f'          {lang}: "{yaml_quote(name[lang])}"\n'
             job_translations[lang][f'Class_Skill_Name_{pvp_text_field}{name["en"]}'] = name[lang]
         result += f'        title_id: "{skill_data["Id"].split(".")[0]}"\n'
         result += f'        level: "{level}"\n'
@@ -123,8 +343,15 @@ def addAttackDetails(job_data, pvp: bool=False):
             result += f'        gmitigation_value: "M:{mvalue['magic']}/P:{mvalue['physical']}"\n'
         result += '        description:\n'
         for lang in LANGUAGES:
-            result += f'          {lang}: "' + skill_data["Description"][lang] + '"\n'
+            result += f'          {lang}: "{yaml_quote(skill_data["Description"][lang])}"\n'
             job_translations[lang][f'Class_Skill_Desc_{pvp_text_field}{name["en"]}'] = deal_with_extras_in_text(skill_data["Description"][lang])
+        if skill_data.get("DescriptionLevels"):
+            result += '        description_levels:\n'
+            for variant in skill_data["DescriptionLevels"]:
+                result += f'          - level: "{variant["level"]}"\n'
+                result += '            description:\n'
+                for lang in LANGUAGES:
+                    result += f'              {lang}: "{yaml_quote(variant["description"].get(lang, skill_data["Description"][lang]))}"\n'
         result += '        phases:\n'
         if pvp:
             result += '          - phase: "04"\n'
@@ -676,6 +903,7 @@ def addKlassJobs():
         #if not job == "Zimmerer":
         #    continue
         base_class: str = classjob[k[0]]["ClassJobParent"]['Name_de'] if not classjob[k[0]]["ClassJobParent"]['Name_de'] == job else ""
+        relative_post_path = f"_posts/klassen_und_jobs/2013-01-01--2.0--{counter}--{job}.md"
         print_color_red(f"{job=}")
 
         # prepare translation elements
@@ -815,6 +1043,7 @@ def addKlassJobs():
             x, job_translations = addBlueAttackDetails(path_of_main_script, job_data, craftactions, action, items, logdata, job_translations)
             filecontent += x
         else:
+            add_description_history(job_data, relative_post_path, job, base_class)
             attack_text, attack_skills = addAttackDetails(job_data)
             pvp_text, pvp_skills = addAttackDetails(job_data_pvp, True)
             filecontent += attack_text

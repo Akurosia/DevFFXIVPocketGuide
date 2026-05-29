@@ -76,6 +76,8 @@ async function getTranslations(path = "/assets/translations/navbar", olddata = {
                 getTranslations(value, data)
             }
 
+            window.dispatchEvent(new CustomEvent('ffxiv-pocket-guide:translations-updated'));
+
         })
         .catch(e => {
             console.error(e)

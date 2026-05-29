@@ -124,6 +124,7 @@ function openGuideTarget(targetId, options) {
         const preview = document.getElementById('mapimagepreview');
         const filterableListSelector = ".index .index__list, .index .index__list_quests, .index .index__list_achivments, .index_attack .index__list_attack, .index_debuff .index__list_debuff, .index_eureka .index__list_eureka, .index_bozja .index__list_bozja, .index_trait .index__list_trait, .index_leve .index__list_leve, .index_quest .index__list_quest";
         const $guideFilter = $("#guideFilter");
+        const $guideLevelFilter = $("#guideLevelFilter");
         const $indexNullState = $(".index-null-state");
         const $filterableLists = $(filterableListSelector);
         const dividerCache = {};
@@ -250,9 +251,77 @@ function openGuideTarget(targetId, options) {
             return cachedTerms;
         }
 
+        function getSelectedGuideLevel() {
+            if (!$guideLevelFilter.length) {
+                return Number.POSITIVE_INFINITY;
+            }
+
+            var maxLevel = Number($guideLevelFilter.attr("max")) || 100;
+            var rawLevel = String($guideLevelFilter.val() || "").trim();
+            var previousLevel = Number($guideLevelFilter.data("selectedLevel")) || maxLevel;
+
+            if (!rawLevel) {
+                return previousLevel;
+            }
+
+            var selectedLevel = Number(rawLevel) || previousLevel;
+            selectedLevel = Math.max(Number($guideLevelFilter.attr("min")) || 1, Math.min(maxLevel, selectedLevel));
+            $guideLevelFilter.data("selectedLevel", selectedLevel);
+
+            if (String(selectedLevel) !== String($guideLevelFilter.val())) {
+                $guideLevelFilter.val(selectedLevel);
+            }
+
+            return selectedLevel;
+        }
+
+        function getCurrentGuideLanguage() {
+            var language = window.localStorage.getItem("translation-language") || window.localStorage.getItem("primary-language") || navigator.language || "en";
+            return language.toLowerCase().slice(0, 2);
+        }
+
+        function updateGuideLevelDescriptions() {
+            var selectedLevel = getSelectedGuideLevel();
+            var currentLanguage = getCurrentGuideLanguage();
+
+            $(".guide__level-description[data-description-levels]").each(function () {
+                var element = this;
+                var levels = $(element).data("descriptionLevelsParsed");
+
+                if (!levels) {
+                    try {
+                        levels = JSON.parse(element.getAttribute("data-description-levels") || "[]");
+                    } catch (error) {
+                        levels = [];
+                    }
+                    levels = levels.sort(function (a, b) {
+                        return (Number(a.level) || 0) - (Number(b.level) || 0);
+                    });
+                    $(element).data("descriptionLevelsParsed", levels);
+                }
+
+                var selectedDescription = null;
+                levels.forEach(function (entry) {
+                    if ((Number(entry.level) || 0) <= selectedLevel) {
+                        selectedDescription = entry.description || selectedDescription;
+                    }
+                });
+
+                if (!selectedDescription && levels.length) {
+                    selectedDescription = levels[0].description;
+                }
+
+                if (selectedDescription) {
+                    element.innerHTML = selectedDescription[currentLanguage] || selectedDescription.en || selectedDescription.de || element.innerHTML;
+                }
+            });
+        }
+
         function runGuideFilter() {
             var input = String($guideFilter.val() || "").toLowerCase().trim();
             var terms = input ? input.split(/\s+/).filter(Boolean) : [];
+            var selectedLevel = getSelectedGuideLevel();
+            var onlyFinalSkills = $("#onlyfinalskills").is(":checked");
             var visibleSummaryCount = 0;
 
             $filterableLists.each(function () {
@@ -266,11 +335,20 @@ function openGuideTarget(targetId, options) {
                     var isDisabledByExpansion = !!disabledExpansions[itemExpansion];
                     var headingText = getCachedTerms($summary);
                     var show = !isDisabledByExpansion;
+                    var itemLevel = Number($summary.data("level")) || 0;
 
                     if (show && terms.length > 0) {
                         show = terms.every(function (term) {
                             return headingText.indexOf(term) !== -1;
                         });
+                    }
+
+                    if (show && itemLevel > selectedLevel) {
+                        show = false;
+                    }
+
+                    if (show && onlyFinalSkills && headingText.includes("finalcast:63")) {
+                        show = false;
                     }
 
                     $summary.toggle(show).toggleClass("show", show);
@@ -289,6 +367,7 @@ function openGuideTarget(targetId, options) {
 
             $("#shadowbringersTitle, #shadowbringersContent").toggle(!input);
             $indexNullState.toggle(visibleSummaryCount === 0);
+            updateGuideLevelDescriptions();
         }
 
         window.runGuideFilter = runGuideFilter;
@@ -326,6 +405,7 @@ function openGuideTarget(targetId, options) {
         });
 
         $guideFilter.on("input", debounce(runGuideFilter, 120));
+        $guideLevelFilter.on("input change", debounce(runGuideFilter, 80));
 
 
 
@@ -360,18 +440,7 @@ function openGuideTarget(targetId, options) {
 
         // Guide Only display final skills ====================================================
         $("#onlyfinalskills").on("click", function(e) {
-            let state = $("#onlyfinalskills").is(':checked')
-            $(".summary").each(function(e) {
-                var $summary = $(this);
-                var headingText  =  getCachedTerms($summary);
-                if (headingText.includes("finalcast:63")){
-                    if (state) {
-                        $summary.hide()
-                    } else {
-                        $summary.show()
-                    }
-                }
-            });
+            runGuideFilter();
         });
 
         // FFXIV Guide Menu ====================================================
@@ -398,8 +467,10 @@ function openGuideTarget(targetId, options) {
         window.addEventListener('popstate', function () {
             openCurrentHash({ scroll: true });
         });
+        window.addEventListener('ffxiv-pocket-guide:translations-updated', updateGuideLevelDescriptions);
 
         // Check URL on page load /must be executed last, otherwise page does not function properly
+        runGuideFilter();
         openCurrentHash({ scroll: true });
 
     });

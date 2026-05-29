@@ -1,5 +1,5 @@
 <!-- Include from _includes/klassen/_component/guide-attack -->
-<div class="guide-metadata__menu-link summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--attack" id="{{ "attack_" | append: attack.title.en | slugify }}">
+<div class="guide-metadata__menu-link summary guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--attack" id="{{ "attack_" | append: attack.title.en | slugify }}" data-level="{{ attack.level | default: 0 }}">
     <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <h4 class="index-item__title"
         data-terms="{%- for lang in LANGUAGES -%}!skillname:{{ attack.title[lang] }}&#32;{%- endfor -%}&#32;
@@ -37,7 +37,9 @@
             <div class="guide__attack-notes-wrapper">
                 <h5 class="guide__attack-notes-title" data-translate="Class_Skill_Desc_Title">Description:</h5>
                 <span class="">
-                    <div class="guide__debuff_description" data-translate="Class_Skill_Desc_{{ extra }}{{  attack.title.en }}">{{  attack.description.en }}</div>
+                    <div class="guide__debuff_description guide__level-description"
+                         data-translate="Class_Skill_Desc_{{ extra }}{{  attack.title.en }}"
+                         {%- if attack.description_levels -%} data-description-levels='{{ attack.description_levels | jsonify | escape }}'{%- endif -%}>{{  attack.description.en }}</div>
                 </span>
                 {%- if attack.status_icon -%}
                     {%- unless attack.status_icon == "" -%}

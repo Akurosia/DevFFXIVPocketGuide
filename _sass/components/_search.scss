@@ -59,8 +59,10 @@
 
 .search__form_blu {
     display: flex;
+    gap: calc(#{$unit} / 2);
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     padding: 0 calc(#{$unit} * 1) calc(#{$unit} * 1) 0;
 
     label {
@@ -85,8 +87,9 @@
         outline: none;
         padding: $unit;
         transition: all .2s ease;
-        min-width: calc(100% - 40px);
-        width: calc(100% - 40px);
+        flex: 1 1 28rem;
+        min-width: 14rem;
+        width: auto;
 
         &:focus {
             border: 1px solid $palette--red;
@@ -95,7 +98,28 @@
 
     }
 
+    .guide-level-filter {
+        align-items: center;
+        display: flex;
+        gap: calc(#{$unit} / 2);
+        margin: 0;
+        width: auto;
+    }
+
+    input[type=number] {
+        background-color: #555555;
+        border: 1px solid #34495E;
+        border-radius: 4px;
+        color: white;
+        font-family: $font-aktiv;
+        font-size: $font-scale--regular;
+        height: 40px;
+        padding: 0 calc(#{$unit} / 2);
+        width: 5rem;
+    }
+
     input[type=checkbox] {
+        flex: 0 0 40px;
         height: 40px;
         width: 40px;
         -webkit-appearance: none;
