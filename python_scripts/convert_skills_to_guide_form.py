@@ -33,6 +33,16 @@ _classjob_by_name_de: dict[str, dict[str, Any]] | None = None
 _historical_description_cache: dict[str, dict[str, list[dict[str, Any]]]] = {}
 
 
+def numeric_sort_key(value: Any) -> tuple[int, int | str]:
+    text = str(value).split(".")[0]
+    return (0, int(text)) if text.isdigit() else (1, str(value))
+
+
+def skill_sort_key(item: tuple[Any, dict[str, Any]]) -> tuple[int, tuple[int, int | str]]:
+    key, data = item
+    return (int(data.get("Level", 0)), numeric_sort_key(data.get("Id", key)))
+
+
 def yaml_quote(value: Any) -> str:
     return str(value).replace("\\", "\\\\").replace('"', '\\"')
 
@@ -116,7 +126,7 @@ def get_trait_potency_upgrades(job: str, base_class: str, action_names: set[str]
     job_names = [job]
     if base_class:
         job_names.append(base_class)
-    for trait_data in traits.values():
+    for _, trait_data in sorted(traits.items(), key=lambda item: numeric_sort_key(item[0])):
         if trait_data["ClassJob"]['Name_de'] not in job_names:
             continue
         try:
@@ -135,7 +145,7 @@ def get_trait_potency_upgrades(job: str, base_class: str, action_names: set[str]
         for section in potency_sections:
             for raw_name, raw_value in re.findall(r"([^,]+?)\s+to\s+([\d,]+)", section.group("items")):
                 trait_name = clean_trait_action_name(raw_name)
-                for action_name in sorted(action_names, key=len, reverse=True):
+                for action_name in sorted(action_names, key=lambda name: (-len(name), name)):
                     if trait_action_matches(action_name, trait_name):
                         upgrades.setdefault(action_name, {})[level] = raw_value.replace(",", "")
     return upgrades
@@ -294,7 +304,7 @@ def addAttackDetails(job_data, pvp: bool=False):
     else:
         pvp_text_field = "PVP_"
 
-    job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
+    job_data = OrderedDict(sorted(job_data.items(), key=skill_sort_key))
     for _id, skill_data in job_data.items():
         name = {}
         for lang in LANGUAGES:
@@ -371,7 +381,7 @@ def addOldStatusDetails(job, job_abb) -> str:
         if key not in jobstatusdata:
             jobstatusdata[key] = value
     if not jobstatusdata == {}:
-        jobstatusdata = OrderedDict(sorted(jobstatusdata.items(), key=lambda x: getitem(x[1], 'name')))
+        jobstatusdata = OrderedDict(sorted(jobstatusdata.items(), key=lambda x: (getitem(x[1], 'name'), numeric_sort_key(x[0]))))
         result += "    debuffs:\n"
         for key, s in jobstatusdata.items():
             _id = str(int(key, 16))
@@ -452,7 +462,7 @@ def addTraitDetails(job):
     result += "    traits:\n"
     _class = [v['ClassJobParent']['Name_de'] for k, v in classjob.items() if v["Name_de"] == job]
     traits_t = {k: v for k, v in traits.items() if v["ClassJob"]['Name_de'] in ([job] + _class)}
-    job_trait_data = OrderedDict(sorted(traits_t.items(), key=lambda x: int(getitem(x[1], 'Level'))))
+    job_trait_data = OrderedDict(sorted(traits_t.items(), key=lambda x: (int(getitem(x[1], 'Level')), numeric_sort_key(x[0]))))
     for _id, trait_data in job_trait_data.items():
         if not trait_data.get("Icon", {}).get("path", None):
             continue
@@ -556,7 +566,7 @@ def addCrafterLeve(job, all_crafter_leves):
         if job not in key:
             continue
         result += "    leves:\n"
-        job_leve_data = OrderedDict(sorted(value.items(), key=lambda x: int(getitem(x[1], 'level'))))
+        job_leve_data = OrderedDict(sorted(value.items(), key=lambda x: (int(getitem(x[1], 'level')), numeric_sort_key(x[0]))))
         for _id, leve_data in job_leve_data.items():
             level = "0" if leve_data['level'] == "99999" else leve_data['level']
             result += '      - title:\n'

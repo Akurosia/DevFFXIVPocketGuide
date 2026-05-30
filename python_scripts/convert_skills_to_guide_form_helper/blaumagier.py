@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from copy import deepcopy
 from .helper import getImage, deal_with_extras_in_text, get_propper_zone_name, LANGUAGES
 import traceback
 from operator import getitem
@@ -13,6 +14,11 @@ aozaction = None
 aozactions = None
 aozactiontransient = None
 path_of_main_script = None
+
+
+def numeric_sort_key(value):
+    text = str(value).split(".")[0]
+    return (0, int(text)) if text.isdigit() else (1, str(value))
 
 
 def blu_load_global_data(blu_craftactions, blu_actions, blu_items, blu_logdata):
@@ -33,11 +39,28 @@ def blu_load_global_data(blu_craftactions, blu_actions, blu_items, blu_logdata):
     logdata = blu_logdata
 
 
+def sort_locations(locations):
+    return sorted(
+        locations,
+        key=lambda x: (
+            str(x.get('Ort', "")),
+            str(x.get('Gegner', "")),
+            str(x.get('type', "")),
+            int(x.get('player', 0) or 0),
+        ),
+    )
+
+
+def add_location_once(locations, location):
+    if location not in locations:
+        locations.append(location)
+
+
 def get_play_in_locations(locations):
     cfc = loadDataTheQuickestWay("ContentFindercondition")
     cmt = loadDataTheQuickestWay("ContentMemberType.json")
     new_locations = []
-    for key, value in cfc.items():
+    for key, value in sorted(cfc.items(), key=lambda item: numeric_sort_key(item[0])):
         player = 0
         for loc in locations:
             if value['Name'].lower() == loc['Ort'].lower():
@@ -49,7 +72,7 @@ def get_play_in_locations(locations):
                     player = int(x['HealersPerParty']) + int(x['MeleesPerParty']) + int(x['RangedPerParty']) + int(x['TanksPerParty'])
                     loc["player"] = 1 if player == 0 else player
                     loc["type"] = value['ContentType']
-                    new_locations.append(loc)
+                    add_location_once(new_locations, loc)
                 #print(value)
     for loc in locations:
         found = False
@@ -57,14 +80,15 @@ def get_play_in_locations(locations):
             if loc['Ort'] == loc2['Ort']:
                 found = True
         if not found:
-            new_locations.append(loc)
-    return sorted(new_locations, key=lambda x: x['Ort'])
+            add_location_once(new_locations, loc)
+    return sort_locations(new_locations)
 
 
 def addBlueAttackDetails(main_script, job_data, craftactions, actions, items, logdata, klass_translations):
     global path_of_main_script
     path_of_main_script = main_script
     blu_load_global_data(craftactions, actions, items, logdata)
+    job_data = deepcopy(job_data)
     result = ""
     result += "    attacks:\n"
     # get special aoz action data from correct files e.g. number in blu spell book and description
@@ -85,8 +109,8 @@ def addBlueAttackDetails(main_script, job_data, craftactions, actions, items, lo
         "Zauberatem": "Level 80 mit dem Blaumagier erreicht",
         "Kraftfeld": "120 Zauber gelernt"
     }
-    for x, y in job_data.items():
-        for key, value in aozactions.items():
+    for x, y in sorted(job_data.items(), key=lambda item: numeric_sort_key(item[0])):
+        for key, value in sorted(aozactions.items(), key=lambda item: numeric_sort_key(item[0])):
             if y['Name']['de'] == value['Action']['Name_de']:
                 if not aozactiontransient[key]['Location'].get('Name_de', "") == "":
                     job_data[x]["Location"] = {"Ort": aozactiontransient[key]['Location']['Name_de'], "Gegner": "(InGame Hinweis)"}
@@ -107,9 +131,9 @@ def addBlueAttackDetails(main_script, job_data, craftactions, actions, items, lo
             job_data[x]["Number"] = job_data[x]["Level"]
             job_data[x]["Level"] = "90" + job_data[x]["Level"]
 
-    files = glob("**/**/*.md")
+    files = sorted(glob("**/**/*.md"))
 
-    job_data = OrderedDict(sorted(job_data.items(), key=lambda x: int(getitem(x[1], 'Level'))))
+    job_data = OrderedDict(sorted(job_data.items(), key=lambda x: (int(getitem(x[1], 'Level')), numeric_sort_key(x[1]["Id"]))))
     for _id, skill_data in job_data.items():
         try:
             locations = []
@@ -123,7 +147,7 @@ def addBlueAttackDetails(main_script, job_data, craftactions, actions, items, lo
             level = skill_data['Level']
             #
             locations = getBLULocationsFromLogdata(skill_data["Name"]['de'], locations)
-            locations = sorted(locations, key=lambda x: x['Ort'])
+            locations = sort_locations(locations)
             # somehow original locations got updated, just dont touch it
             #n_locations = get_play_in_locations(locations)
             desc = ""
@@ -181,7 +205,7 @@ def addBlueAttackDetails(main_script, job_data, craftactions, actions, items, lo
                 result += f'        level: "{level}"\n'
 
             result += '        terms:\n'
-            for term in terms:
+            for term in sorted(terms):
                 result += f'          - term: "{term}"\n'
             result += f'        icon: "{getImage(skill_data["Icon"])}"\n'
             result += f'        range: "{skill_data["Range"]}"\n'
@@ -216,27 +240,26 @@ def getBLULocationsFromLogdata(name, locations):
     global logdata
     if not name:
         return locations
-    nresult = locations
-    for location_name, location_data in logdata.items():
+    nresult = list(locations)
+    for location_name, location_data in sorted(logdata.items(), key=lambda item: str(item[0])):
         if not location_name:
             continue
-        for enemy_name, enemy_data in location_data.items():
+        for enemy_name, enemy_data in sorted(location_data.items(), key=lambda item: str(item[0])):
             if not enemy_name or isinstance(enemy_data, list):
                 continue
-            for skill_id, skill_data in enemy_data.get("skill", {}).items():
+            for skill_id, skill_data in sorted(enemy_data.get("skill", {}).items(), key=lambda item: str(item[0])):
                 if not skill_id or not skill_data:
                     continue
                 if name.lower() == skill_data["name"].lower():
                     tmp = {"Ort": location_name, "Gegner": enemy_name}
-                    if tmp not in nresult:
-                        nresult.append(tmp)
-    return nresult
+                    add_location_once(nresult, tmp)
+    return sort_locations(nresult)
 
 
 def get_blue_totem_skills():
     global items
     result = ["Wasserkanone"]
-    for key, value in items.items():
+    for key, value in sorted(items.items(), key=lambda item: numeric_sort_key(item[0])):
         if "Totem der Blaumagie:" in value['Name_de']:
             result.append(value['Name_de'].replace("Totem der Blaumagie: ", ""))
-    return result
+    return sorted(set(result))
