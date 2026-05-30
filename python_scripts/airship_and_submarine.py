@@ -30,6 +30,30 @@ key_map = {
 }
 
 
+def sort_key(value):
+    return str(value).casefold()
+
+
+def normalize_airship_data(raw_data):
+    normalized = {}
+    for location_name in sorted(raw_data, key=sort_key):
+        spots = raw_data.get(location_name) or {}
+        normalized[location_name] = {}
+        for spot_name in sorted(spots, key=sort_key):
+            spot_data = dict(spots.get(spot_name) or {})
+            if isinstance(spot_data.get("items"), list):
+                spot_data["items"] = sorted(dict.fromkeys(spot_data["items"]), key=sort_key)
+            normalized[location_name][spot_name] = {
+                key: spot_data[key]
+                for key in sorted(spot_data, key=sort_key)
+            }
+    return normalized
+
+
+def write_airship_cache(filename, raw_data):
+    writeJsonFile(str(filename), normalize_airship_data(raw_data), sort_sub_keys=True)
+
+
 def is_cloudflare_page(page: Page) -> bool:
     title = page.title().lower()
     body = page.locator("body").inner_text(timeout=5000).lower()
@@ -181,12 +205,12 @@ def get_items_per_location(page, url):
 
 
 def fix_submarine(data):
-    for locations, location_spots in data.items():
+    for locations, location_spots in sorted(data.items(), key=lambda item: sort_key(item[0])):
         if locations == "Sea of Clouds":
             continue
         print(locations)
-        for spot, spot_data in location_spots.items():
-            for key, value in submarineexploration.items():
+        for spot, spot_data in sorted(location_spots.items(), key=lambda item: sort_key(item[0])):
+            for key, value in sorted(submarineexploration.items(), key=lambda item: sort_key(item[0])):
                 if spot.lower() == value['Destination_en'].lower():
                     data[locations][spot]["lvl"] = value['RankReq']
                     break
@@ -194,9 +218,9 @@ def fix_submarine(data):
 
 def add_items(page, data):
     try:
-        for locations, location_spots in data.items():
+        for locations, location_spots in sorted(data.items(), key=lambda item: sort_key(item[0])):
             print_color_yellow(locations)
-            for spot, spot_data in location_spots.items():
+            for spot, spot_data in sorted(location_spots.items(), key=lambda item: sort_key(item[0])):
                 if spot == "":
                     continue
                 if data[locations][spot].get("items", None) == []:
@@ -205,14 +229,14 @@ def add_items(page, data):
                     print_color_green("\t" + f"{spot} - {spot_data.get("link", None)}")
                     items = get_items_per_location(page, spot_data['link'])
                     print_color_green("\t" + f"{items}")
-                    data[locations][spot]["items"] = items
-                    writeJsonFile("airship_submarine.json", data, sort_sub_keys=True)
+                    data[locations][spot]["items"] = sorted(dict.fromkeys(items), key=sort_key)
+                    write_airship_cache("airship_submarine.json", data)
                 else:
                     print_color_red("\t" + spot)
     except Exception:
         traceback.print_exc()
         print("WROTE")
-        writeJsonFile("airship_submarine.json", data, sort_sub_keys=True)
+        write_airship_cache("airship_submarine.json", data)
     return data
 
 def run(path_of_main_script):
@@ -246,12 +270,12 @@ def run(path_of_main_script):
                 data = get_submarine_information(page, data)
                 data = fix_submarine(data)
                 data = add_items(page, data)
-                writeJsonFile(str(cache_file), data, sort_sub_keys=True)
+                write_airship_cache(cache_file, data)
             except CloudflareBlockedError as exc:
                 print_color_yellow(f"[AAS] {exc}")
             except Exception:
                 traceback.print_exc()
-                writeJsonFile(str(cache_file), data, sort_sub_keys=True)
+                write_airship_cache(cache_file, data)
             finally:
                 context.close()
     finally:

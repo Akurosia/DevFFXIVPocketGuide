@@ -64,28 +64,45 @@ def run_git_command(args: list[str]) -> str:
     return completed.stdout if completed.returncode == 0 else ""
 
 
-def parse_attack_descriptions_from_frontmatter(content: str) -> dict[str, dict[str, Any]]:
-    descriptions: dict[str, dict[str, Any]] = {}
+def parse_description_langs(text: str) -> dict[str, str]:
+    desc: dict[str, str] = {}
+    for line in text.splitlines():
+        lang_match = re.match(r'\s+(\w+):\s+"(.*)"\s*$', line)
+        if lang_match and lang_match.group(1) in LANGUAGES:
+            desc[lang_match.group(1)] = lang_match.group(2).replace('\\"', '"')
+    return desc
+
+
+def parse_attack_descriptions_from_frontmatter(content: str) -> dict[str, list[dict[str, Any]]]:
+    descriptions: dict[str, list[dict[str, Any]]] = {}
     for block in re.split(r"\n\s{6}- title:\n", content):
         title_id_match = re.search(r'\n\s{8}title_id:\s+"?([^"\n]+)"?', block)
         if not title_id_match:
             continue
         level_match = re.search(r'\n\s{8}level:\s+"?([^"\n]+)"?', block)
         description_match = re.search(r'\n\s{8}description:\n(?P<langs>(?:\s{10}\w+:\s+".*"\n?)+)', block)
-        if not description_match:
-            continue
+        title_id = title_id_match.group(1)
 
-        desc: dict[str, str] = {}
-        for line in description_match.group("langs").splitlines():
-            lang_match = re.match(r'\s{10}(\w+):\s+"(.*)"\s*$', line)
-            if lang_match and lang_match.group(1) in LANGUAGES:
-                desc[lang_match.group(1)] = lang_match.group(2).replace('\\"', '"')
+        if description_match:
+            desc = parse_description_langs(description_match.group("langs"))
+            if desc:
+                descriptions.setdefault(title_id, []).append({
+                    "level": level_match.group(1) if level_match else "0",
+                    "description": desc,
+                })
 
-        if desc:
-            descriptions[title_id_match.group(1)] = {
+        for level_variant in re.finditer(
+            r'\n\s{10}- level:\s+"?([^"\n]+)"?\n\s{12}description:\n(?P<langs>(?:\s{14}\w+:\s+".*"\n?)+)',
+            block,
+        ):
+            desc = parse_description_langs(level_variant.group("langs"))
+            if not desc:
+                continue
+            descriptions.setdefault(title_id, []).append({
                 "level": level_match.group(1) if level_match else "0",
+                "variant_level": level_variant.group(1),
                 "description": desc,
-            }
+            })
     return descriptions
 
 
@@ -104,21 +121,33 @@ def get_historical_descriptions(relative_post_path: str) -> dict[str, list[dict[
         content = run_git_command(["show", f"{commit}:{relative_post_path}"])
         if not content:
             continue
-        for title_id, item in parse_attack_descriptions_from_frontmatter(content).items():
+        for title_id, items in parse_attack_descriptions_from_frontmatter(content).items():
             history.setdefault(title_id, [])
-            if item["description"] not in [entry["description"] for entry in history[title_id]]:
-                history[title_id].append(item)
+            for item in items:
+                if item["description"] not in [entry["description"] for entry in history[title_id]]:
+                    history[title_id].append(item)
 
     _historical_description_cache[relative_post_path] = history
     return history
 
 
 def clean_trait_action_name(value: str) -> str:
-    return re.sub(r"^(?:and|also)\s+", "", value.strip(), flags=re.IGNORECASE).strip()
+    value = re.sub(r"^(?:and|also)\s+", "", value.strip(), flags=re.IGNORECASE).strip()
+    value = re.sub(r"^(?:the\s+)?(?:healing\s+)?potency\s+of\s+", "", value, flags=re.IGNORECASE).strip()
+    return value
 
 
 def trait_action_matches(action_name: str, text: str) -> bool:
-    return re.search(rf"(?<!\w){re.escape(action_name)}(?!\w)", text, flags=re.IGNORECASE) is not None
+    parts = [
+        clean_trait_action_name(part)
+        for part in re.split(r"\s+and\s+", text, flags=re.IGNORECASE)
+    ]
+    for part in parts:
+        if action_name.casefold() == part.casefold():
+            return True
+        if part.casefold().startswith("enchanted ") and action_name.casefold() == part[10:].casefold():
+            return True
+    return False
 
 
 def get_trait_potency_upgrades(job: str, base_class: str, action_names: set[str]) -> dict[str, dict[int, str]]:
@@ -230,12 +259,12 @@ def add_description_history(job_data: dict, relative_post_path: str, job: str, b
             historical_value = extract_first_potency(historical["description"].get("en", ""), "en")
             if historical_value and int(historical_value) < int(lowest_trait_value):
                 variants.append({
-                    "level": str(action_level),
+                    "level": str(historical.get("variant_level") or action_level),
                     "description": build_potency_description_variant(skill_data["Description"], historical_value),
                 })
                 break
 
-        if not variants and action_level and action_level < lowest_trait_level:
+        if action_level and action_level < lowest_trait_level and not any(str(variant["level"]) == str(action_level) for variant in variants):
             variants.append({
                 "level": str(action_level),
                 "description": build_potency_description_variant(skill_data["Description"], lowest_trait_value),
@@ -257,7 +286,7 @@ def add_description_history(job_data: dict, relative_post_path: str, job: str, b
             deduped.append(variant)
 
         if len(deduped) > 1:
-            skill_data["DescriptionLevels"] = deduped
+            skill_data["DescriptionLevels"] = sorted(deduped, key=lambda item: int(item["level"]) if str(item["level"]).isdigit() else 0)
 
 def get_class_translation_data() -> None:
     global klass_translations
