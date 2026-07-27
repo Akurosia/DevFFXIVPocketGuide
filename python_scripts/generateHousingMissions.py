@@ -134,7 +134,7 @@ def run(path_of_main_script):
                     klass_translations[lang][f'Housing_Location_{v_en}'] = v
                 if stop_data.get("lvl", None):
                     r_data += f'          level: "{stop_data["lvl"]}"\n'
-                r_data += f'          exp: "{stop_data["exp"].replace(",", "")}"\n'
+                r_data += f'          exp: "{stop_data.get("exp", "?").replace(",", "")}"\n'
                 if stop_data.get('alias'):
                     r_data += f'          alias: "{stop_data["alias"]}"\n'
                 r_data += '          items:\n'
@@ -156,5 +156,5 @@ def run(path_of_main_script):
 
 
 if __name__ == "__main__":
-    run(os,getcwd())
+    run(os.getcwd())
     os.chdir("_posts")

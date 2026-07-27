@@ -707,6 +707,8 @@ classDetails = {
     "Viper": {          "date": "2024.07.02", "patchNumber": "7.0",  "patchName": "Dawntrail", "patchShort": "dt"},
     "Piktomant": {      "date": "2024.07.02", "patchNumber": "7.0",  "patchName": "Dawntrail", "patchShort": "dt"},
     "Bestienbändiger": {"date": "2026.09.02", "patchNumber": "7.56", "patchName": "Dawntrail", "patchShort": "dt"},
+    "Bastion": {        "date": "2027.01.01", "patchNumber": "8.0",  "patchName": "Evercold",  "patchShort": "ec"},
+    "???": {            "date": "2027.01.01", "patchNumber": "8.0",  "patchName": "Evercold",  "patchShort": "ec"},
 }
 
 ExtraIconsCategory: list[str] = ["MarketBoard", "classjob", "normal", "glow", "gearset", "grey", "black", "gold", "orange", "red", "purple", "blue", "green"]
