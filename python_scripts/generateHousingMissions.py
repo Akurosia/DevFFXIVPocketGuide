@@ -1,5 +1,7 @@
 from ffxiv_aku import *
 from ffxiv_aku import loadDataTheQuickestWay, readJsonFile, writeJsonFile, os
+import re
+import unicodedata
 try:
     from .fileimports import *
 except ImportError:
@@ -48,12 +50,31 @@ locations_translator: dict[str, str] = {
     "The Northern Empty (Lv. 135-)": "Nördliche Meere"
 }
 
-def get_translated_unlocks(asd, search):
-    for key, value in asd.items():
-        if value.get("Destination_en", value.get("Name_en", "")).lower() == search.lower():
-            #print(value)
+def normalize_location_name(value):
+    normalized = unicodedata.normalize("NFKC", str(value or ""))
+    normalized = normalized.replace("’", "'").replace("`", "'").replace("\xa0", " ")
+    normalized = re.sub(r"\s*\([A-Z]{1,2}\)\s*$", "", normalized, flags=re.IGNORECASE)
+    normalized = re.sub(r"\s+", " ", normalized).strip().casefold()
+
+    if normalized.startswith("the "):
+        normalized = normalized[4:]
+
+    return normalized
+
+
+def get_translated_unlocks(location_data, search):
+    normalized_search = normalize_location_name(search)
+
+    if not normalized_search or normalized_search in {"-", "none", "n/a"}:
+        return {}
+
+    for value in location_data.values():
+        destination_name = value.get("Destination_en") or value.get("Name_en") or ""
+
+        if normalize_location_name(destination_name) == normalized_search:
             return value
-    #print("ERROR")
+
+    print(f'No unlock match for: {search!r} -> {normalized_search!r}')
     return {}
 
 
@@ -126,7 +147,6 @@ def run(path_of_main_script):
                     v = value.get("Destination_"+lang, value.get("Name_"+lang, ""))
                     klass_translations[lang][f'Housing_Location_{v_en}'] = v
                 tmp_x = get_translated_unlocks(w_data, stop_data.get('unlocked_by', ""))
-
                 v_en = tmp_x.get("Destination_en", tmp_x.get("Name_en", ""))
                 r_data += f'          unlocked: "{v_en}"\n'
                 for lang in LANGUAGES:
