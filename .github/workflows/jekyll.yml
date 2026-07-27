@@ -2,29 +2,46 @@ name: Jekyll site CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v5
 
-    - name: Build the site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jvconseil/jekyll-docker:4 /bin/bash -c "gem install bundler:2.5.4 && chmod -R 777 /srv/jekyll && jekyll build --future --config _config.yml,_githubconfig.yml"
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: gh-pages
-        publish_dir: _site
-        force_orphan: true
-        commit_message: ${{ github.event.head_commit.message }}
+      - name: Install Jekyll
+        if: ${{ !hashFiles('Gemfile') }}
+        run: |
+          gem install jekyll bundler --no-document
+
+      - name: Build site
+        run: |
+          if [ -f Gemfile ]; then
+            bundle exec jekyll build --future --config _config.yml,_githubconfig.yml
+          else
+            jekyll build --future --config _config.yml,_githubconfig.yml
+          fi
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          publish_branch: gh-pages
+          force_orphan: true
