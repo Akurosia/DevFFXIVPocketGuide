@@ -306,12 +306,12 @@ def main() -> None:
         orderedContent = tmp["ordered"]
 
     try:
-        run(googledata, orderedContent)
+        #run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
-        #run_all(path_of_main_script, translations)
+        run_all(path_of_main_script, translations)
         pass
     create_translation_files()
     logger.critical('STOP')
