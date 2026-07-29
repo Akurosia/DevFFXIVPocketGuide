@@ -123,7 +123,7 @@ def get_croped_image(_id: str = "0"):
 
 def get_x_image(_id: str = "0"):
     # Load the overlay image (e.g., icon or stamp)
-    file_name: str = treasurehunttexture[_id]['Unknown0'].lower()
+    file_name: str = treasurehunttexture[_id]['Texture'].lower()
     overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.webp"  # Replace with your overlay image path
     overlay_image = Image.open(overlay_path)
 
@@ -187,6 +187,7 @@ def code_for_image(overlay_id, posible_maps, location, item_name):
     modified_image: Image.Image = original_image.copy()
 
     print(location)
+    print(overlay_id)
     overlay_cropped, x_off, y_off = get_croped_image(overlay_id)
     overlay_x_cropped, xx_off, xy_off = get_x_image(overlay_id)
     overlay_cropped.paste(overlay_x_cropped, (x_off-xx_off, y_off-xy_off), overlay_x_cropped if overlay_x_cropped.mode == 'RGBA' else None)
@@ -313,7 +314,6 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
                 posible_maps.append(x)
             if len(posible_maps) > 1:
                 print(posible_maps)
-
             _extra, full_placename, output_path, modified_image, placename = code_for_image(overlay_id, posible_maps, location, item_name)
             _post += f'  - zonename: "{full_placename["Name_en"]}"\n'
             _post += f'    zoneslug: "{fix_slug(full_placename["Name_en"]).replace("_", "-")}"\n'

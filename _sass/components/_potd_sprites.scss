@@ -80,6 +80,41 @@
   background-position: -444px -0px;
 }
 
+.mkdsprite-sheet {
+  background: attr(data-image url);
+}
+
+.sprite-phantom-common {
+  height: 58px;
+  width: 40px;
+  background-size: 400px 348px;
+}
+
+.sprite-phantom-freiberufler { background-position: 0 0; }
+.sprite-phantom-ritter { background-position: -40px 0; }
+.sprite-phantom-berserker { background-position: -80px 0; }
+.sprite-phantom-mönch { background-position: -120px 0; }
+.sprite-phantom-jäger { background-position: -160px 0; }
+.sprite-phantom-samurai { background-position: -200px 0; }
+.sprite-phantom-barde { background-position: -240px 0; }
+.sprite-phantom-geomant { background-position: -280px 0; }
+.sprite-phantom-zeitmagier { background-position: -320px 0; }
+.sprite-phantom-grenadier { background-position: -360px 0; }
+.sprite-phantom-alchemist { background-position: 0 -58px; }
+.sprite-phantom-seher { background-position: -40px -58px; }
+.sprite-phantom-dieb { background-position: -80px -58px; }
+.sprite-phantom-paladin { background-position: -120px -58px; }
+.sprite-phantom-gladiator { background-position: -160px -58px; }
+.sprite-phantom-tänzer { background-position: -200px -58px; }
+.sprite-phantom-ninja { background-position: -240px -58px; }
+.sprite-phantom-weißmagier { background-position: -280px -58px; }
+.sprite-phantom-schwarzmagier { background-position: -320px -58px; }
+.sprite-phantom-dragoon { background-position: -360px -58px; }
+.sprite-phantom-beschwörer { background-position: 0 -116px; }
+.sprite-phantom-blaumagier { background-position: -40px -116px; }
+.sprite-phantom-rotmagier { background-position: -80px -116px; }
+.sprite-phantom-nekromant { background-position: -120px -116px; }
+
 .pxsprite-sheet {
   background: attr(data-image url);
 }

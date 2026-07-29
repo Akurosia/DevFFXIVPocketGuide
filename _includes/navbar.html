@@ -61,8 +61,13 @@
                         <span data-translate="Navbar_Patches">Patches</span>
                     </a>
                 </li>
-                <li style="cursor: pointer;"><span><span>{%- if extratools == "true" -%}&#9660;{%- else -%}&#9654;{%- endif -%}</span> Extra Tools</span></li>
-                <ul {% if extratools == "true" -%}style="display: inherit;"{%- endif %}>
+                <li>
+                    <button type="button" class="sidebar__group-toggle" aria-expanded="{{ extratools }}" aria-controls="sidebar-group-extra-tools">
+                        <span class="sidebar__toggle-icon" aria-hidden="true">{%- if extratools == "true" -%}&#9660;{%- else -%}&#9654;{%- endif -%}</span>
+                        Extra Tools
+                    </button>
+                </li>
+                <ul id="sidebar-group-extra-tools" {% if extratools == "true" -%}style="display: inherit;"{%- endif %}>
                     <li>
                         <a target="" {%- if page.page_category == "translate" -%}class="active"{%- endif -%}
                             href='{{ "/translate/" | prepend: site.baseurl }}' title="See Translations">
@@ -112,13 +117,17 @@
                             <span data-translate=" Navbar_mainquestsfinder">mainquestsfinder</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "klassenjobs" or page.instanceType == "klassenjobs" or page.instance_type == "klassenjobs" -%}class="active"{%- endif -%}
                             href='{{ "/klassenjobs/" | prepend: site.baseurl }}' title="Klassen/Jobs anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061835_hr1.webp" }}'">
                             <span data-translate="Navbar_Classes/Jobs">Classes/Jobs</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "klassenjobs" or page.instanceType == "klassenjobs" or page.instance_type == "klassenjobs" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-klassenjobs" aria-label="Toggle Classes/Jobs">
+                            <span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "klassenjobs" or page.instanceType == "klassenjobs" or page.instance_type == "klassenjobs" %}&#9660;{% else %}&#9654;{% endif %}</span>
+                        </button>
                     </li>
+                    {% include navbar-content-submenu.html id="klassenjobs" category="klassenjobs" page_category="klassenjobs" instance_type="klassenjobs" instance_type_new="klassenjobs" %}
                     <li>
                         <a target="" {%- if page.page_category == "relics" or page.instanceType == "relics" or page.instance_type == "relics" -%}class="active"{%- endif -%}
                             href='{{ "/relics/" | prepend: site.baseurl }}' title="Relic Weapons anzeigen">
@@ -191,8 +200,13 @@
                     </li>
                 </ul>
 
-                <li style="cursor: pointer;"><span><span>{%- if instancecontent == "true" -%}&#9660;{%- else -%}&#9654;{%- endif -%}</span> Instance Content</span></li>
-                <ul {% if instancecontent == "true" -%}style="display: inherit;"{%- endif %}>
+                <li>
+                    <button type="button" class="sidebar__group-toggle" aria-expanded="{{ instancecontent }}" aria-controls="sidebar-group-instance-content">
+                        <span class="sidebar__toggle-icon" aria-hidden="true">{%- if instancecontent == "true" -%}&#9660;{%- else -%}&#9654;{%- endif -%}</span>
+                        Instance Content
+                    </button>
+                </li>
+                <ul id="sidebar-group-instance-content" {% if instancecontent == "true" -%}style="display: inherit;"{%- endif %}>
                     <li>
                         <a target="" {%- if page.page_category == "all" -%}class="active"{%- endif -%}
                             href='{{ "/" | prepend: site.baseurl }}' title="Alle Guides anzeigen">
@@ -200,113 +214,159 @@
                             <span data-translate="Navbar_All Guides">All Guides</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "dungeons" or page.instanceType == "dungeon" or page.instance_type == "Dungeon" -%}class="active"{%- endif -%}
                             href='{{ "/dungeons/" | prepend: site.baseurl }}' title="Dungeon - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061801_hr1.webp" }}'">
                             <span data-translate="Navbar_Dungeons">Dungeons</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "dungeons" or page.instanceType == "dungeon" or page.instance_type == "Dungeon" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-dungeons" aria-label="Toggle Dungeons"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "dungeons" or page.instanceType == "dungeon" or page.instance_type == "Dungeon" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="dungeons" page_category="dungeons" instance_type="dungeon" instance_type_new="Dungeon" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "trials" or page.instanceType == "trial" or page.instance_type == "Trial" -%}class="active"{%- endif -%}
                             href='{{ "/trials/" | prepend: site.baseurl }}' title="Prüfung - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061804_hr1.webp" }}'">
                             <span data-translate="Navbar_Trials">Trials</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "trials" or page.instanceType == "trial" or page.instance_type == "Trial" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-trials" aria-label="Toggle Trials"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "trials" or page.instanceType == "trial" or page.instance_type == "Trial" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="trials" page_category="trials" instance_type="trial" instance_type_new="Trial" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "raids" or page.instanceType == "raid" or page.instance_type == "Raid" -%}class="active"{%- endif -%}
                             href='{{ "/raids/" | prepend: site.baseurl }}' title="Raid - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061802_hr1.webp" }}'">
                             <span data-translate="Navbar_Raids">Raids</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "raids" or page.instanceType == "raid" or page.instance_type == "Raid" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-raids" aria-label="Toggle Raids"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "raids" or page.instanceType == "raid" or page.instance_type == "Raid" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="raids" page_category="raids" instance_type="raid" instance_type_new="Raid" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "ultimates" or page.instanceType == "ultimate" or page.instance_type == "ultimate" -%}class="active"{%- endif -%}
                             href='{{ "/ultimates/" | prepend: site.baseurl }}' title="Ultimate - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061832_hr1.webp" }}'">
                             <span data-translate="Navbar_Ultimate Raids">Ultimate Raids</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "ultimates" or page.instanceType == "ultimate" or page.instance_type == "ultimate" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-ultimates" aria-label="Toggle Ultimate Raids"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "ultimates" or page.instanceType == "ultimate" or page.instance_type == "ultimate" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="ultimates" page_category="ultimates" instance_type="ultimate" instance_type_new="ultimate" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "allianzraid" or page.instanceType == "allianzraid" or page.instance_type == "AllianzRaid" -%}class="active"{%- endif -%}
                             href='{{ "/allianzraid/" | prepend: site.baseurl }}' title="Allianz Raid - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061844_hr1.webp" }}'">
                             <span data-translate="Navbar_Alliance Raids">Alliance Raids</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "allianzraid" or page.instanceType == "allianzraid" or page.instance_type == "AllianzRaid" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-allianzraid" aria-label="Toggle Alliance Raids"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "allianzraid" or page.instanceType == "allianzraid" or page.instance_type == "AllianzRaid" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="allianzraid" page_category="allianzraid" instance_type="allianzraid" instance_type_new="AllianzRaid" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "chaosallianzraid" or page.instanceType == "chaosallianzraid" or page.instance_type == "ChaosAllianzRaid" -%}class="active"{%- endif -%}
                             href='{{ "/chaosallianzraid/" | prepend: site.baseurl }}' title="Chaos Allianz Raid - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061850_hr1.webp" }}'">
                             <span data-translate="Navbar_Chaos Alliance Raids">Chaos Alliance Raids</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "chaosallianzraid" or page.instanceType == "chaosallianzraid" or page.instance_type == "ChaosAllianzRaid" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-chaosallianzraid" aria-label="Toggle Chaos Alliance Raids"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "chaosallianzraid" or page.instanceType == "chaosallianzraid" or page.instance_type == "ChaosAllianzRaid" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="chaosallianzraid" page_category="chaosallianzraid" instance_type="chaosallianzraid" instance_type_new="ChaosAllianzRaid" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "gewölbesuche" or page.instanceType == "gewölbesuche" or page.instance_type == "Gewölbesuche" -%}class="active"{%- endif -%}
                             href='{{ "/gewölbesuche/" | prepend: site.baseurl }}' title="Gewölbesuche - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061846_hr1.webp" }}'">
                             <span data-translate="Navbar_Varient & Criterion Dungeon">Varient & Criterion Dungeon</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "gewölbesuche" or page.instanceType == "gewölbesuche" or page.instance_type == "Gewölbesuche" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-gewölbesuche" aria-label="Toggle Variant and Criterion Dungeons"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "gewölbesuche" or page.instanceType == "gewölbesuche" or page.instance_type == "Gewölbesuche" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="gewölbesuche" page_category="gewölbesuche" instance_type="gewölbesuche" instance_type_new="Gewölbesuche" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "feldexkursion" or page.instanceType == "feldexkursion" or page.instance_type == "feldexkursion" -%}class="active"{%- endif -%}
                             href='{{ "/feldexkursion/" | prepend: site.baseurl }}' title="Feldexkursion - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061837_hr1.webp" }}'">
                             <span data-translate="Navbar_Field Operations">Field Operations</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "feldexkursion" or page.instanceType == "feldexkursion" or page.instance_type == "feldexkursion" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-feldexkursion" aria-label="Toggle Field Operations"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "feldexkursion" or page.instanceType == "feldexkursion" or page.instance_type == "feldexkursion" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="feldexkursion" page_category="feldexkursion" instance_type="feldexkursion" instance_type_new="feldexkursion" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "bluemage" or page.instanceType == "bluemage" or page.instance_type == "Bluemage" -%}class="active"{%- endif -%}
                             href='{{ "/bluemage/" | prepend: site.baseurl }}' title="Bluemage - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061836_hr1.webp" }}'">
                             <span data-translate="Navbar_Blue Mage">Blue Mage</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "bluemage" or page.instanceType == "bluemage" or page.instance_type == "Bluemage" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-bluemage" aria-label="Toggle Blue Mage"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "bluemage" or page.instanceType == "bluemage" or page.instance_type == "Bluemage" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="bluemage" page_category="bluemage" instance_type="bluemage" instance_type_new="Bluemage" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "potd" or page.instanceType == "potd" or page.instance_type == "potd" -%}class="active"{%- endif -%}
                             href='{{ "/potd/" | prepend: site.baseurl }}' title="Tiefes Gewöbe - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061824_hr1.webp" }}'">
                             <span data-translate="Navbar_Deep Dungeon">Deep Dungeon</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "potd" or page.instanceType == "potd" or page.instance_type == "potd" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-potd" aria-label="Toggle Deep Dungeons"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "potd" or page.instanceType == "potd" or page.instance_type == "potd" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="potd" page_category="potd" instance_type="potd" instance_type_new="potd" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "guildhest" or page.instanceType == "guildhest" or page.instance_type == "guildhest" -%}class="active"{%- endif -%}
                             href='{{ "/guildhest/" | prepend: site.baseurl }}' title="Gildengeheiße - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061803_hr1.webp" }}'">
                             <span data-translate="Navbar_Guildhests">Guildhests</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "guildhest" or page.instanceType == "guildhest" or page.instance_type == "guildhest" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-guildhest" aria-label="Toggle Guildhests"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "guildhest" or page.instanceType == "guildhest" or page.instance_type == "guildhest" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="guildhest" page_category="guildhest" instance_type="guildhest" instance_type_new="guildhest" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "treasure" or page.instanceType == "treasure" or page.instance_type == "treasure" -%}class="active"{%- endif -%}
                             href='{{ "/treasure/" | prepend: site.baseurl }}' title="Schatzdungeon - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061808_hr1.webp" }}'">
                             <span data-translate="Navbar_Treasure Dungeon">Treasure Dungeon</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "treasure" or page.instanceType == "treasure" or page.instance_type == "treasure" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-treasure" aria-label="Toggle Treasure Dungeons"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "treasure" or page.instanceType == "treasure" or page.instance_type == "treasure" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="treasure" page_category="treasure" instance_type="treasure" instance_type_new="treasure" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "pvp" or page.instanceType == "pvp" or page.instance_type == "pvp" -%}class="active"{%- endif -%}
                             href='{{ "/pvp/" | prepend: site.baseurl }}' title="PVP - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061806_hr1.webp" }}'">
                             <span data-translate="Navbar_PVP">PVP</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "pvp" or page.instanceType == "pvp" or page.instance_type == "pvp" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-pvp" aria-label="Toggle PVP"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "pvp" or page.instanceType == "pvp" or page.instance_type == "pvp" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="pvp" page_category="pvp" instance_type="pvp" instance_type_new="pvp" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "training" or page.instanceType == "training" or page.instance_type == "training" -%}class="active"{%- endif -%}
                             href='{{ "/training/" | prepend: site.baseurl }}' title="Training - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061823_hr1.webp" }}'">
                             <span data-translate="Navbar_Training">Training</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "training" or page.instanceType == "training" or page.instance_type == "training" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-training" aria-label="Toggle Training"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "training" or page.instanceType == "training" or page.instance_type == "training" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
-                    <li>
+                    {% include navbar-content-submenu.html id="training" page_category="training" instance_type="training" instance_type_new="training" %}
+                    <li class="sidebar__content-parent">
                         <a target="" {%- if page.page_category == "overworld" or page.instanceType == "overworld" or page.instance_type == "overworld" -%}class="active"{%- endif -%}
                             href='{{ "/overworld/" | prepend: site.baseurl }}' title="Overworld - Guides anzeigen">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/052000/052474_hr1.webp" }}'">
                             <span data-translate="Navbar_Overworld">Overworld</span>
                         </a>
+                        <button type="button" class="sidebar__submenu-toggle" aria-expanded="{% if page.page_category == "overworld" or page.instanceType == "overworld" or page.instance_type == "overworld" %}true{% else %}false{% endif %}" aria-controls="sidebar-submenu-overworld" aria-label="Toggle Overworld"><span class="sidebar__toggle-icon" aria-hidden="true">{% if page.page_category == "overworld" or page.instanceType == "overworld" or page.instance_type == "overworld" %}&#9660;{% else %}&#9654;{% endif %}</span></button>
                     </li>
+                    {% include navbar-content-submenu.html id="overworld" page_category="overworld" instance_type="overworld" instance_type_new="overworld" %}
                 </ul>
             </ul>
+            <div style="display: none" data-extra-translate="/assets/translations/klassen"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/dungeon"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/trial"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/raid"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/ultimate"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/allianzraid"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/chaosallianzraid"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/gewölbesuche"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/feldexkursion"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/bluemage"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/potd"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/guildhest"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/treasure"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/pvp"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/training"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/overworld"></div>
         </div>
     </div>
 

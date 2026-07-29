@@ -162,15 +162,19 @@ function openGuideTarget(targetId, options) {
             });
         });
 
-        $(document).on('click', '.sidebar__menu li ', function () {
-            arrow = $(this).children('span').children('span')[0]
-            if (arrow.textContent == "▶") {
-                arrow.textContent = "▼";
-            } else {
-                arrow.textContent = "▶";
-            }
-            $(this).next('ul').toggle();
-        })
+        $(document).on('click', '.sidebar__group-toggle, .sidebar__submenu-toggle, .sidebar__expansion-toggle', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const $toggle = $(this);
+            const expanded = $toggle.attr('aria-expanded') === 'true';
+            const submenuId = $toggle.attr('aria-controls');
+            const $submenu = $(document.getElementById(submenuId));
+
+            $toggle.attr('aria-expanded', String(!expanded));
+            $toggle.find('.sidebar__toggle-icon').text(expanded ? '▶' : '▼');
+            $submenu.stop(true, true).toggle();
+        });
 
         var $root = $('html, body');
 

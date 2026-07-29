@@ -465,6 +465,8 @@ def _build_page(
     page += f'slug: "klassen_und_jobs_{slug_name.replace(" ", "_")}"\n'
     if icon:
         page += f'jobicon: "{icon}"\n'
+    phantom_icon = names["de"].removeprefix("Phantom-").lower()
+    page += f'phantomicon: "{_yaml_quote(phantom_icon)}"\n'
     page += "extraicons:\n"
     page += "terms:\n"
     for term in ["Klassen", "Jobs", "Skills", "Traits", "Phantom Jobs", "Occult Crescent"]:

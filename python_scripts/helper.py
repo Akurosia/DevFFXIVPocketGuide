@@ -228,10 +228,11 @@ def getContentName(name: str, lang: str ="en", difficulty: str="", instanceType:
                 for place in placename.values()
             }
 
-        if "memoria" in normalized_name:
-            for key, content in _content_name_index.items():
-                if "memoria" in key:
-                    return content[f"Name_{lang}"]
+        for content_exception in ["momoria", "das nördliche kreszentia: fork-turm - magie"]:
+            if content_exception in normalized_name:
+                for key, content in _content_name_index.items():
+                    if content_exception in key:
+                        return content[f"Name_{lang}"]
 
         content = _content_name_index.get(normalized_name)
         if content:
@@ -243,7 +244,7 @@ def getContentName(name: str, lang: str ="en", difficulty: str="", instanceType:
     except KeyError:
         traceback.print_exc()
         pass
-    print_color_red(f"Could not translate: {name=} ({lang=})")
+    print_color_red(f"[Helper] Could not translate: {name=} ({lang=})")
     return ""
 
 

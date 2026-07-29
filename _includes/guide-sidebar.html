@@ -106,7 +106,7 @@
                         <img loading="lazy" title="{{ page.roletypeinparty }}" src="{{site.imageurl}}/{{page.roleicon}}"/>
                     {%- endif -%}
                     {%- if page.roleiconextra-%}
-                        <img loading="lazy" title="{{page.roleiconextra[0].name}}" src="{{page.roleiconextra[0].icon}}"/>
+                        <img loading="lazy" title="{{page.roleiconextra[0].name}}" src="{{site.imageurl}}/{{page.roleiconextra[0].icon}}"/>
                     {%- endif -%}
                 </span>
             </h5>
@@ -153,6 +153,12 @@
             <h5 class="guide-metadata__subtitle box small-1of2 med-full">
                 <div data-translate="Sidebar_DeepDungeonIcon">Deep Dungeon Icon:</div>
                 <div style="background-image: url('{{ site.baseurl }}/assets/img/deepdungeonclassjob_hr1.webp')" class="xsprite-sheet sprite-podt-common sprite-podt-{{page.deepdungeon}}"></div>
+            </h5>
+        {%- endif -%}
+        {%- if page.phantomicon -%}
+            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+                <div data-translate="Sidebar_PhantomJobIcon">Phantom Job Icon:</div>
+                <div style="background-image: url('{{ site.baseurl }}/assets/img/mkdsupportjob_hr1.webp')" class="mkdsprite-sheet sprite-phantom-common sprite-phantom-{{page.phantomicon}}"></div>
             </h5>
         {%- endif -%}
         {%- if page.pixelicon -%}

@@ -203,7 +203,7 @@ def run(googledata: dict[str, EntryType], orderedContent: dict[str, str]) -> Non
             if not True:
                 #if debug_row_number < 800 :
                 #if debug_row_number not in [354, 581, 787, 788, 818, 821]:
-                if debug_row_number not in [826]:
+                if debug_row_number not in [913]:
                     print_debug = True
                     continue
             entry: EntryType = getEntryData(value, i, orderedContent)
@@ -253,18 +253,18 @@ from concurrent.futures import ThreadPoolExecutor
 def run_all(path_of_main_script, translations):
     #return
     tasks = [
-       #lambda: aas.run(path_of_main_script),
-       #lambda: csgf.run(path_of_main_script),
-       #lambda: gl.run(path_of_main_script),
-       #lambda: gp.run(path_of_main_script),
-       #lambda: ghm.run(path_of_main_script),
-       #lambda: ga.run(path_of_main_script),
-       #lambda: gbsq.run(path_of_main_script),
-       #lambda: gis.run(path_of_main_script),
+       lambda: aas.run(path_of_main_script),
+       lambda: csgf.run(path_of_main_script),
+       lambda: gl.run(path_of_main_script),
+       lambda: gp.run(path_of_main_script),
+       lambda: ghm.run(path_of_main_script),
+       lambda: ga.run(path_of_main_script),
+       lambda: gbsq.run(path_of_main_script),
+       lambda: gis.run(path_of_main_script),
        lambda: ts.run(path_of_main_script),
-       #lambda: quests.run(path_of_main_script),
-       #lambda: deepdungeon.run(path_of_main_script),
-       #lambda: fcc.run(path_of_main_script, translations),
+       lambda: quests.run(path_of_main_script),
+       lambda: deepdungeon.run(path_of_main_script),
+       lambda: fcc.run(path_of_main_script, translations),
     ]
 
     with ThreadPoolExecutor(max_workers=len(tasks)) as executor:
@@ -306,12 +306,12 @@ def main() -> None:
         orderedContent = tmp["ordered"]
 
     try:
-        #run(googledata, orderedContent)
+        run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())
     if not print_debug:
-        run_all(path_of_main_script, translations)
+        #run_all(path_of_main_script, translations)
         pass
     create_translation_files()
     logger.critical('STOP')
