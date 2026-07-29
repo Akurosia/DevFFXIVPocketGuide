@@ -282,16 +282,18 @@ def get_cat_image(instancetype, cfc_key):
 
 def getMapImages(mapid: str, contentname: str) -> str:
     result: str = ""
-    path: str = "P:\\extras\\images\\ui\\map\\"
-        # this needs to stay webp to look at original files
-    files: list[str] = glob(path + mapid[:3] + f"\\{mapid[:5]}*.webp")
+    path: str = "N:\\ff14.akurosiakamo.de\\extras\\images\\ui\\maps\\"
+    # this needs to stay webp to look at original files
+    globpath = path + mapid[:3] + f"\\{mapid[:4]}*.webp"
+    files: list[str] = glob(globpath)
     ncontentname = contentname.replace(":", "_")
     found_valid_maps: list[str] = []
     for file in files:
         if "_ow_" in file:
             continue
+        #print(f"{contentname=}{ncontentname=}{file=}{mapid=}")
         #if contentname+".webp" in file and not "_event" in file and mapid in file:
-        if ncontentname in file and not "_event" in file and mapid in file:
+        if ncontentname in file and not "_event" in file and mapid[:4] in file:
             found_valid_maps.append(file)
             if "_event" in file:
                 print_color_red(file)
@@ -332,6 +334,13 @@ def getFirstMapEntryId(entry):
         elif entry['mapid'] == value['Id']:
             replace = key
     return replace
+
+def get_fixed_content_name(placename: str, de_title: str):
+    #print(de_title)
+    if "Fork-Turm - Magie" in de_title:
+        #print("Turm der Magie")
+        return "Turm der Magie"
+    return placename
 
 def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_translations):
     global contentfindercondition
@@ -390,13 +399,12 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
     if not tt_bg_entry == "":
         header_data += 'mappath: "' + tt_bg_entry + '"\n'
     if not tt_type_name == "":
-        # header_data += 'contentname: "' + tt_type_name["Name_de"] + '"\n'
         header_data += f'contentname: "{tt_type_name['PlaceName']["Name_en"]}"\n'
         for lang in LANGUAGES:
             content_translations[lang][f'ContentName_{tt_type_name['PlaceName']["Name_en"]}'] = tt_type_name['PlaceName'][f"Name_{lang}"]
             # header_data += f'  {lang}: "' + tt_type_name['PlaceName'][f"Name_{lang}"] + '"\n'
     if entry.get("mapid", None) and tt_bg_entry:
-        header_data += getMapImages(mapid=entry["mapid"], contentname=tt_type_name['PlaceName']["Name_de"])
+        header_data += getMapImages(mapid=entry["mapid"], contentname=get_fixed_content_name(tt_type_name['PlaceName']["Name_de"], entry["titles"]['de']))
     header_data += 'sortid: ' + entry["sortid"] + '\n'
     header_data += get_lvl_data(entry)
     # quests
