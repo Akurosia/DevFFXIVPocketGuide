@@ -12,12 +12,14 @@ from ffxiv_aku import storeFilesInTmp, get_skills_for_player, loadDataTheQuickes
 try:
     from .helper import *
     from .convert_skills_to_guide_form_helper.chocobo import addChocobo
+    from .convert_skills_to_guide_form_helper.phantom_jobs import addPhantomJobs
     from .convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, LANGUAGES_MAPPING
     from .convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
     from .convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
 except ImportError:
     from helper import *
     from convert_skills_to_guide_form_helper.chocobo import addChocobo
+    from convert_skills_to_guide_form_helper.phantom_jobs import addPhantomJobs
     from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, LANGUAGES_MAPPING
     from convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
     from convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
@@ -1159,6 +1161,13 @@ def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
     get_class_translation_data()
     addKlassJobs()
     addChocobo(main_script, action,  actiontransient, traits, traitstransient, klass_translations, write_class_translation_file, addExtraIcons)
+    addPhantomJobs(
+        main_script,
+        action,
+        actiontransient,
+        klass_translations,
+        translation_callback=write_class_translation_file,
+    )
     write_class_translation_data(klass_translations)
 
 

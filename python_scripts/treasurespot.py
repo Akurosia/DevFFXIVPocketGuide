@@ -2,7 +2,6 @@ from PIL.ImageFile import ImageFile
 from ffxiv_aku import *
 from PIL import Image, ImageDraw, ImageFont
 try:
-
     from .helper import *
     from .convert_skills_to_guide_form_helper.helper import LANGUAGES, LANGUAGES_MAPPING
     from .fileimports import *
@@ -108,7 +107,7 @@ def add_watermark(image, watermark_text, font_path="arial.ttf", font_size=30):
 
 def get_croped_image(_id: str = "0"):
     # Load the overlay image (e.g., icon or stamp)
-    file_name: str = treasurehunttexture[_id]['Unknown0'].lower()
+    file_name: str = treasurehunttexture[_id]['Texture'].lower()
     overlay_path = f"P:/extras/images/ui/uld/uld_data/{file_name}_hr1.webp"  # Replace with your overlay image path
     overlay_image = Image.open(overlay_path)
     _, height = overlay_image.size
@@ -187,6 +186,7 @@ def code_for_image(overlay_id, posible_maps, location, item_name):
     original_image: ImageFile = Image.open(image_path)
     modified_image: Image.Image = original_image.copy()
 
+    print(location)
     overlay_cropped, x_off, y_off = get_croped_image(overlay_id)
     overlay_x_cropped, xx_off, xy_off = get_x_image(overlay_id)
     overlay_cropped.paste(overlay_x_cropped, (x_off-xx_off, y_off-xy_off), overlay_x_cropped if overlay_x_cropped.mode == 'RGBA' else None)
