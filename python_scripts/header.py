@@ -395,10 +395,10 @@ def rewrite_content_even_if_exists(entry: EntryType, old_wip, cfc_key, content_t
     if entry.get("mapid", None):
         header_data += 'mapid: "' + entry["mapid"] + '"\n'
     if entry.get("MapIdNr", None):
-        header_data += 'mapidnr: "' + entry["MapIdNr"] + '"\n'
+        header_data += f'mapidnr: "{entry["MapIdNr"]}"\n'
     if not tt_bg_entry == "":
         header_data += 'mappath: "' + tt_bg_entry + '"\n'
-    if not tt_type_name == "":
+    if tt_type_name and tt_type_name.get('PlaceName'):
         header_data += f'contentname: "{tt_type_name['PlaceName']["Name_en"]}"\n'
         for lang in LANGUAGES:
             content_translations[lang][f'ContentName_{tt_type_name['PlaceName']["Name_en"]}'] = tt_type_name['PlaceName'][f"Name_{lang}"]

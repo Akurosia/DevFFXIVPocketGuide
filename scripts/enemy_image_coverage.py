@@ -57,7 +57,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--report",
         type=Path,
-        help="JSON report path (default: <guide-root>/tmp/enemy-image-coverage.json).",
+        help="JSON report path (default: <guide-root>/tmp/enemy-image-coverage/report.json).",
     )
     return parser.parse_args()
 
@@ -291,7 +291,9 @@ def main() -> int:
     entries = collect_enemies(guide_root)
     images_by_id = collect_images(webp_dir)
     report = build_report(entries, images_by_id, webp_dir)
-    report_path = (args.report or guide_root / "tmp" / "enemy-image-coverage.json").resolve()
+    report_path = (
+        args.report or guide_root / "tmp" / "enemy-image-coverage" / "report.json"
+    ).resolve()
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"

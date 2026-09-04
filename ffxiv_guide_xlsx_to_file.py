@@ -3,6 +3,8 @@
 from logging import Logger
 import os
 import errno
+from pathlib import Path
+import subprocess
 from typing import Any
 import yaml
 from yaml.loader import SafeLoader
@@ -11,7 +13,7 @@ import traceback
 from ffxiv_aku import print_pretty_json, pretty_json, print_color_green, sys, readJsonFile, writeJsonFile, storeFilesInTmp, sortJsonData, print_color_red
 from python_scripts.header import addHeader
 from python_scripts.helper import *
-from python_scripts.guide import addGuide
+from python_scripts.guide import addGuide, reload_enemy_image_manifest
 from python_scripts.fileimports import logdata, logdata_lower
 from python_scripts.helper import uglyContentNameFix, getContentName, EntryType
 # from python_scripts.constants import *
@@ -58,6 +60,27 @@ translations:dict[str, dict[str, dict[str, str]]] = {
 
 def project_path(*parts: str) -> str:
     return os.path.join(path_of_main_script, *parts)
+
+
+def prepare_enemy_image_report_for_tmp_cleanup() -> None:
+    """Move the old root-level report where ffxiv_aku can remove it as a directory."""
+    legacy_report = Path(project_path("tmp", "enemy-image-coverage.json"))
+    if not legacy_report.is_file():
+        return
+    report_dir = Path(project_path("tmp", "enemy-image-coverage"))
+    report_dir.mkdir(parents=True, exist_ok=True)
+    legacy_report.replace(report_dir / "report.json")
+
+
+def refresh_enemy_image_coverage() -> None:
+    """Refresh report and manifest before any guide files are generated."""
+    coverage_script = Path(project_path("scripts", "enemy_image_coverage.py"))
+    subprocess.run(
+        [sys.executable, str(coverage_script), "--manifest"],
+        cwd=path_of_main_script,
+        check=True,
+    )
+    reload_enemy_image_manifest()
 
 def get_files_from_templates():
     files = [
@@ -281,7 +304,9 @@ def main() -> None:
     global translations
     global path_of_main_script
     logger.critical('START')
+    prepare_enemy_image_report_for_tmp_cleanup()
     tmp_path = storeFilesInTmp(True) # set tmp path
+    refresh_enemy_image_coverage()
     sheet: Worksheet
     max_row: int
     max_column: int

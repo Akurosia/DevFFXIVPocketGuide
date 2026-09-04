@@ -204,45 +204,63 @@ def get_fixed_status_description(_id):
 
 ids_to_replace1: list[str] = ["10742", "11399", "13057", "13843", "14378"]
 ids_to_replace2: list[str] = ["10744", "11402", "13058", "13844", "14379"]
-def getBnpcNameFromID(_id, article_name, german_name, lang="en"):
-    global ids_to_replace
+reported_bnpc_name_changes: set[tuple[str, str, str]] = set()
+
+
+def name_pattern_matches(pattern: str, value: str) -> bool:
+    try:
+        return re.search(pattern, value, re.IGNORECASE) is not None
+    except re.error:
+        return pattern.casefold() == value.casefold()
+
+
+def getBnpcNameFromID(_id, article_name, german_name, lang="en", original_name=""):
     bnpc_new_name = ""
-    eobjname = ""
+    eobj_new_name = ""
     enpcresident_name = ""
     if german_name == "???":
         german_name = "\\?\\?\\?"
     if isinstance(_id, list):
         _id = _id[0]
     _id = str(_id)
-    # handel bnpc names
-    try:
-        bnpc_new_name = bnpcname[_id]["Singular_de"].replace("[p]", "")
+    # Enemy IDs come from the combat log and identify the BNpc row directly. Names
+    # can legitimately change between game data revisions, so do not reject the
+    # authoritative ID merely because an older guide name no longer matches it.
+    bnpc_entry = bnpcname.get(_id)
+    if bnpc_entry:
+        bnpc_new_name = bnpc_entry.get("Singular_de", "").replace("[p]", "")
+        if not (
+            name_pattern_matches(german_name, bnpc_new_name)
+            or name_pattern_matches(article_name, bnpc_new_name)
+        ):
+            display_old_name = original_name or article_name
+            change = (_id, display_old_name.casefold(), bnpc_new_name.casefold())
+            if change not in reported_bnpc_name_changes:
+                reported_bnpc_name_changes.add(change)
+                print_color_yellow(
+                    f"[BNpc name changed] ID {_id}: '{display_old_name}' -> "
+                    f"'{bnpc_new_name}'. Using names from the JSON API."
+                )
         extra = ""
         if _id in ids_to_replace1:
-            german_name = german_name.replace(" i", "")
             extra = " I"
         elif _id in ids_to_replace2:
-            german_name = german_name.replace(" ii", "")
             extra = " II"
         elif german_name.endswith(" II"):
             print_color_blue("Check ID in guide_helper/ids_to_replace2")
-        # TODO check here why its not working
-        m = re.search(german_name, bnpc_new_name, re.IGNORECASE)
-        n = re.search(article_name, bnpc_new_name, re.IGNORECASE)
-        if m or n:
-            return bnpcname[_id][f"Singular_{lang}"] + extra
-    except Exception:
-        if german_name == bnpc_new_name or article_name == bnpc_new_name:
-            return bnpcname[_id][f"Singular_{lang}"]
+        translated_name = bnpc_entry.get(f"Singular_{lang}", "")
+        if translated_name:
+            return translated_name + extra
+
     # handel eobj name
     try:
-        eobjname = eobjname[_id]["Singular_de"]
-        m = re.search(german_name, eobjname, re.IGNORECASE)
-        n = re.search(article_name, eobjname, re.IGNORECASE)
+        eobj_new_name = eobjname[_id]["Singular_de"]
+        m = re.search(german_name, eobj_new_name, re.IGNORECASE)
+        n = re.search(article_name, eobj_new_name, re.IGNORECASE)
         if m or n:
             return eobjname[_id][f"Singular_{lang}"]
     except Exception:
-        if german_name == eobjname or article_name == eobjname:
+        if german_name == eobj_new_name or article_name == eobj_new_name:
             return eobjname[_id][f"Singular_{lang}"]
     # handel enpcresident name
     try:
@@ -259,8 +277,8 @@ def getBnpcNameFromID(_id, article_name, german_name, lang="en"):
         final_string = ""
         if bnpc_new_name:
             final_string += f"{bnpc_new_name=} "
-        if eobjname:
-            final_string += f"{eobjname=} "
+        if eobj_new_name:
+            final_string += f"{eobj_new_name=} "
         if enpcresident_name:
             final_string += f"{enpcresident_name=} "
         print_color_red(f"{final_string}not found '{article_name=}' ({german_name=}) - ({_id=})")
@@ -268,6 +286,7 @@ def getBnpcNameFromID(_id, article_name, german_name, lang="en"):
 
 
 def getBnpcName(name, _id, lang="en"):
+    original_name = name
     name = name.lower()
     aname = ""
     # take care of all the article cases
@@ -290,7 +309,9 @@ def getBnpcName(name, _id, lang="en"):
         nname = nname[:-2] + r"(\[a\]|(e|es|er|en))"
 
     if not _id == "":
-        resultname = getBnpcNameFromID(_id, aname, nname, lang)
+        resultname = getBnpcNameFromID(
+            _id, aname, nname, lang, original_name=original_name
+        )
         if not resultname == "":
             return fixCaptilaziationAndRomanNumerals(resultname)
     # check results agains bnpcname
@@ -441,8 +462,14 @@ def merge_attacks(old_enemy_data, new_enemy_data, enemy_type):
                     if old_attack.get('title', {}).get('de', None) == attack['name']:
                         attack_index = i
                         break
-                if not attack_index:
-                    print_color_red(f"[DEBUG] {old_enemy_data['sortname']=} {attack['name']=} was not found in old_enemy_data")
+                if attack_index is None:
+                    enemy_label = old_enemy_data.get(
+                        'sortname', old_enemy_data.get('title', {}).get('de', 'Unknown enemy')
+                    )
+                    print_color_red(
+                        f"[DEBUG] old_enemy_data={enemy_label!r} "
+                        f"attack['name']={attack['name']!r} was not found in old_enemy_data"
+                    )
                     # print(old_enemy_data['attacks'])
                     continue
                 #print(old_enemy_data['sortname'])

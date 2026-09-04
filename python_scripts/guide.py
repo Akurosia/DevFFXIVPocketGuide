@@ -39,6 +39,12 @@ def load_enemy_image_manifest() -> dict[str, list[dict[str, str]]]:
 ENEMY_IMAGE_MANIFEST = load_enemy_image_manifest()
 
 
+def reload_enemy_image_manifest() -> None:
+    """Reload image data after the coverage script refreshes the manifest."""
+    global ENEMY_IMAGE_MANIFEST
+    ENEMY_IMAGE_MANIFEST = load_enemy_image_manifest()
+
+
 def get_enemy_images(enemy_ids) -> list[dict[str, str]]:
     values = enemy_ids if isinstance(enemy_ids, list) else str(enemy_ids or "").split(",")
     images: list[dict[str, str]] = []
