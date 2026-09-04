@@ -4,86 +4,131 @@
 var elements = undefined
 var elements_translates = new Set();
 var found_elements_translates = new Set();
+var translationLoadGeneration = 0;
+var translationData = {};
+
+function getTranslationLanguage() {
+    var language = window.localStorage.getItem('translation-language');
+    if (language == null || language == undefined) {
+        language = navigator.language || "en-US";
+    }
+
+    var supportedLanguages = {
+        en: "en-US",
+        de: "de-DE",
+        fr: "fr-FR",
+        ja: "ja-JP"
+    };
+    language = supportedLanguages[String(language).toLowerCase().slice(0, 2)] || "en-US";
+    window.localStorage.setItem('translation-language', language);
+    return language;
+}
+
+function collectTranslationElements() {
+    elements = {};
+    elements['translate'] = Array.from(document.querySelectorAll('[data-translate]'));
+    elements['href'] = Array.from(document.querySelectorAll('[data-href-translate]'));
+    elements['value'] = Array.from(document.querySelectorAll('[data-value-translate]'));
+    elements['placeholder'] = Array.from(document.querySelectorAll('[data-placeholder-translate]'));
+    elements['extra'] = Array.from(document.querySelectorAll('[data-extra-translate]'));
+
+    elements_translates.clear();
+    for (var element of elements['translate']) {
+        elements_translates.add(element.getAttribute('data-translate'));
+    }
+}
+
+function applyTranslations(data) {
+    for (var element of elements['translate']) {
+        var value = data[element.getAttribute('data-translate')];
+        if (value == "" || value == undefined || value == null) {
+            continue;
+        }
+        element.innerHTML = value;
+        found_elements_translates.add(element.getAttribute('data-translate'));
+    }
+
+    for (var hrefElement of elements['href']) {
+        var hrefValue = data[hrefElement.getAttribute('data-href-translate')];
+        if (hrefValue == "" || hrefValue == undefined || hrefValue == null) {
+            continue;
+        }
+        hrefElement.href = hrefValue;
+    }
+
+    for (var valueElement of elements['value']) {
+        var translatedValue = data[valueElement.getAttribute('data-value-translate')];
+        if (translatedValue == "" || translatedValue == undefined || translatedValue == null) {
+            continue;
+        }
+        valueElement.value = translatedValue;
+        valueElement.name = translatedValue;
+    }
+
+    for (var placeholderElement of elements['placeholder']) {
+        var placeholderValue = data[placeholderElement.getAttribute('data-placeholder-translate')];
+        if (placeholderValue == "" || placeholderValue == undefined || placeholderValue == null) {
+            continue;
+        }
+        placeholderElement.placeholder = placeholderValue;
+    }
+}
+
+async function loadTranslationFile(path, language, generation) {
+    var response = await fetch(`{{site.baseurl}}${path}/${language}.json`);
+    if (!response.ok) {
+        throw new Error("HTTP error " + response.status + " loading " + path);
+    }
+
+    var newdata = await response.json();
+    if (generation != translationLoadGeneration) {
+        return false;
+    }
+
+    Object.assign(translationData, newdata);
+    applyTranslations(translationData);
+    return true;
+}
 
 async function getTranslations(path = "/assets/translations/navbar", olddata = {}) {
-    // load data using navigator.language e.g. de-DE.json
-    lang = window.localStorage.getItem('translation-language');
-    if (lang == null || lang == undefined){
-        lang = navigator.language
-        window.localStorage.setItem('translation-language', lang);
+    if (elements == undefined || path == "/assets/translations/navbar") {
+        collectTranslationElements();
     }
-    if (path == "/assets/translations/navbar") {
-        elements = {}
-        elements['translate'] = Array.from(document.querySelectorAll('[data-translate]'));
-        for (var ele of elements['translate']) {
-            elements_translates.add(ele.getAttribute('data-translate'))
+    translationData = Object.assign({}, olddata);
+    return loadTranslationFile(path, getTranslationLanguage(), translationLoadGeneration);
+}
+
+function scheduleDeferredTranslations(extraElements, language, generation) {
+    var loadNext = async function () {
+        if (generation != translationLoadGeneration || extraElements.length == 0) {
+            return;
         }
-        elements['href'] = Array.from(document.querySelectorAll('[data-href-translate]'));
-        elements['value'] = Array.from(document.querySelectorAll('[data-value-translate]'));
-        elements['extra'] = Array.from(document.querySelectorAll('[data-extra-translate]'));
+
+        var element = extraElements.shift();
+        var path = element.getAttribute('data-extra-translate');
+        if (path) {
+            try {
+                await loadTranslationFile(path, language, generation);
+                window.dispatchEvent(new CustomEvent('ffxiv-pocket-guide:translations-updated'));
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        if (generation == translationLoadGeneration && extraElements.length > 0) {
+            if (window.requestIdleCallback) {
+                window.requestIdleCallback(loadNext, { timeout: 1000 });
+            } else {
+                window.setTimeout(loadNext, 0);
+            }
+        }
+    };
+
+    if (window.requestIdleCallback) {
+        window.requestIdleCallback(loadNext, { timeout: 1000 });
+    } else {
+        window.setTimeout(loadNext, 0);
     }
-    await fetch(`{{site.baseurl}}${path}/${lang}.json`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("HTTP error " + response.status);
-            }
-            return response.json();
-        })
-        .then(newdata => {
-            data = Object.assign({}, olddata, newdata);
-
-            //for normal translations
-            for (var element of elements['translate']) {
-                value = data[element.getAttribute('data-translate')]
-                if (value == "" || value == undefined || value == null) {
-                    continue;
-                }
-                element.innerHTML  = value
-                found_elements_translates.add(element.getAttribute('data-translate'))
-            }
-
-            //for urls as hrefs
-            for (var element of elements['href']) {
-                value = data[element.getAttribute('data-href-translate')]
-                if (value == "" || value == undefined || value == null) {
-                    //console.log(`No Replace Value '${element.getAttribute('data-href-translate')}'`)
-                    continue;
-                }
-                element.href = value
-            }
-
-            //for buttons
-            for (var element of elements['value']) {
-                value = data[element.getAttribute('data-value-translate')]
-                if (value == "" || value == undefined || value == null) {
-                    //console.log(`No Replace Value '${element.getAttribute('data-value-translate')}'`)
-                    continue;
-                }
-                element.value = value
-                element.name = value
-            }
-
-            //for buttons
-            if ( path != "/assets/translations/navbar" ){
-                return;
-            }
-
-            for (var element of elements['extra']) {
-                value = element.getAttribute('data-extra-translate')
-                if (value === undefined) {
-                    continue
-                }
-                getTranslations(value, data)
-            }
-
-            window.dispatchEvent(new CustomEvent('ffxiv-pocket-guide:translations-updated'));
-
-        })
-        .catch(e => {
-            console.error(e)
-        }
-    )
-    return
 }
 
 function validateArrays() {
@@ -106,10 +151,43 @@ function changeLanguageTo(tag, languageCode) {
 }
 
 async function getTranslationsWrapper() {
-    prom = await getTranslations()
-    Promise.all([prom]).then(() => {
-        validateArrays()
-    });
+    var generation = ++translationLoadGeneration;
+    var language = getTranslationLanguage();
+    collectTranslationElements();
+    found_elements_translates.clear();
+    translationData = {};
+
+    try {
+        await loadTranslationFile("/assets/translations/navbar", language, generation);
+
+        var priorityElements = elements['extra'].filter(function (element) {
+            return element.getAttribute('data-translation-priority') == 'high' || !element.closest('.sidebar');
+        });
+        var deferredElements = elements['extra'].filter(function (element) {
+            return element.getAttribute('data-translation-priority') != 'high' && element.closest('.sidebar');
+        });
+
+        for (var element of priorityElements) {
+            var path = element.getAttribute('data-extra-translate');
+            if (path) {
+                try {
+                    await loadTranslationFile(path, language, generation);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        }
+
+        if (generation != translationLoadGeneration) {
+            return;
+        }
+
+        window.dispatchEvent(new CustomEvent('ffxiv-pocket-guide:translations-updated'));
+        validateArrays();
+        scheduleDeferredTranslations(deferredElements, language, generation);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 

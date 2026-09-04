@@ -59,7 +59,13 @@
                             {%- if entry.jobicon -%}
                                 <img loading="lazy" src="{{site.imageurl}}/{{entry.jobicon}}" alt="">
                             {%- endif -%}
-                            <span data-translate="Content_Title_{{ entry_title }}">{{ entry_title }}</span>
+                            {%- if include.category == "klassenjobs" -%}
+                                {%- assign entry_translation_key = "Content_Title_" | append: entry_title -%}
+                            {%- else -%}
+                                {%- assign entry_title_key = entry_title | downcase -%}
+                                {%- assign entry_translation_key = "Summary_" | append: include.instance_type | append: "_" | append: entry_title_key -%}
+                            {%- endif -%}
+                            <span data-translate="{{ entry_translation_key }}">{{ entry_title }}</span>
                         </a>
                     </li>
                 {%- endfor -%}

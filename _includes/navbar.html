@@ -32,7 +32,7 @@
                 </a>
             </h1>
             {%- assign extratools = "false" -%}
-            {%- if "translate,gear,fflogs,checkFileData,settings,itemsets,mainquestsfinder,klassenjobs,relics,airship_submarine,quests,achivments,treasuremap,gcrank,bestiarium,dalamud,links,music" contains page.page_category -%}
+            {%- if "translate,gear,fflogs,checkFileData,enemy_image_coverage,settings,itemsets,mainquestsfinder,klassenjobs,relics,airship_submarine,quests,achivments,treasuremap,gcrank,bestiarium,dalamud,links,music" contains page.page_category -%}
                 {%- assign extratools = "true" -%}
                 {%- elsif page.layout == "klassen" -%}
                     {%- assign extratools = "true" -%}
@@ -94,6 +94,13 @@
                             href='{{ "/checkFileData/" | prepend: site.baseurl }}' title="See checkFileData">
                             <img loading="lazy" src='{{ site.imageurl}}/{{ "/000000/000046_hr1.webp" }}'">
                             <span data-translate=" Navbar_checkFileData">checkFileData</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="" {%- if page.page_category == "enemy_image_coverage" -%}class="active"{%- endif -%}
+                            href='{{ "/enemy-image-coverage/" | prepend: site.baseurl }}' title="Enemy image coverage report">
+                            <img loading="lazy" src='{{ site.imageurl}}/{{ "/061000/061767_hr1.webp" }}'>
+                            <span data-translate="Navbar_Enemy Image Coverage">Enemy Image Coverage</span>
                         </a>
                     </li>
                     <li>
@@ -351,22 +358,22 @@
                     {% include navbar-content-submenu.html id="overworld" page_category="overworld" instance_type="overworld" instance_type_new="overworld" %}
                 </ul>
             </ul>
-            <div style="display: none" data-extra-translate="/assets/translations/klassen"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/dungeon"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/trial"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/raid"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/ultimate"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/allianzraid"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/chaosallianzraid"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/gewölbesuche"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/feldexkursion"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/bluemage"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/potd"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/guildhest"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/treasure"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/pvp"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/training"></div>
-            <div style="display: none" data-extra-translate="/assets/translations/summary/overworld"></div>
+            <div style="display: none" data-extra-translate="/assets/translations/klassen"{% if page.page_category == "klassenjobs" or page.instanceType == "klassenjobs" or page.instance_type == "klassenjobs" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/dungeon"{% if page.page_category == "dungeons" or page.instanceType == "dungeon" or page.instance_type == "Dungeon" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/trial"{% if page.page_category == "trials" or page.instanceType == "trial" or page.instance_type == "Trial" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/raid"{% if page.page_category == "raids" or page.instanceType == "raid" or page.instance_type == "Raid" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/ultimate"{% if page.page_category == "ultimates" or page.instanceType == "ultimate" or page.instance_type == "Ultimate" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/allianzraid"{% if page.page_category == "allianzraid" or page.instanceType == "allianzraid" or page.instance_type == "AllianzRaid" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/chaosallianzraid"{% if page.page_category == "chaosallianzraid" or page.instanceType == "chaosallianzraid" or page.instance_type == "ChaosAllianzRaid" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/gewölbesuche"{% if page.page_category == "gewölbesuche" or page.instanceType == "gewölbesuche" or page.instance_type == "Gewölbesuche" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/feldexkursion"{% if page.page_category == "feldexkursion" or page.instanceType == "feldexkursion" or page.instance_type == "feldexkursion" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/bluemage"{% if page.page_category == "bluemage" or page.instanceType == "bluemage" or page.instance_type == "Bluemage" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/potd"{% if page.page_category == "potd" or page.instanceType == "potd" or page.instance_type == "potd" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/guildhest"{% if page.page_category == "guildhest" or page.instanceType == "guildhest" or page.instance_type == "guildhest" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/treasure"{% if page.page_category == "treasure" or page.instanceType == "treasure" or page.instance_type == "treasure" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/pvp"{% if page.page_category == "pvp" or page.instanceType == "pvp" or page.instance_type == "pvp" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/training"{% if page.page_category == "training" or page.instanceType == "training" or page.instance_type == "training" %} data-translation-priority="high"{% endif %}></div>
+            <div style="display: none" data-extra-translate="/assets/translations/summary/overworld"{% if page.page_category == "overworld" or page.instanceType == "overworld" or page.instance_type == "overworld" %} data-translation-priority="high"{% endif %}></div>
         </div>
     </div>
 

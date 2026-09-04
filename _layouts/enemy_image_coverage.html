@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include head.html %}
+    </head>
+    <body class="{{ page.page_type }} {{ page.page_category }}">
+        <div class="layout">
+            {% include navbar.html %}
+            <div class="layout__wrapper">
+                {% include header.html %}
+                {% include single_pages/enemy-image-coverage.html %}
+                {% include_cached footer.html %}
+            </div>
+        </div>
+        <div style="display: none" data-extra-translate="/assets/translations/enemy_image_coverage"></div>
+        {% include_cached scripts.html %}
+    </body>
+</html>

@@ -19,6 +19,13 @@ function closeFullscreen() {
     document.getElementById("fullscreenOverlay").style.display = "none";
 }
 
+document.addEventListener('click', function (event) {
+    var image = event.target.closest('.guide__enemy-image');
+    if (!image) return;
+    event.stopPropagation();
+    openFullscreen(image);
+});
+
 function debounce(func, wait) {
     let timeoutId;
 

@@ -55,6 +55,29 @@
   grid-area: IdsHps;
 }
 
+.guide__enemy-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+
+  @media screen and (min-width: 70em) {
+    justify-content: flex-end;
+    padding-top: 0;
+  }
+}
+
+.guide__enemy-image {
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid $palette--yellow;
+  border-radius: 0.35rem;
+  background: rgba(0, 0, 0, 0.35);
+  object-fit: contain;
+  cursor: zoom-in;
+}
+
 
 [class*=guide__accordion-trigger--] {
   display: grid;

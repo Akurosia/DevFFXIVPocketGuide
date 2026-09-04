@@ -23,6 +23,64 @@
                     <h3 class="guide__accordion-trigger-title" data-translate="{{x}}_{{enemy_name_en}}_Name"> {{ enemy_name_en }} </h3>
                     <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en">{{ enemy_name_en }}</span>
                 </div>
+                {%- unless enemy_name_en == "Unknown Source" -%}
+                    {%- assign enemy_images = enemy.enemy_images -%}
+                    {%- assign legacy_image_count = 0 -%}
+                    {%- if enemy_images == nil or enemy_images.size == 0 -%}
+                        {%- assign enemy_id_values = enemy.enemy_id | split: "," -%}
+                        {%- for enemy_id_value in enemy_id_values -%}
+                            {%- assign clean_enemy_id = enemy_id_value | strip -%}
+                            {%- assign legacy_images = site.data.enemy_images[clean_enemy_id] -%}
+                            {%- assign legacy_image_count = legacy_image_count | plus: legacy_images.size -%}
+                        {%- endfor -%}
+                    {%- endif -%}
+                    {%- assign enemy_image_count = enemy_images.size | plus: legacy_image_count -%}
+                    {%- if enemy_image_count > 0 -%}
+                        <div class="IdsHps guide__enemy-images" aria-label="Images of {{ enemy_name_en }}">
+                            {%- if enemy_images.size > 0 -%}
+                              {%- for enemy_image in enemy_images -%}
+                                {%- assign enemy_image_src = enemy_image.src -%}
+                                {%- unless enemy_image_src contains "://" -%}
+                                    {%- assign enemy_image_src = enemy_image_src | prepend: site.baseurl -%}
+                                {%- endunless -%}
+                                <img
+                                    class="guide__enemy-image"
+                                    src="{{ enemy_image_src }}"
+                                    alt="{{ enemy_image.alt }}"
+                                    title="{{ enemy_image.alt }} ({{ enemy_image.variant }})"
+                                    loading="lazy">
+                              {%- endfor -%}
+                            {%- else -%}
+                              {%- for enemy_id_value in enemy_id_values -%}
+                                {%- assign clean_enemy_id = enemy_id_value | strip -%}
+                                {%- assign legacy_images = site.data.enemy_images[clean_enemy_id] -%}
+                                {%- for enemy_image in legacy_images -%}
+                                  <img
+                                      class="guide__enemy-image"
+                                      src="{{ enemy_image.src }}"
+                                      alt="{{ enemy_image.alt }}"
+                                      title="{{ enemy_image.alt }} ({{ enemy_image.variant }})"
+                                      loading="lazy">
+                                {%- endfor -%}
+                              {%- endfor -%}
+                            {%- endif -%}
+                        </div>
+                    {%- else -%}
+                        {%- if enemy.enemy_id -%}
+                            {%- assign missing_image_title = "No matching enemy ID exists in the Meddle WebP export." -%}
+                        {%- else -%}
+                            {%- assign missing_image_title = "This guide entry has no enemy_id to match against the Meddle WebP export." -%}
+                        {%- endif -%}
+                        <div class="IdsHps guide__enemy-images guide__enemy-images--missing">
+                              <img
+                                  class="guide__enemy-image guide__enemy-image--placeholder"
+                                  src="{{ '/assets/img/test_hr1.webp' | prepend: site.baseurl }}"
+                                  alt="No enemy render available"
+                                  title="{{ missing_image_title }}"
+                                  loading="lazy">
+                        </div>
+                    {%- endif -%}
+                {%- endunless -%}
             </div>
             <div class="guide__accordion-content--02">
                 {%- include guide_enemy_text.html -%}

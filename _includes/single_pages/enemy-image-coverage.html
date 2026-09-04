@@ -1,0 +1,55 @@
+<main
+    class="enemy-coverage"
+    data-baseurl="{{ site.baseurl }}"
+    data-report-url="{{ '/assets/data/enemy-image-coverage.json' | prepend: site.baseurl }}">
+    <section class="enemy-coverage__intro">
+        <h1 data-translate="EnemyCoverage_Title">Enemy Image Coverage</h1>
+        <p data-translate="EnemyCoverage_Intro">This report compares enemy entries in guide posts with original files in the Meddle WebP export.</p>
+    </section>
+
+    <p id="enemyCoverageLoading" class="enemy-coverage__loading" data-translate="EnemyCoverage_Loading">Loading coverage report…</p>
+    <p id="enemyCoverageError" class="enemy-coverage__error" hidden></p>
+
+    <section id="enemyCoverageContent" hidden>
+        <div class="enemy-coverage__cards" id="enemyCoverageCards"></div>
+
+        <div class="enemy-coverage__controls">
+            <label for="enemyCoverageSearch" data-translate="EnemyCoverage_FilterLabel">Filter pages or enemies</label>
+            <input id="enemyCoverageSearch" type="search" placeholder="Page, enemy name, path, or enemy ID" data-placeholder-translate="EnemyCoverage_FilterPlaceholder">
+            <select id="enemyCoverageStatus" aria-label="Coverage status">
+                <option value="all" data-translate="EnemyCoverage_AllPages">All pages</option>
+                <option value="missing" data-translate="EnemyCoverage_MissingPages">Pages with missing renders</option>
+                <option value="complete" data-translate="EnemyCoverage_CompletePages">Fully covered pages</option>
+            </select>
+        </div>
+
+        <h2 data-translate="EnemyCoverage_ByPage">Coverage by page</h2>
+        <div class="enemy-coverage__table-wrap">
+            <table class="enemy-coverage__table">
+                <thead><tr><th data-translate="EnemyCoverage_Page">Page</th><th data-translate="EnemyCoverage_Covered">Covered</th><th data-translate="EnemyCoverage_NoId">No ID</th><th data-translate="EnemyCoverage_Coverage">Coverage</th></tr></thead>
+                <tbody id="enemyCoveragePages"></tbody>
+            </table>
+        </div>
+
+        <h2 data-translate="EnemyCoverage_UncoveredEntries">Uncovered enemy entries</h2>
+        <p id="enemyCoverageMissingCount"></p>
+        <div class="enemy-coverage__table-wrap">
+            <table class="enemy-coverage__table">
+                <thead><tr><th data-translate="EnemyCoverage_Enemy">Enemy</th><th data-translate="EnemyCoverage_Ids">IDs</th><th data-translate="EnemyCoverage_Section">Section</th><th data-translate="EnemyCoverage_Page">Page</th></tr></thead>
+                <tbody id="enemyCoverageMissing"></tbody>
+            </table>
+        </div>
+    </section>
+    <div hidden aria-hidden="true">
+        <span id="enemyCoverageLabelEntry" data-translate="EnemyCoverage_EntryCoverage">Entry coverage</span>
+        <span id="enemyCoverageLabelUnique" data-translate="EnemyCoverage_UniqueCoverage">Unique ID coverage</span>
+        <span id="enemyCoverageLabelImages" data-translate="EnemyCoverage_MatchingImages">Matching images</span>
+        <span id="enemyCoverageLabelOriginal" data-translate="EnemyCoverage_OriginalFiles">Original WebP files</span>
+        <span id="enemyCoverageLabelWithoutId" data-translate="EnemyCoverage_EntriesWithoutId">Entries without ID</span>
+        <span id="enemyCoverageLabelCannotMatch" data-translate="EnemyCoverage_CannotMatch">Cannot be matched</span>
+        <span id="enemyCoverageLabelShowing" data-translate="EnemyCoverage_Showing">Showing {shown} of {total} matching entries{more}.</span>
+        <span id="enemyCoverageLabelRefine" data-translate="EnemyCoverage_Refine"> (refine the filter to see more)</span>
+        <span id="enemyCoverageLabelLoadError" data-translate="EnemyCoverage_LoadError">Could not load the coverage report</span>
+    </div>
+</main>
+<script src="{{ '/assets/js/enemy-image-coverage.js' | prepend: site.baseurl }}"></script>

@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 # coding: utf8
 import re
+import json
+from pathlib import Path
 from ffxiv_aku import print_color_green, print_color_red, readJsonFile, print_color_yellow
 from typing import Any
 import html
@@ -22,6 +24,36 @@ disable_green_print = True
 disable_yellow_print = True
 disable_blue_print = True
 disable_red_print = True
+
+ENEMY_IMAGE_MANIFEST_PATH = Path(__file__).resolve().parents[1] / "_data" / "enemy_images.json"
+
+
+def load_enemy_image_manifest() -> dict[str, list[dict[str, str]]]:
+    try:
+        with ENEMY_IMAGE_MANIFEST_PATH.open(encoding="utf-8") as manifest_file:
+            return json.load(manifest_file)
+    except FileNotFoundError:
+        return {}
+
+
+ENEMY_IMAGE_MANIFEST = load_enemy_image_manifest()
+
+
+def get_enemy_images(enemy_ids) -> list[dict[str, str]]:
+    values = enemy_ids if isinstance(enemy_ids, list) else str(enemy_ids or "").split(",")
+    images: list[dict[str, str]] = []
+    seen_sources: set[str] = set()
+    for enemy_id in values:
+        for image in ENEMY_IMAGE_MANIFEST.get(str(enemy_id).strip(), []):
+            source = image.get("src", "")
+            if source and source not in seen_sources:
+                images.append(image)
+                seen_sources.add(source)
+    return images
+
+
+def yaml_string(value: str) -> str:
+    return json.dumps(str(value), ensure_ascii=False)
 
 
 def check_Mechanics(entry: ENTRY_DATA, old_mechanics):
@@ -456,6 +488,14 @@ def add_Enemy(enemy_data, enemy_type, new_enemy_data, content_translations):
         hex_id = "" if enemy_data.get("enemy_id", "") == "" else str(hex(int(enemy_data.get("enemy_id", 0)))).replace("0x", "").upper()
         guide_data += f'    enemy_id: "{enemy_data.get("enemy_id", "")}"\n'
         guide_data += f'    enemy_hex_id: "{hex_id}"\n'
+
+    enemy_images = [] if enemy_name_en == "Unknown Source" else get_enemy_images(enemy_data.get("enemy_id", ""))
+    if enemy_images:
+        guide_data += '    enemy_images:\n'
+        for image in enemy_images:
+            guide_data += f'      - src: {yaml_string(image["src"])}\n'
+            guide_data += f'        alt: {yaml_string(image.get("alt", enemy_name_en))}\n'
+            guide_data += f'        variant: {yaml_string(image.get("variant", ""))}\n'
     #guide_data += f'    id: "{enemy_data["id"]}"\n'
     #guide_data += f'    id: "{enemy_data["title"]["en"]}"\n'
 
