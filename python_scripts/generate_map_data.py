@@ -597,7 +597,7 @@ def generate_images():
             json_as_dict['markers'].append(tmap)
 
         new_failename = f"{path_of_main_script}/assets/leaflet/maps/" + flug + ".json"
-        writeJsonFile(new_failename, json_as_dict)
+        #writeJsonFile(new_failename, json_as_dict)
 
 coords = {}
 def get_treasuremaps(mapid, w, h):

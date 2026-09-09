@@ -420891,7 +420891,8 @@
             "68728",
             "69295",
             "70180",
-            "70332"
+            "70332",
+            "71026"
         ],
         "Icon": {
             "Banner": "ui/icon/112000/112017_hr1.webp",
@@ -507448,7 +507449,9 @@
         "PreviousQuest": {
             "0": "71009"
         },
-        "NextQuest": [],
+        "NextQuest": [
+            "71011"
+        ],
         "Icon": {
             "Banner": "ui/icon/101000/101495_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
@@ -507537,45 +507540,83 @@
         ]
     },
     "71011": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Irgendwo im Nirgendwo",
+        "PreviousQuest": {
+            "0": "71010"
+        },
+        "NextQuest": [
+            "71012"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101496_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "1455",
+        "PlaceName": "Sonnenstein",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 6.1,
+                "y": 5.9,
+                "region": "Mor Dhona",
+                "placename": "Sonnenstein"
+            },
+            "NPC": "Tataru"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
-                "Item": "",
-                "Amount": "0",
+                "Item": "Hellseher-Materia XI",
+                "Amount": "1",
                 "IsHQ": "False",
                 "Stain": "Keine Farbe"
             },
             {
-                "Item": "",
-                "Amount": "0",
+                "Item": "Strategen-Materia XI",
+                "Amount": "1",
                 "IsHQ": "False",
                 "Stain": "Keine Farbe"
             },
             {
-                "Item": "",
-                "Amount": "0",
+                "Item": "Assassinen-Materia XI",
+                "Amount": "1",
                 "IsHQ": "False",
                 "Stain": "Keine Farbe"
             },
@@ -507594,29 +507635,67 @@
         ]
     },
     "71012": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Wo die kalten Winde wehen",
+        "PreviousQuest": {
+            "0": "71011"
+        },
+        "NextQuest": [
+            "71013"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101497_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "2845",
+        "PlaceName": "Schwebende Insel",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 6.2,
+                "y": 6.8,
+                "region": "???",
+                "placename": "Schwebende Insel"
+            },
+            "NPC": "Estinien"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -507651,29 +507730,67 @@
         ]
     },
     "71013": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Ein Land von Eis und Schnee",
+        "PreviousQuest": {
+            "0": "71012"
+        },
+        "NextQuest": [
+            "71014"
+        ],
         "Icon": {
             "Banner": "ui/icon/000000/000000_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "1150",
+        "PlaceName": "Schwebende Insel",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 6.1,
+                "y": 5.9,
+                "region": "???",
+                "placename": "Schwebende Insel"
+            },
+            "NPC": "Visna"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -507708,29 +507825,65 @@
         ]
     },
     "71014": {
-        "Name": "",
-        "PreviousQuest": {},
+        "Name": "Wohin der Wind weht",
+        "PreviousQuest": {
+            "0": "71013"
+        },
         "NextQuest": [],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101498_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/071000/071201_hr1.webp",
+            "JournalCategory": "Ränke der Winterer",
+            "Name": "Ränke der Winterer"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "1333",
+        "PlaceName": "Schwebende Insel",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 6.1,
+                "y": 5.9,
+                "region": "???",
+                "placename": "Schwebende Insel"
+            },
+            "NPC": "Alphinaud"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "Kapuze des Erben",
+                "Amount": "1"
+            },
+            {
+                "Item": "Tunika des Erben",
+                "Amount": "1"
+            },
+            {
+                "Item": "Fingerlinge des Erben",
+                "Amount": "1"
+            },
+            {
+                "Item": "Reiterhose des Erben",
+                "Amount": "1"
+            },
+            {
+                "Item": "Kniestiefel des Erben",
+                "Amount": "1"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -508803,29 +508956,67 @@
         ]
     },
     "71026": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Unbekannte Spezies",
+        "PreviousQuest": {
+            "0": "70058"
+        },
+        "NextQuest": [
+            "71027"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101486_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/062000/062423_hr1.webp",
+            "JournalCategory": "Jobaufträge der Krieger",
+            "Name": "Bestienbändiger-Jobaufträge"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "883",
+        "PlaceName": "Gridania",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 11.8,
+                "y": 13.7,
+                "region": "Finsterwald",
+                "placename": "Neu-Gridania"
+            },
+            "NPC": "aufgeregt[a] Abenteurer"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "Bestienbändiger-Kristall",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienpfleger-Handaxt",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienpfleger-Hoplon",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienpfleger-Ausrüstungskiste (G.-St. 1)",
+                "Amount": "1"
+            },
+            {
+                "Item": "Cu Sith-Schale",
+                "Amount": "1"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -508860,29 +509051,67 @@
         ]
     },
     "71027": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Der erste Gefährte",
+        "PreviousQuest": {
+            "0": "71026"
+        },
+        "NextQuest": [
+            "71028"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101486_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/062000/062423_hr1.webp",
+            "JournalCategory": "Jobaufträge der Krieger",
+            "Name": "Bestienbändiger-Jobaufträge"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "108",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 15.4,
+                "y": 16.3,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "J'yhuh Tia"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "Bestienhirten-Handaxt",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienhirten-Hoplon",
+                "Amount": "1"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -508917,29 +509146,67 @@
         ]
     },
     "71028": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Die perfekte Wellenlänge",
+        "PreviousQuest": {
+            "0": "71027"
+        },
+        "NextQuest": [
+            "71029"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101486_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/062000/062423_hr1.webp",
+            "JournalCategory": "Jobaufträge der Krieger",
+            "Name": "Bestienbändiger-Jobaufträge"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "241",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 23.9,
+                "y": 19.7,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "J'yhuh Tia"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "Bestienführer-Tabar",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienführer-Pelte",
+                "Amount": "1"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -508974,29 +509241,67 @@
         ]
     },
     "71029": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Die Schule der Lhu",
+        "PreviousQuest": {
+            "0": "71028"
+        },
+        "NextQuest": [
+            "71030"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101486_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/062000/062423_hr1.webp",
+            "JournalCategory": "Jobaufträge der Krieger",
+            "Name": "Bestienbändiger-Jobaufträge"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "526",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 23.9,
+                "y": 19.7,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "J'yhuh Tia"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "Bestienflüsterer-Handaxt",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienflüsterer-Rundschild",
+                "Amount": "1"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -509031,29 +509336,67 @@
         ]
     },
     "71030": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Die Bretter, die die Bestienwelt bedeuten",
+        "PreviousQuest": {
+            "0": "71029"
+        },
+        "NextQuest": [
+            "71031"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101486_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/062000/062423_hr1.webp",
+            "JournalCategory": "Jobaufträge der Krieger",
+            "Name": "Bestienbändiger-Jobaufträge"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "440",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 22.9,
+                "y": 19.1,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "J'yhuh Tia"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "Bestienbesänftiger-Tabar",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienbesänftiger-Hoplon",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienbesänftiger-Ausrüstungskiste (G.-St. 30)",
+                "Amount": "1"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -509088,29 +509431,67 @@
         ]
     },
     "71031": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Willzzu sammenlernen?",
+        "PreviousQuest": {
+            "0": "71030"
+        },
+        "NextQuest": [
+            "71032"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101486_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/062000/062423_hr1.webp",
+            "JournalCategory": "Jobaufträge der Krieger",
+            "Name": "Bestienbändiger-Jobaufträge"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "603",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 21.9,
+                "y": 22.8,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "J'yhuh Tia"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -509145,29 +509526,67 @@
         ]
     },
     "71032": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Schlagabtausch der Schüler",
+        "PreviousQuest": {
+            "0": "71031"
+        },
+        "NextQuest": [
+            "71033"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101486_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/062000/062423_hr1.webp",
+            "JournalCategory": "Jobaufträge der Krieger",
+            "Name": "Bestienbändiger-Jobaufträge"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "492",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 22.9,
+                "y": 19.1,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "J'yhuh Tia"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "Bestienwärter-Handaxt",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienwärter-Faustschild",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienwärter-Ausrüstungskiste (G.-St. 40)",
+                "Amount": "1"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -509202,29 +509621,67 @@
         ]
     },
     "71033": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Die büßende Bändigerin",
+        "PreviousQuest": {
+            "0": "71032"
+        },
+        "NextQuest": [
+            "71034"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101486_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/062000/062423_hr1.webp",
+            "JournalCategory": "Jobaufträge der Krieger",
+            "Name": "Bestienbändiger-Jobaufträge"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "445",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 22.0,
+                "y": 22.8,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "Lauda"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -509259,29 +509716,67 @@
         ]
     },
     "71034": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Guttler der Ausweider",
+        "PreviousQuest": {
+            "0": "71033"
+        },
+        "NextQuest": [
+            "71035"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101486_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/062000/062423_hr1.webp",
+            "JournalCategory": "Jobaufträge der Krieger",
+            "Name": "Bestienbändiger-Jobaufträge"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "714",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 22.9,
+                "y": 19.1,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "J'yhuh Tia"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "Bestienbändiger-Handaxt",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienbändiger-Hoplon",
+                "Amount": "1"
+            },
+            {
+                "Item": "Bestienbändiger-Ausrüstungskiste (G.-St. 90)",
+                "Amount": "1"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -509316,29 +509811,67 @@
         ]
     },
     "71035": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Bestialische Bande",
+        "PreviousQuest": {
+            "0": "71034"
+        },
+        "NextQuest": [
+            "71036"
+        ],
         "Icon": {
-            "Banner": "ui/icon/000000/000000_hr1.webp",
+            "Banner": "ui/icon/101000/101486_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
         },
         "JournalGenre": {
-            "Icon": "ui/icon/000000/000000_hr1.webp",
-            "JournalCategory": "Ungültige Kategorie",
-            "Name": ""
+            "Icon": "ui/icon/062000/062423_hr1.webp",
+            "JournalCategory": "Jobaufträge der Krieger",
+            "Name": "Bestienbändiger-Jobaufträge"
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
-        "GilReward": "0",
-        "PlaceName": "",
+        "Expansion": "Dawntrail",
+        "GilReward": "602",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 22.0,
+                "y": 22.8,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "Lauda"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "Cu Sith-Horn",
+                "Amount": "1"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -509373,9 +509906,13 @@
         ]
     },
     "71036": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Eine neue Herausforderung",
+        "PreviousQuest": {
+            "0": "71035"
+        },
+        "NextQuest": [
+            "71037"
+        ],
         "Icon": {
             "Banner": "ui/icon/000000/000000_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
@@ -509386,16 +509923,50 @@
             "Name": ""
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
+        "Expansion": "Dawntrail",
         "GilReward": "0",
-        "PlaceName": "",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 21.8,
+                "y": 22.7,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "Sylmond"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -509430,9 +510001,13 @@
         ]
     },
     "71037": {
-        "Name": "",
-        "PreviousQuest": {},
-        "NextQuest": [],
+        "Name": "Der Rückkampf",
+        "PreviousQuest": {
+            "0": "71036"
+        },
+        "NextQuest": [
+            "71045"
+        ],
         "Icon": {
             "Banner": "ui/icon/000000/000000_hr1.webp",
             "Special": "ui/icon/000000/000000_hr1.webp"
@@ -509443,16 +510018,50 @@
             "Name": ""
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
+        "Expansion": "Dawntrail",
         "GilReward": "0",
-        "PlaceName": "",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 21.8,
+                "y": 22.7,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "Sylmond"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
@@ -510053,8 +510662,10 @@
         ]
     },
     "71045": {
-        "Name": "",
-        "PreviousQuest": {},
+        "Name": "Mit Kühnheit voran",
+        "PreviousQuest": {
+            "0": "71037"
+        },
         "NextQuest": [],
         "Icon": {
             "Banner": "ui/icon/000000/000000_hr1.webp",
@@ -510066,16 +510677,50 @@
             "Name": ""
         },
         "ActionReward": "",
-        "Expansion": "A Realm Reborn",
+        "Expansion": "Dawntrail",
         "GilReward": "0",
-        "PlaceName": "",
+        "PlaceName": "Tiefer Wald",
         "Issuer": {
-            "Location": null,
-            "NPC": ""
+            "Location": {
+                "x": 21.8,
+                "y": 22.7,
+                "region": "Finsterwald",
+                "placename": "Tiefer Wald"
+            },
+            "NPC": "Sylmond"
         },
-        "ItemRewardType": "0",
+        "ItemRewardType": "1",
         "Other_Reward.Name": "",
-        "Reward": [],
+        "Reward": [
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            },
+            {
+                "Item": "",
+                "Amount": "0"
+            }
+        ],
         "OptionalReward": [
             {
                 "Item": "",
