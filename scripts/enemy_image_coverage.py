@@ -16,7 +16,7 @@ import yaml
 
 IMAGE_NAME_RE = re.compile(r"__(\d+)__(\d+)__(\d+)$")
 DEFAULT_WEBP_DIR = (
-    Path(__file__).resolve().parents[2]
+    Path("C:\\Users\\kamot\\Documents\\GitHub")
     / "Meddle"
     / "Meddle"
     / "Meddle.Plugin"
