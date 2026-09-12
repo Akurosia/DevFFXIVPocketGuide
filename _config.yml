@@ -41,8 +41,6 @@ commonmark:
   options: ["SMART", "FOOTNOTES"]
   extensions: ["strikethrough", "autolink", "table"]
 plugins:
-  - jekyll-last-modified-at
-  - jekyll-sitemap
   - jekyll-commonmark
   - jekyll-include-cache
 include:
@@ -74,7 +72,7 @@ exclude:
   - "README.md"
   - "*.bat"
   - "python_scripts/"
-  - "assets/translations/*/"
+  - assets/translations
 sass:
     sass_dir: _sass
     load_paths:
