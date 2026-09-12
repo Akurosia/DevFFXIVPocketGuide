@@ -1,0 +1,55 @@
+<section class="guide__accordion beastmaster-captures" aria-labelledby="beastmaster-title">
+    <div class="guide__accordion-trigger--01-grid active" id="beastmaster-title" data-guide-persistent>
+        <div class="Names"><i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i><span class="guide__accordion-trigger-title class">Bestien zum Fangen</span></div>
+    </div>
+    <div class="guide__accordion-content--01 active" data-guide-persistent>
+        <div class="search">
+            <div class="search__form_blu">
+                <input id="beastmaster-search" type="text" aria-label="Bestie, Angriff oder Fundort suchen" placeholder="Bestie, Angriff, Gegner oder Fundort suchen" autocomplete="off">
+                <label><input id="beastmaster-missing" type="checkbox"> Nur fehlende Bestien</label>
+            </div>
+        </div>
+        <p id="beastmaster-count" role="status" aria-live="polite">{{ site.data.beastmaster.size }} Bestien</p>
+        <p id="beastmaster-storage" hidden>Der Fangfortschritt kann in diesem Browser nicht gespeichert werden.</p>
+        <div id="beastmaster-list">
+            {% for beast in site.data.beastmaster %}
+            <div class="beastmaster-entry" data-beast-number="{{ beast.number }}">
+                <div class="guide-metadata__menu-link guide__accordion-trigger--03--attack" id="beast-{{ beast.number }}">
+                    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+                    {% if beast.icon != '' %}<img class="Icon attack_icon" loading="lazy" src="{{ site.imageurl }}/{{ beast.icon }}" alt="">{% endif %}
+                    <div class="Names">
+                        <span data-beast-search>{{ beast.number }}. {{ beast.name | escape }}</span>
+                        <div class="guide__accordion-trigger-subtitle" data-beast-search>{{ beast.location | escape }}</div>
+                    </div>
+                    <div class="IdsHps"><span class="guide__accordion-trigger-id">Nr. {{ beast.number }}</span></div>
+                </div>
+                <div class="guide__accordion-content--03--attack">
+                    <div class="guide__accordion-copy-wrapper">
+                        <div class="guide__attack-notes-wrapper">
+                            <label><input type="checkbox" data-beast-caught="{{ beast.number }}" aria-label="{{ beast.name | escape }} gefangen"> Gefangen</label>
+                            <p>{{ beast.description | escape }}</p>
+                            <h5 class="guide__attack-notes-title">Fundort</h5>
+                            <table class="table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic">
+                                <thead><tr><th>Gebiet / Inhalt</th><th>Passende Gegner im Kampflog</th></tr></thead>
+                                <tbody><tr><td>{% if beast.location != '' %}{{ beast.location | escape }}{% else %}Kein Fundorthinweis im Bestienbuch{% endif %}</td>
+                                <td>{% for sighting in beast.sightings %}<div data-beast-search>{{ sighting.name | escape }}</div>{% else %}Kein passender Gegnername aufgezeichnet.{% endfor %}</td></tr></tbody>
+                            </table>
+                            <p>Fundorthinweis aus dem Bestienbuch; Namensübereinstimmungen im Kampflog bestätigen keine Fangbarkeit.</p>
+                        </div>
+                        <h5 class="guide__attack-notes-title">Angriffe</h5>
+                        <div class="beastmaster-abilities">
+                            {% assign beast_attack_prefix = 'beast-' | append: beast.number | append: '-' %}
+                            {% assign extra = '' %}
+                            {% for attack in beast.attacks %}
+                                {% include klassen/_components/guide-attack.html id_prefix=beast_attack_prefix %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <p id="beastmaster-empty" hidden>Keine Bestien für diesen Filter gefunden.</p>
+    </div>
+</section>
+<script src="{{ '/assets/js/beastmaster.js' | relative_url }}" defer></script>

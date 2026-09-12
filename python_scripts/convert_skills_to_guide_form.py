@@ -15,6 +15,7 @@ try:
     from .convert_skills_to_guide_form_helper.phantom_jobs import addPhantomJobs
     from .convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, LANGUAGES_MAPPING
     from .convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
+    from .convert_skills_to_guide_form_helper.beastmaster import generate_capture_data, build_beastmaster_job_skills
     from .convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
 except ImportError:
     from helper import *
@@ -22,6 +23,7 @@ except ImportError:
     from convert_skills_to_guide_form_helper.phantom_jobs import addPhantomJobs
     from convert_skills_to_guide_form_helper.helper import getImage, deal_with_extras_in_text, LANGUAGES, LANGUAGES_MAPPING
     from convert_skills_to_guide_form_helper.blaumagier import addBlueAttackDetails
+    from convert_skills_to_guide_form_helper.beastmaster import generate_capture_data, build_beastmaster_job_skills
     from convert_skills_to_guide_form_helper.eureka_bozja import prepare_eureka_bozja_data, addEurekaActions, addBozjaActions, getBozjaActionDetails, getEurekaActionDetails
 
 
@@ -763,7 +765,7 @@ ExtraIcons: dict[str, list[str]] = {
     "Weiser":          ["060184",    "062040", "062140", "062420", "062840", "091133", "091633", "092133", "092633", "093133", "093633", "094133", "094633"],
     "Viper":           ["060187",    "062041", "062141", "062421", "062841", "091185", "091685", "092185", "092685", "093185", "093685", "094185", "094685"],
     "Piktomant":       ["060188",    "062042", "062142", "062422", "062842", "091186", "091686", "092186", "092686", "093186", "093686", "094186", "094686"],
-    "Bestienbändiger": ["060191",    "062047", "062148", "062423", "062843", "091186", "091686", "092186", "092686", "093186", "093686", "094186", "094686"]
+    "Bestienbändiger": ["060191",    "062047", "062148", "062423", "062843", "", "", "", "", "", "", "", ""]
 }
 
 def getQuestName(job):
@@ -930,8 +932,8 @@ def addKlassJobs():
             continue
         job_abb = job_d['Abbreviation_de']
         job_data = skills.get(job, None)
-        if k[0] == "43":
-            job_data = {"7559": { "Name": { "de": "Unbeirrbarkeit", "en": "Surecast", "fr": "Stoïcisme", "ja": "堅実魔" }, "Id": "7559", "Kategorie": { "de": "Talent", "en": "Ability", "fr": "Aptitude", "ja": "アビリティ" }, "Level": "44", "Icon": "ui/icon/000000/000869_hr1.png", "Description": { "de": "Dein nächster Zauber wird nicht unterbrochen.</br>Zusatzeffekt: Fast alle Rückstoß- und Heranzieheffekte unwirksam</br>Dauer: 6 Sekunden", "en": "Spells can be cast without interruption.</br>Additional Effect: Nullifies most knockback and draw-in effects</br>Duration: 6s", "fr": "Vous permet de lancer vos sorts sans risque d'interruption.</br>Annule la plupart des projections et attractions.</br>Durée : 6s", "ja": "一定時間、魔法詠唱を詠唱妨害されずに行うことができる。</br>さらに、一部を除くすべてのノックバックと引き寄 せを無効化する。\\u3000効果時間：6秒" }, "Type": "oGCD", "Range": "0y", "Recast": "120.0s", "Cast": "0.0s", "EffectRange": "0y", "Cost": "0", "SecondaryCostType": "0", "IsDamageSkill": False, "IsHealingSkill": False, "IsShieldSkill": False, "MitigationType": None, "MitigationValue": None }}
+        if job == "Bestienbändiger":
+            job_data = build_beastmaster_job_skills(action, actiontransient)
         if not job_data:
             print_color_yellow(f"Skip Job_data is empty")
             continue
@@ -1160,6 +1162,7 @@ def run(main_script=r"C:\Users\kamot\Documents\GitHub\DevFFXIVPocketGuide"):
     path_of_main_script = main_script
     get_class_translation_data()
     addKlassJobs()
+    generate_capture_data(main_script, logs=logdata)
     addChocobo(main_script, action,  actiontransient, traits, traitstransient, klass_translations, write_class_translation_file, addExtraIcons)
     addPhantomJobs(
         main_script,

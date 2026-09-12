@@ -61,8 +61,8 @@ function handleExpansionAssetError(expansion) {
 function scrollToElement(element) {
     var container = $('html, body');
 
-    $("[class*='guide__accordion-trigger']").removeClass("active");
-    $("[class*='guide__accordion-content']").removeClass("active");
+    $("[class*='guide__accordion-trigger']:not([data-guide-persistent])").removeClass("active");
+    $("[class*='guide__accordion-content']:not([data-guide-persistent])").removeClass("active");
 
     // Activate all parent accordions
     element.parents("[class*='guide__accordion-content']").each(function () {
