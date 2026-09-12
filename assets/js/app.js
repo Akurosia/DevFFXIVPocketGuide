@@ -67,12 +67,13 @@ function scrollToElement(element) {
     // Activate all parent accordions
     element.parents("[class*='guide__accordion-content']").each(function () {
         $(this).addClass("active");
-        $(this).prev("[class*='guide__accordion-trigger']").addClass("active");
+        $(this).prev("[class*='guide__accordion-trigger']").addClass("active").attr("aria-expanded", "true");
+        $(this).prop("hidden", false);
     });
 
     // Activate target element itself if necessary
-    element.addClass("active");
-    element.next("[class*='guide__accordion-content']").addClass("active");
+    element.addClass("active").attr("aria-expanded", "true");
+    element.next("[class*='guide__accordion-content']").addClass("active").prop("hidden", false);
 
     // Scroll to target
     var offSet = element.offset().top;
@@ -420,29 +421,29 @@ function openGuideTarget(targetId, options) {
 
 
 
-        // FFXIV Guide Accordions only arrow ==============================================
-        $("[class*='Dropdown material-icons']").on("click", function(e) {
-            $(this).parents("[class*='guide__accordion-trigger']").toggleClass("active");
-            $(this).parents("[class*='guide__accordion-trigger']").next("[class*='guide__accordion-content']").toggleClass("active");
-            var triggerId = $(this).parents("[class*='guide__accordion-trigger']").attr("id");
-            if (triggerId) {
-                history.replaceState(null, '', '#' + triggerId);
+        // Guide accordion state is explicit. Attack/debuff entries start collapsed via the
+        // HTML hidden attribute, so legacy CSS can no longer accidentally expose them.
+        $(".guide__entry-trigger").removeClass("active").attr("aria-expanded", "false");
+        $(".guide__entry-content").removeClass("active").prop("hidden", true);
+
+        // The full trigger is clickable. Interactive controls inside a trigger keep their own action.
+        $(document).on("click", "[class*='guide__accordion-trigger']", function(e) {
+            if ($(e.target).closest('a, button, input, select, textarea').length) {
+                return;
+            }
+
+            var $trigger = $(this);
+            var $content = $trigger.next("[class*='guide__accordion-content']");
+            if (!$content.length) return;
+
+            var opening = $content.prop("hidden") || !$trigger.hasClass("active");
+            $trigger.toggleClass("active", opening).attr("aria-expanded", String(opening));
+            $content.toggleClass("active", opening).prop("hidden", !opening);
+
+            if (opening && this.id) {
+                history.replaceState(null, "", "#" + this.id);
             }
             e.preventDefault();
-        });
-
-        // FFXIV Guide Accordions rest of the element ==============================================
-        $("[class*='guide__accordion-trigger']").on("click", function(e) {
-            const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-
-            if (e.shiftKey || e.ctrlKey || isMobile) {
-                $(this).toggleClass("active");
-                $(this).next("[class*='guide__accordion-content']").toggleClass("active");
-                if (this.id) {
-                    history.replaceState(null, '', '#' + this.id);
-                }
-                e.preventDefault();
-            }
         });
 
         $(".guide__attack-image-item").each(function () {

@@ -15,9 +15,7 @@ gem "wdm", ">= 0.1.0", platforms: [:mingw, :x64_mingw, :mswin]
 
 # Jekyll plugins
 group :jekyll_plugins do
-  gem "jekyll-last-modified-at", "~> 1.3"
-  gem "jekyll-sitemap",          "~> 1.4"
-  gem "jekyll-include-cache",    "~> 0.2"
+  gem "jekyll-include-cache", "~> 0.2"
 
   gem "jekyll-commonmark"
   gem "jekyll-youtube"

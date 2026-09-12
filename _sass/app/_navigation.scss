@@ -1,0 +1,319 @@
+/* Persistent navigation shell.
+ * Navigation hierarchy is deliberately stronger than the toolkit defaults:
+ * section -> category -> expansion -> destination. */
+:root { --pg-sidebar-width: 18rem; }
+.sidebar {
+  position:fixed;
+  inset:0 auto 0 0;
+  z-index:200;
+  width:min(var(--pg-sidebar-width),100vw);
+  height:100dvh;
+  overflow:hidden;
+  transform:translateY(105%);
+  transition:transform .2s ease;
+  border-right:1px solid color-mix(in srgb,var(--xiv-border) 72%,transparent);
+  background:#1c1d1d;
+  box-shadow:10px 0 26px #0006;
+}
+.sidebar.active { transform:translateY(0); }
+
+.sidebar__wrapper {
+  height:100%;
+  overflow-y:auto;
+  padding:.75rem .7rem 3rem;
+  scrollbar-width:thin;
+  scrollbar-color:#817452 #171818;
+  scrollbar-gutter:stable;
+}
+
+.languages {
+  display:flex;
+  justify-content:center;
+  gap:.4rem;
+  margin:.05rem 0 .8rem;
+}
+.languages .flags_img {
+  border:1px solid transparent;
+  border-radius:3px;
+  opacity:.9;
+}
+.languages .flags_img:hover,
+.languages .flags_img:focus-visible {
+  border-color:var(--xiv-gold);
+  opacity:1;
+}
+
+.sidebar__title { margin:0 0 1rem; text-align:center; }
+.sidebar__title a {
+  display:inline-grid;
+  justify-items:center;
+  gap:.3rem;
+  padding:.2rem .75rem;
+  text-decoration:none;
+}
+.sidebar__title img { width:3.6rem; height:3.6rem; object-fit:contain; }
+.sidebar__home-label {
+  color:var(--xiv-gold-bright);
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+.sidebar__navigation-host { min-height:8rem; }
+.sidebar__loading,.sidebar__load-error { margin:.75rem; color:var(--xiv-muted); font-size:.78rem; }
+
+/* Root navigation --------------------------------------------------------- */
+.sidebar__menu.xiv-nav {
+  display:flex;
+  flex-direction:column;
+  gap:.12rem;
+  width:100%;
+  padding:.25rem;
+  border:0;
+  border-radius:0;
+  background:transparent;
+}
+.sidebar__menu,
+.sidebar__menu ul { margin:0; list-style:none; }
+.sidebar__menu > li,
+.sidebar__menu ul > li { min-width:0; }
+
+.sidebar__menu .xiv-nav-item {
+  display:flex;
+  align-items:center;
+  width:100%;
+  min-height:2.35rem;
+  padding:.44rem .55rem;
+  gap:.55rem;
+  border:1px solid transparent;
+  border-radius:5px;
+  color:var(--xiv-text);
+  font-size:.8rem;
+  line-height:1.2;
+  text-decoration:none !important;
+  transition:background-color .12s,border-color .12s,color .12s;
+}
+.sidebar__menu .xiv-nav-item:hover,
+.sidebar__menu .xiv-nav-item:focus-visible {
+  color:var(--xiv-gold-bright);
+  background:#cab58212;
+  border-color:#cab58228;
+}
+.sidebar__menu .xiv-nav-item[aria-current="page"],
+.sidebar__menu .xiv-nav-item.is-active,
+.sidebar__menu .xiv-nav-item.active {
+  color:#fff0c5;
+  background:#cab5821c;
+  border-color:#a9946166;
+  box-shadow:inset 3px 0 #cab582;
+}
+.sidebar__menu .xiv-nav-item img {
+  width:1.35rem !important;
+  height:1.35rem !important;
+  margin:0 !important;
+  object-fit:contain;
+  flex:0 0 1.35rem;
+}
+.sidebar__menu .xiv-nav-item > span:not(.sidebar__toggle-icon) {
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+
+/* Section rows ------------------------------------------------------------ */
+.sidebar__menu .xiv-nav-section,
+.sidebar__group-toggle {
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  width:100%;
+  min-height:2.45rem;
+  margin:.68rem 0 .18rem;
+  padding:.5rem .55rem .4rem;
+  border:0;
+  border-bottom:1px solid #ffffff12;
+  border-radius:0;
+  background:transparent;
+  color:#bbb7ab;
+  text-align:left;
+  font:700 .68rem/1.25 var(--xiv-font);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.sidebar__group-toggle:hover,
+.sidebar__group-toggle:focus-visible {
+  color:var(--xiv-gold-bright);
+  background:#ffffff05;
+}
+.sidebar__toggle-icon {
+  margin-left:auto;
+  flex:0 0 auto;
+  color:var(--xiv-gold);
+  font-size:.72rem;
+}
+
+/* Nested groups ----------------------------------------------------------- */
+.sidebar__menu .xiv-nav-nested,
+.sidebar__content-submenu,
+.sidebar__expansion-submenu,
+.sidebar__group-list {
+  display:none;
+  margin:.12rem 0 .3rem .4rem;
+  padding:.18rem 0 .18rem .55rem;
+  border-left:1px solid #81745266;
+}
+.sidebar__content-submenu { margin-left:.35rem; }
+.sidebar__expansion-submenu {
+  margin:.12rem 0 .38rem .35rem;
+  padding-left:.48rem;
+  border-left-color:#8174524d;
+}
+
+/* Normal links inside expanded sections are intentionally not tiny. */
+.sidebar__content-submenu .xiv-nav-item,
+.sidebar__expansion-submenu .xiv-nav-item,
+.sidebar__group-list .xiv-nav-item {
+  min-height:2.45rem;
+  padding:.46rem .55rem;
+  gap:.55rem;
+  font-size:.8rem;
+  line-height:1.2;
+}
+.sidebar__content-submenu .xiv-nav-item img,
+.sidebar__expansion-submenu .xiv-nav-item img,
+.sidebar__group-list .xiv-nav-item img {
+  width:1.45rem !important;
+  height:1.45rem !important;
+  flex-basis:1.45rem;
+}
+
+/* Category row with separate disclosure button --------------------------- */
+.sidebar__content-parent { position:relative; }
+.sidebar__content-parent > .xiv-nav-item { padding-right:2.65rem; }
+.sidebar__submenu-toggle {
+  position:absolute;
+  top:50%;
+  right:.18rem;
+  display:grid;
+  place-items:center;
+  width:2.2rem;
+  height:2.2rem;
+  padding:0;
+  transform:translateY(-50%);
+  border:1px solid transparent;
+  border-radius:4px;
+  background:transparent;
+  color:var(--xiv-muted);
+  cursor:pointer;
+}
+.sidebar__submenu-toggle:hover,
+.sidebar__submenu-toggle:focus-visible,
+.sidebar__submenu-toggle[aria-expanded="true"] {
+  background:#cab58214;
+  border-color:#cab58235;
+  color:var(--xiv-gold-bright);
+}
+
+/* Keep the main category visibly selected while one of its submenus is open. */
+.sidebar__content-parent:has(.sidebar__submenu-toggle[aria-expanded="true"]) > .xiv-nav-item {
+  color:#fff0c5;
+  background:#cab5821c;
+  border-color:#a9946166;
+  box-shadow:inset 3px 0 #cab582;
+}
+.sidebar__content-parent:has(.sidebar__submenu-toggle[aria-expanded="true"]) > .xiv-nav-item img {
+  filter:brightness(1.08) drop-shadow(0 1px 2px #0008);
+}
+
+/* Expansion rows are the visual dividers between generations. */
+.sidebar__expansion-parent { margin:.28rem 0 .16rem; }
+.sidebar__expansion-toggle {
+  display:grid;
+  grid-template-columns:2rem minmax(0,1fr) auto;
+  align-items:center;
+  gap:.55rem;
+  width:100%;
+  min-height:3rem;
+  padding:.42rem .55rem;
+  border:1px solid #81745255;
+  border-radius:5px;
+  background:linear-gradient(180deg,#2c2a25,#24231f);
+  color:#d8d3c7;
+  text-align:left;
+  font:700 .76rem/1.2 var(--xiv-font);
+  cursor:pointer;
+  box-shadow:inset 0 1px #ffffff08;
+  transition:background-color .12s,border-color .12s,color .12s;
+}
+.sidebar__expansion-toggle:hover,
+.sidebar__expansion-toggle:focus-visible,
+.sidebar__expansion-toggle[aria-expanded="true"] {
+  color:#fff0c5;
+  background:linear-gradient(180deg,#413b2e,#302d27);
+  border-color:#b29d6d;
+}
+.sidebar__expansion-toggle img {
+  width:2rem !important;
+  height:2rem !important;
+  object-fit:contain;
+  flex:0 0 2rem;
+  filter:drop-shadow(0 2px 3px #0008);
+}
+.sidebar__expansion-toggle > span:not(.sidebar__toggle-icon) {
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+
+/* Destination rows under an expansion ----------------------------------- */
+.sidebar__expansion-submenu .sidebar__content-item + .sidebar__content-item {
+  margin-top:.08rem;
+}
+.sidebar__expansion-submenu .xiv-nav-item {
+  min-height:2.5rem;
+  border-radius:4px;
+  background:#ffffff02;
+}
+.sidebar__expansion-submenu .xiv-nav-item:hover,
+.sidebar__expansion-submenu .xiv-nav-item:focus-visible {
+  background:#cab58210;
+}
+.sidebar__expansion-submenu .xiv-nav-item[aria-current="page"],
+.sidebar__expansion-submenu .xiv-nav-item.is-active {
+  background:#cab5821a;
+}
+
+/* Mobile shell ----------------------------------------------------------- */
+.sidebar__trigger {
+  position:fixed;
+  z-index:220;
+  left:50%;
+  bottom:.65rem;
+  transform:translateX(-50%);
+  width:min(22rem,calc(100vw - 2rem));
+}
+.sidebar__trigger-inactive,.sidebar__trigger-active {
+  align-items:center;
+  justify-content:center;
+  gap:.4rem;
+}
+.sidebar__trigger-inactive { display:flex; }
+.sidebar__trigger-active { display:none; }
+.sidebar__trigger.active .sidebar__trigger-inactive { display:none; }
+.sidebar__trigger.active .sidebar__trigger-active { display:flex; }
+.site-grid__sidebar-overlay {
+  position:fixed;
+  inset:0;
+  z-index:190;
+  display:none;
+  background:#000b;
+}
+.site-grid__sidebar-overlay.active { display:block; }
+
+@media (min-width:64rem) {
+  .sidebar {
+    width:var(--pg-sidebar-width);
+    transform:none !important;
+    box-shadow:7px 0 20px #0004;
+  }
+  .sidebar__trigger,.site-grid__sidebar-overlay { display:none !important; }
+}

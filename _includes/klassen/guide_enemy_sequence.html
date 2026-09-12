@@ -7,10 +7,10 @@
                 {%- if enemy.title.de == "Blaumagier" -%}!14., Wasserkanone, 4man, 8man, dungeon, raid, overworld, alone, arena
                 {%- else -%}Stumpfsinn, skill:Addle, status:Ehrfurcht, trait:Meister, leve:Haltbar, quest:Einfach, cat:Talent, buff:debuff, type:Schaden
                 {%- endif -%}
-            " type="text"/>
+            " type="text" class="xiv-input"/>
             <label class="guide-level-filter" for="guideLevelFilter">
                 <span>Level</span>
-                <input id="guideLevelFilter" type="number" min="1" max="{{ page.plvl | default: 100 }}" value="{{ page.plvl | default: 100 }}" inputmode="numeric"/>
+                <input id="guideLevelFilter" type="number" min="1" max="{{ page.plvl | default: 100 }}" value="{{ page.plvl | default: 100 }}" inputmode="numeric" class="xiv-input"/>
             </label>
             <input type="checkbox" id="onlyfinalskills" title="Display only Final Skills" value="onlyfinalskills">
         </form>
@@ -22,14 +22,14 @@
     {%- endif -%}
 
     {%- if enemy.sequence.size > 1 -%}
-        <div class="guide-metadata__menu-link guide__accordion-trigger--03--grid" id="{{ phase.name | append: "-" | append: phase.phase | slugify }}">
+        <div class="guide-metadata__menu-link guide__accordion-trigger--03--grid xiv-accordion-trigger" id="{{ phase.name | append: "-" | append: phase.phase | slugify }}">
             <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
             <div class="Names klassen">
                 <h3 class="guide__accordion-trigger-title" >{{ phase.phase }}.&nbsp;</h3>
                 <h3 class="guide__accordion-trigger-title" data-translate="Content_Section_{{ phase.name }}">{{ phase.name }}</h3>
             </div>
         </div>
-        <div class="guide__accordion-content--03">
+        <div class="guide__accordion-content--03 xiv-accordion-content">
     {%- endif -%}
     <!-- Determines the current phase. -->
     {%- assign currentPhase = phase.phase -%}

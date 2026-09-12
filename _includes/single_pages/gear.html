@@ -2,7 +2,7 @@
 <div class="index">
   <div class="container col">
       <div id="filterOptions" class="my-4 form-inline">
-          <select class="form-control bg-charcoal text-light mx-1" id="classjob" size="1">
+          <select class="form-control bg-charcoal text-light mx-1 xiv-select" id="classjob" size="1">
               <option data-translate="Content_Title_Paladin"       value="PLD">Paladin</option>
               <option data-translate="Content_Title_Warrior"       value="KRG">Krieger</option>
               <option data-translate="Content_Title_Dark Knight"   value="DKR">Dunkelritter</option>
@@ -43,11 +43,11 @@
               <option data-translate="Content_Title_Botanist"      value="GÄR">Gärtner</option>
               <option data-translate="Content_Title_Fisher"        value="FIS">Fischer</option>
           </select>
-          <input class="form-control bg-charcoal text-light mx-1" type="number" id="lvl_from" value="" min="1" max = "90" placeholder="">
-          <input class="form-control bg-charcoal text-light mx-1" type="number" id="lvl_to" value="" min="1" max = "90" placeholder="">
+          <input class="form-control bg-charcoal text-light mx-1 xiv-input" type="number" id="lvl_from" value="" min="1" max = "90" placeholder="">
+          <input class="form-control bg-charcoal text-light mx-1 xiv-input" type="number" id="lvl_to" value="" min="1" max = "90" placeholder="">
 
-          <input class="form-control bg-charcoal text-light mx-1" type="number" id="ilvl_from" value="" min="1" max = "605" placeholder="">
-          <input class="form-control bg-charcoal text-light mx-1" type="number" id="ilvl_to" value="" min="1" max = "605" placeholder="">
+          <input class="form-control bg-charcoal text-light mx-1 xiv-input" type="number" id="ilvl_from" value="" min="1" max = "605" placeholder="">
+          <input class="form-control bg-charcoal text-light mx-1 xiv-input" type="number" id="ilvl_to" value="" min="1" max = "605" placeholder="">
 
           <label title="white gear" class="checkbox white"><input class="" type="checkbox" id="rarity_0" /></label>
           <label title="red gear" class="checkbox red"><input class=" mx-1" type="checkbox" id="rarity_7" /></label>
@@ -58,7 +58,7 @@
          <label title="Include HQ in List" style="display: flex;" class="checkbox white"><input class=" mx-1" type="checkbox" id="include_hq" checked/><span class="x_box_blah">HQ</span></label>
          <label title="Show only HQ if both exists" style="display: flex;" class="checkbox white"><input class="" type="checkbox" id="limit_to_hq" /><span class="x_box_blah">HQ2</span></label>
 
-          <input class="form-control bg-charcoal text-light mx-1" type="button" name="Search" value="Search" onclick="call_api_data()" data-value-translate="Gear_Search">
+          <input class="form-control bg-charcoal text-light mx-1 xiv-button xiv-button--primary xiv-input" type="button" name="Search" value="Search" onclick="call_api_data()" data-value-translate="Gear_Search">
       </div>
       <div class="my-4" id="gearlist">
           <div class="my-1" id="weapon_left"></div>
@@ -76,7 +76,7 @@
       </div>
   </div>
   <div style="position: sticky;height: 64px;bottom: 0px;">
-      <table class="table-bordered table-dark bg-charcoal text-light" id="table_stats_overview">
+      <table class="table-bordered table-dark bg-charcoal text-light xiv-table" id="table_stats_overview">
       </table>
   </div>
   <script type="text/javascript"> document.getElementById("races_select").onchange() </script>

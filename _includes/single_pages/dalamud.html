@@ -4,7 +4,7 @@
         {%- for plugin in site.categories.dalamud -%}
             {%- for guide in plugin.plugins -%}
                 <div class="summary">
-                    <span class="index-item__link">
+                    <span class="index-item__link xiv-card">
                         {%- assign official = false -%}
                         {%- for version in guide.versions -%}
                             {%- if version.url == "https://kamori.goats.dev/Plugin/PluginMaster" -%}
@@ -34,7 +34,7 @@
                             <h4 class="index-item__title_en">Tags:&nbsp;{%- for tag in guide.tags -%}{{ tag.tag }}&nbsp;{%- endfor -%}</h4>
                         {%- endif -%}
                         {%- if guide.versions -%}
-                            <table style="z-index: 9" class="table-bordered table-dark table-striped text-light patch_table">
+                            <table style="z-index: 9" class="table-bordered table-dark table-striped text-light patch_table xiv-table">
                                 <thead><tr><th>Author</th><th>URL</th><th>Version</th></tr></thead>
                                 <tbody>
                                     {%- for version in guide.versions -%}

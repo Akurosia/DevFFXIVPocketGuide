@@ -5,12 +5,12 @@
         {% include head.html %}
     </head>
     <!-- ORIGIN: _layout/error -->
-    <body class="{{ page.pageClass }}">
+    <body class="xiv {{ page.pageClass }}" data-xiv-theme="Dark">
         <section class="section--error" style="background-image: url('{{ "/assets/img/guide_error.jpg" | prepend: site.baseurl }}');">
             <div class="error__content-wrapper">
                 <h1 class="error__title heading--01">404</h1>
                 <h3 class="error__subtitle heading--03" data-translate="Error_Text_Header">Uh oh! The Sylphs stole the page you were looking for!</h3>
-                <div class="error__notice">
+                <div class="error__notice xiv-notice xiv-notice--quest">
                     <h5 class="error__notice-title heading--05" data-translate="Error_Text_Info">Please Note: permalinks for our guides have recently changed.</h5>
                     <p class="error__notice-copy" data-translate="Error_Text_Main">If you arrived here through a bookmark, don't fear! Finding your guide on the homepage and updating your bookmark should resolve the issue.</p>
                     <p class="error__notice-copy"><strong data-translate="Error_Text_Common">Common Guides:</strong><br>
@@ -26,7 +26,7 @@
                     </p>
                 </div>
                 <div class="error__button-wrapper">
-                    <a href="{{ "/" | prepend: site.baseurl }}" title="Return to the Pocket Guide homepage." class="error__button button--small--white" data-translate="Error_Text_ReturnHome">Return Home</a>
+                    <a href="{{ "/" | prepend: site.baseurl }}" title="Return to the Pocket Guide homepage." class="error__button button--small--white xiv-button xiv-button--primary" data-translate="Error_Text_ReturnHome">Return Home</a>
                 </div>
             </div>
         </section>

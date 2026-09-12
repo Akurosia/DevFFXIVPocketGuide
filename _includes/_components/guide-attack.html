@@ -1,11 +1,5 @@
 <!-- Include from _includes/_components/guide-attack -->
-<div class="guide-metadata__menu-link guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--grid_attack
-            {%- if attack.attack_in_use == 'false' -%}--ignore
-            {%- elsif attack.dutyActions -%}--dutyAction
-            {%- elsif attack.combo -%}--combo
-            {%- elsif attack.variation -%}--variation
-            {%- else -%}--attack
-            {%- endif -%}" id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "attack_" | append: attack.title | slugify }}">
+<div class="guide-metadata__menu-link guide__entry-trigger guide__entry-trigger--attack guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--grid_attack {%- if attack.attack_in_use == 'false' -%}--ignore {%- elsif attack.dutyActions -%}--dutyAction {%- elsif attack.combo -%}--combo {%- elsif attack.variation -%}--variation {%- else -%}--attack {%- endif -%} xiv-accordion-trigger" aria-expanded="false" id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "attack_" | append: attack.title | slugify }}">
     <i class="Dropdown material-icons" {%- if attack.disable == 'true' -%}style="display: none;"{%- endif -%}><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <div class="Names">
         <span class="{%- if attack.damage_type == 'Magical' -%} attack-is-magic
@@ -35,13 +29,7 @@
 </div>
 
 <!-- _components/Guide-Attack "Content"======================================================= -->
-<div class="guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}
-            {%- if attack.attack_in_use == 'false' -%}--ignore
-            {%- elsif attack.dutyActions -%}--dutyAction
-            {%- elsif attack.combo -%}--combo
-            {%- elsif attack.variation -%}--variation
-            {%- else -%}--attack
-            {%- endif -%}" {%- if attack.disable == 'true' -%}style="display: none;"{%- endif -%}>
+<div class="guide__entry-content guide__entry-content--attack guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%} {%- if attack.attack_in_use == 'false' -%}--ignore {%- elsif attack.dutyActions -%}--dutyAction {%- elsif attack.combo -%}--combo {%- elsif attack.variation -%}--variation {%- else -%}--attack {%- endif -%} xiv-accordion-content" hidden {%- if attack.disable == 'true' -%}style="display: none;"{%- endif -%}>
     <div class="guide__accordion-copy-wrapper">
         {%- for status in attack.add_status -%}
             <h5 class="guide__attack-notes-title">Fügt Status

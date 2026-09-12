@@ -1,5 +1,5 @@
 <!-- Include from _includes/footer -->
-<footer class="site-footer">
+<footer class="site-footer xiv-panel">
     <div class="content-container">
         <p class="footer__copy">
             <span data-translate="Footer_ProducedBy">This site is produced by </span>
@@ -18,7 +18,7 @@
             </br>
             <span data-translate="Footer_OriginalPageLinks">Original Page Link: </span>
             <a href="https://ffxiv.guide/" title="Original Page Link" target="_blank" rel="noopener noreferrer">https://ffxiv.guide/</a>
-            <br><span data-translate="Footer_LastUpdated">Last updated: </span>{{ page.last_modified_at }}</span>
+            <br><span data-translate="Footer_LastUpdated">Last updated: </span>{{ page.last_modified_at | default: page.date | date: "%Y-%m-%d" }}</span>
             {%- if site.my_external_url != "" -%}
                 <br><span data-translate="Footer_ExternalPage">My external main page: </span>
                 <a href="{{ site.my_external_url }}" target="_blank" rel="noopener noreferrer">{{ site.my_external_url }}</a>
@@ -27,7 +27,7 @@
                 <br><span data-translate="Footer_GithubHostet">Github hosted version of this page: </span>
                 <a href="{{ site.github_url }}" target="_blank" rel="noopener noreferrer">{{ site.github_url }}</a>
             {%- endif -%}
-            <br><a href="https://github.com/Akurosia/DevFFXIVPocketGuide" target="_blank" rel="noopener noreferrer" title="Pocket Guide Development Repo!">
+            <br><a class="xiv-button xiv-button--ghost xiv-button--small" href="https://github.com/Akurosia/DevFFXIVPocketGuide" target="_blank" rel="noopener noreferrer" title="Pocket Guide Development Repo!">
                 <ion-icon name="logo-github"></ion-icon>
                 <span data-translate="Footer_ViewOnGithub">View Project on Github</span>
             </a>

@@ -1,9 +1,6 @@
 <!-- Include from _includes/_components/guide-debuff -->
 <!-- _components/Guide-Debuff "Button"======================================================= -->
-<div class="guide-metadata__menu-link guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}
-            {%- if debuff.debuff_in_use == 'false' -%}--ignore
-            {%- else -%}--debuff
-            {%- endif -%}" id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "debuff_" | append: debuff.title | slugify }}">
+<div class="guide-metadata__menu-link guide__entry-trigger guide__entry-trigger--debuff guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%} {%- if debuff.debuff_in_use == 'false' -%}--ignore {%- else -%}--debuff {%- endif -%} xiv-accordion-trigger" aria-expanded="false" id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "debuff_" | append: debuff.title | slugify }}">
     <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
 
     <img loading="lazy" class="Icon debuff_icon" src="{{site.imageurl}}/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
@@ -26,10 +23,7 @@
 </div>
 
 <!-- _components/Guide-Debuff "Content"======================================================= -->
-<div class="guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}
-            {%- if debuff.attack_in_use == 'false' -%}--ignore
-            {%- else -%}--debuff
-            {%- endif -%}" {%- if debuff.disable == 'true' -%}style="display: none;"{%- endif -%}>
+<div class="guide__entry-content guide__entry-content--debuff guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%} {%- if debuff.debuff_in_use == 'false' -%}--ignore {%- else -%}--debuff {%- endif -%} xiv-accordion-content" hidden {%- if debuff.disable == 'true' -%}style="display: none;"{%- endif -%}>
     <div class="guide__accordion-copy-wrapper">
         <!-- Standard Attacks -->
         {%- if debuff.description -%}

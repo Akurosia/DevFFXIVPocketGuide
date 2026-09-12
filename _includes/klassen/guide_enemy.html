@@ -1,7 +1,7 @@
 <!-- Include from _includes/klassen/guide-enemy -->
 <!-- Guide Adds ========================================================== -->
-<div class="guide__accordion">
-    <div class="guide__accordion-trigger--01-grid active" id="guide{{ x }}" {% if page.abbreviations == 'BST' %}data-guide-persistent{% endif %}>
+<div class="guide__accordion xiv-accordion">
+    <div class="guide__accordion-trigger--01-grid active xiv-accordion-trigger" id="guide{{ x }}" {% if page.abbreviations == 'BST' %}data-guide-persistent{% endif %}>
         <div class="Names">
             {% if page.abbreviations == 'BST' %}<i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>{% endif %}
             <span class="guide__accordion-trigger-title class" data-translate="Content_Title_{{ enemies[0].title }}">{{ enemies[0].title }}</span>
@@ -9,7 +9,7 @@
         </div>
     </div>
     <!-- Guide Event Accordion Content -->
-    <div class="guide__accordion-content--01 active" {% if page.abbreviations == 'BST' %}data-guide-persistent{% endif %}>
+    <div class="guide__accordion-content--01 active xiv-accordion-content" {% if page.abbreviations == 'BST' %}data-guide-persistent{% endif %}>
         <!-- Opens the Adds Loop -->
         {%- for enemy in enemies -%}
             {%- include klassen/guide_enemy_sequence.html -%}

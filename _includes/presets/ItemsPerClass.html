@@ -1,19 +1,19 @@
 <!-- Include from _includes/presets/ItemsPerClass -->
 <!-- Guide Notes =========================================================== -->
-<div class="guide__accordion">
-    <div class="guide__accordion-trigger--01-grid" id="guideNotes">
+<div class="guide__accordion xiv-accordion">
+    <div class="guide__accordion-trigger--01-grid xiv-accordion-trigger" id="guideNotes">
         <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
         <span class="Names">
             {% include helper/returnPropperName.html instanceType=page.instanceType %} Items
         </span>
     </div>
     <!-- Guide Event Accordion Content -->
-    <div class="guide__accordion-content--01">
+    <div class="guide__accordion-content--01 xiv-accordion-content">
         <!-- Opens the Notes Loop -->
         {%- for mechanic in page.mechanics -%}
             <div class="guide__accordion-copy-wrapper">
-                <div class="content table-responsive border-gold-metallic" id="div_items" style="display: table;">
-                    <table id="table_items" class="table table-bordered table-dark table-striped text-light patch_table" style="margin-bottom: 0px;">
+                <div class="content xiv-table-wrapper" id="div_items" style="display: table;">
+                    <table id="table_items" class="table table-bordered table-dark table-striped text-light patch_table xiv-table" style="margin-bottom: 0px;">
                         <thead>
                             <tr>
                                 <td>Category</td>

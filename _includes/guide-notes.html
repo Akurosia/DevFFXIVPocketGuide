@@ -1,14 +1,14 @@
 <!-- Include from _includes/guide-notes -->
 <!-- Guide Notes =========================================================== -->
-<div class="guide__accordion">
-    <div class="guide__accordion-trigger--01-grid" id="guideNotes">
+<div class="guide__accordion xiv-accordion">
+    <div class="guide__accordion-trigger--01-grid xiv-accordion-trigger" id="guideNotes">
         <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
         <span class="Names">
             {% include helper/returnPropperName.html instanceType=page.instanceType %} Notizen
         </span>
     </div>
     <!-- Guide Event Accordion Content -->
-    <div class="guide__accordion-content--01">
+    <div class="guide__accordion-content--01 xiv-accordion-content">
         <!-- Opens the Notes Loop -->
         {%- for mechanic in page.mechanics -%}
             {%- if mechanic.preset -%}

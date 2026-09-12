@@ -1,0 +1,76 @@
+/* Data-heavy utility pages. Keep these rules structural: controls, tables and
+ * notices themselves use ffxiv-css classes in the templates. */
+
+.bestiarium-shell { display:grid; grid-template-columns:minmax(0,1fr); gap:1rem; }
+.bestiarium-sidebar, .bestiarium-main { min-width:0; }
+.bestiarium-sidebar__title, .bestiarium-ranks__title, .bestiarium-header__label { color:var(--xiv-muted,#a7adb1); font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; }
+.bestiarium-category-grid, .bestiarium-ranks__list { display:grid; gap:.35rem; margin-top:.5rem; }
+.bestiarium-header { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; align-items:end; }
+.bestiarium-header__title { color:var(--xiv-gold-bright,#f0deb0); font:400 clamp(1.4rem,3vw,2.2rem)/1.2 Georgia,serif; }
+.bestiarium-header__meta { display:flex; flex-wrap:wrap; gap:.5rem; }
+.bestiarium-stat { min-width:7rem; padding:.55rem .7rem; border:1px solid #ffffff12; border-radius:4px; background:#0002; }
+.bestiarium-stat span { display:block; color:var(--xiv-muted,#a7adb1); font-size:.7rem; }
+.bestiarium-toolbar { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; margin-top:1rem; }
+.bestiarium-toolbar__hint { color:var(--xiv-muted,#a7adb1); font-size:.8rem; }
+.bestiarium-loading, .bestiarium-error { padding:1rem; }
+.bestiarium-error { color:var(--pg-danger); }
+.bestiarium-notes { margin-top:1rem; }
+
+#headDiv .form-inline, #gear_top .form-inline, .translate .form-inline { align-items:end; }
+#headDiv .form-inline > *, #gear_top .form-inline > * { flex:1 1 11rem; }
+#gearlist { display:grid; gap:.5rem; }
+
+.checkbox { display:inline-flex; align-items:center; gap:.35rem; }
+.checkbox input[type="checkbox"] { accent-color:var(--xiv-gold,#cab582); }
+.checkbox.white { color:#f0eee7; }
+.checkbox.red { color:#e99a95; }
+.checkbox.green { color:#acd19f; }
+.checkbox.blue { color:#9ed9ed; }
+.checkbox.purpel { color:#d2afe4; }
+
+.enemy-coverage__controls { display:flex; flex-wrap:wrap; gap:.75rem; align-items:end; }
+.enemy-coverage__cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(16rem,100%),1fr)); gap:.75rem; margin-block:1rem; }
+.enemy-coverage__table-wrap { max-width:100%; overflow-x:auto; }
+.enemy-coverage__loading, .enemy-coverage__error { padding:1rem; }
+.enemy-coverage__error { color:var(--pg-danger); }
+
+.mainquestsfinder, .quest-container, .quest-list { min-width:0; }
+.quest-list { display:grid; gap:.5rem; }
+.quest-item { padding:.65rem .8rem; border-left:3px solid var(--xiv-border,#69665b); background:#ffffff05; }
+.quest-dropdown { width:100%; }
+
+.gcrank_table, [class^="gcrank_table_"], [class^="hm_table_"] { max-width:100%; }
+
+.klassenjobgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(17rem,100%),1fr)); gap:.75rem; }
+.beastmaster-abilities, .beastmaster-captures { display:grid; gap:.75rem; }
+.beastmaster-entry { min-width:0; }
+
+/* Legacy single pages often have no wrapper. Make their root content sane. */
+body.settings .layout__wrapper > [section] { width:100% !important; max-width:var(--pg-content-width); margin-inline:auto; }
+body.settings .layout__wrapper > [section] + [section] { margin-top:1rem; }
+body.itemsets .layout__wrapper > table,
+body.gcrank .layout__wrapper > table,
+body.translate .layout__wrapper > table { width:100%; max-width:var(--pg-content-width); margin-inline:auto; }
+
+/* Keep item/art icons small even when their source is high resolution. */
+body.itemsets td img, body.gear td img, body.gcrank td img, body.quests td img {
+  width:4.5rem !important;
+  height:4.5rem !important;
+  object-fit:contain;
+}
+
+/* Generic utility page media should not stretch to viewport width. */
+.singlepage img:not(.role-icon):not(.attack_icon):not(.debuff_icon),
+.single_page img:not(.role-icon):not(.attack_icon):not(.debuff_icon),
+.container img:not(.role-icon):not(.attack_icon):not(.debuff_icon) {
+  max-height:34rem;
+  object-fit:contain;
+}
+
+.fullscreen-overlay { position:fixed; inset:0; z-index:500; display:grid; place-items:center; padding:1rem; background:#000d; }
+.fullscreen-overlay img { max-width:min(96vw,110rem); max-height:94vh; object-fit:contain; }
+
+@media (min-width:64rem) {
+  .bestiarium-shell { grid-template-columns:minmax(15rem,20rem) minmax(0,1fr); }
+  .bestiarium-sidebar { position:sticky; top:1rem; align-self:start; }
+}

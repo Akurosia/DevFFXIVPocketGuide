@@ -1,8 +1,8 @@
 <!-- Include from _includes/guide_enemy -->
 <!-- Guide Adds ========================================================== -->
-<div class="guide__accordion">
+<div class="guide__accordion xiv-accordion">
     <!-- Guide Section -->
-    <div class="guide__accordion-trigger--01-grid active" id="guide{{ x }}">
+    <div class="guide__accordion-trigger--01-grid xiv-accordion-trigger" id="guide{{ x }}">
         <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
         <div class="Names">
             {% include helper/returnPropperName.html instanceType=page.instanceType %} {{ x }}
@@ -10,13 +10,13 @@
         <div class="IdsHps"></div>
     </div>
     <!-- Guide Enemy -->
-    <div class="guide__accordion-content--01-grid active">
+    <div class="guide__accordion-content--01-grid xiv-accordion-content">
         {%- if x == "Map" && page.mapidnr -%}
             {%- include presets/maps.html mapidnr=page.mapidnr -%}
         {%- endif -%}
         <!-- Opens the Adds Loop -->
         {%- for enemy in enemies -%}
-            <div class="guide__accordion-trigger--02-grid" id="{{ y | append: "_" | append: enemy.title.en | slugify }}">
+            <div class="guide__accordion-trigger--02-grid xiv-accordion-trigger" id="{{ y | append: "_" | append: enemy.title.en | slugify }}">
                 <i class="Dropdown material-icons" {%- if enemy.attacks or enemy.debuffs or enemy.fates or enemy.text -%}{%- else -%}style="display: none;"{%- endif -%}><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
                 <div class="EnemyNames">
                     {%- assign enemy_name_en = enemy.title.en -%}
@@ -82,7 +82,7 @@
                     {%- endif -%}
                 {%- endunless -%}
             </div>
-            <div class="guide__accordion-content--02">
+            <div class="guide__accordion-content--02 xiv-accordion-content">
                 {%- include guide_enemy_text.html -%}
                 {%- include guide_enemy_sequence.html -%}
             </div>

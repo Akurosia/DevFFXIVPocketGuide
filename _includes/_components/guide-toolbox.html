@@ -1,11 +1,11 @@
 <!-- Include from _includes/_components/guide-toolbox -->
 <!-- Event Mechanics -->
 <div class="guide__toolbox-wrapper">
-    <div class="guide__accordion-trigger--04--grid" id="{{ enemy.id | append: "-" | append: phase.phase | append: "Toolbox" | slugify }}">
+    <div class="guide__accordion-trigger--04--grid xiv-accordion-trigger" id="{{ enemy.id | append: "-" | append: phase.phase | append: "Toolbox" | slugify }}">
         <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
         <h3 class="Names guide__accordion-trigger-title">Toolbox</h3>
     </div>
-    <div class="guide__accordion-content--04">
+    <div class="guide__accordion-content--04 xiv-accordion-content">
         <hr/>
         {%- for toolbox in phase.toolbox -%}
             <a class="guide__toolbox-title" target="_blank" rel="noopener noreferrer" href="{{ toolbox.link }}" alt="{{ toolbox.name }}">{{ toolbox.name }}</a>

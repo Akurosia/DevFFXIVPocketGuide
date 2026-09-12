@@ -833,7 +833,8 @@ additionalJobIcons = {
     "GRS": "062109_hr1",
     "PLA": "062110_hr1",
     "GLD": "062111_hr1",
-    "BMA": "062136_hr1"
+    "BMA": "062136_hr1",
+    "BST": "062143_hr1"
 }
 def getIconForJob(job_abb):
     global bannertimeline

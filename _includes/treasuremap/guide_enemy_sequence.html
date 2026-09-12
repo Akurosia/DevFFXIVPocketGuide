@@ -2,14 +2,14 @@
 <!-- Opens the Sequence Loop -->
 
 
-<div class="guide-metadata__menu-link guide__accordion-trigger--03--grid" id="{{ "map_" | append: zone.zonename | slugify }}" onclick="setMapIFrame({{zone.mapid}})">
+<div class="guide-metadata__menu-link guide__accordion-trigger--03--grid xiv-accordion-trigger" id="{{ "map_" | append: zone.zonename | slugify }}" onclick="setMapIFrame({{zone.mapid}})">
     <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <div class="Names klassen">
         <h3 class="guide__accordion-trigger-title" data-translate="Map_Section_{{zone.zonename}}">{{ zone.zonename }}</h3>
     </div>
 </div>
 
-<div class="guide__accordion-content--03">
+<div class="guide__accordion-content--03 xiv-accordion-content">
     {%- if zone.subimage -%}
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
         {%- for image in zone.subimage -%}

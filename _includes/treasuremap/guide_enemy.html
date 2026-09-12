@@ -1,7 +1,7 @@
 <!-- Include from _includes/treasuremap/guide-enemy -->
 <!-- Guide Adds ========================================================== -->
-<div class="guide__accordion">
-    <div class="guide__accordion-trigger--01-grid active" id="guide{{ x }}">
+<div class="guide__accordion xiv-accordion">
+    <div class="guide__accordion-trigger--01-grid active xiv-accordion-trigger" id="guide{{ x }}">
         <div class="Names">
             <span class="guide__accordion-trigger-title class" data-translate="Map_Title_{{ x }}">{{ x }}</span>
             <span class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-title_en xtitle">{{ x }}</span>
@@ -11,7 +11,7 @@
     {%- assign mapidnr = first_zone.mapid -%}
     {%- include presets/maps.html mapidnr=mapidnr -%}
     <!-- Guide Event Accordion Content -->
-    <div class="guide__accordion-content--01 active">
+    <div class="guide__accordion-content--01 active xiv-accordion-content">
         <!-- Opens the Adds Loop -->
         {%- for zone in zones -%}
             {%- include treasuremap/guide_enemy_sequence.html -%}

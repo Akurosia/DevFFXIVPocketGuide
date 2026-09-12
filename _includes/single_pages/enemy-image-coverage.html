@@ -15,8 +15,8 @@
 
         <div class="enemy-coverage__controls">
             <label for="enemyCoverageSearch" data-translate="EnemyCoverage_FilterLabel">Filter pages or enemies</label>
-            <input id="enemyCoverageSearch" type="search" placeholder="Page, enemy name, path, or enemy ID" data-placeholder-translate="EnemyCoverage_FilterPlaceholder">
-            <select id="enemyCoverageStatus" aria-label="Coverage status">
+            <input id="enemyCoverageSearch" type="search" placeholder="Page, enemy name, path, or enemy ID" data-placeholder-translate="EnemyCoverage_FilterPlaceholder" class="xiv-input">
+            <select id="enemyCoverageStatus" aria-label="Coverage status" class="xiv-select">
                 <option value="all" data-translate="EnemyCoverage_AllPages">All pages</option>
                 <option value="missing" data-translate="EnemyCoverage_MissingPages">Pages with missing renders</option>
                 <option value="complete" data-translate="EnemyCoverage_CompletePages">Fully covered pages</option>
@@ -25,7 +25,7 @@
 
         <h2 data-translate="EnemyCoverage_ByPage">Coverage by page</h2>
         <div class="enemy-coverage__table-wrap">
-            <table class="enemy-coverage__table">
+            <table class="enemy-coverage__table xiv-table">
                 <thead><tr><th data-translate="EnemyCoverage_Page">Page</th><th data-translate="EnemyCoverage_Covered">Covered</th><th data-translate="EnemyCoverage_NoId">No ID</th><th data-translate="EnemyCoverage_Coverage">Coverage</th></tr></thead>
                 <tbody id="enemyCoveragePages"></tbody>
             </table>
@@ -34,7 +34,7 @@
         <h2 data-translate="EnemyCoverage_UncoveredEntries">Uncovered enemy entries</h2>
         <p id="enemyCoverageMissingCount"></p>
         <div class="enemy-coverage__table-wrap">
-            <table class="enemy-coverage__table">
+            <table class="enemy-coverage__table xiv-table">
                 <thead><tr><th data-translate="EnemyCoverage_Enemy">Enemy</th><th data-translate="EnemyCoverage_Ids">IDs</th><th data-translate="EnemyCoverage_Section">Section</th><th data-translate="EnemyCoverage_Page">Page</th></tr></thead>
                 <tbody id="enemyCoverageMissing"></tbody>
             </table>

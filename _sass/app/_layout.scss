@@ -1,0 +1,116 @@
+.layout {
+  width:100%;
+  min-width:0;
+  min-height:100vh;
+  overflow-x:clip;
+}
+.layout__wrapper {
+  min-width:0;
+  min-height:100vh;
+  width:100%;
+  max-width:none;
+  padding:var(--pg-page-pad) var(--pg-page-pad) 4rem;
+}
+
+/* Main application pages fill the complete canvas. */
+.layout__wrapper > :where(.site-header-shell,.search,.index,.guide-layout,.site-footer) {
+  display:block;
+  width:100% !important;
+  max-width:none !important;
+  margin-inline:0 !important;
+}
+.layout__wrapper > :where(.bestiarium-page,.singlepage,.single_page,.about__wrapper,.container,.container2) {
+  width:100%;
+  max-width:var(--pg-content-width);
+  margin-inline:auto;
+}
+
+.site-header-shell { margin-bottom:1rem; }
+.site-header__grid {
+  position:relative;
+  display:grid;
+  grid-template-rows:1fr auto;
+  align-items:end;
+  width:100%;
+  min-height:var(--pg-header-height);
+  overflow:hidden;
+  padding:clamp(1.15rem,1.8vw,1.8rem) clamp(1.25rem,2vw,2.1rem);
+  border:1px solid var(--pg-border);
+  border-radius:var(--pg-radius);
+  background-color:var(--xiv-surface-deep,#202020);
+  background-position:center 38%;
+  background-size:cover;
+  box-shadow:0 10px 28px #0005;
+  isolation:isolate;
+}
+.site-header__grid::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(90deg,rgba(10,10,10,.7) 0%,rgba(10,10,10,.35) 50%,rgba(10,10,10,.18) 100%),
+             linear-gradient(to top,rgba(10,10,10,.84) 0%,transparent 65%);
+}
+.site-header__item-a {
+  min-width:0;
+  width:100%;
+  max-width:none;
+  text-align:center;
+}
+.site-header__title,.site-header__guide-title {
+  margin:0 auto;
+  max-width:min(40ch,100%);
+  padding:0 1rem .55rem;
+  color:#fff7df;
+  border-bottom:1px solid #ffffff30;
+  font:400 clamp(2rem,2.8vw,3.25rem)/1.04 Georgia,serif;
+  letter-spacing:.005em;
+  text-align:center;
+  text-shadow:0 2px 9px #000;
+}
+.site-header__guide-title_en { margin:.4rem 0 0; color:#ded8c9; font-size:clamp(.95rem,1.3vw,1.15rem); font-weight:400; text-align:center; }
+.site-header__links {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:.45rem .85rem;
+  margin:.8rem 0 0;
+  padding:.6rem 0 0;
+  border-top:1px solid #ffffff1d;
+  list-style:none;
+}
+.site-header__links a { display:inline-flex; align-items:center; gap:.35rem; padding:.2rem 0; color:#f3e7c7; font-size:.8rem; text-decoration:none; }
+.site-header__links a:hover { color:#fff; }
+
+.content_btn { position:absolute; top:50%; z-index:4; transform:translateY(-50%); min-width:2.35rem; padding-inline:.6rem; }
+.content_btn_next { left:.5rem; }
+.content_btn_prev { right:.5rem; }
+
+.about__wrapper { display:grid; grid-template-columns:minmax(0,1fr); gap:var(--pg-gap); }
+.about__intro,.about__announcements,.about__roadmap { min-width:0; }
+.about__roadmap { grid-column:1 / -1; }
+.announcement__list { margin:0; padding-left:1.25rem; }
+.roadmap__wrapper { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(18rem,100%),1fr)); gap:1rem; }
+.roadmap__object { min-width:0; }
+.site-footer { margin-top:2rem; padding:1rem 0; }
+.site-footer .content-container { max-width:none; padding:1rem 1.25rem; border-top:1px solid var(--pg-border); }
+.footer__copy { margin:0; color:var(--xiv-muted,#a7adb1); font-size:.8rem; line-height:1.7; }
+
+.section--error { display:grid; min-height:100vh; place-items:center; padding:1rem; background-position:center; background-size:cover; }
+.error__content-wrapper { width:min(44rem,100%); text-align:center; }
+.error__notice { margin-block:1rem; text-align:left; }
+.error__button-wrapper { margin-top:1rem; }
+
+@media (min-width:64rem) {
+  .layout__wrapper {
+    width:calc(100vw - var(--pg-sidebar-width));
+    max-width:none;
+    margin-left:var(--pg-sidebar-width);
+    padding:var(--pg-page-pad) clamp(1rem,1.5vw,1.7rem) 3rem;
+  }
+  .about__wrapper { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:40rem) {
+  .site-header__grid { min-height:8rem; padding:1rem; }
+  .site-header__links { gap:.35rem .7rem; }
+}

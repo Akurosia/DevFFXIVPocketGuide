@@ -1,0 +1,130 @@
+/* Pocket Guide application layer. Generic UI components belong to ffxiv-css. */
+:root {
+  --pg-sidebar-width: 16rem;
+  --pg-content-width: 112rem;
+  --pg-page-pad: clamp(1rem, 1.7vw, 1.75rem);
+  --pg-gap: clamp(.9rem, 1.25vw, 1.25rem);
+  --pg-header-height: clamp(9rem, 11vw, 11.5rem);
+  --pg-radius: 8px;
+  --pg-border: color-mix(in srgb, var(--xiv-border, #69665b) 72%, transparent);
+  --pg-surface: color-mix(in srgb, var(--xiv-surface, #242424) 90%, #000 10%);
+  --pg-surface-2: color-mix(in srgb, var(--xiv-surface-deep, #1c1c1c) 92%, #000 8%);
+  --pg-danger: #f39b95;
+  --pg-warning: #e7c477;
+  --pg-success: #a7d391;
+}
+
+html { min-height:100%; background:var(--xiv-bg,#161616); }
+body.xiv {
+  min-height:100vh;
+  margin:0;
+  overflow-x:hidden;
+  background:
+    linear-gradient(180deg, color-mix(in srgb,var(--xiv-bg,#161616) 94%,#000 6%), var(--xiv-bg,#161616));
+  color:var(--xiv-text,#e8e5dc);
+  font-size:15px;
+  line-height:1.5;
+}
+body.xiv *, body.xiv *::before, body.xiv *::after { box-sizing:border-box; }
+body.xiv img, body.xiv video, body.xiv iframe { max-width:100%; }
+body.xiv img { height:auto; }
+body.xiv a { color:var(--xiv-gold-bright,#f0deb0); }
+body.xiv a:hover, body.xiv a:focus-visible { color:#fff7dc; }
+body.xiv :where(h1,h2,h3,h4,h5,h6) { overflow-wrap:anywhere; }
+body.xiv :where([hidden]) { display:none !important; }
+body.xiv .xiv-button { border-radius:5px; }
+
+/* Generic utility wrappers stay controlled. Main index/guide pages are explicitly full-width in _layout.scss. */
+.content-container,
+.singlepage,
+.single_page,
+.container,
+.container2,
+.about__wrapper,
+.site-footer > .content-container {
+  width:100%;
+  max-width:var(--pg-content-width);
+  margin-inline:auto;
+}
+.layout__wrapper > :where(header,main,article,section,footer,form) { min-width:0; }
+
+.layout__wrapper :where(table,pre,code,iframe,video,canvas,svg) { max-width:100%; }
+.layout__wrapper :where(pre,.xiv-table-wrapper) { overflow-x:auto; }
+.layout__wrapper table { border-collapse:collapse; }
+.layout__wrapper td, .layout__wrapper th { overflow-wrap:anywhere; }
+
+.akuflex,.flex-box,.form-inline { display:flex; flex-wrap:wrap; align-items:center; gap:.75rem; }
+.box,.col,.col-md { min-width:0; flex:1 1 16rem; }
+.med-full,.small-full,.small-1of1 { flex-basis:100%; }
+.small-1of2 { flex-basis:calc(50% - .75rem); }
+.small-1of3 { flex-basis:calc(33.333% - .75rem); }
+.small-2of3 { flex-basis:calc(66.666% - .75rem); }
+.small-1of4 { flex-basis:calc(25% - .75rem); }
+.small-3of4 { flex-basis:calc(75% - .75rem); }
+.block { display:block; }
+.noblock { display:inline; }
+.text-center { text-align:center; }
+.text-right { text-align:right; }
+.w-100 { width:100%; }
+.padded-top { padding-top:2rem; }
+.padded-right { padding-right:2rem; }
+.padded-bottom { padding-bottom:2rem; }
+.padded-left { padding-left:2rem; }
+.margin-top { margin-top:2rem; }
+.margin-bottom { margin-bottom:2rem; }
+.margin-stacked { margin-block:2rem; }
+
+.heading--01,.heading--02,.heading--03,.heading--04,.heading--05 {
+  margin:0 0 .75rem;
+  color:var(--xiv-gold-bright,#f0deb0);
+  font-family:Georgia,serif;
+  font-weight:400;
+  line-height:1.2;
+}
+.heading--01 { font-size:clamp(2rem,4vw,3.2rem); }
+.heading--02 { font-size:clamp(1.5rem,2.7vw,2.1rem); }
+.heading--03 { font-size:1.35rem; }
+.heading--04 { font-size:1.15rem; }
+.heading--05 { font-size:1rem; }
+.text-light { color:var(--xiv-text,#e8e5dc) !important; }
+.bg-charcoal { background:var(--xiv-surface-deep,#202020) !important; }
+.mx-1 { margin-inline:.25rem !important; }
+.my-1 { margin-block:.25rem !important; }
+.my-4 { margin-block:1.5rem !important; }
+
+::-webkit-scrollbar { width:9px; height:9px; }
+::-webkit-scrollbar-track { background:var(--xiv-bg,#181818); }
+::-webkit-scrollbar-thumb { background:#776a4b; border:2px solid var(--xiv-bg,#181818); border-radius:6px; }
+
+.lang-toggle { display:none; }
+.flags_img {
+  display:inline-block;
+  width:26px;
+  height:20px;
+  padding:0;
+  border:0;
+  background-repeat:no-repeat;
+  background-color:transparent;
+  cursor:pointer;
+}
+.iso_US { background-position:-54px -21px; }
+.iso_DE { background-position:-54px 0; }
+.iso_FR { background-position:-27px 0; }
+.iso_JP { background-position:0 -21px; }
+
+/* Stable icon boxes prevent source image resolution from changing layout. */
+.attack-is-magic { color:#9ed9ed; }
+.attack-is-physical { color:#e7ad6a; }
+.attack_icon { width:2.75rem !important; height:2.75rem !important; margin-right:.65rem; object-fit:contain; }
+.debuff_icon { width:2.5rem !important; height:2.5rem !important; margin:-.25rem .35rem 0 0; object-fit:contain; }
+.fate_icon { width:3rem !important; height:3rem !important; object-fit:contain; }
+.group-icon { display:inline-flex; flex-wrap:wrap; align-items:center; gap:.25rem; }
+.group-icon > img { width:2.35rem !important; height:2.35rem !important; object-fit:contain; }
+.role-icon { width:2.35rem !important; height:2.35rem !important; object-fit:contain; flex:0 0 auto; }
+.ex-icon { width:auto !important; max-width:13rem !important; height:3.35rem !important; margin:0; object-fit:contain; object-position:left center; }
+.tag-icon { width:auto !important; height:1.2rem !important; object-fit:contain; }
+.link-favicon { width:2.35rem !important; height:2.35rem !important; object-fit:contain; }
+
+@media (max-width:47.99rem) {
+  .small-1of2,.small-1of3,.small-2of3,.small-1of4,.small-3of4 { flex-basis:100%; }
+}

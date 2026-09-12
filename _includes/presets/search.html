@@ -24,12 +24,12 @@
     <form class="search__form">
         <label for="guideFilter" data-translate="Searchbar_Example_Text">Nach einem Guide suchen...</label>
         <div class="expansion-toggles">
-            <input id="guideFilter" placeholder="{{searchPrefill2}}" type="text"/>
+            <input id="guideFilter" placeholder="{{searchPrefill2}}" type="text" class="xiv-input"/>
             {%- assign my_array = site.ffxiv_expansion_list | split: ',' -%}
             {%- for x in my_array -%}
                 {% include helper/handle_version_switchcase.html %}
                 <!-- Example: {{x_title}} -->
-                <button type="button" class="expansion-toggle active" data-expansion="{{x_shortid}}" title="{{x_title}}">
+                <button type="button" class="expansion-toggle active xiv-button xiv-button--icon-square" data-expansion="{{x_shortid}}" title="{{x_title}}">
                     <img loading="lazy" class="role-icon" src="{{site.imageurl}}/{{expacicon}}" alt="{{x_title}}" onerror="handleExpansionAssetError('{{ x_shortid }}')">
                 </button>
             {%- endfor -%}

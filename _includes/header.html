@@ -28,15 +28,15 @@
         <div>
             {%- if page.next_slug -%}
                 <a id="next_slug" href="{{ page.next_slug | prepend: site.baseurl }}.html" style="display: none;"/></a>
-                <button class="content_btn content_btn_next" onclick="document.getElementById('next_slug').click()" title="{{ page.next_slug }}"> < </button>
+                <button class="content_btn content_btn_next xiv-button xiv-button--small" onclick="document.getElementById('next_slug').click()" title="{{ page.next_slug }}"> < </button>
             {%- endif -%}
             {%- if page.previous_slug -%}
                 <a id="pref_slug" href="{{ page.previous_slug | prepend: site.baseurl }}.html" style="display: none;"></a>
-                <button class="content_btn content_btn_prev" onclick="document.getElementById('pref_slug').click()" title="{{ page.previous_slug }}"> > </button>
+                <button class="content_btn content_btn_prev xiv-button xiv-button--small" onclick="document.getElementById('pref_slug').click()" title="{{ page.previous_slug }}"> > </button>
             {%- endif -%}
         </div>
         <div class="site-header__item-a">
-            <h1 class="{%- if page.page_type == 'index' or page.page_type == 'guide' -%}site-header__title{%- else -%}site-header__guide-title{%- endif -%}">
+            <h1 class="{%- if page.page_type == 'index' or page.page_type == 'guide' -%}site-header__title xiv-title{%- else -%}site-header__guide-title xiv-title{%- endif -%}">
                 <span data-translate="Header_CatTitle_{{page.page_category}}">
                     {%- if page.page_category == "all" -%}                  The FFXIV Pocket Guide
                     {%- elsif page.page_category == "dungeons" -%}          Dungeons
@@ -84,13 +84,13 @@
                     {%- if page.difficulty -%}
                         {%- if page.difficulty != "Normal" -%}
                             <span class
-                                {%- if page.difficulty == "Extrem" -%}          ="extreme"
-                                {%- elsif page.difficulty == "Schwer" -%}       ="hard"
-                                {%- elsif page.difficulty == "Traumprüfung" -%} ="unreal"
-                                {%- elsif page.difficulty == "Episch" -%}       ="savage"
-                                {%- elsif page.difficulty == "Normal" -%}       ="normal"
-                                {%- elsif page.difficulty == "Fatal" -%}        ="ultimate"
-                                {%- elsif page.difficulty == "Chaotisch" -%}    ="chaos"
+                                {%- if page.difficulty == "Extrem" -%}          ="extreme xiv-badge xiv-badge--red"
+                                {%- elsif page.difficulty == "Schwer" -%}       ="hard xiv-badge xiv-badge--blue"
+                                {%- elsif page.difficulty == "Traumprüfung" -%} ="unreal xiv-badge xiv-badge--blue"
+                                {%- elsif page.difficulty == "Episch" -%}       ="savage xiv-badge xiv-badge--red"
+                                {%- elsif page.difficulty == "Normal" -%}       ="normal xiv-badge xiv-badge--green"
+                                {%- elsif page.difficulty == "Fatal" -%}        ="ultimate xiv-badge xiv-badge--red"
+                                {%- elsif page.difficulty == "Chaotisch" -%}    ="chaos xiv-badge xiv-badge--red"
                                 {%- endif -%}
                             >
                             <span class="lang-toggle lang-toogle-de" data-translate="Header_{{ page.difficulty }}"> ({{ page.difficulty }})</span>

@@ -1,0 +1,714 @@
+/* Content composition only. Generic controls continue to use ffxiv-css. */
+.search {
+  margin-bottom:1.2rem;
+  padding:.75rem .85rem;
+  border:1px solid color-mix(in srgb,var(--pg-border) 80%,transparent);
+  border-radius:var(--pg-radius);
+  background:color-mix(in srgb,var(--pg-surface-2) 86%,transparent);
+}
+.search__form { display:grid; gap:.55rem; width:100%; }
+.search__form > label { color:var(--xiv-muted); font-size:.76rem; font-weight:600; }
+.expansion-toggles {
+  display:grid;
+  grid-template-columns:minmax(16rem,1fr) repeat(7,2.55rem);
+  gap:.45rem;
+  align-items:center;
+}
+.expansion-toggles .xiv-input { min-height:2.55rem; }
+.expansion-toggle { width:2.55rem; min-width:2.55rem; height:2.55rem; min-height:2.55rem; padding:.2rem; }
+.expansion-toggle img { width:100% !important; height:100% !important; object-fit:contain; }
+.expansion-toggle:not(.active) { opacity:.46; filter:saturate(.4); }
+
+.index { display:grid; gap:1rem; width:100%; }
+.index-divider {
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  min-height:6.2rem;
+  margin-top:.8rem;
+  padding:.35rem 0 .7rem;
+  border-bottom:1px solid var(--pg-border);
+}
+.index-divider__title {
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  gap:.85rem;
+  width:100%;
+  margin:0;
+  min-width:0;
+  text-align:center;
+}
+.index-divider__title .role-icon { width:3rem !important; height:3rem !important; flex:0 0 3rem; }
+.index-divider__logo-frame {
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  width:min(24rem,68vw);
+  height:5.4rem;
+  overflow:hidden;
+}
+.index-divider__logo-frame .ex-icon {
+  width:100% !important;
+  max-width:none !important;
+  height:100% !important;
+  object-fit:contain;
+  object-position:center bottom;
+  transform:scale(2) translateY(5%);
+  transform-origin:center bottom;
+}
+.index__list {
+  display:grid;
+  width:100%;
+  grid-template-columns:repeat(auto-fill,minmax(min(15.5rem,100%),1fr));
+  gap:.9rem;
+}
+.summary { min-width:0; width:100%; }
+.index-item__link {
+  position:relative;
+  display:flex;
+  width:100%;
+  min-height:10.75rem;
+  aspect-ratio:16 / 8.5;
+  isolation:isolate;
+  overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--xiv-border) 78%,transparent);
+  border-radius:6px;
+  text-decoration:none !important;
+  box-shadow:0 5px 16px #0003;
+  transition:transform .15s ease,border-color .15s ease,box-shadow .15s ease;
+}
+.index-item__link:hover { transform:translateY(-2px); border-color:var(--xiv-gold); box-shadow:0 9px 22px #0006; }
+.index-item__background {
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background-position:center;
+  background-size:cover;
+  filter:brightness(.58) saturate(.94);
+  transition:filter .15s ease,transform .18s ease;
+}
+.index-item__link::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(to top,rgba(8,8,8,.98) 0%,rgba(8,8,8,.82) 34%,rgba(8,8,8,.28) 65%,rgba(8,8,8,.02) 100%);
+  pointer-events:none;
+}
+.index-item__link:hover .index-item__background { filter:brightness(.7) saturate(1); transform:scale(1.025); }
+.index-item__body.xiv-card-body {
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  align-items:end;
+  align-self:stretch;
+  width:100%;
+  gap:.7rem;
+  margin-top:auto;
+  padding:.9rem 1rem;
+  background:transparent;
+}
+.index-item__body--text-only { grid-template-columns:minmax(0,1fr); }
+.SummaryIcon { width:3rem !important; height:3rem !important; object-fit:contain; align-self:end; filter:drop-shadow(0 2px 3px #0009); }
+.SummaryName { min-width:0; align-self:end; text-align:center; }
+.index-item__title { margin:0; color:#fff0c5; font:600 .95rem/1.28 var(--xiv-font); text-align:center; text-shadow:0 1px 4px #000; }
+.index-item__title_en { margin:.18rem 0 0; color:#dedbd4; font-size:.72rem; line-height:1.3; text-align:center; text-shadow:0 1px 3px #000; }
+.index-null-state { padding:2rem; text-align:center; }
+.index-null-state__title { margin-top:0; }
+
+.guide-layout { display:grid; grid-template-columns:minmax(0,1fr); gap:1rem; }
+.guide-content,.guide-metadata { min-width:0; }
+.guide-content { overflow:hidden; }
+.guide-metadata {
+  border:1px solid var(--pg-border);
+  border-radius:var(--pg-radius);
+  background:var(--pg-surface-2);
+}
+.guide-metadata__wrapper { display:grid; gap:.3rem; padding:.8rem; }
+.guide-metadata__subtitle {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:center;
+  gap:.45rem .7rem;
+  margin:0;
+  padding:.5rem 0;
+  border-bottom:1px solid #ffffff12;
+  color:var(--xiv-muted);
+  font:400 .78rem/1.4 var(--xiv-font);
+}
+.guide-metadata__subtitle > :last-child { color:var(--xiv-text); }
+.guide-metadata__video-link { display:block; margin-bottom:.5rem; }
+
+.guide__accordion {
+  margin-bottom:.75rem;
+  overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--xiv-border) 78%,transparent);
+  border-radius:6px;
+  background:var(--xiv-surface-deep);
+}
+.guide__accordion .xiv-accordion-trigger {
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+  width:100%;
+  min-height:3rem;
+  padding:.78rem 1rem;
+  color:var(--xiv-text);
+  background:var(--xiv-surface);
+  border:0;
+  text-align:left;
+  font:500 .9rem var(--xiv-font);
+  cursor:pointer;
+}
+.guide__accordion .xiv-accordion-trigger::before {
+  content:'▸';
+  display:block;
+  flex:0 0 auto;
+  color:var(--xiv-gold);
+  transition:transform .16s ease;
+}
+.guide__accordion .xiv-accordion-trigger.active::before { transform:rotate(90deg); }
+.guide__accordion .xiv-accordion-trigger:hover { background:var(--xiv-selection); color:var(--xiv-gold-bright); }
+.guide__accordion .xiv-accordion-content {
+  display:none;
+  padding:.9rem 1rem 1rem 2.65rem;
+  color:var(--xiv-text);
+  border-top:1px solid var(--xiv-border);
+}
+.guide__accordion .xiv-accordion-content.active { display:block; }
+.guide__accordion .xiv-accordion-content .xiv-accordion-content { padding:.8rem .9rem .9rem 2.25rem; }
+.guide__accordion-trigger-title,.guide__accordion-title { margin:0; color:var(--xiv-gold-bright); font-family:Georgia,serif; font-weight:400; }
+.guide__accordion-trigger-subtitle,.guide__accordion-trigger-vartitle,.guide__accordion-trigger-id { color:var(--xiv-muted); font-size:.76rem; }
+.Dropdown { display:none !important; }
+.guide__accordion-copy-wrapper { min-width:0; }
+.guide__accordion-trigger--02-grid .EnemyNames,
+.guide__accordion-trigger--01-grid .Names,
+.guide__accordion-trigger--03-grid .Names { min-width:0; flex:1 1 auto; }
+.guide__accordion-trigger--02-grid .guide__enemy-images { margin-left:auto; }
+
+.guide__accordion-tag-wrapper,.guide__combo-tag-wrapper,.guide-level-filter { display:flex; flex-wrap:wrap; gap:.35rem; }
+[class*="guide__accordion-tag--"],[class*="guide__combo-tag--"] {
+  display:inline-flex;
+  align-items:center;
+  gap:.25rem;
+  padding:.18rem .52rem;
+  border:1px solid color-mix(in srgb,var(--xiv-gold) 35%,transparent);
+  border-radius:4px;
+  background:color-mix(in srgb,var(--xiv-gold) 8%,transparent);
+  color:var(--xiv-gold-bright);
+  font-size:.7rem;
+}
+
+.guide__accordion-trigger--02-grid .guide__enemy-images { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:.35rem; width:auto; max-width:15rem; margin:0; }
+.guide__accordion-trigger--02-grid .guide__enemy-image { width:3.75rem !important; height:3.75rem !important; max-width:3.75rem; object-fit:contain; object-position:center; }
+
+.guide__image-list,.guide__attack-image-list,.guide__attack-video-list {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(18rem,100%),1fr));
+  gap:.85rem;
+  margin:.8rem 0;
+  padding:0;
+  list-style:none;
+}
+.guide__image-list img,.guide__attack-image-item img {
+  display:block;
+  width:100%;
+  max-height:36rem;
+  object-fit:contain;
+  border:1px solid #ffffff10;
+  border-radius:5px;
+  background:#0003;
+}
+.guide__enemy-image--placeholder,.guide__enemy-images--missing { opacity:.55; }
+
+.guide__alerts-list,.guide__attack-notes-list,.guide__mechanics-list,.guide__script-list { display:grid; gap:.5rem; margin:.5rem 0 0; padding:0; list-style:none; }
+.guide__alerts-item,.guide__attack-notes-item,.guide__mechanics-item { min-width:0; }
+.guide__toolbox-wrapper,.guide__attack-notes-wrapper,.guide__mechanics-wrapper,.guide__text-notes-wrapper,.guide__script-wrapper { margin-top:.75rem; }
+.guide__toolbox-title,.guide__attack-notes-title,.guide__mechanics-title { margin:0 0 .5rem; }
+.guide__debuff_description,.guide__text_description { line-height:1.62; }
+.guide__content__wip { margin-bottom:1rem; }
+.guide__content__wip__title { margin:0; }
+.difficulty,.extreme,.hard,.unreal,.savage,.ultimate,.chaos,.normal { vertical-align:middle; }
+
+.guide-metadata__menu,.guide-metadata__submenu { margin:0; padding:0; list-style:none; }
+.guide-metadata__menu { display:none; padding:.75rem; }
+.guide-metadata__menu li { margin:.4rem 0; }
+.guide-metadata__submenu { padding-left:1rem; color:var(--xiv-muted); }
+.guide-metadata__menu-link,.guide-metadata__menu-link--new { font-size:.85rem; }
+.guide__variation-attack-seperator { margin-top:.75rem; padding:.75rem; border-top:1px solid var(--xiv-border); }
+.variation_container { display:flex; flex-wrap:wrap; gap:1rem; }
+
+@media (max-width:74rem) {
+  .index__list { grid-template-columns:repeat(auto-fit,minmax(min(15rem,100%),1fr)); }
+}
+@media (max-width:62rem) {
+  .expansion-toggles { grid-template-columns:repeat(7,minmax(2.35rem,1fr)); }
+  .expansion-toggles > .xiv-input { grid-column:1 / -1; }
+  .expansion-toggle { width:100%; min-width:0; }
+}
+@media (max-width:40rem) {
+  .search { padding:.65rem; }
+  .index__list { grid-template-columns:1fr; }
+  .index-item__link { aspect-ratio:auto; min-height:9.5rem; }
+  .guide__accordion-trigger--02-grid .guide__enemy-images { grid-column:2; justify-content:flex-start; max-width:100%; }
+  .guide__accordion-trigger--02-grid .guide__enemy-image { width:3rem !important; height:3rem !important; max-width:3rem; }
+}
+@media (min-width:78rem) {
+  .guide-layout { grid-template-columns:minmax(16rem,19rem) minmax(0,1fr); align-items:start; }
+  .guide-metadata { position:sticky; top:1rem; max-height:calc(100vh - 2rem); overflow:auto; }
+}
+
+
+/* Wide-screen composition and visual polish. */
+.search, .index, .guide-layout { min-width:0; }
+.index-divider:first-of-type { margin-top:.1rem; }
+.index-divider__title { max-width:none; }
+.index-divider__title .role-icon { filter:drop-shadow(0 2px 4px #0009); }
+.index-item__body.xiv-card-body { min-height:100%; }
+.index-item__title { font-size:.9rem; }
+.index-item__title_en { opacity:.9; }
+
+.guide-content.xiv-panel { padding:clamp(.8rem,1.2vw,1.25rem); }
+.guide__accordion { box-shadow:none; }
+.guide__accordion + .guide__accordion { margin-top:.7rem; }
+.guide__accordion .xiv-accordion-trigger { border-radius:0; }
+.guide__accordion .xiv-accordion-content { background:color-mix(in srgb,var(--xiv-surface-deep) 88%,#000 12%); }
+.guide__accordion-trigger--02-grid.xiv-accordion-trigger { min-height:3.35rem; }
+.guide__accordion-trigger--03-grid.xiv-accordion-trigger { min-height:2.8rem; padding-block:.6rem; }
+
+@media (min-width:100rem) {
+  .index__list { grid-template-columns:repeat(auto-fill,minmax(16rem,1fr)); }
+}
+
+/* ========================================================================== */
+/* Guide metadata list groups + guide content hierarchy                        */
+/* ========================================================================== */
+
+/* Sidebar/metadata fields that contain repeated values (music, links,
+   random-content entries, maps, zone ids, etc.) should read like a compact
+   list instead of one long paragraph with dash-prefixed lines. */
+.guide-metadata__subtitle:has(> .block + .block) {
+  display:grid;
+  grid-template-columns:1fr;
+  align-items:stretch;
+  gap:.38rem;
+  padding:.72rem 0 .8rem;
+}
+
+.guide-metadata__subtitle:has(> .block + .block) > :first-child {
+  margin-bottom:.12rem;
+  color:var(--xiv-muted);
+  font-size:.72rem;
+  font-weight:600;
+  letter-spacing:.04em;
+}
+
+.guide-metadata__subtitle:has(> .block + .block) > .block {
+  display:flex !important;
+  align-items:center;
+  min-height:2rem;
+  margin:0;
+  padding:.38rem .5rem;
+  border:1px solid transparent;
+  border-radius:4px;
+  background:color-mix(in srgb,var(--xiv-surface) 72%,transparent);
+  color:var(--xiv-text);
+  line-height:1.3;
+}
+
+.guide-metadata__subtitle:has(> .block + .block) > .block:hover {
+  border-color:color-mix(in srgb,var(--xiv-gold) 40%,var(--xiv-border));
+  background:var(--xiv-selection);
+}
+
+.guide-metadata__subtitle:has(> .block + .block) > .block::first-letter {
+  font-size:0;
+}
+
+.guide-metadata__subtitle:has(> .block + .block) > .block a {
+  display:block;
+  width:100%;
+  color:var(--xiv-text);
+  text-decoration:none;
+  overflow-wrap:anywhere;
+}
+
+.guide-metadata__subtitle:has(> .block + .block) > .block a:hover {
+  color:var(--xiv-gold-bright);
+}
+
+/* Single-link/value metadata rows should also have a clearer visual rhythm. */
+.guide-metadata__subtitle > .block,
+.guide-metadata__subtitle > .noblock {
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+
+.guide-metadata__wrapper {
+  gap:0;
+}
+
+.guide-metadata__subtitle {
+  padding:.62rem .15rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Guide content                                                              */
+/* -------------------------------------------------------------------------- */
+
+.guide-content {
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  overflow:visible;
+}
+
+/* Level 1: major guide section (Bosses, Adds, FATEs, Map...) */
+.guide__accordion {
+  margin:0 0 1.15rem;
+  overflow:hidden;
+  border:1px solid color-mix(in srgb,var(--xiv-gold) 42%,var(--xiv-border));
+  border-radius:7px;
+  background:color-mix(in srgb,var(--xiv-surface-deep) 94%,#000 6%);
+  box-shadow:0 4px 14px #0002;
+}
+
+.guide__accordion > .guide__accordion-trigger--01-grid,
+.guide__accordion > .guide__accordion-trigger--01-grid.xiv-accordion-trigger {
+  position:relative;
+  display:flex;
+  align-items:center;
+  min-height:3.35rem;
+  padding:.8rem 1rem;
+  border:0;
+  border-bottom:1px solid color-mix(in srgb,var(--xiv-gold) 28%,var(--xiv-border));
+  background:linear-gradient(180deg,
+    color-mix(in srgb,var(--xiv-gold) 13%,var(--xiv-surface)),
+    var(--xiv-surface-deep));
+  color:var(--xiv-gold-bright);
+}
+
+.guide__accordion > .guide__accordion-trigger--01-grid .Names,
+.guide__accordion > .guide__accordion-trigger--01-grid .guide__accordion-trigger-title {
+  color:var(--xiv-gold-bright);
+  font-family:Georgia,serif;
+  font-size:1.08rem;
+  font-weight:400;
+  letter-spacing:.02em;
+}
+
+.guide__accordion > .guide__accordion-content--01-grid,
+.guide__accordion > .guide__accordion-content--01-grid.xiv-accordion-content {
+  padding:.85rem;
+  background:#00000010;
+}
+
+/* Level 2: individual enemy / encounter block. Pair the trigger and its
+   following content visually so the user can immediately see its boundary. */
+.guide__accordion-trigger--02-grid,
+.guide__accordion-trigger--02-grid.xiv-accordion-trigger {
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  width:100%;
+  min-height:3.4rem;
+  margin:.8rem 0 0;
+  padding:.72rem .85rem;
+  border:1px solid var(--xiv-border);
+  border-radius:6px;
+  background:color-mix(in srgb,var(--xiv-surface) 88%,#000 12%);
+  color:var(--xiv-text);
+  box-shadow:inset 3px 0 color-mix(in srgb,var(--xiv-gold) 58%,transparent);
+}
+
+.guide__accordion-trigger--02-grid:hover,
+.guide__accordion-trigger--02-grid.xiv-accordion-trigger:hover,
+.guide__accordion-trigger--02-grid.active {
+  border-color:color-mix(in srgb,var(--xiv-gold) 58%,var(--xiv-border));
+  background:color-mix(in srgb,var(--xiv-selection) 72%,var(--xiv-surface));
+}
+
+.guide__accordion-trigger--02-grid.active {
+  border-radius:6px 6px 0 0;
+  border-bottom-color:transparent;
+}
+
+.guide__accordion-content--02,
+.guide__accordion-content--02.xiv-accordion-content {
+  position:relative;
+  margin:0 0 .85rem;
+  padding:1rem 1rem 1.1rem 1.15rem;
+  border:1px solid var(--xiv-border);
+  border-top:0;
+  border-radius:0 0 6px 6px;
+  background:color-mix(in srgb,var(--xiv-surface-deep) 90%,#000 10%);
+}
+
+.guide__accordion-content--02::before {
+  content:"";
+  position:absolute;
+  inset:.75rem auto .75rem 0;
+  width:3px;
+  border-radius:3px;
+  background:color-mix(in srgb,var(--xiv-gold) 45%,transparent);
+}
+
+/* Level 3: phase sections. These are deliberately different from enemies so
+   a long fight reads as Enemy -> Phase -> Mechanic instead of one flat list. */
+.guide__accordion-trigger--03-grid,
+.guide__accordion-trigger--03-grid.xiv-accordion-trigger {
+  display:flex;
+  align-items:center;
+  gap:.65rem;
+  min-height:2.85rem;
+  margin:.8rem 0 0;
+  padding:.6rem .75rem;
+  border:1px solid color-mix(in srgb,var(--xiv-border) 85%,transparent);
+  border-left:3px solid color-mix(in srgb,var(--xiv-blue) 55%,var(--xiv-gold));
+  border-radius:4px;
+  background:color-mix(in srgb,var(--xiv-surface) 74%,var(--xiv-surface-deep));
+}
+
+.guide__accordion-trigger--03-grid.active {
+  border-radius:4px 4px 0 0;
+  border-bottom-color:transparent;
+}
+
+.guide__accordion-content--03,
+.guide__accordion-content--03.xiv-accordion-content {
+  margin:0 0 .75rem;
+  padding:.9rem .9rem 1rem 1rem;
+  border:1px solid color-mix(in srgb,var(--xiv-border) 82%,transparent);
+  border-top:0;
+  border-left:3px solid color-mix(in srgb,var(--xiv-blue) 42%,var(--xiv-gold));
+  border-radius:0 0 4px 4px;
+  background:color-mix(in srgb,var(--xiv-surface-deep) 92%,#000 8%);
+}
+
+/* Attacks/mechanics: compact cards inside a phase instead of another visually
+   identical accordion level. */
+[class*="guide__accordion-trigger--02--grid_attack"],
+[class*="guide__accordion-trigger--03--grid_attack"] {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto auto;
+  align-items:center;
+  gap:.65rem;
+  min-height:2.75rem;
+  margin:.5rem 0 0;
+  padding:.58rem .72rem;
+  border:1px solid #ffffff14;
+  border-radius:4px;
+  background:#ffffff06;
+}
+
+[class*="guide__accordion-trigger--02--grid_attack"]:hover,
+[class*="guide__accordion-trigger--03--grid_attack"]:hover,
+[class*="guide__accordion-trigger--02--grid_attack"].active,
+[class*="guide__accordion-trigger--03--grid_attack"].active {
+  border-color:color-mix(in srgb,var(--xiv-gold) 36%,var(--xiv-border));
+  background:color-mix(in srgb,var(--xiv-selection) 52%,transparent);
+}
+
+[class*="guide__accordion-content--02--"],
+[class*="guide__accordion-content--03--"] {
+  margin:0 0 .5rem;
+  padding:.75rem .85rem .85rem;
+  border:1px solid #ffffff10;
+  border-top:0;
+  border-radius:0 0 4px 4px;
+  background:#00000012;
+}
+
+/* Text/mechanic blocks inside expanded sections. */
+.guide__text-notes-wrapper,
+.guide__mechanics-wrapper,
+.guide__attack-notes-wrapper,
+.guide__toolbox-wrapper,
+.guide__script-wrapper {
+  padding:.75rem .85rem;
+  border:1px solid #ffffff12;
+  border-radius:4px;
+  background:#ffffff04;
+}
+
+.guide__text-notes-wrapper + *,
+.guide__mechanics-wrapper + *,
+.guide__attack-notes-wrapper + *,
+.guide__toolbox-wrapper + *,
+.guide__script-wrapper + * {
+  margin-top:.65rem;
+}
+
+/* Keep images from visually swallowing the section hierarchy. */
+.guide__accordion-content--02 .guide__image-list,
+.guide__accordion-content--03 .guide__image-list,
+.guide__accordion-content--02 .guide__attack-image-list,
+.guide__accordion-content--03 .guide__attack-image-list {
+  margin-top:.9rem;
+  padding-top:.8rem;
+  border-top:1px solid #ffffff10;
+}
+
+@media (max-width:48rem) {
+  .guide__accordion > .guide__accordion-content--01-grid,
+  .guide__accordion > .guide__accordion-content--01-grid.xiv-accordion-content {
+    padding:.55rem;
+  }
+
+  .guide__accordion-content--02,
+  .guide__accordion-content--03 {
+    padding:.75rem;
+  }
+
+  [class*="guide__accordion-trigger--02--grid_attack"],
+  [class*="guide__accordion-trigger--03--grid_attack"] {
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   Guide metadata list groups
+   -------------------------------------------------------------------------- */
+.guide-metadata__list-group {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:.42rem;
+  padding:.65rem 0 .75rem;
+}
+.guide-metadata__list-group > div:first-child {
+  margin-bottom:.12rem;
+  color:var(--xiv-muted);
+  font-size:.75rem;
+  font-weight:600;
+}
+.guide-metadata__list-item {
+  display:flex !important;
+  align-items:center;
+  width:100%;
+  min-height:2.45rem;
+  margin:0 !important;
+  padding:.48rem .65rem;
+  border:1px solid transparent;
+  border-radius:4px;
+  background:color-mix(in srgb,var(--xiv-surface) 78%,transparent);
+  color:var(--xiv-text) !important;
+  font-size:.79rem;
+  line-height:1.35;
+}
+.guide-metadata__list-item:hover {
+  border-color:color-mix(in srgb,var(--xiv-gold) 35%,transparent);
+  background:var(--xiv-selection);
+}
+.guide-metadata__list-item > a {
+  display:flex;
+  align-items:center;
+  width:100%;
+  min-height:1.4rem;
+  color:var(--xiv-text);
+  text-decoration:none;
+}
+.guide-metadata__list-item > a:hover { color:var(--xiv-gold-bright); }
+
+/* --------------------------------------------------------------------------
+   Attack / debuff entries
+   -------------------------------------------------------------------------- */
+.guide-content .guide__entry-trigger {
+  display:grid !important;
+  align-items:center;
+  width:100%;
+  min-height:3.5rem;
+  margin:.55rem 0 0;
+  padding:.65rem .8rem;
+  gap:.35rem .75rem;
+  border:1px solid color-mix(in srgb,var(--xiv-border) 72%,transparent);
+  border-radius:5px;
+  background:color-mix(in srgb,var(--xiv-surface) 88%,#111);
+  color:var(--xiv-text);
+  cursor:pointer;
+}
+.guide-content .guide__entry-trigger--attack {
+  grid-template-columns:minmax(12rem,1fr) auto minmax(5rem,auto);
+}
+.guide-content .guide__entry-trigger--debuff {
+  grid-template-columns:2.8rem minmax(12rem,1fr) auto minmax(6rem,auto);
+}
+.guide-content .guide__entry-trigger:hover,
+.guide-content .guide__entry-trigger.active {
+  border-color:color-mix(in srgb,var(--xiv-gold) 68%,var(--xiv-border));
+  background:color-mix(in srgb,var(--xiv-selection) 78%,var(--xiv-surface));
+}
+.guide-content .guide__entry-trigger::before {
+  content:'▸';
+  position:absolute;
+  margin-left:-.15rem;
+  color:var(--xiv-gold);
+  transform:translateX(-.45rem);
+  transition:transform .15s ease;
+}
+.guide-content .guide__entry-trigger.active::before { transform:translateX(-.45rem) rotate(90deg); }
+.guide-content .guide__entry-trigger .Names { min-width:0; }
+.guide-content .guide__entry-trigger .Attributes,
+.guide-content .guide__entry-trigger .IdsHps {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:flex-end;
+  gap:.3rem;
+  min-width:0;
+}
+.guide-content .guide__entry-trigger--debuff > .Icon.debuff_icon {
+  width:2.55rem !important;
+  height:2.55rem !important;
+  max-width:2.55rem !important;
+  object-fit:contain;
+  margin:0;
+}
+.guide-content .guide__entry-content[hidden] { display:none !important; }
+.guide-content .guide__entry-content:not([hidden]) {
+  display:block !important;
+  margin:0 0 .65rem;
+  padding:.85rem 1rem 1rem;
+  border:1px solid color-mix(in srgb,var(--xiv-border) 48%,transparent);
+  border-top:0;
+  border-radius:0 0 5px 5px;
+  background:color-mix(in srgb,var(--xiv-surface-deep) 94%,#000);
+}
+.guide-content .guide__entry-content .guide__accordion-copy-wrapper {
+  display:grid;
+  gap:.65rem;
+}
+.guide-content .guide__entry-content .guide__attack-notes-wrapper {
+  margin:0;
+  padding:.75rem .85rem;
+  border:1px solid #ffffff12;
+  border-radius:4px;
+  background:#ffffff04;
+}
+.guide-content .guide__entry-content .guide__attack-notes-title {
+  margin:0 0 .45rem;
+  color:var(--xiv-gold-bright);
+  font-size:.76rem;
+}
+.guide-content .guide__entry-content .guide__debuff_description {
+  display:block;
+  color:var(--xiv-text);
+  font-size:.82rem;
+  line-height:1.55;
+}
+
+@media (max-width:60rem) {
+  .guide-content .guide__entry-trigger--attack,
+  .guide-content .guide__entry-trigger--debuff {
+    grid-template-columns:auto minmax(0,1fr);
+  }
+  .guide-content .guide__entry-trigger--attack .Attributes,
+  .guide-content .guide__entry-trigger--attack .IdsHps,
+  .guide-content .guide__entry-trigger--debuff .Attributes,
+  .guide-content .guide__entry-trigger--debuff .IdsHps {
+    grid-column:1 / -1;
+    justify-content:flex-start;
+  }
+}

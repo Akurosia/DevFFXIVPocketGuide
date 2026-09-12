@@ -4,7 +4,9 @@
         <img loading="lazy" class="role-icon" src="{{site.imageurl}}/{{expacicon}}" onerror="handleExpansionAssetError('{{ x_shortid }}')"/>
     {%- endif -%}
     {%- if expacimage != "" -%}
-        <img loading="lazy" class="ex-icon" src="{{site.uldurl}}/{{expacimage}}" onerror="handleExpansionAssetError('{{ x_shortid }}')">
+        <span class="index-divider__logo-frame" aria-hidden="true">
+            <img loading="lazy" class="ex-icon" src="{{site.uldurl}}/{{expacimage}}" onerror="handleExpansionAssetError('{{ x_shortid }}')">
+        </span>
     {%- endif -%}
     <!-- <span data-translate="Patches_{{x_title}}">{{ x_title }}</span> -->
 </h2>

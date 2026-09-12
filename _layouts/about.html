@@ -5,7 +5,7 @@
         {% include head.html %}
     </head>
     <!-- ORIGIN: _layout/about -->
-    <body class="{{ page.page_type }} {{ page.page_category }}">
+    <body class="xiv {{ page.page_type }} {{ page.page_category }}" data-xiv-theme="Dark">
         <div class="layout">
             {% include navbar.html %}
             <div class="layout__wrapper">
@@ -13,7 +13,7 @@
                 <!-- Content -->
                 <div class="about__wrapper">
                     <!-- Welcome Area -->
-                    <div class="about__intro">
+                    <div class="about__intro xiv-panel">
                         <h2 class="heading--02" data-translate="About_Text_Welcome">Welcome</h2>
                         <p>Welcome to the fork of FFXIV Pocket Guide, an ongoing project created by
                             <a href="https://joshbeveridge.ca" title="Check out Josh's portfolio." target="_blank" rel="noreferrer">Josh Beveridge</a>to support the FFXIV community by enabling a space where guide content can be consumed in a mobile-friendly, ad-free environment.
@@ -30,7 +30,7 @@
                     <!-- END Welcome Area -->
 
                     <!-- Announcements Area -->
-                    <div class="about__announcements">
+                    <div class="about__announcements xiv-panel">
                         <h2 class="heading--02" data-translate="About_Text_Announcement">Announcements</h2>
                         <ul class="announcement__list">
                             {% for i in site.data.announcements %}
@@ -56,12 +56,12 @@
                     <!-- END Announcements Area -->
 
                     <!-- Roadmap Area -->
-                    <div class="about__roadmap">
+                    <div class="about__roadmap xiv-panel">
                         <h2 class="heading--02" style="margin-top: 3rem; margin-bottom: 1rem;" data-translate="About_Text_Roadmap">Roadmap</h2>
                         <div class="roadmap__wrapper">
                             {% for i in site.data.roadmap %}
                                 {% if i.pinned == true %}
-                                    <div class="roadmap__object">
+                                    <div class="roadmap__object xiv-panel xiv-panel--parchment">
                                         <h3 class="heading--03">
                                             <span>📌</span>
                                             <a href="{{ i.link }}" target="_blank" rel="noreferrer" title="Check out the related issue on Github.">{{ i.name }}</a>
@@ -72,7 +72,7 @@
                             {% endfor %}
                             {% for i in site.data.roadmap %}
                                 {% if i.pinned == false %}
-                                    <div class="roadmap__object">
+                                    <div class="roadmap__object xiv-panel xiv-panel--parchment">
                                         <h3 class="heading--03">
                                             <span>{{ i.icon }}</span>
                                             <a href="{{ i.link }}" target="_blank" rel="noreferrer" title="Check out the related issue on Github.">{{ i.name }}</a>

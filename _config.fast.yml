@@ -1,0 +1,10 @@
+# Full-content development override.
+# Keeps every guide/page, but skips plugins that add significant clean-build cost
+# and are only needed for production output.
+plugins:
+  - jekyll-commonmark
+  - jekyll-include-cache
+
+incremental: true
+profile: false
+livereload: false

@@ -6,9 +6,9 @@
         {%- for url in page.hector -%}
             {%- assign naviIndex = {{forloop.index}} -%}
             {%- if page.hector.size == 1 -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_HectorsGuide">Hector's Guide</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link xiv-button xiv-button--small" data-translate="Sidebar_HectorsGuide">Hector's Guide</a>
             {%- else -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_HectorsGuide2">Hector's Guide {{naviIndex}}</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link xiv-button xiv-button--small" data-translate="Sidebar_HectorsGuide2">Hector's Guide {{naviIndex}}</a>
             {%- endif -%}
         {%- endfor -%}
     {%- endif -%}
@@ -16,9 +16,9 @@
         {%- for url in page.mtqvid -%}
             {%- assign naviIndex = {{forloop.index}} -%}
             {%- if page.mtqvid.size == 1 -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_MTQcapturesGuide">MTQcapture's Guide</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link xiv-button xiv-button--small" data-translate="Sidebar_MTQcapturesGuide">MTQcapture's Guide</a>
             {%- else -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_MTQcapturesGuide2">MTQcapture's Guide {{naviIndex}}</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link xiv-button xiv-button--small" data-translate="Sidebar_MTQcapturesGuide2">MTQcapture's Guide {{naviIndex}}</a>
             {%- endif -%}
         {%- endfor -%}
     {%- endif -%}
@@ -26,14 +26,14 @@
         {%- for url in page.mrhvid -%}
             {%- assign naviIndex = {{forloop.index}} -%}
             {%- if page.mtqvid.size == 1 -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_MrHappysGuide">MrHappy's Guide</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link xiv-button xiv-button--small" data-translate="Sidebar_MrHappysGuide">MrHappy's Guide</a>
             {%- else -%}
-                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link" data-translate="Sidebar_MrHappysGuide2">MrHappy's Guide {{naviIndex}}</a>
+                <a href="{{ url.url }}" title="Visit the video guide for this duty." target="_blank" rel="noopener noreferrer" class="mtqLinkGuide guide-metadata__video-link xiv-button xiv-button--small" data-translate="Sidebar_MrHappysGuide2">MrHappy's Guide {{naviIndex}}</a>
             {%- endif -%}
         {%- endfor -%}
     {%- endif -%}
     <div style="display: none;"></div>
-    <div class="guide-metadata__wrapper">
+    <div class="guide-metadata__wrapper xiv-panel">
         {%- if page.excel_line -%}
             <h5 class="guide-metadata__subtitle akuflex box small-1of2 med-full">
                 <div data-translate="Sidebar_IDs">Content-E-ID: </div>
@@ -234,10 +234,10 @@
             </h5>
         {%- endif -%}
         {%- if page.music -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle guide-metadata__list-group box small-1of2 med-full">
                 <div data-translate="Sidebar_ContentMusic">Content Music:</div>
                 {%- for music in page.music -%}
-                    <span class="block">{% if page.music.size > 1%}-&nbsp;{% endif %}
+                    <span class="block guide-metadata__list-item">
                         {%- if music.id -%}
                             <a target="_blank" rel="noopener noreferrer" data-translate="music_{{music.name}}" title="{{music.bgm_path}}" href="https://ffxivcollect.com/orchestrions/{{ music.id }}">{{ music.name }}</a>
                         {%- else -%}
@@ -391,46 +391,46 @@
             </h5>
         {%- endif -%}
         {%- if page.rouletts -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle guide-metadata__list-group box small-1of2 med-full">
                 <div data-origin="contentroulette" data-translate="Sidebar_Rouletts">Duty Roulette: </div>
                 {%- if page.rouletts.expert -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_Experte">- Expert</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_Experte">- Expert</span>
                 {%- elsif page.rouletts.levelcaproulette -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_LevelCap">- Level 90 Dungeons</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_LevelCap">- Level 90 Dungeons</span>
                 {%- elsif page.rouletts.highlevelroulette -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_HighLevel">- Level 50/60/70/80 Dungeons</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_HighLevel">- Level 50/60/70/80 Dungeons</span>
                 {%- elsif page.rouletts.leveling -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_Leveling">- Leveling</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_Leveling">- Leveling</span>
                 {%- elsif page.rouletts.trial -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_Prüfung">- Trials</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_Prüfung">- Trials</span>
                 {%- elsif page.rouletts.main -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_Hauptszenario">- Main Scenario</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_Hauptszenario">- Main Scenario</span>
                 {%- elsif page.rouletts.guildhest -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_Gildengeheiß">- Guildhests</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_Gildengeheiß">- Guildhests</span>
                 {%- elsif page.rouletts.allianceraid -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_AllianzRaid">- Alliance Raids</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_AllianzRaid">- Alliance Raids</span>
                 {%- elsif page.rouletts.normalraid -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_NormalRaid">- Normal Raids</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_NormalRaid">- Normal Raids</span>
                 {%- elsif page.rouletts.mentor -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_Mentor">- Mentor</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_Mentor">- Mentor</span>
                 {%- elsif page.rouletts.frontier -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_PvP">- Frontline</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_PvP">- Frontline</span>
                 {%- elsif page.rouletts.gewölbesuche -%}
-                    <span class="block" data-translate="Sidebar_Rouletts_Gewölbesuche">- V&C Dungeon Finder</span>
+                    <span class="block guide-metadata__list-item" data-translate="Sidebar_Rouletts_Gewölbesuche">- V&C Dungeon Finder</span>
                 {%- endif -%}
             </h5>
         {%- endif -%}
         {%- if page.links -%}
-            <h5 class="guide-metadata__subtitle box small-1of2 med-full">
+            <h5 class="guide-metadata__subtitle guide-metadata__list-group box small-1of2 med-full">
                 <div data-translate="Sidebar_Links">Links: </div>
                 {%- if page.links.teamcraftlink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance/{{ page.links.teamcraftlink }}">- Teamcraft</a></span>
+                    <span class="block guide-metadata__list-item"><a target="_blank" rel="noopener noreferrer" href="https://ffxivteamcraft.com/db/de/instance/{{ page.links.teamcraftlink }}">Teamcraft</a></span>
                 {%- endif -%}
                 {%- if page.links.garlandtoolslink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance/{{ page.links.garlandtoolslink }}">- Garlandtools</a></span>
+                    <span class="block guide-metadata__list-item"><a target="_blank" rel="noopener noreferrer" href="https://garlandtools.org/db/#instance/{{ page.links.garlandtoolslink }}">Garlandtools</a></span>
                 {%- endif -%}
                 {%- if page.links.gamerescapelink -%}
-                    <span class="block"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki/{{ page.links.gamerescapelink }}">- Gamerscape</a></span>
+                    <span class="block guide-metadata__list-item"><a target="_blank" rel="noopener noreferrer" href="https://ffxiv.gamerescape.com/wiki/{{ page.links.gamerescapelink }}">Gamerscape</a></span>
                 {%- endif -%}
             </h5>
         {%- endif -%}
