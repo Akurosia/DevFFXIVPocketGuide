@@ -36,7 +36,8 @@
                             class="expansion-toggle active xiv-button xiv-button--icon-square"
                             data-expansion="{{x_shortid}}"
                             title="{{x_title}}"
-                            aria-label="{{x_title}}">
+                            aria-label="{{x_title}}"
+                            aria-pressed="true">
                         <span class="expansion-toggle__icon-frame">
                             <img loading="lazy"
                                  class="role-icon expansion-toggle__icon"
@@ -44,7 +45,7 @@
                                  alt=""
                                  onerror="
                                    var b=this.closest('.expansion-toggle');
-                                   if(b){b.hidden=true;b.classList.add('inactive');}
+                                   if(b){b.hidden=true;b.classList.add('inactive');b.classList.remove('active');b.setAttribute('aria-pressed','false');}
                                    if(window.handleExpansionAssetError){window.handleExpansionAssetError('{{ x_shortid }}');}
                                  ">
                         </span>

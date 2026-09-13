@@ -1,0 +1,347 @@
+---
+---
+
+/* ==========================================================================
+   Mobile navigation + expansion toggle state
+   Loaded after core.css so this file owns the interaction states.
+   ========================================================================== */
+
+/* Expansion toggle feedback ---------------------------------------------- */
+
+.search .expansion-toggle {
+  position: relative;
+
+  border-color: color-mix(in srgb, var(--xiv-border) 72%, transparent) !important;
+  background: var(--xiv-surface-deep) !important;
+
+  opacity: 1;
+  filter: none;
+
+  transition:
+    opacity .15s ease,
+    filter .15s ease,
+    border-color .15s ease,
+    background-color .15s ease,
+    box-shadow .15s ease,
+    transform .15s ease !important;
+}
+
+.search .expansion-toggle.active,
+.search .expansion-toggle[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--xiv-gold) 78%, var(--xiv-border)) !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--xiv-gold) 18%, var(--xiv-surface)),
+      color-mix(in srgb, var(--xiv-gold) 7%, var(--xiv-surface-deep))
+    ) !important;
+
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--xiv-gold) 18%, transparent),
+    0 0 .45rem color-mix(in srgb, var(--xiv-gold) 18%, transparent) !important;
+}
+
+.search .expansion-toggle.active:hover,
+.search .expansion-toggle[aria-pressed="true"]:hover {
+  transform: translateY(-1px);
+}
+
+.search .expansion-toggle.inactive,
+.search .expansion-toggle[aria-pressed="false"] {
+  border-color: color-mix(in srgb, var(--xiv-border) 45%, transparent) !important;
+  background: color-mix(in srgb, var(--xiv-surface-deep) 82%, #000 18%) !important;
+
+  opacity: .42;
+  filter: grayscale(1) saturate(.25);
+  box-shadow: none !important;
+}
+
+.search .expansion-toggle.inactive::after,
+.search .expansion-toggle[aria-pressed="false"]::after {
+  content: "";
+
+  position: absolute;
+  z-index: 2;
+  left: 16%;
+  top: 50%;
+
+  width: 68%;
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: color-mix(in srgb, var(--xiv-danger, #d86666) 85%, #fff 15%);
+
+  transform: rotate(-42deg);
+  transform-origin: center;
+
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .65);
+
+  pointer-events: none;
+}
+
+.search .expansion-toggle.inactive:hover,
+.search .expansion-toggle[aria-pressed="false"]:hover {
+  opacity: .68;
+  filter: grayscale(.7) saturate(.5);
+}
+
+/* Keyboard users need the state to remain very obvious. */
+.search .expansion-toggle:focus-visible {
+  outline: 2px solid var(--xiv-gold) !important;
+  outline-offset: 2px;
+}
+
+
+/* Mobile navigation ------------------------------------------------------- */
+
+@media (max-width: 63.999rem) {
+  body.mobile-nav-open {
+    overflow: hidden !important;
+    overscroll-behavior: none;
+  }
+
+  /*
+   * Bottom sheet rather than a narrow desktop sidebar floating on the left.
+   * This follows the existing bottom menu trigger and gives touch users the
+   * full screen width.
+   */
+  .sidebar {
+    inset: auto 0 0 0 !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    height: min(88dvh, 52rem) !important;
+    max-height: 88dvh !important;
+
+    overflow: hidden !important;
+
+    transform: translateY(calc(100% + 1rem)) !important;
+
+    border: 1px solid color-mix(in srgb, var(--xiv-border) 78%, transparent) !important;
+    border-bottom: 0 !important;
+    border-radius: 14px 14px 0 0 !important;
+
+    background: var(--xiv-surface, #1c1d1d) !important;
+
+    box-shadow:
+      0 -1rem 3rem rgba(0, 0, 0, .5),
+      inset 0 1px color-mix(in srgb, var(--xiv-text) 5%, transparent) !important;
+
+    transition: transform .22s ease !important;
+
+    overscroll-behavior: contain;
+  }
+
+  .sidebar.active {
+    transform: translateY(0) !important;
+  }
+
+  .sidebar::before {
+    content: "";
+
+    position: absolute;
+    z-index: 3;
+    top: .45rem;
+    left: 50%;
+
+    width: 3rem;
+    height: .25rem;
+
+    border-radius: 999px;
+
+    background: color-mix(in srgb, var(--xiv-muted) 55%, transparent);
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+  }
+
+  .sidebar__wrapper {
+    height: 100% !important;
+
+    padding:
+      1.15rem
+      .8rem
+      calc(5.2rem + env(safe-area-inset-bottom))
+      !important;
+
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+
+    scrollbar-gutter: auto !important;
+  }
+
+  /* Compress branding vertically without making it tiny. */
+  .languages {
+    gap: .7rem !important;
+    margin: .35rem 0 .55rem !important;
+  }
+
+  .languages .flags_img {
+    min-width: 2.35rem;
+    min-height: 1.8rem;
+  }
+
+  .sidebar__title {
+    margin: 0 0 .7rem !important;
+  }
+
+  .sidebar__title a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem !important;
+
+    min-height: 3rem;
+
+    padding: .25rem .75rem !important;
+  }
+
+  .sidebar__title img {
+    width: 2.45rem !important;
+    height: 2.45rem !important;
+  }
+
+  .sidebar__home-label {
+    font-size: .76rem !important;
+  }
+
+  /* Finger-friendly navigation targets. */
+  .sidebar__menu .xiv-nav-item,
+  .sidebar__content-submenu .xiv-nav-item,
+  .sidebar__expansion-submenu .xiv-nav-item,
+  .sidebar__group-list .xiv-nav-item {
+    min-height: 3rem !important;
+
+    padding: .62rem .7rem !important;
+
+    font-size: .9rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .sidebar__menu .xiv-nav-item img,
+  .sidebar__content-submenu .xiv-nav-item img,
+  .sidebar__expansion-submenu .xiv-nav-item img,
+  .sidebar__group-list .xiv-nav-item img {
+    width: 1.6rem !important;
+    height: 1.6rem !important;
+    flex-basis: 1.6rem !important;
+  }
+
+  .sidebar__menu .xiv-nav-section,
+  .sidebar__group-toggle {
+    min-height: 3rem !important;
+
+    margin-top: .5rem !important;
+    padding: .65rem .7rem !important;
+
+    font-size: .75rem !important;
+  }
+
+  .sidebar__submenu-toggle {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    right: .12rem !important;
+  }
+
+  .sidebar__content-parent > .xiv-nav-item {
+    padding-right: 3.15rem !important;
+  }
+
+  /* Less indentation = considerably more usable space on narrow screens. */
+  .sidebar__menu .xiv-nav-nested,
+  .sidebar__content-submenu,
+  .sidebar__expansion-submenu,
+  .sidebar__group-list {
+    margin-left: .25rem !important;
+    padding-left: .4rem !important;
+  }
+
+  .sidebar__expansion-toggle {
+    min-height: 3.35rem !important;
+
+    grid-template-columns: 2.25rem minmax(0, 1fr) auto !important;
+
+    gap: .65rem !important;
+
+    padding: .52rem .65rem !important;
+
+    font-size: .86rem !important;
+  }
+
+  .sidebar__expansion-toggle img {
+    width: 2.15rem !important;
+    height: 2.15rem !important;
+  }
+
+  /*
+   * Fixed bottom action bar. Safe-area support matters on iPhones with the
+   * home indicator.
+   */
+  .sidebar__trigger {
+    z-index: 230 !important;
+
+    left: .5rem !important;
+    right: .5rem !important;
+    bottom: calc(.5rem + env(safe-area-inset-bottom)) !important;
+
+    width: auto !important;
+    max-width: none !important;
+    min-height: 3.25rem !important;
+
+    transform: none !important;
+
+    border-color: color-mix(in srgb, var(--xiv-gold) 52%, var(--xiv-border)) !important;
+
+    box-shadow: 0 .45rem 1.4rem rgba(0, 0, 0, .46) !important;
+  }
+
+  .sidebar__trigger-inactive,
+  .sidebar__trigger-active {
+    font-size: .92rem;
+    font-weight: 600;
+  }
+
+  .site-grid__sidebar-overlay {
+    background: rgba(0, 0, 0, .64) !important;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+}
+
+/* Very narrow phones: keep labels usable rather than deeply indented. */
+@media (max-width: 30rem) {
+  .sidebar__wrapper {
+    padding-inline: .55rem !important;
+  }
+
+  .sidebar__menu.xiv-nav {
+    padding-inline: .1rem !important;
+  }
+
+  .sidebar__menu .xiv-nav-nested,
+  .sidebar__content-submenu,
+  .sidebar__expansion-submenu,
+  .sidebar__group-list {
+    margin-left: .12rem !important;
+    padding-left: .28rem !important;
+  }
+
+  .sidebar__fight-copy {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .sidebar__difficulty {
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .search .expansion-toggle {
+    transition: none !important;
+  }
+}
