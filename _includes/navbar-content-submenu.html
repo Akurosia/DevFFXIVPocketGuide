@@ -8,30 +8,36 @@
 {%- endif -%}
 {%- assign submenu_entries = submenu_entries | sort: "sortid" -%}
 
-
 {%- if submenu_entries.size > 0 -%}
 <ul id="sidebar-submenu-{{ include.id }}" class="sidebar__content-submenu xiv-nav-nested">
     {%- assign sidebar_expansions = site.ffxiv_expansion_list | split: "," -%}
     {%- for x in sidebar_expansions -%}
         {%- include helper/handle_version_switchcase.html -%}
         {%- assign expansion_entries = "" | split: "" -%}
+
         {%- if include.category -%}
             {%- assign expansion_entries = submenu_entries | where: "expac", x -%}
         {%- else -%}
             {%- assign expansion_source = site.categories[x] -%}
             {%- assign expansion_legacy_entries = "" | split: "" -%}
             {%- assign expansion_current_entries = "" | split: "" -%}
+
             {%- if expansion_source -%}
                 {%- assign expansion_legacy_entries = expansion_source | where: "instanceType", include.instance_type -%}
                 {%- assign expansion_current_entries = expansion_source | where: "instance_type", include.instance_type_new -%}
             {%- endif -%}
+
             {%- assign expansion_entries = expansion_legacy_entries | concat: expansion_current_entries | uniq -%}
         {%- endif -%}
+
         {%- assign expansion_entries = expansion_entries | sort: "sortid" -%}
 
         {%- if expansion_entries.size > 0 -%}
             <li class="sidebar__expansion-parent">
-                <button type="button" class="sidebar__expansion-toggle" aria-expanded="false" aria-controls="sidebar-submenu-{{ include.id }}-{{ x }}">
+                <button type="button"
+                        class="sidebar__expansion-toggle"
+                        aria-expanded="false"
+                        aria-controls="sidebar-submenu-{{ include.id }}-{{ x }}">
                     {%- if expacicon != "" -%}
                         <img loading="lazy" src="{{site.imageurl}}/{{expacicon}}" alt="">
                     {%- endif -%}
@@ -39,21 +45,74 @@
                     <span class="sidebar__toggle-icon" aria-hidden="true">&#9654;</span>
                 </button>
             </li>
-            <ul id="sidebar-submenu-{{ include.id }}-{{ x }}" class="sidebar__expansion-submenu xiv-nav-nested">
+
+            <ul id="sidebar-submenu-{{ include.id }}-{{ x }}"
+                class="sidebar__expansion-submenu xiv-nav-nested">
                 {%- for entry in expansion_entries -%}
                     {%- assign entry_title = entry.title.en | default: entry.title -%}
+
+                    {%- comment -%}
+                    Build a canonical difficulty label from the English content
+                    title first. That avoids the German "Schwer" ambiguity:
+                    trial (Extreme) and dungeon (Hard) both exist in the data.
+                    {%- endcomment -%}
+                    {%- assign difficulty_label = "" -%}
+                    {%- assign difficulty_class = "" -%}
+                    {%- assign entry_title_en = entry.title.en | default: "" -%}
+                    {%- assign difficulty_raw = entry.difficulty | default: "" | downcase -%}
+
+                    {%- if entry_title_en contains "(Savage)" or difficulty_raw == "episch" -%}
+                        {%- assign difficulty_label = "Savage" -%}
+                        {%- assign difficulty_class = "savage" -%}
+                    {%- elsif entry_title_en contains "(Extreme)" -%}
+                        {%- assign difficulty_label = "Extreme" -%}
+                        {%- assign difficulty_class = "extreme" -%}
+                    {%- elsif entry_title_en contains "(Ultimate)" -%}
+                        {%- assign difficulty_label = "Ultimate" -%}
+                        {%- assign difficulty_class = "ultimate" -%}
+                    {%- elsif entry_title_en contains "(Unreal)" -%}
+                        {%- assign difficulty_label = "Unreal" -%}
+                        {%- assign difficulty_class = "unreal" -%}
+                    {%- elsif entry_title_en contains "(Hard)" or difficulty_raw == "schwer" -%}
+                        {%- assign difficulty_label = "Hard" -%}
+                        {%- assign difficulty_class = "hard" -%}
+                    {%- elsif entry.difficulty -%}
+                        {%- if difficulty_raw == "normal" -%}
+                            {%- assign difficulty_label = "Normal" -%}
+                            {%- assign difficulty_class = "normal" -%}
+                        {%- else -%}
+                            {%- assign difficulty_label = entry.difficulty -%}
+                            {%- assign difficulty_class = "other" -%}
+                        {%- endif -%}
+                    {%- endif -%}
+
                     <li class="sidebar__content-item">
-                        <a href="{{ entry.url | prepend: site.baseurl }}" class="xiv-nav-item">
+                        <a href="{{ entry.url | prepend: site.baseurl }}"
+                           class="xiv-nav-item sidebar__fight-link">
                             {%- if entry.jobicon -%}
                                 <img loading="lazy" src="{{site.imageurl}}/{{entry.jobicon}}" alt="">
                             {%- endif -%}
-                            {%- if include.category == "klassenjobs" -%}
-                                {%- assign entry_translation_key = "Content_Title_" | append: entry_title -%}
-                            {%- else -%}
-                                {%- assign entry_title_key = entry_title | downcase -%}
-                                {%- assign entry_translation_key = "Summary_" | append: include.instance_type | append: "_" | append: entry_title_key -%}
-                            {%- endif -%}
-                            <span data-translate="{{ entry_translation_key }}">{{ entry_title }}</span>
+
+                            <span class="sidebar__fight-copy">
+                                {%- if include.category == "klassenjobs" -%}
+                                    {%- assign entry_translation_key = "Content_Title_" | append: entry_title -%}
+                                {%- else -%}
+                                    {%- assign entry_title_key = entry_title | downcase -%}
+                                    {%- assign entry_translation_key = "Summary_" | append: include.instance_type | append: "_" | append: entry_title_key -%}
+                                {%- endif -%}
+
+                                <span class="sidebar__fight-title"
+                                      data-translate="{{ entry_translation_key }}">{{ entry_title }}</span>
+
+                                {%- unless include.category == "klassenjobs" -%}
+                                    {%- if difficulty_label != "" -%}
+                                        <span class="sidebar__difficulty sidebar__difficulty--{{ difficulty_class }}"
+                                              title="Difficulty: {{ difficulty_label }}">
+                                            {{ difficulty_label }}
+                                        </span>
+                                    {%- endif -%}
+                                {%- endunless -%}
+                            </span>
                         </a>
                     </li>
                 {%- endfor -%}

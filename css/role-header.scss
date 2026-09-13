@@ -1,0 +1,24 @@
+---
+---
+
+/*
+ * Role headers share the expansion-header component.
+ * Keep this file intentionally small: geometry is owned by
+ * _sass/app/_expansion-header.scss.
+ */
+
+.role-header .role-header__identity {
+  flex: 0 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+}
+
+.role-header__title {
+  width: auto !important;
+  min-width: 0 !important;
+  white-space: nowrap;
+}
+
+.role-header__balance {
+  display: none !important;
+}

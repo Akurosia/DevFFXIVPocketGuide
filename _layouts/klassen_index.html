@@ -3,6 +3,7 @@
     {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
     <head>
         {% include head.html %}
+        <link rel="stylesheet" href="{{ '/css/role-header.css' | relative_url }}">
     </head>
     <!-- ORIGIN: _layout/klassen_index -->
     <body class="xiv {{ page.page_type }} {{ page.page_category }}">

@@ -16,3 +16,6 @@
  * cannot make expansion headers look different from page to page.
  */
 @import "app/expansion-header";
+
+/* Latest targeted compatibility/layout overrides. */
+@import "app/navbar-beastmaster-fixes";

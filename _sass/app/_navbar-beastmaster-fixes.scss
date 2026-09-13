@@ -1,0 +1,231 @@
+/* ==========================================================================
+   Navbar difficulty + Beastmaster behavior/layout fixes
+   Loaded last so old sidebar and 2-column Beastmaster rules cannot win.
+   ========================================================================== */
+
+/* Navbar fight rows ------------------------------------------------------- */
+
+.sidebar__expansion-submenu .sidebar__fight-link {
+  display: grid !important;
+  grid-template-columns: 1.75rem minmax(0, 1fr) !important;
+  gap: .55rem !important;
+  align-items: center !important;
+
+  min-height: 3rem !important;
+  padding-top: .42rem !important;
+  padding-bottom: .42rem !important;
+}
+
+.sidebar__expansion-submenu .sidebar__fight-link > img {
+  width: 1.65rem !important;
+  height: 1.65rem !important;
+  max-width: 1.65rem !important;
+  object-fit: contain !important;
+  align-self: center;
+}
+
+.sidebar__fight-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .25rem .45rem;
+  align-items: center;
+  min-width: 0;
+}
+
+.sidebar__fight-title {
+  min-width: 0;
+  color: var(--xiv-text);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.sidebar__difficulty {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 1.35rem;
+  padding: .08rem .38rem;
+
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: 999px;
+
+  background: var(--xiv-surface-deep);
+  color: var(--xiv-muted);
+
+  font-size: .58rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .025em;
+  white-space: nowrap;
+}
+
+.sidebar__difficulty--normal {
+  border-color: color-mix(in srgb, #7fa97f 55%, var(--xiv-border));
+  color: color-mix(in srgb, #aedd9f 88%, var(--xiv-text));
+}
+
+.sidebar__difficulty--hard {
+  border-color: color-mix(in srgb, #70a3d6 55%, var(--xiv-border));
+  color: color-mix(in srgb, #9bc9ef 90%, var(--xiv-text));
+}
+
+.sidebar__difficulty--extreme {
+  border-color: color-mix(in srgb, #d9914a 65%, var(--xiv-border));
+  color: color-mix(in srgb, #ffc378 92%, var(--xiv-text));
+}
+
+.sidebar__difficulty--savage {
+  border-color: color-mix(in srgb, #cb5d63 68%, var(--xiv-border));
+  color: color-mix(in srgb, #ff8f96 92%, var(--xiv-text));
+}
+
+.sidebar__difficulty--ultimate {
+  border-color: color-mix(in srgb, #d6ad59 76%, var(--xiv-border));
+  color: var(--xiv-gold-bright);
+}
+
+.sidebar__difficulty--unreal {
+  border-color: color-mix(in srgb, #9271ca 68%, var(--xiv-border));
+  color: color-mix(in srgb, #bea4ef 92%, var(--xiv-text));
+}
+
+@media (max-width: 22rem) {
+  .sidebar__fight-copy {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar__difficulty {
+    justify-self: start;
+  }
+}
+
+
+/* Beastmaster ------------------------------------------------------------- */
+
+/* One beast per row. Expanded content must never share a second column. */
+body.xiv .guide-content .beastmaster-list {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: .5rem !important;
+  width: 100%;
+}
+
+body.xiv .guide-content .beastmaster-entry {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0;
+  margin: 0 !important;
+}
+
+/* Make the beast itself read as a proper accordion row. */
+body.xiv .guide-content .guide__entry-trigger--beast {
+  position: relative !important;
+
+  display: grid !important;
+  grid-template-columns: 2.75rem minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  gap: .65rem !important;
+
+  width: 100% !important;
+  min-height: 3.8rem !important;
+
+  margin: 0 !important;
+  padding: .5rem .7rem .5rem 1.8rem !important;
+
+  cursor: pointer !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--beast::before {
+  content: '▸' !important;
+
+  position: absolute !important;
+  left: .55rem !important;
+  top: 50% !important;
+
+  display: block !important;
+  width: .7rem !important;
+
+  margin: 0 !important;
+
+  color: var(--xiv-gold) !important;
+  font-size: .72rem !important;
+  line-height: 1 !important;
+  text-align: center !important;
+
+  transform: translateY(-50%) rotate(0deg) !important;
+  transform-origin: 50% 50% !important;
+  transition: transform .15s ease !important;
+  pointer-events: none !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--beast.active::before,
+body.xiv .guide-content .guide__entry-trigger--beast[aria-expanded="true"]::before {
+  transform: translateY(-50%) rotate(90deg) !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--beast:hover,
+body.xiv .guide-content .guide__entry-trigger--beast.active {
+  border-color: color-mix(in srgb, var(--xiv-gold) 58%, var(--xiv-border)) !important;
+  background: color-mix(in srgb, var(--xiv-selection) 70%, var(--xiv-surface)) !important;
+}
+
+/* Expanded body belongs directly below its trigger. */
+body.xiv .guide-content .guide__entry-content--beast {
+  display: block;
+  width: 100% !important;
+
+  margin: 0 0 .2rem !important;
+  padding: .8rem .9rem .9rem !important;
+
+  border-top: 0 !important;
+}
+
+body.xiv .guide-content .guide__entry-content--beast[hidden] {
+  display: none !important;
+}
+
+/* Overall Bestien section is also collapsible. */
+body.xiv .guide-content .beastmaster-captures >
+.guide__accordion-trigger--01-grid {
+  cursor: pointer !important;
+}
+
+body.xiv .guide-content .beastmaster-captures >
+.guide__accordion-trigger--01-grid::before {
+  content: '▸';
+
+  display: inline-block;
+  margin-right: .55rem;
+
+  color: var(--xiv-gold);
+
+  transform: rotate(0deg);
+  transition: transform .15s ease;
+}
+
+body.xiv .guide-content .beastmaster-captures >
+.guide__accordion-trigger--01-grid.active::before,
+body.xiv .guide-content .beastmaster-captures >
+.guide__accordion-trigger--01-grid[aria-expanded="true"]::before {
+  transform: rotate(90deg);
+}
+
+/* Keep nested location information readable, but still one-column on
+   medium/small screens. */
+@media (max-width: 70rem) {
+  body.xiv .guide-content .beastmaster-location__grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 42rem) {
+  body.xiv .guide-content .guide__entry-trigger--beast {
+    grid-template-columns: 2.3rem minmax(0, 1fr) !important;
+  }
+
+  body.xiv .guide-content .beastmaster-entry__number {
+    grid-column: 2;
+    justify-self: start;
+  }
+}

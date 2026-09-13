@@ -1,9 +1,11 @@
 /* ==========================================================================
-   Unified expansion header — upper wordmark only
+   Unified expansion/role header
+   Icon + logo/text are ONE centered visual group.
    ========================================================================== */
 
 .index-divider:has(> .expansion-header) {
   display: block !important;
+
   width: 100% !important;
   min-width: 0 !important;
   min-height: 5.5rem !important;
@@ -27,12 +29,21 @@
     ) !important;
 }
 
+/*
+ * IMPORTANT:
+ * The icon and identity are deliberately centred AS A PAIR.
+ *
+ * Previous layout:
+ *   [icon]            [logo]            [empty balance]
+ *
+ * New layout:
+ *              [icon] [logo]
+ */
 .expansion-header {
-  display: grid !important;
-  grid-template-columns: 4rem minmax(0, 1fr) 4rem !important;
+  display: flex !important;
   align-items: center !important;
-  justify-items: center !important;
-  gap: 1rem !important;
+  justify-content: center !important;
+  gap: .85rem !important;
 
   width: 100% !important;
   min-width: 0 !important;
@@ -44,27 +55,30 @@
   overflow: hidden !important;
 }
 
-/* Left icon --------------------------------------------------------------- */
+/* Icon -------------------------------------------------------------------- */
 
-.expansion-header__icon,
-.expansion-header__balance {
-  display: grid;
-  place-items: center;
+.expansion-header__icon {
+  flex: 0 0 auto !important;
 
-  width: 4rem;
-  height: 4rem;
+  display: grid !important;
+  place-items: center !important;
 
-  margin: 0;
-  padding: 0;
+  width: 3.6rem !important;
+  min-width: 3.6rem !important;
+  height: 3.6rem !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .expansion-header__icon-image {
   display: block !important;
 
   width: 3.15rem !important;
-  height: 3.15rem !important;
   min-width: 3.15rem !important;
   max-width: 3.15rem !important;
+
+  height: 3.15rem !important;
   min-height: 3.15rem !important;
   max-height: 3.15rem !important;
 
@@ -75,45 +89,44 @@
   object-position: center !important;
 
   transform: none !important;
+  vertical-align: middle !important;
 
-  filter: drop-shadow(0 .12rem .18rem rgba(0,0,0,.48));
+  filter: drop-shadow(0 .12rem .18rem rgba(0, 0, 0, .48));
 }
 
 .expansion-header__icon.is-missing {
-  visibility: hidden;
+  display: none !important;
 }
 
-/* Logo -------------------------------------------------------------------- */
+/* Center identity --------------------------------------------------------- */
 
 .expansion-header__identity {
-  display: grid;
-  place-items: center;
+  flex: 0 1 auto !important;
 
-  width: 100%;
-  min-width: 0;
-  height: 4.25rem;
+  display: grid !important;
+  place-items: center !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  height: 4.25rem !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 
   overflow: hidden !important;
 }
 
-/*
- * We only want the UPPER HALF of the original expansion artwork.
- *
- * The rendered image is exactly twice as tall as the visible frame.
- * object-position: top center keeps the first 50% visible while the lower
- * FINAL FANTASY XIV / ONLINE / Japanese subtitle portion is clipped away.
- */
+/* Upper half of expansion artwork only. */
 .expansion-header__logo-frame {
   position: relative;
 
   display: block !important;
 
-  width: min(27rem, 68vw) !important;
+  width: min(24rem, 55vw) !important;
   max-width: 100% !important;
-
   height: 4.25rem !important;
 
-  margin: 0 auto !important;
+  margin: 0 !important;
   padding: 0 !important;
 
   overflow: hidden !important;
@@ -138,10 +151,6 @@
   object-fit: contain !important;
   object-position: center top !important;
 
-  /*
-   * Center horizontally, then move the source slightly upward so the large
-   * expansion wordmark sits visually centered inside the cropped frame.
-   */
   transform: translateX(-50%) translateY(-3%) !important;
   transform-origin: center top !important;
 
@@ -153,21 +162,21 @@
   display: none !important;
 }
 
-/*
- * Deliberately NO textual expansion fallback.
- * Evercold currently has no usable expansion logo, so its header remains
- * visually empty instead of rendering "8.x - Evercold".
- */
+/* No textual expansion fallback. */
 .expansion-header__title {
   display: none !important;
 }
 
-/* Right balancing column keeps the logo centered independently of icon. */
+/*
+ * Old balancing element is intentionally disabled.
+ * It is what caused the icon to sit on the far left while the logo stayed
+ * independently centred.
+ */
 .expansion-header__balance {
-  grid-column: 3;
+  display: none !important;
 }
 
-/* Kill legacy image rules inside this component. */
+/* Legacy image rules must not affect this component. */
 .expansion-header .role-icon,
 .expansion-header .ex-icon,
 .index-divider .expansion-header .role-icon,
@@ -177,12 +186,53 @@
   float: none !important;
 }
 
-/* The shared component always owns divider dimensions. */
 .utility-page .index-divider:has(> .expansion-header),
 .index .index-divider:has(> .expansion-header) {
   min-height: 5.5rem !important;
   overflow: hidden !important;
 }
+
+/* Role headers use the same exact centred group. */
+.role-header .role-header__identity {
+  flex: 0 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: 4.25rem !important;
+  overflow: visible !important;
+}
+
+.role-header__title {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 100% !important;
+
+  margin: 0 !important;
+  padding: .25rem .45rem !important;
+
+  color: var(--xiv-gold-bright) !important;
+
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(1.35rem, 2vw, 1.9rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.1 !important;
+
+  text-align: center !important;
+  white-space: nowrap;
+
+  text-shadow: 0 .1rem .18rem rgba(0,0,0,.45) !important;
+}
+
+.index-divider:has(> .role-header),
+.index .index-divider:has(> .role-header),
+.role-header {
+  overflow: visible !important;
+}
+
+/* Responsive -------------------------------------------------------------- */
 
 @media (max-width: 62rem) {
   .index-divider:has(> .expansion-header),
@@ -191,33 +241,33 @@
   }
 
   .expansion-header {
-    grid-template-columns: 3.25rem minmax(0, 1fr) 3.25rem !important;
     gap: .65rem !important;
     padding-inline: .7rem !important;
   }
 
-  .expansion-header__icon,
-  .expansion-header__balance {
-    width: 3.25rem;
-    height: 3.25rem;
+  .expansion-header__icon {
+    width: 3rem !important;
+    min-width: 3rem !important;
+    height: 3rem !important;
   }
 
   .expansion-header__icon-image {
     width: 2.7rem !important;
-    height: 2.7rem !important;
     min-width: 2.7rem !important;
     max-width: 2.7rem !important;
+    height: 2.7rem !important;
     min-height: 2.7rem !important;
     max-height: 2.7rem !important;
   }
 
   .expansion-header__identity,
+  .role-header .role-header__identity,
   .expansion-header__logo-frame {
     height: 3.75rem !important;
   }
 
   .expansion-header__logo-frame {
-    width: min(22rem, 66vw) !important;
+    width: min(21rem, 58vw) !important;
   }
 
   .expansion-header__logo {
@@ -232,36 +282,41 @@
   }
 
   .expansion-header {
-    grid-template-columns: 2.65rem minmax(0, 1fr) 2.65rem !important;
     gap: .4rem !important;
-    padding: .4rem .55rem !important;
+    padding: .4rem .5rem !important;
   }
 
-  .expansion-header__icon,
-  .expansion-header__balance {
-    width: 2.65rem;
-    height: 2.65rem;
+  .expansion-header__icon {
+    width: 2.5rem !important;
+    min-width: 2.5rem !important;
+    height: 2.5rem !important;
   }
 
   .expansion-header__icon-image {
     width: 2.2rem !important;
-    height: 2.2rem !important;
     min-width: 2.2rem !important;
     max-width: 2.2rem !important;
+    height: 2.2rem !important;
     min-height: 2.2rem !important;
     max-height: 2.2rem !important;
   }
 
   .expansion-header__identity,
+  .role-header .role-header__identity,
   .expansion-header__logo-frame {
     height: 3.25rem !important;
   }
 
   .expansion-header__logo-frame {
-    width: min(17rem, 65vw) !important;
+    width: min(15.5rem, 62vw) !important;
   }
 
   .expansion-header__logo {
     height: 6.5rem !important;
+  }
+
+  .role-header__title {
+    padding-inline: .2rem !important;
+    font-size: 1.15rem !important;
   }
 }

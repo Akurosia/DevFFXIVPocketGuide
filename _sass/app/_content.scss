@@ -200,7 +200,7 @@
   font-size:.7rem;
 }
 
-.guide__accordion-trigger--02-grid .guide__enemy-images { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:.35rem; width:auto; max-width:15rem; margin:0; }
+.guide__accordion-trigger--02-grid .guide__enemy-images { display:flex; justify-content:flex-end; gap:.35rem; width:auto; max-width:15rem; margin:0; }
 .guide__accordion-trigger--02-grid .guide__enemy-image { width:3.75rem !important; height:3.75rem !important; max-width:3.75rem; object-fit:contain; object-position:center; }
 
 .guide__image-list,.guide__attack-image-list,.guide__attack-video-list {
