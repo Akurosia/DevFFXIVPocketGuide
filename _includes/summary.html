@@ -1,22 +1,42 @@
 <!-- Include _include/summary.html -->
 <div class="summary">
     <a class="index-item__link xiv-card" href="{{ guide.url | prepend: site.baseurl }}" title="Go to the {{ guide.title.de }} Guide">
-        <div loading="lazy" class="index-item__background"
-            {%- if guide.cover -%}
-                style="background-image: url('{{site.imageurl}}/{{ guide.cover }}')"
-            {%- elsif guide.image -%}
-                style="background-image:
-                    {%- if guide.image contains "assets/" -%}
-                        url('{{guide.image}}')
-                    {%- else -%}
-                        url('{{site.imageurl}}/{{guide.image}}')
-                    {%- endif -%}
-            {%- endif -%}">
+
+        {%- assign card_image_url = "" -%}
+        {%- if guide.cover -%}
+            {%- assign card_image_url = site.imageurl | append: "/" | append: guide.cover -%}
+        {%- elsif guide.image -%}
+            {%- if guide.image contains "assets/" -%}
+                {%- assign card_image_url = guide.image -%}
+            {%- else -%}
+                {%- assign card_image_url = site.imageurl | append: "/" | append: guide.image -%}
+            {%- endif -%}
+        {%- endif -%}
+
+        <div class="index-item__background" aria-hidden="true">
+            {%- if card_image_url != "" -%}
+                <img
+                    class="index-item__background-image"
+                    src="{{ card_image_url }}"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                    width="640"
+                    height="360">
+            {%- endif -%}
         </div>
 
         <div class="xiv-card-body index-item__body{%- unless guide.jobicon -%} index-item__body--text-only{%- endunless -%}">
             {%- if guide.jobicon -%}
-                <img loading="lazy" class="SummaryIcon Icon" title="{{guide.instanceType}}" src="{{site.imageurl}}/{{guide.jobicon}}" alt=""/>
+                <img
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                    class="SummaryIcon Icon"
+                    title="{{guide.instanceType}}"
+                    src="{{site.imageurl}}/{{guide.jobicon}}"
+                    alt=""/>
             {%- endif -%}
             <div class="SummaryName">
                 <h3 class="index-item__title xiv-card-title"
@@ -25,7 +45,6 @@
                     {%- else -%}
                       data-terms="{%- for term in guide.terms -%}term:{{ term.term }}&#32;{%- endfor -%}"
                     {%- endif -%}>
-
                     <span data-translate="Summary_{{guide.instanceType}}_{{guide.title.en | downcase}}"> {{ guide.title.en }} </span>
                     <span class
                         {%- if guide.difficulty == "Hard" -%}            ="hard"
@@ -39,8 +58,7 @@
                         {%- elsif guide.difficulty == "Episch" -%}       ="savage"
                         {%- elsif guide.difficulty == "Fatal" -%}        ="ultimate"
                         {%- elsif guide.difficulty == "Chaotisch" -%}    ="chaos"
-                        {%- endif -%}
-                        >
+                        {%- endif -%}>
                         {%- if guide.difficulty != "Normal" -%}
                             <span class="lang-toggle lang-toogle-de">({{ guide.difficulty }})</span>
                         {%- endif -%}

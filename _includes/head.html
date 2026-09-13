@@ -1,11 +1,7 @@
 <!-- Include from _includes/head -->
-    <!-- Charset -->
     <meta charset="utf-8" />
-    <!-- Compatibility -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Page Title -->
     {%- assign page_title_fallback = page.title.en | default: page.title -%}
     {%- if page.page_category == "all" -%}
         <title>FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail</title>
@@ -14,9 +10,7 @@
     {%- else -%}
         <title>{{ page.title }} | FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail</title>
     {%- endif -%}
-    <!-- Page Description -->
     <meta name="description" content="Dungeon, Trial, and Raid guides for Final Fantasy XIV. {%- if page.description -%}{{ page.description | strip_html | strip_newlines | truncate: 300 }}{%- else -%}{{ site.description }}{%- endif -%}" />
-    <!-- Open Graph & Twitter Tags -->
     <meta name="twitter:card" content="summary" />
     <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
     <meta property="og:title" content="{{ page_title_fallback }}{%- if page.difficulty -%} ({{ page.difficulty }}){%- endif -%} | FFXIV Pocket Guide - Final Fantasy XIV - Dawntrail" />
@@ -26,16 +20,18 @@
     {%- else -%}
         <meta property="og:image" content="{{ site.url }}{%- if page.cover -%}{{ page.cover }}{%- elsif page.image.urlSmall -%}{{ page.image.urlSmall }}{%- elsif page.image -%}{%- for image in page.image -%}{{ image.urlSmall }}{%- endfor -%}{%- endif -%}" />
     {%- endif -%}
-    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://ff14.akurosiakamo.de" crossorigin>
+    <link rel="dns-prefetch" href="//ff14.akurosiakamo.de">
+
     <link href="{{ site.baseurl }}/assets/fonts/fonts.css" rel="stylesheet" />
-    <!--  Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/img/favicon-32x32.png' | prepend: site.baseurl }}" />
     <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/img/favicon-16x16.png' | prepend: site.baseurl }}" />
     <link rel="manifest" href="{{site.baseurl}}/manifest.json" />
     <link rel="mask-icon" href="{{site.baseurl}}/assets/img/safari-pinned-tab.svg" color="#ff575c" />
     <meta name="theme-color" content="#ffffff" />
-    <!-- Google Search Structured Pages -->
+
     {%- if page.page_category == "all" or page.page_category == "dungeons" or page.page_category == "trials" or page.page_category == "raids" -%}
         <script type="application/ld+json">
             {
@@ -56,23 +52,17 @@
             }
         </script>
     {%- endif -%}
-    <!-- Twitter Intents -->
+
     <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
-    <!-- jQuery: local first, CDN fallback so old Bootstrap/jQuery pages do not crash locally. -->
     <script type="text/javascript" src="{{ "/assets/vendor/jquery.min.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
     <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\/script>')</script>
-    <!-- Modernizr -->
     <script type="text/javascript" src="{{ "/assets/vendor/modernizr.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
-    <!-- Ionicons -->
     <link rel="stylesheet" href="{{ "/assets/vendor/ionicons.min.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
-    <!-- Normalize -->
     <link rel="stylesheet" href="{{ "/assets/vendor/normalize.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" type="text/css" media="all" />
-    <!-- Eorzea UI / ffxiv-css: shared component system -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Akurosia/ffxiv-css@main/ffxiv.css" />
-    <!-- Pocket Guide application/layout styles only -->
     <link rel="stylesheet" href="{{ "/css/core.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" />
-    <!-- Interaction/mobile polish loaded after the application styles -->
     <link rel="stylesheet" href="{{ "/css/mobile-ui.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" />
+    <link rel="stylesheet" href="{{ "/css/image-performance.css" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}" />
     <script type="text/javascript" src="{{ "/assets/js/copy2clipboard.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
     <script type="text/javascript" src="{{ "/assets/js/handleLanguage.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
     <script type="text/javascript" src="{{ "/assets/js/tablesort.min.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
