@@ -5,22 +5,18 @@
         {% include head.html %}
     </head>
     <!-- ORIGIN: _layout/achivments -->
-    <body class="xiv {{ page.page_type }} {{ page.page_category }}" data-xiv-theme="Dark">
+    <body class="xiv {{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
             {% include navbar.html %}
             <div class="layout__wrapper">
                 {% include header.html %}
-                {% if page.page_type == "index" %}
-                    <!-- Search Bar -->
-                    {% include presets/search.html searchPrefill="achievment" %}
-                    <!-- END Search Bar -->
-                {% endif %}
                 {% include achivments/index.html %}
                 {% include_cached footer.html %}
             </div>
         </div>
         <div style="display: none" data-extra-translate="/assets/translations/achiements"></div>
         {% include_cached scripts.html %}
+        <script type="text/javascript" src="{{ "/assets/js/achievements.js" | prepend: site.baseurl }}"></script>
     </body>
     <!-- END ORIGIN: _layout/achivments -->
     <script type="text/javascript">executeHandelingLanguages()</script>

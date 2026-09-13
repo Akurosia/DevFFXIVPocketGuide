@@ -134,6 +134,9 @@ function copy2clipboard(text) {
 }
 
 function remove_gearlist(){
+    const summary = document.getElementById("gear-result-summary");
+    if (summary) summary.textContent = "Lade …";
+
     document.getElementById("weapon_left").innerHTML = "";
     document.getElementById("weapon_right").innerHTML = "";
     document.getElementById("kopf").innerHTML = "";
@@ -149,73 +152,158 @@ function remove_gearlist(){
 }
 
 async function call_api_data(){
-    sum_fields = {}
-    classjob_select = document.getElementById("classjob")
-    classjob = classjob_select.options[classjob_select.selectedIndex].value;
-    lvl_from = document.getElementById("lvl_from").value
-    lvl_to = document.getElementById("lvl_to").value
-    ilvl_from = document.getElementById("ilvl_from").value
-    ilvl_to = document.getElementById("ilvl_to").value
-    include_hq = document.getElementById("include_hq").checked
-    limit_to_hq = document.getElementById("limit_to_hq").checked
+    sum_fields = {};
+    ringcounter = 1;
 
-    var rarity = []
-    var x = null
-    x = ((document.getElementById("rarity_0").checked) ? rarity.push("1") : null);
-    x = ((document.getElementById("rarity_7").checked) ? rarity.push("7") : null);
-    x = ((document.getElementById("rarity_2").checked) ? rarity.push("2") : null);
-    x = ((document.getElementById("rarity_3").checked) ? rarity.push("3") : null);
-    x = ((document.getElementById("rarity_4").checked) ? rarity.push("4") : null);
+    const classjob_select = document.getElementById("classjob");
+    const classjob = classjob_select.options[classjob_select.selectedIndex].value;
+    const lvl_from = document.getElementById("lvl_from").value;
+    const lvl_to = document.getElementById("lvl_to").value;
+    const ilvl_from = document.getElementById("ilvl_from").value;
+    const ilvl_to = document.getElementById("ilvl_to").value;
+    const include_hq = document.getElementById("include_hq").checked;
+    const limit_to_hq = document.getElementById("limit_to_hq").checked;
 
-    set_localstorage()
-    remove_gearlist()
-    promisses = []
+    const rarity = [];
+    if (document.getElementById("rarity_0").checked) rarity.push("1");
+    if (document.getElementById("rarity_7").checked) rarity.push("7");
+    if (document.getElementById("rarity_2").checked) rarity.push("2");
+    if (document.getElementById("rarity_3").checked) rarity.push("3");
+    if (document.getElementById("rarity_4").checked) rarity.push("4");
+
+    const fields = get_stats_for_class(classjob);
+
+    fields.forEach(field => {
+        sum_fields[field] = 0;
+    });
+
+    await createSummaryTable(fields);
+
+    set_localstorage();
+    remove_gearlist();
+
+    const requests = [];
+
     lists.forEach(category => {
-        table_name = category
-        if (category == "Mainhand"){
-            table_name = weapon_dict[classjob]
-        } else if (category == "Offhand"){
-            table_name = tools_dict[classjob]
+        let table_name = category;
+
+        if (category === "Mainhand"){
+            table_name = weapon_dict[classjob];
+        } else if (category === "Offhand"){
+            table_name = tools_dict[classjob];
+
+            // Jobs such as Dancer, Bard, etc. do not have an offhand slot.
+            // Do not query the backend with category=Offhand because that endpoint
+            // responds with HTTP 500 for unsupported categories.
             if (table_name === undefined){
-                table_name = category
+                const target = document.getElementById("weapon_right");
+                if (target) target.innerHTML = "";
+                return;
             }
         }
-        url_params2 =   "?classjob=" + classjob +
-                        "&classjobadd=" + class_additions[classjob] +
-                        "&category=" + String(table_name).replaceAll(" (", "_").replaceAll(")", "").replaceAll("-", "_").replaceAll(" ", "_") +
-                        "&lvl_from=" + lvl_from +
-                        "&lvl_to=" + lvl_to +
-                        "&ilvl_from=" + ilvl_from +
-                        "&ilvl_to=" + ilvl_to +
-                        "&rarity=" + String(rarity)
-        if (include_hq && limit_to_hq) {
-            url_params2 += "&hq=1"
-        } else if (include_hq && !limit_to_hq) {
-                url_params2 += "&hq=0,1"
+
+        const params = new URLSearchParams();
+        params.set("classjob", classjob);
+        params.set("classjobadd", class_additions[classjob] || "");
+        params.set(
+            "category",
+            String(table_name)
+                .replaceAll(" (", "_")
+                .replaceAll(")", "")
+                .replaceAll("-", "_")
+                .replaceAll(" ", "_")
+        );
+        params.set("lvl_from", lvl_from);
+        params.set("lvl_to", lvl_to);
+        params.set("ilvl_from", ilvl_from);
+        params.set("ilvl_to", ilvl_to);
+        params.set("rarity", rarity.join(","));
+
+        if (include_hq && limit_to_hq){
+            params.set("hq", "1");
+        } else if (include_hq){
+            params.set("hq", "0,1");
         } else {
-            url_params2 += "&hq=0"
+            params.set("hq", "0");
         }
-        jsondata = load_data(url_params2, table_name, category, classjob)
-        promisses.push(jsondata)
-    })
-    await Promise.allSettled(promisses).then((xxx) => {
-        // this is from handleLanguages.js
+
+        requests.push(
+            load_data("?" + params.toString(), table_name, category, classjob, fields)
+        );
+    });
+
+    await Promise.allSettled(requests);
+
+    updateGearResultSummary();
+
+    if (typeof executeHandelingLanguages === "function"){
         executeHandelingLanguages();
-        setTimeout(() => {  executeHandelingLanguages(); }, 700);
-    })
+        setTimeout(() => executeHandelingLanguages(), 700);
+    }
 }
 
-async function load_data(params, table_name, category, classJob){
-    //load treasure map json
-    url = 'https://ffxiv.akurosiakamo.de/queryFFXIVequipmentDB.php' + params
-    //fetch(url,{mode: 'cors'})
-    return fetch(url)
-        .then(r => r.json())
-        .then(data => {
-            fields = get_stats_for_class(classJob)
-            create_table(data, table_name, category, classJob, fields)
-        })
-        .catch(e => console.error(e))
+async function load_data(params, table_name, category, classJob, fields){
+    const url = "https://ffxiv.akurosiakamo.de/queryFFXIVequipmentDB.php" + params;
+
+    try {
+        const response = await fetch(url);
+        const body = await response.text();
+
+        if (!response.ok){
+            throw new Error(
+                `Gear API ${response.status} for ${category}: ${body.slice(0, 180)}`
+            );
+        }
+
+        let data;
+        try {
+            data = JSON.parse(body);
+        } catch (error) {
+            throw new Error(
+                `Gear API returned invalid JSON for ${category}: ${body.slice(0, 180)}`
+            );
+        }
+
+        if (data === null || typeof data !== "object"){
+            data = [];
+        }
+
+        await create_table(data, table_name, category, classJob, fields);
+    } catch (error) {
+        console.error(error);
+        renderGearSlotError(category, error);
+    }
+}
+
+function renderGearSlotError(category, error){
+    let target = null;
+
+    if (category === "Mainhand"){
+        target = document.getElementById("weapon_left");
+    } else if (category === "Offhand"){
+        target = document.getElementById("weapon_right");
+    } else if (category === "Ring"){
+        // Ring requests are duplicated; don't guess which one failed.
+        return;
+    } else {
+        target = document.getElementById(String(category).toLowerCase());
+    }
+
+    if (!target) return;
+
+    target.innerHTML = "";
+
+    const panel = document.createElement("div");
+    panel.className = "xiv-notice xiv-notice--warning gear-slot__error";
+
+    const title = document.createElement("strong");
+    title.textContent = `${gearDisplayName(category)} konnte nicht geladen werden`;
+
+    const detail = document.createElement("span");
+    detail.textContent = error?.message || "Unbekannter Fehler";
+
+    panel.append(title, detail);
+    target.appendChild(panel);
 }
 
 function get(object, key, default_value) {
@@ -226,104 +314,83 @@ function get(object, key, default_value) {
     return (typeof result !== "undefined") ? result : default_value;
 }
 
-var ringcounter = 1
-async function create_table(data, table_name, category, classJob, fields){
-    //console.log(table_name)
-    // handle mainhand case
-    if (category == "Mainhand"){
-        _div = document.getElementById("weapon_left")
-    }
-    // handle offhand case
-    else if (category == "Offhand"){
-        _div = document.getElementById("weapon_right")
-    //handle ring cases
-    }else if (category == "Ring"){
-        if (ringcounter == 1){
-            ringcounter++
-            category = "Ring_links"
-            _div = document.getElementById("ring_links")
-        }else if (ringcounter == 2){
-            ringcounter--
-            category = "Ring_rechts"
-            _div = document.getElementById("ring_rechts")
-        }
-    //handle all other cases
-    }else {
-        _div = document.getElementById(table_name.toLowerCase())
-    }
-    _div.innerHTML = ""
-    _table = await createTemplateTable(category, data, classJob, fields)
-    _div.appendChild(_table)
-}
-
-async function createTemplateTable(name, json, classJob, fields){
-    var _table = document.createElement('table');
-
-    _thead = await createTemplateTableHead(name, json, classJob, fields)
-    _tbody = await createTemplateTableBody(name, json, fields)
-    createSummaryTable(sum_fields)
-    _table.appendChild(_thead);
-    _table.appendChild(_tbody);
-
-    //_table.className = "table table-bordered table-striped table-dark table-hover table-striped bg-charcoal text-light border-gold-metallic";
-    _table.className = "table table-bordered table-dark table-striped text-light patch_table xiv-data-table";
-    _table.setAttribute("id", "table_"+name);
-    //_table.style.width = "1641px";
-    return _table;
-}
-
-async function createTHorTD(field, _type, classname){
-    var _th = document.createElement(_type);
-    if (_type == "th" && field) {
-        _th.setAttribute("data-translate", `Gear_${field}`)
-    }
-    _th.innerHTML = field;
-    if (classname !== undefined){
-        _th.className = classname
-    }
-    return _th
-}
 
 function get_stats_for_class(classJob, removeshy=true){
-    x = []
-    if (["BSW","SMA","RMA","BMA", "PKT"].includes(classJob)){
-        x = ["Mag. Basiswert", "Magieabwehr", "Intelligenz"]
-        x.push(...["Kritischer Treffer", "Direkter Treffer", "Entschlossenheit","Zaubertempo","Konstitution"])
+    let stats = [];
+
+    if (["BSW","SMA","RMA","BMA","PKT"].includes(classJob)){
+        stats = [
+            "Mag. Basiswert",
+            "Magieabwehr",
+            "Intelligenz",
+            "Kritischer Treffer",
+            "Direkter Treffer",
+            "Entschlossenheit",
+            "Zaubertempo",
+            "Konstitution"
+        ];
+    } else if (["WMA","GLT","AST","WEI"].includes(classJob)){
+        stats = [
+            "Mag. Basiswert",
+            "Magieabwehr",
+            "Willenskraft",
+            "Frömmigkeit",
+            "Kritischer Treffer",
+            "Direkter Treffer",
+            "Entschlossenheit",
+            "Zaubertempo",
+            "Konstitution"
+        ];
+    } else if (["ZMR","GRS","PLA","GLD","GER","WEB","ALC","GRM"].includes(classJob)){
+        stats = ["Kunstfertigkeit", "Kontrolle", "HP", "Konstitution"];
+    } else if (["MIN","GÄR","FIS"].includes(classJob)){
+        stats = ["Sammelgeschick", "Expertise", "SP", "Konstitution"];
+    } else if (["PLD","KRG","DKR","REV"].includes(classJob)){
+        stats = [
+            "Phys. Basiswert",
+            "Verteidigung",
+            "Stärke",
+            "Kritischer Treffer",
+            "Direkter Treffer",
+            "Entschlossenheit",
+            "Schnelligkeit",
+            "Unbeugsamkeit",
+            "Konstitution"
+        ];
+    } else if (["NIN","BRD","MCH","TÄN"].includes(classJob)){
+        stats = [
+            "Phys. Basiswert",
+            "Verteidigung",
+            "Geschick",
+            "Kritischer Treffer",
+            "Direkter Treffer",
+            "Entschlossenheit",
+            "Schnelligkeit",
+            "Konstitution"
+        ];
+    } else if (["MÖN","DRG","SAM","SNT","VPR"].includes(classJob)){
+        stats = [
+            "Phys. Basiswert",
+            "Verteidigung",
+            "Stärke",
+            "Kritischer Treffer",
+            "Direkter Treffer",
+            "Entschlossenheit",
+            "Schnelligkeit",
+            "Konstitution"
+        ];
+    } else {
+        console.error("Gear: unsupported class/job", classJob);
     }
-    else if (["WMA","GLT","AST", "WEI"].includes(classJob)){
-        x = ["Mag. Basiswert", "Magieabwehr", "Willenskraft"]
-        x.push(...["Frömmigkeit", "Kritischer Treffer", "Direkter Treffer", "Entschlossenheit","Zaubertempo","Konstitution"])
-    }
-    else if (["ZMR","GRS","PLA","GLD","GER","WEB","ALC","GRM"].includes(classJob)){
-        x = ["Kunstfertigkeit", "Kontrolle", "HP", "Konstitution"]
-    }
-    else if (["MIN","GÄR","FIS"].includes(classJob)){
-        x = ["Sammelgeschick", "Expertise", "SP", "Konstitution"]
-    }
-    else if (["PLD","KRG","DKR","REV"].includes(classJob)){
-        x = ["Phys. Basiswert", "Verteidigung", "Stärke"]
-        x.push(...["Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit", "Unbeugsamkeit", "Konstitution"])
-    }
-    else if (["NIN","BRD","MCH","TÄN"].includes(classJob)){
-        x = ["Phys. Basiswert", "Verteidigung", "Geschick"]
-        x.push(...["Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit","Konstitution"])
-    }
-    else if (["MÖN","DRG","SAM", "SNT", "VPR"].includes(classJob)){
-        x = ["Phys. Basiswert", "Verteidigung", "Stärke"]
-        x.push(...["Kritischer Treffer", "Direkter Treffer", "Entschlossenheit", "Schnelligkeit","Konstitution"])
-    }
-    else {
-        console.error("ERROR CLASS NOT AVAILABLE!!!")
-    }
+
     if (removeshy){
-        for (e in x){
-            x[e] = x[e].replace("&shy;", "")
-        }
+        stats = stats.map(field => field.replace("&shy;", ""));
     }
-    return x
+
+    return stats;
 }
 
-races = [
+const races = [
     "Hyuran - Wiesländer",
     "Hyuran - Hochländer",
     "Miqo'te - Goldtatze",
@@ -340,151 +407,323 @@ races = [
     "Viera - Veena",
     "Hrothgar - Helion",
     "Hrothgar - Losgesagter"
-]
+];
 
 function get_race_select(){
-    td = document.createElement("td")
-    select = document.createElement("select")
-    for (var race in races) {
-        option = document.createElement("option")
-        option.setAttribute("data-translate", `Gear_Race_${races[race]}`)
-        option.value = races[race]
-        option.textContent = races[race]
-        select.appendChild(option)
-    }
-    select.setAttribute("onchange", "updateValues()")
-    select.setAttribute("id", "races_select")
+    const td = document.createElement("td");
+    const select = document.createElement("select");
+    select.id = "races_select";
+    select.className = "xiv-select";
+
+    races.forEach(race => {
+        const option = document.createElement("option");
+        option.setAttribute("data-translate", `Gear_Race_${race}`);
+        option.value = race;
+        option.textContent = race;
+        select.appendChild(option);
+    });
+
+    select.addEventListener("change", updateValues);
     td.appendChild(select);
-    return td
+    return td;
 }
 
-// this creates the footer table
-async function createSummaryTable(fields){
-    var table = document.getElementById("table_stats_overview")
-    table.innerHTML = ""
-    var _head = document.createElement('thead');
-    _head.id = "thead_stats_overview"
-    var _tr = document.createElement('tr');
-    _tr.appendChild(await createTHorTD("Race", "th", "race"));
-    //_tr.appendChild(await createTHorTD("lvl", "th", "lvl"));
-    _tr.appendChild(await createTHorTD("ilvl", "th", "ilvl"));
-    //_tr.appendChild(await createTHorTD("Materia", "th", "materia"));
-    for (var field in fields){
-        _tr.appendChild(await createTHorTD(field, "th", "stat"));
-    }
-    //place holder to allign get from column
-    //_tr.appendChild(await createTHorTD("", "th", "stat "));
-    _head.appendChild(_tr);
-    table.appendChild(_head);
+async function createTHorTD(field, type, classname){
+    const cell = document.createElement(type);
 
-    var _body = document.createElement('tbody');
-    _body.id = "tbody_stats_overview"
-    var _tr = document.createElement('tr');
-    _tr.appendChild(get_race_select());
-    //_tr.appendChild(await createTHorTD("", "td", "lvl"));
-    _tr.appendChild(await createTHorTD("0", "td", "ilvl"));
-    //_tr.appendChild(await createTHorTD("", "td", "materia"));
-    for (var field in fields){
-        _tr.appendChild(await createTHorTD(fields[field], "td", "stat " + field));
+    if (type === "th" && field){
+        cell.setAttribute("data-translate", `Gear_${field}`);
     }
-    //place holder to allign get from column
-    //_tr.appendChild(await createTHorTD("", "td", "stat "));
-    _body.appendChild(_tr);
-    table.className = "table-bordered table-dark bg-charcoal text-light xiv-stat-table"
-    table.appendChild(_body);
-    document.getElementById("races_select").onchange()
+
+    cell.innerHTML = field ?? "";
+
+    if (classname !== undefined){
+        cell.className = classname;
+    }
+
+    return cell;
 }
 
-async function createTemplateTableHead(name, json, classJob, fields){
-    var _head = document.createElement('thead');
-    _head.setAttribute("id", "thead_"+name);
-    var _tr = document.createElement('tr');
-    _tr.appendChild(await createTHorTD("", "th",  "radio"));
-    _tr.appendChild(await createTHorTD("", "th",  "icon"));
-    _tr.appendChild(await createTHorTD(name, "th"));
-    _tr.appendChild(await createTHorTD("lvl", "th", "lvl"));
-    _tr.appendChild(await createTHorTD("ilvl", "th", "ilvl"));
-    _tr.appendChild(await createTHorTD("patch", "th", "patch"));
-    _tr.appendChild(await createTHorTD("Materia", "th", "materia"));
+function getMaxMeld(item){
+    let meldstats = 0;
 
-    for (var field in fields){
-        if (["Blockeffekt", "Blockrate"].includes(fields[field])){
-        } else if (fields[field] == []){
+    substats.forEach(field => {
+        const value = Number(item?.[field] ?? 0);
+        if (value > meldstats){
+            meldstats = value;
+        }
+    });
+
+    return meldstats;
+}
+
+var ringcounter = 1
+async function create_table(data, table_name, category, classJob, fields){
+    let target;
+
+    if (category === "Mainhand"){
+        target = document.getElementById("weapon_left");
+    } else if (category === "Offhand"){
+        target = document.getElementById("weapon_right");
+    } else if (category === "Ring"){
+        if (ringcounter === 1){
+            ringcounter++;
+            category = "Ring_links";
+            target = document.getElementById("ring_links");
         } else {
-            _tr.appendChild(await createTHorTD(fields[field], "th", "stat"));
-            xfield = fields[field].replace("&shy;", "")
-            //xfield = fields[field].replace(" ", "_").replace("&shy;", "")
-            sum_fields[xfield] = 0
+            ringcounter--;
+            category = "Ring_rechts";
+            target = document.getElementById("ring_rechts");
         }
+    } else {
+        target = document.getElementById(String(table_name).toLowerCase());
     }
-    //_tr.appendChild(await createTHorTD("Get From", "th", "loc"));
-    _head.appendChild(_tr);
-    return _head;
+
+    if (!target) return;
+
+    target.innerHTML = "";
+    target.appendChild(await createGearSlot(category, data, classJob, fields));
+    updateGearResultSummary();
 }
 
-function getMaxMeld(item) {
-    meldstats = 0
-    for (var field in substats){
-        // jor api itself add item['Stats'][substats[field]]
-        if (meldstats < item[substats[field]]) {
-            meldstats = item[substats[field]];
-        }
-    }
-    return meldstats
+function gearDisplayName(name){
+    const names = {
+        "Mainhand": "Hauptwaffe",
+        "Offhand": "Nebenhand",
+        "Kopf": "Kopf",
+        "Rumpf": "Rumpf",
+        "Hände": "Hände",
+        "Beine": "Beine",
+        "Füße": "Füße",
+        "Ohrring": "Ohrring",
+        "Halskette": "Halskette",
+        "Armreif": "Armreif",
+        "Ring_links": "Ring 1",
+        "Ring_rechts": "Ring 2",
+        "Ring": "Ring"
+    };
+    return names[name] || name;
 }
 
-cleartext = {
-    1: "Ja",
-    0: "Nein",
-    true: "Ja",
-    false: "Nein"
+function createGearMeta(label, value, className=""){
+    const item = document.createElement("span");
+    item.className = "gear-item__meta " + className;
+
+    const labelEl = document.createElement("span");
+    labelEl.className = "gear-item__meta-label";
+    labelEl.textContent = label;
+
+    const valueEl = document.createElement("strong");
+    valueEl.className = "gear-item__meta-value";
+    valueEl.textContent = value;
+
+    item.append(labelEl, valueEl);
+    return item;
 }
 
+function createGearStat(field, value, maxMeld){
+    const stat = document.createElement("span");
+    stat.className = "gear-item__stat";
+    stat.dataset.statName = field;
+    stat.dataset.statValue = String(value || 0);
 
-async function createTemplateTableBody(name, json, fields){
-    var _body = document.createElement('tbody');
-    _body.setAttribute("id", "tbody_"+name);
-    for (var key in json){
-        max_meld = getMaxMeld(json[key])
-        var _tr = document.createElement('tr');
-        _tr.appendChild(await createTHorTD("<input onclick='updateValues()' type='radio' id='" + json[key]["Name_de"] + "' name='" + name + "' value=''>", "td"));
-        var icon = json[key]['Icon'].replace("ui/icon/", "").replace(".png", ".webp").replace(".webp", "_hr1.webp")
-        _tr.appendChild(await createTHorTD("<a target='_blank' href='http://garlandtools.org/db/#item/" + json[key]["ID"] + "'><img loading='lazy' src='https://ff14.akurosiakamo.de/extras/images/ui/icon/" + icon + "'></img>" + "</a>", "td", "icon"));
-        _name = '<div class="mytooltip"  id="' + json[key]["ID"] + '">'
-        _name += '<span class="lang-toggle lang-toogle-de" onclick="copy2clipboard(\'' + json[key]["Name_de"] + '\')">' + json[key]["Name_de"] + '</span>'
-        _name += '<span class="lang-toggle lang-toogle-en" onclick="copy2clipboard(\'' + json[key]["Name_en"] + '\')">' + json[key]["Name_en"] + '</span>'
-        _name += '<span class="lang-toggle lang-toogle-fr" onclick="copy2clipboard(\'' + json[key]["Name_fr"] + '\')">' + json[key]["Name_fr"] + '</span>'
-        _name += '<span class="lang-toggle lang-toogle-ja" onclick="copy2clipboard(\'' + json[key]["Name_ja"] + '\')">' + json[key]["Name_ja"] + '</span>'
-        _name += '<span class="lang-toggle lang-toogle-cn" onclick="copy2clipboard(\'' + json[key]["Name_cn"] + '\')">' + json[key]["Name_cn"] + '</span>'
-        _name += '<span class="lang-toggle lang-toogle-ko" onclick="copy2clipboard(\'' + json[key]["Name_ko"] + '\')">' + json[key]["Name_ko"] + '</span>'
-        _name += '<span class="tooltiptext">'
-        _name += 'Färbbar: ' + cleartext[parseInt(json[key]["IsDyeable"])] + '</br>'
-        _name += 'Einzigartig: ' + cleartext[parseInt(json[key]["IsUnique"])] + '</br>'
-        _name += 'Handelbar: ' + cleartext[!parseInt(json[key]["IsUntradable"])] + '</br>'
-        _name += 'Verkauf am MB: ' + cleartext[parseInt(json[key]["ItemSearchCategory"])] + '</br>'
-        _name += 'Pentameld: ' + cleartext[parseInt(json[key]["IsAdvancedMeldingPermitted"])] + '</span></div>'
-        _tr.appendChild(await createTHorTD(_name, "td"));
-        _tr.appendChild(await createTHorTD(json[key]["Level_Equip"], "td", "lvl"));
-        _tr.appendChild(await createTHorTD(json[key]["Level_Item"], "td", "ilvl"));
-        _tr.appendChild(await createTHorTD(json[key]["Patch"], "td", "patch"));
-        _tr.appendChild(await createTHorTD(json[key]["MateriaSlotCount"], "td", "materia"));
-        for (var field in fields){
-            xfield = fields[field].replace("&shy;", "")
-            if (["Blockeffekt", "Blockrate"].includes(field)){
-            } else {
-                _td = await createTHorTD(get(json[key], xfield, 0), "td", "stat " + xfield)
-                if (substats.includes(xfield)){
-                    _span = document.createElement("span")
-                    _span.textContent = " (" + max_meld + ")"
-                    _td.appendChild(_span);
-                }
-                _tr.appendChild(_td);
-            }
-        }
-        //_tr.appendChild(await createTHorTD("", "td", "loc"));
-        _body.appendChild(_tr);
+    const name = document.createElement("span");
+    name.className = "gear-item__stat-name";
+    name.textContent = field;
+
+    const val = document.createElement("strong");
+    val.className = "gear-item__stat-value";
+    val.textContent = String(value || 0);
+
+    if (substats.includes(field) && maxMeld > 0){
+        const meld = document.createElement("small");
+        meld.className = "gear-item__stat-cap";
+        meld.textContent = `max ${maxMeld}`;
+        val.appendChild(meld);
     }
-    return _body;
+
+    stat.append(name, val);
+    return stat;
+}
+
+async function createGearSlot(name, json, classJob, fields){
+    const slot = document.createElement("div");
+    slot.className = "gear-slot";
+
+    const header = document.createElement("header");
+    header.className = "gear-slot__header";
+
+    const title = document.createElement("h3");
+    title.className = "gear-slot__title";
+    title.textContent = gearDisplayName(name);
+
+    const count = document.createElement("span");
+    count.className = "xiv-badge gear-slot__count";
+    count.textContent = `${json.length || Object.keys(json).length} Treffer`;
+
+    header.append(title, count);
+
+    const list = document.createElement("div");
+    list.className = "gear-item-list";
+
+    const values = Array.isArray(json) ? json : Object.values(json);
+    if (!values.length){
+        const empty = document.createElement("div");
+        empty.className = "gear-slot__empty";
+        empty.textContent = "Keine passenden Gegenstände gefunden.";
+        list.appendChild(empty);
+    }
+
+    values.forEach(item => {
+        list.appendChild(createGearItem(name, item, fields));
+    });
+
+    slot.append(header, list);
+    return slot;
+}
+
+function createGearItem(slotName, item, fields){
+    const maxMeld = getMaxMeld(item);
+    const row = document.createElement("label");
+    row.className = "gear-item";
+    row.dataset.itemId = item["ID"];
+
+    const selectWrap = document.createElement("span");
+    selectWrap.className = "gear-item__select";
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = slotName;
+    radio.value = item["ID"];
+    radio.addEventListener("change", updateValues);
+    selectWrap.appendChild(radio);
+
+    const iconLink = document.createElement("a");
+    iconLink.className = "gear-item__icon-link";
+    iconLink.target = "_blank";
+    iconLink.href = `https://garlandtools.org/db/#item/${item["ID"]}`;
+    iconLink.addEventListener("click", event => event.stopPropagation());
+
+    const icon = document.createElement("img");
+    icon.className = "gear-item__icon";
+    const iconPath = String(item["Icon"] || "")
+        .replace("ui/icon/", "")
+        .replace(".png", ".webp")
+        .replace(".webp", "_hr1.webp");
+
+    if (iconPath){
+        icon.src = `https://ff14.akurosiakamo.de/extras/images/ui/icon/${iconPath}`;
+    } else {
+        icon.style.display = "none";
+    }
+    icon.loading = "lazy";
+    icon.alt = "";
+    iconLink.appendChild(icon);
+
+    const identity = document.createElement("span");
+    identity.className = "gear-item__identity";
+
+    const name = document.createElement("strong");
+    name.className = "gear-item__name";
+    name.textContent = item["Name_de"];
+    name.title = item["Name_en"] || item["Name_de"];
+    name.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        copy2clipboard(item["Name_de"]);
+    });
+
+    const flags = document.createElement("span");
+    flags.className = "gear-item__flags";
+    if (parseInt(item["IsUnique"])) flags.appendChild(makeGearFlag("Einzigartig"));
+    if (parseInt(item["IsDyeable"])) flags.appendChild(makeGearFlag("Färbbar"));
+    if (parseInt(item["IsAdvancedMeldingPermitted"])) flags.appendChild(makeGearFlag("Pentameld"));
+    if (parseInt(item["ItemSearchCategory"])) flags.appendChild(makeGearFlag("Marktbrett"));
+
+    identity.append(name, flags);
+
+    const meta = document.createElement("span");
+    meta.className = "gear-item__metadata";
+    meta.append(
+        createGearMeta("Lv", item["Level_Equip"], "lvl"),
+        createGearMeta("iLv", item["Level_Item"], "ilvl"),
+        createGearMeta("Patch", item["Patch"], "patch"),
+        createGearMeta("Materia", item["MateriaSlotCount"], "materia")
+    );
+
+    const stats = document.createElement("span");
+    stats.className = "gear-item__stats";
+
+    fields.forEach(field => {
+        const xfield = field.replace("&shy;", "");
+        if (["Blockeffekt", "Blockrate"].includes(xfield)) return;
+        if (!(xfield in sum_fields)) sum_fields[xfield] = 0;
+        stats.appendChild(createGearStat(xfield, get(item, xfield, 0), maxMeld));
+    });
+
+    row.append(selectWrap, iconLink, identity, meta, stats);
+    return row;
+}
+
+function makeGearFlag(text){
+    const flag = document.createElement("span");
+    flag.className = "xiv-badge gear-item__flag";
+    flag.textContent = text;
+    return flag;
+}
+
+function updateGearResultSummary(){
+    const summary = document.getElementById("gear-result-summary");
+    if (!summary) return;
+
+    const sections = Array.from(document.querySelectorAll("#gearlist .gear-slot"));
+    const items = sections.reduce((total, section) => total + section.querySelectorAll(".gear-item").length, 0);
+    summary.textContent = `${items} Gegenstände · ${sections.length} Slots`;
+}
+
+/* The footer/summary table remains compact, but item selection no longer relies
+   on the old table-row DOM. */
+async function createSummaryTable(fields){
+    const table = document.getElementById("table_stats_overview");
+    if (!table) return;
+
+    table.innerHTML = "";
+
+    const head = document.createElement("thead");
+    const headRow = document.createElement("tr");
+
+    headRow.appendChild(await createTHorTD("Race", "th", "race"));
+    headRow.appendChild(await createTHorTD("ilvl", "th", "ilvl"));
+
+    fields.forEach(field => {
+        headRow.appendChild(createSummaryCellSync(field, "th", "stat"));
+    });
+
+    head.appendChild(headRow);
+
+    const body = document.createElement("tbody");
+    body.id = "tbody_stats_overview";
+
+    const row = document.createElement("tr");
+    row.appendChild(get_race_select());
+    row.appendChild(createSummaryCellSync("0", "td", "ilvl"));
+
+    fields.forEach(field => {
+        row.appendChild(createSummaryCellSync("0", "td", "stat " + field));
+    });
+
+    body.appendChild(row);
+
+    table.className = "xiv-table xiv-stat-table";
+    table.append(head, body);
+
+    updateValues();
+}
+
+function createSummaryCellSync(value, type, className){
+    const cell = document.createElement(type);
+    cell.innerHTML = value;
+    if (className) cell.className = className;
+    return cell;
 }
 
 function set_localstorage() {
@@ -580,61 +819,58 @@ baseStatModifier= {
 }
 
 function updateValues(){
-    new_sum_fields = JSON.parse(JSON.stringify(sum_fields))
-    for (category in lists){
-        //get correct ring table
-        tablename = lists[category]
-        if (tablename == "Ring"){
-            if (ringcounter == 1){
-                ringcounter++
-                tablename = "Ring_links"
-            }else {
-                ringcounter--
-                tablename = "Ring_rechts"
-            }
-        }
-        // getAll items per table
-        var cbs_main = document.getElementsByName(tablename)
-        for (var cb in cbs_main) {
-            // get only for items that are checked
-            if(cbs_main[cb].checked){
-                statElements = cbs_main[cb].parentElement.parentElement.getElementsByClassName("stat")
-                // each stat for the checked item
-                for (var stat in statElements) {
-                    if (statElements[stat].className !== undefined){
-                        nstat = statElements[stat].className.substring(5).replace("&shy;", "")
-                        new_sum_fields[nstat] += parseInt(statElements[stat].innerHTML, 10)
-                    }
-                }
-                // set ilvl to 0 if not defined
-                if (new_sum_fields["ilvl"] == undefined) {
-                    new_sum_fields["ilvl"] = 0
-                }
-                // if no entry for shield is available, count weapon 2 times
-                if (document.getElementsByName("Offhand").length == 0 && tablename == "Mainhand"){
-                    new_sum_fields["ilvl"] += 2* parseInt(cbs_main[cb].parentElement.parentElement.getElementsByClassName("ilvl")[0].innerHTML)
-                }else{
-                    new_sum_fields["ilvl"] += parseInt(cbs_main[cb].parentElement.parentElement.getElementsByClassName("ilvl")[0].innerHTML)
-                }
-            }
-        }
-    }
+    const new_sum_fields = JSON.parse(JSON.stringify(sum_fields));
+    new_sum_fields["ilvl"] = 0;
 
-    tbody = document.getElementById("tbody_stats_overview")
-    race = document.getElementById("races_select").value
-    for (var field in new_sum_fields){
-        if (field == "ilvl"){
-            element = tbody.getElementsByClassName(field)[0]
-            element.textContent = parseInt(new_sum_fields[field] / 12)
-        }else {
-            element = tbody.getElementsByClassName(field)[0]
-            gear_value = parseInt(new_sum_fields[field], 10)
-            stat_value = (parseInt(defaultSatst[field], 10) || 0)
-            modify_value = (parseInt(baseStatModifier[field][races.indexOf(race)], 10) || 0)
-            element.textContent = ( gear_value + stat_value + modify_value).toString() + " (+" + gear_value + ")"
+    const selected = Array.from(document.querySelectorAll("#gearlist .gear-item input[type='radio']:checked"));
+
+    selected.forEach(radio => {
+        const item = radio.closest(".gear-item");
+        if (!item) return;
+
+        item.querySelectorAll(".gear-item__stat").forEach(stat => {
+            const name = stat.dataset.statName;
+            const value = parseInt(stat.dataset.statValue || "0", 10);
+            if (!(name in new_sum_fields)) new_sum_fields[name] = 0;
+            new_sum_fields[name] += value;
+        });
+
+        const ilvl = parseInt(item.querySelector(".gear-item__meta.ilvl .gear-item__meta-value")?.textContent || "0", 10);
+        const slotName = radio.name;
+        new_sum_fields["ilvl"] += (slotName === "Mainhand" && document.getElementsByName("Offhand").length === 0) ? ilvl * 2 : ilvl;
+    });
+
+    const tbody = document.getElementById("tbody_stats_overview");
+    const raceSelect = document.getElementById("races_select");
+    if (!tbody || !raceSelect) return;
+
+    const race = raceSelect.value;
+
+    Object.keys(new_sum_fields).forEach(field => {
+        if (field === "ilvl"){
+            const element = tbody.getElementsByClassName("ilvl")[0];
+            if (element) element.textContent = selected.length ? Math.round(new_sum_fields[field] / 12) : "0";
+            return;
         }
-    }
+
+        const element = tbody.getElementsByClassName(field)[0];
+        if (!element) return;
+
+        const gear_value = parseInt(new_sum_fields[field], 10) || 0;
+        const stat_value = parseInt(defaultSatst[field], 10) || 0;
+        const modifierList = baseStatModifier[field] || [];
+        const modify_value = parseInt(modifierList[races.indexOf(race)], 10) || 0;
+        element.textContent = `${gear_value + stat_value + modify_value} (+${gear_value})`;
+    });
 }
 
-get_localstorage()
-call_api_data()
+function initGearPage(){
+    get_localstorage();
+    call_api_data();
+}
+
+if (document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", initGearPage, { once: true });
+} else {
+    initGearPage();
+}

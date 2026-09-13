@@ -5,11 +5,12 @@
         {% include head.html %}
     </head>
     <!-- ORIGIN: _layout/about -->
-    <body class="xiv {{ page.page_type }} {{ page.page_category }}" data-xiv-theme="Dark">
+    <body class="xiv {{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
             {% include navbar.html %}
             <div class="layout__wrapper">
                 {% include header.html %}
+                <main class="utility-page utility-page--about">
                 <!-- Content -->
                 <div class="about__wrapper">
                     <!-- Welcome Area -->
@@ -86,6 +87,7 @@
                     <!-- END Roadmap Area -->
                 </div>
                 <!-- END Content -->
+                                </main>
                 {% include_cached footer.html %}
             </div>
         </div>

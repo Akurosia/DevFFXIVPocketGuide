@@ -1,45 +1,34 @@
 <!-- Include from _includes/_components/guide-attack-notes -->
-<!-- Standard Attack Notes -->
-<div class="guide__attack-notes-wrapper">
-    {%- if attack.combo -%}
-        {%- if combo.notes -%}
-            <!-- Do Nothing -->
-        {%- else -%}
-            &nbsp;
-        {%- endif -%}
-    {%- elsif attack.variation -%}
-        {%- if variation.notes -%}
-            <!-- Do Nothing -->
-        {%- else -%}
-            <!-- &nbsp; -->
-        {%- endif -%}
-    {%- else -%}
-        {%- if attack.notes -%}
+{%- if attack.combo -%}
+    {%- if combo.notes and combo.notes.size > 0 -%}
+        <div class="guide__attack-notes-wrapper">
             <h5 class="guide__attack-notes-title" data-translate="Note_ImportantNotes">Important Notes:</h5>
             <ul class="guide__attack-notes-list">
-                {%- for note in attack.notes -%}
+                {%- for note in combo.notes -%}
                     <li class="guide__attack-notes-item">{{ note.note }}</li>
                 {%- endfor -%}
             </ul>
-        {%- endif -%}
+        </div>
     {%- endif -%}
-    <!-- Combo Attack Notes -->
-    {%- if combo.notes -%}
+{%- elsif attack.variation -%}
+    {%- if variation.notes and variation.notes.size > 0 -%}
+        <div class="guide__attack-notes-wrapper">
+            <h5 class="guide__attack-notes-title" data-translate="Note_ImportantNotes">Important Notes:</h5>
+            <ul class="guide__attack-notes-list">
+                {%- for note in variation.notes -%}
+                    <li class="guide__attack-notes-item">{{ note.note }}</li>
+                {%- endfor -%}
+            </ul>
+        </div>
+    {%- endif -%}
+{%- elsif attack.notes and attack.notes.size > 0 -%}
+    <div class="guide__attack-notes-wrapper">
         <h5 class="guide__attack-notes-title" data-translate="Note_ImportantNotes">Important Notes:</h5>
         <ul class="guide__attack-notes-list">
-            {%- for note in combo.notes -%}
+            {%- for note in attack.notes -%}
                 <li class="guide__attack-notes-item">{{ note.note }}</li>
             {%- endfor -%}
         </ul>
-    {%- endif -%}
-    <!-- Variation Attack Notes -->
-    {%- if variation.notes -%}
-        <h5 class="guide__attack-notes-title" data-translate="Note_ImportantNotes">Important Notes:</h5>
-        <ul class="guide__attack-notes-list">
-            {%- for note in variation.notes -%}
-                <li class="guide__attack-notes-item">{{ note.note }}</li>
-            {%- endfor -%}
-        </ul>
-    {%- endif -%}
-</div>
+    </div>
+{%- endif -%}
 <!-- END Include from _includes/_components/guide-attack-notes -->

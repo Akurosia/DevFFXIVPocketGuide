@@ -3,24 +3,20 @@
     {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
     <head>
         {% include head.html %}
+        <link rel="stylesheet" href="{{ '/css/dalamud-links.css' | relative_url }}">
     </head>
-    <!-- ORIGIN: _layout/links -->
-    <body class="xiv {{ page.page_type }} {{ page.page_category }}" data-xiv-theme="Dark">
+    <body class="xiv {{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
             {% include navbar.html %}
             <div class="layout__wrapper">
                 {% include header.html %}
-                <!-- Search Bar -->
-                {% if page.page_type == "index" %}
-                    {% include presets/search.html searchPrefill="links" %}
-                {% endif %}
                 {% include single_pages/links.html %}
                 {% include_cached footer.html %}
             </div>
         </div>
-        <div style="display: none" data-extra-translate="/assets/translations/links"></div>
+        <div style="display:none" data-extra-translate="/assets/translations/links"></div>
         {% include_cached scripts.html %}
+        <script src="{{ '/assets/js/resource-browser.js' | relative_url }}"></script>
     </body>
-    <!-- END ORIGIN: _layout/links -->
     <script type="text/javascript">executeHandelingLanguages()</script>
 </html>

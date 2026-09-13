@@ -1,0 +1,1057 @@
+/* ==========================================================================
+   Standalone / utility pages
+   Shared layout for translation, gear, FFLogs, settings, item sets, quests,
+   relics, achievements, treasure maps, bestiary, music, links, etc.
+   ========================================================================== */
+
+body.xiv .utility-page {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: clamp(.8rem, 1.5vw, 1.4rem) clamp(.8rem, 1.8vw, 1.7rem) 2rem;
+  color: var(--xiv-text);
+}
+
+body.xiv .utility-page,
+body.xiv .utility-page * {
+  box-sizing: border-box;
+}
+
+body.xiv .utility-page > *,
+body.xiv .utility-page .index,
+body.xiv .utility-page .container,
+body.xiv .utility-page .container2,
+body.xiv .utility-page .enemy-coverage,
+body.xiv .utility-page .bestiarium-page,
+body.xiv .utility-page .mainquestsfinder,
+body.xiv .utility-page .setting_container {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Old Bootstrap spacing helpers should no longer define the page geometry. */
+body.xiv .utility-page .mx-1,
+body.xiv .utility-page .mx-2,
+body.xiv .utility-page .my-1,
+body.xiv .utility-page .my-2,
+body.xiv .utility-page .my-4 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+body.xiv .utility-page .my-1 { margin-block: .35rem !important; }
+body.xiv .utility-page .my-2 { margin-block: .55rem !important; }
+body.xiv .utility-page .my-4 { margin-block: .8rem !important; }
+
+/* --------------------------------------------------------------------------
+   Shared surfaces
+   -------------------------------------------------------------------------- */
+
+body.xiv .utility-page .utility-surface,
+body.xiv .utility-page .form-inline,
+body.xiv .utility-page #filterOptions,
+body.xiv .utility-page #headDiv,
+body.xiv .utility-page #addEntries,
+body.xiv .utility-page .fixed-header,
+body.xiv .utility-page .setting_container_inner,
+body.xiv .utility-page .enemy-coverage__controls,
+body.xiv .utility-page .enemy-coverage__cards > *,
+body.xiv .utility-page .bestiarium-sidebar,
+body.xiv .utility-page .bestiarium-main,
+body.xiv .utility-page .search,
+body.xiv .utility-page #progress {
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 76%, transparent);
+  border-radius: var(--xiv-radius);
+  background: var(--xiv-surface);
+  box-shadow: inset 0 1px color-mix(in srgb, var(--xiv-text) 4%, transparent);
+}
+
+body.xiv .utility-page .form-inline,
+body.xiv .utility-page #filterOptions,
+body.xiv .utility-page #addEntries,
+body.xiv .utility-page .fixed-header,
+body.xiv .utility-page .enemy-coverage__controls {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+  gap: .65rem !important;
+  align-items: end !important;
+  padding: .8rem !important;
+}
+
+body.xiv .utility-page #headDiv {
+  padding: .1rem .8rem .8rem;
+}
+
+body.xiv .utility-page #headDiv > .form-inline {
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  padding-inline: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Controls
+   -------------------------------------------------------------------------- */
+
+body.xiv .utility-page input:not([type="checkbox"]):not([type="radio"]),
+body.xiv .utility-page select,
+body.xiv .utility-page textarea,
+body.xiv .utility-page .xiv-input,
+body.xiv .utility-page .xiv-select {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 2.55rem;
+  margin: 0 !important;
+}
+
+body.xiv .utility-page input[type="button"],
+body.xiv .utility-page input[type="submit"],
+body.xiv .utility-page button,
+body.xiv .utility-page .xiv-button {
+  width: auto !important;
+  min-height: 2.45rem;
+  margin: 0 !important;
+}
+
+body.xiv .utility-page label {
+  color: var(--xiv-muted);
+}
+
+body.xiv .utility-page .checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .4rem;
+  min-height: 2.35rem;
+  padding: .35rem .5rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 58%, transparent);
+  border-radius: 4px;
+  background: var(--xiv-surface-deep);
+}
+
+body.xiv .utility-page input[type="checkbox"],
+body.xiv .utility-page input[type="radio"] {
+  accent-color: var(--xiv-gold);
+}
+
+body.xiv .utility-page .input-group-prepend {
+  display: flex;
+  align-items: center;
+}
+
+body.xiv .utility-page .input-group-text {
+  display: flex;
+  align-items: center;
+  min-height: 2.55rem;
+  padding: .45rem .65rem;
+  border: 1px solid var(--xiv-border);
+  border-radius: 4px;
+  color: var(--xiv-muted);
+  background: var(--xiv-surface-deep);
+}
+
+/* --------------------------------------------------------------------------
+   Result areas and sections
+   -------------------------------------------------------------------------- */
+
+body.xiv .utility-page #workspace,
+body.xiv .utility-page #bodyDiv,
+body.xiv .utility-page #table,
+body.xiv .utility-page #gearlist,
+body.xiv .utility-page .quest-list,
+body.xiv .utility-page .index__list_patches {
+  width: 100%;
+  min-width: 0;
+  margin-top: .85rem;
+}
+
+body.xiv .utility-page #workspace:empty,
+body.xiv .utility-page #bodyDiv:empty,
+body.xiv .utility-page #table:empty {
+  min-height: 4rem;
+  border: 1px dashed color-mix(in srgb, var(--xiv-border) 50%, transparent);
+  border-radius: var(--xiv-radius);
+  background: color-mix(in srgb, var(--xiv-surface) 55%, transparent);
+}
+
+body.xiv .utility-page .index-divider {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  width: 100%;
+  min-height: 3rem;
+  margin: 1.15rem 0 .65rem;
+  padding: .6rem .85rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 76%, transparent);
+  border-left: 3px solid var(--xiv-gold);
+  border-radius: var(--xiv-radius);
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--xiv-gold) 9%, var(--xiv-surface)),
+      var(--xiv-surface)
+    );
+}
+
+body.xiv .utility-page .index-divider__title,
+body.xiv .utility-page .index-divider h2 {
+  margin: 0;
+  color: var(--xiv-gold-bright);
+  font: 600 1rem/1.25 var(--xiv-font);
+  letter-spacing: .01em;
+}
+
+/* --------------------------------------------------------------------------
+   Card/list pages
+   -------------------------------------------------------------------------- */
+
+body.xiv .utility-page .index__list,
+body.xiv .utility-page .index__list_quests {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
+  gap: .7rem !important;
+  width: 100%;
+}
+
+body.xiv .utility-page .summary {
+  min-width: 0;
+  margin: 0 !important;
+}
+
+body.xiv .utility-page .summary .xiv-card,
+body.xiv .utility-page .index-item__link.xiv-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: .15rem .7rem;
+  min-height: 5.5rem;
+  padding: .75rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: var(--xiv-radius);
+  background: var(--xiv-surface);
+  color: var(--xiv-text);
+  text-decoration: none;
+}
+
+body.xiv .utility-page .summary .xiv-card:hover,
+body.xiv .utility-page .index-item__link.xiv-card:hover {
+  border-color: var(--xiv-gold);
+  background: color-mix(in srgb, var(--xiv-surface) 90%, var(--xiv-gold) 10%);
+}
+
+body.xiv .utility-page .index-item__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: .2;
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+
+body.xiv .utility-page .index-item__title,
+body.xiv .utility-page .index-item__title_en,
+body.xiv .utility-page .link-favicon {
+  position: relative;
+  z-index: 1;
+}
+
+body.xiv .utility-page .index-item__title {
+  grid-column: 2;
+  margin: 0;
+  color: var(--xiv-gold-bright);
+  font-size: .9rem;
+  line-height: 1.25;
+}
+
+body.xiv .utility-page .index-item__title_en {
+  grid-column: 2;
+  margin: 0;
+  color: var(--xiv-muted);
+  font-size: .72rem;
+  line-height: 1.2;
+}
+
+body.xiv .utility-page .link-favicon {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  width: 2.35rem !important;
+  height: 2.35rem !important;
+  object-fit: contain;
+}
+
+/* --------------------------------------------------------------------------
+   Tables
+   -------------------------------------------------------------------------- */
+
+body.xiv .utility-page .index__list_patches,
+body.xiv .utility-page .setting_container,
+body.xiv .utility-page .enemy-coverage__table-wrap,
+body.xiv .utility-page .bestiarium-main,
+body.xiv .utility-page .container {
+  overflow-x: auto;
+}
+
+body.xiv .utility-page table,
+body.xiv .utility-page .xiv-table {
+  width: 100% !important;
+  max-width: 100%;
+  margin: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 70%, transparent);
+  border-radius: var(--xiv-radius);
+  overflow: hidden;
+  background: var(--xiv-surface);
+  color: var(--xiv-text);
+}
+
+body.xiv .utility-page table th {
+  padding: .55rem .65rem;
+  border-bottom: 1px solid var(--xiv-border);
+  background: color-mix(in srgb, var(--xiv-surface) 80%, var(--xiv-gold) 20%);
+  color: var(--xiv-gold-bright);
+  font-size: .72rem;
+  line-height: 1.25;
+  text-align: left;
+  white-space: nowrap;
+}
+
+body.xiv .utility-page table td {
+  padding: .5rem .65rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--xiv-border) 38%, transparent);
+  color: var(--xiv-text);
+  vertical-align: middle;
+}
+
+body.xiv .utility-page table tbody tr:hover {
+  background: color-mix(in srgb, var(--xiv-gold) 7%, transparent);
+}
+
+body.xiv .utility-page table img {
+  max-width: 3rem;
+  max-height: 3rem;
+  object-fit: contain;
+}
+
+/* --------------------------------------------------------------------------
+   Settings / data-heavy pages
+   -------------------------------------------------------------------------- */
+
+body.xiv .utility-page .setting_container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
+  gap: .8rem !important;
+  padding: 0 !important;
+  overflow: visible;
+}
+
+body.xiv .utility-page .setting_container_inner {
+  min-width: 0;
+  padding: .8rem;
+}
+
+body.xiv .utility-page--settings .guide__accordion-trigger--01-grid,
+body.xiv .utility-page--settings .guide__accordion-trigger--02-grid {
+  min-height: 2.9rem;
+  margin: .55rem 0 0;
+  padding: .55rem .75rem;
+}
+
+body.xiv .utility-page--settings .guide__accordion-content--02 {
+  padding: .7rem .8rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 55%, transparent);
+  border-top: 0;
+  background: var(--xiv-surface-deep);
+}
+
+/* Gear */
+body.xiv .utility-page--gear #gearlist {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+  gap: .6rem !important;
+}
+
+body.xiv .utility-page--gear #gearlist > div {
+  min-width: 0;
+  padding: .6rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 55%, transparent);
+  border-radius: 4px;
+  background: var(--xiv-surface);
+}
+
+body.xiv .utility-page--gear div[style*="position: sticky"] {
+  position: sticky !important;
+  bottom: .5rem !important;
+  z-index: 5;
+  width: 100%;
+  height: auto !important;
+  margin-top: .8rem;
+  padding: .45rem;
+  border: 1px solid var(--xiv-border);
+  border-radius: var(--xiv-radius);
+  background: color-mix(in srgb, var(--xiv-surface-deep) 94%, transparent);
+}
+
+/* FFLogs */
+body.xiv .utility-page--fflogs #table {
+  overflow-x: auto;
+}
+
+/* Main quest finder */
+body.xiv .utility-page--mainquestsfinder .fixed-header {
+  position: sticky;
+  top: .5rem;
+  z-index: 4;
+}
+
+body.xiv .utility-page--mainquestsfinder .quest-list {
+  display: grid;
+  gap: .5rem;
+}
+
+body.xiv .utility-page--mainquestsfinder .quest-item {
+  padding: .65rem .75rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 55%, transparent);
+  border-left: 3px solid var(--xiv-gold);
+  border-radius: 4px;
+  background: var(--xiv-surface);
+}
+
+/* Bestiary */
+body.xiv .utility-page--bestiarium .bestiarium-shell {
+  gap: .8rem;
+}
+
+body.xiv .utility-page--bestiarium .bestiarium-sidebar,
+body.xiv .utility-page--bestiarium .bestiarium-main {
+  padding: .85rem;
+}
+
+body.xiv .utility-page--bestiarium .bestiarium-stat {
+  background: var(--xiv-surface-deep);
+  border-color: var(--xiv-border);
+}
+
+/* Music */
+body.xiv .utility-page--music .container2 {
+  display: grid;
+  gap: .7rem;
+}
+
+/* Relics, housing exploration, GC rank, achievements, quests, treasure maps */
+body.xiv .utility-page--relics .index__list_patches,
+body.xiv .utility-page--airship-submarine .index__list_patches,
+body.xiv .utility-page--gcrank .setting_container,
+body.xiv .utility-page--achivments .index,
+body.xiv .utility-page--quests .index,
+body.xiv .utility-page--treasuremap-index .index {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   General content hygiene
+   -------------------------------------------------------------------------- */
+
+body.xiv .utility-page p,
+body.xiv .utility-page li {
+  line-height: 1.5;
+}
+
+body.xiv .utility-page a:not(.xiv-button):not(.xiv-card) {
+  color: var(--xiv-gold-bright);
+}
+
+body.xiv .utility-page img {
+  max-width: 100%;
+}
+
+body.xiv .utility-page hr {
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--xiv-border) 55%, transparent);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 64rem) {
+  body.xiv .utility-page {
+    padding-inline: .75rem;
+  }
+
+  body.xiv .utility-page .form-inline,
+  body.xiv .utility-page #filterOptions,
+  body.xiv .utility-page #addEntries,
+  body.xiv .utility-page .fixed-header,
+  body.xiv .utility-page .enemy-coverage__controls {
+    grid-template-columns: repeat(auto-fit, minmax(min(10.5rem, 100%), 1fr));
+  }
+}
+
+@media (max-width: 42rem) {
+  body.xiv .utility-page {
+    padding-inline: .5rem;
+  }
+
+  body.xiv .utility-page .form-inline,
+  body.xiv .utility-page #filterOptions,
+  body.xiv .utility-page #addEntries,
+  body.xiv .utility-page .fixed-header,
+  body.xiv .utility-page .enemy-coverage__controls,
+  body.xiv .utility-page .setting_container {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.xiv .utility-page .index__list,
+  body.xiv .utility-page .index__list_quests {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ==========================================================================
+   Translation search page
+   ========================================================================== */
+
+body.xiv .utility-page--translate .translate-page__container {
+  overflow: visible !important;
+}
+
+body.xiv .utility-page--translate .translate-toolbar {
+  width: 100%;
+  padding: .9rem;
+}
+
+body.xiv .utility-page--translate .translate-toolbar__grid {
+  display: grid;
+  grid-template-columns:
+    minmax(12rem, 1fr)
+    minmax(18rem, 1.45fr)
+    minmax(11rem, .8fr)
+    minmax(8rem, auto);
+  gap: .75rem;
+  align-items: end;
+}
+
+body.xiv .utility-page--translate .translate-field {
+  display: grid;
+  grid-template-rows: auto 2.7rem;
+  gap: .3rem;
+  min-width: 0;
+  margin: 0;
+}
+
+body.xiv .utility-page--translate .translate-field__label {
+  display: block;
+  min-height: 1rem;
+  color: var(--xiv-muted);
+  font-size: .72rem;
+  line-height: 1;
+  letter-spacing: .02em;
+}
+
+body.xiv .utility-page--translate .translate-field > input,
+body.xiv .utility-page--translate .translate-field > select,
+body.xiv .utility-page--translate .translate-toolbar__submit {
+  height: 2.7rem !important;
+  min-height: 2.7rem !important;
+  margin: 0 !important;
+}
+
+body.xiv .utility-page--translate .translate-toolbar__submit {
+  min-width: 8rem;
+  align-self: end;
+}
+
+body.xiv .utility-page--translate .translate-results {
+  display: grid;
+  gap: .85rem;
+  width: 100%;
+  margin-top: .9rem;
+}
+
+body.xiv .utility-page--translate .translate-results:empty {
+  min-height: 0;
+  border: 0;
+  background: transparent;
+}
+
+body.xiv .utility-page--translate .translate-result-section {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: var(--xiv-radius);
+  background: var(--xiv-surface);
+}
+
+body.xiv .utility-page--translate .translate-result-toggle {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  width: 100% !important;
+  min-height: 2.85rem;
+  padding: .55rem .75rem;
+  border: 0 !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid transparent !important;
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--xiv-gold) 9%, var(--xiv-surface)),
+      var(--xiv-surface)
+    ) !important;
+  color: var(--xiv-gold-bright) !important;
+  font: 600 .86rem/1.2 var(--xiv-font);
+  text-align: left;
+}
+
+body.xiv .utility-page--translate .translate-result-toggle[aria-expanded="true"] {
+  border-bottom-color: color-mix(in srgb, var(--xiv-border) 70%, transparent) !important;
+}
+
+body.xiv .utility-page--translate .translate-result-toggle:hover {
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--xiv-gold) 16%, var(--xiv-surface)),
+      var(--xiv-surface)
+    ) !important;
+}
+
+body.xiv .utility-page--translate .translate-table-shell {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 72vh;
+  overflow: auto;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--xiv-surface-deep);
+  scrollbar-gutter: stable both-edges;
+}
+
+body.xiv .utility-page--translate .translate-data-table {
+  width: max-content !important;
+  min-width: 100% !important;
+  max-width: none !important;
+  table-layout: auto !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  background: var(--xiv-surface-deep);
+}
+
+body.xiv .utility-page--translate .translate-data-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+body.xiv .utility-page--translate .translate-data-table th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  min-width: 7rem;
+  padding: .5rem .6rem;
+  border-right: 1px solid color-mix(in srgb, var(--xiv-border) 36%, transparent);
+  border-bottom: 1px solid var(--xiv-border);
+  background: color-mix(in srgb, var(--xiv-surface) 72%, var(--xiv-gold) 28%);
+  color: var(--xiv-gold-bright);
+  font-size: .68rem;
+  font-weight: 600;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+body.xiv .utility-page--translate .translate-data-table td {
+  min-width: 7rem;
+  max-width: 24rem;
+  padding: .48rem .6rem;
+  border-right: 1px solid color-mix(in srgb, var(--xiv-border) 24%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--xiv-border) 34%, transparent);
+  color: var(--xiv-text);
+  font-size: .74rem;
+  line-height: 1.38;
+  vertical-align: top;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: auto;
+}
+
+body.xiv .utility-page--translate .translate-data-table tbody tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--xiv-surface) 72%, var(--xiv-bg));
+}
+
+body.xiv .utility-page--translate .translate-data-table tbody tr:hover td {
+  background: color-mix(in srgb, var(--xiv-gold) 8%, var(--xiv-surface));
+}
+
+body.xiv .utility-page--translate .translate-col--id {
+  min-width: 5rem !important;
+  width: 5rem;
+  max-width: 7rem !important;
+  white-space: nowrap !important;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+body.xiv .utility-page--translate .translate-col--icon {
+  min-width: 4.5rem !important;
+  width: 4.5rem;
+  max-width: 5rem !important;
+  text-align: center;
+}
+
+body.xiv .utility-page--translate .translate-col--icon img,
+body.xiv .utility-page--translate .translate-data-table td img {
+  width: 2rem !important;
+  height: 2rem !important;
+  max-width: 2rem !important;
+  max-height: 2rem !important;
+  object-fit: contain;
+}
+
+body.xiv .utility-page--translate .translate-col--name {
+  min-width: 10rem !important;
+  max-width: 16rem !important;
+}
+
+body.xiv .utility-page--translate .translate-col--longtext {
+  min-width: 18rem !important;
+  max-width: 28rem !important;
+}
+
+body.xiv .utility-page--translate [class*="translate-col--achievementcategory-name"],
+body.xiv .utility-page--translate [class*="translate-col--category"],
+body.xiv .utility-page--translate [class*="translate-col--location"] {
+  min-width: 11rem !important;
+  max-width: 18rem !important;
+}
+
+body.xiv .utility-page--translate .translate-col--actions {
+  min-width: 7.5rem !important;
+  width: 7.5rem;
+  text-align: center;
+}
+
+body.xiv .utility-page--translate .translate-regex-button {
+  min-height: 2rem !important;
+  padding: .3rem .5rem !important;
+  font-size: .68rem !important;
+  white-space: nowrap;
+}
+
+body.xiv .utility-page--translate .translate-data-table th:first-child,
+body.xiv .utility-page--translate .translate-data-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+body.xiv .utility-page--translate .translate-data-table th:first-child {
+  z-index: 4;
+  background: color-mix(in srgb, var(--xiv-surface) 68%, var(--xiv-gold) 32%);
+}
+
+body.xiv .utility-page--translate .translate-data-table td:first-child {
+  background: var(--xiv-surface-deep);
+}
+
+body.xiv .utility-page--translate .translate-data-table tbody tr:nth-child(even) td:first-child {
+  background: color-mix(in srgb, var(--xiv-surface) 72%, var(--xiv-bg));
+}
+
+@media (max-width: 72rem) {
+  body.xiv .utility-page--translate .translate-toolbar__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  body.xiv .utility-page--translate .translate-toolbar__submit {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 44rem) {
+  body.xiv .utility-page--translate .translate-toolbar__grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.xiv .utility-page--translate .translate-table-shell {
+    max-height: 65vh;
+  }
+}
+
+
+/* ==========================================================================
+   Settings page
+   Rework legacy two-column settings dump into compact themed configuration UI.
+   ========================================================================== */
+
+body.xiv .utility-page--settings {
+  padding-top: 1rem;
+}
+
+body.xiv .utility-page--settings .setting_container {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 1rem !important;
+
+  width: 100% !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  overflow: visible !important;
+  align-items: start;
+}
+
+/* Override the legacy inline width:49% columns. */
+body.xiv .utility-page--settings .setting_container > [section] {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: var(--xiv-radius);
+  background: var(--xiv-surface-deep);
+  overflow: hidden;
+}
+
+/* System / Character Configuration */
+body.xiv .utility-page--settings .setting_container > [section] > .guide__accordion-trigger--01-grid {
+  min-height: 3rem !important;
+  margin: 0 !important;
+  padding: .7rem .9rem !important;
+
+  border: 0 !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent) !important;
+  border-radius: 0 !important;
+
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--xiv-gold) 10%, var(--xiv-surface)),
+      var(--xiv-surface)
+    ) !important;
+}
+
+body.xiv .utility-page--settings .setting_container > [section] > .guide__accordion-trigger--01-grid .Names {
+  margin: 0 !important;
+  color: var(--xiv-gold-bright) !important;
+
+  font: 600 .78rem/1.2 var(--xiv-font) !important;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+/* Display / Sound / Control / etc. */
+body.xiv .utility-page--settings .guide__accordion-trigger--02-grid {
+  display: flex !important;
+  align-items: center !important;
+  gap: .55rem !important;
+
+  width: calc(100% - 1rem) !important;
+  min-height: 2.65rem !important;
+
+  margin: .6rem .5rem 0 !important;
+  padding: .5rem .7rem !important;
+
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 65%, transparent) !important;
+  border-radius: 5px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--xiv-surface) 90%, var(--xiv-gold) 10%),
+      var(--xiv-surface)
+    ) !important;
+}
+
+body.xiv .utility-page--settings .guide__accordion-trigger--02-grid:hover,
+body.xiv .utility-page--settings .guide__accordion-trigger--02-grid.active {
+  border-color: color-mix(in srgb, var(--xiv-gold) 60%, var(--xiv-border)) !important;
+}
+
+body.xiv .utility-page--settings .guide__accordion-trigger--02-grid .Dropdown {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: .9rem !important;
+  height: .9rem !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.xiv .utility-page--settings .guide__accordion-trigger--02-grid .Dropdown ion-icon {
+  width: .85rem !important;
+  height: .85rem !important;
+  color: var(--xiv-gold) !important;
+}
+
+body.xiv .utility-page--settings .guide__accordion-trigger--02-grid .EnemyNames,
+body.xiv .utility-page--settings .guide__accordion-trigger--02-grid .Names {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.xiv .utility-page--settings .guide__accordion-trigger--02-grid .guide__accordion-trigger-title {
+  margin: 0 !important;
+
+  color: var(--xiv-gold-bright) !important;
+  font: 600 .88rem/1.2 var(--xiv-font) !important;
+}
+
+/* Section body */
+body.xiv .utility-page--settings .guide__accordion-content--02 {
+  width: calc(100% - 1rem) !important;
+
+  margin: 0 .5rem .65rem !important;
+  padding: .65rem !important;
+
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 52%, transparent) !important;
+  border-top: 0 !important;
+  border-radius: 0 0 5px 5px !important;
+
+  background: color-mix(in srgb, var(--xiv-surface) 64%, var(--xiv-bg)) !important;
+}
+
+body.xiv .utility-page--settings .guide__accordion-copy-wrapper {
+  display: grid !important;
+  gap: .55rem !important;
+
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/*
+ * Each old inline "display:grid" block represents one logical settings group.
+ * Turn them into compact option cards instead of one huge vertical text dump.
+ */
+body.xiv .utility-page--settings .guide__accordion-copy-wrapper > div[style*="display: grid"] {
+  display: grid !important;
+  grid-template-columns: minmax(10rem, .8fr) minmax(0, 1.2fr);
+  gap: .2rem .85rem !important;
+
+  width: 100% !important;
+
+  margin: 0 !important;
+  padding: .55rem .65rem !important;
+
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 38%, transparent);
+  border-radius: 4px;
+
+  background: color-mix(in srgb, var(--xiv-surface-deep) 72%, transparent);
+}
+
+/* First setting line is the group label. */
+body.xiv .utility-page--settings .guide__accordion-copy-wrapper > div[style*="display: grid"] > span:first-child {
+  grid-column: 1;
+  align-self: start;
+
+  padding: .08rem 0 !important;
+
+  color: var(--xiv-text) !important;
+  font-size: .75rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+}
+
+/* Every old padded child becomes a clean value/option row. */
+body.xiv .utility-page--settings .guide__accordion-copy-wrapper > div[style*="display: grid"] > span:not(:first-child) {
+  grid-column: 2;
+
+  position: relative;
+  display: block;
+
+  min-width: 0;
+
+  margin: 0 !important;
+  padding: .08rem 0 .08rem 1rem !important;
+
+  color: var(--xiv-muted) !important;
+  font-size: .73rem !important;
+  line-height: 1.35 !important;
+
+  overflow-wrap: anywhere;
+}
+
+/* Small marker improves hierarchy without recreating the old giant indentation. */
+body.xiv .utility-page--settings .guide__accordion-copy-wrapper > div[style*="display: grid"] > span:not(:first-child)::before {
+  content: '›';
+
+  position: absolute;
+  left: 0;
+  top: .08rem;
+
+  color: var(--xiv-gold);
+  opacity: .8;
+}
+
+/* Remove legacy text color class appearance on this page. */
+body.xiv .utility-page--settings .attack-is-magic,
+body.xiv .utility-page--settings .attack-is-physical {
+  text-shadow: none !important;
+}
+
+/* Keep extremely long translated strings from widening a column. */
+body.xiv .utility-page--settings [data-translate] {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* Large screens: slightly wider content columns and denser grouping. */
+@media (min-width: 100rem) {
+  body.xiv .utility-page--settings .setting_container {
+    gap: 1.25rem !important;
+  }
+
+  body.xiv .utility-page--settings .guide__accordion-copy-wrapper > div[style*="display: grid"] {
+    grid-template-columns: minmax(11.5rem, .72fr) minmax(0, 1.28fr);
+  }
+}
+
+/* Medium screens: keep two main columns until they become too narrow. */
+@media (max-width: 84rem) {
+  body.xiv .utility-page--settings .guide__accordion-copy-wrapper > div[style*="display: grid"] {
+    grid-template-columns: 1fr;
+    gap: .25rem !important;
+  }
+
+  body.xiv .utility-page--settings .guide__accordion-copy-wrapper > div[style*="display: grid"] > span:first-child,
+  body.xiv .utility-page--settings .guide__accordion-copy-wrapper > div[style*="display: grid"] > span:not(:first-child) {
+    grid-column: 1;
+  }
+
+  body.xiv .utility-page--settings .guide__accordion-copy-wrapper > div[style*="display: grid"] > span:not(:first-child) {
+    padding-left: 1rem !important;
+  }
+}
+
+/* Narrow screens: system and character settings stack. */
+@media (max-width: 62rem) {
+  body.xiv .utility-page--settings .setting_container {
+    grid-template-columns: 1fr !important;
+  }
+}

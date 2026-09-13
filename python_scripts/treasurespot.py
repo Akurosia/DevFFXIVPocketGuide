@@ -188,16 +188,16 @@ def code_for_image(overlay_id, posible_maps, location, item_name):
 
     print(location)
     print(overlay_id)
-    overlay_cropped, x_off, y_off = get_croped_image(overlay_id)
-    overlay_x_cropped, xx_off, xy_off = get_x_image(overlay_id)
-    overlay_cropped.paste(overlay_x_cropped, (x_off-xx_off, y_off-xy_off), overlay_x_cropped if overlay_x_cropped.mode == 'RGBA' else None)
+    #overlay_cropped, x_off, y_off = get_croped_image(overlay_id)
+    #overlay_x_cropped, xx_off, xy_off = get_x_image(overlay_id)
+    #overlay_cropped.paste(overlay_x_cropped, (x_off-xx_off, y_off-xy_off), overlay_x_cropped if overlay_x_cropped.mode == 'RGBA' else None)
 
     # the followign block will save the empty map for leaflet usage
-    tmp_out: str = f"{path_of_main_script}/assets/img/TreasureMaps/{item_name}/"
-    if not os.path.exists(tmp_out):
-        os.makedirs(tmp_out)
-    if not os.path.exists(tmp_out + f"empty_map.webp"):
-        overlay_cropped.save(tmp_out + f"empty_map.webp", format='WEBP', lossless=True)
+    #tmp_out: str = f"{path_of_main_script}/assets/img/TreasureMaps/{item_name}/"
+    #if not os.path.exists(tmp_out):
+    #    os.makedirs(tmp_out)
+    #if not os.path.exists(tmp_out + f"empty_map.webp"):
+    #    overlay_cropped.save(tmp_out + f"empty_map.webp", format='WEBP', lossless=True)
 
     w, h = modified_image.size
     full_placename = None
@@ -207,19 +207,19 @@ def code_for_image(overlay_id, posible_maps, location, item_name):
         full_placename = get_placename(placename)
 
         output_path: str = f"{path_of_main_script}/assets/img/TreasureMaps/{item_name}/{placename}/"
-        x+= w/2
-        y+= h/2
-        modified_image.paste(overlay_cropped, (int(x)-x_off, int(y)-y_off), overlay_cropped if overlay_cropped.mode == 'RGBA' else None)
+        #x+= w/2
+        #y+= h/2
+        #modified_image.paste(overlay_cropped, (int(x)-x_off, int(y)-y_off), overlay_cropped if overlay_cropped.mode == 'RGBA' else None)
 
-        font1 = ImageFont.truetype('timesbd.ttf',50)
-        write = ImageDraw.Draw(modified_image)
-        write.text(xy=(int(x)-x_off, int(y)-y_off), text=chr(65+i), fill=(255, 255, 255), font=font1)
+        #font1 = ImageFont.truetype('timesbd.ttf',50)
+        #write = ImageDraw.Draw(modified_image)
+        #write.text(xy=(int(x)-x_off, int(y)-y_off), text=chr(65+i), fill=(255, 255, 255), font=font1)
 
-        font1 = ImageFont.truetype('timesbd.ttf',40)
-        write = ImageDraw.Draw(modified_image)
-        write.text(xy=(int(x)-x_off+3, int(y)-y_off+5), text=chr(65+i), fill=(0, 0, 0), font=font1)
+        #font1 = ImageFont.truetype('timesbd.ttf',40)
+        #write = ImageDraw.Draw(modified_image)
+        #write.text(xy=(int(x)-x_off+3, int(y)-y_off+5), text=chr(65+i), fill=(0, 0, 0), font=font1)
 
-        get_sub_images(original_image, overlay_cropped, int(x)-x_off, int(y)-y_off, output_path, 65+i)
+        #get_sub_images(original_image, overlay_cropped, int(x)-x_off, int(y)-y_off, output_path, 65+i)
         _extra.append(chr(65+i))
     return _extra, full_placename, output_path, modified_image, placename
 
@@ -250,6 +250,7 @@ GETPATCHDATA = {
     "Timeworn Br'aaxskin Map":          ("7.00", "7.0"),
     "Timeworn Loboskin Map":            ("7.00", "7.0"),
     "Timeworn Gargantuaskin Map":       ("7.30", "7.3"),
+    "Presumably Special Timeworn Map":  ("7.56", "7.56"),
 }
 def show_image(circle_coords: dict[str, dict[str, Any]]):
     global map_translations
@@ -325,12 +326,12 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
             for img in _extra:
                 _post += f'      - "/assets/img/TreasureMaps/{item_name}/{placename}/{img}.webp"\n'
             # Generate output file name and save the image
-            if not os.path.exists(output_path):
-                os.makedirs(output_path)
-            if not os.path.exists(output_path + f"{placename}.webp"):
-                modified_image = add_watermark(modified_image, "AkurosiaKamo")
-                modified_image.save(output_path + f"{placename}.webp", format='WEBP', lossless=True)
-                print(f"Saved modified image: {output_path}{placename}.webp")
+            #if not os.path.exists(output_path):
+            #    os.makedirs(output_path)
+            #if not os.path.exists(output_path + f"{placename}.webp"):
+            #    modified_image = add_watermark(modified_image, "AkurosiaKamo")
+            #    modified_image.save(output_path + f"{placename}.webp", format='WEBP', lossless=True)
+            #    print(f"Saved modified image: {output_path}{placename}.webp")
         _post += '---'
 
         _id = f"0{patch[0]}-{patchversions[patch]["pname"]}"

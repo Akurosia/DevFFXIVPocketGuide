@@ -55,7 +55,7 @@ var input = document.getElementById("searchValue");
 input.addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.keyCode === 13) {
-        document.getElementById("submitbtn").click();
+        document.getElementById("submit").click();
     }
 });
 
@@ -171,7 +171,7 @@ function addToBody(json, name){
 
     var m_div = document.createElement('div');
     m_div.setAttribute("id", "mdiv_"+name);
-    m_div.className = "xiv-dynamic-section";
+    m_div.className = "xiv-dynamic-section translate-result-section";
     button = createTemplateButton(name);
     _div = createTemplateDIV(name, json);
 
@@ -196,7 +196,9 @@ function createTemplateButton(name){
     button.appendChild(span_1);
     button.appendChild(span_2);
 
-    button.className = "collapsible bg-charcoal text-light xiv-collapse-button";
+    button.className = "collapsible xiv-collapse-button translate-result-toggle";
+    button.setAttribute("type", "button");
+    button.setAttribute("aria-expanded", "false");
     button.setAttribute("onclick","collapsOrExpand(this.children);");
     return button;
 }
@@ -207,7 +209,7 @@ function createTemplateDIV(name, json){
     _table = createTemplateTable(name, json);
     _div.appendChild(_table);
     createTemplateScripts(name, _div);
-    _div.className = "content table-responsive border-gold-metallic xiv-table-shell";
+    _div.className = "content table-responsive border-gold-metallic xiv-table-shell translate-table-shell";
     _div.setAttribute("id", "div_"+name);
     _div.style.display = "none";
     return _div;
@@ -224,7 +226,7 @@ function createTemplateTable(name, json){
 
     _table.setAttribute("id", "table_"+name);
     //_table.className = "table-striped table-dark table-hover bg-charcoal text-light border-gold-metallic";
-    _table.className = "table table-bordered table-dark table-striped text-light patch_table xiv-data-table";
+    _table.className = "table table-bordered table-dark table-striped text-light patch_table xiv-data-table translate-data-table";
 
     //_table.style.width = "1641px";
     _table.style["margin-bottom"] = "0px";
@@ -269,6 +271,34 @@ function getTableColumns(header_json){
 }
 
 var header = []
+
+function translate_columnClass(columnName) {
+    const safe = String(columnName || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+    const classes = ["translate-col"];
+    if (safe) classes.push("translate-col--" + safe);
+
+    const lower = String(columnName || "").toLowerCase();
+
+    if (/(description|description_|desc|tooltip|help|text)/.test(lower)) {
+        classes.push("translate-col--longtext");
+    } else if (/(name_|name$|title|category|location)/.test(lower)) {
+        classes.push("translate-col--name");
+    } else if (/(icon|image)/.test(lower)) {
+        classes.push("translate-col--icon");
+    } else if (/(id|0xid)/.test(lower)) {
+        classes.push("translate-col--id");
+    }
+
+    const lang = getLanguageCode(String(columnName || ""));
+    if (lang) classes.push(lang.substring(1));
+
+    return classes.join(" ");
+}
+
 function createTemplateTableHead(name, json){
     header_json = json[Object.keys(json)[0]]
     var _head = document.createElement('thead');
@@ -279,6 +309,7 @@ function createTemplateTableHead(name, json){
     var _th = document.createElement('th');
     _th.setAttribute("role", "columnheader");
     _th.setAttribute("aria-sort", "ascending");
+    _th.className = "translate-col translate-col--id";
     var textnode_1 = document.createTextNode("ID");
     _th.setAttribute("scope", "col");
     _th.appendChild(textnode_1);
@@ -294,13 +325,14 @@ function createTemplateTableHead(name, json){
         }
         var textnode_1 = document.createTextNode(header[prop]);
         _th.setAttribute("scope", "col");
-        _th.setAttribute("class", getLanguageCode(header[prop]));
+        _th.setAttribute("class", translate_columnClass(header[prop]));
         _th.appendChild(textnode_1);
         _tr.appendChild(_th);
     }
     // Add copyRegexBtn
     var _th = document.createElement('th');
     _th.setAttribute("role", "columnheader");
+    _th.className = "translate-col translate-col--actions";
     var textnode_1 = document.createTextNode("Get Values");
     _th.appendChild(textnode_1);
     _th.setAttribute("scope", "col");
@@ -326,6 +358,7 @@ function createTemplateTableBody(name, json){
         var _tr = document.createElement('tr');
         // Add first Column ID
         var _td = document.createElement('td');
+        _td.className = "translate-col translate-col--id";
         var textnode_1 = document.createTextNode(parseInt(element["0xID"], 16));
         _td.appendChild(textnode_1);
         _tr.appendChild(_td);
@@ -344,7 +377,7 @@ function createTemplateTableBody(name, json){
             }
 
             var _td = document.createElement('td');
-            _td.setAttribute("class", getLanguageCode(header[element_key]));
+            _td.setAttribute("class", translate_columnClass(header[element_key]));
             e = e.replace(".png", ".webp")
             if (e.endsWith(".webp")){
                 // if e is an image
@@ -367,9 +400,11 @@ function createTemplateTableBody(name, json){
 
         // Add copyRegexBtn
         var _td = document.createElement('td');
+        _td.className = "translate-col translate-col--actions";
         var _btn = document.createElement('input');
         _btn.setAttribute("type", "button");
         _btn.setAttribute("value", "GetRegex()");
+        _btn.className = "xiv-button xiv-button--small xiv-button--ghost translate-regex-button";
         _btn.setAttribute("onclick", "getRegEx(this)");
         _td.appendChild(_btn);
         _tr.appendChild(_td);
@@ -410,20 +445,18 @@ function UserAction(file, folder = "translate") {
 
 //FUNCTION FOR THE COLLAPSE BUTTON
 function collapsOrExpand(ele, state="none"){
+    var button = ele[0].parentElement;
     var colldiv = document.getElementById("div_"+ele[0].textContent);
-    //setTableWitdh(ele)
-    if (colldiv.style.display === "table" || colldiv.style.display === "inline") {
+    var isOpen = colldiv.style.display !== "none" && colldiv.style.display !== "";
+
+    if (isOpen) {
         colldiv.style.display = "none";
         ele[1].textContent = "▼";
+        button.setAttribute("aria-expanded", "false");
     } else {
-        if (state === "list"){
-            colldiv.style.display = "inline";
-        }else if (state === "flex"){
-            colldiv.style.display = "flex";
-        }else {
-            colldiv.style.display = "table";
-        }
+        colldiv.style.display = state === "flex" ? "flex" : "block";
         ele[1].textContent = "▲";
+        button.setAttribute("aria-expanded", "true");
     }
 }
 

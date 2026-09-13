@@ -5,12 +5,14 @@
         {% include head.html %}
     </head>
     <!-- ORIGIN: _layout/gcrank -->
-    <body class="xiv {{ page.page_type }} {{ page.page_category }}" data-xiv-theme="Dark">
+    <body class="xiv {{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
             {% include navbar.html %}
             <div class="layout__wrapper">
                 {% include header.html %}
+                <main class="utility-page utility-page--gcrank">
                 {% include single_pages/gcrank.html %}
+                                </main>
                 {% include_cached footer.html %}
             </div>
         </div>

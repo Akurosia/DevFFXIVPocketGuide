@@ -712,3 +712,1178 @@
     justify-content:flex-start;
   }
 }
+
+
+/* ==========================================================================
+   Guide entry cleanup: static rows, variations, debuffs and FATEs
+   ========================================================================== */
+
+.guide-content .guide__entry-trigger {
+  position: relative;
+}
+
+.guide-content .guide__entry-trigger.is-static,
+.guide-content .guide__entry-trigger[aria-disabled="true"] {
+  cursor: default;
+  border-color: color-mix(in srgb, var(--xiv-border) 52%, transparent);
+  background: color-mix(in srgb, var(--xiv-surface) 94%, var(--xiv-bg));
+}
+
+.guide-content .guide__entry-trigger.is-static::before,
+.guide-content .guide__entry-trigger[aria-disabled="true"]::before {
+  content: none;
+}
+
+.guide-content .guide__entry-trigger.is-static:hover,
+.guide-content .guide__entry-trigger[aria-disabled="true"]:hover {
+  border-color: color-mix(in srgb, var(--xiv-border) 52%, transparent);
+  background: color-mix(in srgb, var(--xiv-surface) 94%, var(--xiv-bg));
+}
+
+.guide-content .guide__entry-trigger--fate {
+  grid-template-columns: 2.8rem minmax(12rem, 1fr) auto minmax(6rem, auto);
+}
+
+.guide-content .guide__entry-trigger--fate > .Icon.fate_icon {
+  width: 2.55rem !important;
+  height: 2.55rem !important;
+  max-width: 2.55rem !important;
+  object-fit: contain;
+  margin: 0;
+}
+
+/* Variation attacks are independent option cards rather than anonymous columns. */
+.guide-content .variation_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+  gap: .8rem;
+  width: 100%;
+  margin-top: .7rem;
+}
+
+.guide-content .guide__variation-attack-seperator {
+  min-width: 0;
+  margin: 0;
+  padding: .85rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: var(--xiv-radius);
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--xiv-surface) 92%, var(--xiv-gold) 8%),
+      var(--xiv-surface-deep)
+    );
+  box-shadow: inset 0 1px color-mix(in srgb, var(--xiv-text) 5%, transparent);
+}
+
+.guide-content .guide__variation-meta {
+  display: grid;
+  gap: .65rem;
+  margin-bottom: .7rem;
+  padding-bottom: .7rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--xiv-border) 55%, transparent);
+}
+
+.guide-content .guide__variation-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+}
+
+.guide-content .guide__variation-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .45rem;
+  min-height: 2rem;
+  padding: .35rem .55rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 65%, transparent);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--xiv-surface-deep) 88%, var(--xiv-bg));
+  color: var(--xiv-text);
+  font: inherit;
+  text-align: left;
+}
+
+button.guide__variation-stat {
+  cursor: pointer;
+}
+
+button.guide__variation-stat:hover {
+  border-color: var(--xiv-gold);
+  color: var(--xiv-gold-bright);
+  background: var(--xiv-selection);
+}
+
+.guide-content .guide__variation-stat > span {
+  color: var(--xiv-muted);
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.guide-content .guide__variation-stat > strong {
+  color: var(--xiv-gold-bright);
+  font-weight: 600;
+}
+
+.guide-content .guide__variation-meta .guide__accordion-tag-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+
+/* Never show structurally empty detail shells. */
+.guide-content .guide__entry-content > .guide__accordion-copy-wrapper:empty,
+.guide-content .guide__entry-content .guide__attack-notes-wrapper:empty {
+  display: none !important;
+}
+
+.guide-content .guide__entry-content--debuff,
+.guide-content .guide__entry-content--fate {
+  border-color: color-mix(in srgb, var(--xiv-border) 58%, transparent);
+}
+
+@media (max-width: 60rem) {
+  .guide-content .guide__entry-trigger--fate {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .guide-content .guide__entry-trigger--fate .Attributes,
+  .guide-content .guide__entry-trigger--fate .IdsHps {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}
+
+
+/* ==========================================================================
+   Text lists, compact debuffs, and class/job section hierarchy
+   ========================================================================== */
+
+/* InstanceContentTextData / NPC yell: restore true list semantics and readable rows. */
+.guide-content .guide__text-list {
+  display: grid;
+  gap: .45rem;
+  margin: .5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.guide-content .guide__text-list-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .75rem;
+  align-items: start;
+  padding: .55rem .7rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 48%, transparent);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--xiv-surface) 72%, var(--xiv-bg));
+}
+
+.guide-content .guide__text-list-item::before {
+  content: '•';
+  grid-column: 1;
+  position: absolute;
+  color: var(--xiv-gold);
+}
+
+.guide-content .guide__text_description {
+  min-width: 0;
+  padding-left: .8rem;
+  line-height: 1.5;
+}
+
+.guide-content .guide__text-id {
+  color: var(--xiv-muted);
+  font-size: .72rem;
+  white-space: nowrap;
+}
+
+.guide-content .guide__text-section-trigger {
+  margin-top: .65rem;
+}
+
+/* Debuff headers should be compact rows, not tall cards. */
+.guide-content .guide__entry-trigger--debuff {
+  grid-template-columns: 2.15rem minmax(12rem, 1fr) auto minmax(5.5rem, auto) !important;
+  min-height: 3.1rem !important;
+  height: auto !important;
+  padding: .42rem .65rem !important;
+  gap: .25rem .65rem !important;
+  align-content: center !important;
+  grid-auto-rows: auto !important;
+}
+
+.guide-content .guide__entry-trigger--debuff > .Icon.debuff_icon {
+  width: 2rem !important;
+  height: 2rem !important;
+  max-width: 2rem !important;
+}
+
+.guide-content .guide__entry-trigger--debuff .Names {
+  align-self: center;
+}
+
+.guide-content .guide__entry-trigger--debuff .guide__accordion-trigger-subtitle {
+  margin-top: .08rem;
+  line-height: 1.25;
+}
+
+.guide-content .guide__entry-trigger--debuff .Attributes,
+.guide-content .guide__entry-trigger--debuff .IdsHps {
+  align-self: center;
+  margin: 0;
+}
+
+.guide-content .guide__entry-trigger--debuff .guide__accordion-tag-wrapper {
+  gap: .25rem;
+}
+
+.guide-content .guide__entry-trigger--debuff [class*="guide__accordion-tag--"] {
+  padding: .12rem .4rem;
+  font-size: .66rem;
+}
+
+.guide-content .guide__entry-trigger--debuff .guide__accordion-trigger-id {
+  font-size: .68rem;
+}
+
+/* Class/job guide phases are real separated accordion sections. */
+.guide-content .guide__class-sections {
+  display: grid;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+
+.guide-content .guide__class-section {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 76%, transparent);
+  border-radius: var(--xiv-radius);
+  background: var(--xiv-surface-deep);
+  box-shadow: inset 0 1px color-mix(in srgb, var(--xiv-text) 4%, transparent);
+}
+
+.guide-content .guide__class-section-trigger {
+  display: grid !important;
+  grid-template-columns: 2.3rem minmax(0, 1fr) auto;
+  gap: .7rem;
+  align-items: center;
+  width: 100%;
+  min-height: 3.4rem;
+  margin: 0 !important;
+  padding: .7rem .85rem !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--xiv-surface) 92%, var(--xiv-gold) 8%),
+      var(--xiv-surface)
+    ) !important;
+}
+
+.guide-content .guide__class-section-trigger:hover,
+.guide-content .guide__class-section-trigger.active {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--xiv-surface) 80%, var(--xiv-gold) 20%),
+      color-mix(in srgb, var(--xiv-surface) 92%, var(--xiv-gold) 8%)
+    ) !important;
+}
+
+.guide-content .guide__class-section-number {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-gold) 48%, transparent);
+  border-radius: 4px;
+  color: var(--xiv-gold-bright);
+  background: color-mix(in srgb, var(--xiv-gold) 10%, transparent);
+  font-weight: 700;
+}
+
+.guide-content .guide__class-section-trigger .Names {
+  display: block;
+}
+
+.guide-content .guide__class-section-trigger .guide__accordion-trigger-title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.guide-content .guide__class-section-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.9rem;
+  height: 1.6rem;
+  padding: 0 .45rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 68%, transparent);
+  border-radius: 999px;
+  color: var(--xiv-muted);
+  background: var(--xiv-surface-deep);
+  font-size: .7rem;
+}
+
+.guide-content .guide__class-section-content {
+  display: block;
+  padding: .75rem !important;
+  border-top: 1px solid color-mix(in srgb, var(--xiv-border) 65%, transparent);
+  background: color-mix(in srgb, var(--xiv-bg) 62%, var(--xiv-surface-deep));
+}
+
+.guide-content .guide__class-section-content[hidden] {
+  display: none !important;
+}
+
+.guide-content .guide__class-section-content > :first-child {
+  margin-top: 0;
+}
+
+.guide-content .guide__class-section-content > :last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 52rem) {
+  .guide-content .guide__entry-trigger--debuff {
+    grid-template-columns: 2rem minmax(0, 1fr) !important;
+  }
+
+  .guide-content .guide__entry-trigger--debuff .Attributes,
+  .guide-content .guide__entry-trigger--debuff .IdsHps {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+
+  .guide-content .guide__text-list-item {
+    grid-template-columns: 1fr;
+  }
+
+  .guide-content .guide__text-id {
+    padding-left: .8rem;
+  }
+}
+
+
+/* ==========================================================================
+   Final guide/class/Beastmaster compaction fixes
+   ========================================================================== */
+
+/* Class/job filter header */
+.guide-content .search__form_blu {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto auto;
+  gap:.6rem .8rem;
+  align-items:end;
+  width:100%;
+}
+
+.guide-content .search__form_blu > input[type="text"] {
+  width:100%;
+  min-width:0;
+  min-height:2.55rem;
+  padding:.55rem .7rem;
+  border:1px solid var(--xiv-border);
+  border-radius:4px;
+  background:var(--xiv-surface-deep);
+  color:var(--xiv-text);
+}
+
+.guide-content .guide-level-filter {
+  display:grid;
+  grid-template-columns:auto 5rem;
+  align-items:center;
+  gap:.4rem;
+  color:var(--xiv-muted);
+  font-size:.78rem;
+}
+
+.guide-content .guide-level-filter input {
+  width:5rem;
+  min-height:2.2rem;
+  padding:.3rem .45rem;
+  border:1px solid var(--xiv-border);
+  border-radius:4px;
+  background:var(--xiv-surface-deep);
+  color:var(--xiv-text);
+}
+
+.guide-content #onlyfinalskills {
+  width:1.1rem;
+  height:1.1rem;
+  align-self:center;
+}
+
+/* Fix the class/job section header layout.
+   Do not use the toolkit pseudo-chevron here because this component already
+   carries its own grid-aware chevron. */
+.guide-content .guide__class-section-trigger::before {
+  content:none !important;
+}
+
+.guide-content .guide__class-section-trigger {
+  grid-template-columns:1.2rem 2.3rem minmax(0,1fr) auto !important;
+  align-items:center !important;
+  min-height:3.25rem !important;
+  padding:.55rem .75rem !important;
+}
+
+.guide-content .guide__class-section-chevron {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--xiv-gold);
+  font-size:.8rem;
+  transition:transform .15s ease;
+}
+
+.guide-content .guide__class-section-trigger.active .guide__class-section-chevron {
+  transform:rotate(90deg);
+}
+
+.guide-content .guide__class-section-trigger .Names {
+  min-width:0;
+  justify-self:start;
+  text-align:left;
+}
+
+.guide-content .guide__class-section-trigger .guide__accordion-trigger-title {
+  margin:0;
+  text-align:left;
+  color:var(--xiv-text);
+  font:600 .92rem/1.25 var(--xiv-font);
+}
+
+.guide-content .guide__class-section-count {
+  justify-self:end;
+  margin:0;
+}
+
+/* --------------------------------------------------------------------------
+   Normal enemy debuffs: hard-reset legacy height/grid behavior
+   -------------------------------------------------------------------------- */
+body.xiv .guide-content .guide__entry-trigger--debuff {
+  display:grid !important;
+  grid-template-columns:2.25rem minmax(12rem,1fr) auto minmax(5.5rem,auto) !important;
+  grid-template-rows:auto !important;
+  grid-auto-rows:min-content !important;
+  align-items:center !important;
+  align-content:center !important;
+  height:auto !important;
+  min-height:3.25rem !important;
+  max-height:none !important;
+  margin:.4rem 0 0 !important;
+  padding:.42rem .65rem !important;
+  gap:.25rem .65rem !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > * {
+  min-height:0 !important;
+  margin-top:0 !important;
+  margin-bottom:0 !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Dropdown {
+  position:absolute !important;
+  left:.2rem !important;
+  width:.9rem !important;
+  height:.9rem !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Icon.debuff_icon {
+  grid-column:1 !important;
+  grid-row:1 !important;
+  width:2.15rem !important;
+  height:2.15rem !important;
+  max-width:2.15rem !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Names {
+  grid-column:2 !important;
+  grid-row:1 !important;
+  align-self:center !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Attributes {
+  grid-column:3 !important;
+  grid-row:1 !important;
+  align-self:center !important;
+  justify-self:end !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .IdsHps {
+  grid-column:4 !important;
+  grid-row:1 !important;
+  align-self:center !important;
+  justify-self:end !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff .guide__accordion-trigger-subtitle {
+  margin-top:.08rem !important;
+  font-size:.72rem !important;
+  line-height:1.2 !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff [class*="guide__accordion-tag--"] {
+  min-height:1.45rem !important;
+  padding:.12rem .4rem !important;
+  font-size:.65rem !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff .guide__accordion-trigger-id {
+  font-size:.67rem !important;
+  line-height:1.2 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Beastmaster
+   -------------------------------------------------------------------------- */
+.guide-content .beastmaster-captures__content {
+  padding:.9rem 1rem 1.1rem !important;
+}
+
+.guide-content .beastmaster-search .search__form_blu {
+  grid-template-columns:minmax(0,1fr) auto;
+}
+
+.guide-content .beastmaster-search__missing {
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  min-height:2.55rem;
+  padding:.45rem .65rem;
+  border:1px solid var(--xiv-border);
+  border-radius:4px;
+  background:var(--xiv-surface-deep);
+  color:var(--xiv-text);
+  white-space:nowrap;
+}
+
+.guide-content .beastmaster-summary {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem 1rem;
+  align-items:center;
+  margin:.7rem 0;
+  color:var(--xiv-muted);
+  font-size:.78rem;
+}
+
+.guide-content .beastmaster-summary p {
+  margin:0;
+}
+
+.guide-content .beastmaster-list {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.55rem;
+}
+
+.guide-content .beastmaster-entry {
+  min-width:0;
+  align-self:start;
+}
+
+.guide-content .guide__entry-trigger--beast {
+  display:grid !important;
+  grid-template-columns:2.75rem minmax(0,1fr) auto !important;
+  grid-template-rows:auto !important;
+  align-items:center !important;
+  min-height:4rem !important;
+  height:auto !important;
+  margin:0 !important;
+  padding:.5rem .7rem !important;
+  gap:.65rem !important;
+  border:1px solid color-mix(in srgb,var(--xiv-border) 68%,transparent);
+  border-radius:5px;
+  background:var(--xiv-surface);
+}
+
+.guide-content .guide__entry-trigger--beast::before {
+  left:.18rem;
+}
+
+.guide-content .beastmaster-entry__icon {
+  width:2.55rem !important;
+  height:2.55rem !important;
+  max-width:2.55rem !important;
+  object-fit:contain;
+}
+
+.guide-content .beastmaster-entry__name {
+  display:grid;
+  gap:.08rem;
+  min-width:0;
+}
+
+.guide-content .beastmaster-entry__name strong {
+  color:var(--xiv-text);
+  font-size:.82rem;
+}
+
+.guide-content .beastmaster-entry__number {
+  color:var(--xiv-muted);
+  font-size:.7rem;
+  white-space:nowrap;
+}
+
+.guide-content .guide__entry-content--beast {
+  margin:0 !important;
+  border:1px solid color-mix(in srgb,var(--xiv-border) 55%,transparent);
+  border-top:0;
+  border-radius:0 0 5px 5px;
+  background:var(--xiv-surface-deep);
+}
+
+.guide-content .beastmaster-entry__meta,
+.guide-content .beastmaster-location {
+  display:grid;
+  gap:.5rem;
+}
+
+.guide-content .beastmaster-entry__meta p {
+  margin:0;
+}
+
+.guide-content .beastmaster-caught {
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  width:max-content;
+}
+
+.guide-content .beastmaster-location__grid {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:.65rem;
+}
+
+.guide-content .beastmaster-location__grid > div {
+  display:grid;
+  gap:.25rem;
+  padding:.6rem;
+  border:1px solid color-mix(in srgb,var(--xiv-border) 48%,transparent);
+  border-radius:4px;
+  background:color-mix(in srgb,var(--xiv-surface) 70%,var(--xiv-bg));
+}
+
+.guide-content .beastmaster-location__grid strong {
+  color:var(--xiv-gold-bright);
+  font-size:.72rem;
+}
+
+.guide-content .beastmaster-abilities {
+  display:grid;
+  gap:.45rem;
+}
+
+/* Responsive */
+@media (max-width:75rem) {
+  .guide-content .beastmaster-list {
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:60rem) {
+  .guide-content .search__form_blu,
+  .guide-content .beastmaster-search .search__form_blu {
+    grid-template-columns:1fr;
+  }
+
+  .guide-content .guide-level-filter {
+    justify-content:start;
+  }
+
+  body.xiv .guide-content .guide__entry-trigger--debuff {
+    grid-template-columns:2.15rem minmax(0,1fr) !important;
+  }
+
+  body.xiv .guide-content .guide__entry-trigger--debuff > .Attributes,
+  body.xiv .guide-content .guide__entry-trigger--debuff > .IdsHps {
+    grid-column:1 / -1 !important;
+    justify-self:start !important;
+  }
+
+  .guide-content .beastmaster-location__grid {
+    grid-template-columns:1fr;
+  }
+}
+
+
+/* ==========================================================================
+   Debuff header final alignment
+   Force every debuff summary into one horizontal row.
+   ========================================================================== */
+
+body.xiv .guide-content .guide__entry-trigger--debuff {
+  display:flex !important;
+  flex-direction:row !important;
+  flex-wrap:nowrap !important;
+  align-items:center !important;
+  align-content:center !important;
+  width:100% !important;
+  min-height:3.15rem !important;
+  height:auto !important;
+  margin:.35rem 0 0 !important;
+  padding:.42rem .7rem .42rem 1.15rem !important;
+  gap:.7rem !important;
+  grid-template-columns:none !important;
+  grid-template-rows:none !important;
+  grid-auto-columns:unset !important;
+  grid-auto-rows:unset !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Dropdown {
+  position:absolute !important;
+  left:.22rem !important;
+  top:50% !important;
+  transform:translateY(-50%) !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:.7rem !important;
+  height:.7rem !important;
+  min-width:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Dropdown ion-icon {
+  width:.75rem !important;
+  height:.75rem !important;
+  font-size:.75rem !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Icon.debuff_icon {
+  position:static !important;
+  flex:0 0 2.15rem !important;
+  width:2.15rem !important;
+  height:2.15rem !important;
+  min-width:2.15rem !important;
+  max-width:2.15rem !important;
+  margin:0 !important;
+  padding:0 !important;
+  object-fit:contain !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Names {
+  position:static !important;
+  display:flex !important;
+  flex:1 1 auto !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  align-items:flex-start !important;
+  min-width:8rem !important;
+  width:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  gap:.08rem !important;
+  text-align:left !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Names > span,
+body.xiv .guide-content .guide__entry-trigger--debuff > .Names .guide__accordion-trigger-title {
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+  line-height:1.25 !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff .guide__accordion-trigger-subtitle {
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+  color:var(--xiv-muted) !important;
+  font-size:.72rem !important;
+  line-height:1.2 !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Attributes {
+  position:static !important;
+  display:flex !important;
+  flex:0 0 auto !important;
+  flex-direction:row !important;
+  flex-wrap:nowrap !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  width:auto !important;
+  min-width:0 !important;
+  margin:0 0 0 auto !important;
+  padding:0 !important;
+  gap:.3rem !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Attributes.guide__accordion-tag-wrapper {
+  display:flex !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .Attributes [class*="guide__accordion-tag--"] {
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-height:1.45rem !important;
+  margin:0 !important;
+  padding:.12rem .42rem !important;
+  font-size:.65rem !important;
+  line-height:1 !important;
+  white-space:nowrap !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .IdsHps {
+  position:static !important;
+  display:flex !important;
+  flex:0 0 auto !important;
+  flex-direction:row !important;
+  align-items:center !important;
+  justify-content:flex-end !important;
+  width:auto !important;
+  min-width:5.5rem !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+body.xiv .guide-content .guide__entry-trigger--debuff > .IdsHps .guide__accordion-trigger-id {
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+  color:var(--xiv-muted) !important;
+  font-size:.67rem !important;
+  line-height:1.2 !important;
+  white-space:nowrap !important;
+}
+
+/* Remove legacy vertical offsets from all direct children. */
+body.xiv .guide-content .guide__entry-trigger--debuff > * {
+  right:auto !important;
+  bottom:auto !important;
+  min-height:0 !important;
+  max-height:none !important;
+}
+
+/* Keep a single row for normal desktop widths. Only wrap when genuinely narrow. */
+@media (max-width:52rem) {
+  body.xiv .guide-content .guide__entry-trigger--debuff {
+    flex-wrap:wrap !important;
+  }
+
+  body.xiv .guide-content .guide__entry-trigger--debuff > .Names {
+    min-width:calc(100% - 3.5rem) !important;
+  }
+
+  body.xiv .guide-content .guide__entry-trigger--debuff > .Attributes {
+    margin-left:2.85rem !important;
+    flex-wrap:wrap !important;
+  }
+
+  body.xiv .guide-content .guide__entry-trigger--debuff > .IdsHps {
+    margin-left:auto !important;
+  }
+}
+
+
+/* ==========================================================================
+   Dedicated debuff component
+   This intentionally does not depend on legacy Names/Attributes/IdsHps grids.
+   ========================================================================== */
+
+body.xiv .guide-content .guide__debuff-row {
+  position: relative;
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: .7rem !important;
+
+  width: 100% !important;
+  min-height: 3.3rem !important;
+  height: auto !important;
+
+  margin: .4rem 0 0 !important;
+  padding: .5rem .75rem .5rem 1.25rem !important;
+
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 70%, transparent);
+  border-radius: 5px;
+  background: var(--xiv-surface);
+  color: var(--xiv-text);
+  box-sizing: border-box;
+}
+
+body.xiv .guide-content .guide__debuff-row:not(.is-static) {
+  cursor: pointer;
+}
+
+body.xiv .guide-content .guide__debuff-row:not(.is-static):hover,
+body.xiv .guide-content .guide__debuff-row.active {
+  border-color: color-mix(in srgb, var(--xiv-gold) 60%, var(--xiv-border));
+  background: color-mix(in srgb, var(--xiv-surface) 90%, var(--xiv-gold) 10%);
+}
+
+body.xiv .guide-content .guide__debuff-chevron {
+  position: absolute;
+  left: .38rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--xiv-gold);
+  font-size: .72rem;
+  line-height: 1;
+  transition: transform .15s ease;
+}
+
+body.xiv .guide-content .guide__debuff-row.active .guide__debuff-chevron {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+body.xiv .guide-content .guide__debuff-icon {
+  flex: 0 0 2.25rem;
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  min-width: 2.25rem !important;
+  max-width: 2.25rem !important;
+  object-fit: contain;
+  margin: 0 !important;
+}
+
+body.xiv .guide-content .guide__debuff-name {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 10rem;
+  flex-direction: column;
+  justify-content: center;
+  gap: .08rem;
+}
+
+body.xiv .guide-content .guide__debuff-title {
+  color: var(--xiv-text);
+  font-size: .82rem;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+body.xiv .guide-content .guide__debuff-subtitle {
+  color: var(--xiv-muted);
+  font-size: .7rem;
+  line-height: 1.2;
+}
+
+body.xiv .guide-content .guide__debuff-tags {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  gap: .3rem;
+  margin-left: auto;
+}
+
+body.xiv .guide-content .guide__debuff-tags > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.45rem;
+  margin: 0;
+  padding: .12rem .42rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: 4px;
+  background: var(--xiv-surface-deep);
+  color: var(--xiv-gold-bright);
+  font-size: .64rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+body.xiv .guide-content .guide__debuff-tags .tag-icon {
+  width: 1rem !important;
+  height: 1rem !important;
+  margin-right: .25rem;
+  object-fit: contain;
+}
+
+body.xiv .guide-content .guide__debuff-id {
+  flex: 0 0 auto;
+  min-width: 6.2rem;
+  text-align: right;
+}
+
+body.xiv .guide-content .guide__debuff-id-button {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--xiv-muted);
+  font: inherit;
+  font-size: .67rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+body.xiv .guide-content .guide__debuff-id-button:hover {
+  color: var(--xiv-gold-bright);
+  text-decoration: underline;
+}
+
+body.xiv .guide-content .guide__entry-content--debuff {
+  margin: 0 0 .45rem !important;
+  padding: .7rem .8rem !important;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 55%, transparent);
+  border-top: 0;
+  border-radius: 0 0 5px 5px;
+  background: var(--xiv-surface-deep);
+}
+
+body.xiv .guide-content .guide__entry-content--debuff[hidden] {
+  display: none !important;
+}
+
+/* Only stack metadata when there genuinely is not enough horizontal room. */
+@media (max-width: 58rem) {
+  body.xiv .guide-content .guide__debuff-row {
+    flex-wrap: wrap !important;
+  }
+
+  body.xiv .guide-content .guide__debuff-name {
+    min-width: calc(100% - 3.5rem);
+  }
+
+  body.xiv .guide-content .guide__debuff-tags {
+    margin-left: 2.95rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  body.xiv .guide-content .guide__debuff-id {
+    margin-left: auto;
+  }
+}
+
+
+/* ==========================================================================
+   Unified guide accordion chevrons
+   One arrow system and one position for guide content.
+   ========================================================================== */
+
+/*
+ * Several generations of guide markup currently coexist:
+ * - .xiv-accordion-trigger
+ * - .guide__entry-trigger
+ * - legacy .Dropdown elements
+ * - the dedicated .guide__debuff-chevron
+ *
+ * Use only the trigger ::before marker visually. This keeps all expandable
+ * rows aligned regardless of which guide component produced them.
+ */
+
+body.xiv .guide-content .Dropdown,
+body.xiv .guide-content .guide__debuff-chevron {
+  display: none !important;
+}
+
+/* All ordinary expandable guide rows reserve the same arrow gutter. */
+body.xiv .guide-content .xiv-accordion-trigger:not(.guide__class-section-trigger),
+body.xiv .guide-content .guide__entry-trigger:not(.guide__class-section-trigger) {
+  position: relative !important;
+  padding-left: 1.75rem !important;
+}
+
+/* Reset every older pseudo-arrow placement before applying the common one. */
+body.xiv .guide-content .xiv-accordion-trigger:not(.guide__class-section-trigger)::before,
+body.xiv .guide-content .guide__entry-trigger:not(.guide__class-section-trigger)::before {
+  content: '▸';
+  position: absolute !important;
+
+  left: .58rem !important;
+  top: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+
+  display: block !important;
+  width: .7rem !important;
+  height: .9rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: none !important;
+
+  color: var(--xiv-gold) !important;
+  font-family: sans-serif !important;
+  font-size: .72rem !important;
+  font-weight: 700 !important;
+  line-height: .9rem !important;
+  text-align: center !important;
+
+  transform: translateY(-50%) rotate(0deg) !important;
+  transform-origin: 50% 50% !important;
+  transition: transform .15s ease, color .15s ease !important;
+  pointer-events: none !important;
+}
+
+/* Expanded state rotates around the exact same center point. */
+body.xiv .guide-content .xiv-accordion-trigger:not(.guide__class-section-trigger).active::before,
+body.xiv .guide-content .guide__entry-trigger:not(.guide__class-section-trigger).active::before,
+body.xiv .guide-content .xiv-accordion-trigger:not(.guide__class-section-trigger)[aria-expanded="true"]::before,
+body.xiv .guide-content .guide__entry-trigger:not(.guide__class-section-trigger)[aria-expanded="true"]::before {
+  transform: translateY(-50%) rotate(90deg) !important;
+}
+
+/* Non-expandable rows must not receive a marker. */
+body.xiv .guide-content .guide__entry-trigger.is-static::before,
+body.xiv .guide-content .guide__entry-trigger[aria-disabled="true"]::before {
+  content: none !important;
+  display: none !important;
+}
+
+/*
+ * Class/job sections intentionally have their own markup because the phase
+ * number is a separate visual element. Put that custom chevron on the same
+ * x coordinate as every other guide arrow.
+ */
+body.xiv .guide-content .guide__class-section-trigger {
+  position: relative !important;
+  grid-template-columns: 2.3rem minmax(0, 1fr) auto !important;
+  padding-left: 1.75rem !important;
+}
+
+body.xiv .guide-content .guide__class-section-trigger::before {
+  content: none !important;
+  display: none !important;
+}
+
+body.xiv .guide-content .guide__class-section-chevron {
+  position: absolute !important;
+  left: .58rem !important;
+  top: 50% !important;
+
+  display: block !important;
+  width: .7rem !important;
+  height: .9rem !important;
+  margin: 0 !important;
+
+  color: var(--xiv-gold) !important;
+  font-family: sans-serif !important;
+  font-size: .72rem !important;
+  font-weight: 700 !important;
+  line-height: .9rem !important;
+  text-align: center !important;
+
+  transform: translateY(-50%) rotate(0deg) !important;
+  transform-origin: 50% 50% !important;
+  transition: transform .15s ease !important;
+  pointer-events: none !important;
+}
+
+body.xiv .guide-content .guide__class-section-trigger.active .guide__class-section-chevron,
+body.xiv .guide-content .guide__class-section-trigger[aria-expanded="true"] .guide__class-section-chevron {
+  transform: translateY(-50%) rotate(90deg) !important;
+}
+
+/* Dedicated debuff rows still use their flex layout; only their gutter changes. */
+body.xiv .guide-content .guide__debuff-row {
+  padding-left: 1.75rem !important;
+}
+
+/* Beastmaster rows use exactly the same arrow gutter. */
+body.xiv .guide-content .guide__entry-trigger--beast {
+  padding-left: 1.75rem !important;
+}

@@ -5,17 +5,19 @@
         {% include head.html %}
     </head>
     <!-- ORIGIN: _layout/treasuremap_index -->
-    <body class="xiv {{ page.page_type }} {{ page.page_category }}" data-xiv-theme="Dark">
+    <body class="xiv {{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
             {% include navbar.html %}
             <div class="layout__wrapper">
                 {% include header.html %}
+                <main class="utility-page utility-page--treasuremap-index">
                 {% if page.page_type == "index" %}
                     <!-- Search Bar -->
                     {% include presets/search.html searchPrefill="treasure" %}
                     <!-- END Search Bar -->
                 {% endif %}
                 {% include treasuremap/index.html %}
+                                </main>
                 {% include_cached footer.html %}
             </div>
         </div>

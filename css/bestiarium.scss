@@ -1,0 +1,195 @@
+---
+---
+/* Dedicated Bestiarium layout. Loaded after core.css so generic utility-page rules cannot flatten it. */
+
+.bestiarium-page {
+  width: 100%;
+  min-width: 0;
+  padding: 1rem clamp(.6rem, 1.5vw, 1.25rem) 2rem;
+  color: var(--xiv-text);
+}
+
+.bestiarium-window {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr);
+  min-height: 38rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 88%, transparent);
+  border-radius: 7px;
+  background: var(--xiv-surface-deep);
+  box-shadow: 0 14px 35px rgba(0,0,0,.32), inset 0 1px rgba(255,255,255,.03);
+}
+
+.bestiarium-sidebar {
+  position: relative;
+  padding: .75rem;
+  border-right: 1px solid color-mix(in srgb, var(--xiv-border) 75%, transparent);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--xiv-surface) 90%, #3c4755 10%),
+    color-mix(in srgb, var(--xiv-surface-deep) 94%, #000 6%)
+  );
+}
+
+.bestiarium-sidebar__header { margin-bottom: .65rem; }
+.bestiarium-sidebar__eyebrow,
+.bestiarium-header__label,
+.bestiarium-ranks__title,
+.bestiarium-rank-header__title-wrap { color: var(--xiv-muted); text-transform: uppercase; letter-spacing: .08em; font-size: .7rem; }
+.bestiarium-sidebar__title { display:block; margin-top:.1rem; color:var(--xiv-gold-bright); font:400 1.35rem/1.1 Georgia,serif; text-transform:uppercase; }
+
+.bestiarium-category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .4rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--xiv-border) 55%, transparent);
+}
+
+.bestiarium-category-button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  min-width: 0;
+  padding: .3rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 75%, transparent);
+  border-radius: 4px;
+  background: linear-gradient(180deg, color-mix(in srgb,var(--xiv-surface) 82%,#8190a1 18%), var(--xiv-surface-deep));
+  cursor: pointer;
+}
+.bestiarium-category-button:hover,
+.bestiarium-category-button.is-active { border-color: var(--xiv-gold); background: linear-gradient(180deg,color-mix(in srgb,var(--xiv-gold) 18%,var(--xiv-surface)),var(--xiv-surface-deep)); }
+.bestiarium-category-button.is-active::after { content:""; position:absolute; inset:2px; border:1px solid color-mix(in srgb,var(--xiv-gold) 50%,transparent); border-radius:3px; pointer-events:none; }
+.bestiarium-category-button img { width:2rem; height:2rem; object-fit:contain; filter:drop-shadow(0 2px 2px rgba(0,0,0,.45)); }
+
+.bestiarium-ranks { margin-top:.75rem; }
+.bestiarium-ranks__title { margin-bottom:.35rem; color:var(--xiv-gold-bright); font-family:Georgia,serif; font-size:1.05rem; }
+.bestiarium-ranks__list { display:grid; gap:.18rem; }
+.bestiarium-rank-button {
+  display:grid;
+  grid-template-columns: 1.4rem 1rem minmax(0,1fr);
+  align-items:center;
+  gap:.35rem;
+  width:100%;
+  min-height:2rem;
+  padding:.32rem .48rem;
+  border:1px solid transparent;
+  border-radius:3px;
+  background:transparent;
+  color:var(--xiv-text);
+  cursor:pointer;
+  text-align:left;
+}
+.bestiarium-rank-button:hover { background:color-mix(in srgb,var(--xiv-gold) 7%,transparent); }
+.bestiarium-rank-button.is-active { border-color:color-mix(in srgb,var(--xiv-gold) 45%,transparent); background:linear-gradient(90deg,color-mix(in srgb,var(--xiv-gold) 18%,transparent),transparent); }
+.bestiarium-rank-button__number { font:600 .82rem/1 var(--xiv-font); }
+.bestiarium-rank-button__check { color:var(--xiv-gold-bright); font-weight:800; text-align:center; }
+.bestiarium-rank-button__progress { justify-self:end; color:var(--xiv-muted); font-size:.72rem; font-variant-numeric:tabular-nums; }
+.bestiarium-rank-button.is-complete .bestiarium-rank-button__progress { color:#d7c36b; }
+.bestiarium-sidebar__actions { margin-top:1rem; }
+.bestiarium-sidebar__actions .xiv-button { width:100%; }
+
+.bestiarium-main {
+  min-width: 0;
+  padding: .9rem 1rem 1.1rem;
+  background: linear-gradient(180deg,color-mix(in srgb,var(--xiv-surface) 94%,#48515c 6%),var(--xiv-surface-deep));
+}
+
+.bestiarium-header {
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  align-items:center;
+  padding-bottom:.7rem;
+  border-bottom:1px solid color-mix(in srgb,var(--xiv-border) 55%,transparent);
+}
+.bestiarium-header__class { display:flex; align-items:center; gap:.7rem; min-width:0; }
+.bestiarium-header__class-icon { width:2.2rem; height:2.2rem; object-fit:contain; }
+.bestiarium-header__title { margin:.05rem 0 0; color:var(--xiv-gold-bright); font:400 clamp(1.35rem,2vw,1.8rem)/1.05 Georgia,serif; }
+.bestiarium-header__progress { text-align:right; }
+.bestiarium-header__progress strong { display:block; color:var(--xiv-gold-bright); font-size:1rem; font-variant-numeric:tabular-nums; }
+.bestiarium-header__progress span { color:var(--xiv-muted); font-size:.68rem; }
+
+.bestiarium-rank-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:1rem;
+  margin-top:.6rem;
+  padding:.48rem .65rem;
+  border:1px solid color-mix(in srgb,var(--xiv-border) 62%,transparent);
+  border-radius:4px;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--xiv-surface) 88%,var(--xiv-gold) 12%),var(--xiv-surface-deep));
+}
+.bestiarium-rank-header__label { color:var(--xiv-gold-bright); font:400 1.1rem/1 Georgia,serif; }
+.bestiarium-rank-header__status { margin-left:.55rem; color:var(--xiv-muted); font-size:.72rem; }
+.bestiarium-rank-header__reward { display:flex; align-items:baseline; gap:.45rem; color:var(--xiv-muted); text-transform:uppercase; font-size:.68rem; letter-spacing:.06em; }
+.bestiarium-rank-header__reward strong { color:var(--xiv-gold-bright); font:400 1.2rem/1 Georgia,serif; letter-spacing:0; }
+
+.bestiarium-toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; padding:.55rem 0 .65rem; }
+.bestiarium-toolbar__hint { margin-left:auto; color:var(--xiv-muted); font-size:.72rem; }
+
+.bestiarium-notes { display:grid; gap:.55rem; }
+.bestiarium-note { overflow:hidden; border:1px solid color-mix(in srgb,var(--xiv-border) 72%,transparent); border-radius:4px; background:color-mix(in srgb,var(--xiv-surface) 96%,#000 4%); }
+.bestiarium-note.is-complete { border-color:color-mix(in srgb,#d3ba4c 55%,var(--xiv-border)); }
+.bestiarium-note__head { display:flex; justify-content:space-between; align-items:center; gap:.7rem; min-height:2rem; padding:.35rem .6rem; background:linear-gradient(180deg,color-mix(in srgb,var(--xiv-surface) 80%,#4b535c 20%),var(--xiv-surface)); border-bottom:1px solid color-mix(in srgb,var(--xiv-border) 50%,transparent); }
+.bestiarium-note.is-complete .bestiarium-note__head { background:linear-gradient(180deg,color-mix(in srgb,var(--xiv-gold) 16%,var(--xiv-surface)),var(--xiv-surface)); }
+.bestiarium-note__title { color:var(--xiv-gold-bright); font:600 .82rem/1.2 var(--xiv-font); }
+.bestiarium-note__status { color:#ffb55e; font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.04em; }
+.bestiarium-note__body { display:grid; gap:.15rem; padding:.3rem .45rem; }
+
+.bestiarium-target {
+  display:grid;
+  grid-template-columns: 1.35rem 2.5rem minmax(0,1fr) 8rem;
+  align-items:center;
+  gap:.55rem;
+  min-height:3.35rem;
+  padding:.28rem .2rem;
+}
+.bestiarium-target + .bestiarium-target { border-top:1px solid color-mix(in srgb,var(--xiv-border) 30%,transparent); }
+.bestiarium-target__check { display:grid; place-items:center; width:1.15rem; height:1.15rem; padding:0; border:1px solid color-mix(in srgb,var(--xiv-border) 70%,transparent); border-radius:50%; background:var(--xiv-surface-deep); color:var(--xiv-gold-bright); font-size:.7rem; cursor:pointer; }
+.bestiarium-target.is-complete .bestiarium-target__check { border-color:#d8b63d; background:#7f5f09; color:#fff7c7; }
+.bestiarium-target__icon { width:2.35rem; height:2.35rem; object-fit:cover; border:1px solid color-mix(in srgb,var(--xiv-border) 75%,transparent); border-radius:4px; background:var(--xiv-surface-deep); }
+.bestiarium-target__name { color:var(--xiv-text); font-size:.82rem; line-height:1.2; }
+.bestiarium-target__location { margin-top:.08rem; color:var(--xiv-muted); font-size:.68rem; line-height:1.3; }
+.bestiarium-target__progress { display:grid; gap:.24rem; min-width:0; }
+.bestiarium-target__count-line { display:grid; grid-template-columns:1.4rem minmax(2.5rem,1fr) 1.4rem; align-items:center; gap:.2rem; }
+.bestiarium-target__step { width:1.35rem; height:1.35rem; padding:0; border:1px solid color-mix(in srgb,var(--xiv-border) 70%,transparent); border-radius:3px; background:var(--xiv-surface-deep); color:var(--xiv-text); cursor:pointer; }
+.bestiarium-target__step:disabled { opacity:.35; cursor:default; }
+.bestiarium-target__count { text-align:center; color:var(--xiv-text); font-size:.78rem; font-variant-numeric:tabular-nums; }
+.bestiarium-target__bar { height:.38rem; overflow:hidden; border:1px solid color-mix(in srgb,var(--xiv-border) 65%,transparent); border-radius:999px; background:#161817; }
+.bestiarium-target__bar-fill { display:block; height:100%; background:linear-gradient(90deg,#72a90e,#9bd000); transition:width .18s ease; }
+
+.bestiarium-note__footer { display:flex; justify-content:flex-end; align-items:baseline; gap:.5rem; padding:.28rem .6rem .38rem; border-top:1px solid color-mix(in srgb,var(--xiv-border) 35%,transparent); }
+.bestiarium-note__footer-label { color:var(--xiv-muted); text-transform:uppercase; letter-spacing:.06em; font-size:.62rem; }
+.bestiarium-note__reward { color:var(--xiv-gold-bright); font:400 .95rem/1 Georgia,serif; }
+
+.bestiarium-rank-group { display:grid; gap:.45rem; }
+.bestiarium-rank-group + .bestiarium-rank-group { margin-top:.45rem; }
+.bestiarium-rank-group__header { display:flex; justify-content:space-between; align-items:center; padding:.35rem .5rem; border-bottom:1px solid color-mix(in srgb,var(--xiv-gold) 45%,transparent); color:var(--xiv-gold-bright); }
+.bestiarium-rank-group__entries { display:grid; gap:.55rem; }
+
+@media (max-width: 72rem) {
+  .bestiarium-window { grid-template-columns: 12.5rem minmax(0,1fr); }
+  .bestiarium-category-grid { grid-template-columns:repeat(3,1fr); }
+  .bestiarium-target { grid-template-columns:1.25rem 2.35rem minmax(0,1fr) 7rem; }
+}
+
+@media (max-width: 52rem) {
+  .bestiarium-window { grid-template-columns:1fr; }
+  .bestiarium-sidebar { border-right:0; border-bottom:1px solid color-mix(in srgb,var(--xiv-border) 75%,transparent); }
+  .bestiarium-category-grid { grid-template-columns:repeat(auto-fit,minmax(2.6rem,1fr)); }
+  .bestiarium-ranks__list { grid-template-columns:repeat(5,minmax(0,1fr)); }
+  .bestiarium-rank-button { grid-template-columns:auto auto; justify-content:center; }
+  .bestiarium-rank-button__check { display:none; }
+}
+
+@media (max-width: 38rem) {
+  .bestiarium-main { padding:.65rem; }
+  .bestiarium-header { align-items:flex-start; }
+  .bestiarium-header__progress { text-align:left; }
+  .bestiarium-target { grid-template-columns:1.15rem 2.15rem minmax(0,1fr); }
+  .bestiarium-target__progress { grid-column:2 / -1; padding-bottom:.2rem; }
+  .bestiarium-rank-header { align-items:flex-start; }
+  .bestiarium-toolbar__hint { width:100%; margin-left:0; }
+}

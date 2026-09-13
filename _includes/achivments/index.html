@@ -1,20 +1,158 @@
 <!-- Include from _includes/achivments/index -->
-<div class="index">
-    {%- assign my_array = site.ffxiv_achievment_kind | split: ',' -%}
-    {%- for x in my_array -%}
-        {% include helper/handle_version_switchcase.html %}
-        {%- assign queryType = x -%}
-        {%- assign counterq = 0 -%}
-        {%- include achivments/_components/index-counter.html -%}
-        {%- if counterq > 0 -%}
-           <a id="{{ x }}"></a>
-           <div class="index-divider" data-expansion="{{ x }}">
-               <h2 data-translate="Summary_Achievment_{{ x }}_MainCat" class="index-divider__title">{{ x }}</h2>
-           </div>
-           <div class="index__list_achivments" data-expansion="{{ x }}">
-               {%- include achivments/_components/index-list.html -%}
-           </div>
-        {%- endif -%}
-    {%- endfor -%}
+{%- assign my_array = site.ffxiv_achievment_kind | split: ',' -%}
+<div class="achievement-browser utility-page--achivments">
+    <aside class="achievement-browser__sidebar xiv-card">
+        <div class="achievement-browser__sidebar-inner">
+            <div class="achievement-browser__sidebar-copy">
+                <p class="achievement-browser__eyebrow">Navigation</p>
+                <h2 class="achievement-browser__sidebar-title">Erfolge</h2>
+                <p class="achievement-browser__sidebar-text">
+                    Filtere nach Kategorie, springe direkt zu einem Bereich oder zeige alle Erfolge gesammelt an.
+                </p>
+            </div>
+
+            <div class="achievement-browser__nav">
+                <button
+                    type="button"
+                    class="achievement-filter-link achievement-filter-link--all is-active"
+                    data-achievement-nav
+                    data-filter-main=""
+                    data-filter-sub=""
+                    data-target-section="all">
+                    <span class="achievement-filter-link__label">Alle Erfolge</span>
+                    <span class="achievement-filter-link__count" data-achievement-count-total>0</span>
+                </button>
+
+                {%- for x in my_array -%}
+                    {% include helper/handle_version_switchcase.html %}
+                    {%- assign queryType = x -%}
+                    {%- assign counterq = 0 -%}
+                    {%- include achivments/_components/index-counter.html -%}
+                    {%- if counterq > 0 -%}
+                        {%- assign rendered_subcats = '' -%}
+                        <section class="achievement-nav-group" data-achievement-nav-group>
+                            <button
+                                type="button"
+                                class="achievement-filter-link achievement-filter-link--main"
+                                data-achievement-nav
+                                data-filter-main="{{ x | escape }}"
+                                data-filter-sub=""
+                                data-target-section="section-{{ x | slugify }}">
+                                <span class="achievement-filter-link__path">{{ x }}</span>
+                                <span class="achievement-filter-link__count">{{ counterq }}</span>
+                            </button>
+
+                            <div class="achievement-nav-group__children">
+                                {%- for achivments in site.categories.achivments -%}
+                                    {%- for guide in achivments.achivments -%}
+                                        {%- if guide.main_category == x and guide.sub_category -%}
+                                            {%- capture subcat_key -%}|{{ guide.sub_category }}|{%- endcapture -%}
+                                            {%- unless rendered_subcats contains subcat_key -%}
+                                                {%- assign rendered_subcats = rendered_subcats | append: subcat_key -%}
+                                                <button
+                                                    type="button"
+                                                    class="achievement-filter-link achievement-filter-link--sub"
+                                                    data-achievement-nav
+                                                    data-filter-main="{{ x | escape }}"
+                                                    data-filter-sub="{{ guide.sub_category | escape }}"
+                                                    data-target-section="section-{{ x | slugify }}">
+                                                    <span class="achievement-filter-link__path">{{ x }} <span aria-hidden="true">›</span> {{ guide.sub_category }}</span>
+                                                </button>
+                                            {%- endunless -%}
+                                        {%- endif -%}
+                                    {%- endfor -%}
+                                {%- endfor -%}
+                            </div>
+                        </section>
+                    {%- endif -%}
+                {%- endfor -%}
+            </div>
+        </div>
+    </aside>
+
+    <div class="achievement-browser__main">
+        <section class="achievement-toolbar xiv-card">
+            <div class="achievement-toolbar__intro">
+                <p class="achievement-browser__eyebrow">Suche & Filter</p>
+                <h2 class="achievement-toolbar__title">Erfolge schnell finden</h2>
+                <p class="achievement-toolbar__text">
+                    Suche nach Erfolgsnamen, Beschreibung, Kategorie, Belohnungs-Item oder Titel. Nutze zusätzlich Sortierung und Belohnungsfilter.
+                </p>
+            </div>
+
+            <div class="achievement-toolbar__grid">
+                <label class="achievement-toolbar__field">
+                    <span class="achievement-toolbar__label">Suche</span>
+                    <input id="achievementSearch" class="xiv-input" type="search" placeholder="z. B. Kefka, Mount, Triad, PvP, Handwerker ...">
+                </label>
+
+                <label class="achievement-toolbar__field achievement-toolbar__field--select">
+                    <span class="achievement-toolbar__label">Sortierung</span>
+                    <select id="achievementSort" class="xiv-select">
+                        <option value="order-asc">Reihenfolge</option>
+                        <option value="name-asc">Name A-Z</option>
+                        <option value="points-desc">Punkte absteigend</option>
+                        <option value="points-asc">Punkte aufsteigend</option>
+                    </select>
+                </label>
+
+                <label class="achievement-toolbar__toggle xiv-card xiv-card--inset">
+                    <input id="achievementHasItem" type="checkbox">
+                    <span>
+                        <strong>Nur mit Item</strong>
+                        <small>zeigt nur Erfolge mit Item-Belohnung</small>
+                    </span>
+                </label>
+
+                <label class="achievement-toolbar__toggle xiv-card xiv-card--inset">
+                    <input id="achievementHasTitle" type="checkbox">
+                    <span>
+                        <strong>Nur mit Titel</strong>
+                        <small>zeigt nur Erfolge mit freischaltbarem Titel</small>
+                    </span>
+                </label>
+
+                <div class="achievement-toolbar__actions">
+                    <button id="achievementReset" type="button" class="xiv-button xiv-button--ghost">Filter zurücksetzen</button>
+                </div>
+            </div>
+
+            <div class="achievement-toolbar__summary">
+                <span class="achievement-toolbar__stat"><strong data-achievement-visible>0</strong> sichtbar</span>
+                <span class="achievement-toolbar__stat">von <strong data-achievement-total>0</strong> Erfolgen</span>
+                <span class="achievement-toolbar__stat achievement-toolbar__stat--context" data-achievement-context>Alle Kategorien</span>
+            </div>
+        </section>
+
+        <section class="achievement-results" id="all" data-achievement-results>
+            {%- for x in my_array -%}
+                {% include helper/handle_version_switchcase.html %}
+                {%- assign queryType = x -%}
+                {%- assign counterq = 0 -%}
+                {%- include achivments/_components/index-counter.html -%}
+                {%- if counterq > 0 -%}
+                    <section class="achievement-section xiv-card" id="section-{{ x | slugify }}" data-achievement-section data-main="{{ x | escape }}">
+                        <header class="achievement-section__header">
+                            <div>
+                                <p class="achievement-browser__eyebrow">Kategorie</p>
+                                <h2 data-translate="Summary_Achievment_{{ x }}_MainCat" class="achievement-section__title">{{ x }}</h2>
+                            </div>
+                            <div class="achievement-section__meta">
+                                <span class="achievement-section__badge"><span data-achievement-section-visible>{{ counterq }}</span> / {{ counterq }}</span>
+                            </div>
+                        </header>
+                        <div class="achievement-section__grid index__list_achivments" data-expansion="{{ x }}">
+                            {%- include achivments/_components/index-list.html -%}
+                        </div>
+                    </section>
+                {%- endif -%}
+            {%- endfor -%}
+
+            <div class="achievement-empty xiv-card" hidden>
+                <h3 class="achievement-empty__title">Keine Erfolge gefunden</h3>
+                <p class="achievement-empty__text">Passe Suche oder Filter an, um wieder Ergebnisse anzuzeigen.</p>
+            </div>
+        </section>
+    </div>
 </div>
 <!-- END Include from _includes/achivments/index -->

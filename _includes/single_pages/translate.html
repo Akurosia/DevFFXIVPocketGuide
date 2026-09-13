@@ -1,27 +1,50 @@
 <!-- Include from _includes/translate -->
-<div class="index">
-    <div class="container col">
-      <div class="" id="headDiv">
-        <div class="my-4 form-inline">
-          <div class="input-group-prepend">
-            <label class="input-group-text bg-charcoal text-light" for="inputGroupSelect01">Filter</label>
-          </div>
-          <select class="form-control bg-charcoal text-light custom-select xiv-select" id="filterValue">
+<div class="index translate-page">
+  <div class="container translate-page__container">
+    <section id="headDiv" class="translate-toolbar xiv-panel" aria-label="Translation search">
+      <div class="translate-toolbar__grid">
+        <label class="translate-field">
+          <span class="translate-field__label">Filter</span>
+          <select class="form-control bg-charcoal text-light custom-select xiv-select"
+                  id="filterValue">
             <option value="all">all</option>
           </select>
-          <input type="text" class="form-control bg-charcoal text-light col xiv-input" id="searchValue" placeholder="Enter serch term here" value=""/>
-          <select id="exactSearch" class="form-control bg-charcoal text-light xiv-select" name="Exact Search">
+        </label>
+
+        <label class="translate-field translate-field--search">
+          <span class="translate-field__label">Search</span>
+          <input type="text"
+                 class="form-control bg-charcoal text-light xiv-input"
+                 id="searchValue"
+                 placeholder="Enter search term here"
+                 value="">
+        </label>
+
+        <label class="translate-field">
+          <span class="translate-field__label">Match</span>
+          <select id="exactSearch"
+                  class="form-control bg-charcoal text-light xiv-select"
+                  name="Exact Search">
             <option value="false">Not Exact</option>
             <option value="true">Exact</option>
           </select>
-          <button type="submit" class="btn bg-charcoal text-light xiv-button xiv-button--small xiv-button--primary" id="submit" onclick="translate_search();translate_SubmitToLocalStorage();">
-            <i id="search_spinner" class="fa fa-spin"></i><span data-translate="Gear_Search">Search</span>
-          </button>
-        </div>
+        </label>
+
+        <button type="button"
+                class="xiv-button xiv-button--primary translate-toolbar__submit"
+                id="submit"
+                onclick="translate_search();translate_SubmitToLocalStorage();">
+          <i id="search_spinner" class="fa fa-spin" aria-hidden="true"></i>
+          <span data-translate="Gear_Search">Search</span>
+        </button>
       </div>
-      <div class="" id="bodyDiv"></div>
-    </div>
+    </section>
+
+    <div id="bodyDiv" class="translate-results" aria-live="polite"></div>
+  </div>
 </div>
-<div style="display: none" data-extra-translate="/assets/translations/gear"></div>
-<script type="text/javascript" src="{{ "/assets/js/translate.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
+
+<div style="display:none" data-extra-translate="/assets/translations/gear"></div>
+<script type="text/javascript"
+        src="{{ "/assets/js/translate.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
 <!-- END Include from _includes/translate -->

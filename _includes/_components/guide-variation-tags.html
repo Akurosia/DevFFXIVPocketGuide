@@ -1,32 +1,39 @@
 <!-- Include from _includes/_components/guide-variation-tags -->
-<div class="guide__combo-tag-wrapper">
-    {%- if attack.variation -%}
-        <h5 class="guide__accordion-trigger-vartitle">
-            {%- if variation.title_id -%}
-                <div class="guide__accordion-trigger-title" onclick="buildAndCopyRegex('{{ variation.title_id }}', '{{ enemy.title.de }}', 'attack')">Skill-ID: {{ variation.title_id }}</div>
-            {%- endif -%}
+{%- if attack.variation -%}
+<div class="guide__variation-meta">
+    <div class="guide__variation-stats">
+        {%- if variation.title_id -%}
+            <button type="button" class="guide__variation-stat" onclick="buildAndCopyRegex('{{ variation.title_id }}', '{{ enemy.title.de }}', 'attack')">
+                <span>Skill-ID</span>
+                <strong>{{ variation.title_id }}</strong>
+            </button>
+        {%- endif -%}
 
-            {%- if variation.damage -%}
-                <div class="guide__accordion-trigger-title">DMG:
+        {%- if variation.damage -%}
+            <div class="guide__variation-stat">
+                <span>DMG</span>
+                <strong>
                     {%- if variation.damage[0].min == variation.damage[1].max -%}
                         {{ variation.damage[0].min | intcomma: '.' }}
                     {%- else -%}
-                        {{ variation.damage[0].min | intcomma: '.' }}{%- if variation.damage[0].min && variation.damage[1].max -%} - {%- endif -%}{{ variation.damage[1].max | intcomma: '.' }}
+                        {{ variation.damage[0].min | intcomma: '.' }}{%- if variation.damage[0].min && variation.damage[1].max -%} – {%- endif -%}{{ variation.damage[1].max | intcomma: '.' }}
                     {%- endif -%}
-                </div>
-            {%- endif -%}
+                </strong>
             </div>
-            <div class="guide__accordion-tag-wrapper">
-            {%- for role in variation.roles -%}
-              <span class="guide__combo-tag--role">{{ role.role }}</span>
-            {%- endfor -%}
-            {%- for action in variation.dutyActions -%}
-              <span class="guide__combo-tag--duty-action">Duty Action</span>
-            {%- endfor -%}
-            {%- for tag in variation.tags -%}
-              <span class="guide__combo-tag--attack">{{ tag.tag }}</span>
-            {%- endfor -%}
-        </h5>
-    {%- endif -%}
+        {%- endif -%}
+    </div>
+
+    <div class="guide__accordion-tag-wrapper">
+        {%- for role in variation.roles -%}
+            <span class="guide__combo-tag--role">{{ role.role }}</span>
+        {%- endfor -%}
+        {%- for action in variation.dutyActions -%}
+            <span class="guide__combo-tag--duty-action">Duty Action</span>
+        {%- endfor -%}
+        {%- for tag in variation.tags -%}
+            <span class="guide__combo-tag--attack">{{ tag.tag }}</span>
+        {%- endfor -%}
+    </div>
 </div>
+{%- endif -%}
 <!-- END Include from _includes/_components/guide-variation-tags -->

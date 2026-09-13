@@ -1,54 +1,120 @@
 <!-- Include from _includes/_components/guide-debuff -->
-<!-- _components/Guide-Debuff "Button"======================================================= -->
-<div class="guide-metadata__menu-link guide__entry-trigger guide__entry-trigger--debuff guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%} {%- if debuff.debuff_in_use == 'false' -%}--ignore {%- else -%}--debuff {%- endif -%} xiv-accordion-trigger" aria-expanded="false" id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "debuff_" | append: debuff.title | slugify }}">
-    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+{%- assign has_debuff_details = false -%}
+{%- if debuff.disable != 'true' -%}
+    {%- if debuff.description -%}{%- assign has_debuff_details = true -%}{%- endif -%}
+    {%- if debuff.durations and debuff.durations.size > 0 -%}{%- assign has_debuff_details = true -%}{%- endif -%}
+    {%- if debuff.notes and debuff.notes.size > 0 -%}{%- assign has_debuff_details = true -%}{%- endif -%}
+    {%- if debuff.videos and debuff.videos.size > 0 -%}{%- assign has_debuff_details = true -%}{%- endif -%}
+{%- endif -%}
 
-    <img loading="lazy" class="Icon debuff_icon" src="{{site.imageurl}}/{{ debuff.icon }}" alt="{{ debuff.icon }}"/>
-    <div class="Names">
-        <span class="{% if debuff.damage_type == 'Magical' %} attack-is-magic
-                     {% elsif debuff.damage_type && debuff.damage_type != 'None' %} attack-is-physical
-                     {% endif %}">
-            <span data-translate="{{x}}_{{enemy_name_en}}_Status_{{debuff.title}}_Name">{{ debuff.title }}</span>
+<div class="guide__debuff-row guide__entry-trigger guide__entry-trigger--debuff
+            {%- unless has_debuff_details -%} is-static{%- endunless -%}
+            xiv-accordion-trigger"
+     aria-expanded="false"
+     {%- unless has_debuff_details -%}
+       aria-disabled="true"
+     {%- else -%}
+       role="button"
+       tabindex="0"
+       onclick="const panel=this.nextElementSibling; const open=this.getAttribute('aria-expanded')==='true'; this.setAttribute('aria-expanded', open ? 'false' : 'true'); this.classList.toggle('active', !open); if(panel) panel.hidden=open;"
+       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+     {%- endunless -%}
+     id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "debuff_" | append: debuff.title | slugify }}">
+
+    {%- if has_debuff_details -%}
+        <span class="guide__debuff-chevron" aria-hidden="true">▸</span>
+    {%- endif -%}
+
+    <img loading="lazy"
+         class="guide__debuff-icon"
+         src="{{site.imageurl}}/{{ debuff.icon }}"
+         alt="{{ debuff.icon }}">
+
+    <div class="guide__debuff-name">
+        <span class="guide__debuff-title
+            {%- if debuff.damage_type == 'Magical' -%} attack-is-magic
+            {%- elsif debuff.damage_type and debuff.damage_type != 'None' -%} attack-is-physical
+            {%- endif -%}"
+              data-translate="{{x}}_{{enemy_name_en}}_Status_{{debuff.title}}_Name">
+            {{ debuff.title }}
         </span>
-        <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ debuff.title }}</div>
+
+        <span class="lang-toggle lang-toogle-en-sub guide__debuff-subtitle">
+            {{ debuff.title }}
+        </span>
     </div>
-    {%- assign attack = debuff -%}
-    {%- include _components/guide-attack-types.html -%}
-    <div class="IdsHps">
-        {%- if debuff.title_id -%}
-            <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'debuff')">Status-ID: {{ debuff.title_id }}</div>
+
+    <div class="guide__debuff-tags">
+        {%- for role in debuff.roles -%}
+            <span class="guide__accordion-tag--role"
+                  data-translate="AttackType_{{role.role}}">{{ role.role }}</span>
+        {%- endfor -%}
+
+        {%- for action in debuff.dutyActions -%}
+            <span class="guide__accordion-tag--duty-action"
+                  data-translate="AttackType_DutyAction">Duty Action</span>
+        {%- endfor -%}
+
+        {%- for tag in debuff.tags -%}
+            <span class="guide__accordion-tag--attack"
+                  data-translate="AttackType_{{tag.tag}}">
+                {%- if tag.icon -%}
+                    <img loading="lazy"
+                         class="tag-icon"
+                         title="{{tag.icon-title}}"
+                         src="{{ tag.icon }}">
+                {%- endif -%}
+                {{ tag.tag }}
+            </span>
+        {%- endfor -%}
+
+        {%- if debuff.max_stacks != nil -%}
+            <span class="guide__debuff-stack">MaxStacks: {{ debuff.max_stacks }}</span>
         {%- endif -%}
-        {%- assign isDebuff = "True" -%}
+    </div>
+
+    <div class="guide__debuff-id">
+        {%- if debuff.title_id -%}
+            {%- assign attack = debuff -%}
+            <button type="button"
+                    class="guide__debuff-id-button"
+                    onclick="event.stopPropagation(); buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'debuff')">
+                Status-ID: {{ debuff.title_id }}
+            </button>
+        {%- endif -%}
     </div>
 </div>
 
-<!-- _components/Guide-Debuff "Content"======================================================= -->
-<div class="guide__entry-content guide__entry-content--debuff guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%} {%- if debuff.debuff_in_use == 'false' -%}--ignore {%- else -%}--debuff {%- endif -%} xiv-accordion-content" hidden {%- if debuff.disable == 'true' -%}style="display: none;"{%- endif -%}>
+{%- if has_debuff_details -%}
+<div class="guide__entry-content guide__entry-content--debuff xiv-accordion-content" hidden>
     <div class="guide__accordion-copy-wrapper">
-        <!-- Standard Attacks -->
         {%- if debuff.description -%}
             <div class="guide__attack-notes-wrapper">
                 <h5 class="guide__attack-notes-title">Description:</h5>
-                <span class="guide__debuff_description" data-translate="{{x}}_{{enemy_name_en}}_Status_{{debuff.title}}_Desc">{{ debuff.description }}</span>
-            </div>
-        {%- endif -%}
-
-        <!-- Debuff durations -->
-        {%- if debuff.durations -%}
-            <div class="guide__attack-notes-wrapper">
-                <h5 class="guide__attack-notes-title">Folgende Zeiten wurden für diesen Debuff gefunden (kann Rundungsfehler enthalten):</h5>
-                <span class="guide__debuff_description">
-                {%- for duration in debuff.durations -%}
-                    {{ duration }} sek
-                    {%- unless forloop.last -%}
-                          -
-                    {%- endunless -%}
-                {%- endfor -%}
+                <span class="guide__debuff_description"
+                      data-translate="{{x}}_{{enemy_name_en}}_Status_{{debuff.title}}_Desc">
+                    {{ debuff.description }}
                 </span>
             </div>
         {%- endif -%}
+
+        {%- if debuff.durations and debuff.durations.size > 0 -%}
+            <div class="guide__attack-notes-wrapper">
+                <h5 class="guide__attack-notes-title">
+                    Folgende Zeiten wurden für diesen Debuff gefunden (kann Rundungsfehler enthalten):
+                </h5>
+                <span class="guide__debuff_description">
+                    {%- for duration in debuff.durations -%}
+                        {{ duration }} sek
+                        {%- unless forloop.last -%} · {%- endunless -%}
+                    {%- endfor -%}
+                </span>
+            </div>
+        {%- endif -%}
+
+        {%- assign attack = debuff -%}
         {%- include _components/guide-attack-notes.html -%}
-        <!-- Debuff Videos -->
+
         {%- if debuff.videos -%}
             <div class="guide__attack-video-list">
                 {%- for video in debuff.videos -%}
@@ -58,4 +124,5 @@
         {%- endif -%}
     </div>
 </div>
+{%- endif -%}
 <!-- END Include from _includes/_components/guide-debuff -->

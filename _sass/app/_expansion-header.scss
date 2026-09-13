@@ -1,0 +1,267 @@
+/* ==========================================================================
+   Unified expansion header — upper wordmark only
+   ========================================================================== */
+
+.index-divider:has(> .expansion-header) {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 5.5rem !important;
+
+  margin: 1rem 0 .75rem !important;
+  padding: 0 !important;
+
+  overflow: hidden !important;
+
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent) !important;
+  border-left: 3px solid var(--xiv-gold) !important;
+  border-radius: var(--xiv-radius, 6px) !important;
+
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--xiv-gold) 7%, var(--xiv-surface)),
+      var(--xiv-surface) 32%,
+      var(--xiv-surface) 68%,
+      color-mix(in srgb, var(--xiv-gold) 4%, var(--xiv-surface))
+    ) !important;
+}
+
+.expansion-header {
+  display: grid !important;
+  grid-template-columns: 4rem minmax(0, 1fr) 4rem !important;
+  align-items: center !important;
+  justify-items: center !important;
+  gap: 1rem !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 5.5rem !important;
+
+  margin: 0 !important;
+  padding: .55rem 1rem !important;
+
+  overflow: hidden !important;
+}
+
+/* Left icon --------------------------------------------------------------- */
+
+.expansion-header__icon,
+.expansion-header__balance {
+  display: grid;
+  place-items: center;
+
+  width: 4rem;
+  height: 4rem;
+
+  margin: 0;
+  padding: 0;
+}
+
+.expansion-header__icon-image {
+  display: block !important;
+
+  width: 3.15rem !important;
+  height: 3.15rem !important;
+  min-width: 3.15rem !important;
+  max-width: 3.15rem !important;
+  min-height: 3.15rem !important;
+  max-height: 3.15rem !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  object-fit: contain !important;
+  object-position: center !important;
+
+  transform: none !important;
+
+  filter: drop-shadow(0 .12rem .18rem rgba(0,0,0,.48));
+}
+
+.expansion-header__icon.is-missing {
+  visibility: hidden;
+}
+
+/* Logo -------------------------------------------------------------------- */
+
+.expansion-header__identity {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  min-width: 0;
+  height: 4.25rem;
+
+  overflow: hidden !important;
+}
+
+/*
+ * We only want the UPPER HALF of the original expansion artwork.
+ *
+ * The rendered image is exactly twice as tall as the visible frame.
+ * object-position: top center keeps the first 50% visible while the lower
+ * FINAL FANTASY XIV / ONLINE / Japanese subtitle portion is clipped away.
+ */
+.expansion-header__logo-frame {
+  position: relative;
+
+  display: block !important;
+
+  width: min(27rem, 68vw) !important;
+  max-width: 100% !important;
+
+  height: 4.25rem !important;
+
+  margin: 0 auto !important;
+  padding: 0 !important;
+
+  overflow: hidden !important;
+}
+
+.expansion-header__logo {
+  position: absolute !important;
+  top: 0 !important;
+  left: 50% !important;
+
+  display: block !important;
+
+  width: 100% !important;
+  max-width: none !important;
+
+  height: 8.5rem !important;
+  max-height: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  object-fit: contain !important;
+  object-position: center top !important;
+
+  /*
+   * Center horizontally, then move the source slightly upward so the large
+   * expansion wordmark sits visually centered inside the cropped frame.
+   */
+  transform: translateX(-50%) translateY(-3%) !important;
+  transform-origin: center top !important;
+
+  filter: drop-shadow(0 .1rem .18rem rgba(0,0,0,.34));
+}
+
+.expansion-header__logo[hidden],
+.expansion-header__logo-frame.is-missing {
+  display: none !important;
+}
+
+/*
+ * Deliberately NO textual expansion fallback.
+ * Evercold currently has no usable expansion logo, so its header remains
+ * visually empty instead of rendering "8.x - Evercold".
+ */
+.expansion-header__title {
+  display: none !important;
+}
+
+/* Right balancing column keeps the logo centered independently of icon. */
+.expansion-header__balance {
+  grid-column: 3;
+}
+
+/* Kill legacy image rules inside this component. */
+.expansion-header .role-icon,
+.expansion-header .ex-icon,
+.index-divider .expansion-header .role-icon,
+.index-divider .expansion-header .ex-icon {
+  position: static !important;
+  inset: auto !important;
+  float: none !important;
+}
+
+/* The shared component always owns divider dimensions. */
+.utility-page .index-divider:has(> .expansion-header),
+.index .index-divider:has(> .expansion-header) {
+  min-height: 5.5rem !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 62rem) {
+  .index-divider:has(> .expansion-header),
+  .expansion-header {
+    min-height: 5rem !important;
+  }
+
+  .expansion-header {
+    grid-template-columns: 3.25rem minmax(0, 1fr) 3.25rem !important;
+    gap: .65rem !important;
+    padding-inline: .7rem !important;
+  }
+
+  .expansion-header__icon,
+  .expansion-header__balance {
+    width: 3.25rem;
+    height: 3.25rem;
+  }
+
+  .expansion-header__icon-image {
+    width: 2.7rem !important;
+    height: 2.7rem !important;
+    min-width: 2.7rem !important;
+    max-width: 2.7rem !important;
+    min-height: 2.7rem !important;
+    max-height: 2.7rem !important;
+  }
+
+  .expansion-header__identity,
+  .expansion-header__logo-frame {
+    height: 3.75rem !important;
+  }
+
+  .expansion-header__logo-frame {
+    width: min(22rem, 66vw) !important;
+  }
+
+  .expansion-header__logo {
+    height: 7.5rem !important;
+  }
+}
+
+@media (max-width: 38rem) {
+  .index-divider:has(> .expansion-header),
+  .expansion-header {
+    min-height: 4.5rem !important;
+  }
+
+  .expansion-header {
+    grid-template-columns: 2.65rem minmax(0, 1fr) 2.65rem !important;
+    gap: .4rem !important;
+    padding: .4rem .55rem !important;
+  }
+
+  .expansion-header__icon,
+  .expansion-header__balance {
+    width: 2.65rem;
+    height: 2.65rem;
+  }
+
+  .expansion-header__icon-image {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+    min-width: 2.2rem !important;
+    max-width: 2.2rem !important;
+    min-height: 2.2rem !important;
+    max-height: 2.2rem !important;
+  }
+
+  .expansion-header__identity,
+  .expansion-header__logo-frame {
+    height: 3.25rem !important;
+  }
+
+  .expansion-header__logo-frame {
+    width: min(17rem, 65vw) !important;
+  }
+
+  .expansion-header__logo {
+    height: 6.5rem !important;
+  }
+}

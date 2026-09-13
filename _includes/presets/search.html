@@ -1,5 +1,3 @@
-
-
 {%- assign prefillexpac = "Dawntrail, M8S, Necron, Mounts, Minions" -%}
 
 {%- if include.searchPrefill == "dalamud" -%}
@@ -23,16 +21,36 @@
 <div class="search">
     <form class="search__form">
         <label for="guideFilter" data-translate="Searchbar_Example_Text">Nach einem Guide suchen...</label>
+
         <div class="expansion-toggles">
-            <input id="guideFilter" placeholder="{{searchPrefill2}}" type="text" class="xiv-input"/>
-            {%- assign my_array = site.ffxiv_expansion_list | split: ',' -%}
-            {%- for x in my_array -%}
-                {% include helper/handle_version_switchcase.html %}
-                <!-- Example: {{x_title}} -->
-                <button type="button" class="expansion-toggle active xiv-button xiv-button--icon-square" data-expansion="{{x_shortid}}" title="{{x_title}}">
-                    <img loading="lazy" class="role-icon" src="{{site.imageurl}}/{{expacicon}}" alt="{{x_title}}" onerror="handleExpansionAssetError('{{ x_shortid }}')">
-                </button>
-            {%- endfor -%}
+            <input id="guideFilter"
+                   placeholder="{{searchPrefill2}}"
+                   type="text"
+                   class="xiv-input"/>
+
+            <div class="expansion-toggles__buttons" aria-label="Erweiterungen">
+                {%- assign my_array = site.ffxiv_expansion_list | split: ',' -%}
+                {%- for x in my_array -%}
+                    {% include helper/handle_version_switchcase.html %}
+                    <button type="button"
+                            class="expansion-toggle active xiv-button xiv-button--icon-square"
+                            data-expansion="{{x_shortid}}"
+                            title="{{x_title}}"
+                            aria-label="{{x_title}}">
+                        <span class="expansion-toggle__icon-frame">
+                            <img loading="lazy"
+                                 class="role-icon expansion-toggle__icon"
+                                 src="{{site.imageurl}}/{{expacicon}}"
+                                 alt=""
+                                 onerror="
+                                   var b=this.closest('.expansion-toggle');
+                                   if(b){b.hidden=true;b.classList.add('inactive');}
+                                   if(window.handleExpansionAssetError){window.handleExpansionAssetError('{{ x_shortid }}');}
+                                 ">
+                        </span>
+                    </button>
+                {%- endfor -%}
+            </div>
         </div>
     </form>
 </div>

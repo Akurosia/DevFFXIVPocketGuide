@@ -1,17 +1,25 @@
 <!-- Include from _includes/guide_enemy_text -->
 {%- for category in enemy.text -%}
-    <div class="guide__accordion-trigger--02-grid xiv-accordion-trigger">
-        <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
-        <div class="Names"><span class=""><span>{{ category[0] }}</span></span></div>
+    <div class="guide__accordion-trigger--02-grid guide__text-section-trigger xiv-accordion-trigger"
+         aria-expanded="false"
+         id="{{ category[0] | slugify }}">
+        <div class="Names">
+            <span>{{ category[0] }}</span>
+        </div>
     </div>
-    <div class="guide__accordion-content--02 xiv-accordion-content">
+    <div class="guide__accordion-content--02 guide__text-section-content xiv-accordion-content" hidden>
         <div class="guide__accordion-copy-wrapper">
-            <!-- Standard Attacks -->
             <div class="guide__text-notes-wrapper">
                 <h5 class="guide__attack-notes-title">Texte:</h5>
-                {%- for text in category[1] -%}
-                    <span class="guide__text_description"><span data-translate="{{category[0]}}_{{text.id}}_Text">{{ text.text }}</span>" - ({{ text.id }})"</span>
-                {%- endfor -%}
+                <ul class="guide__text-list">
+                    {%- for text in category[1] -%}
+                        <li class="guide__text-list-item">
+                            <span class="guide__text_description"
+                                  data-translate="{{category[0]}}_{{text.id}}_Text">{{ text.text }}</span>
+                            <span class="guide__text-id">({{ text.id }})</span>
+                        </li>
+                    {%- endfor -%}
+                </ul>
             </div>
         </div>
     </div>

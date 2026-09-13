@@ -30,7 +30,7 @@ import python_scripts.get_item_sets as gis
 import python_scripts.treasurespot as ts
 import python_scripts.quests as quests
 import python_scripts.generate_deep_dungeon_items as deepdungeon
-import python_scripts.generate_map_data as newmaps
+import python_scripts.generate_map_data as gmd
 import python_scripts.airship_and_submarine as aas
 
 logger: Logger = getLogger(50)
@@ -277,7 +277,7 @@ def run_all(path_of_main_script, translations):
     #return
     tasks = [
        #lambda: aas.run(path_of_main_script),
-       lambda: csgf.run(path_of_main_script),
+       #lambda: csgf.run(path_of_main_script),
        #lambda: gl.run(path_of_main_script),
        #lambda: gp.run(path_of_main_script),
        #lambda: ghm.run(path_of_main_script),
@@ -288,7 +288,7 @@ def run_all(path_of_main_script, translations):
        #lambda: quests.run(path_of_main_script),
        #lambda: deepdungeon.run(path_of_main_script),
        #lambda: fcc.run(path_of_main_script, translations),
-       #lambda: newmaps.run(path_of_main_script),
+       lambda: gmd.run(path_of_main_script),
     ]
 
     with ThreadPoolExecutor(max_workers=len(tasks)) as executor:
@@ -297,8 +297,8 @@ def run_all(path_of_main_script, translations):
         # optional: wait and raise if any failed
         for f in futures:
             f.result()
-    # ignore newmaps in favor of akutrack
-    #newmaps.run(path_of_main_script)
+    # ignore gmd in favor of akutrack
+    #gmd.run(path_of_main_script)
 
 
 def main() -> None:
@@ -332,7 +332,7 @@ def main() -> None:
         orderedContent = tmp["ordered"]
 
     try:
-        #run(googledata, orderedContent)
+        run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())

@@ -3,12 +3,14 @@
     <head>
         {% include head.html %}
     </head>
-    <body class="xiv {{ page.page_type }} {{ page.page_category }}" data-xiv-theme="Dark">
+    <body class="xiv {{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
             {% include navbar.html %}
             <div class="layout__wrapper">
                 {% include header.html %}
+                <main class="utility-page utility-page--enemy-image-coverage">
                 {% include single_pages/enemy-image-coverage.html %}
+                                </main>
                 {% include_cached footer.html %}
             </div>
         </div>

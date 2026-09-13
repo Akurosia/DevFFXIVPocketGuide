@@ -7,4 +7,12 @@
 @import "app/navigation";
 @import "app/content";
 @import "app/pages";
+@import "app/utility";
+@import "app/search";
 @import "app/sprites";
+
+/*
+ * Load shared component geometry last so page-specific/index utility styles
+ * cannot make expansion headers look different from page to page.
+ */
+@import "app/expansion-header";

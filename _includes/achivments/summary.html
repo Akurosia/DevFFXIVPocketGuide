@@ -1,34 +1,75 @@
 <!-- Include from _includes/achivments/summary -->
-<div class="summary">
-    <span class="index-item__link xiv-card" title="Go to the {{ guide.name.de }} Guide">
-        <div class="index-item__background" loading="lazy"
-            {%- if guide.cover -%}
-                style="background-image: url('{{ guide.cover }}')"
-            {%- elsif guide.icon -%}
-                style="background-image:
-                    {%- if guide.icon contains "/assets/" -%}
-                        url('{{ guide.icon | prepend: site.baseurl }}')
-                    {%- else -%}
-                        url('{{ guide.icon | prepend: site.imageurl }}')
-                    {%- endif -%}
-            {%- endif -%}">
+{%- capture achievement_terms -%}
+    {%- for term in guide.terms -%}{{ term.term }} {% endfor -%}
+    {{ guide.name.de }} {{ guide.name.en }} {{ guide.name.fr }} {{ guide.name.ja }} {{ guide.name.cn }} {{ guide.name.ko }}
+    {{ guide.main_category }} {{ guide.sub_category }}
+    {%- if guide.item -%} {{ guide.item }} {%- endif -%}
+    {%- if guide.title -%} {{ guide.title }} {%- endif -%}
+    {%- if guide.description -%}
+        {{ guide.description.en }} {{ guide.description.de }} {{ guide.description.fr }} {{ guide.description.jp }} {{ guide.description.cn }} {{ guide.description.ko }}
+    {%- endif -%}
+{%- endcapture -%}
+<article
+    class="summary achievement-card"
+    data-achievement-card
+    data-achievement-main="{{ guide.main_category | escape }}"
+    data-achievement-sub="{{ guide.sub_category | escape }}"
+    data-achievement-order="{{ guide.order | default: 0 }}"
+    data-achievement-points="{{ guide.points | default: 0 }}"
+    data-achievement-name="{{ guide.name.en | default: guide.name.de | strip_html | escape }}"
+    data-achievement-has-item="{% if guide.item %}true{% else %}false{% endif %}"
+    data-achievement-has-title="{% if guide.title %}true{% else %}false{% endif %}"
+    data-achievement-search="{{ achievement_terms | strip_newlines | normalize_whitespace | strip_html | escape }}">
+
+    <div class="achievement-card__background"
+        {%- if guide.cover -%}
+            style="background-image: url('{{ guide.cover }}')"
+        {%- endif -%}></div>
+
+    <div class="achievement-card__icon-wrap">
+        {%- if guide.icon -%}
+            <img
+                loading="lazy"
+                class="achievement-card__icon"
+                src="{%- if guide.icon contains '/assets/' -%}{{ guide.icon | prepend: site.baseurl }}{%- else -%}{{ guide.icon | prepend: site.imageurl }}{%- endif -%}"
+                alt="{{ guide.name.en | default: guide.name.de | escape }}">
+        {%- endif -%}
+    </div>
+
+    <div class="achievement-card__body">
+        <div class="achievement-card__heading">
+            <div class="achievement-card__titles">
+                <h3 class="index-item__title achievement-card__title">
+                    <span data-translate="Summary_Achievment_{{ guide.name.en }}_Name">{{ guide.name.en }}</span>
+                </h3>
+                <div class="lang-toggle lang-toogle-en-sub achievement-card__subtitle">{{ guide.name.en }}</div>
+            </div>
+            <span class="achievement-card__order">#{{ guide.order }}</span>
         </div>
-        <h3 class="index-item__title"
-              data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%} {{guide.name.de}}&#32;{{guide.name.en}}&#32;{{guide.name.fr}}&#32;{{guide.name.ja}}&#32;{{guide.name.cn}}&#32;{{guide.name.ko}}&#32;main:{{guide.main_category}}&#32;sub:{{guide.sub_category}}&#32;
-              {%- if guide.item -%}item:{{guide.item}}&#32;{%- endif -%}{%- if guide.title -%}title:{{guide.title}}&#32;{%- endif -%}{%- if guide.description -%}description:{{guide.description.en}}&#32;description:{{guide.description.de}}&#32;description:{{guide.description.fr}}&#32;description:{{guide.description.jp}}&#32;description:{{guide.description.cn}}&#32;description:{{guide.description.ko}}&#32;{%- endif -%}">
-            <span data-translate="Summary_Achievment_{{ guide.name.en }}_Name" class=""> {{ guide.name.en }} </span> [{{ guide.order }}]
-        </h3>
-        <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">{{ guide.name.en }}</h4>
-        <h4 class="index-item__title_en"><span data-translate="Summary_Achievment_{{ x }}_MainCat">{{ guide.main_category }}</span> > <span data-translate="Summary_Achievment_{{ x }}_SubCat">{{ guide.sub_category }}</span></h4>
-        <h4 class="index-item__title_en"><img loading="lazy" class="attack_icon" src="{{site.imageurl}}{{ guide.icon }}" alt="{{ guide.icon }}"/> <span>{{ guide.points }} Punkte</span></h4>
-        <h4 data-translate="Summary_Achievment_{{ guide.name.en }}_Desc" class="index-item__title_en">Description: {{ guide.description.en }} </h4>
-        {%- if guide.item -%}
-            <h4 class="index-item__title_en">Item: {{ guide.item }} </h4>
+
+        <div class="achievement-card__meta">
+            <span class="achievement-card__category">
+                <span data-translate="Summary_Achievment_{{ x }}_MainCat">{{ guide.main_category }}</span>
+                <span aria-hidden="true">›</span>
+                <span>{{ guide.sub_category }}</span>
+            </span>
+            <span class="achievement-card__points">{{ guide.points }} Punkte</span>
+        </div>
+
+        {%- if guide.description -%}
+            <p data-translate="Summary_Achievment_{{ guide.name.en }}_Desc" class="achievement-card__description">{{ guide.description.en }}</p>
         {%- endif -%}
-        {%- if guide.title -%}
-            <h4 class="index-item__title_en">Title: {{ guide.title }} </h4>
+
+        {%- if guide.item or guide.title -%}
+            <div class="achievement-card__rewards">
+                {%- if guide.item -%}
+                    <span class="achievement-card__reward"><strong>Item</strong><span>{{ guide.item }}</span></span>
+                {%- endif -%}
+                {%- if guide.title -%}
+                    <span class="achievement-card__reward"><strong>Titel</strong><span>{{ guide.title }}</span></span>
+                {%- endif -%}
+            </div>
         {%- endif -%}
-        <!--<h4 class="index-item__title_en">Type: {{ guide.type }}</h4>-->
-    </span>
-</div>
+    </div>
+</article>
 <!-- END Include from _includes/achivments/summary -->

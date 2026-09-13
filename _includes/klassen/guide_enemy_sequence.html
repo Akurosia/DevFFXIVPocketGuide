@@ -1,147 +1,127 @@
 <!-- Include from _includes/klassen/guide_enemy_sequence -->
 <!-- Opens the Sequence Loop -->
-    <!-- Add Search filter for bluemage skills. -->
-    <div class="search">
-        <form class="search__form_blu">
-            <input id="guideFilter" placeholder="
-                {%- if enemy.title.de == "Blaumagier" -%}!14., Wasserkanone, 4man, 8man, dungeon, raid, overworld, alone, arena
-                {%- else -%}Stumpfsinn, skill:Addle, status:Ehrfurcht, trait:Meister, leve:Haltbar, quest:Einfach, cat:Talent, buff:debuff, type:Schaden
-                {%- endif -%}
-            " type="text" class="xiv-input"/>
-            <label class="guide-level-filter" for="guideLevelFilter">
-                <span>Level</span>
-                <input id="guideLevelFilter" type="number" min="1" max="{{ page.plvl | default: 100 }}" value="{{ page.plvl | default: 100 }}" inputmode="numeric" class="xiv-input"/>
-            </label>
-            <input type="checkbox" id="onlyfinalskills" title="Display only Final Skills" value="onlyfinalskills">
-        </form>
-    </div>
+
+<!-- Add Search filter for class/job content. -->
+<div class="search">
+    <form class="search__form_blu">
+        <input id="guideFilter" placeholder="
+            {%- if enemy.title.de == "Blaumagier" -%}!14., Wasserkanone, 4man, 8man, dungeon, raid, overworld, alone, arena
+            {%- else -%}Stumpfsinn, skill:Addle, status:Ehrfurcht, trait:Meister, leve:Haltbar, quest:Einfach, cat:Talent, buff:debuff, type:Schaden
+            {%- endif -%}
+        " type="text"/>
+        <label class="guide-level-filter" for="guideLevelFilter">
+            <span>Level</span>
+            <input id="guideLevelFilter" type="number" min="1" max="{{ page.plvl | default: 100 }}" value="{{ page.plvl | default: 100 }}" inputmode="numeric"/>
+        </label>
+        <input type="checkbox" id="onlyfinalskills" title="Display only Final Skills" value="onlyfinalskills">
+    </form>
+</div>
+
+<div class="guide__class-sections">
 {%- for phase in enemy.sequence -%}
-    {%- assign extra = "" -%}
-    {%- if phase.name == "PvP" -%}
-        {%- assign extra = "PVP_" -%}
-    {%- endif -%}
-
-    {%- if enemy.sequence.size > 1 -%}
-        <div class="guide-metadata__menu-link guide__accordion-trigger--03--grid xiv-accordion-trigger" id="{{ phase.name | append: "-" | append: phase.phase | slugify }}">
-            <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
-            <div class="Names klassen">
-                <h3 class="guide__accordion-trigger-title" >{{ phase.phase }}.&nbsp;</h3>
-                <h3 class="guide__accordion-trigger-title" data-translate="Content_Section_{{ phase.name }}">{{ phase.name }}</h3>
-            </div>
-        </div>
-        <div class="guide__accordion-content--03 xiv-accordion-content">
-    {%- endif -%}
-    <!-- Determines the current phase. -->
     {%- assign currentPhase = phase.phase -%}
-    <!-- Enters the enemy attack loop. -->
-        <div class="index_attack">
-            <div class="index__list_attack">
-                {%- for attack in enemy.attacks -%}
-                    <!-- Enters the attack's phases. -->
-                    {%- for attackPhase in attack.phases -%}
-                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-                        {%- if attackPhase.phase == currentPhase -%}
-                            {%- include klassen/_components/guide-attack.html -%}
-                        {%- endif -%}
-                    {%- endfor -%}
-                {%- endfor -%}
+    {%- assign phase_entry_count = 0 -%}
+
+    {%- capture phase_entries -%}
+        {%- for attack in enemy.attacks -%}
+            {%- for attackPhase in attack.phases -%}
+                {%- if attackPhase.phase == currentPhase -%}
+                    {%- assign phase_entry_count = phase_entry_count | plus: 1 -%}
+                    <div class="index_attack"><div class="index__list_attack">
+                        {%- include klassen/_components/guide-attack.html -%}
+                    </div></div>
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endfor -%}
+
+        {%- for debuff in enemy.debuffs -%}
+            {%- for debuffPhase in debuff.phases -%}
+                {%- if debuffPhase.phase == currentPhase -%}
+                    {%- assign phase_entry_count = phase_entry_count | plus: 1 -%}
+                    <div class="index_debuff"><div class="index__list_debuff">
+                        {%- include klassen/_components/guide-debuff.html -%}
+                    </div></div>
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endfor -%}
+
+        {%- for attack in enemy.eureka -%}
+            {%- for eurekaPhase in attack.phases -%}
+                {%- if eurekaPhase.phase == currentPhase -%}
+                    {%- assign phase_entry_count = phase_entry_count | plus: 1 -%}
+                    <div class="index_eureka"><div class="index__list_eureka">
+                        {%- include klassen/_components/guide-attack.html -%}
+                    </div></div>
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endfor -%}
+
+        {%- for attack in enemy.bozja -%}
+            {%- for bozjaPhase in attack.phases -%}
+                {%- if bozjaPhase.phase == currentPhase -%}
+                    {%- assign phase_entry_count = phase_entry_count | plus: 1 -%}
+                    <div class="index_bozja"><div class="index__list_bozja">
+                        {%- include klassen/_components/guide-attack.html -%}
+                    </div></div>
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endfor -%}
+
+        {%- for trait in enemy.traits -%}
+            {%- for traitPhase in trait.phases -%}
+                {%- if traitPhase.phase == currentPhase -%}
+                    {%- assign phase_entry_count = phase_entry_count | plus: 1 -%}
+                    <div class="index_trait"><div class="index__list_trait">
+                        {%- include klassen/_components/guide-trait.html -%}
+                    </div></div>
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endfor -%}
+
+        {%- for leve in enemy.leves -%}
+            {%- for levePhase in leve.phases -%}
+                {%- if levePhase.phase == currentPhase -%}
+                    {%- assign phase_entry_count = phase_entry_count | plus: 1 -%}
+                    <div class="index_leve"><div class="index__list_leve">
+                        {%- include klassen/_components/guide-leve.html -%}
+                    </div></div>
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endfor -%}
+
+        {%- for quest in enemy.quests -%}
+            {%- for questPhase in quest.phases -%}
+                {%- if questPhase.phase == currentPhase -%}
+                    {%- assign phase_entry_count = phase_entry_count | plus: 1 -%}
+                    <div class="index_quest"><div class="index__list_quest">
+                        {%- include klassen/_components/guide-quests.html -%}
+                    </div></div>
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endfor -%}
+    {%- endcapture -%}
+
+    {%- if phase_entry_count > 0 -%}
+        <section class="guide__class-section">
+            <div class="guide-metadata__menu-link guide__accordion-trigger--03--grid guide__class-section-trigger xiv-accordion-trigger"
+                 aria-expanded="false"
+                 id="{{ phase.name | append: "-" | append: phase.phase | slugify }}">
+                <span class="guide__class-section-chevron" aria-hidden="true">▸</span>
+                <span class="guide__class-section-number">{{ phase.phase }}.</span>
+                <div class="Names klassen">
+                    <h3 class="guide__accordion-trigger-title"
+                        data-translate="Content_Section_{{ phase.name }}">{{ phase.name }}</h3>
+                </div>
+                <span class="guide__class-section-count">{{ phase_entry_count }}</span>
             </div>
-        </div>
 
-    <!-- Enters the enemy debuff loop. -->
-        <div class="index_debuff">
-            <div class="index__list_debuff">
-                {%- for debuff in enemy.debuffs -%}
-                    <!-- Enters the attack's phases. -->
-                    {%- for debuffPhase in debuff.phases -%}
-                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-                        {%- if debuffPhase.phase == currentPhase -%}
-                            {%- include klassen/_components/guide-debuff.html -%}
-                        {%- endif -%}
-                    {%- endfor -%}
-                {%- endfor -%}
+            <div class="guide__accordion-content--03 guide__class-section-content xiv-accordion-content" hidden>
+                {{ phase_entries }}
             </div>
-        </div>
-
-    <!-- Enters the enemy eureka loop. -->
-        <div class="index_eureka">
-            <div class="index__list_eureka">
-                {%- for attack in enemy.eureka -%}
-                    <!-- Enters the attack's phases. -->
-                    {%- for eurekaPhase in attack.phases -%}
-                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-                        {%- if eurekaPhase.phase == currentPhase -%}
-                            {%- include klassen/_components/guide-attack.html -%}
-                        {%- endif -%}
-                    {%- endfor -%}
-                {%- endfor -%}
-            </div>
-        </div>
-
-    <!-- Enters the enemy bozja loop. -->
-        <div class="index_bozja">
-            <div class="index__list_bozja">
-                {%- for attack in enemy.bozja -%}
-                    <!-- Enters the attack's phases. -->
-                    {%- for eurekaPhase in attack.phases -%}
-                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-                        {%- if eurekaPhase.phase == currentPhase -%}
-                            {%- include klassen/_components/guide-attack.html -%}
-                        {%- endif -%}
-                    {%- endfor -%}
-                {%- endfor -%}
-            </div>
-        </div>
-
-
-    <!-- Enters the enemy trait loop. -->
-        <div class="index_trait">
-            <div class="index__list_trait">
-                {%- for trait in enemy.traits -%}
-                    <!-- Enters the attack's phases. -->
-                    {%- for traitPhase in trait.phases -%}
-                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-                        {%- if traitPhase.phase == currentPhase -%}
-                            {%- include klassen/_components/guide-trait.html -%}
-                        {%- endif -%}
-                    {%- endfor -%}
-                {%- endfor -%}
-            </div>
-        </div>
-
-    <!-- Enters the enemy leve loop. -->
-        <div class="index_leve">
-            <div class="index__list_leve">
-                {%- for leve in enemy.leves -%}
-                    <!-- Enters the attack's phases. -->
-                    {%- for levesPhase in leve.phases -%}
-                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-                        {%- if levesPhase.phase == currentPhase -%}
-                            {%- include klassen/_components/guide-leve.html -%}
-                        {%- endif -%}
-                    {%- endfor -%}
-                {%- endfor -%}
-            </div>
-        </div>
-
-    <!-- Enters the enemy quest loop. -->
-        <div class="index_quest">
-            <div class="index__list_quest">
-                {%- for quest in enemy.quests -%}
-                    <!-- Enters the attack's phases. -->
-                    {%- for questsPhase in quest.phases -%}
-                        <!-- Checks to see if any of the attack's phases are equal to the current phase. -->
-                        {%- if questsPhase.phase == currentPhase -%}
-                            {%- include klassen/_components/guide-quests.html -%}
-                        {%- endif -%}
-                    {%- endfor -%}
-                {%- endfor -%}
-            </div>
-        </div>
-
-    {%- if enemy.sequence.size > 1 -%}
-        </div>
+        </section>
     {%- endif -%}
 {%- endfor -%}
+</div>
+
 {%- include _components/image_overlay.html -%}
 <!-- END Include from _includes/klassen/guide_enemy_sequence -->

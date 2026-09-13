@@ -5,12 +5,14 @@
         {% include head.html %}
     </head>
     <!-- ORIGIN: _layout/translate -->
-    <body class="xiv {{ page.page_type }} {{ page.page_category }}" data-xiv-theme="Dark">
+    <body class="xiv {{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
             {% include navbar.html %}
             <div class="layout__wrapper">
                 {% include header.html %}
+                <main class="utility-page utility-page--fflogs">
                 {% include single_pages/fflogs.html %}
+                                </main>
                 {% include_cached footer.html %}
             </div>
         </div>

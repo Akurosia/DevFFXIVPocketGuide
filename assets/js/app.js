@@ -433,6 +433,10 @@ function openGuideTarget(targetId, options) {
             }
 
             var $trigger = $(this);
+            if ($trigger.attr("aria-disabled") === "true" || $trigger.hasClass("is-static")) {
+                return;
+            }
+
             var $content = $trigger.next("[class*='guide__accordion-content']");
             if (!$content.length) return;
 
@@ -444,6 +448,12 @@ function openGuideTarget(targetId, options) {
                 history.replaceState(null, "", "#" + this.id);
             }
             e.preventDefault();
+        });
+
+        $(document).on("keydown", ".guide__entry-trigger[role='button']", function(e) {
+            if (e.key !== "Enter" && e.key !== " ") return;
+            e.preventDefault();
+            $(this).trigger("click");
         });
 
         $(".guide__attack-image-item").each(function () {

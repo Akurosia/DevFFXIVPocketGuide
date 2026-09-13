@@ -1,6 +1,15 @@
 <!-- Include from _includes/_components/guide-attack -->
-<div class="guide-metadata__menu-link guide__entry-trigger guide__entry-trigger--attack guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--grid_attack {%- if attack.attack_in_use == 'false' -%}--ignore {%- elsif attack.dutyActions -%}--dutyAction {%- elsif attack.combo -%}--combo {%- elsif attack.variation -%}--variation {%- else -%}--attack {%- endif -%} xiv-accordion-trigger" aria-expanded="false" id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "attack_" | append: attack.title | slugify }}">
-    <i class="Dropdown material-icons" {%- if attack.disable == 'true' -%}style="display: none;"{%- endif -%}><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+{%- assign has_attack_details = false -%}
+{%- if attack.disable != 'true' -%}
+    {%- if attack.add_status and attack.add_status.size > 0 -%}{%- assign has_attack_details = true -%}{%- endif -%}
+    {%- if attack.notes and attack.notes.size > 0 -%}{%- assign has_attack_details = true -%}{%- endif -%}
+    {%- if attack.combo and attack.combo.size > 0 -%}{%- assign has_attack_details = true -%}{%- endif -%}
+    {%- if attack.variation and attack.variation.size > 0 -%}{%- assign has_attack_details = true -%}{%- endif -%}
+    {%- if attack.images and attack.images.size > 0 -%}{%- assign has_attack_details = true -%}{%- endif -%}
+    {%- if attack.videos and attack.videos.size > 0 -%}{%- assign has_attack_details = true -%}{%- endif -%}
+{%- endif -%}
+<div class="guide-metadata__menu-link guide__entry-trigger guide__entry-trigger--attack {%- unless has_attack_details -%} is-static {%- endunless -%} guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--grid_attack {%- if attack.attack_in_use == 'false' -%}--ignore {%- elsif attack.dutyActions -%}--dutyAction {%- elsif attack.combo -%}--combo {%- elsif attack.variation -%}--variation {%- else -%}--attack {%- endif -%} xiv-accordion-trigger" aria-expanded="false" {%- unless has_attack_details -%} aria-disabled="true" {%- else -%} role="button" tabindex="0" {%- endunless -%} id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "attack_" | append: attack.title | slugify }}">
+    <i class="Dropdown material-icons" {%- unless has_attack_details -%}style="display: none;"{%- endunless -%}><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
     <div class="Names">
         <span class="{%- if attack.damage_type == 'Magical' -%} attack-is-magic
                      {%- elsif attack.damage_type && attack.damage_type != 'None' -%} attack-is-physical
@@ -29,6 +38,7 @@
 </div>
 
 <!-- _components/Guide-Attack "Content"======================================================= -->
+{%- if has_attack_details -%}
 <div class="guide__entry-content guide__entry-content--attack guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%} {%- if attack.attack_in_use == 'false' -%}--ignore {%- elsif attack.dutyActions -%}--dutyAction {%- elsif attack.combo -%}--combo {%- elsif attack.variation -%}--variation {%- else -%}--attack {%- endif -%} xiv-accordion-content" hidden {%- if attack.disable == 'true' -%}style="display: none;"{%- endif -%}>
     <div class="guide__accordion-copy-wrapper">
         {%- for status in attack.add_status -%}
@@ -147,4 +157,5 @@
         {%- endif -%}
     </div>
 </div>
+{%- endif -%}
 <!-- END Include from _includes/_components/guide-attack -->

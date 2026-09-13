@@ -3,8 +3,10 @@
     {%- assign LANGUAGES = "en,de,fr,ja,cn,ko" | split: ',' -%}
     <head>
         {% include head.html %}
+        <link rel="stylesheet" href="{{ '/css/bestiarium.css' | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}">
     </head>
-    <body class="xiv {{ page.page_type }} {{ page.page_category }}" data-xiv-theme="Dark">
+    <!-- ORIGIN: _layout/bestiarium -->
+    <body class="xiv {{ page.page_type }} {{ page.page_category }}">
         <div class="layout">
             {% include navbar.html %}
             <div class="layout__wrapper">
@@ -15,5 +17,5 @@
         </div>
         {% include_cached scripts.html %}
     </body>
-    <script type="text/javascript">executeHandelingLanguages()</script>
+    <!-- END ORIGIN: _layout/bestiarium -->
 </html>

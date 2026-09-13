@@ -1,30 +1,119 @@
-<!-- Include from _includes/links -->
-<div class="index">
-    {%- for category in page.links -%}
-        {%- assign csize = category.links | size -%}
-        {%- if csize > 0 -%}
-            <a id="{{ category.category }}"></a>
-            <div class="index-divider" data-expansion="{{ category.category }}">
-                <h2 class="index-divider__title">{{ category.category }}</h2>
+<!-- Links resource browser -->
+<section class="resource-browser resource-browser--links" data-resource-browser="links">
+    <aside class="resource-sidebar xiv-panel">
+        <div class="resource-sidebar__header">
+            <p class="resource-eyebrow">Kategorien</p>
+            <h2>FFXIV Links</h2>
+        </div>
+
+        <nav class="resource-sidebar__nav" aria-label="Link-Kategorien">
+            <button type="button" class="resource-category is-active"
+                    data-link-category="">
+                <span>Alle Links</span>
+                <span class="resource-category__count" data-link-total>0</span>
+            </button>
+
+            {%- for category in page.links -%}
+                {%- assign csize = category.links | size -%}
+                {%- if csize > 0 -%}
+                    <button type="button" class="resource-category"
+                            data-link-category="{{ category.category | escape }}">
+                        <span>{{ category.category }}</span>
+                        <span class="resource-category__count">{{ csize }}</span>
+                    </button>
+                {%- endif -%}
+            {%- endfor -%}
+        </nav>
+    </aside>
+
+    <div class="resource-browser__content">
+        <header class="resource-toolbar xiv-panel">
+            <div class="resource-toolbar__intro">
+                <p class="resource-eyebrow">Ressourcen</p>
+                <h2>FFXIV-Webseiten & Tools</h2>
+                <p>Durchsuche Datenbanken, Charakter-Tools, Crafting-, Gathering-, Housing- und Community-Ressourcen.</p>
             </div>
-            <div class="index__list" data-expansion="{{ category.category }}">
-                {%- for link in category.links -%}
-                    <div class="summary">
-                        <a class="index-item__link xiv-card" target="_blank" rel="noopener noreferrer" href="{{ link.url }}" title="Go to the {{ link.name }} Site">
-                            <div class="index-item__background"> </div>
-                            <img loading="lazy" class="link-favicon" src="{{ link.favicon }}" onerror="this.style.display='none'"></img>
-                            <h3 class="index-item__title"
-                                data-terms="{{ link.name }}&#32;{{ link.url }}&#32;{{ link.shorturl }}&#32;{%- for term in link.terms -%}{{ term.term }}&#32;{%- endfor -%}">
-                                {{ link.name }}
-                            </h3>
-                            <h4 class="index-item__title_en">
-                                {{ link.shorturl }}
-                            </h4>
-                        </a>
-                    </div>
-                {%- endfor -%}
+
+            <div class="resource-toolbar__controls resource-toolbar__controls--links">
+                <label class="resource-field resource-field--search">
+                    <span>Suche</span>
+                    <input class="xiv-input" type="search" data-resource-search
+                           placeholder="Name, Domain oder Suchbegriff …">
+                </label>
+
+                <label class="resource-field">
+                    <span>Sortierung</span>
+                    <select class="xiv-select" data-resource-sort>
+                        <option value="default">Kategorie-Reihenfolge</option>
+                        <option value="name">Name A–Z</option>
+                    </select>
+                </label>
+
+                <button type="button" class="xiv-button xiv-button--ghost" data-resource-reset>
+                    Filter zurücksetzen
+                </button>
             </div>
-        {%- endif -%}
-    {%- endfor -%}
-</div>
-<!-- END Include from _includes/links -->
+
+            <div class="resource-toolbar__summary">
+                <span><strong data-resource-visible>0</strong> von <strong data-resource-total>0</strong> Links</span>
+                <span class="resource-toolbar__context" data-resource-context>Alle Kategorien</span>
+            </div>
+        </header>
+
+        <div class="links-sections" data-resource-grid>
+            {%- for category in page.links -%}
+                {%- assign csize = category.links | size -%}
+                {%- if csize > 0 -%}
+                    <section class="links-section xiv-panel"
+                             data-link-section
+                             data-link-section-category="{{ category.category | escape }}">
+                        <header class="links-section__header">
+                            <div>
+                                <p class="resource-eyebrow">Kategorie</p>
+                                <h3>{{ category.category }}</h3>
+                            </div>
+                            <span class="resource-badge">{{ csize }}</span>
+                        </header>
+
+                        <div class="links-grid">
+                            {%- for link in category.links -%}
+                                {%- capture link_terms -%}
+                                    {{ link.name }} {{ link.url }} {{ link.shorturl }}
+                                    {%- for term in link.terms -%} {{ term.term }} {%- endfor -%}
+                                {%- endcapture -%}
+
+                                <a class="link-card xiv-card"
+                                   data-resource-item
+                                   data-link-category-value="{{ category.category | escape }}"
+                                   data-resource-name="{{ link.name | downcase | escape }}"
+                                   data-resource-search="{{ link_terms | strip_newlines | normalize_whitespace | strip_html | escape }}"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   href="{{ link.url }}">
+                                    <div class="link-card__icon">
+                                        {%- if link.favicon -%}
+                                            <img loading="lazy" src="{{ link.favicon }}" alt=""
+                                                 onerror="this.style.display='none';this.parentElement.classList.add('is-fallback');">
+                                        {%- endif -%}
+                                        <span class="link-card__fallback" aria-hidden="true">{{ link.name | slice: 0, 1 | upcase }}</span>
+                                    </div>
+
+                                    <div class="link-card__body">
+                                        <h4>{{ link.name }}</h4>
+                                        <span class="link-card__url">{{ link.shorturl | default: link.url }}</span>
+                                    </div>
+
+                                    <span class="link-card__external" aria-hidden="true">↗</span>
+                                </a>
+                            {%- endfor -%}
+                        </div>
+                    </section>
+                {%- endif -%}
+            {%- endfor -%}
+
+            <div class="resource-empty xiv-notice xiv-notice--info" data-resource-empty hidden>
+                Keine Links entsprechen der aktuellen Suche.
+            </div>
+        </div>
+    </div>
+</section>

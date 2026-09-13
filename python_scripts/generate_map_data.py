@@ -364,7 +364,7 @@ def get_data_from_teamcraft():
             place = placename[str(value["position"]["zoneid"])]['Name_en']
             if not result.get(place, None):
                 result[place] = {}
-            icon = value['icon'].replace("/i/", "ui/icon/").replace(".webp", ".tex").replace(".png", ".tex") if value.get('icon', None) and not value.get('icon', None) == "" else fatemapping.get(fates[key]['ObjectiveIcon'][0]['Icon']['path_hr1'], "")
+            icon = value['icon'].replace("/i/", "ui/icon/").replace(".webp", ".tex").replace(".png", ".tex").replace("/api/asset?path=","").split("&format")[0] if value.get('icon', None) and not value.get('icon', None) == "" else fatemapping.get(fates[key]['ObjectiveIcon'][0]['Icon']['path_hr1'], "")
             if icon == "":
                 icon = "ui/icon/000000/000000.tex"
             result[place][key] = {

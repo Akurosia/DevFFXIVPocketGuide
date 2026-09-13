@@ -1,0 +1,487 @@
+---
+---
+/* Dedicated redesign for Dalamud and Links.
+   Uses ffxiv-css variables and intentionally avoids old .index/.summary rules. */
+
+.resource-browser,
+.resource-browser * {
+  box-sizing: border-box;
+}
+
+.resource-browser {
+  width: 100%;
+  padding: clamp(.8rem, 1.5vw, 1.4rem);
+  color: var(--xiv-text);
+}
+
+.resource-toolbar,
+.resource-sidebar,
+.links-section {
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: var(--xiv-radius, 6px);
+  background: var(--xiv-surface);
+  box-shadow: inset 0 1px color-mix(in srgb, var(--xiv-text) 4%, transparent);
+}
+
+.resource-toolbar {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.resource-toolbar__intro {
+  display: grid;
+  gap: .3rem;
+}
+
+.resource-toolbar__intro h2,
+.resource-sidebar__header h2,
+.links-section__header h3 {
+  margin: 0;
+  color: var(--xiv-gold-bright);
+  font-family: Georgia, serif;
+  font-weight: 400;
+}
+
+.resource-toolbar__intro p:not(.resource-eyebrow),
+.resource-sidebar__header p:not(.resource-eyebrow) {
+  margin: 0;
+  color: var(--xiv-muted);
+  line-height: 1.5;
+}
+
+.resource-eyebrow {
+  margin: 0;
+  color: var(--xiv-muted);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.resource-toolbar__controls {
+  display: grid;
+  grid-template-columns: minmax(16rem, 2fr) minmax(10rem, 1fr) minmax(10rem, 1fr) auto;
+  gap: .7rem;
+  align-items: end;
+}
+
+.resource-toolbar__controls--links {
+  grid-template-columns: minmax(16rem, 2fr) minmax(12rem, 1fr) auto;
+}
+
+.resource-field {
+  display: grid;
+  gap: .3rem;
+  min-width: 0;
+}
+
+.resource-field > span {
+  color: var(--xiv-muted);
+  font-size: .74rem;
+  font-weight: 600;
+}
+
+.resource-field .xiv-input,
+.resource-field .xiv-select {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.55rem;
+}
+
+.resource-toolbar__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem .8rem;
+  color: var(--xiv-muted);
+  font-size: .76rem;
+}
+
+.resource-toolbar__summary strong {
+  color: var(--xiv-gold-bright);
+}
+
+.resource-toolbar__context {
+  padding: .15rem .45rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 60%, transparent);
+  border-radius: 999px;
+  background: var(--xiv-surface-deep);
+}
+
+/* Dalamud --------------------------------------------------------- */
+
+.dalamud-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(22rem, 100%), 1fr));
+  gap: .75rem;
+}
+
+.dalamud-card {
+  display: grid;
+  align-content: start;
+  gap: .7rem;
+  min-width: 0;
+  min-height: 0 !important;
+  padding: .9rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 68%, transparent);
+  border-radius: 6px;
+  background: var(--xiv-surface);
+}
+
+.dalamud-card:hover {
+  border-color: color-mix(in srgb, var(--xiv-gold) 48%, var(--xiv-border));
+}
+
+.dalamud-card__header,
+.dalamud-card__title-wrap {
+  display: grid;
+  gap: .4rem;
+}
+
+.dalamud-card__title {
+  margin: 0;
+  color: var(--xiv-gold-bright);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.dalamud-card__badges,
+.dalamud-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+
+.resource-badge,
+.resource-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.55rem;
+  padding: .15rem .45rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 65%, transparent);
+  border-radius: 999px;
+  background: var(--xiv-surface-deep);
+  color: var(--xiv-muted);
+  font: inherit;
+  font-size: .65rem;
+  line-height: 1;
+}
+
+.resource-tag {
+  cursor: pointer;
+}
+
+.resource-tag:hover {
+  border-color: var(--xiv-gold);
+  color: var(--xiv-gold-bright);
+}
+
+.resource-badge--success {
+  border-color: color-mix(in srgb, #79b67a 55%, transparent);
+  color: #bfe7b9;
+}
+.resource-badge--warning {
+  border-color: color-mix(in srgb, #c4a85a 60%, transparent);
+  color: #eed891;
+}
+.resource-badge--danger {
+  border-color: color-mix(in srgb, #c66060 60%, transparent);
+  color: #efaaaa;
+}
+.resource-badge--api {
+  color: var(--xiv-gold-bright);
+}
+
+.dalamud-card__punchline {
+  margin: 0;
+  color: var(--xiv-text);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.dalamud-card__description {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  color: var(--xiv-muted);
+  font-size: .78rem;
+  line-height: 1.5;
+}
+
+.dalamud-card__versions {
+  margin-top: auto;
+  border-top: 1px solid color-mix(in srgb, var(--xiv-border) 45%, transparent);
+  padding-top: .65rem;
+}
+
+.dalamud-card__versions > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  color: var(--xiv-text);
+  cursor: pointer;
+  font-size: .76rem;
+  font-weight: 600;
+}
+
+.dalamud-version-list {
+  display: grid;
+  gap: .45rem;
+  margin-top: .55rem;
+}
+
+.dalamud-version {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: .6rem;
+  padding: .55rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 45%, transparent);
+  border-radius: 4px;
+  background: var(--xiv-surface-deep);
+}
+
+.dalamud-version__main {
+  display: grid;
+  gap: .1rem;
+  min-width: 0;
+}
+
+.dalamud-version__main strong {
+  color: var(--xiv-text);
+  font-size: .76rem;
+}
+
+.dalamud-version__main span {
+  color: var(--xiv-muted);
+  font-size: .68rem;
+}
+
+.dalamud-version__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  justify-content: flex-end;
+}
+
+/* Links ----------------------------------------------------------- */
+
+.resource-browser--links {
+  display: grid;
+  grid-template-columns: minmax(14rem, 17rem) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.resource-sidebar {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  padding: .85rem;
+}
+
+.resource-sidebar__header {
+  display: grid;
+  gap: .3rem;
+  margin-bottom: .8rem;
+}
+
+.resource-sidebar__nav {
+  display: grid;
+  gap: .35rem;
+}
+
+.resource-category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  width: 100%;
+  min-height: 2.3rem;
+  padding: .45rem .6rem;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--xiv-text);
+  font: inherit;
+  font-size: .78rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.resource-category:hover,
+.resource-category.is-active {
+  border-color: color-mix(in srgb, var(--xiv-gold) 48%, var(--xiv-border));
+  background: color-mix(in srgb, var(--xiv-surface) 88%, var(--xiv-gold) 12%);
+}
+
+.resource-category__count {
+  flex: 0 0 auto;
+  min-width: 1.7rem;
+  padding: .1rem .35rem;
+  border-radius: 999px;
+  background: var(--xiv-surface-deep);
+  color: var(--xiv-muted);
+  font-size: .64rem;
+  text-align: center;
+}
+
+.resource-browser__content {
+  min-width: 0;
+}
+
+.links-sections {
+  display: grid;
+  gap: .85rem;
+}
+
+.links-section {
+  display: grid;
+  gap: .75rem;
+  padding: .8rem;
+}
+
+.links-section__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: .7rem;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
+  gap: .55rem;
+}
+
+.link-card {
+  display: grid;
+  grid-template-columns: 2.6rem minmax(0, 1fr) auto;
+  gap: .65rem;
+  align-items: center;
+  min-width: 0;
+  min-height: 4.4rem !important;
+  padding: .65rem .7rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 58%, transparent);
+  border-radius: 5px;
+  background: var(--xiv-surface-deep);
+  color: var(--xiv-text);
+  text-decoration: none;
+}
+
+.link-card:hover {
+  border-color: var(--xiv-gold);
+  background: color-mix(in srgb, var(--xiv-surface) 88%, var(--xiv-gold) 12%);
+}
+
+.link-card__icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 2.45rem;
+  height: 2.45rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 55%, transparent);
+  border-radius: 5px;
+  background: var(--xiv-surface);
+}
+
+.link-card__icon img {
+  position: relative;
+  z-index: 1;
+  width: 1.8rem !important;
+  height: 1.8rem !important;
+  object-fit: contain;
+}
+
+.link-card__fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--xiv-gold-bright);
+  font-weight: 700;
+}
+
+.link-card__icon img:not([style*="display: none"]) + .link-card__fallback {
+  visibility: hidden;
+}
+
+.link-card__body {
+  display: grid;
+  gap: .15rem;
+  min-width: 0;
+}
+
+.link-card__body h4 {
+  margin: 0;
+  color: var(--xiv-gold-bright);
+  font-size: .82rem;
+  line-height: 1.25;
+}
+
+.link-card__url {
+  overflow: hidden;
+  color: var(--xiv-muted);
+  font-size: .68rem;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-card__external {
+  color: var(--xiv-muted);
+  font-size: 1rem;
+}
+
+.resource-empty {
+  grid-column: 1 / -1;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 74rem) {
+  .resource-toolbar__controls,
+  .resource-toolbar__controls--links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resource-browser--links {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-sidebar {
+    position: static;
+    max-height: none;
+  }
+
+  .resource-sidebar__nav {
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  }
+}
+
+@media (max-width: 44rem) {
+  .resource-toolbar__controls,
+  .resource-toolbar__controls--links {
+    grid-template-columns: 1fr;
+  }
+
+  .dalamud-version {
+    grid-template-columns: 1fr;
+  }
+
+  .dalamud-version__actions {
+    justify-content: flex-start;
+  }
+
+  .links-grid,
+  .dalamud-grid {
+    grid-template-columns: 1fr;
+  }
+}

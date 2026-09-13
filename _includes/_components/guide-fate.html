@@ -1,29 +1,36 @@
 <!-- Include from _includes/_components/guide-fate -->
+{%- assign has_fate_details = false -%}
+{%- if fate.description -%}{%- assign has_fate_details = true -%}{%- endif -%}
+{%- if fate.notes and fate.notes.size > 0 -%}{%- assign has_fate_details = true -%}{%- endif -%}
+{%- if fate.videos and fate.videos.size > 0 -%}{%- assign has_fate_details = true -%}{%- endif -%}
+
 <!-- _components/Guide-fate "Button"======================================================= -->
-<div class="guide-metadata__menu-link guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--fate xiv-accordion-trigger" id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "fate_" | append: fate.title | slugify }}">
-    <i class="Dropdown material-icons"><ion-icon size="large" name="chevron-down-outline" style="color: white !important"></ion-icon></i>
+<div class="guide-metadata__menu-link guide__entry-trigger guide__entry-trigger--fate {%- unless has_fate_details -%} is-static {%- endunless -%} guide__accordion-trigger--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--fate xiv-accordion-trigger"
+     aria-expanded="false"
+     {%- unless has_fate_details -%} aria-disabled="true" {%- else -%} role="button" tabindex="0" {%- endunless -%}
+     id="{{ y | append: "_" | append: enemy.title.en | append: "_" | append: "fate_" | append: fate.title | slugify }}">
+    <i class="Dropdown material-icons" {%- unless has_fate_details -%}style="display:none;"{%- endunless -%}><ion-icon size="large" name="chevron-down-outline"></ion-icon></i>
     <img loading="lazy" class="Icon fate_icon" src="{{site.imageurl}}/{{ fate.icon }}" alt="{{ fate.icon }}"/>
     <div class="Names">
-        <span class="">
-            <span data-translate="{{x}}_{{enemy_name_en}}_{{fate.title}}_Name">{{ fate.title }}</span>
-        </span>
+        <span data-translate="{{x}}_{{enemy_name_en}}_{{fate.title}}_Name">{{ fate.title }}</span>
         <div class="lang-toggle lang-toogle-en-sub guide__accordion-trigger-subtitle">{{ fate.title }}</div>
     </div>
     {%- assign attack = fate -%}
-    {%- include _components/guide-attack-types.html -%}
+    <div class="Attributes">
+        {%- include _components/guide-attack-types.html -%}
+    </div>
     <div class="IdsHps">
         {%- if fate.title_id -%}
             <div class="guide__accordion-trigger-id" onclick="buildAndCopyRegex('{{ attack.title_id }}', '{{ enemy.title.de }}', 'fate')">Fate-ID: {{ fate.title_id }}</div>
         {%- endif -%}
-
         {%- assign isfate = "True" -%}
     </div>
 </div>
 
+{%- if has_fate_details -%}
 <!-- _components/Guide-fate "Content"======================================================= -->
-<div class="guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--fate xiv-accordion-content" style="">
+<div class="guide__entry-content guide__entry-content--fate guide__accordion-content--{%- if page.sequence -%}02{%- else -%}03{%- endif -%}--fate xiv-accordion-content" hidden>
     <div class="guide__accordion-copy-wrapper">
-        <!-- Standard Attacks -->
         {%- if fate.description -%}
             <div class="guide__attack-notes-wrapper">
                 <h5 class="guide__attack-notes-title">Description:</h5>
@@ -32,7 +39,7 @@
         {%- endif -%}
 
         {%- include _components/guide-attack-notes.html -%}
-        <!-- fate Videos -->
+
         {%- if fate.videos -%}
             <div class="guide__attack-video-list">
                 {%- for video in fate.videos -%}
@@ -42,4 +49,5 @@
         {%- endif -%}
     </div>
 </div>
+{%- endif -%}
 <!-- END Include from _includes/_components/guide-fate -->

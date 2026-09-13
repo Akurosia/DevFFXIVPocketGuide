@@ -1,10 +1,38 @@
+<!-- Include from _includes/mainquestsfinder -->
+<section class="singlepage utility-page utility-page--mainquestsfinder">
+  <div class="content-container">
+    <div class="mainquest-shell">
+      <div class="mainquest-search-panel xiv-card-body">
+        <div class="mainquest-search-panel__copy">
+          <p class="mainquest-search-panel__eyebrow">Main Scenario Guide</p>
+          <h2 class="mainquest-search-panel__title">Finde deinen Fortschritt im Hauptszenario</h2>
+          <p class="mainquest-search-panel__text">
+            Suche nach einer Quest-ID oder nach dem exakten Questnamen, um deinen Fortschritt über alle Erweiterungen hinweg anzuzeigen.
+          </p>
+        </div>
 
-<div class="container">
-    <div class="fixed-header">
-        <input type="text" id="questSearch" placeholder="Quest ID oder Name eingeben" value="Willkommen in Gridania" class="xiv-input">
-        <select class="quest-dropdown xiv-select" style="display: none;width: auto;" id="test" onchange="document.getElementById('questSearch').value = this.value;"></select>
-        <button onclick="searchQuest()" class="xiv-button"><i class="fas fa-search"></i> Suchen</button>
+        <form class="mainquest-search-form" onsubmit="event.preventDefault(); searchQuest();">
+          <label class="mainquest-search-form__field" for="questSearch">Quest suchen</label>
+          <div class="mainquest-search-form__controls">
+            <input
+              type="text"
+              id="questSearch"
+              placeholder="Quest-ID oder Name eingeben"
+              value="Willkommen in Gridania"
+              class="xiv-input mainquest-search-form__input"
+              autocomplete="off"
+            >
+            <button type="submit" class="xiv-button xiv-button--primary mainquest-search-form__button">
+              <i class="fas fa-search" aria-hidden="true"></i>
+              <span>Suchen</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div id="progress" class="mainquest-results" aria-live="polite"></div>
     </div>
-    <div id="progress"></div>
-</div>
+  </div>
+</section>
 <script type="text/javascript" src="{{ "/assets/js/mainquestsfinderscript.js" | prepend: site.baseurl }}?{{site.time | date: '%s%N'}}"></script>
+<!-- END Include from _includes/mainquestsfinder -->

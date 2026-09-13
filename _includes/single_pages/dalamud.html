@@ -1,56 +1,144 @@
-<!-- Include from _includes/dalamud/index -->
-<div class="index">
-    <div class="index__list_quests" data-expansion="{{ x }}">
+<!-- Dalamud plugin browser -->
+<section class="resource-browser resource-browser--dalamud" data-resource-browser="dalamud">
+    <header class="resource-toolbar xiv-panel">
+        <div class="resource-toolbar__intro">
+            <p class="resource-eyebrow">Dalamud Plugin Browser</p>
+            <h2>Plugins durchsuchen</h2>
+            <p>Suche nach Pluginname, Beschreibung, Autor oder Tag und filtere nach Quelle oder API-Status.</p>
+        </div>
+
+        <div class="resource-toolbar__controls">
+            <label class="resource-field resource-field--search">
+                <span>Suche</span>
+                <input class="xiv-input" type="search" data-resource-search
+                       placeholder="Plugin, Autor, Tag oder Beschreibung …">
+            </label>
+
+            <label class="resource-field">
+                <span>Status</span>
+                <select class="xiv-select" data-dalamud-status>
+                    <option value="">Alle Plugins</option>
+                    <option value="official">Offiziell</option>
+                    <option value="community">Community</option>
+                    <option value="outdated">Veraltet / alte API</option>
+                </select>
+            </label>
+
+            <label class="resource-field">
+                <span>Sortierung</span>
+                <select class="xiv-select" data-resource-sort>
+                    <option value="name">Name A–Z</option>
+                    <option value="api-desc">API-Level absteigend</option>
+                    <option value="api-asc">API-Level aufsteigend</option>
+                </select>
+            </label>
+
+            <button type="button" class="xiv-button xiv-button--ghost" data-resource-reset>
+                Filter zurücksetzen
+            </button>
+        </div>
+
+        <div class="resource-toolbar__summary">
+            <span><strong data-resource-visible>0</strong> von <strong data-resource-total>0</strong> Plugins</span>
+            <span class="resource-toolbar__context" data-resource-context>Alle Plugins</span>
+        </div>
+    </header>
+
+    <div class="dalamud-grid" data-resource-grid>
         {%- for plugin in site.categories.dalamud -%}
             {%- for guide in plugin.plugins -%}
-                <div class="summary">
-                    <span class="index-item__link xiv-card">
-                        {%- assign official = false -%}
-                        {%- for version in guide.versions -%}
-                            {%- if version.url == "https://kamori.goats.dev/Plugin/PluginMaster" -%}
-                                {%- assign official = true -%}
-                            {%- endif -%}
-                        {%- endfor -%}
-                        <div class="index-item__background"
-                                style="background-color: {%- if guide.DalamudApiLevel < 11 -%} red; {%- elsif official == true -%} green; {%- else -%} yellow; {%- endif -%}">
+                {%- assign official = false -%}
+                {%- for version in guide.versions -%}
+                    {%- if version.url == "https://kamori.goats.dev/Plugin/PluginMaster" -%}
+                        {%- assign official = true -%}
+                    {%- endif -%}
+                {%- endfor -%}
+
+                {%- capture search_terms -%}
+                    {{ guide.name }} {{ guide.description }} {{ guide.punchline }}
+                    {%- for tag in guide.tags -%} {{ tag.tag }} {%- endfor -%}
+                    {%- for version in guide.versions -%}
+                        {{ version.author }} {{ version.url }} {{ version.version }} {{ version.repo }}
+                    {%- endfor -%}
+                {%- endcapture -%}
+
+                <article class="dalamud-card xiv-card"
+                         data-resource-item
+                         data-resource-name="{{ guide.name | downcase | escape }}"
+                         data-resource-search="{{ search_terms | strip_newlines | normalize_whitespace | strip_html | escape }}"
+                         data-api-level="{{ guide.DalamudApiLevel | default: 0 }}"
+                         data-official="{% if official %}true{% else %}false{% endif %}"
+                         data-outdated="{% if guide.DalamudApiLevel < 11 %}true{% else %}false{% endif %}">
+                    <div class="dalamud-card__header">
+                        <div class="dalamud-card__title-wrap">
+                            <h3 class="dalamud-card__title">{{ guide.name }}</h3>
+                            <div class="dalamud-card__badges">
+                                {%- if guide.DalamudApiLevel > 0 -%}
+                                    <span class="resource-badge resource-badge--api">API {{ guide.DalamudApiLevel }}</span>
+                                {%- endif -%}
+                                {%- if guide.DalamudApiLevel < 11 -%}
+                                    <span class="resource-badge resource-badge--danger">Veraltet</span>
+                                {%- elsif official -%}
+                                    <span class="resource-badge resource-badge--success">Offiziell</span>
+                                {%- else -%}
+                                    <span class="resource-badge resource-badge--warning">Community</span>
+                                {%- endif -%}
+                            </div>
                         </div>
-                        <h3 class="index-item__title"
-                            data-terms="{%- for tag in guide.tags -%}tag:{{ tag.tag }}&#32;{%- endfor -%}
-                                &#32;desc:{{guide.description}}&#32;punch:{{guide.punchline}}&#32;name:{{guide.name}}&#32;
+                    </div>
+
+                    {%- if guide.punchline -%}
+                        <p class="dalamud-card__punchline">{{ guide.punchline }}</p>
+                    {%- endif -%}
+
+                    {%- if guide.description != "" -%}
+                        <p class="dalamud-card__description">{{ guide.description }}</p>
+                    {%- endif -%}
+
+                    {%- if guide.tags -%}
+                        <div class="dalamud-card__tags">
+                            {%- for tag in guide.tags -%}
+                                <button type="button" class="resource-tag" data-resource-tag="{{ tag.tag | escape }}">{{ tag.tag }}</button>
+                            {%- endfor -%}
+                        </div>
+                    {%- endif -%}
+
+                    {%- if guide.versions -%}
+                        <details class="dalamud-card__versions">
+                            <summary>
+                                <span>Versionen & Quellen</span>
+                                <span class="resource-badge">{{ guide.versions | size }}</span>
+                            </summary>
+                            <div class="dalamud-version-list">
                                 {%- for version in guide.versions -%}
-                                    author:{{ version.author }}&#32;url:{{ version.url }}&#32;version:{{ version.version }}&#32;
-                                    {%- if version.url == "https://kamori.goats.dev/Plugin/PluginMaster" -%}official&#32;firstparty&#32;{%- endif -%}
+                                    <div class="dalamud-version">
+                                        <div class="dalamud-version__main">
+                                            <strong>{{ version.author }}</strong>
+                                            <span>{{ version.version }}</span>
+                                        </div>
+                                        <div class="dalamud-version__actions">
+                                            {%- if version.repo -%}
+                                                <a class="xiv-button xiv-button--small xiv-button--ghost"
+                                                   target="_blank" rel="noopener noreferrer"
+                                                   href="{{ version.repo }}">Repository</a>
+                                            {%- endif -%}
+                                            {%- if version.url -%}
+                                                <button type="button"
+                                                        class="xiv-button xiv-button--small"
+                                                        data-copy-value="{{ version.url | escape }}">URL kopieren</button>
+                                            {%- endif -%}
+                                        </div>
+                                    </div>
                                 {%- endfor -%}
-                            ">
-                            <span class=""> {{ guide.name }}&nbsp;{%- if guide.DalamudApiLevel > 0 -%} ({{guide.DalamudApiLevel}}) {%- endif -%}</span>
-                        </h3>
-                        {%- if guide.description != "" -%}
-                            <h4 class="index-item__title_en">Description: {{ guide.description }}</h4>
-                        {%- endif -%}
-                        {%- if guide.punchline -%}
-                            <h4 class="index-item__title_en">Punchline: {{ guide.punchline }}</h4>
-                        {%- endif -%}
-                        {%- if guide.tags -%}
-                            <h4 class="index-item__title_en">Tags:&nbsp;{%- for tag in guide.tags -%}{{ tag.tag }}&nbsp;{%- endfor -%}</h4>
-                        {%- endif -%}
-                        {%- if guide.versions -%}
-                            <table style="z-index: 9" class="table-bordered table-dark table-striped text-light patch_table xiv-table">
-                                <thead><tr><th>Author</th><th>URL</th><th>Version</th></tr></thead>
-                                <tbody>
-                                    {%- for version in guide.versions -%}
-                                        <tr>
-                                            <th><a target="_blank" rel="noopener noreferrer" style="color:white" href="{{version.repo}}">{{version.author}}</a></th>
-                                            <th>{{version.url}}</th>
-                                            <th>{{version.version}}</th>
-                                        </tr>
-                                    {%- endfor -%}
-                                </tbody>
-                            </table>
-                        {%- endif -%}
-                    </span>
-                </div>
+                            </div>
+                        </details>
+                    {%- endif -%}
+                </article>
             {%- endfor -%}
         {%- endfor -%}
+
+        <div class="resource-empty xiv-notice xiv-notice--info" data-resource-empty hidden>
+            Keine Plugins entsprechen den aktuellen Filtern.
+        </div>
     </div>
-</div>
-<!-- END Include from _includes/dalamud/index -->
+</section>

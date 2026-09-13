@@ -1,0 +1,191 @@
+/* Search + expansion icon alignment.
+   Kept separate so it can override older search/button rules without
+   overwriting the rest of _content.scss. */
+
+.search .expansion-toggles {
+  display: grid;
+  grid-template-columns: minmax(16rem, 1fr) auto;
+  gap: .55rem;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+}
+
+.search .expansion-toggles > .xiv-input {
+  width: 100%;
+  min-width: 0;
+  height: 2.65rem;
+  min-height: 2.65rem;
+  margin: 0;
+}
+
+.search .expansion-toggles__buttons {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .4rem;
+  min-height: 2.65rem;
+}
+
+.search .expansion-toggle {
+  display: grid !important;
+  place-items: center !important;
+  flex: 0 0 2.65rem;
+
+  width: 2.65rem !important;
+  min-width: 2.65rem !important;
+  max-width: 2.65rem !important;
+  height: 2.65rem !important;
+  min-height: 2.65rem !important;
+  max-height: 2.65rem !important;
+
+  margin: 0 !important;
+  padding: .25rem !important;
+
+  overflow: hidden;
+  line-height: 0 !important;
+  vertical-align: middle;
+}
+
+.search .expansion-toggle__icon-frame {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+
+  line-height: 0;
+}
+
+.search .expansion-toggle .role-icon,
+.search .expansion-toggle__icon {
+  display: block !important;
+
+  width: 2rem !important;
+  min-width: 2rem !important;
+  max-width: 2rem !important;
+  height: 2rem !important;
+  min-height: 2rem !important;
+  max-height: 2rem !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  object-fit: contain !important;
+  object-position: 50% 50% !important;
+  vertical-align: middle !important;
+  transform: none !important;
+}
+
+.search .expansion-toggle[hidden] {
+  display: none !important;
+}
+
+/* Index expansion icon/logo header alignment. */
+.index-divider__title {
+  display: grid !important;
+  grid-template-columns: 3rem minmax(0, 1fr) 3rem;
+  align-items: center !important;
+  justify-items: center;
+  gap: .8rem;
+}
+
+.index-divider__title > .role-icon {
+  grid-column: 1;
+  align-self: center !important;
+  justify-self: center !important;
+
+  width: 3rem !important;
+  height: 3rem !important;
+  min-width: 3rem !important;
+  max-width: 3rem !important;
+
+  margin: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+.index-divider__logo-frame {
+  grid-column: 2;
+  align-self: center !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  width: min(24rem, 68vw);
+  height: 5.4rem;
+
+  margin: 0 auto !important;
+  overflow: hidden;
+}
+
+.index-divider__logo-frame .ex-icon {
+  display: block !important;
+  align-self: center !important;
+
+  width: 100% !important;
+  max-width: none !important;
+  height: 100% !important;
+
+  margin: 0 !important;
+
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  transform: scale(2) translateY(5%) !important;
+  transform-origin: center bottom !important;
+}
+
+/* Empty balancing column keeps the expansion logo truly centered even
+   though the expansion icon exists only on the left. */
+.index-divider__title::after {
+  content: "";
+  grid-column: 3;
+  width: 3rem;
+  height: 3rem;
+}
+
+@media (max-width: 62rem) {
+  .search .expansion-toggles {
+    grid-template-columns: 1fr;
+  }
+
+  .search .expansion-toggles__buttons {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .index-divider__title {
+    grid-template-columns: 2.5rem minmax(0, 1fr) 2.5rem;
+  }
+
+  .index-divider__title > .role-icon,
+  .index-divider__title::after {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    min-width: 2.5rem !important;
+  }
+}
+
+@media (max-width: 40rem) {
+  .search .expansion-toggles__buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(2.5rem, 1fr));
+  }
+
+  .search .expansion-toggle {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .index-divider__title {
+    grid-template-columns: 2.25rem minmax(0, 1fr) 2.25rem;
+    gap: .45rem;
+  }
+
+  .index-divider__logo-frame {
+    width: min(17rem, 72vw);
+  }
+}

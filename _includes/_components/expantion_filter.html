@@ -1,13 +1,36 @@
 <!-- Include from _includes/_components/expantion_filter -->
-<h2 class="index-divider__title">
-    {%- if expacicon != "" -%}
-        <img loading="lazy" class="role-icon" src="{{site.imageurl}}/{{expacicon}}" onerror="handleExpansionAssetError('{{ x_shortid }}')"/>
-    {%- endif -%}
-    {%- if expacimage != "" -%}
-        <span class="index-divider__logo-frame" aria-hidden="true">
-            <img loading="lazy" class="ex-icon" src="{{site.uldurl}}/{{expacimage}}" onerror="handleExpansionAssetError('{{ x_shortid }}')">
-        </span>
-    {%- endif -%}
-    <!-- <span data-translate="Patches_{{x_title}}">{{ x_title }}</span> -->
-</h2>
+<div class="expansion-header"
+     data-expansion-header
+     data-expansion-id="{{ x_shortid }}">
+
+    <div class="expansion-header__icon">
+        {%- if expacicon != "" -%}
+            <img loading="lazy"
+                 class="expansion-header__icon-image"
+                 src="{{ site.imageurl }}/{{ expacicon }}"
+                 alt=""
+                 onerror="
+                    this.hidden=true;
+                    this.closest('.expansion-header__icon').classList.add('is-missing');
+                 ">
+        {%- endif -%}
+    </div>
+
+    <div class="expansion-header__identity">
+        {%- if expacimage != "" -%}
+            <div class="expansion-header__logo-frame">
+                <img loading="lazy"
+                     class="expansion-header__logo"
+                     src="{{ site.uldurl }}/{{ expacimage }}"
+                     alt=""
+                     onerror="
+                        this.hidden=true;
+                        this.closest('.expansion-header__logo-frame').classList.add('is-missing');
+                     ">
+            </div>
+        {%- endif -%}
+    </div>
+
+    <div class="expansion-header__balance" aria-hidden="true"></div>
+</div>
 <!-- END Include from _includes/_components/expantion_filter -->

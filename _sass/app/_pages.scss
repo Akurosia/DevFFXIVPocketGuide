@@ -1,76 +1,1124 @@
 /* Data-heavy utility pages. Keep these rules structural: controls, tables and
  * notices themselves use ffxiv-css classes in the templates. */
 
-.bestiarium-shell { display:grid; grid-template-columns:minmax(0,1fr); gap:1rem; }
-.bestiarium-sidebar, .bestiarium-main { min-width:0; }
-.bestiarium-sidebar__title, .bestiarium-ranks__title, .bestiarium-header__label { color:var(--xiv-muted,#a7adb1); font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; }
-.bestiarium-category-grid, .bestiarium-ranks__list { display:grid; gap:.35rem; margin-top:.5rem; }
-.bestiarium-header { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; align-items:end; }
-.bestiarium-header__title { color:var(--xiv-gold-bright,#f0deb0); font:400 clamp(1.4rem,3vw,2.2rem)/1.2 Georgia,serif; }
-.bestiarium-header__meta { display:flex; flex-wrap:wrap; gap:.5rem; }
-.bestiarium-stat { min-width:7rem; padding:.55rem .7rem; border:1px solid #ffffff12; border-radius:4px; background:#0002; }
-.bestiarium-stat span { display:block; color:var(--xiv-muted,#a7adb1); font-size:.7rem; }
-.bestiarium-toolbar { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; margin-top:1rem; }
-.bestiarium-toolbar__hint { color:var(--xiv-muted,#a7adb1); font-size:.8rem; }
-.bestiarium-loading, .bestiarium-error { padding:1rem; }
-.bestiarium-error { color:var(--pg-danger); }
-.bestiarium-notes { margin-top:1rem; }
+.bestiarium-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+.bestiarium-sidebar,
+.bestiarium-main { min-width: 0; }
+.bestiarium-sidebar__title,
+.bestiarium-ranks__title,
+.bestiarium-header__label { color: var(--xiv-muted, #a7adb1); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
+.bestiarium-category-grid,
+.bestiarium-ranks__list { display: grid; gap: .35rem; margin-top: .5rem; }
+.bestiarium-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: end;
+}
+.bestiarium-header__title { color: var(--xiv-gold-bright, #f0deb0); font: 400 clamp(1.4rem, 3vw, 2.2rem)/1.2 Georgia, serif; }
+.bestiarium-header__meta { display: flex; flex-wrap: wrap; gap: .5rem; }
+.bestiarium-stat {
+  min-width: 7rem;
+  padding: .55rem .7rem;
+  border: 1px solid #ffffff12;
+  border-radius: 4px;
+  background: #0002;
+}
+.bestiarium-stat span { display: block; color: var(--xiv-muted, #a7adb1); font-size: .7rem; }
+.bestiarium-toolbar { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; margin-top: 1rem; }
+.bestiarium-toolbar__hint { color: var(--xiv-muted, #a7adb1); font-size: .8rem; }
+.bestiarium-loading,
+.bestiarium-error { padding: 1rem; }
+.bestiarium-error { color: var(--pg-danger); }
+.bestiarium-notes { margin-top: 1rem; }
 
-#headDiv .form-inline, #gear_top .form-inline, .translate .form-inline { align-items:end; }
-#headDiv .form-inline > *, #gear_top .form-inline > * { flex:1 1 11rem; }
-#gearlist { display:grid; gap:.5rem; }
+#headDiv .form-inline,
+#gear_top .form-inline,
+.translate .form-inline {
+  align-items: end;
+}
+#headDiv .form-inline > *,
+#gear_top .form-inline > * { flex: 1 1 11rem; }
+#gearlist { display: grid; gap: .5rem; }
 
-.checkbox { display:inline-flex; align-items:center; gap:.35rem; }
-.checkbox input[type="checkbox"] { accent-color:var(--xiv-gold,#cab582); }
-.checkbox.white { color:#f0eee7; }
-.checkbox.red { color:#e99a95; }
-.checkbox.green { color:#acd19f; }
-.checkbox.blue { color:#9ed9ed; }
-.checkbox.purpel { color:#d2afe4; }
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+}
+.checkbox input[type="checkbox"] { accent-color: var(--xiv-gold, #cab582); }
+.checkbox.white { color: #f0eee7; }
+.checkbox.red { color: #e99a95; }
+.checkbox.green { color: #acd19f; }
+.checkbox.blue { color: #9ed9ed; }
+.checkbox.purpel { color: #d2afe4; }
 
-.enemy-coverage__controls { display:flex; flex-wrap:wrap; gap:.75rem; align-items:end; }
-.enemy-coverage__cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(16rem,100%),1fr)); gap:.75rem; margin-block:1rem; }
-.enemy-coverage__table-wrap { max-width:100%; overflow-x:auto; }
-.enemy-coverage__loading, .enemy-coverage__error { padding:1rem; }
-.enemy-coverage__error { color:var(--pg-danger); }
+.enemy-coverage__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  align-items: end;
+}
+.enemy-coverage__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  gap: .75rem;
+  margin-block: 1rem;
+}
+.enemy-coverage__table-wrap { max-width: 100%; overflow-x: auto; }
+.enemy-coverage__loading,
+.enemy-coverage__error { padding: 1rem; }
+.enemy-coverage__error { color: var(--pg-danger); }
 
-.mainquestsfinder, .quest-container, .quest-list { min-width:0; }
-.quest-list { display:grid; gap:.5rem; }
-.quest-item { padding:.65rem .8rem; border-left:3px solid var(--xiv-border,#69665b); background:#ffffff05; }
-.quest-dropdown { width:100%; }
+.mainquestsfinder,
+.quest-container,
+.quest-list { min-width: 0; }
+.quest-list { display: grid; gap: .5rem; }
+.quest-item {
+  padding: .65rem .8rem;
+  border-left: 3px solid var(--xiv-border, #69665b);
+  background: #ffffff05;
+}
+.quest-dropdown { width: 100%; }
 
-.gcrank_table, [class^="gcrank_table_"], [class^="hm_table_"] { max-width:100%; }
+.gcrank_table,
+[class^="gcrank_table_"],
+[class^="hm_table_"] { max-width: 100%; }
 
-.klassenjobgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(17rem,100%),1fr)); gap:.75rem; }
-.beastmaster-abilities, .beastmaster-captures { display:grid; gap:.75rem; }
-.beastmaster-entry { min-width:0; }
+.klassenjobgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr));
+  gap: .75rem;
+}
+.beastmaster-abilities,
+.beastmaster-captures { display: grid; gap: .75rem; }
+.beastmaster-entry { min-width: 0; }
 
-/* Legacy single pages often have no wrapper. Make their root content sane. */
-body.settings .layout__wrapper > [section] { width:100% !important; max-width:var(--pg-content-width); margin-inline:auto; }
-body.settings .layout__wrapper > [section] + [section] { margin-top:1rem; }
-body.itemsets .layout__wrapper > table,
-body.gcrank .layout__wrapper > table,
-body.translate .layout__wrapper > table { width:100%; max-width:var(--pg-content-width); margin-inline:auto; }
-
-/* Keep item/art icons small even when their source is high resolution. */
-body.itemsets td img, body.gear td img, body.gcrank td img, body.quests td img {
-  width:4.5rem !important;
-  height:4.5rem !important;
-  object-fit:contain;
+.fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: #000d;
 }
 
-/* Generic utility page media should not stretch to viewport width. */
-.singlepage img:not(.role-icon):not(.attack_icon):not(.debuff_icon),
-.single_page img:not(.role-icon):not(.attack_icon):not(.debuff_icon),
-.container img:not(.role-icon):not(.attack_icon):not(.debuff_icon) {
-  max-height:34rem;
-  object-fit:contain;
+@media (min-width: 64rem) {
+  .bestiarium-shell { grid-template-columns: minmax(15rem, 20rem) minmax(0, 1fr); }
+  .bestiarium-sidebar { position: sticky; top: 1rem; align-self: start; }
 }
 
-.fullscreen-overlay { position:fixed; inset:0; z-index:500; display:grid; place-items:center; padding:1rem; background:#000d; }
-.fullscreen-overlay img { max-width:min(96vw,110rem); max-height:94vh; object-fit:contain; }
-
-@media (min-width:64rem) {
-  .bestiarium-shell { grid-template-columns:minmax(15rem,20rem) minmax(0,1fr); }
-  .bestiarium-sidebar { position:sticky; top:1rem; align-self:start; }
+.fixed-header { padding: .65rem; }
+#progress { padding: 1rem; }
+.progress-section-container { margin-bottom: .75rem; text-align: center; }
+.progress-label { display: block; margin-bottom: .35rem; font-weight: 700; }
+.progress-bar-container,
+.progress-bar {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #ffffff14;
 }
+.progress-bar { height: 1rem; }
+.progress-fill {
+  height: 100%;
+  background: var(--xiv-exp, #d6ad59);
+  transition: width .35s ease;
+}
+
+body.settings .setting_container,
+body.gcrank .setting_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+body.settings .setting_container_inner,
+body.gcrank .setting_container_inner { flex: 1 1 20rem; min-width: 0; }
+
+
+/* === mainquestsfinder refresh start === */
+.utility-page--mainquestsfinder {
+  padding-top: .25rem;
+}
+
+.mainquest-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.mainquest-search-panel,
+.mainquest-overview,
+.mainquest-section,
+.mainquest-state,
+.mainquest-sections-block {
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: var(--xiv-radius, 8px);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--xiv-surface) 85%, #000 15%), var(--xiv-surface-deep));
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .24);
+}
+
+.mainquest-search-panel {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 1.8vw, 1.35rem);
+}
+
+.mainquest-search-panel__copy {
+  display: grid;
+  gap: .35rem;
+}
+
+.mainquest-search-panel__eyebrow,
+.mainquest-overview__eyebrow,
+.mainquest-section__eyebrow {
+  margin: 0;
+  color: var(--xiv-muted);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.mainquest-search-panel__title,
+.mainquest-sections-block__title,
+.mainquest-overview__title,
+.mainquest-section__title {
+  margin: 0;
+  color: var(--xiv-gold-bright);
+  font-family: Georgia, serif;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.mainquest-search-panel__title,
+.mainquest-overview__title {
+  font-size: clamp(1.4rem, 2vw, 2rem);
+}
+
+.mainquest-search-panel__text,
+.mainquest-overview__subtitle {
+  margin: 0;
+  color: var(--xiv-muted);
+  line-height: 1.55;
+}
+
+.mainquest-search-form {
+  display: grid;
+  gap: .5rem;
+}
+
+.mainquest-search-form__field,
+.mainquest-section__label {
+  color: var(--xiv-text);
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.mainquest-search-form__controls,
+.mainquest-section__controls {
+  display: grid;
+  gap: .65rem;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.mainquest-search-form__input,
+.mainquest-section__controls .quest-dropdown {
+  width: 100%;
+}
+
+.mainquest-search-form__button {
+  justify-content: center;
+  gap: .45rem;
+}
+
+.mainquest-results {
+  display: grid;
+  gap: 1rem;
+}
+
+.mainquest-state {
+  padding: 1rem 1.1rem;
+}
+.mainquest-state__text {
+  margin: 0;
+  color: var(--xiv-text);
+}
+.mainquest-state--warning {
+  border-color: color-mix(in srgb, var(--pg-warning) 70%, var(--xiv-border));
+}
+.mainquest-state--error {
+  border-color: color-mix(in srgb, var(--pg-danger) 70%, var(--xiv-border));
+}
+
+.mainquest-overview {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 1.8vw, 1.35rem);
+}
+
+.mainquest-overview__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+}
+
+.mainquest-overview__copy {
+  min-width: 0;
+  display: grid;
+  gap: .35rem;
+}
+
+.mainquest-overview__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 7rem;
+  min-height: 3rem;
+  padding: .65rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-gold) 45%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--xiv-gold) 10%, var(--xiv-surface));
+  color: #fff2c7;
+  font: 700 1rem/1 var(--xiv-font);
+}
+
+.mainquest-overview__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+  gap: .75rem;
+}
+
+.mainquest-stat {
+  display: grid;
+  gap: .3rem;
+  padding: .85rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 60%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--xiv-surface-deep) 74%, transparent);
+}
+
+.mainquest-stat__label {
+  color: var(--xiv-muted);
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.mainquest-stat__value {
+  color: var(--xiv-gold-bright);
+  font-size: 1.4rem;
+  line-height: 1.1;
+}
+
+.progress-bar-container {
+  width: 100%;
+  padding: .25rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 60%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--xiv-surface-deep) 78%, transparent);
+}
+
+.mainquest-progress-bar {
+  height: .8rem;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, #fff 10%, transparent);
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+  transition: width .3s ease;
+}
+
+.mainquest-sections-block {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 1.8vw, 1.35rem);
+}
+
+.mainquest-sections-block__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.mainquest-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
+  gap: .9rem;
+}
+
+.mainquest-section {
+  display: grid;
+  gap: .9rem;
+  padding: 1rem;
+  border-color: color-mix(in srgb, var(--mq-accent) 48%, var(--xiv-border));
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--mq-accent) 10%, var(--xiv-surface)),
+      color-mix(in srgb, var(--xiv-surface-deep) 94%, #000 6%)
+    );
+}
+
+.mainquest-section__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .75rem;
+  align-items: start;
+}
+
+.mainquest-section__copy,
+.mainquest-section__meta,
+.mainquest-section__footer {
+  display: grid;
+  gap: .25rem;
+}
+
+.mainquest-section__meta {
+  justify-items: end;
+}
+
+.mainquest-section__status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.7rem;
+  padding: .2rem .55rem;
+  border: 1px solid color-mix(in srgb, var(--mq-accent) 46%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--mq-accent) 12%, transparent);
+  color: #fff3cf;
+  font-size: .72rem;
+  font-weight: 600;
+}
+
+.mainquest-section__count {
+  color: var(--xiv-text);
+  font-size: .95rem;
+}
+
+.mainquest-section.is-active {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--mq-accent) 45%, transparent), 0 10px 28px rgba(0, 0, 0, .24);
+}
+
+.mainquest-section.is-complete .mainquest-section__status {
+  border-color: color-mix(in srgb, var(--pg-success) 55%, transparent);
+  background: color-mix(in srgb, var(--pg-success) 16%, transparent);
+}
+
+.mainquest-section__footer {
+  gap: .45rem;
+}
+
+@media (min-width: 52rem) {
+  .mainquest-search-panel {
+    grid-template-columns: minmax(0, 1.05fr) minmax(18rem, .95fr);
+    align-items: end;
+    gap: 1.25rem;
+  }
+
+  .mainquest-search-form__controls,
+  .mainquest-section__controls {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .mainquest-search-form__button {
+    min-width: 9rem;
+  }
+}
+
+@media (max-width: 44rem) {
+  .mainquest-overview__badge,
+  .mainquest-section__meta {
+    justify-items: start;
+  }
+
+  .mainquest-section__header,
+  .mainquest-overview__header {
+    flex-direction: column;
+  }
+}
+
+
+.mainquest-sections-grid {
+  display: none;
+}
+
+.mainquest-journey {
+  display: grid;
+  gap: 1rem;
+}
+
+.mainquest-journey-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: .9rem;
+  align-items: stretch;
+}
+
+.mainquest-journey-step__rail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.mainquest-journey-step__rail::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--mq-accent) 65%, transparent),
+    color-mix(in srgb, var(--xiv-border) 70%, transparent)
+  );
+  opacity: .9;
+}
+
+.mainquest-journey-step:last-child .mainquest-journey-step__rail::before {
+  bottom: 50%;
+}
+
+.mainquest-journey-step:first-child .mainquest-journey-step__rail::before {
+  top: 50%;
+}
+
+.mainquest-journey-step__dot {
+  position: sticky;
+  top: 7rem;
+  z-index: 1;
+  align-self: start;
+  margin-top: 1.55rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  background: var(--mq-accent);
+  border: 2px solid color-mix(in srgb, #fff 32%, var(--mq-accent));
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--mq-accent) 12%, transparent);
+}
+
+.mainquest-journey-step__body {
+  display: grid;
+  gap: .9rem;
+  padding: 1rem 1rem 1.05rem;
+  border: 1px solid color-mix(in srgb, var(--mq-accent) 40%, var(--xiv-border));
+  border-radius: var(--xiv-radius, 8px);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--mq-accent) 8%, var(--xiv-surface)),
+      color-mix(in srgb, var(--xiv-surface-deep) 95%, #000 5%)
+    );
+  box-shadow: 0 10px 22px rgba(0, 0, 0, .2);
+}
+
+.mainquest-journey-step__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .75rem 1rem;
+  align-items: start;
+}
+
+.mainquest-journey-step__range {
+  margin: 0;
+  color: var(--xiv-muted);
+  font-size: .88rem;
+  line-height: 1.45;
+}
+
+.mainquest-journey-step__footer {
+  display: grid;
+  gap: .85rem;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  align-items: end;
+}
+
+.mainquest-journey-step__summary {
+  display: grid;
+  gap: .25rem;
+  padding: .85rem 1rem;
+  min-height: 100%;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 65%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, #fff 2%, transparent);
+}
+
+.mainquest-journey-step__summary-label {
+  color: var(--xiv-muted);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.mainquest-journey-step__summary-value {
+  color: var(--xiv-text);
+  font-size: .95rem;
+  line-height: 1.45;
+}
+
+.mainquest-journey-step.is-empty .mainquest-journey-step__body {
+  border-color: color-mix(in srgb, var(--xiv-border) 75%, transparent);
+}
+
+.mainquest-journey-step.is-empty .mainquest-journey-step__dot {
+  background: color-mix(in srgb, var(--xiv-border) 75%, #22313e 25%);
+  border-color: color-mix(in srgb, #fff 18%, var(--xiv-border));
+}
+
+.mainquest-journey-step.is-complete .mainquest-journey-step__dot {
+  background: color-mix(in srgb, var(--pg-success) 65%, var(--mq-accent));
+}
+
+.mainquest-journey-step.is-active .mainquest-journey-step__body {
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--mq-accent) 46%, transparent),
+    0 18px 32px rgba(0, 0, 0, .28);
+}
+
+.mainquest-journey-step.is-active .mainquest-journey-step__dot {
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--mq-accent) 18%, transparent);
+}
+
+@media (max-width: 62rem) {
+  .mainquest-journey-step__footer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 44rem) {
+  .mainquest-journey-step {
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    gap: .75rem;
+  }
+
+  .mainquest-journey-step__dot {
+    margin-top: 1.35rem;
+    width: .9rem;
+    height: .9rem;
+  }
+
+  .mainquest-journey-step__top {
+    flex-direction: column;
+  }
+}
+
+/* === mainquestsfinder refresh end === */
+
+
+/* === achievements browser redesign start === */
+.utility-page--achivments {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.achievement-browser {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  min-width: 0;
+}
+
+.achievement-browser__sidebar,
+.achievement-browser__main,
+.achievement-results,
+.achievement-section,
+.achievement-section__grid {
+  min-width: 0;
+}
+
+.achievement-browser__sidebar {
+  padding: .9rem;
+}
+
+.achievement-browser__sidebar-inner {
+  display: grid;
+  gap: 1rem;
+}
+
+.achievement-browser__sidebar-copy,
+.achievement-toolbar__intro {
+  display: grid;
+  gap: .3rem;
+}
+
+.achievement-browser__eyebrow {
+  margin: 0;
+  color: var(--xiv-muted);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.achievement-browser__sidebar-title,
+.achievement-toolbar__title,
+.achievement-section__title {
+  margin: 0;
+  color: var(--xiv-gold-bright);
+  font-family: Georgia, serif;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.achievement-browser__sidebar-title,
+.achievement-toolbar__title {
+  font-size: clamp(1.25rem, 2vw, 1.9rem);
+}
+
+.achievement-browser__sidebar-text,
+.achievement-toolbar__text {
+  margin: 0;
+  color: var(--xiv-muted);
+  font-size: .85rem;
+  line-height: 1.55;
+}
+
+.achievement-browser__nav {
+  display: grid;
+  gap: .55rem;
+}
+
+.achievement-nav-group {
+  display: grid;
+  gap: .45rem;
+}
+
+.achievement-nav-group__children {
+  display: grid;
+  gap: .3rem;
+  margin-left: .75rem;
+  padding-left: .75rem;
+  border-left: 1px solid color-mix(in srgb, var(--xiv-border) 70%, transparent);
+}
+
+.achievement-filter-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem;
+  width: 100%;
+  min-height: 2.4rem;
+  padding: .55rem .7rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--xiv-surface) 92%, var(--xiv-bg) 8%);
+  color: var(--xiv-text);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .18s ease, background-color .18s ease, transform .18s ease;
+}
+
+.achievement-filter-link:hover {
+  border-color: color-mix(in srgb, var(--xiv-gold) 55%, var(--xiv-border));
+  background: color-mix(in srgb, var(--xiv-surface) 86%, var(--xiv-gold) 14%);
+}
+
+.achievement-filter-link.is-active {
+  border-color: color-mix(in srgb, var(--xiv-gold) 70%, var(--xiv-border));
+  background: linear-gradient(180deg, color-mix(in srgb, var(--xiv-surface) 86%, var(--xiv-gold) 14%), color-mix(in srgb, var(--xiv-surface-deep) 95%, var(--xiv-gold) 5%));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--xiv-gold) 20%, transparent);
+}
+
+.achievement-filter-link--sub {
+  min-height: 2rem;
+  padding: .42rem .6rem;
+  font-size: .78rem;
+}
+
+.achievement-filter-link__label,
+.achievement-filter-link__path {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.achievement-filter-link__count {
+  flex: 0 0 auto;
+  min-width: 1.8rem;
+  padding: .15rem .45rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--xiv-surface-deep) 80%, transparent);
+  color: var(--xiv-gold-bright);
+  font-size: .68rem;
+  text-align: center;
+}
+
+.achievement-toolbar {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.achievement-toolbar__grid {
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+}
+
+.achievement-toolbar__field {
+  display: grid;
+  gap: .35rem;
+  grid-column: span 4;
+}
+
+.achievement-toolbar__field--select {
+  grid-column: span 2;
+}
+
+.achievement-toolbar__label {
+  color: var(--xiv-muted);
+  font-size: .78rem;
+  font-weight: 600;
+}
+
+.achievement-toolbar__toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: .65rem;
+  min-height: 3.25rem;
+  padding: .75rem .8rem;
+  grid-column: span 3;
+}
+
+.achievement-toolbar__toggle input[type="checkbox"] {
+  margin-top: .15rem;
+  accent-color: var(--xiv-gold);
+}
+
+.achievement-toolbar__toggle strong,
+.achievement-toolbar__toggle small {
+  display: block;
+}
+
+.achievement-toolbar__toggle strong {
+  color: var(--xiv-text);
+  font-size: .82rem;
+}
+
+.achievement-toolbar__toggle small {
+  margin-top: .15rem;
+  color: var(--xiv-muted);
+  font-size: .7rem;
+  line-height: 1.45;
+}
+
+.achievement-toolbar__actions {
+  display: flex;
+  align-items: end;
+  grid-column: span 12;
+}
+
+.achievement-toolbar__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem .8rem;
+  align-items: center;
+}
+
+.achievement-toolbar__stat {
+  color: var(--xiv-muted);
+  font-size: .78rem;
+}
+
+.achievement-toolbar__stat strong {
+  color: var(--xiv-gold-bright);
+}
+
+.achievement-toolbar__stat--context {
+  padding: .2rem .45rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--xiv-surface-deep) 72%, transparent);
+}
+
+.achievement-results {
+  display: grid;
+  gap: .9rem;
+}
+
+.achievement-section {
+  display: grid;
+  gap: .8rem;
+  padding: .9rem;
+}
+
+.achievement-section__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.achievement-section__meta {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.achievement-section__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: .2rem .6rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-gold) 35%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--xiv-gold) 8%, transparent);
+  color: var(--xiv-gold-bright);
+  font-size: .74rem;
+  font-weight: 600;
+}
+
+.achievement-section__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(22rem, 100%), 1fr));
+  gap: .75rem;
+}
+
+.achievement-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: .8rem;
+  min-height: 9.2rem;
+  padding: .8rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--xiv-surface) 94%, var(--xiv-bg) 6%);
+  overflow: hidden;
+}
+
+.achievement-card__background {
+  position: absolute;
+  inset: 0;
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: .08;
+  pointer-events: none;
+}
+
+.achievement-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--xiv-surface) 0%, color-mix(in srgb, var(--xiv-surface) 96%, transparent) 72%, color-mix(in srgb, var(--xiv-surface) 78%, transparent) 100%);
+  pointer-events: none;
+}
+
+.achievement-card__icon-wrap,
+.achievement-card__body {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.achievement-card__icon-wrap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.achievement-card__icon {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.35));
+}
+
+.achievement-card__body {
+  display: grid;
+  align-content: start;
+  gap: .45rem;
+}
+
+.achievement-card__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .55rem;
+}
+
+.achievement-card__titles {
+  min-width: 0;
+}
+
+.achievement-card__title {
+  margin: 0 !important;
+  color: var(--xiv-gold-bright) !important;
+  font: 600 .92rem/1.28 var(--xiv-font) !important;
+  text-shadow: none !important;
+  overflow-wrap: anywhere;
+}
+
+.achievement-card__subtitle {
+  margin-top: .08rem;
+  color: var(--xiv-muted);
+  font-size: .69rem;
+  line-height: 1.35;
+}
+
+.achievement-card__order {
+  flex: 0 0 auto;
+  padding: .16rem .42rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--xiv-surface-deep) 78%, transparent);
+  color: var(--xiv-muted);
+  font-size: .64rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.achievement-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .6rem;
+  align-items: center;
+}
+
+.achievement-card__category {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: .25rem;
+  color: var(--xiv-muted);
+  font-size: .68rem;
+  line-height: 1.3;
+}
+
+.achievement-card__points {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.45rem;
+  padding: .1rem .45rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-gold) 35%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--xiv-gold) 8%, transparent);
+  color: var(--xiv-gold-bright);
+  font-size: .65rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.achievement-card__description {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  color: var(--xiv-text);
+  font-size: .76rem;
+  line-height: 1.45;
+}
+
+.achievement-card__rewards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+
+.achievement-card__reward {
+  display: inline-flex;
+  gap: .3rem;
+  align-items: center;
+  min-width: 0;
+  padding: .2rem .42rem;
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 48%, transparent);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--xiv-surface-deep) 76%, transparent);
+  color: var(--xiv-muted);
+  font-size: .66rem;
+  line-height: 1.25;
+}
+
+.achievement-card__reward strong {
+  color: var(--xiv-gold-bright);
+  font-weight: 600;
+}
+
+.achievement-card__reward span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.achievement-empty {
+  padding: 1rem;
+  text-align: center;
+}
+
+.achievement-empty__title {
+  margin: 0;
+  color: var(--xiv-gold-bright);
+}
+
+.achievement-empty__text {
+  margin: .35rem 0 0;
+  color: var(--xiv-muted);
+}
+
+@media (min-width: 82rem) {
+  .achievement-browser {
+    grid-template-columns: minmax(16rem, 19rem) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .achievement-browser__sidebar {
+    position: sticky;
+    top: 1rem;
+    align-self: start;
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+  }
+}
+
+@media (max-width: 70rem) {
+  .achievement-toolbar__field,
+  .achievement-toolbar__field--select,
+  .achievement-toolbar__toggle {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 48rem) {
+  .achievement-toolbar__field,
+  .achievement-toolbar__field--select,
+  .achievement-toolbar__toggle,
+  .achievement-toolbar__actions {
+    grid-column: span 12;
+  }
+
+  .achievement-section__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .achievement-card {
+    grid-template-columns: 2.8rem minmax(0, 1fr);
+    min-height: 0;
+    padding: .7rem;
+  }
+
+  .achievement-card__icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
+/* === achievements browser redesign end === */
