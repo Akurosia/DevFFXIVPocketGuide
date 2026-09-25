@@ -1,21 +1,31 @@
 <!-- Include _include/klassen/summary.html -->
-<div class="summary" data-expansion="{{guide.expac}}">
-    <a class="index-item__link xiv-card" href="{{ guide.url | prepend: site.baseurl }}" title="Go to the {{ guide.title.de }} Guide">
-        <div loading="lazy"
-            class="index-item__background"
+<div class="summary" data-expansion="{{ guide.expac }}">
+    <a class="index-item__link xiv-card"
+       href="{{ guide.url | prepend: site.baseurl }}"
+       title="Go to the {{ guide.title.de }} Guide">
+
+        <div class="index-item__background" aria-hidden="true">
             {%- if guide.image -%}
-                style="background-image:
-                    {%- if guide.image contains "/assets/" -%}
-                        url('{{guide.image}}')
-                    {%- else -%}
-                        url('{{guide.image}}')
-                    {%- endif -%}
-            {%- endif -%}">
+                <img class="index-item__background-image klassen-summary__background-image"
+                     src="{{ guide.image | relative_url }}"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     fetchpriority="low">
+            {%- endif -%}
         </div>
+
         <div class="klassenjobgrid">
             {%- if guide.jobicon -%}
-                <img loading="lazy" class="SummaryIcon Icon" title="Job" src="{{site.imageurl}}/{{guide.jobicon}}"/>
+                <img loading="lazy"
+                     decoding="async"
+                     fetchpriority="low"
+                     class="SummaryIcon Icon"
+                     title="Job"
+                     src="{{ site.imageurl }}/{{ guide.jobicon }}"
+                     alt="">
             {%- endif -%}
+
             <div class="SummaryName">
                 <h3 class="index-item__title"
                     {%- if guide.layout == "new-guide" -%}
@@ -23,8 +33,11 @@
                     {%- else -%}
                       data-terms="{%- for term in guide.terms -%}term:{{ term.term }}&#32;{%- endfor -%}"
                     {%- endif -%}>
-                    <span data-translate="Content_Title_{{ guide.title.en }}"> {{ guide.title.en }} </span>
+                    <span data-translate="Content_Title_{{ guide.title.en }}">
+                        {{ guide.title.en }}
+                    </span>
                 </h3>
+
                 <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
                     {{ guide.title.en }}
                 </h4>

@@ -1,0 +1,72 @@
+/* Beastmaster: borrowed/kinship action ----------------------------------- */
+
+.beastmaster-borrow {
+  display: grid;
+  gap: .55rem;
+
+  margin: .75rem 0;
+  padding: .8rem .9rem;
+
+  border-left: 3px solid var(--xiv-gold);
+}
+
+.beastmaster-borrow__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .6rem 1rem;
+}
+
+.beastmaster-borrow__eyebrow {
+  display: block;
+
+  margin-bottom: .15rem;
+
+  color: var(--xiv-muted);
+
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.beastmaster-borrow__title {
+  margin: 0 !important;
+}
+
+.beastmaster-borrow__classification {
+  display: inline-flex;
+  align-items: center;
+
+  padding: .2rem .45rem;
+
+  border: 1px solid color-mix(in srgb, var(--xiv-gold) 42%, var(--xiv-border));
+  border-radius: 999px;
+
+  color: var(--xiv-gold-bright);
+
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+.beastmaster-borrow__english {
+  color: var(--xiv-muted);
+  font-size: .76rem;
+}
+
+.beastmaster-borrow__effect,
+.beastmaster-borrow__note {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.beastmaster-borrow__note {
+  padding-top: .45rem;
+
+  border-top: 1px solid color-mix(in srgb, var(--xiv-border) 55%, transparent);
+
+  color: var(--xiv-muted);
+
+  font-size: .76rem;
+}

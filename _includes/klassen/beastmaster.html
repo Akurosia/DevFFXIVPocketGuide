@@ -1,18 +1,23 @@
 <section class="guide__accordion beastmaster-captures" aria-labelledby="beastmaster-title">
-    <div class="guide__accordion-trigger--01-grid active xiv-accordion-trigger" id="beastmaster-title" data-guide-persistent>
+    <div class="guide__accordion-trigger--01-grid active xiv-accordion-trigger"
+         id="beastmaster-title"
+         data-guide-persistent>
         <div class="Names">
             <span class="guide__accordion-trigger-title class">Bestien zum Fangen</span>
         </div>
     </div>
 
-    <div class="guide__accordion-content--01 active beastmaster-captures__content" data-guide-persistent>
+    <div class="guide__accordion-content--01 active beastmaster-captures__content"
+         data-guide-persistent>
+
         <div class="search beastmaster-search">
             <div class="search__form_blu">
                 <input id="beastmaster-search"
                        type="text"
-                       aria-label="Bestie, Angriff oder Fundort suchen"
-                       placeholder="Bestie, Angriff, Gegner oder Fundort suchen"
+                       aria-label="Bestie, Angriff, Borgen-Kommando oder Fundort suchen"
+                       placeholder="Bestie, Angriff, Borgen-Kommando, Gegner oder Fundort suchen"
                        autocomplete="off">
+
                 <label class="beastmaster-search__missing">
                     <input id="beastmaster-missing" type="checkbox">
                     <span>Nur fehlende Bestien</span>
@@ -21,85 +26,153 @@
         </div>
 
         <div class="beastmaster-summary">
-            <p id="beastmaster-count" role="status" aria-live="polite">{{ site.data.beastmaster.size }} Bestien</p>
-            <p id="beastmaster-storage" hidden>Der Fangfortschritt kann in diesem Browser nicht gespeichert werden.</p>
+            <p id="beastmaster-count" role="status" aria-live="polite">
+                {{ page.beasts.size }} Bestien
+            </p>
+            <p id="beastmaster-storage" hidden>
+                Der Fangfortschritt kann in diesem Browser nicht gespeichert werden.
+            </p>
         </div>
 
         <div id="beastmaster-list" class="beastmaster-list">
-            {% for beast in site.data.beastmaster %}
-            <article class="beastmaster-entry" data-beast-number="{{ beast.number }}">
-                <div class="guide__entry-trigger guide__entry-trigger--beast xiv-accordion-trigger"
-                     role="button"
-                     tabindex="0"
-                     aria-expanded="false"
-                     id="beast-{{ beast.number }}">
-                    {% if beast.icon != '' %}
-                        <img class="Icon beastmaster-entry__icon"
-                             loading="lazy"
-                             src="{{ site.imageurl }}/{{ beast.icon }}"
-                             alt="">
-                    {% endif %}
+            {% for beast in page.beasts %}
+                <article class="beastmaster-entry"
+                         data-beast-number="{{ beast.number }}">
 
-                    <div class="Names beastmaster-entry__name">
-                        <strong data-beast-search>{{ beast.number }}. {{ beast.name | escape }}</strong>
-                        <span class="guide__accordion-trigger-subtitle" data-beast-search>{{ beast.location | escape }}</span>
-                    </div>
+                    <div class="guide__entry-trigger guide__entry-trigger--beast xiv-accordion-trigger"
+                         role="button"
+                         tabindex="0"
+                         aria-expanded="false"
+                         id="beast-{{ beast.number }}">
 
-                    <span class="beastmaster-entry__number">Nr. {{ beast.number }}</span>
-                </div>
+                        {% if beast.icon != '' %}
+                            <img class="Icon beastmaster-entry__icon"
+                                 loading="lazy"
+                                 decoding="async"
+                                 src="{{ site.imageurl }}/{{ beast.icon }}"
+                                 alt="">
+                        {% endif %}
 
-                <div class="guide__entry-content guide__entry-content--beast xiv-accordion-content" hidden>
-                    <div class="guide__accordion-copy-wrapper">
-                        <div class="beastmaster-entry__meta">
-                            <label class="beastmaster-caught">
-                                <input type="checkbox"
-                                       data-beast-caught="{{ beast.number }}"
-                                       aria-label="{{ beast.name | escape }} gefangen">
-                                <span>Gefangen</span>
-                            </label>
+                        <div class="Names beastmaster-entry__name">
+                            <strong data-beast-search>
+                                {{ beast.number }}. {{ beast.name | escape }}
+                            </strong>
 
-                            {% if beast.description != '' %}
-                                <p>{{ beast.description | escape }}</p>
-                            {% endif %}
+                            <span class="guide__accordion-trigger-subtitle"
+                                  data-beast-search>
+                                {{ beast.location | escape }}
+                            </span>
                         </div>
 
-                        <div class="beastmaster-location">
-                            <h5 class="guide__attack-notes-title">Fundort</h5>
-                            <div class="beastmaster-location__grid">
-                                <div>
-                                    <strong>Gebiet / Inhalt</strong>
-                                    <span>{% if beast.location != '' %}{{ beast.location | escape }}{% else %}Kein Fundorthinweis im Bestienbuch{% endif %}</span>
-                                </div>
-                                <div>
-                                    <strong>Passende Gegner im Kampflog</strong>
+                        <span class="beastmaster-entry__number">
+                            Nr. {{ beast.number }}
+                        </span>
+                    </div>
+
+                    <div class="guide__entry-content guide__entry-content--beast xiv-accordion-content"
+                         hidden>
+                        <div class="guide__accordion-copy-wrapper">
+
+                            <div class="beastmaster-entry__meta">
+                                <label class="beastmaster-caught">
+                                    <input type="checkbox"
+                                           data-beast-caught="{{ beast.number }}"
+                                           aria-label="{{ beast.name | escape }} gefangen">
+                                    <span>Gefangen</span>
+                                </label>
+
+                                {% if beast.description != '' %}
+                                    <p>{{ beast.description | escape }}</p>
+                                {% endif %}
+                            </div>
+
+                            {% if beast.borrow %}
+                                <section class="beastmaster-borrow"
+                                         aria-label="Borgen-Kommando">
+
+                                    <div class="beastmaster-borrow__heading">
+                                        <div>
+                                            <span class="beastmaster-borrow__label">Borgen</span>
+
+                                            <h5 class="beastmaster-borrow__title"
+                                                data-beast-search>
+                                                {{ beast.borrow.title.de }}
+                                            </h5>
+
+                                            {% if beast.borrow.title.en != beast.borrow.title.de %}
+                                                <span class="beastmaster-borrow__subtitle"
+                                                      data-beast-search>
+                                                    {{ beast.borrow.title.en }}
+                                                </span>
+                                            {% endif %}
+                                        </div>
+
+                                        <span class="beastmaster-borrow__classification"
+                                              data-beast-search>
+                                            {{ beast.borrow.classification }}
+                                        </span>
+                                    </div>
+
+                                    {% if beast.borrow.description.de %}
+                                        <p class="beastmaster-borrow__effect">
+                                            {{ beast.borrow.description.de }}
+                                        </p>
+                                    {% endif %}
+                                </section>
+                            {% endif %}
+
+                            <div class="beastmaster-location">
+                                <h5 class="guide__attack-notes-title">Fundort</h5>
+
+                                <div class="beastmaster-location__grid">
                                     <div>
-                                        {% for sighting in beast.sightings %}
-                                            <span data-beast-search>{{ sighting.name | escape }}</span>{% unless forloop.last %}, {% endunless %}
-                                        {% else %}
-                                            Kein passender Gegnername aufgezeichnet.
-                                        {% endfor %}
+                                        <strong>Gebiet / Inhalt</strong>
+                                        <span>
+                                            {% if beast.location != '' %}
+                                                {{ beast.location | escape }}
+                                            {% else %}
+                                                Kein Fundorthinweis im Bestienbuch
+                                            {% endif %}
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <strong>Passende Gegner im Kampflog</strong>
+                                        <div>
+                                            {% for sighting in beast.sightings %}
+                                                <span data-beast-search>{{ sighting.name | escape }}</span>{% unless forloop.last %}, {% endunless %}
+                                            {% else %}
+                                                Kein passender Gegnername aufgezeichnet.
+                                            {% endfor %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        {% if beast.attacks and beast.attacks.size > 0 %}
-                            <div class="beastmaster-abilities">
-                                <h5 class="guide__attack-notes-title">Angriffe</h5>
-                                {% assign beast_attack_prefix = 'beast-' | append: beast.number | append: '-' %}
-                                {% assign extra = '' %}
-                                {% for attack in beast.attacks %}
-                                    {% include klassen/_components/guide-attack.html id_prefix=beast_attack_prefix %}
-                                {% endfor %}
-                            </div>
-                        {% endif %}
+                            {% if beast.attacks and beast.attacks.size > 0 %}
+                                <div class="beastmaster-abilities">
+                                    <h5 class="guide__attack-notes-title">
+                                        Dressur / Entfesseln
+                                    </h5>
+
+                                    {% assign beast_attack_prefix = 'beast-' | append: beast.number | append: '-' %}
+                                    {% assign extra = '' %}
+
+                                    {% for attack in beast.attacks %}
+                                        {% include klassen/_components/guide-attack.html id_prefix=beast_attack_prefix %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-            </article>
+                </article>
             {% endfor %}
         </div>
 
-        <p id="beastmaster-empty" hidden>Keine Bestien für diesen Filter gefunden.</p>
+        <p id="beastmaster-empty" hidden>
+            Keine Bestien für diesen Filter gefunden.
+        </p>
     </div>
 </section>
+
 <script src="{{ '/assets/js/beastmaster.js' | relative_url }}" defer></script>

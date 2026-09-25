@@ -277,7 +277,7 @@ def run_all(path_of_main_script, translations):
     #return
     tasks = [
        #lambda: aas.run(path_of_main_script),
-       #lambda: csgf.run(path_of_main_script),
+       lambda: csgf.run(path_of_main_script),
        #lambda: gl.run(path_of_main_script),
        #lambda: gp.run(path_of_main_script),
        #lambda: ghm.run(path_of_main_script),
@@ -288,7 +288,7 @@ def run_all(path_of_main_script, translations):
        #lambda: quests.run(path_of_main_script),
        #lambda: deepdungeon.run(path_of_main_script),
        #lambda: fcc.run(path_of_main_script, translations),
-       lambda: gmd.run(path_of_main_script),
+       #lambda: gmd.run(path_of_main_script),
     ]
 
     with ThreadPoolExecutor(max_workers=len(tasks)) as executor:
@@ -332,7 +332,7 @@ def main() -> None:
         orderedContent = tmp["ordered"]
 
     try:
-        run(googledata, orderedContent)
+        #run(googledata, orderedContent)
         pass
     except Exception:
         traceback.print_exception(*sys.exc_info())

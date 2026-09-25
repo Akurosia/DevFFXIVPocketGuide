@@ -425,7 +425,7 @@ def get_baseimage_by_location(location):
     folder: str = _id[:3]
     name: str = _id.split("/")[0]
     posible_maps: list[str] = []
-    for x in glob(f"P:/extras/images/ui/map/{folder}/{name}*.webp"):
+    for x in glob(f"P:/extras/images/ui/maps/{folder}/{name}*.webp"):
         if not len(x.split(" - ")) == 2: continue
         if "_event" in x: continue
         if "Altes Bootshaus.webp" in x: continue

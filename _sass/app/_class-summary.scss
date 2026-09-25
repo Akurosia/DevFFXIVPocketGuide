@@ -1,0 +1,32 @@
+/* Classes/Jobs summary artwork ------------------------------------------- */
+
+.klassen-summary__background-image {
+  display: block;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  margin: 0 !important;
+
+  object-fit: cover !important;
+  object-position: center 20% !important;
+
+  opacity: 1 !important;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/*
+ * The image is decorative card artwork. Keep the text/icon layer above it.
+ */
+.klassenjobgrid {
+  position: relative;
+  z-index: 2;
+}
+
+.klassenjobgrid + *,
+.index-item__body {
+  position: relative;
+  z-index: 2;
+}

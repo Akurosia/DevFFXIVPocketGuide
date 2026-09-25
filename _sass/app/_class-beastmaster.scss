@@ -1,0 +1,146 @@
+/* ==========================================================================
+   Class guide hero + Beastmaster Borrow
+   ========================================================================== */
+
+/* Job/class artwork ------------------------------------------------------- */
+
+.class-guide-hero {
+  position: relative;
+
+  width: 100%;
+  min-height: clamp(14rem, 32vw, 32rem);
+
+  margin: 0 0 1rem;
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 1px solid color-mix(in srgb, var(--xiv-border) 72%, transparent);
+  border-radius: var(--xiv-radius, 7px);
+
+  background: var(--xiv-surface-deep);
+}
+
+.class-guide-hero__image {
+  display: block;
+
+  width: 100% !important;
+  height: clamp(14rem, 32vw, 32rem) !important;
+
+  margin: 0 !important;
+
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Keep portrait-ish class artwork useful on narrow/mobile screens. */
+@media (max-width: 42rem) {
+  .class-guide-hero {
+    min-height: 13rem;
+  }
+
+  .class-guide-hero__image {
+    height: 13rem !important;
+    object-position: center 18%;
+  }
+}
+
+
+/* Beastmaster Borgen ------------------------------------------------------ */
+
+.beastmaster-borrow {
+  display: grid;
+  gap: .65rem;
+
+  margin: .8rem 0;
+  padding: .85rem 1rem;
+
+  border: 1px solid color-mix(in srgb, var(--xiv-gold) 38%, var(--xiv-border));
+  border-left: 3px solid var(--xiv-gold);
+  border-radius: var(--xiv-radius, 6px);
+
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--xiv-gold) 8%, var(--xiv-surface)),
+      var(--xiv-surface-deep)
+    );
+}
+
+.beastmaster-borrow__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: .6rem 1rem;
+}
+
+.beastmaster-borrow__label {
+  display: block;
+
+  margin-bottom: .12rem;
+
+  color: var(--xiv-muted);
+
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+
+  text-transform: uppercase;
+}
+
+.beastmaster-borrow__title {
+  margin: 0;
+
+  color: var(--xiv-gold-bright);
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+.beastmaster-borrow__subtitle {
+  display: block;
+
+  margin-top: .15rem;
+
+  color: var(--xiv-muted);
+  font-size: .76rem;
+}
+
+.beastmaster-borrow__classification {
+  display: inline-flex;
+  align-items: center;
+
+  padding: .22rem .48rem;
+
+  border: 1px solid color-mix(in srgb, var(--xiv-gold) 45%, var(--xiv-border));
+  border-radius: 999px;
+
+  color: var(--xiv-gold-bright);
+
+  font-size: .7rem;
+  font-weight: 700;
+}
+
+.beastmaster-borrow__effect,
+.beastmaster-borrow__mechanic {
+  margin: 0;
+
+  line-height: 1.5;
+}
+
+.beastmaster-borrow__mechanic {
+  padding-top: .55rem;
+
+  border-top: 1px solid color-mix(in srgb, var(--xiv-border) 55%, transparent);
+
+  color: var(--xiv-muted);
+
+  font-size: .77rem;
+}
+
+.beastmaster-borrow--missing {
+  border-color: color-mix(in srgb, var(--pg-warning, #d9a84a) 55%, var(--xiv-border));
+}
