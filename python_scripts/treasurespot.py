@@ -188,16 +188,16 @@ def code_for_image(overlay_id, posible_maps, location, item_name):
 
     print(location)
     print(overlay_id)
-    #overlay_cropped, x_off, y_off = get_croped_image(overlay_id)
-    #overlay_x_cropped, xx_off, xy_off = get_x_image(overlay_id)
-    #overlay_cropped.paste(overlay_x_cropped, (x_off-xx_off, y_off-xy_off), overlay_x_cropped if overlay_x_cropped.mode == 'RGBA' else None)
+    overlay_cropped, x_off, y_off = get_croped_image(overlay_id)
+    overlay_x_cropped, xx_off, xy_off = get_x_image(overlay_id)
+    overlay_cropped.paste(overlay_x_cropped, (x_off-xx_off, y_off-xy_off), overlay_x_cropped if overlay_x_cropped.mode == 'RGBA' else None)
 
     # the followign block will save the empty map for leaflet usage
-    #tmp_out: str = f"{path_of_main_script}/assets/img/TreasureMaps/{item_name}/"
-    #if not os.path.exists(tmp_out):
-    #    os.makedirs(tmp_out)
-    #if not os.path.exists(tmp_out + f"empty_map.webp"):
-    #    overlay_cropped.save(tmp_out + f"empty_map.webp", format='WEBP', lossless=True)
+    tmp_out: str = f"{path_of_main_script}/assets/img/TreasureMaps/{item_name}/"
+    if not os.path.exists(tmp_out):
+        os.makedirs(tmp_out)
+    if not os.path.exists(tmp_out + f"empty_map.webp"):
+        overlay_cropped.save(tmp_out + f"empty_map.webp", format='WEBP', lossless=True)
 
     w, h = modified_image.size
     full_placename = None
@@ -305,7 +305,7 @@ def show_image(circle_coords: dict[str, dict[str, Any]]):
             folder: str = _id[:3]
             name: str = _id.split("/")[0]
             posible_maps: list[str] = []
-            for x in glob(f"P:/extras/images/ui/map/{folder}/{name}*.webp"):
+            for x in glob(f"P:/extras/images/ui/maps/{folder}/{name}*.webp"):
                 if not len(x.split(" - ")) == 2: continue
                 if "_event" in x: continue
                 if "Altes Bootshaus.webp" in x: continue

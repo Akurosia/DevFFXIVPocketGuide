@@ -76,7 +76,7 @@ fateevent: FFXIV_DATA = loadDataTheQuickestWay("FateEvent.json")
 level: FFXIV_DATA = loadDataTheQuickestWay("Level.json")
 treasurespot: FFXIV_DATA = loadDataTheQuickestWay("TreasureSpot.json")
 treasurehuntrank: FFXIV_DATA = loadDataTheQuickestWay("TreasureHuntRank.json")
-treasurehunttexture: FFXIV_DATA = loadDataTheQuickestWay("TreasureHuntTexture.json")
+treasurehunttexture: FFXIV_DATA = loadDataTheQuickestWay("TreasureHuntTexture.json", translate=False)
 journalgenre: FFXIV_DATA = loadDataTheQuickestWay("JournalGenre.json")
 
 maps = loadDataTheQuickestWay("Map.json")
