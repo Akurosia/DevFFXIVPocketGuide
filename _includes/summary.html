@@ -27,7 +27,7 @@
             {%- endif -%}
         </div>
 
-        <div class="xiv-card-body index-item__body{%- unless guide.jobicon -%} index-item__body--text-only{%- endunless -%}">
+        <div class="xiv-card-body index-item__body{% unless guide.jobicon %} index-item__body--text-only{% endunless %}">
             {%- if guide.jobicon -%}
                 <img
                     loading="lazy"

@@ -15,7 +15,7 @@
             {%- endif -%}
         </div>
 
-        <div class="klassenjobgrid">
+        <div class="xiv-card-body index-item__body{% unless guide.jobicon %} index-item__body--text-only{% endunless %}">
             {%- if guide.jobicon -%}
                 <img loading="lazy"
                      decoding="async"
@@ -27,7 +27,7 @@
             {%- endif -%}
 
             <div class="SummaryName">
-                <h3 class="index-item__title"
+                <h3 class="index-item__title xiv-card-title"
                     {%- if guide.layout == "new-guide" -%}
                       data-terms="title:{{ guide.title.de }}&#32;title:{{ guide.title.en }}&#32;title:{{ guide.title.fr }}&#32;title:{{ guide.title.ja }}&#32;title:{{ guide.title.cn }}&#32;title:{{ guide.title.ko }}&#32;type:{{ guide.guide-type }}&#32;cat:{{ guide.categories }}&#32;{%- for term in guide.search-terms -%}term:{{ term }}&#32;{%- endfor -%}"
                     {%- else -%}
@@ -38,7 +38,7 @@
                     </span>
                 </h3>
 
-                <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en">
+                <h4 class="lang-toggle lang-toogle-en-sub index-item__title_en xiv-card-meta">
                     {{ guide.title.en }}
                 </h4>
             </div>

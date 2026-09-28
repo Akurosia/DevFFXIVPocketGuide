@@ -2,20 +2,24 @@
 <div class="summary">
     <span class="index-item__link xiv-card" title="Go to the {{ guide.name.de }} Guide">
         <div loading="lazy" class="index-item__background" style="background-image:  url('{{ site.imageurl }}/{{ guide.icon }}')"></div>
-        <h3 class="index-item__title"
-              data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%} {{guide.name.de}}&#32;{{guide.name.en}}&#32;{{guide.name.fr}}&#32;{{guide.name.ja}}&#32;{{guide.name.cn}}&#32;{{guide.name.ko}}&#32;{{guide.place}}&#32;{{guide.unlocks}}&#32;">
+        <div class="xiv-card-body index-item__body index-item__body--text-only">
+            <div class="SummaryName">
+                <h3 class="index-item__title xiv-card-title"
+                      data-terms="{%- for term in guide.terms -%}{{ term.term }}&#32;{%- endfor -%} {{guide.name.de}}&#32;{{guide.name.en}}&#32;{{guide.name.fr}}&#32;{{guide.name.ja}}&#32;{{guide.name.cn}}&#32;{{guide.name.ko}}&#32;{{guide.place}}&#32;{{guide.unlocks}}&#32;">
 
-            {%- for lang in LANGUAGES -%}
-                <span class="lang-toggle lang-toogle-{{lang}}"> {{ guide.name[lang] }} </span>
-            {%- endfor -%}
-            <span class="lang-toggle lang-toogle-en-sub"> ~ ({{ guide.name.en }}) </span>
-            ~ [{{ guide.id }}]
-        </h3>
-        <h4 class="index-item__title_en">Level: {{ guide.level }}</h4>
-        <h4 class="index-item__title_en">Kategorie: {{ guide.journal }}</h4>
-        <h4 class="index-item__title_en">{{ guide.place }} {{ guide.location }}</h4>
-        <h4 class="index-item__title_en">NPC: {{ guide.issuer }}</h4>
-        <h4 class="index-item__title_en">Unlockable: {{ guide.unlocks }}</h4>
+                    {%- for lang in LANGUAGES -%}
+                        <span class="lang-toggle lang-toogle-{{lang}}"> {{ guide.name[lang] }} </span>
+                    {%- endfor -%}
+                    <span class="lang-toggle lang-toogle-en-sub"> ~ ({{ guide.name.en }}) </span>
+                    ~ [{{ guide.id }}]
+                </h3>
+                <h4 class="index-item__title_en xiv-card-meta">Level: {{ guide.level }}</h4>
+                <h4 class="index-item__title_en xiv-card-meta">Kategorie: {{ guide.journal }}</h4>
+                <h4 class="index-item__title_en xiv-card-meta">{{ guide.place }} {{ guide.location }}</h4>
+                <h4 class="index-item__title_en xiv-card-meta">NPC: {{ guide.issuer }}</h4>
+                <h4 class="index-item__title_en xiv-card-meta">Unlockable: {{ guide.unlocks }}</h4>
+            </div>
+        </div>
     </span>
 </div>
 <!-- END Include from _includes/quests/summary -->
